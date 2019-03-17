@@ -1,0 +1,301 @@
+/* inputTypeDesign - SWITCHES - TOGGLE */
+
+    #inputType1 {
+      max-width: 27rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    #inputType2 {
+      max-width: 35rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    .card-title, .label{
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input.form-control {
+      max-width: 10rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid black;
+      border-radius: 0;
+    }
+
+    input.form {
+      max-width: 10rem;
+      background: transparent;
+      border: none;
+    }
+
+    select.custom-select {
+      max-width: 10rem;
+      border: none;
+      border-bottom: 2px solid black;
+      margin-bottom: 2rem;
+      border-radius: 0;
+    }
+
+    select.custom {
+      max-width: 10rem;
+      border: none;
+    }
+
+    select.custom1 {
+      max-width: 10rem;
+      border: none;
+      border-bottom: 2px solid #FF8300;
+      margin-bottom: 8rem;
+    }
+
+    select.custom2 {
+      max-width: 10rem;
+      border: none;
+      border-bottom: 2px solid #333333;
+      margin-bottom: 8rem;
+    }
+
+    option.option {
+      background-color: #333333;
+      color: #FFC107;
+    }
+
+
+
+  /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 38px;
+      height: 17px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 13px;
+      width: 13px;
+      left: 4px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #00CC00;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(18px);
+      -ms-transform: translateX(18px);
+      transform: translateX(18px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+  /* cardStyle */
+    .card {
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    #card-header {
+      background: #555555;
+    }
+
+    #btnGroupAddon {
+      background: #FF8300;
+      font-weight:  bold;
+      color: black;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    #btnGroupAddon1 {
+      background: #555555;
+      font-weight:  bold;
+      color: black;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    .card.card-sm{
+      max-width: 10rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+      font-size: 15px;
+      font-weight: bold;
+      color: black;
+      height: 3.1rem;
+    }
+
+  	.last{
+  		height: 3rem;
+  	}
+
+    .input-group-text{
+      font-size: 24px;
+    }
+
+ /*filterTabs.html*/
+    div.filter-card {
+      background-color: #E5E5E5;
+    }
+
+    div#card-header1 {
+      border-bottom: 2px solid #CCCCCC;
+    }
+
+    div#card-body {
+      border-bottom: 2px solid #CCCCCC;
+    }
+
+    h5 {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .form-check {
+      font-size: 14px;
+    }
+
+    /*Customized Checkbox*/
+    .checkbox-custom {
+      position: relative;
+      font-size: 12px;
+    }
+
+    span.all {
+      margin-right: 2.8rem;
+    }
+
+    span.all2 {
+      margin-right: 1.8rem;
+    }
+
+/*not working*/
+    .checkbox-custom input[type=checkbox] {
+      background-color: #FFFFFF;
+      border: 1px solid #FFC107;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      line-height: 1;
+      text-align: center;
+      font-size: 12px;
+      color: #ad823a;
+    }
+
+/*
+    .checkbox-custom input[type=checkbox] {
+      display: none;
+    }
+
+    .checkbox-custom input[type=checkbox]~b {
+      cursor: pointer;
+      outline: 0;
+      position: relative;
+      display: inline-block;
+      margin: 4px 1px 0;
+      background-color: #fff;
+      border: 1px solid #FFC107;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      line-height: 1;
+      text-align: center;
+      font-size: 12px;
+      color: #ad823a;
+    }
+
+    .checkbox-custom input[type=checkbox]:checked~b:after {
+      content: '\2713';
+      cursor: pointer;
+      outline: 0;
+      display: inline-block;
+      background-color: #337AB7;
+      border-right: 1px solid #FFC107;
+      border-bottom: 1px solid #FFC107;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      line-height: 1;
+      text-align: center;
+      font-size: 12px;
+      color: white;
+    }
+
+    .checkbox-custom input[name=status]:checked~b:after {
+      content: '\2212';
+      cursor: pointer;
+      outline: 0;
+      display: inline-block;
+      background-color: #555555;
+      border-right: 1px solid #FFC107;
+      border-bottom: 1px solid #FFC107;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      line-height: 1;
+      text-align: center;
+      font-size: 12px;
+      color: white;
+    }
+*/
+    #buttons{
+      font-size: 12px;
+      border-radius: 0;
+      width: 6rem;
+      margin-top: 5rem;
+      box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+    }
+
+    #button2{
+      font-size: 12px;
+      border-radius: 0;
+      width: 5rem;
+      box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+    }
+
+    /*sample card*/
+
+    .row {
+      padding-top: 2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .exampleFormControlSelect1 {
+      width: 11rem;
+      height: 2rem;
+    }
+
+    .button {
+      height: 1.9rem;
+    }

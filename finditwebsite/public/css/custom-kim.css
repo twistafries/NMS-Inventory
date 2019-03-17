@@ -1,0 +1,139 @@
+body{
+  background: #E5E5E5;
+}
+
+/* MODAL */
+.modal-footer > button {
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-family: sans-serif;
+  font-size: 15px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  width:50%;
+  height:50px;
+  position:relative;
+}
+
+.modal-footer{
+  background-color: white;
+}
+.modal-header{
+	background-color: #757575;
+  color: white;
+}
+
+.modal-title{
+  color: white;
+  padding-top: 80px;
+  font-family: sans-serif; 
+}
+
+.close{
+  color: white;
+}
+
+.close:hover{
+	background-color: #FFC107;
+}
+
+.modal-content{
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-dialog{
+    overflow-y: initial !important;
+}
+
+.modal-body{
+    height: 332px;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+
+.successHeader{
+  background-color: #5cb85c;
+}
+
+.successIcon{
+    width: 100%;
+    color: #5cb85c;
+    text-align: center;
+}
+
+.successText{
+    padding: 50px 100px; 
+    color: #5cb85c;
+    font-style: sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Buttons */
+#okSuccessButton{
+    margin-right: 25%;
+    width: 50%;
+    text-align: center;
+}
+
+#retryFailedButton{
+    width: 50%;
+    text-align: center;
+}
+
+#okFailedButton{
+    width: 50%;
+    text-align: center;
+}
+
+
+#failedHeader{
+  background-color: #d9534f;
+}
+
+#failedIcon{
+    width: 100%;
+    color: #d9534f;
+    text-align: center;
+}
+
+#failedText{
+    padding: 50px 100px; 
+    color: #d9534f;
+    font-style: sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFC107; 
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F0AD4E; 
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+
+.sample-buttons > button{
+  font-family: sans-serif;
+
+}
+
+#reissue{
+	border-color: purple;
+  background-color: purple;
+  color: white;
+}
+
+

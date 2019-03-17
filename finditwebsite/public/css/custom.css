@@ -1,0 +1,889 @@
+/* *****************************************************
+    INDEX
+        - 1. General Styles
+            - 1.1. Body
+            - 1.2. Font Styles
+
+        - 2. Button Styles
+
+        - 2. Containers Styles
+            - 2.1. Card Styles
+            - 2.2. Modals
+
+        - 3. Header Styles
+            - 3.1. Breadcrumbs
+
+        - 4. Navigation Style
+            - 4.1 Top Navigation Bar
+                - 4.1.1. Dropdown Top Bar
+                - 4.1.2. Searchbar
+            - 4.2 Sidebar
+                - 4.2.1. Sidebar Toggler Button
+                - 4.2.2. Sidebar Uncollapsed
+                - 4.2.3. Sidebar Collapsed
+                - 4.2.4. User Info Sidebar
+                    - 4.2.4.1 User Avatar Image
+            - 4.3 Mediaquerries
+
+            - 4.4. Tabs Style
+                - 4.4.1.
+
+        - 5. Content Styles
+
+
+******************************************************/
+
+/* ================================================
+                1. GENERAL STYLES
+=================================================== */
+
+/*  +---------------------------------------+
+       1.1 BODY STYLE
+    +---------------------------------------+ */
+
+body {
+    font-family:sans-serif, Roboto;
+    background: #E5E5E5;
+}
+
+/*  +---------------------------------------+
+       1.2 FONT STYLE
+    +---------------------------------------+ */
+h5 {
+    font-size: 14px;
+    text-align: center;
+}
+
+p {
+    font-size: 12px;
+    font-family:sans-serif, Roboto;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+i{
+    display: inline-block;
+}
+
+.title{
+    font-style: openSans;
+    text-transform: uppercase;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+/*================================================
+                2. BUTTON STYLES
+================================================== */
+.btn:focus, .btn:active{
+   outline: none !important;
+   box-shadow: none;
+}
+
+#okSuccessButton{
+    margin-right: 25%;
+    width: 50%;
+    text-align: center;
+}
+
+#retryFailedButton{
+    width: 50%;
+    text-align: center;
+}
+
+#okFailedButton{
+    width: 50%;
+    text-align: center;
+}
+
+
+#failedHeader{
+  background-color: #d9534f;
+}
+
+#failedIcon{
+    width: 100%;
+    color: #d9534f;
+    text-align: center;
+}
+
+#failedText{
+    padding: 50px 100px;
+    color: #d9534f;
+    font-style: sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*================================================
+                2. CONTAINER STYLES
+================================================== */
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 1.3s;
+}
+
+::-webkit-scrollbar,::-webkit-scrollbar-thumb {
+  width: 5px;
+  height: 5px;
+  background: #23527C;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+/*  +---------------------------------------+
+       2.1 CARD STYLE
+    +---------------------------------------+ */
+
+.card {
+box-shadow: 0 5px 18px rgba(0,0,0,0.10);
+}
+
+.card, .btn, .form-control {
+    border-radius: 0;
+}
+
+.card-title, .label{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#card-header {
+    background: #555555;
+}
+
+.card.card-sm{
+    max-width: 10rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    height: 3.1rem;
+}
+
+.last{
+    height: 3rem;
+}
+
+.yellow-divider{
+  border-bottom: 5px solid #eba133;
+}
+
+.yellow-divider-top{
+  border-top: 5px solid #eba133;
+}
+
+#btnGroupAddon {
+    background: #FF8300;
+    font-weight:  bold;
+    color: black;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+}
+
+.card-counter{
+    font-size: 24px;
+}
+
+/*  +---------------------------------------+
+       2.2 MODAL STYLE
+    +---------------------------------------+ */
+
+.modal-content, .modal-header, .modal-footer{
+    border-radius: 0 !important;
+}
+.modal-footer > button {
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-family: sans-serif;
+  font-size: 15px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  width:50%;
+  height:50px;
+  position:relative;
+}
+
+.modal-footer{
+  background-color: white;
+}
+.modal-header{
+    background-color: #757575;
+    color: white;
+}
+
+.modal-title{
+  color: white;
+  padding-top: 80px;
+  font-family: sans-serif;
+  /* font-weight: bold; */
+  /* text-transform: uppercase; */
+  font-size: 1.3rem;
+}
+
+.close{
+  color: white;
+}
+
+.close:hover{
+	background-color: #FFC107;
+}
+
+.modal-content{
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-dialog{
+    overflow-y: initial !important;
+}
+
+.modal-body{
+    height: 332px;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+/* ================================================
+                3. HEADER STYLES
+=================================================== */
+
+/*  +---------------------------------------+
+       3.1 BREADCRUMBS
+    +---------------------------------------+ */
+.breadcrumbs > nav , .breadcrumb{
+    padding: .5rem 1.5rem;
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #23527C;
+}
+
+.arr-right .breadcrumb-item + .breadcrumb-item::before {
+    content: "›";
+    vertical-align: top;
+    color: #ffc107;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.text-dark .active {
+    text-decoration: none;
+    color: #23527C;
+}
+/*  ================================================
+                4. NAVIGATION STYLES
+==================================================== */
+
+/*  +---------------------------------------+
+       4.1 TOP NAVIGATION BAR
+    +---------------------------------------+ */
+
+.navbar-custom {
+    background-color: #333333;
+    color: white;
+    max-height: 63px;
+    min-width: 490px;
+    padding: 15px 10px;
+    border: none;
+    border-radius: 0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand{
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 24px;
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+
+/******** 4.1.1 Dropdown Top Bar ********/
+
+.dropdown-custom{
+    color: white;
+}
+
+.dropdown-custom:hover{
+    color: #F0AD4E;
+}
+
+.dropdown-item-custom{
+    color: #000000;
+    font-size: 15px;
+}
+
+.dropdown-item-custom:hover{
+    background-color: #F0AD4E;
+    color: #4285F4;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+
+/******** 4.1.2 Searchbar ********/
+
+.searchbar{
+    border-radius: 10px;
+    width: 256px;
+    height: 36px;
+    top: 11px;
+    border-color: #F0AD4E;
+}
+
+.searchbar input[type="text"]{
+    border-color: #F0AD4E;
+}
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+
+
+/*  +---------------------------------------+
+       4.2 SIDEBAR
+    +---------------------------------------+ */
+
+#sidebarCollapse{
+    min-width: 60px;
+    max-width: 60px;
+    min-height: 63px;
+    max-height: 63px;
+    background: #333333;
+    border-color: transparent;
+    position: relative;
+}
+
+#sidebarCollapse:hover{
+    background: #FFC107;
+    color: #333333;
+}
+
+#sidebarCollapse:focus,#sidebarCollapse:active {
+   outline: none !important;
+   box-shadow: none;
+}
+
+
+/******** 4.2.2 Sidebar Uncollapsed ********/
+
+#sidebar {
+    min-width: 270px;
+    max-width: 270px;
+    min-height: 100%;
+    background: #333;
+    color: #FAFAFA;
+    transition: all 0.3s;
+    position: relative;
+    z-index:0;
+    box-shadow: 0px 5.5px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
+    -webkit-overflow-scrolling: touch
+}
+
+#sidebar .sidebar-header {
+    height: 63px;
+    background: #333;
+    position: relative;
+}
+
+a.article, a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+#sidebar ul li a:hover {
+    color: #333333;
+    background: #FAF2CC;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+#sidebar ul li.active>a{
+    color: #23527C;
+    background: #F0AD4E;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #4DB6AC;
+}
+
+/******** 4.2.3. Sidebar Collapsed ********/
+
+#sidebar.active {
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
+    position: relative;
+}
+
+#sidebar.active .sidebar-header strong {
+    display: block;
+}
+
+#sidebar.active ul li a {
+    text-align: center;
+    max-height: 50px;
+}
+
+#sidebar.active ul li a i {
+    margin-right: 0;
+    display: block;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+#sidebar.active ul ul a {
+    padding: 10px !important;
+}
+
+#sidebar.active span.hide-menu{
+    visibility: hidden;
+}
+
+#sidebar.active .dropdown-toggle::after {
+    top: auto;
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%);
+}
+
+/******** 4.2.4. Sidebar Collapsed ********/
+
+/* 4.2.4.1. User Avatar Image */
+.sidebar-user {
+    border-top: 5px solid #eba133;
+    height: 130px;
+    background: #757575;
+    position: relative;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#sidebar.active .sidebar-user {
+    height: 90px;
+    background: #757575;
+    position: relative;
+    padding-top: 5px;
+    padding-left: 1px;
+}
+
+.img-avatar {
+    border-radius: 100%;
+    border-style: none;
+    width: 70px;
+    height: 70px;
+}
+
+.active .img-avatar{
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.sidebar-user strong {
+    display: none;
+    font-size: 1.2em;
+}
+
+ .sidebar-user .list-email{
+    color: white;
+}
+
+ .sidebar-user .list-email:hover{
+    color: #23527C;
+}
+
+
+/*  +---------------------------------------+
+       4.2 MEDIAQUERRIES
+    +---------------------------------------+ */
+
+@media (max-width: 200px) {
+    #sidebar {
+        min-width: 80px;
+        max-width: 80px;
+        text-align: center;
+        margin-left: -80px !important;
+    }
+    .dropdown-toggle::after {
+        top: auto;
+        bottom: 10px;
+        right: 30%;
+        -webkit-transform: translateX(30%);
+        -ms-transform: translateX(30%);
+        transform: translateX(30%);
+    }
+    #sidebar.active {
+        margin-left: 0 !important;
+    }
+    #sidebar .sidebar-header h3,
+    #sidebar .CTAs {
+        display: none;
+    }
+    #sidebar .sidebar-header strong {
+        display: block;
+    }
+    #sidebar ul li a {
+        padding: 20px 10px;
+    }
+    #sidebar ul li a span {
+        font-size: 0.85em;
+    }
+    #sidebar ul li a i {
+        margin-right: 0;
+        display: block;
+    }
+    #sidebar ul ul a {
+        padding: 10px !important;
+    }
+    #sidebar ul li a i {
+        font-size: 1.3em;
+    }
+    #sidebar {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+} 
+
+
+/*  +---------------------------------------+
+       4.4 TABS STYLE
+    +---------------------------------------+ */
+
+.tab-item{
+    color: black;
+    background-color: #fff;
+    margin-right: 5px;
+    /* padding: 0 2em; */
+    border-radius: 0;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    border-radius: 0;
+    color: #fff;
+	background-color: #ffc107;
+}
+
+/*tables design*/
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #ffc107;
+    border-color: white;
+  }
+
+
+/* ================================================
+                5. CONTENT STYLES
+=================================================== */
+/* Login */
+.main-sign-in-card{
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.custom-card-sign-in{
+  padding-bottom: 120px;
+}
+
+.login-newMedia {
+  margin-top: -20%;
+  margin-bottom: 5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #CCCCCC;
+}
+
+.signInTitle {
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555555;
+}
+
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.btn-google {
+  color: white;
+  background-color: #F0AD4E;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.custom-footer{
+  background-color: #EEEEEE;
+}
+
+/*recently added - dashboard - 3/6/19*/
+div.card-row {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+}
+
+.background {/*card background*/
+    background-color: #C4C4C4;
+    border-color: #C4C4C4;
+}
+
+div.p {
+    padding: 0;
+}
+
+div.box {
+    width: 6rem;
+    height: 5rem;
+    background-color: #757575;
+    padding: 0;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+div.box2 {
+    padding: 10px;
+    font-size: 12px;
+    color: white;
+    background-color: #C4C4C4;
+    margin-top: 10px;
+    margin-right: 9%;
+    margin-left: 9%;
+
+
+}
+
+div.view {
+    font-size: 12px;
+    color: white;
+    align-content: center;
+    background-color: #757575;
+    width: 6rem;
+    margin-left: 3px;
+    margin-top: 3px;
+    font-weight: bold;
+}
+
+button.view1 {
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+    background-color: #C4C4C4;
+    margin-top: 3px;
+    margin-right: 9%;
+    margin-left: 9%;
+    font-weight: bold;
+    border: none;
+}
+
+button.view2 {
+  padding: 5px;
+  font-size: 12px;
+  color: white;
+  background-color: #C4C4C4;
+  font-weight: bold;
+  border: none;
+  width: 16.5rem;
+}
+
+button.view3 {
+    padding: 5px 10px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    background-color: #C4C4C4;
+    margin-top: 84px;
+    margin-right: 0%;
+    margin-left: 0%;
+    margin-bottom: -51px;
+    border: none;
+}
+
+button.view4 {
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+    background-color: #C4C4C4;
+    margin-top: -5px;
+    margin-right: 9%;
+    margin-left: 9%;
+    font-weight: bold;
+    border: none;
+}
+
+button.view5 {
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+    background-color: #C4C4C4;
+    margin-top: -22px;
+    margin-right: 9%;
+    margin-left: 9%;
+    font-weight: bold;
+    border: none;
+}
+
+div.height {
+    padding: 15px 30px;
+
+}
+
+div.recent-height{
+    padding: 70px 35px;
+    margin-top: -15%;
+}
+
+
+div.margin {
+    margin: auto;
+    margin-bottom: 7px;
+    margin-top: 1px;
+}
+
+
+/*******************************************/
+
+.repaired .box{
+    font-size: 12px;
+    color: white;
+    padding-left: 7%;
+    background-color: #31708F;
+}
+
+.repaired .col{
+    background-color: #31708F;
+}
+
+div.box .fas{
+  text-align: center;
+  border-radius: 50%;
+  margin-top: 20%;
+  margin-left: 10%;
+  padding: 10px;
+  background-color: #757575;
+}
+
+.disposed .box{
+    font-size: 12px;
+    color: white;
+    padding-left: 5%;
+    background-color: #333333;
+}
+
+
+.disposed .col{
+    background-color: #333333;
+}
+
+.returned .box{
+    font-size: 12px;
+    color: white;
+    padding-left: 5%;
+    background-color: #23527C;
+}
+
+.returned .col{
+    background-color: #23527C;
+}
+
+
+.return-equipment .box{
+    padding-right: 5px ;
+    color: #CCCCCC;
+}
+
+.return-equipment .col{
+     text-align: center;
+}
+
+.low-stock .box{
+    padding-right: 5px ;
+    color: #CCCCCC;
+}
+
+.low-stock .col{
+    text-align: center;
+}
+
+.row-alignment{
+    padding-left: 10px;
+    text-align: center;
+    color: red;
+}
+
+/**Recently added - Dashboard - 03/13/19**/
+td {
+    font-size: 14px;
+}
+
+div.card-body {
+  align-content: center!important;
+  display: block!important;
+}

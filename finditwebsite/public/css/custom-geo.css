@@ -1,0 +1,43 @@
+/* breadcrumb slash*/
+
+.breadcrumb {
+	background-color: transparent;
+
+}
+
+.breadcrumb-item a {
+	text-decoration: none;
+	color: black;
+}
+
+/*Breadcrump arrow*/
+
+.arr-right .breadcrumb-item + .breadcrumb-item::before {
+	content: "›";
+	vertical-align: top;
+	color: #ffc107;
+	font-size: 20px;
+	line-height: 20px;
+}
+
+/*Tabs design style*/
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+	color: #fff;
+	background-color: #ffc107;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+/*tables design*/
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #ffc107;
+    border-color: white;
+  }
