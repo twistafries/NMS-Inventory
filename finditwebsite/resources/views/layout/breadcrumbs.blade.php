@@ -2,12 +2,12 @@
 <div class="breadcrumbs">
     <nav class="navbar navbar-light bg-light yellow-divider">
         <span class="navbar-brand mb-0 h2 title">
-            <i class="fas fa-chart-line"></i>Dashboard
+            <i class=""></i>@yield('breadrumbs-title')
         </span>
         <nav class="mb-0" aria-label="breadcrumb">
             <ol class="breadcrumb arr-right">
                 <li class="breadcrumb-item ">
-                    <a href="#" class="text-warning">Dashboard</a>
+                    <a href="#" class="text-warning"></a>
                 </li>
                 <li class="breadcrumb-item ">
                     <a href="#" class="text-warning">Item1</a>

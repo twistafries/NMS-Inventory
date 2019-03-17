@@ -32,31 +32,24 @@
             @include('layout/sidenav')
             
             <div id="content">
-                @include('layout/topnav')
+                @include('layout/topnavblade')
+                @include('layout/breadcrumbs')
             </div>
-        </div>
-    </div>
-        <!-- Page Content -->
-        <div class="container p-lg-2 p-md-1 p-sm-0">
-            @yield('content')
+
+            <!-- Page Content -->
+            <div class="container p-lg-2 p-md-1 p-sm-0">
+                @yield('content')
+            </div>
         </div>
     </div>
 
     <!-- JQuery Core -->
-    <script type="text/javascript" src="../lib/dist/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../lib/dist/popper/popper.min.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" src="../lib/dist/bootstrap/js/bootstrap.js"></script>
+    <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/popper/popper.min.js') }}"></script>
     
-    <script src="{{ asset('js/res/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/res/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('js/res/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/res/waves.js') }}"></script>
-    <script src="{{ asset('js/res/footable.all.min.js') }}"></script>
-    <script src="{{ asset('js/res/footable-init.js') }}"></script>
-    <script src="{{ asset('js/res/sidebarmenu.js') }}"></script>
-    <script src="{{ asset('js/res/custom.min.js') }}"></script>
-
+    <!-- Bootstrap -->
+    <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
+    
     @yield('script')
     
 </body>
