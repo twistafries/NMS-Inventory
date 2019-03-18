@@ -547,7 +547,7 @@
     <!-- Multiple Select -->
     <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
 
-    <!-- add   -->
+    <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 

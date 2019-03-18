@@ -16,7 +16,7 @@
                 <li><small>Admin</small></li>
             </ul>
         </span>
-        <a class="nav-link dropdown-toggle navbar-toggler-right dropdown-avatar" href="#"
+        <a class="nav-link dropdown-tobggle navbar-toggler-right dropdown-avatar" href="#"
             id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         </a>
         <!-- Dropdown Menu -->
