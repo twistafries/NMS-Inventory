@@ -14,6 +14,7 @@ class InventoryController extends BaseController
         $data = [];
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['peripherals'] = TblItEquipment::get_computer_peripherals();
+        $data['mobile'] = TblItEquipment::get_mobile_devices();
         // dd($data);
         return view ('content/inventory' , $data);
     }

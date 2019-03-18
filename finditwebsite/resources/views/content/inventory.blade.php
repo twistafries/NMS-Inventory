@@ -109,6 +109,7 @@
 
                 </table>
             </div>
+
             <!-- Computer Peripherals -->
 			<div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
                 <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
@@ -136,8 +137,35 @@
 
                 </table>
             </div>
+
             <!-- Mobile Devices -->
-			<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">content3</div>
+			<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
+                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Details</th>
+                            <th>Added At</th>
+                            <th>Editted At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($mobile as $mobile)
+                        <tr>
+                            <td> {{ $mobile->id }} </td>
+                            <td> {{ $mobile->name_or_model }} </td>
+                            <td> {{ $mobile->details }} </td>
+                            <td> {{ $mobile->created_at }} </td>
+                            <td> {{ $mobile->or_no }} </td>
+                            <td> {{ $mobile->updated_at }} </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+            </div>
+                
 			<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">content4</div>
 
 		</div>
