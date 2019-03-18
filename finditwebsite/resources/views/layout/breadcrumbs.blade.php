@@ -2,7 +2,7 @@
 <div class="breadcrumbs">
     <nav class="navbar navbar-light bg-light yellow-divider">
         <span class="navbar-brand mb-0 h2 title">
-            <i class=""></i>@yield('breadrumbs-title')
+            @yield('breadrumbs-title')
         </span>
         <nav class="mb-0" aria-label="breadcrumb">
             <ol class="breadcrumb arr-right">

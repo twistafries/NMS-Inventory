@@ -34,12 +34,13 @@
             <div id="content">
                 @include('layout/topnavblade')
                 @include('layout/breadcrumbs')
+                
+                <!-- Page Content -->
+                <div class="container p-lg-2 p-md-1 p-sm-0">
+                    @yield('content')
+                </div>
             </div>
 
-            <!-- Page Content -->
-            <div class="container p-lg-2 p-md-1 p-sm-0">
-                @yield('content')
-            </div>
         </div>
     </div>
 
