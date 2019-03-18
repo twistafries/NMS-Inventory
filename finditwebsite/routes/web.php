@@ -23,6 +23,9 @@ Route::get('/dashboard', function () {
     return view('content/dashboard');
 });
 
-Route::get('/inventory', function () {
-    return view('content/inventory');
-});
+// Route::get('/inventory', 'InventoryController@showAllInventory');
+
+
+Route::get('/inventory', 'InventoryController@showComputerPeripherals'); 
+// Route::get('/inventory', 'InventoryController@showAllInventory');
+// Route::get('/inventory3', 'InventoryController@getTableColumns');
