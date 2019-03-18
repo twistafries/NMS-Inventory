@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('/template', function () {
     return view('template');
 });
+
+Route::get('/dashboard', function () {
+    return view('content/dashboard');
+});
+
+Route::get('/inventory', function () {
+    return view('content/inventory');
+});

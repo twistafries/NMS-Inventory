@@ -1,4 +1,4 @@
-@extends('layout/template')
+@extends('../template')
 
 @section('css')
 
@@ -6,6 +6,12 @@
 
 @section('title')
     Sample Page
+@stop
+
+@section('breadcrumbs')
+    @section('breadcrumbs-title')
+        <i class="fas fa-chart-line">Dashboard
+    @stop
 @stop
 
 @section('content')
