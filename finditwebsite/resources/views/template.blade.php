@@ -51,6 +51,13 @@
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
     
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
     @yield('script')
     
 </body>

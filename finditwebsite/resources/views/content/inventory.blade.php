@@ -2,8 +2,8 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
 @stop
     
@@ -537,6 +537,83 @@
 </form>
 @stop
     
-@script
+@section('script')
     <link rel="stylesheet" href="{{ asset('css/datatable/dataTables.checkboxes.min.js')}}">
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myDataTable').DataTable({
+                scrollY: '50vh',
+                scrollCollapse: true,
+                scrollX: '50vw',
+                fixedColumns: {
+                    leftColumns: 2
+                },
+                'select': 'multi',
+                'order': [
+                    [1, 'asc']
+                ],
+                'columnDefs': [{
+                    'targets': 0,
+                    'render': function(data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                        }
+
+                        return data;
+                    },
+                    'checkboxes': {
+                        'selectRow': true,
+                        'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+                    }
+                }]
+
+            });
+
+            function hideAllColumns() {
+                for (var i = 0; i < 6; i++) {
+                    columns = my_table.column(i).visible(0);
+                }
+            };
+
+            function showAllColumns() {
+                for (var i = 0; i < 5; i++) {
+                    my_table.column(i).visible(1);
+                }
+            }
+
+            jQuery(document).ready(function() {
+
+                my_table = $('#myDataTable').DataTable();
+
+
+                jQuery('#toggle_column').multipleSelect({
+                    width: 200,
+                    onClick: function(view) {
+                        var selectedItems = jQuery('#toggle_column').multipleSelect("getSelects");
+                        hideAllColumns();
+                        for (var i = 0; i < selectedItems.length; i++) {
+                            var s = selectedItems[i];
+                            my_table.column(s).visible(1);
+                        }
+                        jQuery('#myDataTable').css('width', '100%');
+                    },
+                    onCheckAll: function() {
+                        showAllColumns();
+                        jQuery('#myDataTable').css('width', '100%');
+                    },
+                    onUncheckAll: function() {
+                        hideAllColumns();
+                    }
+                });
+
+            });
+        });
+        //tooltip initialisation
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
+    </script>
+
 @stop
