@@ -11,7 +11,7 @@
     Sample Page
 @stop
 
-@section('breadcrumbs')
+@section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
     <i class="fas fa-chart-line">Inventory
     @stop
@@ -538,7 +538,19 @@
 @stop
     
 @section('script')
-    <link rel="stylesheet" href="{{ asset('css/datatable/dataTables.checkboxes.min.js')}}">
+
+    <!-- Datatable -->
+    <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Multiple Select -->
+    <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
+
+    <!-- add   -->
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function() {

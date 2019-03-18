@@ -16,7 +16,7 @@
     <!-- Datatable -->
     <link rel="stylesheet" href="{{ asset('css/datatable/dataTables.bootstrap4.min.css') }}">
     <!-- Multiple Select -->
-    <link rel="stylesheet" href="{{ asset('css/multiple-select/multiple-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/multipleselect/multiple-select.css') }}">
     
     <!-- Your custom css goes here -->
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
@@ -33,7 +33,7 @@
             
             <div id="content">
                 @include('layout/topnavblade')
-                @include('layout/breadcrumbs')
+
                 
                 <!-- Page Content -->
                 <div class="container p-lg-2 p-md-1 p-sm-0">
@@ -45,7 +45,7 @@
     </div>
 
     <!-- JQuery Core -->
-    <script src="{{ asset('js/jquery/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper/popper.min.js') }}"></script>
     
     <!-- Bootstrap -->
