@@ -11,18 +11,18 @@ use App\Models\TblItEquipment;
 class InventoryController extends BaseController
 {
     public function showAllInventory(){
-    //     $data = [];
-    //     $data['equipment'] = TblItEquipment::get_all_equipment();
-    //     // dd($data);
-    //     return view ('content/inventory' , $data);
-    }
-    
-    public function showComputerPeripherals(){
         $data = [];
+        $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['peripherals'] = TblItEquipment::get_computer_peripherals();
         // dd($data);
         return view ('content/inventory' , $data);
     }
+    
+    // public function showComputerPeripherals(){
+    //     $data = [];
+    //     // dd($data);
+    //     return view ('content/inventory' , $data);
+    // }
     
     // public function getTableColumns(){
     //     $data = [];

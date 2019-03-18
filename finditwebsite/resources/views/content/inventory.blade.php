@@ -61,48 +61,89 @@
         </div>
     </div>
 
-    <!-- Data Table -->
-    <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Details</th>
-                <th>Added At</th>
-                <th>Editted At</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-      
+    <!-- Tabs -->
+    <div class="container">
+		<ul class="nav nav-pills mb-3 p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist">
+			<li class="nav-item text-uppercase">
+				<a class="nav-link active " id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">
+                    All</a>
+			</li>
+			<li class="nav-item text-uppercase">
+				<a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
+                    Computer Peripherals</a>
+			</li>
+			<li class="nav-item text-uppercase">
+				<a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
+                    Mobile Devices</a>
+			</li>
+			<li class="nav-item text-uppercase">
+				<a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="pills-tabContent">
+            <!-- All Items in the Inventory -->
+			<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Details</th>
+                            <th>Added At</th>
+                            <th>Editted At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($equipment as $equipment)
+                        <tr>
+                            <td> {{ $equipment->id }} </td>
+                            <td> {{ $equipment->name_or_model }} </td>
+                            <td> {{ $equipment->details }} </td>
+                            <td> {{ $equipment->created_at }} </td>
+                            <td> {{ $equipment->or_no }} </td>
+                            <td> {{ $equipment->updated_at }} </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                
 
-    </table>
-    <!-- Data Table -->
-    <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Details</th>
-                <th>Added At</th>
-                <th>Editted At</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($peripherals as $peripherals)
-            <tr>
-                <td> {{ $peripherals->id }} </td>
-                <td> {{ $peripherals->name_or_model }} </td>
-                <td> {{ $peripherals->details }} </td>
-                <td> {{ $peripherals->created_at }} </td>
-                <td> {{ $peripherals->or_no }} </td>
-                <td> {{ $peripherals->updated_at }} </td>
-            </tr>
-            @endforeach
-        </tbody>
+                </table>
+            </div>
+            <!-- Computer Peripherals -->
+			<div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Details</th>
+                            <th>Added At</th>
+                            <th>Editted At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($peripherals as $peripherals)
+                        <tr>
+                            <td> {{ $peripherals->id }} </td>
+                            <td> {{ $peripherals->name_or_model }} </td>
+                            <td> {{ $peripherals->details }} </td>
+                            <td> {{ $peripherals->created_at }} </td>
+                            <td> {{ $peripherals->or_no }} </td>
+                            <td> {{ $peripherals->updated_at }} </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
 
-    </table>
+                </table>
+            </div>
+            <!-- Mobile Devices -->
+			<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">content3</div>
+			<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">content4</div>
+
+		</div>
+	</div>
+
+    
 
 </form>
 @stop

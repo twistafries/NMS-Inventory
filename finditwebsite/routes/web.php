@@ -26,6 +26,6 @@ Route::get('/dashboard', function () {
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
 
-Route::get('/inventory', 'InventoryController@showComputerPeripherals'); 
+Route::get('/inventory', 'InventoryController@showAllInventory'); 
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 // Route::get('/inventory3', 'InventoryController@getTableColumns');
