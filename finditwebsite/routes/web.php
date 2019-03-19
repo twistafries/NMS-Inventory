@@ -27,6 +27,7 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/inventory', 'InventoryController@showAllInventory'); 
-Route::post('/inventory-temp-add', 'InventoryController@'); 
+Route::get('/inventory-temp-add', 'InventoryController@showInputValues'); 
+Route::post('/addEquipment', 'InventoryController@addEquipment'); 
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 // Route::get('/inventory3', 'InventoryController@getTableColumns');

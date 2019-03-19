@@ -69,10 +69,10 @@
                     All</a>
             </li>
             
-            @foreach ($equipment_type as $equipment_type)
+            @foreach ($equipment_types as $equipment_types)
             <li class="nav-item text-uppercase">
-				<a class="nav-link" id="pills-{!! $equipment_type->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_type->id !!}" role="tab" aria-controls="pills-{!! $equipment_type->id !!}" aria-selected="false">
-                    {{ $equipment_type->name }}
+				<a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
+                    {{ $equipment_types->name }}
                 </a>
 			</li>
             @endforeach
