@@ -33,6 +33,7 @@ class TblItEquipment extends Model
     }
 
 
+
     // public static function get_table_columns(){
     //     $table = \DB::table('it_equipment')
     //     DB::connection()->getDoctrineColumn('table', '')->getName();
