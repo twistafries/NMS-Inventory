@@ -29,7 +29,7 @@ class InventoryController extends BaseController
         
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
-        $data['status'] = TblSystemUnits::get_all_status();
+        // $data['status'] = TblSystemUnits::get_all_status();
         // dd($data);
         return view ('content/temporary-add-equipment' , $data);
     }

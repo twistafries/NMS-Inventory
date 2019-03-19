@@ -3,7 +3,6 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
 @stop
     
