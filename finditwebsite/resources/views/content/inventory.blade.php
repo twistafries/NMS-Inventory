@@ -65,10 +65,19 @@
     <div class="container">
 		<ul class="nav nav-pills mb-3 p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist">
 			<li class="nav-item text-uppercase">
-				<a class="nav-link active " id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="true">
+				<a class="nav-link active " id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
                     All</a>
+            </li>
+            
+            @foreach ($equipment_type as $equipment_type)
+            <li class="nav-item text-uppercase">
+				<a class="nav-link" id="pills-{!! $equipment_type->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_type->id !!}" role="tab" aria-controls="pills-{!! $equipment_type->id !!}" aria-selected="false">
+                    {{ $equipment_type->name }}
+                </a>
 			</li>
-			<li class="nav-item text-uppercase">
+            @endforeach
+            
+			<!-- <li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
                     Computer Peripherals</a>
 			</li>
@@ -78,11 +87,11 @@
 			</li>
 			<li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-			</li>
+			</li> -->
 		</ul>
 		<div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
-			<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+			<div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
                 <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
                     <thead class="thead-dark">
                         <tr>
@@ -111,7 +120,7 @@
             </div>
 
             <!-- Computer Peripherals -->
-			<div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+			<div class="tab-pane fade" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
                 <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
                     <thead class="thead-dark">
                         <tr>
@@ -136,6 +145,11 @@
                     </tbody>
 
                 </table>
+            </div>
+
+            <!-- Computer Units -->
+            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+
             </div>
 
             <!-- Mobile Devices -->
@@ -166,7 +180,9 @@
                 </table>
             </div>
                 
-			<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">content4</div>
+			<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
+
+            </div>
 
 		</div>
 	</div>
