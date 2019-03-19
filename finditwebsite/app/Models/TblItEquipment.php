@@ -31,6 +31,16 @@ class TblItEquipment extends Model
         -> get();
         return $query;    
     }
+    
+    public static function add_equipment($params = null){
+        $query = \DB::table('it_equipment')
+        -> where('type_id' , '=' , '3')
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;    
+    }
+
+    
 
 
 

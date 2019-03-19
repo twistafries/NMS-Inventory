@@ -8,7 +8,7 @@
 @stop
     
 @section('title')
-    Sample Page
+    Inventory
 @stop
 
 @section('../layout/breadcrumbs')
@@ -76,7 +76,7 @@
                 </a>
 			</li>
             @endforeach
-            
+
 			<!-- <li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
                     Computer Peripherals</a>

@@ -21,7 +21,9 @@ class InventoryController extends BaseController
         return view ('content/inventory' , $data);
     }
     
-   
+   public function addEquipment(){
+       
+   }
     
     // public function showComputerPeripherals(){
     //     $data = [];
