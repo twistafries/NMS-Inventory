@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \Redirect::to('/login');
+});
+
+Route::get('/login', function () {
+    return view('content/login');
 });
 
 Route::get('/template', function () {
