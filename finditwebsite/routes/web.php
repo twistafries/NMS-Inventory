@@ -12,5 +12,21 @@
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/template', function () {
     return view('template');
 });
+
+Route::get('/dashboard', function () {
+    return view('content/dashboard');
+});
+
+// Route::get('/inventory', 'InventoryController@showAllInventory');
+
+
+Route::get('/inventory', 'InventoryController@showAllInventory'); 
+Route::post('/inventory-temp-add', 'InventoryController@'); 
+// Route::get('/inventory', 'InventoryController@showAllInventory');
+// Route::get('/inventory3', 'InventoryController@getTableColumns');
