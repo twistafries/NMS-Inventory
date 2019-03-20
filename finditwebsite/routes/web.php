@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return \Redirect::to('/login');
+});
+
 Route::get('/login', function () {
     return view('content/login');
 });
