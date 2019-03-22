@@ -13,7 +13,7 @@ class TblItAssociate extends Model
         $query = \DB::table('users')
         -> leftjoin('employees' , 'employees.email', '=', 'users.email')
         -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
-        -> select('users.email as email' ,'employees.fname', 'employees.lname', 'departments.name', 'users.status as stat')
+        -> select('users.email as email' ,'fname', 'lname', 'departments.name', 'users.status as stat')
         -> where('users.user_type' , '=' , 'associate')
         -> orderBy('users.email' , 'asc')
         -> get();
