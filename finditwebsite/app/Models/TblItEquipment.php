@@ -55,17 +55,40 @@ class TblItEquipment extends Model
 
 
 /*
+<<<<<<< HEAD
 INSERT INTO `findit`.`it_equipment` (`type_id`, `name_or_model`, `details`, `serial_no`, `or_no`, `unit_id`, `status_id`)
 VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
 */
+=======
+INSERT INTO `findit`.`it_equipment` (`type_id`, `name_or_model`, 
+`details`, `serial_no`, `or_no`, `unit_id`, `status_id`) 
+VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1'); 
+*/ 
+>>>>>>> 6205b335f25fc4a92f89cc53d3dd738c102a6a16
 
     public static function add_equipment($params){
+        $results = [];
+        $results['error'] = 1;
+        $results['message'] = 'error';
+
         $it_equipment = new TblItEquipment;
         $it_equipment->type_id =  $params['type_id'];
         $it_equipment->name_or_model = $params['name_or_model'];
-        $it_equipment->name_or_model = $params['details'];
-        $it_equipment->name_or_model = $params['serial_no'];
-        $it_equipment->name_or_model = $params['or_no'];
+        $it_equipment->details = $params['details'];
+        $it_equipment->serial_no = $params['serial_no'];
+        $it_equipment->or_no = $params['or_no'];
+        $it_equipment->unit_id = $params['unit_id'];
+
+        try{
+            $it_equipment->save();
+            $results['error'] = 0;
+            $results['message'] = 'equipment has been added';
+        }catch ( QueryException $e){
+            $results['error'] = 0;
+            $results['message'] = $e;
+        }
+
+        return $results;
     }
 
 

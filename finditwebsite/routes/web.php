@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \Redirect::to('/login');
+});
+
+Route::get('/login', function () {
+    return view('content/login');
 });
 
 Route::get('/template', function () {
@@ -25,9 +29,12 @@ Route::get('/dashboard', function () {
 
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
+
 Route::get('/dashboard', 'ForStatusController@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
-Route::post('/inventory-temp-add', 'InventoryController@');
-// Route::get('/inventory', 'InventoryController@showAllInventory');
-// Route::get('/inventory3', 'InventoryController@getTableColumns');
+
+Route::post('/addEquipment', 'InventoryController@addEquipment');
+
+ Route::get('/inventory', 'InventoryController@showAllInventory');
+ Route::get('/inventory3', 'InventoryController@getTableColumns');

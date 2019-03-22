@@ -3,7 +3,6 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
 @stop
 
@@ -68,11 +67,16 @@
 				<a class="nav-link active " id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
                     All</a>
             </li>
+<<<<<<< HEAD
 
             @foreach ($equipment_type as $equipment_type)
+=======
+            
+            @foreach ($equipment_types as $equipment_types)
+>>>>>>> 6205b335f25fc4a92f89cc53d3dd738c102a6a16
             <li class="nav-item text-uppercase">
-				<a class="nav-link" id="pills-{!! $equipment_type->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_type->id !!}" role="tab" aria-controls="pills-{!! $equipment_type->id !!}" aria-selected="false">
-                    {{ $equipment_type->name }}
+				<a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
+                    {{ $equipment_types->name }}
                 </a>
 			</li>
             @endforeach

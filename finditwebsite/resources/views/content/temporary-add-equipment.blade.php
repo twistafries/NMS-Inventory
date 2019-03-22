@@ -1,5 +1,7 @@
 <!-- 
-INSERT INTO `findit`.`it_equipment` (`type_id`, `name_or_model`, `details`, `serial_no`, `or_no`, `unit_id`, `status_id`) 
+INSERT INTO `findit`.`it_equipment` 
+(`type_id`, `name_or_model`, `details`, `serial_no`, 
+`or_no`, `unit_id`, `status_id`) 
 VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1'); 
 -->
 
@@ -23,14 +25,50 @@ VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
 @stop
     
 @section('content')
-
+<form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
+{!! csrf_field() !!}
     <div class="col-sm-6">
         <p class="card-title">Equipment Type</p>
-        <select class="custom-select">
-        <option value="0">Item 1</option>
-        <option value="1">Item 2</option>
-        <option value="2">Item 3</option>
-        <option value="3">Item 4</option>
+        <select name="type_id" class="custom-select">
+        @foreach ($equipment_types as $equipment_types)
+            <option value="{!! $equipment_types->id !!}">
+                {{ $equipment_types->name }}
+            </option>
+        @endforeach
         </select>
+        
+        <hr>
+        
+        <p class="card-title">Name and Model</p>
+        <div class="input-group mb-3">
+        <input name="name_or_model" type="text" class="form-control">
+        </div>
+        
+        <p class="card-title">Details</p>
+        <div class="input-group mb-3">
+        <input name="details" type="text" class="form-control">
+        </div>
+        
+        <p class="card-title">Serial Number</p>
+        <div class="input-group mb-3">
+        <input name="serial_no" type="text" class="form-control">
+        </div>
+        
+        <p class="card-title">Official Receipt Numbers</p>
+        <div class="input-group mb-3">
+        <input name="or_no" type="text" class="form-control">
+        </div>
+
+        <p class="card-title">System Unit Assigned To</p>
+        <select name="unit_id" class="custom-select">
+        @foreach ($system_units as $system_units)
+        <option value="{!! $system_units->id !!}">
+            {{ $system_units->description }}
+        </option>
+        @endforeach
+        </select>
+        <hr>
+        <button class="btn btn-info" type="submit" value="Add Equipment" id="AddEquipment">
     </div>
+</form>
 @stop
