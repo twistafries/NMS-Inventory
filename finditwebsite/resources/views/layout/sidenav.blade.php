@@ -28,56 +28,56 @@
 
     <!-- Menu List -->
     <ul class="list-unstyled components">
-        <li class="active">
-            <a href="#">
+        <li id="dashboard">
+            <a href="{!! url('/dashboard') !!}">
                 <i class="fas fa-chart-line"></i>
                 <span class="hide-menu">Dashboard</span>
             </a>
         </li>
 
-        <li>
-            <a href="#">
+        <li id="inventory">
+            <a href="{!! url('/inventory') !!}">
                 <i class="fas fa-warehouse"></i>
                 <span class="hide-menu">Inventory</span>
             </a>
         </li>
 
-        <li>
-            <a href="#">
+        <li id="associates">
+            <a href="{!! url('/associates') !!}">
                 <i class="fas fa-users"></i>
                 <span class="hide-menu">Associates</span>
             </a>
         </li>
 
-        <li>
+        <li id="issuance">
             <a href="#">
                 <i class="fas fa-hand-holding"></i>
                 <span class="hide-menu">Issuance</span>
             </a>
         </li>
 
-        <li>
+        <li id="issuable items">
             <a href="#">
                 <i class="fas fa-desktop"></i>
                 <span class="hide-menu">Issuable Items</span>
             </a>
         </li>
 
-        <li>
+        <li id="inventoryconcern">
             <a href="#">
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="hide-menu">Inventory Concerns</span>
             </a>
         </li>
 
-        <li>
+        <li id="activityLog">
             <a href="#">
                 <i class="fas fa-list-alt"></i>
                 <span class="hide-menu">Activity Logs</span>
             </a>
         </li>
 
-        <li>
+        <li id="report">
             <a href="#">
                 <i class="fas fa-file-export"></i>
                 <span class="hide-menu">Generate Reports</span>

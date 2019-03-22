@@ -6,20 +6,16 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use App\Models\TblItEquipment;
-use App\Models\TblItEquipmentType;
+use App\Models\TblItAssociate;
 
-class InventoryController extends BaseController
+
+class AssociateController extends BaseController
 {
-    public function showAllInventory(){
+    public function showAllAssociate(){
         $data = [];
-        $data['equipment'] = TblItEquipment::get_all_equipment();
-        $data['peripherals'] = TblItEquipment::get_computer_peripherals();
-        $data['component'] = TblItEquipment::get_computer_component();
-        $data['mobile'] = TblItEquipment::get_mobile_devices();
-        $data['equipment_type'] = TblItEquipmentType::get_all_equipment_type();
+        $data['associates'] = TblItAssociate::get_all_associate();
         // dd($data);
-        return view ('content/inventory' , $data);
+        return view ('content/associates' , $data);
     }
 
    public function addEquipment(){

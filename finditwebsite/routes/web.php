@@ -25,8 +25,9 @@ Route::get('/dashboard', function () {
 
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
-
-Route::get('/inventory', 'InventoryController@showAllInventory'); 
-Route::post('/inventory-temp-add', 'InventoryController@'); 
+Route::get('/dashboard', 'ForStatusController@showAllStatus');
+Route::get('/inventory', 'InventoryController@showAllInventory');
+Route::get('/associates', 'AssociateController@showAllAssociate');
+Route::post('/inventory-temp-add', 'InventoryController@');
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 // Route::get('/inventory3', 'InventoryController@getTableColumns');

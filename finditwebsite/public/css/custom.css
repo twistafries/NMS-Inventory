@@ -137,6 +137,8 @@ a[data-toggle="collapse"] {
 #content {
     width: 100%;
     min-height: 100vh;
+    margin-left: 0;
+    position:static;
     transition: all 1.3s;
 }
 
@@ -411,7 +413,7 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
     background: #333;
     color: #FAFAFA;
     transition: all 0.3s;
-    position: relative;
+    position: sticky;
     z-index:0;
     box-shadow: 0px 5.5px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
     -webkit-overflow-scrolling: touch
@@ -600,7 +602,7 @@ ul ul a {
     #sidebarCollapse span {
         display: none;
     }
-} 
+}
 
 
 /*  +---------------------------------------+

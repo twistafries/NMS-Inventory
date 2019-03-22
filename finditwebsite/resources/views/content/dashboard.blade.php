@@ -5,10 +5,10 @@
 @stop
 
 @section('title')
-    Sample Page
+    dashboard
 @stop
 
-@section('breadcrumbs')
+@section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
         <i class="fas fa-chart-line">Dashboard
     @stop
@@ -56,21 +56,21 @@
                         <div class="repaired">
                             <div class="box col">
                                 <span class="fas fa-tools fa-lg">
-                                </span>20<br>To be Repaired
+                                </span>{{ $for_repair->count()}}<br>To be Repaired
                             </div>
                             <div class="col view">View Details</div>
                         </div>
                         <div class="disposed">
                             <div class="box col">
                                 <span class="fas fa-trash-alt fa-lg">
-                                </span>15<br>To be Disposed
+                                </span>{{ $for_disposal->count()}}<br>To be Disposed
                             </div>
                             <div class="col view">View Details</div>
                         </div>
                         <div class="returned">
                             <div class="box col">
                                 <span class="fas fa-undo-alt fa-lg">
-                                </span>200<br>To be Returned
+                                </span>{{ $for_return->count()}}<br>To be Returned
                             </div>
                             <div class="col view">View Details</div>
                         </div>
@@ -196,4 +196,13 @@
         </div>
     </div>
 </div>
+@stop
+@section('script')
+
+
+<script>
+  $(document).ready(function(){
+  $('#dashboard').addClass('active');
+  });
+</script>
 @stop

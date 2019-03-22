@@ -6,20 +6,17 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use App\Models\TblItEquipment;
-use App\Models\TblItEquipmentType;
+use App\Models\TblEquipmentStatus;
 
-class InventoryController extends BaseController
+
+class ForStatusController extends BaseController
 {
-    public function showAllInventory(){
+    public function showAllStatus(){
         $data = [];
-        $data['equipment'] = TblItEquipment::get_all_equipment();
-        $data['peripherals'] = TblItEquipment::get_computer_peripherals();
-        $data['component'] = TblItEquipment::get_computer_component();
-        $data['mobile'] = TblItEquipment::get_mobile_devices();
-        $data['equipment_type'] = TblItEquipmentType::get_all_equipment_type();
-        // dd($data);
-        return view ('content/inventory' , $data);
+        $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+        $data['for_return'] = TblEquipmentStatus::get_for_return();
+        $data['for_disposal'] = TblEquipmentStatus::get_for_disposal();
+        return view ('content/dashboard' , $data);
     }
 
    public function addEquipment(){
