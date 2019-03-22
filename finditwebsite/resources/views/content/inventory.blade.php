@@ -21,42 +21,61 @@
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <span>
-                <a id="multiple_select" href="#" data-toggle="tooltip" title="Multiple Select">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/checkbox-icon.png">
-                </a>
-            </span>
+            <!-- Single Add Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                        </div>
 
-            <span>
-                <a href="#" data-toggle="tooltip" title="Edit">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/edit-icon.png">
-                </a>
-            </span>
+                        <div class="modal-body">
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                        </div>
 
-            <span>
-                <a href="#" data-toggle="tooltip" title="Add">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png">
-                </a>
-            </span>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
 
-            <span>
-                <a href="#" data-toggle="tooltip" title="Hide/Unhide Columns">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/view.png">
-                </a>
-            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <span>
-                <a href="#" data-toggle="tooltip" title="Delete Row(s)">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/delete-icon.png">
-                </a>
-            </span>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn">
+                    <a href="#" data-toggle="tooltip" title="Multi Select">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"></a>
+                </button>
+                
+                <button type="button" class="btn">
+                    <a href="#" data-toggle="tooltip" title="Edit">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}"></a>
+                </button>
 
-            <span>
-                <a href="#" data-toggle="tooltip" title="Sort by Column">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/sort-icon.png">
-                </a>
-            </span>
+                <button type="button" class="btn">
+                    <a href="#" data-toggle="tooltip" title="Hide/Unhide">
+                    <img class="tool-item"  src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}"></a>
+                </button>
+                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
+            </button>
+                <button type="button" class="btn">
+                    <a href="#" data-toggle="tooltip" title="delete"> 
+                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
+                    </button>
+                <button type="button" class="btn">
+                    <a href="#" data-toggle="tooltip" title="sort">
+                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png"></a>
+                    </button>
 
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Add (5 items or Less)</a>
+                    <a class="dropdown-item" href="#">Bulk Add</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -105,7 +124,7 @@
                         @foreach ($equipment as $equipment)
                         <tr>
                             <td> {{ $equipment->id }} </td>
-                            <td> {{ $equipment->name_or_model }} </td>
+                            <td> {{ $equipment->name }} </td>
                             <td> {{ $equipment->details }} </td>
                             <td> {{ $equipment->created_at }} </td>
                             <td> {{ $equipment->or_no }} </td>
@@ -117,72 +136,6 @@
 
                 </table>
             </div>
-
-            <!-- Computer Peripherals -->
-			<div class="tab-pane fade" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
-                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Added At</th>
-                            <th>Editted At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($peripherals as $peripherals)
-                        <tr>
-                            <td> {{ $peripherals->id }} </td>
-                            <td> {{ $peripherals->name_or_model }} </td>
-                            <td> {{ $peripherals->details }} </td>
-                            <td> {{ $peripherals->created_at }} </td>
-                            <td> {{ $peripherals->or_no }} </td>
-                            <td> {{ $peripherals->updated_at }} </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-                </table>
-            </div>
-
-            <!-- Computer Units -->
-            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
-
-            </div>
-
-            <!-- Mobile Devices -->
-			<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
-                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Added At</th>
-                            <th>Editted At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($mobile as $mobile)
-                        <tr>
-                            <td> {{ $mobile->id }} </td>
-                            <td> {{ $mobile->name_or_model }} </td>
-                            <td> {{ $mobile->details }} </td>
-                            <td> {{ $mobile->created_at }} </td>
-                            <td> {{ $mobile->or_no }} </td>
-                            <td> {{ $mobile->updated_at }} </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-                </table>
-            </div>
-                
-			<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
-
-            </div>
-
 		</div>
 	</div>
 
