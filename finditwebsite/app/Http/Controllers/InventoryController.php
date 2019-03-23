@@ -24,13 +24,6 @@ class InventoryController extends BaseController
         // dd($data);
         return view ('content/inventory' , $data);
     }
-<<<<<<< HEAD
-
-   public function addEquipment(){
-
-   }
-
-=======
     
     public function showInputValues(){
         $data = [];
@@ -53,19 +46,4 @@ class InventoryController extends BaseController
         dd($data);
        }
    }
-
-    
->>>>>>> 6205b335f25fc4a92f89cc53d3dd738c102a6a16
-    // public function showComputerPeripherals(){
-    //     $data = [];
-    //     // dd($data);
-    //     return view ('content/inventory' , $data);
-    // }
-
-    // public function getTableColumns(){
-    //     $data = [];
-    //     $data['table_header'] = TblItEquipment::get_table_columns();
-    //     dd($data);
-    //     return view ('content/inventory' , $data);
-    // }
 }

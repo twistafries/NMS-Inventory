@@ -22,17 +22,4 @@ class ForStatusController extends BaseController
    public function addEquipment(){
 
    }
-
-    // public function showComputerPeripherals(){
-    //     $data = [];
-    //     // dd($data);
-    //     return view ('content/inventory' , $data);
-    // }
-
-    // public function getTableColumns(){
-    //     $data = [];
-    //     $data['table_header'] = TblItEquipment::get_table_columns();
-    //     dd($data);
-    //     return view ('content/inventory' , $data);
-    // }
 }

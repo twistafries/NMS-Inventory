@@ -53,18 +53,11 @@ class TblItEquipment extends Model
         return $query;
     }
 
-
-/*
-<<<<<<< HEAD
-INSERT INTO `findit`.`it_equipment` (`type_id`, `name_or_model`, `details`, `serial_no`, `or_no`, `unit_id`, `status_id`)
-VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
-*/
-=======
-INSERT INTO `findit`.`it_equipment` (`type_id`, `name_or_model`, 
-`details`, `serial_no`, `or_no`, `unit_id`, `status_id`) 
-VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1'); 
-*/ 
->>>>>>> 6205b335f25fc4a92f89cc53d3dd738c102a6a16
+    /*
+    INSERT INTO `findit`.`it_equipment` (`type_id`, `name_or_model`, 
+    `details`, `serial_no`, `or_no`, `unit_id`, `status_id`) 
+    VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1'); 
+    */
 
     public static function add_equipment($params){
         $results = [];
@@ -91,18 +84,4 @@ VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
         return $results;
     }
 
-
-
-
-
-    // public static function get_table_columns(){
-    //     $table = \DB::table('it_equipment')
-    //     DB::connection()->getDoctrineColumn('table', '')->getName();
-    //     // -> getSchemaBuilder()
-    //     // -> getColumnListing();
-    //     // return $table;
-
-    //     // return DB::getSchemaBuilder()->getColumnListing($table);
-    //     // return Schema::getColumnListing($table);
-    // }
 }
