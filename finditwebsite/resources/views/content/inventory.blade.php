@@ -86,13 +86,8 @@
 				<a class="nav-link active " id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
                     All</a>
             </li>
-<<<<<<< HEAD
 
-            @foreach ($equipment_type as $equipment_type)
-=======
-            
             @foreach ($equipment_types as $equipment_types)
->>>>>>> 6205b335f25fc4a92f89cc53d3dd738c102a6a16
             <li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
                     {{ $equipment_types->name }}
@@ -284,14 +279,41 @@
     </script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $('#myDataTable').DataTable();
+        $('table').DataTable({
+            scrollY: '50vh',
+            scrollCollapse: true,
+            scrollX: '50vw',
+            
+            'ajax': '',
+            'select': 'multi',
+            'order': [
+                [1, 'asc']
+            ],
+            
+            'columnDefs': [{
+                'targets': 0,
+                'render': function(data, type, row, meta) {
+                    if (type === 'display') {
+                        data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
+                    }
+
+                    return data;
+                },
+                
+                'checkboxes': {
+                    'selectRow': true,
+                    'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
+                }
+            }]
+ 
+        });
     } );
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     $(document).ready(function() {
         $('#myDataTable1').DataTable();
     } );
-    </script>
+    </script> -->
     <script type="text/javascript">
     $(document).ready(function() {
         $('#myDataTable2').DataTable();
