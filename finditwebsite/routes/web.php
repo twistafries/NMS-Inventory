@@ -29,6 +29,8 @@ Route::get('/dashboard', function () {
 
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
+Route::post('/login', 'LoginController@login');
+
 
 Route::get('/dashboard', 'ForStatusController@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
