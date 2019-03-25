@@ -55,6 +55,24 @@
         <div class="d-flex flex-row-reverse">
             <div class="p-2">
                 <div class="btn-group" role="group" aria-label="Basic example">
+                    <!-- Hide/Unhide Column -->
+                    <button type="button" class="btn hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
+                        aria-expanded="false">
+                        <a href="#" data-toggle="tooltip" title="Hide/Unhide">
+                            <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}">
+                        </a>
+                    </button>
+                    
+                    <select name="toggle_column" id="toggle_column">
+                        <option value="1">Name</option>
+                        <option value="2">Details</option>
+                        <option value="3">Serial No</option>
+                        <option value="4">OR No</option>
+                        <option value="5">Added At</option>
+                        <option value="6">Edited At</option>
+                        <option value="7">Edited At</option>
+                    </select>
+
                     <!-- Multiple Select -->
                     <button type="button" class="btn" id="multiple-select">
                         <a href="#" data-toggle="tooltip" title="Multiple Select">
@@ -69,15 +87,8 @@
                         </a>
                     </button>
     
-                    <!-- Hide/Unhide Column -->
-                    <button type="button" class="btn hide-column">
-                        <a href="#" data-toggle="tooltip" title="Hide/Unhide">
-                            <img class="tool-item"  src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}">
-                        </a>
-                    </button>
-    
                     <!-- Add -->
-                    <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <a href="#" data-toggle="tooltip" title="Add">
                             <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">
                         </a>
@@ -97,7 +108,8 @@
                         </a>
                     </button> -->
     
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    
+                    <div class="dropdown-menu" aria-labelledby="addOption">
                         <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Add (5 items or Less)</a>
                         <a class="dropdown-item" href="#">Bulk Add</a>
                     </div>
@@ -131,7 +143,7 @@
                                 </select>        
                                 <hr>
                                     
-                                <p class="card-title">Name and Model</p>
+                                <p class="card-title">Name</p>
                                 <div class="input-group mb-3">
                                     <input name="name_or_model" type="text" class="form-control">
                                 </div>
@@ -378,10 +390,49 @@
 
         $('a[data-toggle="pill"]').on('show.bs.tab' , function(e){
             console.log("inside tab fn");
-            $($.fn.dataTable.tables(true)).DataTable().scroller.measure();
+            // $($.fn.dataTable.tables(true)).DataTable().scroller.measure();
         });
         console.log("skipped");
-    } );
+
+        function hideAllColumns() {
+                for (var i = 0; i < 6; i++) {
+                    columns = my_table.column(i).visible(0);
+                }
+            };
+
+            function showAllColumns() {
+                for (var i = 0; i < 5; i++) {
+                    my_table.column(i).visible(1);
+                }
+            }
+
+            jQuery(document).ready(function() {
+
+                my_table = $('#myDataTable').DataTable();
+
+
+                jQuery('#toggle_column').multipleSelect({
+                    width: 200,
+                    onClick: function(view) {
+                        var selectedItems = jQuery('#toggle_column').multipleSelect("getSelects");
+                        hideAllColumns();
+                        for (var i = 0; i < selectedItems.length; i++) {
+                            var s = selectedItems[i];
+                            my_table.column(s).visible(1);
+                        }
+                        jQuery('#myDataTable').css('width', '100%');
+                    },
+                    onCheckAll: function() {
+                        showAllColumns();
+                        jQuery('#myDataTable').css('width', '100%');
+                    },
+                    onUncheckAll: function() {
+                        hideAllColumns();
+                    }
+                });
+
+            });
+    });
     </script>
     
 
