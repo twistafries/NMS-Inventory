@@ -46,24 +46,38 @@ body{
     overflow-y: initial !important;
 }
 
+.issue-more-modal-content{
+ width: 150%;
+    background-color: white;
+
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.issue-more-modal-body{
+     height: 332px;
+
+
+    text-align: justify;
+}
+
 .modal-body{
-    height: 332px;
     overflow-y: auto;
     text-align: justify;
 }
 
 
-.successHeader{
+#successHeader{
   background-color: #5cb85c;
 }
 
-.successIcon{
+#successIcon{
     width: 100%;
     color: #5cb85c;
     text-align: center;
 }
 
-.successText{
+#successText{
     padding: 50px 100px; 
     color: #5cb85c;
     font-style: sans-serif;
@@ -130,10 +144,138 @@ body{
 
 }
 
+.btn{
+  font-family: sans-serif;
+
+}
+
 #reissue{
 	border-color: purple;
   background-color: purple;
   color: white;
 }
 
+
+/* Login */
+
+.main-sign-in-card{
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card-signin , .custom-card-sign-in{
+  max-width: 435px;
+  max-height: 520px;
+}
+
+.custom-card-sign-in{
+  padding-bottom: 120px;
+}
+
+#newMedia {
+  margin-top: -20%;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: #CCCCCC;
+  
+}
+
+.yellow-divider{
+  border-top: 5px solid #eba133;
+}
+
+#signInTitle {
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  font-size: 1rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #555555;
+}
+
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.custom-footer{
+  background-color: #EEEEEE;
+}
+
+
+
+.warning-content > p{
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.modal-body .pc-details{
+  font-size: 0.8em;
+  
+}
+
+.modal-body .former-issuers{
+  padding-top:10px;
+  padding-left: 10px;
+  padding-bottom: 100px; 
+
+  border: 2px solid;
+  border-color: black;
+  font-size: 0.9em;
+}
+
+#addMore{
+    font-size: 0.5em;
+}
+
+.details .col-sm-3 > p{
+   font-size: 0.9em;
+}
+
+.modal-body .form-group .email{
+  font-weight: bold;
+}
+
+select.custom-select{
+      height: 2.4rem;
+      border: none;
+      border-bottom: 2px solid black;
+      border-radius: 0;
+      font-size: 1rem;
+      padding: 0px 20px;
+}
+
+
+input.form-control{
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  padding: 0px 20px;
+}
+
+.input-text:focus{outline:none;}
+
+div.reissue{
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  padding: 25px 30px;
+  margin-left: 3%;
+}
+
+
+input:focus{
+outline: none !important; 
+}
 
