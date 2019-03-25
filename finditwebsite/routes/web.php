@@ -33,6 +33,7 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard', 'ForStatusController@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
+Route::get('/bulk-add', 'InventoryController@bulkAdd');
 
 Route::post('/inventory/add', 'InventoryController@addEquipment');
 

@@ -54,4 +54,8 @@ class InventoryController extends BaseController
         dd($data);
        }
    }
+
+   public function bulkAdd(){
+       return view('content/bulk-add');
+   }
 }
