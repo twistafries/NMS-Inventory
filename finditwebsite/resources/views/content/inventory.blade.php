@@ -28,6 +28,8 @@
                     All</a>
             </li>
 
+            
+
             @foreach ($equipment_types as $equipment_types)
             <li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
@@ -96,31 +98,76 @@
                     </button> -->
     
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Add (5 items or Less)</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Add (5 items or Less)</a>
                         <a class="dropdown-item" href="#">Bulk Add</a>
                     </div>
+
+                                        
                 </div>
     
                 <!-- Single Add Modal -->
-                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal fade" id="singleAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="ModalTitle">Modal title</h5>
+                                <h5 class="modal-title" id="ModalTitle">Single Add</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-    
+                            
+                            <!-- Add Equipment Form -->
+                            <form action="{!! url('/addEquipment'); !!}" autocomplete="off" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
                             <div class="modal-body">
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                {!! csrf_field() !!}
+                                           
+                                <select name="subtype_id" class="custom-select">
+                                    <p class="card-title">Equipment Type</p>
+                                    @foreach ($equipment_subtypes as $equipment_subtypes)
+                                        <option value="{!! $equipment_subtypes->id !!}">
+                                            {{ $equipment_subtypes->name }}
+                                        </option>
+                                    @endforeach
+                                </select>        
+                                <hr>
+                                    
+                                <p class="card-title">Name and Model</p>
+                                <div class="input-group mb-3">
+                                    <input name="name_or_model" type="text" class="form-control">
+                                </div>
+                                    
+                                <p class="card-title">Details</p>
+                                <div class="input-group mb-3">
+                                    <input name="details" type="text" class="form-control">
+                                </div>
+                                    
+                                <p class="card-title">Serial Number</p>
+                                <div class="input-group mb-3">
+                                    <input name="serial_no" type="text" class="form-control">
+                                </div>
+                                    
+                                <p class="card-title">Official Receipt Numbers</p>
+                                <div class="input-group mb-3">
+                                    <input name="or_no" type="text" class="form-control">
+                                </div>
+
+                                <p class="card-title">System Unit Assigned To</p>
+                                <select name="unit_id" class="custom-select">
+                                    @foreach ($system_units as $system_units)
+                                    <option value="{!! $system_units->id !!}">
+                                        {{ $system_units->description }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                <hr>
                             </div>
-    
+
+                                
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
+                                <button type="button" class="btn btn-info" type="submit"> <span class="fas fa-plus"></span> ADD ITEM</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
-    
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -298,6 +345,8 @@
     </script>
     <script type="text/javascript">
     $(document).ready(function() {
+        $('input').attr('autocomplete','off');
+
         var table = $('table').DataTable({
             scrollY: '50vh',
             scrollCollapse: true,

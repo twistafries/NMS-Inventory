@@ -9,6 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblItEquipment;
 use App\Models\TblItEquipmentType;
+use App\Models\TblItEquipmentSubtype;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 
@@ -21,6 +22,8 @@ class InventoryController extends BaseController
         $data['component'] = TblItEquipment::get_computer_component();
         $data['mobile'] = TblItEquipment::get_mobile_devices();
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
+        $data['system_units'] = TblSystemUnits::get_all_system_units();
+        $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         // dd($data);
         return view ('content/inventory' , $data);
     }
@@ -28,8 +31,8 @@ class InventoryController extends BaseController
     public function showInputValues(){
         $data = [];
         
+        $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
-        $data['system_units'] = TblSystemUnits::get_all_system_units();
         // $data['status'] = TblSystemUnits::get_all_status();
         // dd($data);
         return view ('content/temporary-add-equipment' , $data);
