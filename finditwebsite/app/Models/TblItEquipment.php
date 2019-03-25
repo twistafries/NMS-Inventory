@@ -14,7 +14,7 @@ class TblItEquipment extends Model
         -> join('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> join('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> join('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;

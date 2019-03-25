@@ -220,7 +220,7 @@
                         <!-- Modal -->
                         <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->name !!}"
                             aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <p>Official Receipt No: {{ $equipment->or_no }}</p>
@@ -232,27 +232,82 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item"><p><b class="text-uppercase">ID:</b> {{ $equipment->id }}</p></li>
-                                                    <li class="list-group-item"><p><b class="text-uppercase">Type:</b> {{ $equipment->type_name }}</p></li>
-                                                    <li class="list-group-item"><p><b class="text-uppercase">Subtype:</b> {{ $equipment->subtype_name }}</p></li>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">ID:</h5> {{ $equipment->id }}</li>
+                                                    <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">Serial Number:</h5> {{ $equipment->serial_no }}</li>
                                                 </ul>                                                
                                             </div>
                                             <div class="col-sm-6">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item"><p><b class="text-uppercase">Details:</b> {{ $equipment->details }}</p></li>
-                                                    @isset($equipment->unit_id)
+                                                <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <p><b class="text-uppercase">PC Number:</b> {{ $equipment->unit_id }}</p>
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">Type:</h5> 
+                                                        {{ $equipment->type_name }}
                                                     </li>
-                                                    @else
+                                                    <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5> {{ $equipment->subtype_name }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12 m-1">
+                                                <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <p><b class="text-uppercase">PC Number:</b> Not Assigned to A Unit</p>
+                                                        <h5 class="font-weight-bolder text-uppercase">Details:</h5> 
+                                                        {{ $equipment->details }}
                                                     </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul class="list-group">
+                                                    @isset( $equipment->unit_id )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                        {{ $equipment->unit_id }}
+                                                    </li>
+                                                    @endisset
+                                                    @empty( $equipment->unit_id )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                        Not Assigned to A Unit
+                                                    </li>
+                                                    @endempty
+                                                </ul>
+                                            </div>
+                                            
+                                            <div class="col-sm-6">
+                                                <ul class="list-group">
+                                                    @if( $equipment->type_id == 3)
+                                                    @isset( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                        {{ $equipment->imei_or_macaddress }}
+                                                    </li>
+                                                    @endisset
+                                                    @empty( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                        None
+                                                    </li>
+                                                    @endempty
+                                                    @elseif( $equipment->type_id != 3)
+                                                    @isset( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                        {{ $equipment->imei_or_macaddress }}
+                                                    </li>
+                                                    @endisset
+                                                    @empty( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                        None
+                                                    </li>
+                                                    @endempty
                                                     @endif
                                                 </ul>
                                             </div>
                                         </div>
+                                        
+                                        
                                         
                                     </div>
                                     <div class="modal-footer">
