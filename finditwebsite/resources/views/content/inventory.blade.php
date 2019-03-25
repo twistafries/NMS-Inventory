@@ -63,7 +63,7 @@
                         </a>
                     </button>
                     
-                    <select name="toggle_column" id="toggle_column">
+                    <!-- <select name="toggle_column" id="toggle_column">
                         <option value="1">Name</option>
                         <option value="2">Details</option>
                         <option value="3">Serial No</option>
@@ -71,7 +71,7 @@
                         <option value="5">Added At</option>
                         <option value="6">Edited At</option>
                         <option value="7">Status</option>
-                    </select>
+                    </select> -->
 
                     <!-- Multiple Select -->
                     <button type="button" class="btn disabled" id="multiple-select">
@@ -110,7 +110,7 @@
     
                     
                     <div class="dropdown-menu" aria-labelledby="addOption">
-                        <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Add (5 items or Less)</a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a>
                         <a class="dropdown-item" href="#">Bulk Add</a>
                     </div>
 
@@ -129,12 +129,12 @@
                             </div>
                             
                             <!-- Add Equipment Form -->
-                            <form action="{!! url('/addEquipment'); !!}" autocomplete="off" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
+                            <form action="{!! url('/inventory'); !!}" autocomplete="off" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
                             <div class="modal-body">
                                 {!! csrf_field() !!}
                                            
                                 <select name="subtype_id" class="custom-select">
-                                    <p class="card-title">Equipment Type</p>
+                                    <label class="card-title">Equipment Type</p>
                                     @foreach ($equipment_subtypes as $equipment_subtypes)
                                         <option value="{!! $equipment_subtypes->id !!}">
                                             {{ $equipment_subtypes->name }}
@@ -143,41 +143,42 @@
                                 </select>        
                                 <hr>
                                     
-                                <p class="card-title">Name</p>
-                                <div class="input-group mb-3">
-                                    <input name="name_or_model" type="text" class="form-control">
+                                <label for="name">Name</p>
+                                <div class="input-group mb-1">
+                                    <input name="name" type="text" class="form-control">
                                 </div>
                                     
-                                <p class="card-title">Details</p>
-                                <div class="input-group mb-3">
-                                    <input name="details" type="text" class="form-control">
+                                <label for="details">Details</p>
+                                <div class="input-group mb-1">
+                                    <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
                                 </div>
                                     
-                                <p class="card-title">Serial Number</p>
-                                <div class="input-group mb-3">
+                                <label for="serial_no">Serial Number</p>
+                                <div class="input-group mb-1">
                                     <input name="serial_no" type="text" class="form-control">
                                 </div>
                                     
                                 <p class="card-title">Official Receipt Numbers</p>
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-1">
                                     <input name="or_no" type="text" class="form-control">
                                 </div>
 
                                 <p class="card-title">System Unit Assigned To</p>
                                 <select name="unit_id" class="custom-select">
                                     @foreach ($system_units as $system_units)
+                                    <option value="NULL">Not Assigned</option>
+                                    <hr>
                                     <option value="{!! $system_units->id !!}">
-                                        {{ $system_units->description }}
+                                        {{ $system_units->description }}-{{ $system_units->id }}
                                     </option>
                                     @endforeach
                                 </select>
-                                <hr>
+                                <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
                             </div>
-
-                                
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info" type="submit"> <span class="fas fa-plus"></span> ADD ITEM</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                            
+                            <div class="modal-footer text-uppercase">
+                                <button class="btn btn-info" type="submit" value="Add Equipment">Add</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
                         </form>
                         </div>
@@ -217,7 +218,7 @@
                             <td> {{ $equipment->status_name }} </td>
                         </tr>
 
-                        <!-- Modal -->
+                        <!-- View Details Modal -->
                         <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->name !!}"
                             aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
@@ -229,6 +230,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -305,11 +307,9 @@
                                                     @endif
                                                 </ul>
                                             </div>
-                                        </div>
-                                        
-                                        
-                                        
+                                        </div>                                      
                                     </div>
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary text-uppercase">Edit Values</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>

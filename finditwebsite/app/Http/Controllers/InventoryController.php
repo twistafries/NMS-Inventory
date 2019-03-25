@@ -37,11 +37,16 @@ class InventoryController extends BaseController
         // dd($data);
         return view ('content/temporary-add-equipment' , $data);
     }
-    
+ 
+    // INSERT INTO `findit`.`it_equipment` 
+    // (`subtype_id`, `name`, `details`, 
+    // `serial_no`, `or_no`, `user_id`, `status_id`) 
+    // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
+
    public function addEquipment(Request $request){
        $data = $request->all();
-    //    dd($data);
-       if(isset($data['type_id']) && isset($data['name_or_model']) && isset($data['details']) && isset($data['serial_no']) && isset($data['or_no']) && isset($data['unit_id'])){
+       dd($data);
+       if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['serial_no']) && isset($data['or_no'])){
            TblItEquipment::add_equipment($data);
         //    dd($data);
            return \Redirect::to('/inventory');

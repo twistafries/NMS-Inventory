@@ -34,7 +34,7 @@ Route::get('/dashboard', 'ForStatusController@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
 
-Route::post('/addEquipment', 'InventoryController@addEquipment');
+Route::post('/inventory/add', 'InventoryController@addEquipment');
 
  Route::get('/inventory-temp', 'InventoryController@showAllInventory');
  Route::get('/inventory3', 'InventoryController@getTableColumns');
