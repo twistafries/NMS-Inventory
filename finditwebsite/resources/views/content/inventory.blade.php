@@ -74,14 +74,14 @@
                     </select>
 
                     <!-- Multiple Select -->
-                    <button type="button" class="btn" id="multiple-select">
+                    <button type="button" class="btn disabled" id="multiple-select">
                         <a href="#" data-toggle="tooltip" title="Multiple Select">
                             <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
                         </a>
                     </button>
                     
                     <!-- Edit -->
-                    <button type="button" class="btn" id="edit">
+                    <button type="button" class="btn disabled" id="edit">
                         <a href="#" data-toggle="tooltip" title="Edit">
                             <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}">
                         </a>
