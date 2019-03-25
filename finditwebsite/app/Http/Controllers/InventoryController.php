@@ -18,13 +18,13 @@ class InventoryController extends BaseController
     public function showAllInventory(){
         $data = [];
         $data['equipment'] = TblItEquipment::get_all_equipment();
+        // dd($data);
         $data['peripherals'] = TblItEquipment::get_computer_peripherals();
         $data['component'] = TblItEquipment::get_computer_component();
         $data['mobile'] = TblItEquipment::get_mobile_devices();
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
-        // dd($data);
         return view ('content/inventory' , $data);
     }
     

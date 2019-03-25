@@ -70,7 +70,7 @@
                         <option value="4">OR No</option>
                         <option value="5">Added At</option>
                         <option value="6">Edited At</option>
-                        <option value="7">Edited At</option>
+                        <option value="7">Status</option>
                     </select>
 
                     <!-- Multiple Select -->
@@ -214,7 +214,7 @@
                             <td> {{ $equipment->or_no }} </td>
                             <td> {{ $equipment->created_at }} </td>
                             <td > {{ $equipment->updated_at }} </td>
-                            <td> {{ $equipment->stat }} </td>
+                            <td> {{ $equipment->status_name }} </td>
                         </tr>
 
                         <!-- Modal -->
@@ -223,13 +223,36 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <p>ID: {{ $equipment->id }}</p>
+                                        <p>Official Receipt No: {{ $equipment->or_no }}</p>
                                         <h5 class="modal-title">{{ $equipment->name }}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <ul class="list-group list-group-flush">
+                                                    <li><p><b class="text-uppercase">ID:</b> {{ $equipment->id }}</p></li>
+                                                    <li><p><b class="text-uppercase">Type:</b> {{ $equipment->type_name }}</p></li>
+                                                    <li><p><b class="text-uppercase">Subtype:</b> {{ $equipment->subtype_name }}</p></li>
+                                                </ul>                                                
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item"><p><b class="text-uppercase">Details:</b> {{ $equipment->details }}</p></li>
+                                                    @isset($equipment->unit_id)
+                                                    <li class="list-group-item">
+                                                        <p><b class="text-uppercase">PC Number:</b> {{ $equipment->unit_id }}</p>
+                                                    </li>
+                                                    @else
+                                                    <li class="list-group-item">
+                                                        <p><b class="text-uppercase">PC Number:</b> Not Assigned to A Unit</p>
+                                                    </li>
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                        </div>
                                         
                                     </div>
                                     <div class="modal-footer">
@@ -272,7 +295,7 @@
                             <td> {{ $components->or_no }} </td>
                             <td> {{ $components->created_at }} </td>
                             <td> {{ $components->updated_at }} </td>
-                            <td> {{ $components->stat }} </td>
+                            <td> {{ $components->status_name }} </td>
                         </tr>
 
                         @endforeach
@@ -306,7 +329,7 @@
                             <td> {{ $peripherals->or_no }} </td>
                             <td> {{ $peripherals->created_at }} </td>
                             <td> {{ $peripherals->updated_at }} </td>
-                            <td> {{ $peripherals->stat }} </td>
+                            <td> {{ $peripherals->status_name }} </td>
                         </tr>
 
                         @endforeach
@@ -341,7 +364,7 @@
                             <td> {{ $mobile->or_no }} </td>
                             <td> {{ $mobile->created_at }} </td>
                             <td> {{ $mobile->updated_at }} </td>
-                            <td> {{ $mobile->stat }} </td>
+                            <td> {{ $mobile->status_name }} </td>
                         </tr>
 
                         @endforeach

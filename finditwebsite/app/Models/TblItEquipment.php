@@ -13,7 +13,8 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> join('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> join('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as stat')
+        -> join('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
@@ -23,7 +24,7 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as stat')
+        -> select('it_equipment.*', 'equipment_status.name as status_name')
         -> where('it_equipment_subtype.type_id' , '=' , '2')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -34,7 +35,7 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as stat')
+        -> select('it_equipment.*', 'equipment_status.name as status_name')
         -> where('it_equipment_subtype.type_id' , '=' , '1')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -46,7 +47,7 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as stat')
+        -> select('it_equipment.*', 'equipment_status.name as status_name')
         -> where('it_equipment_subtype.type_id' , '=' , '3')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -65,7 +66,7 @@ class TblItEquipment extends Model
         $results['message'] = 'error';
 
         $it_equipment = new TblItEquipment;
-        $it_equipment->type_id =  $params['type_id'];
+        $it_equipment->subtype_id =  $params['subtype_id'];
         $it_equipment->name_or_model = $params['name_or_model'];
         $it_equipment->details = $params['details'];
         $it_equipment->serial_no = $params['serial_no'];
