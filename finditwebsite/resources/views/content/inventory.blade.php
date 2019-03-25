@@ -233,9 +233,9 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <ul class="list-group list-group-flush">
-                                                    <li><p><b class="text-uppercase">ID:</b> {{ $equipment->id }}</p></li>
-                                                    <li><p><b class="text-uppercase">Type:</b> {{ $equipment->type_name }}</p></li>
-                                                    <li><p><b class="text-uppercase">Subtype:</b> {{ $equipment->subtype_name }}</p></li>
+                                                    <li class="list-group-item"><p><b class="text-uppercase">ID:</b> {{ $equipment->id }}</p></li>
+                                                    <li class="list-group-item"><p><b class="text-uppercase">Type:</b> {{ $equipment->type_name }}</p></li>
+                                                    <li class="list-group-item"><p><b class="text-uppercase">Subtype:</b> {{ $equipment->subtype_name }}</p></li>
                                                 </ul>                                                
                                             </div>
                                             <div class="col-sm-6">
