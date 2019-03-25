@@ -262,7 +262,7 @@
                 <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
                     <thead class="thead-dark">
                         <tr>
-
+                            <th></th>
                             <th>Name</th>
                             <th>Details</th>
                             <th>Serial No</th>
@@ -276,7 +276,7 @@
 
                         @foreach ($peripherals as $peripherals)
                         <tr>
-
+                            <td></td>
                             <td> {{ $peripherals->name }} </td>
                             <td width="30%"> {{ $peripherals->details }} </td>
                             <td> {{ $peripherals->serial_no }} </td>
@@ -297,7 +297,7 @@
                 <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
                     <thead class="thead-dark">
                         <tr>
-
+                            <th></th>
                             <th>Name</th>
                             <th>Details</th>
                             <th>Serial No</th>
@@ -311,7 +311,7 @@
 
                         @foreach ($mobile as $mobile)
                         <tr>
-
+                            <td></td>
                             <td> {{ $mobile->name }} </td>
                             <td width="30%"> {{ $mobile->details }} </td>
                             <td> {{ $mobile->serial_no }} </td>
