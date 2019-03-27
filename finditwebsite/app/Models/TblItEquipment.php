@@ -70,13 +70,9 @@ class TblItEquipment extends Model
         $it_equipment->details = $params['details'];
         $it_equipment->serial_no = $params['serial_no'];
         $it_equipment->or_no = $params['or_no'];
-        if($params['unit_id'] == "NULL"){
-            $params['unit_id'] = null;
-        }else{
-            return $it_equipment->unit_id = $params['unit_id'];  
-        }  
+        $it_equipment->user_id = 2;
+        
         $it_equipment->status_id = 1;
-
         try{
             $it_equipment->save();
             $results['error'] = 0;
@@ -85,7 +81,6 @@ class TblItEquipment extends Model
             $results['error'] = 0;
             $results['message'] = $e;
         }
-
         return $results;
     }
 

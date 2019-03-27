@@ -31,11 +31,10 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/dashboard', 'ForStatusController@showAllStatus');
-Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/bulk-add', 'InventoryController@bulkAdd');
 
+Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::post('/addequipment', 'InventoryController@addEquipment');
-Route::post('/addEquipment', 'InventoryController@addEquipment');
 
  Route::get('/inventory-temp', 'InventoryController@showInputValues');
  Route::get('/inventory3', 'InventoryController@getTableColumns');

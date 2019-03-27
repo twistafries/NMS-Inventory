@@ -58,14 +58,21 @@ class InventoryController extends BaseController
     // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
 
    public function addEquipment(Request $request){
-       $data = $request->all();
-    //    dd($data);
+    // dd("Inside");   
+        $data = $request->all();
+
+        if($data['unit_id'] == "NULL"){
+            $data['unit_id'] = null;
+        }else{
+            return $it_equipment->system_units = $data['system_units'];  
+        }
+        
        if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['serial_no']) && isset($data['or_no'])){
            TblItEquipment::add_equipment($data);
            return \Redirect::to('/inventory');
        }else{
-        
-
+        //    return redirect()->back()->with('error', 'Please fill out ALL fields');
+           return redirect()->intended('/content/inventory')->with('error', 'Please fill out ALL fields');
        }
    }
 

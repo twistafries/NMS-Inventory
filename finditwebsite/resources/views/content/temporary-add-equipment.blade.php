@@ -62,6 +62,12 @@ VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
         <div class="input-group mb-3">
         <input name="or_no" type="text" class="form-control">
         </div>
+        
+        <!-- OR Number -->
+        <p class="card-title">Mac Address or IMEI</p>
+        <div class="input-group mb-3">
+        <input name="imei_or_macaddress" type="text" class="form-control">
+        </div>
 
         <p class="card-title">System Unit Assigned To</p>
         <select name="unit_id" class="custom-select">
