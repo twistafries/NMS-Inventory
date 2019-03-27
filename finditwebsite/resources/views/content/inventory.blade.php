@@ -108,7 +108,7 @@
 
                 
                 <div class="dropdown-menu" aria-labelledby="addOption">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Add Equipment</a>
                     <a class="dropdown-item" href="#">Bulk Add</a>
                 </div>
 
@@ -468,7 +468,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">Single Add</h5>
+                <h5 class="modal-title" id="ModalTitle">Add Equipment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                 </button>
@@ -478,9 +478,10 @@
             <div class="modal-body">
                 <form action="{!! url('/add-equipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}                       
+                    
                     <div class="row">
+                        <!-- Subtype -->
                         <div class="col-sm-12 col-lg-6 col-md-6">
-                            <!-- Subtype -->
                             <p class="label">Equipment Subtype</p>
                             <select name="subtype_id" class="custom-select no-max">
                                 @foreach ($equipment_subtypes as $equipment_subtypes)
@@ -489,42 +490,28 @@
                                 </option>
                                 @endforeach
                             </select>
-                            
-                            <hr>
-                            
-                            <!-- Name -->
-                            <p class="label">Name</p>
-                            <div class="input-group mb-3">
-                                <input name="name" type="text" class="form-control">
-                            </div>
-                            
-                            <!-- Details -->
-                            <p class="label">Details</p>
-                            <div class="input-group mb-1">
-                                <textarea name="details" class="form-control input-lg" aria-label="With textarea"></textarea>
-                            </div>
                         </div>
-
-                        <div class="col-sm-12 col-lg-6 col-md-6">
-                            <!-- Serial Number -->
-                            <p class="label">Serial Number</p>
-                            <div class="input-group mb-1">
-                                <input name="serial_no" type="text" class="form-control">
-                            </div>
-                                
-                            <!-- OR Number -->
-                            <p class="label">Official Receipt Numbers</p>
-                            <div class="input-group mb-1">
-                                <input name="or_no" type="text" class="form-control">
-                            </div>
                             
-                            <!-- PC Unit Assigned To -->
+                        <!-- Status -->
+                        <div class="col-sm-12 col-lg-3 col-md-3">
+                            <p class="label">Status</p>
+                            <select name="equipment_status" class="custom-select no-max">
+                                <option value="1">
+                                    Available
+                                </option>
+                                <option value="6">
+                                    Pending
+                                </option>
+                            </select>
+                        </div>
+                        
+                        <!-- PC Unit Assigned To -->
+                        <div class="col-sm-12 col-lg-3 col-md-3">
                             <p class="label">System Unit Assigned To</p>
                             <select name="unit_id" class="custom-select no-max">
                                 <option value="NULL">Not Assigned</option>
                                 
                                 <hr>
-
                                 @foreach ($system_units as $system_units)
                                 <option value="{!! $system_units->id !!}">
                                     {{ $system_units->description }}-{{ $system_units->id }}
@@ -532,8 +519,47 @@
                                 @endforeach
                             </select>
                         </div>
+                        <hr>
                     </div>
+
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-sm-12">
+                            <p class="label">Name</p>
+                            <div class="input-group mb-3">
+                                <input name="name" type="text" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="col-sm-12">
+                            <p class="label">Details</p>
+                            <div class="input-group mb-1">
+                                <textarea name="details" class="form-control input-lg" aria-label="With textarea"></textarea>
+                            </div>
+                        </div>
+                    </div>                
+                    
+                    <div class="row">
+                        <!-- Serial Number -->
+                        <div class="col-sm-12 col-lg-6 col-md-6">
+                            <p class="label">Serial Number</p>
+                            <div class="input-group mb-1">
+                                <input name="serial_no" type="text" class="form-control">
+                            </div>
+                        </div>
+                            
+                        <!-- OR Number -->
+                        <div class="col-sm-12 col-lg-6 col-md-6">
+                            <p class="label">Official Receipt Numbers</p>
+                            <div class="input-group mb-1">
+                                <input name="or_no" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+            
                 </div>
+                
             
             <div class="modal-footer text-uppercase">
                 <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>

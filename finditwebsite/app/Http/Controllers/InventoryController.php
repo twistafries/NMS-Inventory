@@ -25,6 +25,10 @@ class InventoryController extends BaseController
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+        $data['equipment_component_subtypes'] = TblItEquipmentSubtype::get_all_component_subtype();
+        $data['equipment_peripheral_subtypes'] = TblItEquipmentSubtype::get_all_peripheral_subtype();
+        $data['equipment_mobile_subtypes'] = TblItEquipmentSubtype::get_all_mobile_subtype();
+        $data['equipment_status'] = TblStatus::get_all_equipment_status();
         return view ('content/inventory' , $data);
     }
 

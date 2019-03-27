@@ -66,6 +66,8 @@ p.label{
     font-size: 14px;
     color: #333333;
     font-weight: bold;
+    margin-bottom: 0px;
+    margin-top: 1em;
 }
 
 a, a:hover, a:focus {
@@ -87,6 +89,10 @@ i{
 
 a[data-toggle="collapse"] {
     position: relative;
+}
+
+hr{
+    background-color: #F0AD4E;
 }
 
 /*================================================
@@ -146,6 +152,16 @@ a[data-toggle="collapse"] {
     transition: all 1.3s;
 }
 
+form>.row{
+    padding-bottom: 1.2rem;
+    border-bottom-color: rgba(0, 0, 0, 0.3);
+    border-bottom-style: solid;
+    border-bottom-width: 0.02rem;
+}
+
+form>.row:last-child{
+    border: none;
+}
 ::-webkit-scrollbar,::-webkit-scrollbar-thumb {
   width: 5px;
   height: 5px;
