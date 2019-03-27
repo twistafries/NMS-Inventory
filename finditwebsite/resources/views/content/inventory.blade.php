@@ -507,7 +507,7 @@
                         
                         <!-- PC Unit Assigned To -->
                         <div class="col-sm-12 col-lg-3 col-md-3">
-                            <p class="label">System Unit Assigned To</p>
+                            <p class="label">Computer Unit ID</p>
                             <select name="unit_id" class="custom-select no-max">
                                 <option value="NULL">Not Assigned</option>
                                 
@@ -573,14 +573,19 @@
 @stop
 
 
-    @section('script')
+@section('script')
+    <!-- JQuery Form Validation -->
+    <script type="text/javascript" src="{{ asset('js/jquery-validation/lib/jquery-1.11.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-validation/dist/additional-methods.min.js') }}"></script>
+
      <!-- Datatable -->
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Multiple Select -->
-    <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
+    <!-- <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script> -->
 
     <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
@@ -668,6 +673,44 @@
                 });
 
             });
+
+            $('#singleAdd').validate({
+                rules: {
+                    subtype_id:{
+                        required: true
+                    },
+                    status:{
+                        required: true
+                    },
+                    unit_id:{
+                        required: true
+                    },
+                    name:{
+                        required: true,
+                        nonwhitespaces: false,
+                        maxlength: 50
+                    },
+                    details:{
+                        required: true,
+                        nonwhitespaces: false,
+                        maxlength: 255
+                    },
+                    serial_no:{
+                        nonwhitespaces: true,
+                        required: true,
+                        maxlength: 50,
+                    },
+                    or_no:{
+                        nonwhitespaces: true,
+                        required: true,
+                        maxlength: 50,
+                    }
+                    imei_or_macaddress:{
+                        nonwhitespaces: true,
+                        maxlength: 50,
+                    }
+                }
+            })
     });
     </script>
     

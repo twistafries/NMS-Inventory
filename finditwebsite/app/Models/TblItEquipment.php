@@ -76,6 +76,7 @@ class TblItEquipment extends Model
         }else{
             return $it_equipment->unit_id = $params['unit_id'];  
         }
+        $it_equipment->status_id = $params['imei_or_macaddress'];;
         $it_equipment->status_id = $params['status_id'];;
         try{
             $it_equipment->save();
