@@ -465,7 +465,7 @@
 
 <!-- Single Add Modal -->
 <div class="modal fade" id="singleAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalTitle">Single Add</h5>
@@ -479,48 +479,59 @@
                 <form action="{!! url('/add-equipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}                       
                     <div class="row">
-                        <p class="card-title">Equipment Subtype</p>
-                        <select name="subtype_id" class="custom-select">
-                        @foreach ($equipment_subtypes as $equipment_subtypes)
-                            <option value="{!! $equipment_subtypes->id !!}">
-                                {{ $equipment_subtypes->name }}
-                            </option>
-                        @endforeach
-                        </select>       
-                        
-                        <hr>    
-                        <!-- Name -->
-                        <p class="card-title">Name</p>
+                        <div class="col-sm-12 col-lg-6 col-md-6">
+                            <!-- Subtype -->
+                            <p class="label">Equipment Subtype</p>
+                            <select name="subtype_id" class="custom-select no-max">
+                                @foreach ($equipment_subtypes as $equipment_subtypes)
+                                <option value="{!! $equipment_subtypes->id !!}">
+                                    {{ $equipment_subtypes->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            
+                            <hr>
+                            
+                            <!-- Name -->
+                            <p class="label">Name</p>
                             <div class="input-group mb-3">
-                            <input name="name" type="text" class="form-control">
-                        </div>
+                                <input name="name" type="text" class="form-control">
+                            </div>
                             
-                        <label for="details">Details</p>
-                        <div class="input-group mb-1">
-                            <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                            
-                        <label for="serial_no">Serial Number</p>
-                        <div class="input-group mb-1">
-                            <input name="serial_no" type="text" class="form-control">
-                        </div>
-                            
-                        <p class="card-title">Official Receipt Numbers</p>
-                        <div class="input-group mb-1">
-                            <input name="or_no" type="text" class="form-control">
+                            <!-- Details -->
+                            <p class="label">Details</p>
+                            <div class="input-group mb-1">
+                                <textarea name="details" class="form-control input-lg" aria-label="With textarea"></textarea>
+                            </div>
                         </div>
 
-                        <p class="card-title">System Unit Assigned To</p>
-                        <select name="unit_id" class="custom-select">
-                            <option value="NULL">Not Assigned</option>
-                            @foreach ($system_units as $system_units)
-                        
-                            <hr>
-                            <option value="{!! $system_units->id !!}">
-                                {{ $system_units->description }}-{{ $system_units->id }}
-                            </option>
-                            @endforeach
-                        </select>
+                        <div class="col-sm-12 col-lg-6 col-md-6">
+                            <!-- Serial Number -->
+                            <p class="label">Serial Number</p>
+                            <div class="input-group mb-1">
+                                <input name="serial_no" type="text" class="form-control">
+                            </div>
+                                
+                            <!-- OR Number -->
+                            <p class="label">Official Receipt Numbers</p>
+                            <div class="input-group mb-1">
+                                <input name="or_no" type="text" class="form-control">
+                            </div>
+                            
+                            <!-- PC Unit Assigned To -->
+                            <p class="label">System Unit Assigned To</p>
+                            <select name="unit_id" class="custom-select no-max">
+                                <option value="NULL">Not Assigned</option>
+                                
+                                <hr>
+
+                                @foreach ($system_units as $system_units)
+                                <option value="{!! $system_units->id !!}">
+                                    {{ $system_units->description }}-{{ $system_units->id }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             
