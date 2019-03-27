@@ -25,7 +25,7 @@ VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
 @stop
     
 @section('content')
-<form action="{!! url('/addequipment'); !!}" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
+<form action="{!! url('/add-equipment'); !!}" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
 {!! csrf_field() !!}
     <div class="col-sm-6">
         <!-- Equipment Subtype -->

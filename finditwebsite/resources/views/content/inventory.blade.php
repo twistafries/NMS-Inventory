@@ -476,7 +476,7 @@
 
             <!-- Add Equipment Form -->
             <div class="modal-body">
-                <form action="{!! url('/addequipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                <form action="{!! url('/add-equipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}                       
                     <div class="row">
                         <p class="card-title">Equipment Subtype</p>
@@ -522,8 +522,7 @@
                             @endforeach
                         </select>
                     </div>
-                <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-            </div>
+                </div>
             
             <div class="modal-footer text-uppercase">
                 <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>
