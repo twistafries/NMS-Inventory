@@ -18,8 +18,8 @@ class InventoryController extends BaseController
     public function showAllInventory(){
         $data = [];
         $data['equipment'] = TblItEquipment::get_all_equipment();
-        // dd($data);
         $data['peripherals'] = TblItEquipment::get_computer_peripherals();
+        // dd($data);
         $data['component'] = TblItEquipment::get_computer_component();
         $data['mobile'] = TblItEquipment::get_mobile_devices();
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
@@ -27,12 +27,26 @@ class InventoryController extends BaseController
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         return view ('content/inventory' , $data);
     }
+
+    public function showTempAllInventory(){
+        $data = [];
+        $data['equipment'] = TblItEquipment::get_all_equipment();
+        // dd($data);
+        $data['peripherals'] = TblItEquipment::get_computer_peripherals();
+        $data['component'] = TblItEquipment::get_computer_component();
+        $data['mobile'] = TblItEquipment::get_mobile_devices();
+        $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
+        $data['system_units'] = TblSystemUnits::get_all_system_units();
+        $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+        return view ('content/temporary-add-equipment' , $data);
+    }
     
     public function showInputValues(){
         $data = [];
         
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
+        $data['system_units'] = TblSystemUnits::get_all_system_units();
         // $data['status'] = TblSystemUnits::get_all_status();
         // dd($data);
         return view ('content/temporary-add-equipment' , $data);
@@ -45,13 +59,13 @@ class InventoryController extends BaseController
 
    public function addEquipment(Request $request){
        $data = $request->all();
-       dd($data);
+    //    dd($data);
        if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['serial_no']) && isset($data['or_no'])){
            TblItEquipment::add_equipment($data);
-        //    dd($data);
            return \Redirect::to('/inventory');
        }else{
-        dd($data);
+        
+
        }
    }
 

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 
 <!-- jquery editable dropdown plugin -->
+
 <link href="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
     rel="stylesheet">
 
