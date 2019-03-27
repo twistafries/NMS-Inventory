@@ -76,7 +76,7 @@ class InventoryController extends BaseController
            return \Redirect::to('/inventory');
        }else{
         //    return redirect()->back()->with('error', 'Please fill out ALL fields');
-           return redirect()->intended('/content/inventory')->with('error', 'Please fill out ALL fields');
+           return redirect()->intended('/inventory')->with('error', 'Please fill out ALL fields');
        }
    }
 

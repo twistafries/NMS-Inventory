@@ -75,8 +75,8 @@ class TblItEquipment extends Model
             $params['unit_id'] = null;
         }else{
             return $it_equipment->unit_id = $params['unit_id'];  
-        }  
-        $it_equipment->status_id = 1;
+        }
+        $it_equipment->status_id = $params['status_id'];;
         try{
             $it_equipment->save();
             $results['error'] = 0;
