@@ -13,14 +13,4 @@ class TblStatus extends Model
         // dd($query);
         return $query;
     }
-    
-    public static function get_pending_and_available_status($params = null){
-        $query = \DB::table('equipment_status')
-        -> orderBy('name' , 'asc')
-        -> where('id' , '=' , '1')
-        -> where('id' , '=' , '6')
-        -> get();
-        // dd($query);
-        return $query;
-    }
 }
