@@ -71,7 +71,11 @@ class TblItEquipment extends Model
         $it_equipment->serial_no = $params['serial_no'];
         $it_equipment->or_no = $params['or_no'];
         $it_equipment->user_id = 2;
-        
+        if($params['unit_id'] == "NULL"){
+            $params['unit_id'] = null;
+        }else{
+            return $it_equipment->unit_id = $params['unit_id'];  
+        }  
         $it_equipment->status_id = 1;
         try{
             $it_equipment->save();
