@@ -585,7 +585,7 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Multiple Select -->
-    <!-- <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script> -->
+    <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
 
     <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
@@ -704,10 +704,43 @@
                         nonwhitespaces: true,
                         required: true,
                         maxlength: 50,
-                    }
+                    },
                     imei_or_macaddress:{
                         nonwhitespaces: true,
                         maxlength: 50,
+                    }
+                },
+                messages:{
+                    subtype_id:{
+                        required: 'Please fill out this field',
+                    },
+                    status:{
+                        required: 'Please fill out this field',
+                    },
+                    unit_id:{
+                        required: 'Please fill out this field',
+                    },
+                    name:{
+                        required: 'Please fill out this field',
+                        maxlength: 'Maximum of 50 characters',
+                    },
+                    details:{
+                        required: 'Please fill out this field',
+                        maxlength: 'Maximum of 255 characters',
+                    },
+                    serial_no:{
+                        nonwhitespaces: 'Invalid input',
+                        required: 'Please fill out this field',
+                        maxlength: 'Maximum of 50 characters',
+                    },
+                    or_no:{
+                        nonwhitespaces: 'Invalid input',
+                        required: 'Please fill out this field',
+                        maxlength: 'Maximum of 50 characters',
+                    },
+                    imei_or_macaddress:{
+                        nonwhitespaces: 'Invalid input',
+                        maxlength: 'Maximum of 50 characters',
                     }
                 }
             })
