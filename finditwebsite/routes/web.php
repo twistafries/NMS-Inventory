@@ -40,3 +40,5 @@ Route::post('/addEquipment', 'InventoryController@addEquipment');
 
  Route::get('/inventory', 'InventoryController@showAllInventory');
  Route::get('/inventory3', 'InventoryController@getTableColumns');
+
+Route::get('/issuance', 'IssuanceController@showAllIssuances');
