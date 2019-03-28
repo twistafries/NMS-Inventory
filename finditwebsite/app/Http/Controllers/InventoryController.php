@@ -83,4 +83,17 @@ class InventoryController extends BaseController
    public function bulkAdd(){
        return view('content/bulk-add');
    }
+
+   public function editEquipment(Request $request){
+       $data = $request->all();
+       TblItEquipment::edit_equipment($data);
+       return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
+   }
+   
+   public function editStatus(Request $request){
+        $data = $request->all();
+        dd($data);
+        $id = TblItEquipment::edit_equipment($data);
+        return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
+   }
 }

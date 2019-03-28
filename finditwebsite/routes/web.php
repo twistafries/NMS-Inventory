@@ -37,6 +37,7 @@ Route::get('/bulk-add', 'InventoryController@bulkAdd');
 
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::post('/add-equipment', 'InventoryController@addEquipment');
+Route::post('/edit-status', 'InventoryController@editStatus');
 
  Route::get('/inventory-temp', 'InventoryController@showInputValues');
  Route::get('/inventory3', 'InventoryController@getTableColumns');

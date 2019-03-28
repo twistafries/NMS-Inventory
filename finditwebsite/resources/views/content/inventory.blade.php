@@ -26,8 +26,6 @@
                 All</a>
         </li>
 
-        
-
         @foreach ($equipment_types as $equipment_types)
         <li class="nav-item text-uppercase">
             <a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
@@ -35,18 +33,6 @@
             </a>
         </li>
         @endforeach
-
-        <!-- <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                Computer Peripherals</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
-                Mobile Devices</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li> -->
     </ul>
     
     <!-- Toolbox -->
@@ -79,11 +65,11 @@
                 </button>
                 
                 <!-- Edit -->
-                <button type="button" class="btn disabled" id="edit">
+                <!-- <button type="button" class="btn disabled" id="edit">
                     <a href="#" data-toggle="tooltip" title="Edit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}">
                     </a>
-                </button>
+                </button> -->
 
                 <!-- Add -->
                 <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,17 +91,13 @@
                         <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
                     </a>
                 </button> -->
-
                 
                 <div class="dropdown-menu" aria-labelledby="addOption">
                     <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Add Equipment</a>
                     <a class="dropdown-item" href="#">Bulk Add</a>
                 </div>
-
-                                    
-            </div>
-
-            
+                  
+            </div>            
         </div>
     </div>
 
@@ -244,12 +226,69 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase">Edit Values</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" href="#editEquipment">Edit Values</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" href="#editEquipment">Change Status</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" href="#editEquipment">Delete</button>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Change Status -->
+                    <div class="modal fade" id="editEquipment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalTitle">Change {{ $equipment->name }} ({{ $equipment->status_name }})</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <!-- Change Status Form -->
+                                <div class="modal-body">
+                                    <form id="changeStatus" action="{!! url('/edit-status'); !!}" enctype="multipart/form-data" method="post" role="form">
+                                        {!! csrf_field() !!}                       
+                                        <input type="hidden" name="id" value="{!! $equipment->status_id'); !!}">
+                                        <div class="row">
+                                            <!-- Status -->
+                                            <div class="col-sm-12">
+                                                <p class="label">Status</p>
+                                                <select name="equipment_status" class="custom-select no-max">
+                                                    <option value="{!! $equipment->status_id !!}">
+                                                        {{ $equipment->status_name }}
+                                                    </option>
+                                                    <option value="3">
+                                                        For Repair
+                                                    </option>
+                                                    <option value="4">
+                                                        For Return
+                                                    </option>
+                                                    <option value="5">
+                                                        For Disposal
+                                                    </option>
+                                                    <option value="6">
+                                                        Pending
+                                                    </option>
+                                                    <option value="7">
+                                                        Disposed
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                    
+                                
+                                <div class="modal-footer text-uppercase">
+                                    <button class="btn btn-info text-uppercase" type="submit" id= "AddEquipment">Save</button>
+                                    </form>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     @endforeach
                 </tbody>
 
@@ -257,7 +296,7 @@
             </table>
         </div>
 
-        <!-- Computer Peripherals -->
+        <!-- Computer Component -->
         <div class="tab-pane fade" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
             <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
@@ -379,12 +418,13 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase">Edit Values</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" href="#editComponent">Edit Values</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     @endforeach
                 </tbody>
 
@@ -564,6 +604,7 @@
             <div class="modal-footer text-uppercase">
                 <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>
                 </form>
+                <!-- <button id="save" type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="#successIssueItem"> <span class="fas fa-save"></span>SAVE</button> -->
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>

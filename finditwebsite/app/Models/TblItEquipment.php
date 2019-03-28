@@ -58,7 +58,7 @@ class TblItEquipment extends Model
     // (`subtype_id`, `name`, `details`, 
     // `serial_no`, `or_no`, `status_id`) 
     // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
-
+    
     public static function add_equipment($params){
         $results = [];
         $results['error'] = 1;
@@ -89,4 +89,37 @@ class TblItEquipment extends Model
         return $results;
     }
 
+    // INSERT INTO `findit`.`it_equipment` 
+    // (`subtype_id`, `name`, `details`, 
+    // `serial_no`, `or_no`, `status_id`) 
+    // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
+    public static function edit_equipment( $params ){
+        $it_equipment = TblItEquipment::find($params['id']);
+
+        if(isset($params['subtype_id']))
+        $it_equipment->subtype_id = $params['subtype_id'];
+
+        if(isset($params['name']))
+        $it_equipment->name = $params['name'];
+        
+        if(isset($params['details']))
+        $it_equipment->details = $params['details'];
+
+        if(isset($params['serial_no']))
+        $it_equipment->serial_no = $params['serial_no'];
+
+        if(isset($params['or_no']))
+        $it_equipment->or_no = $params['or_no'];
+
+        if(isset($params['status_id']))
+        $it_equipment->status_id = $params['status_id'];
+
+        $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
+
+        try {
+            $it_equipment->save();
+        }catch(QueryException $e){
+            die($e);
+        }
+    }
 }
