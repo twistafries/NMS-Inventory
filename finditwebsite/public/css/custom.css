@@ -138,6 +138,13 @@ hr{
     text-align: center;
 }
 
+.error{
+  font-style: italic;
+  font-size: 12px;
+  padding-left: 1em;
+  color: #d9534f; 
+}
+
 /*================================================
                 2. CONTAINER STYLES
 ================================================== */
