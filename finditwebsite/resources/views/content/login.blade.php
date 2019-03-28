@@ -27,10 +27,20 @@
                     <div class="card-body align-middle custom-card-sign-in yellow-divider-top">
                             <img src="../assets/images/logo/logo2.png" alt="FindIt Logo" class="responsive" width="600" height="400">
                             <h4 class="card-title text-center login-newMedia">New Media Services</h4>
-                            <form class="form-signin">
-                                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit">
-                                    <i class="fab fa-google mr-2"></i> Sign in with Google
-                                </button>
+                            <form action="{!! url('/login') !!}" method="post" id="loginForm">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Enter Email">
+                                </div>
+                                <div class="form-group">
+                                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                                @if(Session::has('errorLogin'))
+                                    <br><center>
+                                    <small class="text-warning">{{ Session::get('errorLogin') }}</center></small>
+                                @endif 
+                                </div>
+                   
+                                <center><button id="saveButton" type="submit" class="btn btn-success p-2 px-3 my-1 text-uppercase text-lg-center">Log In</button></center>
                             </form>
                         </div>
                     <div class="card-footer custom-footer"></div>
