@@ -476,7 +476,7 @@
 
             <!-- Add Equipment Form -->
             <div class="modal-body">
-                <form action="{!! url('/add-equipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                <form id="addEquipmentForm" action="{!! url('/add-equipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}                       
                     
                     <div class="row">
@@ -673,73 +673,97 @@
                 });
 
             });
+            
+            // jQuery.validator.setDefaults({
+            //     debug: true,
+            //     success: "valid"
+            // });
+        
+            jQuery.validator.addMethod("fieldcheck", function(value, element) {
+                return this.optional( element ) || /^[a-z0-9A-Z0-9_-]{1,15}$/.test( value );
+                },'Invalid Input.');
 
-            $('#singleAdd').validate({
+            $('#addEquipmentForm').validate({
                 rules: {
                     subtype_id:{
+                        minlength: 1,
                         required: true
                     },
                     status:{
+                        minlength: 1,
                         required: true
                     },
                     unit_id:{
                         required: true
                     },
                     name:{
+                        minlength: 1,
                         required: true,
-                        nonwhitespaces: false,
-                        maxlength: 50
+                        nowhitespace: false,
+                        maxlength: 50,
+                        fieldcheck: true
                     },
                     details:{
+                        minlength: 1,
                         required: true,
-                        nonwhitespaces: false,
+                        nowhitespace: false,
                         maxlength: 255
                     },
                     serial_no:{
-                        nonwhitespaces: true,
+                        minlength: 1,
+                        nowhitespace: true,
                         required: true,
                         maxlength: 50,
+                        fieldcheck: true
                     },
                     or_no:{
-                        nonwhitespaces: true,
+                        minlength: 1,
+                        nowhitespace: true,
                         required: true,
                         maxlength: 50,
+                        fieldcheck: true
                     },
                     imei_or_macaddress:{
-                        nonwhitespaces: true,
+                        nowhitespace: true,
                         maxlength: 50,
                     }
                 },
                 messages:{
                     subtype_id:{
+                        minlength: 'Please fill out this field',
                         required: 'Please fill out this field',
                     },
                     status:{
+                        minlength: 'Please fill out this field',
                         required: 'Please fill out this field',
                     },
                     unit_id:{
                         required: 'Please fill out this field',
                     },
                     name:{
+                        minlength: 'Please fill out this field',
                         required: 'Please fill out this field',
                         maxlength: 'Maximum of 50 characters',
                     },
                     details:{
+                        minlength: 'Please fill out this field',
                         required: 'Please fill out this field',
                         maxlength: 'Maximum of 255 characters',
                     },
                     serial_no:{
-                        nonwhitespaces: 'Invalid input',
+                        minlength: 'Please fill out this field',
                         required: 'Please fill out this field',
+                        nowhitespace: 'Invalid input',
                         maxlength: 'Maximum of 50 characters',
                     },
                     or_no:{
-                        nonwhitespaces: 'Invalid input',
+                        minlength: 'Please fill out this field',
+                        nowhitespace: 'Invalid input',
                         required: 'Please fill out this field',
                         maxlength: 'Maximum of 50 characters',
                     },
                     imei_or_macaddress:{
-                        nonwhitespaces: 'Invalid input',
+                        nowhitespace: 'Invalid input',
                         maxlength: 'Maximum of 50 characters',
                     }
                 }
