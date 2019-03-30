@@ -19,7 +19,14 @@ class ForStatusController extends BaseController
         return view ('content/dashboard' , $data);
     }
 
-   public function addEquipment(){
+   public function showInventoryConcerns(){
+     $data = [];
+     $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     $data['for_return'] = TblEquipmentStatus::get_for_return();
+     $data['for_disposal'] = TblEquipmentStatus::get_for_disposal();
+     $data['pending'] = TblEquipmentStatus::get_pending();
+     return view ('content/concerns' , $data);
 
    }
 }

@@ -31,12 +31,16 @@ Route::get('/dashboard', function () {
 
 Route::post('/login', 'LoginController@login');
 
+Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
 Route::get('/dashboard', 'ForStatusController@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
+ Route::post('/deactivate', 'AssociateController@update_associate_status');
+
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
+Route::post('/template', 'InventoryController@addEquipment');
 
  Route::get('/inventory', 'InventoryController@showAllInventory');
  Route::get('/inventory3', 'InventoryController@getTableColumns');

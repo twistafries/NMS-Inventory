@@ -56,7 +56,8 @@
                         <div class="repaired">
                             <div class="box col">
                                 <span class="fas fa-tools fa-lg">
-                                </span>{{ $for_repair->count()}}<br>To be Repaired
+
+                                  </span>{{ $for_repair->count()}}<br>To be Repaired
                             </div>
                             <div class="col view">View Details</div>
                         </div>

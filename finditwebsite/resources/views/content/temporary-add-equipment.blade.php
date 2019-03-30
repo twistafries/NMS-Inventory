@@ -25,48 +25,59 @@ VALUES ('1', 'Keyboard', 'Logitech', '897adP', '7984563', '2', '1');
 @stop
     
 @section('content')
-<form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
+<form action="{!! url('/addequipment'); !!}" enctype="multipart/form-data" method="post" id="addEquipment" role="form">
 {!! csrf_field() !!}
     <div class="col-sm-6">
-        <p class="card-title">Equipment Type</p>
-        <select name="type_id" class="custom-select">
-        @foreach ($equipment_types as $equipment_types)
-            <option value="{!! $equipment_types->id !!}">
-                {{ $equipment_types->name }}
+        <!-- Equipment Subtype -->
+        <p class="card-title">Equipment Subype</p>
+        <select name="subtype_id" class="custom-select">
+        @foreach ($equipment_subtypes as $equipment_subtypes)
+            <option value="{!! $equipment_subtypes->id !!}">
+                {{ $equipment_subtypes->name }}
             </option>
         @endforeach
         </select>
-        
+    
         <hr>
-        
-        <p class="card-title">Name and Model</p>
+        <!-- Name -->
+        <p class="card-title">Name</p>
         <div class="input-group mb-3">
-        <input name="name_or_model" type="text" class="form-control">
+        <input name="name" type="text" class="form-control">
         </div>
         
+        <!-- Details -->
         <p class="card-title">Details</p>
         <div class="input-group mb-3">
         <input name="details" type="text" class="form-control">
         </div>
         
+        <!-- Serial Number -->
         <p class="card-title">Serial Number</p>
         <div class="input-group mb-3">
         <input name="serial_no" type="text" class="form-control">
         </div>
         
+        <!-- OR Number -->
         <p class="card-title">Official Receipt Numbers</p>
         <div class="input-group mb-3">
         <input name="or_no" type="text" class="form-control">
         </div>
+        
+        <!-- OR Number -->
+        <p class="card-title">Mac Address or IMEI</p>
+        <div class="input-group mb-3">
+        <input name="imei_or_macaddress" type="text" class="form-control">
+        </div>
 
         <p class="card-title">System Unit Assigned To</p>
         <select name="unit_id" class="custom-select">
+            <option value="NULL">Not Assigned</option>
         @foreach ($system_units as $system_units)
         <option value="{!! $system_units->id !!}">
-            {{ $system_units->description }}
+            {{ $system_units->description }}-{{ $system_units->id }}
         </option>
         @endforeach
-        </select>
+        </select>  
         <hr>
         <button class="btn btn-info" type="submit" value="Add Equipment" id="AddEquipment">
     </div>
