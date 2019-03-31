@@ -1,3 +1,12 @@
+<?php 
+  use Carbon\Carbon;
+  $session=Session::get('loggedIn');
+  $user_id = $session['id'];
+  $firstname = $session['firstname'];
+  $lastname = $session['lastname'];
+  // $img_path = $session['img_path']; 
+?>
+
 @extends('../template')
 
 @section('css')

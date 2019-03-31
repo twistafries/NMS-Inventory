@@ -58,38 +58,9 @@ class LoginController extends Controller {
 		}
 	}
 
-	//adding associate
-	// public function register( Request $request ) 
-	// {
-	// 	$data = $request->all();
-	// 	$results = [];
-
-	// 	//error is by default 1, 1 - meaning there is an error, 0 - where there is no error. 
-	// 	$results['error'] = 1;
-	// 	$results['message'] = 'error';
-
-	// 	$validator = $this->validate_registration( $data );
-
-	// 	if( $validator->fails() ) {
-	// 		$results['error'] = 1;
-	// 		$results['message'] = $validator->errors();
-	// 	} else {
-	// 		$results = TblUsers::add_user($data);
-	// 	}		
-
-	// 	return $results;
-	// }
-
-	// public function validate_registration( $params )
-	// {
-	// 	$rules = array(
- //            'firstname' => 'required',
- //            'lastname' => 'required',
-	//  		'email' => 'required|email',
-	//  		'password' => 'required|min:8'
-	// 	);
-		
-	// 	return Validator::make($params, $rules);
-	// }
+	public function logout() {
+		Session::flush();
+		return \Redirect::to('/login');
+	}
 
 }

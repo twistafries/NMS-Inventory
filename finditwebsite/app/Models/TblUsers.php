@@ -11,6 +11,67 @@ class TblUsers extends Authenticatable {
 	protected $fillable = ['firstname', 'lastname', 'email', 'password', 'status'];
 	public $timestamps = false;
 
+	public static function get_all_associates($params = null){
+        $query = \DB::table('users')
+        -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
+        -> select('users.*', 'departments.name', 'users.status as stat')
+        -> where('users.user_type' , '=' , 'associate')
+        -> orderBy('users.email' , 'asc')
+        -> get();
+        return $query;
+    }
+
+    public static function update_user(){
+    	$logged_in = Session::get('logged_in');
+    	$user = TblUsers::find($params['id']);
+        
+        if(isset($params['email']))
+			$user->email = $params['email'];
+
+		if(isset($params['password']))
+			$user->password = $params['password'];
+
+		if(isset($params['firstname']))
+			$user->firstname = $params['firstname'];
+			$loggedIn['firstname'] = $params['firstname'];
+
+		if(isset($params['lastname']))
+			$user->lastname = $params['lastname'];
+			$loggedIn['lastname'] = $params['lastname'];
+
+		if(isset($params['dept_id']))
+			$user->mobileno = $params['mobileno'];
+
+
+		if(isset($params['status']))
+			$user->status = $params['status'];
+
+		// if(isset($params['image'])){
+		// 	$image = $params['image'];
+		// 	$image_path = $image->store('assets/images/users');
+
+		// 	$loggedIn['img_path'] = $image_path;
+
+		// 	$user->img_name = $image->getClientOriginalName();
+		// 	$user->img_type = $image->getMimeType();
+		// 	$user->img_path = $image_path;
+		// }
+
+		// change updated at
+		$user->updated_at = gmdate('Y-m-d H:i:s');
+
+		try {
+			$user->save();
+			Session::put('loggedIn', $loggedIn);
+			return $user->id;
+		}
+		catch (QueryException $e) 
+		{
+			return false;
+			die($e);
+		}
+    }
+
 	public static function get_users($params=null){
 		if(isset($params['id'])){
 			$query= \DB::table('users AS u')
@@ -37,34 +98,34 @@ class TblUsers extends Authenticatable {
 		return $query;
 	}
 
-	// public static function add_user( $params ){
-	// 	$results = [];
+	public static function add_user( $params ){
+		$results = [];
 
-	// 	$results['error'] = 1;
-	// 	$results['message'] = 'error';
+		$results['error'] = 1;
+		$results['message'] = 'error';
 
- //    	$user = new TblUsers;
- //    	$user->email = $params['email'];
- //    	$user->password = bcrypt($params['password']);
- //    	$user->firstname = $params['firstname'];
- //    	$user->lastname = $params['lastname'];
- //    	$user->dept_id = '1';
+    	$user = new TblUsers;
+    	$user->email = $params['email'];
+    	$user->password = bcrypt($params['password']);
+    	$user->firstname = $params['firstname'];
+    	$user->lastname = $params['lastname'];
+    	$user->dept_id = '1';
 
- //    	// if(isset($params['user_type'])) {
- //    	// 	$user->user_type = $params['user_type'];
- //    	// }
+    	// if(isset($params['user_type'])) {
+    	// 	$user->user_type = $params['user_type'];
+    	// }
 
- //    	try{	
-	// 		$user->save();
-	// 		$results['error'] = 0;
-	// 		$results['message'] = 'user has been save';
-	// 	}
-	// 	catch ( QueryException $e ){
-	// 		$results['error'] = 1;
-	// 		$results['message'] = $e;
-	// 	}
+    	try{	
+			$user->save();
+			$results['error'] = 0;
+			$results['message'] = 'user has been save';
+		}
+		catch ( QueryException $e ){
+			$results['error'] = 1;
+			$results['message'] = $e;
+		}
 
-	// 	return $results;
-	// }
+		return $results;
+	}
 
 }
