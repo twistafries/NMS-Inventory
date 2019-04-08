@@ -10,8 +10,16 @@ class TblIssuances extends Model {
 
 	public static function getIssuances($params = null) {
 		$query = \DB::table('issuance as i')
+			->leftjoin('it_equipment' , 'it_equipment.id', '=', 'i.equipment_id')
+			->leftjoin('system_units' , 'system_units.id', '=', 'i.unit_id')
+			->leftjoin('users' , 'users.id', '=', 'i.user_id')
+			->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
+			->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+			->select('i.*', 'employees.fname as givenname', 'employees.lname as surname','users.firstname',
+			 'users.lastname', 'it_equipment.name as equipment','system_units.description as unit_name',
+			 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
 			->where('i.status_id', '=', '2')
-			->orderBy('created_at', 'desc')
+			->orderBy('i.created_at', 'desc')
 			->get();
 
 			if(isset($params['id'])) {

@@ -1,10 +1,10 @@
-<?php 
+<?php
   use Carbon\Carbon;
   $session=Session::get('loggedIn');
   $user_id = $session['id'];
   $firstname = $session['firstname'];
   $lastname = $session['lastname'];
-  // $img_path = $session['img_path']; 
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
@@ -137,10 +137,10 @@
             <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th></th>
                         <th>Name</th>
-                        <th>Type</th>
+                        <th>Types</th>
                         <th>Subtype</th>
+                        <th>Supplier</th>
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
@@ -153,10 +153,11 @@
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-                        <td></td>
+
                         <td> {{ $equipment->name }} </td>
                         <td> {{ $equipment->type_name }} </td>
                         <td> {{ $equipment->subtype_name }} </td>
+                        <td> {{ $equipment->supplier }} </td>
                         <td width="30%"> {{ $equipment->details }} </td>
                         <td> {{ $equipment->serial_no }} </td>
                         <td> {{ $equipment->or_no }} </td>
@@ -276,9 +277,10 @@
             <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th></th>
+
                         <th>Name</th>
                         <th>Type</th>
+                        <th>Supplier</th>
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
@@ -291,9 +293,9 @@
 
                     @foreach ($component as $components)
                     <tr>
-                        <td></td>
                         <td> {{ $components->name }} </td>
-                        <td> {{ $components->subtype }} </td>
+                        <td> {{ $components->subtype_name }} </td>
+                        <td> {{ $components->supplier }} </td>
                         <td width="30%"> {{ $components->details }} </td>
                         <td> {{ $components->serial_no }} </td>
                         <td> {{ $components->or_no }} </td>
@@ -411,8 +413,10 @@
             <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th></th>
+
                         <th>Name</th>
+                        <th>Subtype</th>
+                        <th>Supplier</th>
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
@@ -425,8 +429,10 @@
 
                     @foreach ($peripherals as $peripherals)
                     <tr >
-                        <td></td>
+
                         <td> {{ $peripherals->name }} </td>
+                        <td> {{ $peripherals->subtype_name }} </td>
+                        <td> {{ $peripherals->supplier }} </td>
                         <td width="30%"> {{ $peripherals->details }} </td>
                         <td> {{ $peripherals->serial_no }} </td>
                         <td> {{ $peripherals->or_no }} </td>
@@ -446,8 +452,10 @@
             <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th></th>
+
                         <th>Name</th>
+                        <th>Subtype</th>
+                        <th>Supplier</th>
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
@@ -460,8 +468,9 @@
 
                     @foreach ($mobile as $mobile)
                     <tr>
-                        <td></td>
                         <td> {{ $mobile->name }} </td>
+                        <td> {{ $mobile->subtype_name }} </td>
+                        <td> {{ $mobile->supplier }} </td>
                         <td width="30%"> {{ $mobile->details }} </td>
                         <td> {{ $mobile->serial_no }} </td>
                         <td> {{ $mobile->or_no }} </td>

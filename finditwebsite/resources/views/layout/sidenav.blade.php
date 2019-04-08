@@ -50,7 +50,7 @@
         </li>
 
         <li id="issuance">
-            <a href="#">
+          <a href="{!! url('/issuance') !!}">
                 <i class="fas fa-hand-holding"></i>
                 <span class="hide-menu">Issuance</span>
             </a>
@@ -64,7 +64,7 @@
         </li>
 
         <li id="inventoryconcern">
-            <a href="#">
+            <a href="{!! url('/concerns') !!}">
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="hide-menu">Inventory Concerns</span>
             </a>

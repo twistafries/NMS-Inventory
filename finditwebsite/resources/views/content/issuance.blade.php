@@ -1,10 +1,10 @@
-<?php 
+<?php
   use Carbon\Carbon;
   $session=Session::get('loggedIn');
   $user_id = $session['id'];
   $firstname = $session['firstname'];
   $lastname = $session['lastname'];
-  // $img_path = $session['img_path']; 
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
@@ -27,40 +27,17 @@
 @stop
 
 @section('content')
-<form action="" id="form1">
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <!-- Single Add Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                        </div>
-
-                        <div class="modal-body">
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="Multi Select">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"></a>
                 </button>
-                
+
                 <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="Edit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}"></a>
@@ -73,7 +50,7 @@
                 <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
             </button>
                 <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="delete"> 
+                    <a href="#" data-toggle="tooltip" title="delete">
                         <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
                     </button>
                 <button type="button" class="btn">
@@ -82,8 +59,8 @@
                     </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Add (5 items or Less)</a>
-                    <a class="dropdown-item" href="#">Bulk Add</a>
+                    <a class="dropdown-item" href="singleIssue">Issue Item</a>
+                    <a class="dropdown-item" href="#">Issue Multiple Items</a>
                 </div>
             </div>
         </div>
@@ -97,6 +74,7 @@
                         <tr>
 
                             <th>Equipment Issued</th>
+                            <th>Equipment Subtype</th>
                             <th>System Unit Issued</th>
                             <th>Issued To</th>
                             <th>Issued By</th>
@@ -105,7 +83,6 @@
                             <th>Issued Until</th>
                             <th>Date Returned</th>
                             <th>Remarks</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,16 +90,16 @@
                         @foreach ($issuance as $issuance)
                         <tr>
 
-                            <td> {{ $issuance->equipment_id }} </td>
-                            <td width="30%"> {{ $issuance->unit_id }} </td>
-                            <td> {{ $issuance->issued_to }} </td>
-                            <td> {{ $issuance->user_id }} </td>
+                            <td> {{ $issuance->equipment}} </td>
+                            <td> {{ $issuance->subtype}} </td>
+                            <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
+                            <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
+                            <td> {{ $issuance->firstname }} {{ $issuance->lastname }} </td>
                             <td> {{ $issuance->created_at }} </td>
                             <td > {{ $issuance->updated_at }} </td>
                             <td> {{ $issuance->issued_until }} </td>
                             <td> {{ $issuance->returned_at }} </td>
                             <td> {{ $issuance->remarks }} </td>
-                            <td> {{ $issuance->status_id }} </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -130,8 +107,71 @@
 
                 </table>
             </div>
+            <div class="modal fade" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalTitle">Issue Item</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
 
-</form>
+                        <!-- Add Equipment Form -->
+                        <div class="modal-body">
+                            <form action="{!! url('/addequipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                                {!! csrf_field() !!}
+                                <div class="row">
+                                    <p class="card-title"></p>
+                                    <select name="subtype_id" class="custom-select">
+                                        <option  value="value}">
+
+                                        </option>
+
+                                    </select>
+
+                                    <hr>
+                                    <!-- Name -->
+                                    <p class="card-title">Name</p>
+                                        <div class="input-group mb-3">
+                                        <input name="name" type="text" class="form-control">
+                                    </div>
+
+                                    <label for="details">Details</p>
+                                    <div class="input-group mb-1">
+                                        <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
+                                    </div>
+
+                                    <label for="serial_no">Serial Number</p>
+                                    <div class="input-group mb-1">
+                                        <input name="serial_no" type="text" class="form-control">
+                                    </div>
+
+                                    <p class="card-title">Official Receipt Numbers</p>
+                                    <div class="input-group mb-1">
+                                        <input name="or_no" type="text" class="form-control">
+                                    </div>
+
+                                    <p class="card-title">System Unit Assigned To</p>
+                                    <select name="unit_id" class="custom-select">
+                                        <option value="NULL">Not Assigned</option>
+                                    </select>
+                                </div>
+                            <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                        </div>
+
+                        <div class="modal-footer text-uppercase">
+                            <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>
+
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
 @stop
 
 @section('script')
@@ -150,57 +190,21 @@
 
     <script>
       $(document).ready(function(){
-      $('#inventory').addClass('active');
+      $('#issuance').addClass('active');
       });
     </script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $('table').DataTable({
-            scrollY: '50vh',
-            scrollCollapse: true,
-            scrollX: '50vw',
-            
-            'ajax': '',
-            'select': 'multi',
-            'order': [
-                [1, 'asc']
-            ],
-            
-            'columnDefs': [{
-                'targets': 0,
-                'render': function(data, type, row, meta) {
-                    if (type === 'display') {
-                        data = '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>';
-                    }
-
-                    return data;
-                },
-                
-                'checkboxes': {
-                    'selectRow': true,
-                    'selectAllRender': '<div class="checkbox"><input type="checkbox" class="dt-checkboxes"><label></label></div>'
-                }
-            }]
- 
-        });
-    } );
+        $('input').attr('autocomplete','off');
+      });
     </script>
-    <!-- <script type="text/javascript">
+    <script>
     $(document).ready(function() {
-        $('#myDataTable1').DataTable();
-    } );
-    </script> -->
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable2').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable3').DataTable();
+        $('#myDataTable').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []});
     } );
     </script>
 
 @stop
-
-

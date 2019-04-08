@@ -1,10 +1,10 @@
-<?php 
+<?php
   use Carbon\Carbon;
   $session=Session::get('loggedIn');
   $user_id = $session['id'];
   $firstname = $session['firstname'];
   $lastname = $session['lastname'];
-  // $img_path = $session['img_path']; 
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
@@ -75,7 +75,7 @@
         <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>
-                   
+
                     <th>Name</th>
                     <th>Email</th>
                     <th>Department</th>
@@ -87,7 +87,7 @@
             <tbody>
                 @foreach ($associates as $associate)
                 <tr>
-                    
+
                     <td>{{ $associate->firstname  }} {{ $associate->lastname }}</td>
                     <td>{{ $associate->email }}</td>
                     <td>{{ $associate->name }}</td>
@@ -131,39 +131,19 @@
       $('#associates').addClass('active');
     });
     </script>
-
     <script type="text/javascript">
     $(document).ready(function() {
         $('input').attr('autocomplete','off');
-
-        var table = $('table').DataTable({
-            scrollY: '50vh',
-            scrollCollapse: true,
-            // scrollX: '100vw',        
-            
-            'ajax': '',
-            'select': 'multi',
-            'order': [
-                [1, 'asc']
-            ],
-            
-            'columnDefs': [{
-                'targets': 0,
-                'render': function(data, type, row, meta) {
-
-                    return data;
-                },
-            }]
- 
-        });
-
-        $('a[data-toggle="pill"]').on('show.bs.tab' , function(e){
-            console.log("inside tab fn");
-            // $($.fn.dataTable.tables(true)).DataTable().scroller.measure();
-        });
-
-        
-    });
+      });
     </script>
+    <script>
+    $(document).ready(function() {
+        $('#myDataTable').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []});
+    } );
+    </script>
+
 
 @stop

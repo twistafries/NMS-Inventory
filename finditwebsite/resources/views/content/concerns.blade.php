@@ -1,10 +1,10 @@
-<?php 
+<?php
   use Carbon\Carbon;
   $session=Session::get('loggedIn');
   $user_id = $session['id'];
   $firstname = $session['firstname'];
   $lastname = $session['lastname'];
-  // $img_path = $session['img_path']; 
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
@@ -120,8 +120,10 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
+                            <th>Supplier</th>
                             <th>Added At</th>
                             <th width="15%">Edited At</th>
+                            <th>Added by</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -134,8 +136,10 @@
                             <td width="30%"> {{ $for_return->details }} </td>
                             <td> {{ $for_return->serial_no }} </td>
                             <td> {{ $for_return->or_no }} </td>
+                            <td> {{ $for_return->supplier }} </td>
                             <td> {{ $for_return->created_at }} </td>
                             <td > {{ $for_return->updated_at }} </td>
+                            <td> {{ $for_return->firstname }} {{ $for_return->lastname }}</td>
                             <td> {{ $for_return->stat }} </td>
                         </tr>
                         @endforeach
@@ -155,9 +159,14 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
+                            <th>Supplier</th>
                             <th>Added At</th>
                             <th width="15%">Edited At</th>
-                            <th>Status</th>
+                            <th>Added By</th>
+                            <th>Last User</th>
+                            <th>Warranty</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
@@ -166,12 +175,15 @@
                         <tr>
 
                             <td> {{ $for_repair->name }} </td>
-                            <td width="30%"> {{ $for_repair->details }} </td>
+                            <td> {{ $for_repair->details }} </td>
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
+                            <td> {{ $for_repair->supplier }} </td>
                             <td> {{ $for_repair->created_at }} </td>
-                            <td> {{ $for_repair->updated_at }} </td>
-                            <td> {{ $for_repair->stat }} </td>
+                            <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
+                            <td></td>
+                            <td>{{ $for_repair->warranty_details }}</td>
+
                         </tr>
 
                         @endforeach
@@ -179,12 +191,15 @@
                         <tr>
 
                             <td> {{ $for_repair_units->description }}  {{ $for_repair_units->id }} </td>
-                            <td width="30%"> No Details </td>
+                            <td> No Details </td>
+                            <td> None </td>
                             <td> None </td>
                             <td> None </td>
                             <td> {{ $for_repair_units->created_at }} </td>
                             <td> {{ $for_repair_units->updated_at }} </td>
-                            <td> {{ $for_repair_units->stat }} </td>
+                            <td> {{ $for_repair_units->firstname}} {{ $for_repair_units->lastname}}  </td>
+                            <td></td>
+                            <td> None </td>
                         </tr>
 
                         @endforeach
@@ -202,9 +217,11 @@
                                   <th>Details</th>
                                   <th>Serial No</th>
                                   <th>OR No</th>
+                                  <th>Supplier</th>
                                   <th>Added At</th>
                                   <th width="15%">Edited At</th>
-                                  <th>Status</th>
+                                  <th>Added By</th>
+                                  <th>Remarks</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -216,9 +233,11 @@
                                   <td width="30%"> {{ $for_disposal->details }} </td>
                                   <td> {{ $for_disposal->serial_no }} </td>
                                   <td> {{ $for_disposal->or_no }} </td>
+                                  <td> {{ $for_disposal->supplier }} </td>
                                   <td> {{ $for_disposal->created_at }} </td>
                                   <td> {{ $for_disposal->updated_at }} </td>
-                                  <td> {{ $for_disposal->stat }} </td>
+                                  <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
+                                  <td> <!--{{ $for_disposal->remarks }}--> </td>
                               </tr>
 
                               @endforeach
@@ -238,9 +257,11 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
+                            <th>Supplier</th>
                             <th>Added At</th>
                             <th width="15%">Edited At</th>
-                            <th>Status</th>
+                            <th>Added By</th>
+                            <th>Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -252,9 +273,11 @@
                             <td width="30%"> {{ $pending->details }} </td>
                             <td> {{ $pending->serial_no }} </td>
                             <td> {{ $pending->or_no }} </td>
+                            <td> {{ $pending->supplier }} </td>
                             <td> {{ $pending->created_at }} </td>
                             <td> {{ $pending->updated_at }} </td>
-                            <td> {{ $pending->stat }} </td>
+                            <td> {{ $pending->firstname}} {{ $pending->lastname}}  </td>
+                            <td> <!--{{ $pending->remarks }}--> </td>
                         </tr>
 
                         @endforeach
