@@ -59,7 +59,7 @@
                     </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="singleIssue">Issue Item</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
                     <a class="dropdown-item" href="#">Issue Multiple Items</a>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                             <td> {{ $issuance->subtype}} </td>
                             <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
                             <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
-                            <td> {{ $issuance->firstname }} {{ $issuance->lastname }} </td>
+                            <td> {{ $issuance->uname }} </td>
                             <td> {{ $issuance->created_at }} </td>
                             <td > {{ $issuance->updated_at }} </td>
                             <td> {{ $issuance->issued_until }} </td>
@@ -119,53 +119,94 @@
 
                         <!-- Add Equipment Form -->
                         <div class="modal-body">
-                            <form action="{!! url('/addequipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" method="post"  onsubmit="DoSubmit()" role="form">
                                 {!! csrf_field() !!}
                                 <div class="row">
-                                    <p class="card-title"></p>
-                                    <select name="subtype_id" class="custom-select">
-                                        <option  value="value}">
 
-                                        </option>
+                                          <div class="col-md-5">
+                                              <p class="card-title">Issue Item:</p>
+                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
+                                                <datalist id="items">
+                                                  @foreach ($equipment as $equipment)
+                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}}">{{ $equipment->subtype}}</option>
+                                                  @endforeach
+                                                  @foreach ($units as $units)
+                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
+                                                  @endforeach
+                                                </datalist>
 
-                                    </select>
+                                          </div>
+                                          <div class="col-md-2">
+                                          </div>
 
-                                    <hr>
-                                    <!-- Name -->
-                                    <p class="card-title">Name</p>
-                                        <div class="input-group mb-3">
-                                        <input name="name" type="text" class="form-control">
+                                          <div class="col-md-5">
+                                              <p class="card-title">Issued_until</p>
+                                                  <div class="input-group mb-3">
+                                                  <input  name="issued_until" type="date" class="form-control" required>
+                                                  </div>
+                                          </div>
+                                      </div>
+
+                                      <div class="row">
+
+                                              <div class="col-md-4"><table></table></div>
+                                      </div>
+
+                                      <br>
+                                      <div class="row">
+
+                                              <div class="col-md-4">
+                                                  <button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>ADD MORE</button>
+                                              </div>
+                                      </div>
+
+                                      <br>
+
+                                     <div class="row">
+                                          <div class="col-md-5">
+                                              <p class="card-title">Issue to:</p>
+                                              <input list="employees" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
+                                              <datalist id="employees">
+                                                  @foreach ($employees as $employees)
+                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}}" autocomplete>
+                                                    @switch($employees->dept_id)
+                                                      @case(1)
+                                                          ITDD
+                                                          @break
+                                                      @case(2)
+                                                          PDD
+                                                          @break
+                                                      @case(3)
+                                                          FD
+                                                          @break
+                                                      @case(4)
+                                                          HRD
+                                                          @break
+                                                  @endswitch</option>
+                                                  @endforeach
+                                                </datalist>
+                                          </div>
                                     </div>
 
-                                    <label for="details">Details</p>
-                                    <div class="input-group mb-1">
-                                        <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
-                                    </div>
+                                      <div class="row">
 
-                                    <label for="serial_no">Serial Number</p>
-                                    <div class="input-group mb-1">
-                                        <input name="serial_no" type="text" class="form-control">
-                                    </div>
+                                          <div class="col">
+                                              <label for="details">Remarks</p>
+                                              <div class="input-group mb-1">
+                                                  <textarea rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea"></textarea>
+                                              </div>
+                                          </div>
+                                      </div>
 
-                                    <p class="card-title">Official Receipt Numbers</p>
-                                    <div class="input-group mb-1">
-                                        <input name="or_no" type="text" class="form-control">
-                                    </div>
+                              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                          </div>
 
-                                    <p class="card-title">System Unit Assigned To</p>
-                                    <select name="unit_id" class="custom-select">
-                                        <option value="NULL">Not Assigned</option>
-                                    </select>
-                                </div>
-                            <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-                        </div>
+                          <div class="modal-footer text-uppercase">
+                              <button class="btn btn-info">Add</button>
 
-                        <div class="modal-footer text-uppercase">
-                            <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
-                        </div>
+                          </div>
                         </form>
                     </div>
                 </div>
@@ -180,6 +221,7 @@
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+
 
     <!-- Multiple Select -->
     <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
@@ -206,5 +248,38 @@
            "order": []});
     } );
     </script>
+    <script>
+    function DoSubmit(){
+      var item = $(equipment).val();
+      document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
+      var employee = $(issued_to).val();
+      document.getElementById("issued_to").value = $('#employees [value="' + employee + '"]').data('customvalue');
+      return true;
+      }
+  </script>
+  <script>
+    function CheckListed( txtSearch  ) {
+     var objList = document.getElementById("items")  ;
+     for (var i = 0; i < objList.options.length; i++) {
+      if ( objList.options[i].value.trim().toUpperCase() == txtSearch.trim().toUpperCase() ) {
+         return true }
+      }
+        alert( 'Input data is not available.') ;
+        document.getElementById("equipment").value="";
+        return false ; // text does not matched ;
+    }
+  </script>
+  <script>
+    function CheckListedEmployee( txtSearch  ) {
+     var objList = document.getElementById("employees")  ;
+     for (var i = 0; i < objList.options.length; i++) {
+      if ( objList.options[i].value.trim().toUpperCase() == txtSearch.trim().toUpperCase() ) {
+         return true }
+      }
+        alert( 'Input data is not available.') ;
+        document.getElementById("issued_to").value="";
+        return false ; // text does not matched ;
+    }
+  </script>
 
 @stop

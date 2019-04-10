@@ -11,7 +11,8 @@ class TblAssociate extends Model
 
     public static function get_all_associate($params = null){
         $query = \DB::table('users')
-        -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
+        -> leftjoin('employees' , 'employees.id', '=', 'users.employee_id')
+        -> leftjoin('departments' , 'departments.id', '=', 'employees.dept_id')
         -> select('users.*', 'departments.name', 'users.status as stat')
         -> where('users.user_type' , '=' , 'associate')
         -> orderBy('users.email' , 'asc')
@@ -20,7 +21,7 @@ class TblAssociate extends Model
     }
 
     public static function update_associate_status(){
-    
+
     }
 
 }

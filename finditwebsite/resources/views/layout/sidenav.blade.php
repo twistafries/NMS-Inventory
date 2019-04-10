@@ -49,6 +49,13 @@
             </a>
         </li>
 
+        <li id="employees">
+            <a href="{!! url('/employees') !!}">
+                <i class="fas fa-vcard"></i>
+                <span class="hide-menu">Employees</span>
+            </a>
+        </li>
+
         <li id="issuance">
           <a href="{!! url('/issuance') !!}">
                 <i class="fas fa-hand-holding"></i>
@@ -56,14 +63,14 @@
             </a>
         </li>
 
-        <li id="issuable items">
-            <a href="#">
+        <li id="issuableItems">
+            <a href="{!! url('/issuableItems') !!}">
                 <i class="fas fa-desktop"></i>
                 <span class="hide-menu">Issuable Items</span>
             </a>
         </li>
 
-        <li id="inventoryconcern">
+        <li id="concerns">
             <a href="{!! url('/concerns') !!}">
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="hide-menu">Inventory Concerns</span>

@@ -36,13 +36,12 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 Route::get('/dashboard', 'ForStatusController@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
- Route::post('/deactivate', 'AssociateController@update_associate_status');
-
-
+Route::post('/deactivate', 'AssociateController@update_associate_status');
+Route::get('/issuableItems', 'ForStatusController@showIssuable');
+Route::get('/employees', 'ForStatusController@showEmployees');
 Route::post('/addEquipment', 'InventoryController@addEquipment');
+Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/template', 'InventoryController@addEquipment');
 
- Route::get('/inventory', 'InventoryController@showAllInventory');
- Route::get('/inventory3', 'InventoryController@getTableColumns');
 
-Route::get('/issuance', 'IssuanceController@showAllIssuances');
+Route::get('/issuance', 'IssuanceController@showAllIssuance');

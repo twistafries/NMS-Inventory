@@ -3,9 +3,9 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class TblEmploees extends Model {
+class TblEmployees extends Model {
 
-	protected $table = 'employees'
+	protected $table = 'employees';
 	public $timestamps = false;
 
 	public static function getEmployees($params = null) {
@@ -15,10 +15,13 @@ class TblEmploees extends Model {
 				->get();
 		}else {
 			$query = \DB::table('employees as e')
-				->where('e.id', '=', 'active')
-				->groupBy('dept_id')
-				->orderBy('lname', 'asc');				
+				->leftjoin('departments', 'departments.id', '=', 'e.dept_id')
+				->select('e.*', 'departments.name as department')
+				->where('e.status', '=', 'active')
+				->orderBy('lname', 'asc')
+				->get();
 		}
+			return $query;
 	}
 
 	public static function addEmployee($params) {
@@ -36,29 +39,6 @@ class TblEmploees extends Model {
 
 	}
 
-	pblic static function updateEmployee($params) {
-		$empl = TblEmployees::find($params['id']);
-
-		if(isset($params['fname']))
-			$empl->fname = $params['fname'];
-
-		if(isset($params['lname']))
-			$empl->lname = $params['lname'];
-
-		if(isset($params['email']))
-			$empl->email = $params['email'];
-
-		if(isset($params['dept_id']))
-			$empl->dept_id = $params['dept_id'];
-
-		$empl->updated_at = gmdate('Y-m-d H:i:s');
-
-		try {
-			$empl->save();
-		} catch(QueryException $e) {
-			die($e);
-		}
-	}
 }
 
 ?>

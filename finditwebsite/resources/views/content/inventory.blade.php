@@ -501,7 +501,7 @@
 
             <!-- Add Equipment Form -->
             <div class="modal-body">
-                <form action="{!! url('/addequipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}
                     <div class="row">
                         <p class="card-title">Equipment Subtype</p>
@@ -524,15 +524,27 @@
                         <div class="input-group mb-1">
                             <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
                         </div>
-
+                        <label for="details">Warranty Details</p>
+                        <div class="input-group mb-1">
+                            <textarea name="warranty_details" class="form-control" aria-label="With textarea"></textarea>
+                        </div>
                         <label for="serial_no">Serial Number</p>
                         <div class="input-group mb-1">
                             <input name="serial_no" type="text" class="form-control">
                         </div>
 
+                        <label for="serial_no">IMEI/MAC address</p>
+                        <div class="input-group mb-1">
+                            <input name="imei_or_macaddress" type="text" class="form-control">
+                        </div>
+
                         <p class="card-title">Official Receipt Numbers</p>
                         <div class="input-group mb-1">
                             <input name="or_no" type="text" class="form-control">
+                        </div>
+                        <label for="serial_no">Supplier</p>
+                        <div class="input-group mb-1">
+                            <input name="supplier" type="text" class="form-control">
                         </div>
 
                         <p class="card-title">System Unit Assigned To</p>

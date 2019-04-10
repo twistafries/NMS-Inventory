@@ -85,15 +85,15 @@
             </thead>
 
             <tbody>
-                @foreach ($associates as $associate)
+                @foreach ($employees as $employee)
                 <tr>
 
-                    <td>{{ $associate->fname  }} {{ $associate->lname }}</td>
-                    <td>{{ $associate->email }}</td>
-                    <td>{{ $associate->name }}</td>
-                    <td>{{ $associate->stat }}</td>
+                    <td>{{ $employee->fname  }} {{ $employee->lname }}</td>
+                    <td>{{ $employee->email }}</td>
+                    <td>{{ $employee->department }}</td>
+                    <td>{{ $employee->status }}</td>
                     <td>
-                        @if( $associate->stat == "active")
+                        @if( $employee->status == "active")
                         <button class="btn btn-secondary" id="deactivate">
                             Deactivate
                         </button>

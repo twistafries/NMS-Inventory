@@ -64,9 +64,10 @@ class InventoryController extends BaseController
         $data['status_id'] = 1;
         $data['subtype_id'] = (int)$request->get('subtype_id');
 
-       if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['user_id']) && isset($data['serial_no']) && isset($data['or_no'])  && isset($data['status_id']) ){
+       if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['user_id']) && isset($data['warranty_details']) && isset($data['supplier'])
+       && isset($data['serial_no']) && isset($data['or_no'])  && isset($data['status_id']) ){
            TblItEquipment::add_equipment($data);
-           // dd($data);
+           dd($data);
            return \Redirect::to('/inventory')->with('equipment has been added');
        }else{
 

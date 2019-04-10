@@ -13,10 +13,11 @@ class TblUsers extends Authenticatable {
 
 	public static function get_all_associates($params = null){
         $query = \DB::table('users')
-        -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
-        -> select('users.*', 'departments.name', 'users.status as stat')
+				-> leftjoin('employees' , 'employees.id', '=', 'users.employee_id')
+        -> leftjoin('departments' , 'departments.id', '=', 'employees.dept_id')
+        -> select('users.*', 'employees.*','departments.name', 'users.status as stat')
         -> where('users.user_type' , '=' , 'associate')
-        -> orderBy('users.email' , 'asc')
+        -> orderBy('employees.email' , 'asc')
         -> get();
         return $query;
     }
@@ -24,7 +25,7 @@ class TblUsers extends Authenticatable {
     public static function update_user(){
     	$logged_in = Session::get('logged_in');
     	$user = TblUsers::find($params['id']);
-        
+
         if(isset($params['email']))
 			$user->email = $params['email'];
 
@@ -65,7 +66,7 @@ class TblUsers extends Authenticatable {
 			Session::put('loggedIn', $loggedIn);
 			return $user->id;
 		}
-		catch (QueryException $e) 
+		catch (QueryException $e)
 		{
 			return false;
 			die($e);
@@ -115,7 +116,7 @@ class TblUsers extends Authenticatable {
     	// 	$user->user_type = $params['user_type'];
     	// }
 
-    	try{	
+    	try{
 			$user->save();
 			$results['error'] = 0;
 			$results['message'] = 'user has been save';
