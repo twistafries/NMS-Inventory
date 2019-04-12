@@ -67,7 +67,7 @@ class InventoryController extends BaseController
        if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['user_id']) && isset($data['warranty_details']) && isset($data['supplier'])
        && isset($data['serial_no']) && isset($data['or_no'])  && isset($data['status_id']) ){
            TblItEquipment::add_equipment($data);
-           dd($data);
+          
            return \Redirect::to('/inventory')->with('equipment has been added');
        }else{
 

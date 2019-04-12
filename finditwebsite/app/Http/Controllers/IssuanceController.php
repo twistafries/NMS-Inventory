@@ -37,10 +37,10 @@ class IssuanceController extends BaseController {
 			 }else{
 				 $data['unit_id']=(int)$pieces[1] ;
 			 }
-			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['remarks'])	&& isset($data['user_id'])  && isset($data['status_id']) ){
-
+			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['user_id'])  && isset($data['status_id']) ){
+dd($data);
 					TblIssuances::add_issuance($data);
-					//dd($data);
+
 					return \Redirect::to('/issuance')->with('issuance has been added');
 			}else{
 

@@ -128,7 +128,7 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
     <script>
       $(document).ready(function(){
-      $('#associates').addClass('active');
+      $('#employees').addClass('active');
     });
     </script>
     <script type="text/javascript">

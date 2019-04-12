@@ -127,12 +127,14 @@
                                               <p class="card-title">Issue Item:</p>
                                               <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
                                                 <datalist id="items">
+                                                  <select>
                                                   @foreach ($equipment as $equipment)
                                                   <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}}">{{ $equipment->subtype}}</option>
                                                   @endforeach
                                                   @foreach ($units as $units)
                                                   <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
                                                   @endforeach
+                                                </select>
                                                 </datalist>
 
                                           </div>
@@ -165,10 +167,10 @@
                                      <div class="row">
                                           <div class="col-md-5">
                                               <p class="card-title">Issue to:</p>
-                                              <input list="employees" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
-                                              <datalist id="employees">
+                                              <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
+                                              <datalist id="employee">
                                                   @foreach ($employees as $employees)
-                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}}" autocomplete>
+                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}}">
                                                     @switch($employees->dept_id)
                                                       @case(1)
                                                           ITDD
@@ -182,7 +184,9 @@
                                                       @case(4)
                                                           HRD
                                                           @break
-                                                  @endswitch</option>
+
+                                                  @endswitch
+                                                  </option>
                                                   @endforeach
                                                 </datalist>
                                           </div>
@@ -193,7 +197,7 @@
                                           <div class="col">
                                               <label for="details">Remarks</p>
                                               <div class="input-group mb-1">
-                                                  <textarea rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea"></textarea>
+                                                  <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea"></textarea>
                                               </div>
                                           </div>
                                       </div>
@@ -253,7 +257,7 @@
       var item = $(equipment).val();
       document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
       var employee = $(issued_to).val();
-      document.getElementById("issued_to").value = $('#employees [value="' + employee + '"]').data('customvalue');
+      document.getElementById("issued_to").value = $('#employee [value="' + employee + '"]').data('customvalue');
       return true;
       }
   </script>
@@ -264,6 +268,9 @@
       if ( objList.options[i].value.trim().toUpperCase() == txtSearch.trim().toUpperCase() ) {
          return true }
       }
+      if(txtSearch==""){
+        return true
+      }
         alert( 'Input data is not available.') ;
         document.getElementById("equipment").value="";
         return false ; // text does not matched ;
@@ -271,10 +278,13 @@
   </script>
   <script>
     function CheckListedEmployee( txtSearch  ) {
-     var objList = document.getElementById("employees")  ;
+     var objList = document.getElementById("employee")  ;
      for (var i = 0; i < objList.options.length; i++) {
       if ( objList.options[i].value.trim().toUpperCase() == txtSearch.trim().toUpperCase() ) {
          return true }
+      }
+      if(txtSearch==""){
+        return true
       }
         alert( 'Input data is not available.') ;
         document.getElementById("issued_to").value="";

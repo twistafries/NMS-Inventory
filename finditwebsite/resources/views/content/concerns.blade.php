@@ -53,38 +53,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="Multi Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"></a>
-                </button>
-
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="Edit">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}"></a>
-                </button>
-
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="Hide/Unhide">
-                    <img class="tool-item"  src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}"></a>
-                </button>
-                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
-            </button>
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="delete">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
-                    </button>
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="sort">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png"></a>
-                    </button>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Add (5 items or Less)</a>
-                    <a class="dropdown-item" href="#">Bulk Add</a>
-                </div>
-            </div>
         </div>
     </div>
 
