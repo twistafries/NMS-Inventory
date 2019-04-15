@@ -28,50 +28,8 @@
 
 @section('content')
 <form action="" id="form1">
-    <!-- Toolbox -->
-    <!-- <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <span>
-                <a id="multiple_select" href="#" data-toggle="tooltip" title="Multiple Select">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/checkbox-icon.png">
-                </a>
-            </span>
-
-            <span>
-                <a href="#" data-toggle="tooltip" title="Edit">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/edit-icon.png">
-                </a>
-            </span>
-
-            <span>
-                <a href="#" data-toggle="tooltip" title="Add">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png">
-                </a>
-            </span>
-
-            <span>
-                <a href="#" data-toggle="tooltip" title="Hide/Unhide Columns">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/view.png">
-                </a>
-            </span>
-
-            <span>
-                <a href="#" data-toggle="tooltip" title="Delete Row(s)">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/delete-icon.png">
-                </a>
-            </span>
-
-            <span>
-                <a href="#" data-toggle="tooltip" title="Sort by Column">
-                    <img class="tool-item" src="../../assets/icons/table-toolbar-icons/sort-icon.png">
-                </a>
-            </span>
-
-        </div>
-    </div> -->
-
-    <!-- Tabs -->
     <div class="container">
+      <div style="height:10px"></div>
         <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>

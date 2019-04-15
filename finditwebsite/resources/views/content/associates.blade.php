@@ -72,6 +72,7 @@
 
     <!-- Tabs -->
     <div class="container">
+      <div style="height:10px"></div>
         <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>

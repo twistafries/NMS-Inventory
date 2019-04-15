@@ -49,10 +49,8 @@ body {
 /*  +---------------------------------------+
        1.2 FONT STYLE
     +---------------------------------------+ */
-h5 {
-    font-size: 14px;
-    text-align: center;
-}
+
+
 
 p {
     font-size: 12px;
@@ -82,6 +80,7 @@ i{
 a[data-toggle="collapse"] {
     position: relative;
 }
+
 
 /*================================================
                 2. BUTTON STYLES
@@ -137,8 +136,6 @@ a[data-toggle="collapse"] {
 #content {
     width: 100%;
     min-height: 100vh;
-    margin-left: 0;
-    position:static;
     transition: all 1.3s;
 }
 
@@ -239,7 +236,7 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
 
 .modal-title{
   color: white;
-  padding-top: 80px;
+/*  padding-top: 80px;*/
   font-family: sans-serif;
   /* font-weight: bold; */
   /* text-transform: uppercase; */
@@ -287,13 +284,7 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
     color: #23527C;
 }
 
-.arr-right .breadcrumb-item + .breadcrumb-item::before {
-    content: "›";
-    vertical-align: top;
-    color: #ffc107;
-    font-size: 20px;
-    line-height: 20px;
-}
+
 
 .text-dark .active {
     text-decoration: none;
@@ -413,7 +404,7 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
     background: #333;
     color: #FAFAFA;
     transition: all 0.3s;
-    position: sticky;
+    position: relative;
     z-index:0;
     box-shadow: 0px 5.5px 5px rgba(0, 0, 0, 0.24), 0px 9px 18px rgba(0, 0, 0, 0.18);
     -webkit-overflow-scrolling: touch
@@ -431,7 +422,8 @@ a.article, a.article:hover {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
+    /* padding: 20px 0; */
+    /* margin-top: 2.5rem; */
 }
 
 #sidebar ul li a {
@@ -509,19 +501,14 @@ ul ul a {
 /* 4.2.4.1. User Avatar Image */
 .sidebar-user {
     border-top: 5px solid #eba133;
-    height: 130px;
-    background: #757575;
-    position: relative;
-    padding-top: 10px;
-    padding-left: 10px;
 }
 
 #sidebar.active .sidebar-user {
-    height: 90px;
+    /* height: 90px;
     background: #757575;
     position: relative;
     padding-top: 5px;
-    padding-left: 1px;
+    padding-left: 1px; */
 }
 
 .img-avatar {
@@ -702,8 +689,8 @@ div.p {
 }
 
 div.box {
-    width: 6rem;
-    height: 5rem;
+    width: 7rem;
+    height: 6rem;
     background-color: #757575;
     padding: 0;
     margin-left: 3px;
@@ -718,8 +705,6 @@ div.box2 {
     margin-top: 10px;
     margin-right: 9%;
     margin-left: 9%;
-
-
 }
 
 div.view {
@@ -804,7 +789,6 @@ div.recent-height{
 
 
 div.margin {
-    margin: auto;
     margin-bottom: 7px;
     margin-top: 1px;
 }
@@ -888,4 +872,500 @@ td {
 div.card-body {
   align-content: center!important;
   display: block!important;
+}
+
+/** Add page - 03/13/19 **/
+div.add {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.form-control {
+    max-width: 15rem;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    border-radius: 0;
+}
+
+.exampleFormControlSelect1 {
+    width: 12.5rem;
+    height: 1.8rem;
+}
+
+.bulk {
+    max-width: 100%;
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+button.b {
+  height: 1.9rem;
+}
+
+#buttons, .add-button{
+  font-size: 12px;
+  border-radius: 5px;
+  width: 6rem;
+  margin-top: 2rem;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+}
+
+#buttons1{
+  font-size: 12px;
+  border-radius: 5px;
+  width: 8rem;
+  margin-top: 2rem;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+  margin-right: 1rem;
+  height: 32px;
+}
+
+#buttons2 {
+  font-size: 12px;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+  height: 32px;
+}
+
+.build {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+div.position-right {
+    margin-left: 70%;
+}
+
+.quantity {
+    width: 18rem;
+}
+
+.computer-peripheral {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+
+.p-2 {
+    margin-left: 5px;
+}
+
+.save {
+  background-color: #CCCCCC;
+  color: white;
+}
+
+#quantity-select, #category-select, select.custom-select {
+  max-width: 15rem !important;
+  border: none;
+  border-bottom: 2px solid #333333;
+  border-radius: 0;
+}
+
+#button2{
+  font-size: 15px;
+  border-radius: 5px;;
+  width: 10rem;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+}
+
+#button3{
+  font-size: 15px;
+  border-radius: 0;
+  width: 13rem;
+  border-bottom: 2px solid #333333;
+}
+
+.font {
+  font-size: 14px;
+}
+
+button.dropdown-toggle {
+  width: 15rem;
+}
+
+#table-form {
+  width: 10rem;
+  margin-left: 5px;
+}
+
+.fa-minus {
+  border-radius: 3px;
+}
+
+/****************************Mehanie*******************************/
+/* inputTypeDesign - SWITCHES - TOGGLE */
+    #inputType1 {
+      max-width: 27rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    #inputType2 {
+      max-width: 35rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    input.form-control {
+      max-width: 10rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid black;
+      border-radius: 0;
+    }
+
+    input.form {
+      max-width: 10rem;
+      background: transparent;
+      border: none;
+    }
+
+    select.custom {
+      max-width: 10rem;
+      border: none;
+    }
+
+    select.custom1 {
+      max-width: 10rem;
+      border: none;
+      border-bottom: 2px solid #FF8300;
+      margin-bottom: 8rem;
+    }
+
+    select.custom2 {
+      max-width: 10rem;
+      border: none;
+      border-bottom: 2px solid #333333;
+      margin-bottom: 8rem;
+    }
+  /* The switch - the box around the slider */
+  /* cardStyle */
+    #btnGroupAddon1 {
+      background: #555555;
+      font-weight:  bold;
+      color: black;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.23);
+    }
+
+    .input-group-text{
+      font-size: 24px;
+    }
+
+    /*sample card*/
+    .button {
+      height: 1.9rem;
+    }
+
+/***Kim*****************************************************/
+/* MODAL */
+#successHeader{
+  background-color: #5cb85c;
+}
+
+#successIcon{
+    width: 100%;
+    color: #5cb85c;
+    text-align: center;
+}
+
+#successText{
+    padding: 50px 100px;
+    color: #5cb85c;
+    font-style: sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Buttons */
+* {
+  border-radius: 0 !important;
+}
+
+.sample-buttons > button{
+  font-family: sans-serif;
+}
+
+.btn{
+  font-family: sans-serif;
+}
+
+#reissue{
+  border-color: purple;
+  background-color: purple;
+  color: white;
+}
+
+/* Login */
+.card-signin , .custom-card-sign-in{
+  max-width: 435px;
+  max-height: 520px;
+}
+
+#newMedia {
+  margin-top: -20%;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  color: #CCCCCC;
+}
+
+.yellow-divider{
+  border-top: 5px solid #eba133;
+}
+
+.warning-content > p{
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.modal-body .pc-details{
+  font-size: 0.8em;
+}
+
+.modal-body .former-issuers{
+  padding-top:10px;
+  padding-left: 10px;
+  padding-bottom: 100px;
+  border: 2px solid;
+  border-color: black;
+  font-size: 0.9em;
+}
+
+#addMore{
+    font-size: 0.5em;
+}
+
+.details .col-sm-3 > p{
+   font-size: 0.9em;
+}
+
+.modal-body .form-group .inputForm{
+  font-weight: bold;
+}
+
+select.custom-select{
+  height: 2.4rem;
+  border: none;
+  border-bottom: 2px solid black;
+  border-radius: 0;
+  font-size: 1rem;
+  padding: 0px 20px;
+}
+
+input.form-control{
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  padding: 0px 20px;
+}
+
+.input-text:focus{
+  outline:none;
+}
+
+div.reissue{
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  padding: 25px 30px;
+  margin-left: 3%;
+}
+
+input:focus{
+  outline: none !important;
+}
+
+#profile-button{
+  background: #f2e809;
+  border-color: white;
+  color: white;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+}
+
+img {
+  border-radius: 50%;
+}
+
+.form-group {
+  margin: 0 !important;
+}
+
+/**Dashboard - Settings dropdown**/
+.settings {
+  margin-right: 1.5rem;
+  margin-top: 5px;
+}
+
+button.dropdown-item-custom {
+  color: gray;
+}
+
+span.icon {
+  margin-right: 1rem;
+  color: gray;
+}
+
+.name {
+   margin-top: 10px;
+   margin-right: 15px;
+   font-size: 12px;
+}
+
+.img-avatar {
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+.profile-modal {
+  height: 34rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.account-settings {
+  color: #333333;
+  font-size: 24px;
+}
+
+.div-profile {
+  margin: auto;
+  background: #333333;
+  height: 12rem;
+}
+
+.profile-pic2 {
+  border-radius: 50%;
+  width: 7rem;
+  height: 7rem;
+  margin-top: 2rem;
+}
+
+form.profile-form {
+  Margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.row-details {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 12px;
+}
+
+.detail-header {
+  color: #333333;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.details {
+  color: gray;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.edit {
+  font-size: 11px;
+}
+
+.display {
+  display:none;
+  margin-bottom: 1rem;
+}
+
+div.margin {
+  /* margin-left: 25%;
+  margin-right: 2rem; */
+}
+
+h5.profile-name {
+  font-size: 12px;
+  margin-top: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555555;
+    padding: auto;
+}
+
+.input, select.select {
+  width: 10rem;
+  height: 1.5rem;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #555555;
+}
+
+button.cancel {
+  width: 4rem;
+}
+
+div.column {
+  background: #555555;
+  background-color: #555555;
+}
+
+.remove-padding {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  padding-left: 0 !important;
+}
+
+.fa-times-circle {
+  float: right;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+#name, #department, #type, #email, #password {
+  background: #CCCCCC;
+  padding: 2rem;
+}
+.sticky-wrap {
+    overflow-x: auto;
+    position: relative;
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+.sticky-wrap .sticky-thead,
+.sticky-wrap .sticky-col,
+.sticky-wrap .sticky-intersect {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .125s ease-in-out;
+    z-index: 50;
+    width: auto; /* Prevent table from stretching to full size */
+}
+    .sticky-wrap .sticky-thead {
+        box-shadow: 0 0.25em 0.1em -0.1em rgba(0,0,0,.125);
+        z-index: 100;
+        width: 100%; /* Force stretch */
+    }
+    .sticky-wrap .sticky-intersect {
+        opacity: 1;
+        z-index: 150;
+    }
+    .sticky-wrap .sticky-intersect th {
+        background-color: #666;
+        color: #eee;
+    }
+.sticky-wrap td,
+.sticky-wrap th {
+    box-sizing: border-box;
 }
