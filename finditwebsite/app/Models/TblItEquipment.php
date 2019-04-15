@@ -73,6 +73,48 @@ class TblItEquipment extends Model
         $it_equipment->or_no = $params['or_no'];
         $it_equipment->user_id = $params['user_id'];
         $it_equipment->status_id = $params['status_id'];
+        $it_equipment->warranty_details = $params['warranty_details'];
+        $it_equipment->supplier = $params['supplier'];
+        if($params['unit_id'] == "NULL"){
+            $it_equipment->unit_id = null;
+        }else{
+            $it_equipment->unit_id = $params['unit_id'];
+        }
+        if($params['imei_or_macaddress'] == "NULL"){
+            $it_equipment->imei_or_macaddress = null;
+        }else{
+            $it_equipment->imei_or_macaddress = $params['imei_or_macaddress'];
+        }
+
+        try{
+          $it_equipment->save();
+          $results['error'] = 0;
+          $results['message'] = 'equipment has been added';
+
+
+        }catch ( QueryException $e){
+            $results['error'] = 0;
+            $results['message'] = $e;
+        }
+        return $results;
+    }
+
+    public static function update_equipment($params){
+      $it_equipment = TblItEquipment::find($params['id']);
+        $results = [];
+        $results['error'] = 1;
+        $results['message'] = 'error';
+
+
+        $it_equipment = new TblItEquipment;
+        $it_equipment->subtype_id =  $params['subtype_id'];
+        $it_equipment->name =  $params['name'];
+        $it_equipment->details = $params['details'];
+        $it_equipment->serial_no = $params['serial_no'];
+        $it_equipment->or_no = $params['or_no'];
+        $it_equipment->user_id = $params['user_id'];
+        $it_equipment->status_id = $params['status_id'];
+        $it_equipmen->updated_at = gmdate('Y-m-d H:i:s');
         if($params['unit_id'] == "NULL"){
             $it_equipment->unit_id = null;
         }else{
@@ -91,5 +133,8 @@ class TblItEquipment extends Model
         }
         return $results;
     }
+
+
+
 
 }

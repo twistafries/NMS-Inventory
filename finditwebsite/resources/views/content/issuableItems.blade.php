@@ -61,20 +61,16 @@
 		<ul class="nav nav-pills mb-3 p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist">
 			<li class="nav-item text-uppercase">
 				<a class="nav-link active " id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-                    For Return </a>
+                    ALL</a>
             </li>
 
 		<li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="false">
-                    For Repair </a>
+                    Mobile Device </a>
 			</li>
 			<li class="nav-item text-uppercase">
 				<a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                    For Disposal </a>
-			</li>
-			<li class="nav-item text-uppercase">
-				<a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
-                    Pending </a>
+                    System Units</a>
 			</li>
 		</ul>
 		<div class="tab-content" id="pills-tabContent">
@@ -87,28 +83,39 @@
                             <th>Name</th>
                             <th>Details</th>
                             <th>Serial No</th>
-                            <th>OR No</th>
-                            <th>Supplier</th>
+                            <th>IMEI/MAC Address</th>
                             <th>Added At</th>
                             <th width="15%">Edited At</th>
                             <th>Added by</th>
-                            <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($for_return as $for_return)
+                        @foreach ($all_mobile_device as $all_mobile_device)
                         <tr>
 
-                            <td> {{ $for_return->name }} </td>
-                            <td width="30%"> {{ $for_return->details }} </td>
-                            <td> {{ $for_return->serial_no }} </td>
-                            <td> {{ $for_return->or_no }} </td>
-                            <td> {{ $for_return->supplier }} </td>
-                            <td> {{ $for_return->created_at }} </td>
-                            <td > {{ $for_return->updated_at }} </td>
-                            <td> {{ $for_return->firstname }} {{ $for_return->lastname }}</td>
-                            <td> {{ $for_return->stat }} </td>
+                            <td> {{ $all_mobile_device->name }} </td>
+                            <td width="30%"> {{ $all_mobile_device->details }} </td>
+                            <td> {{ $all_mobile_device->serial_no }} </td>
+                            <td> {{ $all_mobile_device->imei_or_macaddress }} </td>
+                            <td> {{ $all_mobile_device->created_at }} </td>
+                            <td > {{ $all_mobile_device->updated_at }} </td>
+                            <td> {{ $all_mobile_device->fname }} {{ $all_mobile_device->lname }}</td>
+                            <td>  </td>
+                        </tr>
+                        @endforeach
+                        @foreach ($all_units as $all_units)
+                        <tr>
+
+                            <td> {{ $all_units->description }}-{{ $all_units->id }}</td>
+                            <td width="30%"> NONE </td>
+                            <td> NONE </td>
+                            <td> {{ $all_units->mac_address }} </td>
+                            <td> {{ $all_units->created_at }} </td>
+                            <td > {{ $all_units->updated_at }} </td>
+                            <td> {{ $all_units->fname }} {{ $all_units->lname }}</td>
+                            <td>  </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -123,54 +130,31 @@
                     <thead class="thead-dark">
                         <tr>
 
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Serial No</th>
-                            <th>OR No</th>
-                            <th>Supplier</th>
-                            <th>Added At</th>
-                            <th width="15%">Edited At</th>
-                            <th>Added By</th>
-                            <th>Last User</th>
-                            <th>Warranty</th>
+                          <th>Name</th>
+                          <th>Details</th>
+                          <th>Serial No</th>
+                          <th>IMEI/MAC Address</th>
+                          <th>Added At</th>
+                          <th width="15%">Edited At</th>
+                          <th>Added by</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
 
+                      @foreach ($available as $available)
+                      <tr>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach ($for_repair as $for_repair)
-                        <tr>
-
-                            <td> {{ $for_repair->name }} </td>
-                            <td> {{ $for_repair->details }} </td>
-                            <td> {{ $for_repair->serial_no }} </td>
-                            <td> {{ $for_repair->or_no }} </td>
-                            <td> {{ $for_repair->supplier }} </td>
-                            <td> {{ $for_repair->created_at }} </td>
-                            <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
-                            <td></td>
-                            <td>{{ $for_repair->warranty_details }}</td>
-
-                        </tr>
-
-                        @endforeach
-                        @foreach ($for_repair_units as $for_repair_units)
-                        <tr>
-
-                            <td> {{ $for_repair_units->description }}  {{ $for_repair_units->id }} </td>
-                            <td> No Details </td>
-                            <td> None </td>
-                            <td> None </td>
-                            <td> None </td>
-                            <td> {{ $for_repair_units->created_at }} </td>
-                            <td> {{ $for_repair_units->updated_at }} </td>
-                            <td> {{ $for_repair_units->firstname}} {{ $for_repair_units->lastname}}  </td>
-                            <td></td>
-                            <td> None </td>
-                        </tr>
-
-                        @endforeach
+                          <td> {{ $available->name }} </td>
+                          <td width="30%"> {{ $available->details }} </td>
+                          <td> {{ $available->serial_no }} </td>
+                          <td> {{ $available->imei_or_macaddress }} </td>
+                          <td> {{ $available->created_at }} </td>
+                          <td > {{ $available->updated_at }} </td>
+                          <td> {{ $available->fname }} {{ $available->lname }}</td>
+                          <td>  </td>
+                      </tr>
+                      @endforeach
                     </tbody>
 
                 </table>
@@ -181,84 +165,35 @@
                           <thead class="thead-dark">
                               <tr>
 
-                                  <th>Name</th>
-                                  <th>Details</th>
-                                  <th>Serial No</th>
-                                  <th>OR No</th>
-                                  <th>Supplier</th>
-                                  <th>Added At</th>
-                                  <th width="15%">Edited At</th>
-                                  <th>Added By</th>
-                                  <th>Remarks</th>
-                              </tr>
-                          </thead>
-                          <tbody>
+                                <th>Name</th>
+                                <th>Details</th>
+                                <th>Serial No</th>
+                                <th>IMEI/MAC Address</th>
+                                <th>Added At</th>
+                                <th width="15%">Edited At</th>
+                                <th>Added by</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                              @foreach ($for_disposal as $for_disposal)
-                              <tr>
+                            @foreach ($units as $units)
+                            <tr>
 
-                                  <td> {{ $for_disposal->name }} </td>
-                                  <td width="30%"> {{ $for_disposal->details }} </td>
-                                  <td> {{ $for_disposal->serial_no }} </td>
-                                  <td> {{ $for_disposal->or_no }} </td>
-                                  <td> {{ $for_disposal->supplier }} </td>
-                                  <td> {{ $for_disposal->created_at }} </td>
-                                  <td> {{ $for_disposal->updated_at }} </td>
-                                  <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
-                                  <td> <!--{{ $for_disposal->remarks }}--> </td>
-                              </tr>
-
-                              @endforeach
+                                <td> {{ $units->description }}-{{ $units->id }} </td>
+                                <td width="30%"> NONE </td>
+                                <td> NONE </td>
+                                <td> {{ $units->mac_address }} </td>
+                                <td> {{ $units->created_at }} </td>
+                                <td > {{ $units->updated_at }} </td>
+                                <td> {{ $units->fname }} {{ $units->lname }}</td>
+                                <td>  </td>
+                            </tr>
+                            @endforeach
                           </tbody>
 
                       </table>
                   </div>
-
-
-            <!-- Mobile Devices -->
-			<div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
-                <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
-                    <thead class="thead-dark">
-                        <tr>
-
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Serial No</th>
-                            <th>OR No</th>
-                            <th>Supplier</th>
-                            <th>Added At</th>
-                            <th width="15%">Edited At</th>
-                            <th>Added By</th>
-                            <th>Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach ($pending as $pending)
-                        <tr>
-
-                            <td> {{ $pending->name }} </td>
-                            <td width="30%"> {{ $pending->details }} </td>
-                            <td> {{ $pending->serial_no }} </td>
-                            <td> {{ $pending->or_no }} </td>
-                            <td> {{ $pending->supplier }} </td>
-                            <td> {{ $pending->created_at }} </td>
-                            <td> {{ $pending->updated_at }} </td>
-                            <td> {{ $pending->firstname}} {{ $pending->lastname}}  </td>
-                            <td> <!--{{ $pending->remarks }}--> </td>
-                        </tr>
-
-                        @endforeach
-                    </tbody>
-
-                </table>
-            </div>
-
-            </div>
-
-		</div>
-	</div>
-
 
 
 </form>
@@ -280,7 +215,7 @@
 
     <script>
       $(document).ready(function(){
-      $('#concerns').addClass('active');
+      $('#issuableItems').addClass('active');
       });
     </script>
 
@@ -302,11 +237,6 @@
     <script type="text/javascript">
     $(document).ready(function() {
         $('#myDataTable2').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable3').DataTable();
     } );
     </script>
 

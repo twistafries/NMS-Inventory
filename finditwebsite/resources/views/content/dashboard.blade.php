@@ -1,17 +1,21 @@
-<?php 
+<?php
   use Carbon\Carbon;
   $session=Session::get('loggedIn');
   $user_id = $session['id'];
   $firstname = $session['firstname'];
   $lastname = $session['lastname'];
-  // $img_path = $session['img_path']; 
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
 
-@section('css')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
 @stop
+
 
 @section('title')
     dashboard
@@ -208,6 +212,18 @@
 </div>
 @stop
 @section('script')
+
+    <!-- Datatable -->
+    <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Multiple Select -->
+    <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
+
+    <!-- Additional Scripts   -->
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 
 
 <script>
