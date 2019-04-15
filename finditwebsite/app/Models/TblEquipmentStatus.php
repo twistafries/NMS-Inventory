@@ -80,7 +80,7 @@ class TblEquipmentStatus extends Model
         -> leftjoin('users' , 'users.id', '=', 'it_equipment.user_id')
         -> leftjoin('employees' , 'employees.id', '=', 'users.employee_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'employees.fname as firstname', 'employees.lname as lastname',  'equipment_status.name as stat','it_equipment_subtype.name as subtype')
+        -> select('it_equipment.*', 'employees.fname as fname', 'employees.lname as lname',  'equipment_status.name as stat','it_equipment_subtype.name as subtype')
         -> where('status_id' , '=' , '1')
         -> where('it_equipment_subtype.type_id' , '=' , '3')
         -> orderBy('it_equipment.created_at' , 'desc')

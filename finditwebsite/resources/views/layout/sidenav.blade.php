@@ -1,30 +1,14 @@
 <nav id="sidebar">
     <!-- Sidebar Toggle Button -->
-    <div class="sidebar-header">
-        <button type="button" id="sidebarCollapse" class="btn btn-info float-right">
-            <i class="fas fa-align-left"></i>
-            <span></span>
-        </button>
-    </div>
-
+    <div class="sidebar-header sidebar-sticky">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info float-right">
+                            <i class="fas fa-chevron-left"></i>
+                            <span></span>
+                        </button>
+                    </div>
     <!-- Sidebar User Info -->
-    <div class="sidebar-user">
-        <img src="../assets/images/user/squidward.jpg" class="img-avatar" alt="" srcset="">
-        <span class="hide-menu">
-            <ul class="list-unstyled avatar">
-                <li class="list-email"><small>john_doe@nms.ph</small></li>
-                <li><small>Admin</small></li>
-            </ul>
-        </span>
-        <a class="nav-link dropdown-tobggle navbar-toggler-right dropdown-avatar" href="#"
-            id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        </a>
-        <!-- Dropdown Menu -->
-        <div class="dropdown-menu dropdown-menu-right animated flipInY">
-            <a class="dropdown-item dropdown-item-avatar" href="#">Settings</a>
-            <a class="dropdown-item dropdown-item-avatar" href="#">Log Out</a>
-        </div>
-    </div>
+
+                <div class="sidebar-user"></div>
 
     <!-- Menu List -->
     <ul class="list-unstyled components">
