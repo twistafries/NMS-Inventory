@@ -99,7 +99,7 @@ class TblUsers extends Authenticatable {
 		return $query;
 	}
 
-	public static function add_user( $params ){
+	public static function add_associate( $params ){
 		$results = [];
 
 		$results['error'] = 1;
@@ -108,13 +108,9 @@ class TblUsers extends Authenticatable {
     	$user = new TblUsers;
     	$user->email = $params['email'];
     	$user->password = bcrypt($params['password']);
-    	$user->firstname = $params['firstname'];
-    	$user->lastname = $params['lastname'];
-    	$user->dept_id = '1';
-
-    	// if(isset($params['user_type'])) {
-    	// 	$user->user_type = $params['user_type'];
-    	// }
+    	$user->fname = $params['fname'];
+    	$user->lname = $params['lname'];
+    	$user->dept_id = $params['dept_id'];
 
     	try{
 			$user->save();

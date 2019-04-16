@@ -29,17 +29,19 @@
                             <h4 class="card-title text-center login-newMedia">New Media Services</h4>
                             <form action="{!! url('/login') !!}" method="post" id="loginForm">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <div class="form-group">
+                                <div class="form-group"><center>
                                 <input type="email" name="email" class="form-control" placeholder="Enter Email">
-                                </div>
-                                <div class="form-group">
+                                </center></div>
+                                <br>
+                                <div class="form-group"><center>
                                 <input type="password" name="password" class="form-control" placeholder="Enter Password">
                                 @if(Session::has('errorLogin'))
                                     <br><center>
                                     <small class="text-warning">{{ Session::get('errorLogin') }}</center></small>
                                 @endif 
-                                </div>
-                   
+                               </center> </div>
+
+                                <br>
                                 <center><button id="saveButton" type="submit" class="btn btn-success p-2 px-3 my-1 text-uppercase text-lg-center">Log In</button></center>
                             </form>
                         </div>

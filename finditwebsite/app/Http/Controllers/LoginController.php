@@ -43,8 +43,8 @@ class LoginController extends Controller {
 			$logged = array(
 				'id' => $user->id,
 				'user_type' => $user->user_type,
-				'firstname' => $user->firstname,
-				'lastname' => $user->lastname,
+				'fname' => $user->fname,
+				'lname' => $user->lname,
 			);
 
 			if(Auth::attempt($userdata)) {
@@ -63,4 +63,32 @@ class LoginController extends Controller {
 		return \Redirect::to('/login');
 	}
 
+	public static function add_user(Request $request) {
+		$rules = array(
+            'fname' => 'required',
+            'lname' => 'required',
+	 		'email' => 'required|email',
+	 		'dept_id' => 'required',
+	 		'password' => 'required|min:8'
+		);
+
+		$validator = Validator::make($request->all(), $rules);
+
+		if($validator->fails()) {
+			($validator->errors());
+			return \Redirect::to('/')
+						->withErrors($validator)
+						->withInput();
+		} else {
+			//echo 'Success!';
+			//$user = User::create($request -> all(), ['username', 'email', 'password']);
+
+			//auth()->login($user);
+
+			$data = $request->all();
+			TblUsers::add_associate($data);
+			dd($data);
+			return \Redirect::to('content/inventory');
+		}		
+	}
 }
