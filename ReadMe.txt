@@ -10,11 +10,11 @@ Hosting laravel project:
 Requirements:
 	must install php version 5 and above (prefer 7.*.*)
   	must install composer
-	must install laravel 5.6 or above
+	must install laravel 5.6 or above using composer
  	must intall wamp or xamp
 
-Create a laravel project using the command "composer create-project laravel/laravel project"
-from the folder "C:\Users\<User>\project" copy the "vendor" folder in the root folder of the findITWebsite project.
+Using cmd Create a laravel project using the command "composer create-project laravel/laravel project"
+from the folder "C:\Users\<Username>\project" copy the "vendor" folder in the root folder of the findITWebsite project.
   
 HOSTING STEPS:
 1.) Edit the httpd-vhost.conf in the location "C:\xampp\apache\conf\extra\httpd-vhost.conf" or "C:\wamp\bin\Apache#.#.#\conf\httpd.conf" and add the directory of the project. Example below:
