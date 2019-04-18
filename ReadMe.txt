@@ -8,14 +8,15 @@ merging or is final.
 Hosting laravel project:
 
 Requirements:
-	php version 5 and above (prefer 7.*.*)
-  composer
-	laravel 5.6 or above
-  wamp or xamp
-  the laravel project with vendor folder and .env file
-  generated key using the command php artisan generate:key (in the root folder of the project)
-  database
-STEPS:
+	must install php version 5 and above (prefer 7.*.*)
+  	must install composer
+	must install laravel 5.6 or above
+ 	must intall wamp or xamp
+
+Create a laravel project using the command "composer create-project laravel/laravel project"
+from the folder "C:\Users\<User>\project" copy the "vendor" folder in the root folder of the findITWebsite project.
+  
+HOSTING STEPS:
 1.) Edit the httpd-vhost.conf in the location "C:\xampp\apache\conf\extra\httpd-vhost.conf" or "C:\wamp\bin\Apache#.#.#\conf\httpd.conf" and add the directory of the project. Example below:
         <VirtualHost 127.0.0.1:80>
             DocumentRoot "D:\IT Project 1\NMS-Inventory-lovelyn\finditwebsite\public"
