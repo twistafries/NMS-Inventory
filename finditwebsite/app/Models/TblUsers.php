@@ -83,6 +83,7 @@ class TblUsers extends Authenticatable {
 		elseif(isset($params['email'])){
 			$query = \DB::table('users AS u')
 				->whereRaw("u.email = '".$params['email']."'")
+				// ->whereRaw("u.password = '".$params['password']."'")
 				->first();
 		}
 		elseif(isset($params['column'])){

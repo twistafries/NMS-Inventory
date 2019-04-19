@@ -52,7 +52,7 @@ class LoginController extends Controller {
 				return \Redirect::to('/dashboard');
 			}else {
 				Session::flash('errorLogin', 'Invalid Email.');
-				return \Redirect::to('/inventory');
+				return \Redirect::to('/login');
 				dd($userdata);
 			}			
 		}
