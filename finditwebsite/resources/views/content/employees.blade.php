@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}">
 @stop
 
 @section('title')
@@ -242,7 +245,7 @@
                                                         <label class="label">Name:</label>
                                                         <br>
                                                         <div class="form-group">
-                                                            <select class="exampleFormControlSelect1" name="employee_id">
+                                                            <select class="selectpicker" data-live-search="true"  name="employee_id">
                                                               @foreach ($employees as $employee)
                                                                 <option value="{{$employee->id}}">{{$employee->fname}} {{$employee->lname}} ID:{{$employee->id}}</option>
                                                               @endforeach
@@ -327,6 +330,15 @@
     <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
+
+
+
+
+    <script>
+        $(function() {
+            $('select').selectpicker();
+        });
+    </script>
     <script>
       $(document).ready(function(){
       $('#employees').addClass('active');

@@ -25,6 +25,11 @@ class TblSystemUnits extends Model
       $system_units->save();
     }
 
+    public static function delete_equipment($params){
+      $system_units = TblSystemUnits::find($params);
+      $system_units->delete();
+    }
+
     public static function add_system_unit($params){
       $system_units = new TblSystemUnits;
 
