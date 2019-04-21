@@ -26,10 +26,6 @@ class AssociateController extends SessionController
     }
 
    public function deactivateAccount(Request $request){
-        if(Session::get('loggedIn')['user_type']!='admin'){
-            return \Redirect::to('/login');
-        }
-
     //    $this->checkIfAdmin
         $data = $request->all();
         $updated = TblUsers::update_user($data);
@@ -38,10 +34,6 @@ class AssociateController extends SessionController
     //adding associate
     public function add_associate( Request $request )
     {
-        if(Session::get('loggedIn')['user_type']!='admin'){
-            return \Redirect::to('/login');
-        }
-
         $data = $request->all();
         $results = [];
 
