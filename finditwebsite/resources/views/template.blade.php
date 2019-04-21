@@ -1,11 +1,3 @@
-<?php 
-  $session=Session::get('loggedIn');
-  $user_id = $session['id'];
-  $user_type = $session['user_type'];
-  $fname = $session['fname'];
-  $lname = $session['lname'];
-?>
-
 <!DOCTYPE html>
 
 <html lang="{{ app()->getLocale() }}">

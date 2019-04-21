@@ -55,10 +55,10 @@ class LoginController extends Controller {
 			if(Auth::attempt($userdata)) {
 				Session::put(['loggedIn' => $logged]);
 				return \Redirect::to('/dashboard');
-				dd($userdata);
 			}else {
 				Session::flash('errorLogin', 'Invalid Email or Password');
 				return \Redirect::to('/login');
+				dd($userdata);
 			}			
 		}
 	}
