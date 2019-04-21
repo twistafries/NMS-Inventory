@@ -11,10 +11,13 @@ use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
 
-
 class ForStatusController extends BaseController
 {
     public function showAllStatus(){
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
         $data = [];
         $data['for_repair'] = TblEquipmentStatus::get_for_repair();
         $data['for_return'] = TblEquipmentStatus::get_for_return();
@@ -23,6 +26,10 @@ class ForStatusController extends BaseController
     }
 
    public function showInventoryConcerns(){
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
      $data = [];
      $data['for_repair'] = TblEquipmentStatus::get_for_repair();
      $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
@@ -33,6 +40,10 @@ class ForStatusController extends BaseController
 
    }
    public function showIssuable(){
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
      $data = [];
      $data['available'] = TblEquipmentStatus::get_available();
      $data['all_mobile_device'] = TblEquipmentStatus::get_available();
@@ -42,6 +53,10 @@ class ForStatusController extends BaseController
    }
 
    public function showEmployees(){
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
      $data = [];
      $data['employees'] = TblEmployees::get_employees();
      $data['employees'] = TblEmployees::get_employees();
@@ -52,6 +67,10 @@ class ForStatusController extends BaseController
 
    public function addEmployee(Request $request)
    {
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
        $data = $request->all();
        $results = [];
        //error is by default 1, 1 - meaning there is an error, 0 - where there is no error.

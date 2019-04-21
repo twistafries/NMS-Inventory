@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use View, Validator, Session, Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblUsers;
 use App\Models\TblAssociate;
 
 
-class AssociateController extends BaseController
+class AssociateController extends SessionController
 {
     public function showAllAssociate(){
+        if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+        }  
+
         $data = [];
         $data['associates'] = TblAssociate::get_all_associates();
         // dd($data);

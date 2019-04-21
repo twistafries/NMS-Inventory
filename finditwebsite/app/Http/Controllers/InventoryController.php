@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblItEquipment;
@@ -13,10 +14,15 @@ use App\Models\TblItEquipmentSubtype;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\Equipment;
+use Session, Auth;
 
-class InventoryController extends BaseController
+class InventoryController extends SessionController
 {
     public function showAllInventory(){
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
         $data = [];
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['peripherals'] = TblItEquipment::get_computer_peripherals();
@@ -34,6 +40,10 @@ class InventoryController extends BaseController
 
 
     public function showInputValues(){
+      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      }
+
         $data = [];
 
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
@@ -50,6 +60,10 @@ class InventoryController extends BaseController
     // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
 
 public function addSystemUnit(Request $request){
+  if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+  }
+
   $show = $request->all();
   $data = $request->input('unit.*');
   $data['user_id'] = 2;
@@ -96,6 +110,10 @@ public function addSystemUnit(Request $request){
 
 }
    public function addEquipment(Request $request){
+    if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+    }
+
     // dd("Inside");
         $data = $request->all();
           dd($data);

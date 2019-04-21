@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,10 +15,15 @@ use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\TblIssuances;
 use App\Models\TblEmployees;
+use Session, Auth;
 
-class IssuanceController extends BaseController {
+class IssuanceController extends SessionController {
 
 	public function showAllIssuance() {
+		if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+      	}
+
 		$data = [];
 		$data['issuance'] = TblIssuances::getIssuance();
 		$data['equipment'] = TblEquipmentStatus::get_available();
@@ -28,6 +34,10 @@ class IssuanceController extends BaseController {
 
 
 	public function addIssuance(Request $request){
+		if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+            return \Redirect::to('/login');
+     	}
+
 	 // dd("Inside");
 			 $data = $request->all();
 			 $data['user_id'] = 2;
