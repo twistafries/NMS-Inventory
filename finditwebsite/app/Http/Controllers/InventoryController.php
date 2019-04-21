@@ -25,6 +25,7 @@ class InventoryController extends SessionController
 
         $data = [];
         $data['equipment'] = TblItEquipment::get_all_equipment();
+        $data['equipments'] = TblItEquipment::get_all_equipment();
         $data['peripherals'] = TblItEquipment::get_computer_peripherals();
         // dd($data);
         $data['component'] = TblItEquipment::get_computer_component();
@@ -33,6 +34,8 @@ class InventoryController extends SessionController
         $data['software'] = TblItEquipment::get_software();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
         $data['units'] = TblSystemUnits::get_all_system_units();
+        $data['systemunits'] = TblSystemUnits::get_all_system_units();
+        $data['units_system'] = TblSystemUnits::get_all_system_units();
         $data['all_units'] = TblSystemUnits::get_all_system_units();
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         return view ('content/inventory' , $data);
@@ -135,4 +138,32 @@ public function addSystemUnit(Request $request){
    public function bulkAdd(){
        return view('content/bulk-add');
    }
+
+public function softDeleteEquipment(Request $request){
+  $data = $request->all();
+   $pieces = explode("-", $data['items']);
+   if($pieces[0] == "Mobile Device"){
+     $data['equipment_id']=(int)$pieces[1];
+    TblItEquipment::update_equipment_status($data['equipment_id'],7);
+   }else{
+     $data['unit_id']=(int)$pieces[1] ;
+     TblSystemUnits::update_unit_status($data['unit_id'],7);
+   }
+
+    return \Redirect::to('/inventory')->with('equipment has been deleted');
+ }
+
+ public function hardDeleteEquipment(Request $request){
+   $data = $request->all();
+    $pieces = explode("-", $data['item']);
+    if($pieces[0] == "Mobile Device"){
+      $data['equipment_id']=(int)$pieces[1];
+     TblItEquipment::delete_equipment($data['equipment_id']);
+    }else{
+      $data['unit_id']=(int)$pieces[1] ;
+      TblSystemUnits::delete_unit($data['unit_id']);
+    }
+
+     return \Redirect::to('/inventory')->with('equipment has been deleted');
+  }
 }

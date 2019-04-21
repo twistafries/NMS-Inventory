@@ -45,6 +45,9 @@ Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
 
+Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');
+Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
+
 Route::post('/template', 'InventoryController@addEquipment');
 
 

@@ -114,6 +114,11 @@ class TblItEquipment extends Model
       $it_equipment->save();
     }
 
+    public static function delete_equipment($params){
+      $it_equipment = TblItEquipment::find($params);
+      $it_equipment->delete();
+    }
+
     public static function update_equipment($params){
       $it_equipment = TblItEquipment::find($params['id']);
         $results = [];

@@ -100,18 +100,31 @@
                 </button>
 
                 <!-- Add -->
-                <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <a href="#" data-toggle="tooltip" title="Add">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">
-                    </a>
-                </button>
-
+                <div class="dropdown">
+                  <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a href="#" data-toggle="tooltip" title="Add">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">
+                      </a>
+                  </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
+                      <li><a class="dropdown-item" href="#">Bulk Add</a></li>
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a></li>
+                    </ul>
+              </div>
                 <!-- Delete -->
-                <button type="button" class="btn disabled">
-                    <a href="#" data-toggle="tooltip" title="delete">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
-                    </a>
-                    </button>
+                <div class="dropdown">
+                  <button class="btn" type="button" id="deleteOption" data-toggle="dropdown"   aria-haspopup="true" aria-expanded="false">
+                      <a href="#" data-toggle="tooltip" title="delete">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
+                      </a>
+                      </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#softDelete" href="#">Soft Delete</a></li>
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#hardDelete" href="#">Hard Delete</a></li>
+                    </ul>
+              </div>
+
 
                 <!-- Sort -->
                 <!-- <button type="button" class="btn">
@@ -120,12 +133,6 @@
                     </a>
                 </button> -->
 
-
-                <div class="dropdown-menu" aria-labelledby="addOption">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a>
-                    <a class="dropdown-item" href="#">Bulk Add</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a>
-                </div>
 
 
             </div>
@@ -1107,7 +1114,7 @@
         </div>
     </div>
             <!-- Add system_unit-->
-            <div class="modal fade bd-example-modal-lg" id="adcdUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg" id="addUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -1181,6 +1188,174 @@
       </div>
     </div>
 
+    <!-- Soft Delete-->
+    <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle">Soft Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Add system unit Form -->
+                <div class="modal-body">
+                  <form action="{!! url('/softDeleteEquipment'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()"  method="post" role="form">
+                      {!! csrf_field() !!}
+                      <div class="row">
+                        <div class="col-md-5">
+                            <p class="card-title">Delete Item:</p>
+                            <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
+                              <datalist id="items">
+                                <select>
+                                @foreach ($equipments as $equipment)
+                                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}}">{{ $equipment->subtype_name}}</option>
+                                @endforeach
+                                @foreach ($systemunits as $systemunits)
+                                <option data-customvalue="System Unit-{{ $systemunits->id}}" value="{{ $systemunits->description}}-{{ $systemunits->id}}">System Unit</option>
+                                @endforeach
+                              </select>
+                              </datalist>
+
+                        </div>
+                      </div>
+
+                  <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                  </div>
+
+                  <div class="modal-footer text-uppercase">
+                  <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
+
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+                  </div>
+                  </form>
+</div>
+</div>
+</div>
+
+<!-- Hard Delete-->
+<div class="modal fade bd-example-modal-sm" id="hardDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">Hard Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Add system unit Form -->
+            <div class="modal-body">
+              <form action="{!! url('/hardDeleteEquipment'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()"  method="post" role="form">
+                  {!! csrf_field() !!}
+                  <div class="row">
+                    <div class="col-md-5">
+                        <p class="card-title">Delete Item:</p>
+                        <input  list="item" name="item" id="hequipment" onblur="CheckListed(this.value);" required>
+                          <datalist id="item">
+                            <select>
+                            @foreach ($equipments as $equipment)
+                            <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}}">{{ $equipment->subtype_name}}</option>
+                            @endforeach
+                            @foreach ($units_system as $units_system)
+                            <option data-customvalue="System Unit-{{ $units_system->id}}" value="{{ $units_system->description}}-{{ $units_system->id}}">System Unit</option>
+                            @endforeach
+                          </select>
+                          </datalist>
+
+                    </div>
+                  </div>
+
+              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+              </div>
+
+              <div class="modal-footer text-uppercase">
+              <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
+
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+              </div>
+              </form>
+</div>
+</div>
+</div>
+
+<!-- addUnit-->
+<div class="modal fade bd-example-modal-lg" id="addUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">Add System Unit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Add system unit Form -->
+            <div class="modal-body">
+              <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data"  method="post" role="form">
+                  {!! csrf_field() !!}
+                  <div class="row">
+                    <p class="card-title">OR No.</p>
+                      <div class="col-md-3">
+                        <input name="unit[or_no]" type="text" class="form-control">
+                      </div>
+                      <p class="card-title">Supplier</p>
+                        <div class="col-md-3">
+                          <input name="unit[supplier]" type="text" class="form-control">
+                        </div>
+                        <p class="card-title">Mac Address</p>
+                          <div class="col-md-3">
+                            <input name="unit[mac_address]" type="text" class="form-control">
+                          </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-2">
+                  </div></div>
+                  <div class="row">
+
+                      <!-- Name -->
+                      <p class="card-title">Motherboard:</p> <hr>
+                      <p class="card-title">Name</p>
+                        <div class="col-md-3">
+                          <input name="equipment[name][]" type="text" class="form-control">
+                      </div>
+
+                      <label for="details">Details</p>
+                        <div class="col-md-15">
+                          <textarea name="equipment[details][]" class="form-control" aria-label="With textarea"></textarea>
+                      </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-2">
+                    </div></div>
+                    <div class="row">
+                      <p class="card-title">CPU:</p> <hr>
+                      <p class="card-title">Name</p>
+                          <div class="col-md-5">
+                          <input name="equipment[name][]" type="text" class="form-control">
+                      </div>
+
+                      <label for="details">Details</p>
+                        <div class="col-md-15">
+                          <textarea name="equipment[details][]" class="form-control" aria-label="With textarea"></textarea>
+                      </div>
+                  </div>
+              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+              </div>
+
+              <div class="modal-footer text-uppercase">
+              <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>
+
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+              </div>
+              </form>
+</div>
+</div>
+</div>
 
 @stop
 
@@ -1250,6 +1425,14 @@
             });
         } );
       </script> -->
-
+      <script>
+      function DoSubmit(){
+        var item = $(equipment).val();
+        document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
+        var item1 = $(hequipment).val();
+        document.getElementById("hequipment").value = $('#item [value="' + item1 + '"]').data('customvalue');
+        return true;
+        }
+    </script>
 
 @stop
