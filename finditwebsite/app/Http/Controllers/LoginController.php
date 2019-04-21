@@ -36,7 +36,12 @@ class LoginController extends Controller {
 			$user = TblUsers::get_users($userdata);
 
 			if(!isset($userdata['email'])) {
-				Session::flash('errorLogin', 'Invalid Email.');
+				Session::flash('errorLogin', 'Invalid Email');
+				return \Redirect::to('/login');
+			}
+
+			if(!isset($userdata['password'])) {
+				Session::flash('errorLogin', 'Invalid Password');
 				return \Redirect::to('/login');
 			}
 
@@ -51,7 +56,7 @@ class LoginController extends Controller {
 				Session::put(['loggedIn' => $logged]);
 				return \Redirect::to('/dashboard');
 			}else {
-				Session::flash('errorLogin', 'Invalid Email.');
+				Session::flash('errorLogin', 'Invalid Email or Password');
 				return \Redirect::to('/login');
 				dd($userdata);
 			}			
