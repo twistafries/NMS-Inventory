@@ -8,13 +8,14 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblUsers;
+use App\Models\TblAssociate;
 
 
 class AssociateController extends BaseController
 {
     public function showAllAssociate(){
         $data = [];
-        $data['associates'] = TblUsers::get_all_associates();
+        $data['associates'] = TblAssociate::get_all_associates();
         // dd($data);
         return view ('content/associates' , $data);
     }
@@ -30,7 +31,7 @@ class AssociateController extends BaseController
    }
 
     //adding associate
-    public function add_associate( Request $request ) 
+    public function add_associate( Request $request )
     {
         if(Session::get('loggedIn')['user_type']!='admin'){
             return \Redirect::to('/login');
@@ -39,7 +40,7 @@ class AssociateController extends BaseController
         $data = $request->all();
         $results = [];
 
-        //error is by default 1, 1 - meaning there is an error, 0 - where there is no error. 
+        //error is by default 1, 1 - meaning there is an error, 0 - where there is no error.
         $results['error'] = 1;
         $results['message'] = 'error';
 
@@ -50,7 +51,7 @@ class AssociateController extends BaseController
             $results['message'] = $validator->errors();
         } else {
             $results = TblUsers::add_user($data);
-        }       
+        }
 
         return $results;
     }
@@ -63,7 +64,7 @@ class AssociateController extends BaseController
             'email' => 'required|email',
             'password' => 'required|min:8'
         );
-        
+
         return Validator::make($params, $rules);
     }
 }

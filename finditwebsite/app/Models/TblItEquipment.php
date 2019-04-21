@@ -53,11 +53,21 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
-
+    public static function get_software($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name')
+        -> where('it_equipment_subtype.type_id' , '=' , '4')
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
     // INSERT INTO `findit`.`it_equipment`
     // (`subtype_id`, `name`, `details`,
     // `serial_no`, `or_no`, `status_id`)
     // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
+
 
     public static function add_equipment($params){
         $results = [];
@@ -73,16 +83,15 @@ class TblItEquipment extends Model
         $it_equipment->or_no = $params['or_no'];
         $it_equipment->user_id = $params['user_id'];
         $it_equipment->status_id = $params['status_id'];
-        $it_equipment->warranty_details = $params['warranty_details'];
+        $it_equipment->warranty_start = $params['warranty_start'];
+        $it_equipment->warranty_end = $params['warranty_end'];
         $it_equipment->supplier = $params['supplier'];
         if($params['unit_id'] == "NULL"){
             $it_equipment->unit_id = null;
         }else{
             $it_equipment->unit_id = $params['unit_id'];
         }
-        if($params['imei_or_macaddress'] == "NULL"){
-            $it_equipment->imei_or_macaddress = null;
-        }else{
+        if(isset($params['imei_or_macaddress'])){
             $it_equipment->imei_or_macaddress = $params['imei_or_macaddress'];
         }
 
@@ -97,6 +106,12 @@ class TblItEquipment extends Model
             $results['message'] = $e;
         }
         return $results;
+    }
+
+    public static function update_equipment_status($id,$status){
+      $it_equipment = TblItEquipment::find($id);
+      $it_equipment->status_id = $status;
+      $it_equipment->save();
     }
 
     public static function update_equipment($params){

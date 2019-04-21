@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +17,12 @@ class TblDepartments extends Model {
 		}catch(QueryException $e) {
 			die($e);
 		}
+	}
+
+	public static function getDept($params=null) {
+		$query = \DB::table('departments')
+			->orderBy('created_at', 'desc')
+			->get();
 	}
 
 	public static function updateStatus($params) {

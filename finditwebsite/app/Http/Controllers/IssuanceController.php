@@ -13,6 +13,7 @@ use App\Models\TblItEquipmentType;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\TblIssuances;
+use App\Models\TblEmployees;
 
 class IssuanceController extends BaseController {
 
@@ -21,7 +22,7 @@ class IssuanceController extends BaseController {
 		$data['issuance'] = TblIssuances::getIssuance();
 		$data['equipment'] = TblEquipmentStatus::get_available();
 		$data['units'] = TblEquipmentStatus::get_available_units();
-		$data['employees'] = TblEquipmentStatus::get_employees();
+		$data['employees'] = TblEmployees::get_employees('active');
 		return view('content/issuance', $data);
 	}
 
@@ -34,11 +35,13 @@ class IssuanceController extends BaseController {
 			 $pieces = explode("-", $data['items']);
 			 if($pieces[0] == "Mobile Device"){
 				 $data['equipment_id']=(int)$pieces[1];
+				TblItEquipment::update_equipment_status($data['equipment_id'],2);
 			 }else{
 				 $data['unit_id']=(int)$pieces[1] ;
+				TblSystemUnits::update_unit_status($data['unit_id'],2);
 			 }
 			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['user_id'])  && isset($data['status_id']) ){
-dd($data);
+
 					TblIssuances::add_issuance($data);
 
 					return \Redirect::to('/issuance')->with('issuance has been added');

@@ -180,7 +180,7 @@
 
                                <!-- Breadcrumbs -->
                                <!-- <div class="breadcrumbs"> -->
-                             <nav class="navbar navbar-light bg-light yellow-divider">
+                            <div class="sidebar-user"></div>
                                <script>
        jQuery.validator.setDefaults({
          debug: true,

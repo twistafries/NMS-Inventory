@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use View, Validator, Session, Auth;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
+use App\Models\TblDepartments;
 
 
 class ForStatusController extends BaseController
@@ -41,8 +43,41 @@ class ForStatusController extends BaseController
 
    public function showEmployees(){
      $data = [];
-     $data['employees'] = TblEmployees::getEmployees();
+     $data['employees'] = TblEmployees::get_employees();
+     $data['employees'] = TblEmployees::get_employees();
+     $data['departments'] = TblDepartments::getDept();
 
      return view ('content/employees' , $data);
+   }
+
+   public function addEmployee(Request $request)
+   {
+       $data = $request->all();
+       $results = [];
+       //error is by default 1, 1 - meaning there is an error, 0 - where there is no error.
+       $results['error'] = 1;
+       $results['message'] = 'error';
+
+       $validator = $this->validate( $data );
+
+       if( $validator->fails() ) {
+           $results['error'] = 1;
+           $results['message'] = $validator->errors();
+       } else {
+           $results = TblEmployees::add_employee($data);
+       }
+
+         return \Redirect::to('/employees');
+   }
+   public function validate( $params )
+   {
+       $rules = array(
+           'fname' => 'required',
+           'lname' => 'required',
+           'email' => 'required|email',
+           'dept_id' => 'required|min:1'
+       );
+
+       return Validator::make($params, $rules);
    }
 }

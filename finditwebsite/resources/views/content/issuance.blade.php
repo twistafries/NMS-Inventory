@@ -88,13 +88,13 @@
                     <tbody>
 
                         @foreach ($issuance as $issuance)
-                        <tr>
+                        <tr data-toggle="modal" data-target="#viewItemModal">
 
                             <td> {{ $issuance->equipment}} </td>
                             <td> {{ $issuance->subtype}} </td>
                             <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
                             <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
-                            <td> {{ $issuance->uname }} </td>
+                            <td> {{ $issuance->userfname }} {{ $issuance->userlname }}  </td>
                             <td> {{ $issuance->created_at }} </td>
                             <td > {{ $issuance->updated_at }} </td>
                             <td> {{ $issuance->issued_until }} </td>
@@ -107,6 +107,41 @@
 
                 </table>
             </div>
+            <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
+
+                <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+       <div id ="viewItem" class="modal-header">
+        <h5 class="modal-title" id="ModalTitle">Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+      <form>
+        Equipment Issued:<input type="text" name="equipmentIssued" id="equipmentIssued"><br><br>
+        Equipment Subtype:<input type="text" name="equipmentSubtype" id="equipmentSubtype"><br><br>
+        System Unit Issued:<input type="text" name="unitIssued" id="unitIssued"><br><br>
+        Issued To:<input type="text" name="issuedTo" id="issuedTo"><br><br>
+        Issued By:<input type="text" name="issuedBy" id="issuedBy"><br><br>
+        Date Issued:<input type="text" name="dateIssued" id="dateIssued"><br><br>
+        Date Updated:<input type="text" name="dateUpdated" id="dateUpdated"><br><br>
+        Issued Until:<input type="text" name="issueUntil" id="issueUntil"><br><br>
+        Date Returned:<input type="text" name="dateReturned" id="dateReturned"><br><br>
+        Remarks:<input type="text" name="remarks" id="remarks"><br><br>
+      </div>
+      </form>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
             <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
@@ -233,6 +268,30 @@
     <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
+    <script>
+
+    var table = document.getElementById('myDataTable');
+
+    for(var i = 1; i < table.rows.length; i++)
+    {
+        table.rows[i].onclick = function()
+        {
+             //rIndex = this.rowIndex;
+             document.getElementById("equipmentIssued").value = this.cells[0].innerHTML;
+             document.getElementById("equipmentSubtype").value = this.cells[1].innerHTML;
+             document.getElementById("unitIssued").value = this.cells[2].innerHTML;
+             document.getElementById("issuedTo").value = this.cells[3].innerHTML;
+             document.getElementById("issuedBy").value = this.cells[4].innerHTML;
+             document.getElementById("dateIssued").value = this.cells[5].innerHTML;
+             document.getElementById("dateUpdated").value = this.cells[6].innerHTML;
+             document.getElementById("issueUntil").value = this.cells[7].innerHTML;
+             document.getElementById("dateReturned").value = this.cells[8].innerHTML;
+             document.getElementById("remarks").value = this.cells[9].innerHTML;
+
+        };
+    }
+
+</script>
 
     <script>
       $(document).ready(function(){
