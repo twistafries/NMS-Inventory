@@ -43,6 +43,33 @@ class TblEmployees extends Model {
 
 	}
 
+	public static function edit_employee( $params ){
+		$employees = TblEmployees::find($params['id']);
+
+		if(isset($params['fname']))
+		$employees->fname = $params['fname'];
+		
+		if(isset($params['lname']))
+		$employees->lname = $params['lname'];
+
+		if(isset($params['email']))
+		$employees->email = $params['email'];
+		
+		if(isset($params['dept_id']))
+		$employees->dept_id = $params['dept_id'];
+		
+		if(isset($params['status']))
+		$employees->status = $params['status'];
+
+		$employees->updated_at = gmdate('Y-m-d H:i:s');
+
+		try {
+            $it_equipment->save();
+        }catch(QueryException $e){
+            die($e);
+        }
+	}
+
 }
 
 ?>
