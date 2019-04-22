@@ -44,6 +44,7 @@ Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
+Route::post('/editEquipment', 'InventoryController@editEquipment');
 
 Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');
 Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');

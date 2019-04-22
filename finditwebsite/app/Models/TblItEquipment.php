@@ -119,13 +119,14 @@ class TblItEquipment extends Model
       $it_equipment->delete();
     }
 
+    // Parehas ba to sa add equipment????
     public static function update_equipment($params){
       $it_equipment = TblItEquipment::find($params['id']);
         $results = [];
         $results['error'] = 1;
         $results['message'] = 'error';
-
-
+        
+        
         $it_equipment = new TblItEquipment;
         $it_equipment->subtype_id =  $params['subtype_id'];
         $it_equipment->name =  $params['name'];
@@ -153,6 +154,39 @@ class TblItEquipment extends Model
         }
         return $results;
     }
+
+    public static function edit_equipment( $params ){
+        $it_equipment = TblItEquipment::find($params['id']);
+
+        if(isset($params['subtype_id']))
+        $it_equipment->subtype_id = $params['subtype_id'];
+
+        if(isset($params['name']))
+        $it_equipment->name = $params['name'];
+        
+        if(isset($params['details']))
+        $it_equipment->details = $params['details'];
+
+        if(isset($params['serial_no']))
+        $it_equipment->serial_no = $params['serial_no'];
+
+        if(isset($params['or_no']))
+        $it_equipment->or_no = $params['or_no'];
+
+        if(isset($params['status_id']))
+        $it_equipment->status_id = $params['status_id'];
+
+        $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
+
+        try {
+            $it_equipment->save();
+        }catch(QueryException $e){
+            die($e);
+        }
+    }
+
+
+    
 
 
 

@@ -1,9 +1,9 @@
 <?php
-  use Carbon\Carbon;
-  $session=Session::get('loggedIn');
-  $user_id = $session['id'];
-  $fname = $session['fname'];
-  $lname = $session['lname'];
+//   use Carbon\Carbon;
+//   $session=Session::get('loggedIn');
+//   $user_id = $session['id'];
+//   $fname = $session['fname'];
+//   $lname = $session['lname'];
   // $img_path = $session['img_path'];
 ?>
 
@@ -99,7 +99,7 @@
                     </a>
                 </button>
 
-                <!-- Add -->
+                <!-- Add Option-->
                 <div class="dropdown">
                   <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="Add">
@@ -192,6 +192,9 @@
                                 </div>
 
                                 <div class="modal-body">
+                                    <div class="container-fluid">
+
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <ul class="list-group">
@@ -208,9 +211,7 @@
                                                 <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5> {{ $equipment->subtype_name }}</li>
                                             </ul>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
+                                    
                                         <div class="col-sm-12 m-1">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
@@ -271,11 +272,122 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase">Edit Values</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Edit Details Modal -->
+                    <div class="modal fade" id="edit-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->name !!}"
+                        aria-hidden="true">
+                        <form action="{!! url('/editEquipment'); !!}" method="post">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">Edit Values</h5>
+                                        <p>Official Receipt No: {{ $equipment->or_no }}</p>
+                                        <br>
+                                        <h5 class="modal-title">{{ $equipment->name }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+    
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">ID:</h5> {{ $equipment->id }}</li>
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">Serial Number:</h5> 
+                                                        <input value="{!! $equipment->serial_no !!}">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">Type:</h5>
+                                                        {{ $equipment->type_name }}
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5>
+                                                        <input value="{!! $equipment->subtype_name !!}">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                       
+                                            <div class="col-sm-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase">Details:</h5>
+                                                        <textarea name="details">{{ $equipment->details }}</textarea>
+                                                        
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <ul class="list-group">
+                                                    @isset( $equipment->unit_id )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                        {{ $equipment->unit_id }}
+                                                    </li>
+                                                    @endisset
+                                                    @empty( $equipment->unit_id )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                        Not Assigned to A Unit
+                                                    </li>
+                                                    @endempty
+                                                </ul>
+                                            </div>
+    
+                                            <div class="col-sm-6">
+                                                <ul class="list-group">
+                                                    @if( $equipment->type_id == 3)
+                                                    @isset( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                        {{ $equipment->imei_or_macaddress }}
+                                                    </li>
+                                                    @endisset
+                                                    @empty( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                        None
+                                                    </li>
+                                                    @endempty
+                                                    @elseif( $equipment->type_id != 3)
+                                                    @isset( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                        {{ $equipment->imei_or_macaddress }}
+                                                    </li>
+                                                    @endisset
+                                                    @empty( $equipment->imei_or_macaddress )
+                                                    <li class="list-group-item">
+                                                        <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                        None
+                                                    </li>
+                                                    @endempty
+                                                    @endif
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase"">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     @endforeach
                 </tbody>

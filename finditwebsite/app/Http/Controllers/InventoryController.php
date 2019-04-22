@@ -18,34 +18,34 @@ use Session, Auth;
 
 class InventoryController extends SessionController
 {
-    public function showAllInventory(){
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-      }
+  public function showAllInventory(){
+    // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+    //       return \Redirect::to('/login');
+    // }
 
-        $data = [];
-        $data['equipment'] = TblItEquipment::get_all_equipment();
-        $data['equipments'] = TblItEquipment::get_all_equipment();
-        $data['peripherals'] = TblItEquipment::get_computer_peripherals();
-        // dd($data);
-        $data['component'] = TblItEquipment::get_computer_component();
-        $data['mobile'] = TblItEquipment::get_mobile_devices();
-        $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
-        $data['software'] = TblItEquipment::get_software();
-        $data['system_units'] = TblSystemUnits::get_all_system_units();
-        $data['units'] = TblSystemUnits::get_all_system_units();
-        $data['systemunits'] = TblSystemUnits::get_all_system_units();
-        $data['units_system'] = TblSystemUnits::get_all_system_units();
-        $data['all_units'] = TblSystemUnits::get_all_system_units();
-        $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
-        return view ('content/inventory' , $data);
-    }
+      $data = [];
+      $data['equipment'] = TblItEquipment::get_all_equipment();
+      $data['equipments'] = TblItEquipment::get_all_equipment();
+      $data['peripherals'] = TblItEquipment::get_computer_peripherals();
+      // dd($data);
+      $data['component'] = TblItEquipment::get_computer_component();
+      $data['mobile'] = TblItEquipment::get_mobile_devices();
+      $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
+      $data['software'] = TblItEquipment::get_software();
+      $data['system_units'] = TblSystemUnits::get_all_system_units();
+      $data['units'] = TblSystemUnits::get_all_system_units();
+      $data['systemunits'] = TblSystemUnits::get_all_system_units();
+      $data['units_system'] = TblSystemUnits::get_all_system_units();
+      $data['all_units'] = TblSystemUnits::get_all_system_units();
+      $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      return view ('content/inventory' , $data);
+  }
 
 
     public function showInputValues(){
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-      }
+      // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+      //       return \Redirect::to('/login');
+      // }
 
         $data = [];
 
@@ -63,9 +63,9 @@ class InventoryController extends SessionController
     // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
 
 public function addSystemUnit(Request $request){
-  if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-  }
+  // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+  //           return \Redirect::to('/login');
+  // }
 
   $show = $request->all();
   $data = $request->input('unit.*');
@@ -113,13 +113,13 @@ public function addSystemUnit(Request $request){
 
 }
    public function addEquipment(Request $request){
-    if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-    }
+    // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+    //         return \Redirect::to('/login');
+    // }
 
     // dd("Inside");
         $data = $request->all();
-          dd($data);
+          // dd($data);
         $data['user_id'] = 2;
         $data['status_id'] = 1;
         $data['subtype_id'] = (int)$request->get('subtype_id');
@@ -138,6 +138,14 @@ public function addSystemUnit(Request $request){
    public function bulkAdd(){
        return view('content/bulk-add');
    }
+
+   public function editEquipment(Request $request){
+      $data = $request->all();
+      // dd($data);
+       TblItEquipment::edit_equipment($data);
+       return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
+   }
+
 
 public function softDeleteEquipment(Request $request){
   $data = $request->all();

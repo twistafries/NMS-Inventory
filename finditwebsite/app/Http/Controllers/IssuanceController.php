@@ -20,9 +20,9 @@ use Session, Auth;
 class IssuanceController extends SessionController {
 
 	public function showAllIssuance() {
-		if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-      	}
+		// if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+        //     return \Redirect::to('/login');
+      	// }
 
 		$data = [];
 		$data['issuance'] = TblIssuances::getIssuance();
@@ -34,9 +34,9 @@ class IssuanceController extends SessionController {
 
 
 	public function addIssuance(Request $request){
-		if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-     	}
+		// if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
+        //     return \Redirect::to('/login');
+     	// }
 
 	 // dd("Inside");
 			 $data = $request->all();
