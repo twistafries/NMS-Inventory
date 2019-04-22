@@ -88,6 +88,7 @@ class ForStatusController extends BaseController
 
          return \Redirect::to('/employees');
    }
+
    public function validate( $params )
    {
        $rules = array(
@@ -98,5 +99,14 @@ class ForStatusController extends BaseController
        );
 
        return Validator::make($params, $rules);
+   }
+
+   public function editEmployee(Request $request)
+   {
+      $data = $request->all();
+      // dd($data);
+      TblEmployees::edit_employee($data);
+      return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
+
    }
 }

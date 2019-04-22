@@ -64,7 +64,7 @@ class TblEmployees extends Model {
 		$employees->updated_at = gmdate('Y-m-d H:i:s');
 
 		try {
-            $it_equipment->save();
+            $employees->save();
         }catch(QueryException $e){
             die($e);
         }

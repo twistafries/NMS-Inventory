@@ -68,7 +68,7 @@
 
             <tbody>
                 @foreach ($employees as $employee)
-                <tr>
+                <tr data-toggle="modal" data-target="#modal-{!! $employee->id !!}">
 
                     <td>{{ $employee->fname  }} {{ $employee->lname }}</td>
                     <td>{{ $employee->email }}</td>
@@ -86,13 +86,167 @@
                         @endif
                     </td>
                 </tr>
+
+                
+                <!-- View Details Modal -->
+                <div class="modal fade" id="modal-{!! $employee->id !!}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg row">
+                        <div class="modal-content">
+                            <div class="modal-body row" style="padding: 0 !important; height: 37rem;">
+                                <div class="col col-4" style="background: #555555;">
+                                    <hr style="color: #FDAD4E; background: #FDAD4E; height: 1px; margin-top: 4.5rem;">
+                                    <div class="profile-pic text-center" style="margin-top: 2.5rem; margin-bottom: 5px;">
+                                        <img src="../assets/images/user/user.png" class="img-avatar" alt="avatar" srcset=""
+                                            style="width: 5rem; height: 5rem; border-width: 2px;">
+                                    </div>
+                                    <div class="text-center" style="color: white; font-size: 18px; margin-bottom: 0 !important;">
+                                        {{ $employee->fname  }} {{ $employee->lname }}
+                                        <p class="text-uppercase">{{ $employee->status  }}</p>
+                                    </div>
+                                    <hr style="color: #FDAD4E; background: #FDAD4E; height: 1px;">
+                                    <div class="">
+                                    </div>
+                                </div>
+                                <div class="col col-8" style="padding: 1rem;">
+                                    <div class="" style="margin-top: 1rem; margin-left: 1rem;">
+                                        <span class="fas fa-times-circle" data-dismiss="modal" aria-label="Close"
+                                            aria-hidden="true"></span>
+                                        <h5 class="account-settings">Account Settings</h5>
+                                        <hr style="color: #FDAD4E; background: #FDAD4E; height: 1px; margin-right: 2rem;">
+                                    </div>
+                                    <div class="" style="margin-left: 1rem; margin-right: 2rem;">
+                                        <form action="{!! url('/editEmployee'); !!}" class="profile-form" id="profile-form" method="post">
+                                            <input type="hidden" name="id" value="{!! $employee->id !!}">
+                                            {!! csrf_field() !!}
+                                            <!--name-->
+                                            <div class="" id="divname">
+                                                <div class="row row-details">
+                                                    <div class="col col-4 detail-header">NAME</div>
+                                                    <div class="col col-7 details" id="fullname">{{ $employee->fname  }} {{ $employee->lname }}</div>
+                                                    <div class="col col-1 edit" id="name-edit"><u>Edit</u></div>
+                                                </div>
+
+                                                <div class="display" id="name">
+                                                    <div class="margin row">
+                                                        <div class="form-group col col-6">
+                                                            <label for="label" class="col-form-label label">First Name</label>
+                                                            <input type="text" name="fname" class="form-inline input" value="{!! $employee->fname  !!}">
+                                                        </div>
+                                                        <div class="form-group col col-6">
+                                                            <label for="label" class="col-form-label label">Last Name</label>
+                                                            <input type="text" name="lname" class="form-inline input"  value="{!! $employee->lname  !!}">
+                                                        </div>
+                                                        <div class="form-group col col-6">
+                                                            <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Department-->
+                                            <div id="divdepartment">
+                                                <div class="row row-details">
+                                                    <div class="col col-4 detail-header">DEPARTMENT</div>
+                                                    <div class="col col-7 details" id="department-info">IT Department</div>
+                                                    <div class="col col-1 edit" id="department-edit"><u>Edit</u></div>
+                                                </div>
+                                                <!--department collapse-->
+                                                <div class="display" id="department"> 
+                                                    <div class="margin">
+                                                        <div class="form-group row">
+                                                            <select class="department-select" name="department">
+                                                                <option></option>
+                                                                <option value="dept1">IT Department</option>
+                                                                <option value="dept2">Department 2</option>
+                                                                <option value="dept3">Department 3</option>
+                                                                <option value="dept4">Department 4</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Email-->
+                                            <div id="divemail">
+                                                <div class="row row-details">
+                                                    <div class="col col-4 detail-header">EMAIL</div>
+                                                    <div class="col col-7 details" id="email-add">{{ $employee->email }}</div>
+                                                    <div class="col col-1 edit" id="email-edit"><u>Edit</u></div>
+                                                </div>
+                                                <!--email collapse-->
+                                                <div class="text-center display remove-padding" id="email">
+                                                    <div class="margin">
+                                                        <div class="form-group row">
+                                                            <div class="col col-2">
+                                                                <label for="label" class="col-form-label label">Email</label>
+                                                            </div>
+                                                            <div class="col col-10">
+                                                                <input type="email" name="inputEmail" class="form-inline input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--password-->
+                                            <div id="divpassword">
+                                                <div class="row row-details">
+                                                    <div class="col col-4 detail-header">PASSWORD</div>
+                                                    <div class="col col-7 details" id="password-info">***********</div>
+                                                    <div class="col col-1 edit" id="password-edit"><u>Reset</u></div>
+                                                </div>
+                                                <!--password modal-->
+                                                <div class="text-center display remove-padding" id="password">
+                                                    <div class="margin">
+                                                        <div class="form-group row">
+                                                            <div class="col col-4">
+                                                                <label for="" class="col-form-label label">Old Password</label>
+                                                            </div>
+                                                            <div class="col col-8">
+                                                                <input type="password" class="form-inline input" id=""
+                                                                    name="oldPassword">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="margin">
+                                                        <div class="form-group row">
+                                                            <div class="col col-4">
+                                                                <label for="" class="col-form-label label">New Password</label>
+                                                            </div>
+                                                            <div class="col col-8">
+                                                                <input type="password" class="form-inline input" id=""
+                                                                    name="newPassword">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="margin">
+                                                        <div class="form-group row">
+                                                            <div class="col col-4">
+                                                                <label for="" class="col-form-label label">Repeat Password</label>
+                                                            </div>
+                                                            <div class="col col-8">
+                                                                <input type="password" class="form-inline input" id="" name="repeat">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center display" id="cancel-save">
+                                                    <button type="button" class="btn btn-danger b password-cancel cancel" id="buttons"
+                                                        name="">Cancel</button>
+                                                    <button type="button" class="btn btn-success b cancel" id="buttons">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
 
             </tbody>
 
         </table>
 
-                                            <!-- Add Associate Modal -->
+                                            <!-- Add Employee Modal -->
                                             <div class="modal fade" id="addAssociate" tabindex="-1" role="dialog" aria-labelledby="addAssociateTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
@@ -229,7 +383,7 @@
                                             </div>
 
 
-                                            <!-- Remove Associate Modal -->
+                                            <!-- Remove Employee Modal -->
                                             <div class="modal fade" id="removeEmployee" tabindex="-1" role="dialog" aria-labelledby="addAssociateTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                           <div class="modal-content">
@@ -356,6 +510,53 @@
            responsive: true,
            "order": []});
     } );
+    </script>
+
+    <script>
+        $(function() {
+             $.fn.showInfo = function (elementsHideID, elementsShowID) {
+                $("#" + elementsHideID + " > .display").show();
+                $.each(elementsShowID, function (index, value) {
+                    $("#" + value + " > .display").hide();
+                });
+            }
+
+            $("#divname .edit").click(function () {
+                $.fn.showInfo("divname", ["divdepartment", "divemail", "divpassword"]);
+                $("#cancel-save").show();
+                $(".password-cancel").click(function () {
+                    $("#name").hide();
+                    $("#cancel-save").hide();
+                });
+            });
+
+            $("#divdepartment .edit").click(function () {
+                $.fn.showInfo("divdepartment", ["divname", "divemail", "divpassword"]);
+                $("#cancel-save").show();
+                $(".password-cancel").click(function () {
+                    $("#department").hide();
+                    $("#cancel-save").hide();
+                });
+            });
+
+            $("#divemail .edit").click(function () {
+                $.fn.showInfo("divemail", ["divname", "divdepartment", "divpassword"]);
+                $("#cancel-save").show();
+                $(".password-cancel").click(function () {
+                    $("#email").hide();
+                    $("#cancel-save").hide();
+                });
+            });
+
+            $("#divpassword .edit").click(function () {
+                $.fn.showInfo("divpassword", ["divname", "divdepartment", "divemail"]);
+                $("#cancel-save").show();
+                $(".password-cancel").click(function () {
+                    $("#password").hide();
+                    $("#cancel-save").hide();
+                });
+            });
+        });
     </script>
 
 

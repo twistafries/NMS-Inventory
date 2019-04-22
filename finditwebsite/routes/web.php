@@ -40,6 +40,7 @@ Route::get('/associates', 'AssociateController@showAllAssociate');
 Route::post('/deactivate', 'AssociateController@update_associate_status');
 Route::get('/issuableItems', 'ForStatusController@showIssuable');
 Route::get('/employees', 'ForStatusController@showEmployees');
+Route::post('/editEmployee', 'ForStatusController@editEmployee');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
