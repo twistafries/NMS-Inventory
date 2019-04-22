@@ -17,11 +17,11 @@ use App\Models\TblIssuances;
 use App\Models\TblEmployees;
 use Session, Auth;
 
-class IssuanceController extends SessionController {
+class IssuanceController extends BaseController {
 
 	public function showAllIssuance() {
-		if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
       	}
 
 		$data = [];
@@ -34,9 +34,9 @@ class IssuanceController extends SessionController {
 
 
 	public function addIssuance(Request $request){
-		if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-     	}
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      	}
 
 	 // dd("Inside");
 			 $data = $request->all();

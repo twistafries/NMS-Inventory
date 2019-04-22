@@ -12,7 +12,7 @@ class LoginController extends Controller {
 	public $timestamps = false;
 
 	public static function index() {
-		return view('login');
+		return view('loginpage');
 	}
 
 	public function login(Request $request) {
@@ -26,7 +26,7 @@ class LoginController extends Controller {
 
 		if($validator->fails()) {
 			Session::flash('errorLogin', 'Invalid Email or Password');
-			return \Redirect::to('/login');
+			return \Redirect::to('/loginpage');
 		}else {
 			$userdata = array(
 				'email' => $request->input('email'),
@@ -37,12 +37,12 @@ class LoginController extends Controller {
 
 			if(!isset($userdata['email'])) {
 				Session::flash('errorLogin', 'Invalid Email');
-				return \Redirect::to('/login');
+				return \Redirect::to('/loginpage');
 			}
 
 			if(!isset($userdata['password'])) {
 				Session::flash('errorLogin', 'Invalid Password');
-				return \Redirect::to('/login');
+				return \Redirect::to('/loginpage');
 			}
 
 			$logged = array(
@@ -57,7 +57,7 @@ class LoginController extends Controller {
 				return \Redirect::to('/dashboard');
 			}else {
 				Session::flash('errorLogin', 'Invalid Email or Password');
-				return \Redirect::to('/login');
+				return \Redirect::to('/loginpage');
 				dd($userdata);
 			}			
 		}
@@ -65,7 +65,7 @@ class LoginController extends Controller {
 
 	public function logout() {
 		Session::flush();
-		return \Redirect::to('/login');
+		return \Redirect::to('/loginpage');
 	}
 
 	public static function add_user(Request $request) {
