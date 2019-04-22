@@ -75,15 +75,9 @@
                     <td>{{ $employee->department }}</td>
                     <td>{{ $employee->status }}</td>
                     <td>
-                        @if( $employee->status == "active")
-                        <button class="btn btn-secondary" id="deactivate">
-                            Deactivate
-                        </button>
-                        @else
-                        <button class="btn btn-info" id="activate">
-                            Activate
-                        </button>
-                        @endif
+
+                    
+                    
                     </td>
                 </tr>
 
@@ -114,6 +108,7 @@
                                         <h5 class="account-settings">Account Settings</h5>
                                         <hr style="color: #FDAD4E; background: #FDAD4E; height: 1px; margin-right: 2rem;">
                                     </div>
+                                    
                                     <div class="" style="margin-left: 1rem; margin-right: 2rem;">
                                         <form action="{!! url('/editEmployee'); !!}" class="profile-form" id="profile-form" method="post">
                                             <input type="hidden" name="id" value="{!! $employee->id !!}">
@@ -136,12 +131,13 @@
                                                             <label for="label" class="col-form-label label">Last Name</label>
                                                             <input type="text" name="lname" class="form-inline input"  value="{!! $employee->lname  !!}">
                                                         </div>
-                                                        <div class="form-group col col-6">
+                                                        <div class="form-group col col-12">
                                                             <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!--Department-->
                                             <div id="divdepartment">
                                                 <div class="row row-details">
@@ -164,6 +160,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
                                             <!--Email-->
                                             <div id="divemail">
                                                 <div class="row row-details">
@@ -179,12 +176,16 @@
                                                                 <label for="label" class="col-form-label label">Email</label>
                                                             </div>
                                                             <div class="col col-10">
-                                                                <input type="email" name="inputEmail" class="form-inline input">
+                                                                <input type="email" name="email" class="form-inline input" value="{!! $employee->email !!}">
+                                                            </div>
+                                                            <div class="form-group col col-12">
+                                                                <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <!--password-->
                                             <div id="divpassword">
                                                 <div class="row row-details">
@@ -232,6 +233,20 @@
                                                         name="">Cancel</button>
                                                     <button type="button" class="btn btn-success b cancel" id="buttons">Save</button>
                                                 </div>
+                                            </div>
+
+                                            <div id="divstatus">
+                                                @if( $employee->status == "active")
+                                                <button class="btn btn-secondary" id="deactivate" type="submit">
+                                                    <input type="hidden" name="status" value="inactive">
+                                                    Deactivate
+                                                </button>
+                                                @else
+                                                <button class="btn btn-info" id="activate" type="submit">
+                                                    <input type="hidden" name="status" value="active">
+                                                    Activate
+                                                </button>
+                                                @endif
                                             </div>
                                         </form>
                                     </div>
