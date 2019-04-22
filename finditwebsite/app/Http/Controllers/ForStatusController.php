@@ -14,8 +14,8 @@ use App\Models\TblDepartments;
 class ForStatusController extends BaseController
 {
     public function showAllStatus(){
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
       }
 
         $data = [];
@@ -26,8 +26,8 @@ class ForStatusController extends BaseController
     }
 
    public function showInventoryConcerns(){
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
       }
 
      $data = [];
@@ -40,9 +40,9 @@ class ForStatusController extends BaseController
 
    }
    public function showIssuable(){
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-      }
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      } 
 
      $data = [];
      $data['available'] = TblEquipmentStatus::get_available();
@@ -53,9 +53,9 @@ class ForStatusController extends BaseController
    }
 
    public function showEmployees(){
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-      }
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      } 
 
      $data = [];
      $data['employees'] = TblEmployees::get_employees();
@@ -67,9 +67,9 @@ class ForStatusController extends BaseController
 
    public function addEmployee(Request $request)
    {
-      if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-      }
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      } 
 
        $data = $request->all();
        $results = [];

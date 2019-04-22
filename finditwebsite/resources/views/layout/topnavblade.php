@@ -21,7 +21,7 @@
                         <!-- Dropdown Menu -->
                         <div class="dropdown-menu dropdown-menu-right animated flipInY">
                             <button class="dropdown-item dropdown-item-custom" data-toggle="modal" data-target="#profile-modal"><span class="fas fa-user-circle icon"></span>View Profile</button>
-                            <button class="dropdown-item dropdown-item-custom"><span class="fas fa-sign-out-alt icon"></span>Logout</button>
+                            <a href="/logout" class="dropdown-item dropdown-item-custom"><span class="fas fa-sign-out-alt icon"></span>Logout</a>
                         </div>
                       </div>
                       <div class="p-2 bd-highlight name">JOHN DOE</div>

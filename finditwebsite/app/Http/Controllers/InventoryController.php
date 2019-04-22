@@ -16,12 +16,12 @@ use App\Models\TblStatus;
 use App\Models\Equipment;
 use Session, Auth;
 
-class InventoryController extends SessionController
+class InventoryController extends BaseController
 {
-  public function showAllInventory(){
-    // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-    //       return \Redirect::to('/login');
-    // }
+    public function showAllInventory(){
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      } 
 
       $data = [];
       $data['equipment'] = TblItEquipment::get_all_equipment();
@@ -43,9 +43,9 @@ class InventoryController extends SessionController
 
 
     public function showInputValues(){
-      // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-      //       return \Redirect::to('/login');
-      // }
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
 
         $data = [];
 
@@ -63,9 +63,9 @@ class InventoryController extends SessionController
     // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
 
 public function addSystemUnit(Request $request){
-  // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-  //           return \Redirect::to('/login');
-  // }
+  if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
 
   $show = $request->all();
   $data = $request->input('unit.*');
@@ -113,9 +113,9 @@ public function addSystemUnit(Request $request){
 
 }
    public function addEquipment(Request $request){
-    // if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-    //         return \Redirect::to('/login');
-    // }
+    if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+    }
 
     // dd("Inside");
         $data = $request->all();

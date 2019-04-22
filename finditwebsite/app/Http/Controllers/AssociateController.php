@@ -12,12 +12,12 @@ use App\Models\TblUsers;
 use App\Models\TblAssociate;
 
 
-class AssociateController extends SessionController
+class AssociateController extends BaseController
 {
     public function showAllAssociate(){
-        if(Session::get('loggedIn')['user_type']!='admin' || ['user_type'] != "associate"){
-            return \Redirect::to('/login');
-        }  
+        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+        } 
 
         $data = [];
         $data['associates'] = TblAssociate::get_all_associates();
@@ -26,6 +26,9 @@ class AssociateController extends SessionController
     }
 
    public function deactivateAccount(Request $request){
+        // if(Session::get('loggedIn')['user_type']!='admin'){
+        //     return \Redirect::to('/loginpage');
+        // }
     //    $this->checkIfAdmin
         $data = $request->all();
         $updated = TblUsers::update_user($data);
@@ -34,6 +37,10 @@ class AssociateController extends SessionController
     //adding associate
     public function add_associate( Request $request )
     {
+        // if(Session::get('loggedIn')['user_type']!='admin'){
+        //     return \Redirect::to('/loginpage');
+        // }
+
         $data = $request->all();
         $results = [];
 

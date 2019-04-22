@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function () {
-    return \Redirect::to('/login');
+    return \Redirect::to('/loginpage');
 });
 
-Route::get('/login', function () {
-    return view('content/login');
+Route::get('/loginpage', function () {
+    return view('content/loginpage');
 });
 
 Route::get('/template', function () {
@@ -30,6 +30,7 @@ Route::get('/dashboard', function () {
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
 Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
 
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
