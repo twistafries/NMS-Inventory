@@ -1,3 +1,12 @@
+<?php
+  use Carbon\Carbon;
+  $session=Session::get('loggedIn');
+  $user_id = $session['id'];
+  $fname = $session['fname'];
+  $lname = $session['lname'];
+  $user_type = $session['user_type'];
+  // $img_path = $session['img_path'];
+?>
 
 <nav id="sidebar">
     <!-- Sidebar Toggle Button -->
@@ -26,20 +35,22 @@
                 <span class="hide-menu">Inventory</span>
             </a>
         </li>
+        @if ($user_type=="admin")
+          <li id="associates">
+              <a href="{!! url('/associates') !!}">
+                  <i class="fas fa-users"></i>
+                  <span class="hide-menu">Associates</span>
+              </a>
+          </li>
 
-        <li id="associates">
-            <a href="{!! url('/associates') !!}">
-                <i class="fas fa-users"></i>
-                <span class="hide-menu">Associates</span>
-            </a>
-        </li>
+          <li id="employees">
+              <a href="{!! url('/employees') !!}">
+                  <i class="fas fa-vcard"></i>
+                  <span class="hide-menu">Employees</span>
+              </a>
+          </li>
+          @endif
 
-        <li id="employees">
-            <a href="{!! url('/employees') !!}">
-                <i class="fas fa-vcard"></i>
-                <span class="hide-menu">Employees</span>
-            </a>
-        </li>
 
         <li id="issuance">
           <a href="{!! url('/issuance') !!}">
