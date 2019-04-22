@@ -304,7 +304,7 @@
                                                     <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">ID:</h5> {{ $equipment->id }}</li>
                                                     <li class="list-group-item">
                                                         <h5 class="font-weight-bolder text-uppercase text-left">Serial Number:</h5> 
-                                                        <input value="{!! $equipment->serial_no !!}">
+                                                        <input name="serial_no" value="{!! $equipment->serial_no !!}">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -316,7 +316,7 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5>
-                                                        <input value="{!! $equipment->subtype_name !!}">
+                                                        <input name="subtype_id" value="{!! $equipment->subtype_id !!}">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -353,26 +353,26 @@
                                                     @isset( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
                                                         <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
-                                                        {{ $equipment->imei_or_macaddress }}
+                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">                                                        
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
                                                         <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
-                                                        None
+                                                        <input name="imei_or_macaddress" value="None">
                                                     </li>
                                                     @endempty
                                                     @elseif( $equipment->type_id != 3)
                                                     @isset( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
                                                         <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
-                                                        {{ $equipment->imei_or_macaddress }}
+                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">                                                        
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
                                                         <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
-                                                        None
+                                                        <input name="imei_or_macaddress" value="None">
                                                     </li>
                                                     @endempty
                                                     @endif
