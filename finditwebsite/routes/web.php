@@ -49,6 +49,10 @@ Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 
+Route::get('/bulk-add', 'BulkController@showFields');
+Route::get('/temp-bulk-add', 'BulkController@showFields');
+Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
+
 Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');
 Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
 
