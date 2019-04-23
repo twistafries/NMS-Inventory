@@ -175,6 +175,9 @@ class TblItEquipment extends Model
 
         if(isset($params['status_id']))
         $it_equipment->status_id = $params['status_id'];
+        
+        if(isset($params['supplier']))
+        $it_equipment->status_id = $params['supplier'];
 
         $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
 
