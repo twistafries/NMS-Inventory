@@ -47,6 +47,8 @@ class LoginController extends Controller {
 
 			$logged = array(
 				'id' => $user->id,
+				'dept_id' => $user->department,
+				'email' => $user->email,
 				'user_type' => $user->user_type,
 				'fname' => $user->fname,
 				'lname' => $user->lname,
@@ -59,7 +61,7 @@ class LoginController extends Controller {
 				Session::flash('errorLogin', 'Invalid Email or Password');
 				return \Redirect::to('/loginpage');
 				dd($userdata);
-			}			
+			}
 		}
 	}
 
@@ -94,6 +96,6 @@ class LoginController extends Controller {
 			TblUsers::add_associate($data);
 			dd($data);
 			return \Redirect::to('content/inventory');
-		}		
+		}
 	}
 }

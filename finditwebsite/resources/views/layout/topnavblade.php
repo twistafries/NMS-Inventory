@@ -1,4 +1,15 @@
-
+<?php
+  use Carbon\Carbon;
+  $session=Session::get('loggedIn');
+  $user_id = $session['id'];
+  $dept_id = $session['dept_id'];
+  $email = $session['email'];
+  $fname = $session['fname'];
+  $lname = $session['lname'];
+  $name = $session['fname'] . " " . $session['lname'];
+  $user_type = $session['user_type'];
+  // $img_path = $session['img_path'];
+?>
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-custom">
                     <ul class="navbar-nav pr-4">
@@ -24,7 +35,7 @@
                             <a href="/logout" class="dropdown-item dropdown-item-custom"><span class="fas fa-sign-out-alt icon"></span>Logout</a>
                         </div>
                       </div>
-                      <div class="p-2 bd-highlight name">JOHN DOE</div>
+                      <div class="p-2 bd-highlight name"><?=$name?></div>
                       <div class="p-2 bd-highlight">
                         <div class="profile-pic">
                             <img src="../assets/images/user/user.png" class="img-avatar" alt="avatar" srcset="">
@@ -42,8 +53,8 @@
                                          <div class="profile-pic text-center" style="margin-top: 2.5rem; margin-bottom: 5px;">
                                              <img src="../assets/images/user/user.png" class="img-avatar" alt="avatar" srcset="" style="width: 5rem; height: 5rem; border-width: 2px;">
                                          </div>
-                                         <div class="text-center" style="color: white; font-size: 18px; margin-bottom: 0 !important;">John Doe
-                                           <p style="">ADMIN</p>
+                                         <div class="text-center" style="color: white; font-size: 18px; margin-bottom: 0 !important;"><?=$name?>
+                                           <p style=""><?=$user_type?></p>
                                          </div>
                                          <hr style="color: #FDAD4E; background: #FDAD4E; height: 1px;">
                                          <div class="">
@@ -61,18 +72,18 @@
                                          <div class="" id="divname">
                                            <div class="row row-details">
                                              <div class="col col-4 detail-header">NAME</div>
-                                             <div class="col col-7 details" id="fullname">John Doe</div>
+                                             <div class="col col-7 details" id="fullname"><?=$name?></div>
                                              <div class="col col-1 edit" id="name-edit"><u>Edit</u></div>
                                            </div>
                                              <div class="display" id="name">
                                                <div class="margin row">
                                                  <div class="form-group col col-6">
                                                    <label for="label" class="col-form-label label">First Name</label>
-                                                   <input type="text" class="form-inline input">
+                                                   <input type="text" class="form-inline input" value="<?=$fname?>">
                                                  </div>
                                                  <div class="form-group col col-6">
                                                    <label for="label" class="col-form-label label">Last Name</label>
-                                                   <input type="text" class="form-inline input">
+                                                   <input type="text" class="form-inline input" value="<?=$lname?>">
                                                  </div>
                                                </div>
                                              </div>
@@ -81,7 +92,7 @@
                                            <div id="divdepartment">
                                              <div class="row row-details">
                                                <div class="col col-4 detail-header">DEPARTMENT</div>
-                                               <div class="col col-7 details" id="department-info">IT Department</div>
+                                               <div class="col col-7 details" id="department-info"><?=$dept_id?></div>
                                                <div class="col col-1 edit" id="department-edit"><u>Edit</u></div>
                                              </div>
                                              <!--department collapse-->
@@ -103,14 +114,14 @@
                                            <div id="divtype">
                                              <div class="row row-details">
                                                <div class="col col-4 detail-header">USER TYPE</div>
-                                               <div class="col col-7 details" id="typet-info">Admin</div>
+                                               <div class="col col-7 details" id="typet-info"><?=$user_type?></div>
                                              </div>
                                            </div>
                                            <!--Email-->
                                            <div id="divemail">
                                              <div class="row row-details">
                                                <div class="col col-4 detail-header">EMAIL</div>
-                                               <div class="col col-7 details" id="email-add">john_doe@nms.ph</div>
+                                               <div class="col col-7 details" id="email-add"><?=$email?></div>
                                                <div class="col col-1 edit" id="email-edit"><u>Edit</u></div>
                                              </div>
                                              <!--email collapse-->

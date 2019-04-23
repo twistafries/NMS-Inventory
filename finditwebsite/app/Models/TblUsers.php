@@ -82,6 +82,8 @@ class TblUsers extends Authenticatable {
 		}
 		elseif(isset($params['email'])){
 			$query = \DB::table('users AS u')
+				->leftjoin('departments','departments.id' , '=' , 'u.dept_id')
+				->select('u.*', 'departments.name as department')
 				->whereRaw("u.email = '".$params['email']."'")
 				// ->whereRaw("u.password = '".$params['password']."'")
 				->first();
