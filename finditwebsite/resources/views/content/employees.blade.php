@@ -62,7 +62,7 @@
                     <th>Email</th>
                     <th>Department</th>
                     <th>Status</th>
-                    <th></th>
+                    
                 </tr>
             </thead>
 
@@ -74,11 +74,7 @@
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->department }}</td>
                     <td>{{ $employee->status }}</td>
-                    <td>
-
-                    
-                    
-                    </td>
+                
                 </tr>
 
                 
