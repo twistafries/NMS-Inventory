@@ -52,11 +52,18 @@ Route::get('/associates', 'AssociateController@showAllAssociate');
 Route::post('/deactivate', 'AssociateController@update_associate_status');
 Route::get('/issuableItems', 'ForStatusController@showIssuable');
 Route::get('/employees', 'ForStatusController@showEmployees');
+Route::post('/editEmployee', 'ForStatusController@editEmployee');
+Route::post('/changeStatus', 'ForStatusController@editEmployee');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
+Route::post('/editEquipment', 'InventoryController@editEquipment');
+
+Route::get('/bulk-add', 'BulkController@showFields');
+Route::get('/temp-bulk-add', 'BulkController@showFields');
+Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 
 Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');
 Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');

@@ -887,7 +887,7 @@ div.add {
 }
 
 .form-control {
-    max-width: 15rem;
+    /* max-width: 15rem; */
     background: transparent;
     border: none;
     border-bottom: 2px solid black;
@@ -1008,28 +1008,28 @@ button.dropdown-toggle {
 /****************************Mehanie*******************************/
 /* inputTypeDesign - SWITCHES - TOGGLE */
     #inputType1 {
-      max-width: 27rem;
+      /* max-width: 27rem; */
       box-shadow: 0 5px 20px rgba(0,0,0,0.23);
     }
 
     #inputType2 {
-      max-width: 35rem;
+      /* max-width: 35rem; */
       box-shadow: 0 5px 20px rgba(0,0,0,0.23);
     }
 
-    input.form-control {
-      max-width: 10rem;
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid black;
-      border-radius: 0;
-    }
+    /* input.form-control {
+      /* max-width: 10rem; */
+      /* background: transparent;
+      border: none; */
+      /* border-bottom: 2px solid black; */
+      /* border-radius: 0;
+    } */
 
-    input.form {
-      max-width: 10rem;
-      background: transparent;
-      border: none;
-    }
+    /* input.form { */
+      /* max-width: 10rem; */
+      /* background: transparent; */
+      /* border: none; */
+    /* } */ 
 
     select.custom {
       max-width: 10rem;
@@ -1044,7 +1044,7 @@ button.dropdown-toggle {
     }
 
     select.custom2 {
-      max-width: 10rem;
+      /* max-width: 10rem; */
       border: none;
       border-bottom: 2px solid #333333;
       margin-bottom: 8rem;
