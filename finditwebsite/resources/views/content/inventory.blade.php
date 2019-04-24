@@ -574,8 +574,8 @@
 </div>
 </div>
 <!-- Single Add Modal -->
-<div class="modal fade" id="singleAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalTitle">Single Add</h5>
@@ -597,9 +597,10 @@
                             </option>
                         @endforeach
                         </select>
-
+                      </div>
                         <hr>
                         <!-- Name -->
+                        <div class="row">
                         <p class="card-title">Name</p>
                             <div class="input-group mb-3">
                             <input name="name" type="text" class="form-control">
@@ -609,10 +610,17 @@
                         <div class="input-group mb-1">
                             <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
                         </div>
-                        <label for="details">Warranty Details</p>
+                      </div>
+                      <div class="row">
+                        <label for="details">Warranty start</p>
                         <div class="input-group mb-1">
                             <textarea name="warranty_details" class="form-control" aria-label="With textarea"></textarea>
                         </div>
+                        <label for="details">Warranty end</p>
+                        <div class="input-group mb-1">
+                            <textarea name="warranty_details" class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                      </div>
                         <label for="serial_no">Serial Number</p>
                         <div class="input-group mb-1">
                             <input name="serial_no" type="text" class="form-control">
@@ -916,7 +924,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
 
-                <div class="container" style="padding:2rem">
+                <div class="container">
                   <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
                       {!! csrf_field() !!}
 
@@ -1113,6 +1121,8 @@
             </div>
         </div>
     </div>
+
+
             <!-- Add system_unit-->
             <div class="modal fade bd-example-modal-lg" id="addUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">

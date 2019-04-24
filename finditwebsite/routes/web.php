@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [
+  'as' => 'loginpage',
+  'uses' => function () {
     return \Redirect::to('/loginpage');
-});
+}]);
 
 Route::get('/loginpage', function () {
     return view('content/loginpage');
@@ -27,6 +29,16 @@ Route::get('/dashboard', function () {
     return view('content/dashboard');
 });
 
+Route::get('/reportpage', function () {
+    return view('content/report');
+});
+
+Route::group(['middleware' => 'preventBackHistory'],function(){
+	Auth::routes();
+  Route::get('/loginpage', function () {
+      return view('content/loginpage');
+  });
+});
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
 Route::post('/login', 'LoginController@login');

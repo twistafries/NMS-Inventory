@@ -12,8 +12,8 @@ class SessionController extends Controller {
 		{
 			return \Redirect::to('content/dashboard');
 		}else {
-			return \Redirect::to('/login');
-		} 
-		
+			return \Redirect::to('/loginpage');
+		}
+
 	}
 }

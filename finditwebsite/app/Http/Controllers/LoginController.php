@@ -32,7 +32,6 @@ class LoginController extends Controller {
 				'email' => $request->input('email'),
 				'password' => $request->input('password')
 			);
-
 			$user = TblUsers::get_users($userdata);
 
 			if(!isset($userdata['email'])) {

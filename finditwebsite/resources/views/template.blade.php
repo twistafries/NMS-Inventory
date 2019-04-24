@@ -26,7 +26,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body>
+<body onpageshow="ShowLocalDate()">
     <div class="fluid-container">
         <div class="wrapper">
             @include('layout/sidenav')

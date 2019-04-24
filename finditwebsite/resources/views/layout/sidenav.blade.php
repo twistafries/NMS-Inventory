@@ -81,7 +81,7 @@
         </li>
 
         <li id="report">
-            <a href="#">
+            <a href="{!! url('/reportpage') !!}">
                 <i class="fas fa-file-export"></i>
                 <span class="hide-menu">Generate Reports</span>
             </a>
