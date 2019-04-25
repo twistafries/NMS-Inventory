@@ -15,7 +15,7 @@ class TblIssuances extends Model {
 		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
 		->leftjoin('users' , 'users.id', '=', 'i.user_id')
 		->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-		->select('i.*', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.name as equipment','system_units.description as unit_name',
+		->select('i.*', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.description as unit_name',
 		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
 		->where('i.status_id', '=', '2')
 		->orderBy('i.created_at', 'desc')

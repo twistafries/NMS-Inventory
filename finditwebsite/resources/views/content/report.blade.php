@@ -1198,11 +1198,7 @@
 
 @section('script')
         <!-- JQuery Core -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        <!--JQuery graph plugin-->
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
         <script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
         <script src="{{ asset('js/highcharts/code/modules/export-data.js') }}"></script>
@@ -1210,10 +1206,6 @@
         <!--JQuery form validation plugin-->
         <script src="{{ asset('js/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
         <script src="{{ asset('js/jqueryvalidation/dist/additional-methods.min.js') }}"></script>
-
-        <!--JQuery editable table plugin-->
-        <script src="https://rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
-        <script type="text/javascript" src="../lib/dist/popper/popper.min.js"></script>
 
         <!-- JQuery Core -->
         <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
@@ -1231,15 +1223,6 @@
        <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 
         <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
-
-        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">

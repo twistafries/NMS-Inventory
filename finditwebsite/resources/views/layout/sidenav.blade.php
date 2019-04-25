@@ -58,13 +58,13 @@
                 <span class="hide-menu">Issuance</span>
             </a>
         </li>
-
+<!-- 
         <li id="issuableItems">
             <a href="{!! url('/issuableItems') !!}">
                 <i class="fas fa-desktop"></i>
                 <span class="hide-menu">Issuable Items</span>
             </a>
-        </li>
+        </li> -->
 
         <li id="concerns">
             <a href="{!! url('/concerns') !!}">

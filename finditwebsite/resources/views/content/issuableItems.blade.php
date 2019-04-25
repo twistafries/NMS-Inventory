@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
+    
 @stop
 
 @section('title')

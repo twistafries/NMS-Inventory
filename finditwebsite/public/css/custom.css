@@ -611,10 +611,15 @@ ul ul a {
 }
 
 .nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
+.nav-pills  li .show{
     border-radius: 0;
     color: #fff;
 	background-color: #ffc107;
+}
+
+.nav-pills  li:hover{
+  color: #333333;
+  background: #FAF2CC;
 }
 
 /*tables design*/
@@ -1029,7 +1034,7 @@ button.dropdown-toggle {
       /* max-width: 10rem; */
       /* background: transparent; */
       /* border: none; */
-    /* } */ 
+    /* } */
 
     select.custom {
       max-width: 10rem;

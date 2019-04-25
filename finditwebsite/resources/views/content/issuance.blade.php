@@ -90,7 +90,7 @@
                         @foreach ($issuance as $issuance)
                         <tr data-toggle="modal" data-target="#viewItemModal">
 
-                            <td> {{ $issuance->equipment}} </td>
+                            <td> {{ $issuance->model}} {{ $issuance->brand}} </td>
                             <td> {{ $issuance->subtype}} </td>
                             <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
                             <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
@@ -164,7 +164,7 @@
                                                 <datalist id="items">
                                                   <select>
                                                   @foreach ($equipment as $equipment)
-                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
+                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
                                                   @endforeach
                                                   @foreach ($units as $units)
                                                   <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
@@ -205,7 +205,7 @@
                                               <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
                                               <datalist id="employee">
                                                   @foreach ($employees as $employees)
-                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} ID: {{ $employees->id}}">
+                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
                                                     @switch($employees->dept_id)
                                                       @case(1)
                                                           ITDD

@@ -58,7 +58,7 @@
         <div class="p-2">
             <div class="btn-group" role="group" aria-label="Basic example">
 <!--
-                 Hide/Unhide Column 
+                 Hide/Unhide Column
                 <button type="button" class="btn hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
                     aria-expanded="false">
                     <a href="#" data-toggle="tooltip" title="Hide/Unhide">
@@ -67,7 +67,7 @@
                 </button>
 -->
 
-                
+
 
                 <!-- Multiple Select -->
                 <button type="button" class="btn disabled" id="multiple-select">
@@ -77,7 +77,7 @@
                 </button>
 
 <!--
-                 Edit 
+                 Edit
                 <button type="button" class="btn disabled" id="edit">
                     <a href="#" data-toggle="tooltip" title="Edit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}">
@@ -135,7 +135,8 @@
             <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Brand</th>
                         <th>Types</th>
                         <th>Subtype</th>
                         <th>Supplier</th>
@@ -152,7 +153,8 @@
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
 
-                        <td> {{ $equipment->name }} </td>
+                        <td> {{ $equipment->model }} </td>
+                        <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
                         <td> {{ $equipment->subtype_name }} </td>
                         <td> {{ $equipment->supplier }} </td>
@@ -165,20 +167,21 @@
                     </tr>
 
                     <!-- View Details Modal -->
-                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->name !!}"
+                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document" style=" width: 800px;">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    
+
                                     <div class="row">
-                                       
+
                                         <div class="col"><p>Official Receipt No: {{ $equipment->or_no }}</p></div>
-                                        <div class="col"><h5 class="modal-title">{{ $equipment->name }}</h5></div>
-                                    
+                                        <div class="col"><h5 class="modal-title">{{ $equipment->brand }}</h5></div>
+                                        <div class="col"><h5 class="modal-title">{{ $equipment->model }}</h5></div>
+
                                     </div>
-                                    
-                                
+
+
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -190,9 +193,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                                <h6 class="font-weight-bolder text-uppercase text-left">ID:</h6> 
+                                                <h6 class="font-weight-bolder text-uppercase text-left">ID:</h6>
                                                 <p style="color:black; font-size:16px;">{{ $equipment->id }}</p>
-                                                <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6> 
+                                                <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6>
                                                 <p style="color:black; font-size:16px;">{{ $equipment->serial_no }}</p>
                                         </div>
                                         <div class="col-sm-6">
@@ -201,8 +204,8 @@
                                                 <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
                                                 <p style="color:black; font-size:16px">{{ $equipment->subtype_name }}</p>
                                         </div>
-                                    
-                                       
+
+
                                         <div class="col-sm-6">
                                                 @isset( $equipment->unit_id )
                                                     <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
@@ -250,11 +253,11 @@
                                         <div class="col-6">
                                             <h6 class="font-weight-bolder text-uppercase text-left">Supplier:</h6>
                                             <p style="color:black; font-size:16px;">{{ $equipment->supplier }}</p>
-                                        </div> 
-                                        
-                
+                                        </div>
+
+
                                     </div>
-                    
+
                                 </div>
 
                                 <div class="modal-footer">
@@ -266,7 +269,7 @@
                     </div>
 
                     <!-- Edit Details Modal -->
-                    <div class="modal fade" id="edit-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->name !!}"
+                    <div class="modal fade" id="edit-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
                         aria-hidden="true">
                         <form action="{!! url('/editEquipment'); !!}" method="post">
                             {!! csrf_field() !!}
@@ -279,14 +282,18 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-    
+
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Name:</h6>
-                                                        <input name="name" value="{!! $equipment->name !!}">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Model:</h6>
+                                                        <input name="name" value="{!! $equipment->model !!}">
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Brand:</h6>
+                                                        <input name="name" value="{!! $equipment->brand !!}">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -294,9 +301,9 @@
                                             <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6> 
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6>
                                                         <input name="serial_no" value="{!! $equipment->serial_no !!}" >
-                                                  
+
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Official Receipt No</h6>
                                                         <input name="or_no" value="{!! $equipment->or_no !!}">
@@ -315,13 +322,13 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                       
+
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase">Details:</h6>
                                                         <textarea rows="4" cols="50" name="details">{{ $equipment->details }}</textarea>
-                                                        
+
                                                     </li>
                                                 </ul>
                                             </div>
@@ -341,14 +348,14 @@
                                                     @endempty
                                                 </ul>
                                             </div>
-    
+
                                             <div class="col-sm-6">
                                                 <ul class="list-group">
                                                     @if( $equipment->type_id == 3)
                                                     @isset( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
-                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">                                                        
+                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->imei_or_macaddress )
@@ -361,7 +368,7 @@
                                                     @isset( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
-                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">                                                        
+                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->imei_or_macaddress )
@@ -375,7 +382,7 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
@@ -397,7 +404,8 @@
                 <thead class="thead-dark">
                     <tr>
 
-                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Brand</th>
                         <th>Type</th>
                         <th>Supplier</th>
                         <th>Details</th>
@@ -412,7 +420,8 @@
 
                     @foreach ($component as $components)
                     <tr>
-                        <td> {{ $components->name }} </td>
+                        <td> {{ $components->model }} </td>
+                        <td> {{ $components->brand }} </td>
                         <td> {{ $components->subtype_name }} </td>
                         <td> {{ $components->supplier }} </td>
                         <td width="30%"> {{ $components->details }} </td>
@@ -424,13 +433,13 @@
                     </tr>
 
                     <!-- View Details Modal -->
-                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->name !!}"
+                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <p>Official Receipt No: {{ $equipment->or_no }}</p>
-                                    <h5 class="modal-title">{{ $equipment->name }}</h5>
+                                    <h5 class="modal-title">{{ $equipment->model }} {{ $equipment->brand }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -533,7 +542,8 @@
                 <thead class="thead-dark">
                     <tr>
 
-                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Brand</th>
                         <th>Subtype</th>
                         <th>Supplier</th>
                         <th>Details</th>
@@ -549,7 +559,8 @@
                     @foreach ($peripherals as $peripherals)
                     <tr >
 
-                        <td> {{ $peripherals->name }} </td>
+                        <td> {{ $peripherals->model }} </td>
+                        <td> {{ $peripherals->brand }} </td>
                         <td> {{ $peripherals->subtype_name }} </td>
                         <td> {{ $peripherals->supplier }} </td>
                         <td width="30%"> {{ $peripherals->details }} </td>
@@ -572,7 +583,8 @@
                 <thead class="thead-dark">
                     <tr>
 
-                        <th>Name</th>
+                        <th>Model</th>
+                        <th>Brand</th>
                         <th>Subtype</th>
                         <th>Supplier</th>
                         <th>Details</th>
@@ -587,7 +599,8 @@
 
                     @foreach ($mobile as $mobile)
                     <tr>
-                        <td> {{ $mobile->name }} </td>
+                        <td> {{ $mobile->model }} </td>
+                        <td> {{ $mobile->brand }} </td>
                         <td> {{ $mobile->subtype_name }} </td>
                         <td> {{ $mobile->supplier }} </td>
                         <td width="30%"> {{ $mobile->details }} </td>
@@ -610,7 +623,8 @@
         <thead class="thead-dark">
             <tr>
 
-                <th>Name</th>
+                <th>Model</th>
+                <th>Brand</th>
                 <th>Subtype</th>
                 <th>Supplier</th>
                 <th>Details</th>
@@ -625,7 +639,8 @@
 
             @foreach ($software as $software)
             <tr>
-                <td> {{ $software->name }} </td>
+                <td> {{ $software->model }} </td>
+                <td> {{ $software->brand }} </td>
                 <td> {{ $software->subtype_name }} </td>
                 <td> {{ $software->supplier }} </td>
                 <td width="30%"> {{ $software->details }} </td>
@@ -650,8 +665,6 @@
 
               <th>Name</th>
               <th>Details</th>
-              <th>Serial No</th>
-              <th>IMEI/MAC Address</th>
               <th>Added At</th>
               <th width="15%">Edited At</th>
               <th>Added by</th>
@@ -665,8 +678,6 @@
 
               <td> {{ $system_units->description }}-{{ $system_units->id }} </td>
               <td width="30%"> NONE </td>
-              <td> NONE </td>
-              <td> {{ $system_units->mac_address }} </td>
               <td> {{ $system_units->created_at }} </td>
               <td > {{ $system_units->updated_at }} </td>
               <td> {{ $system_units->fname }} {{ $system_units->lname }}</td>
@@ -700,7 +711,7 @@
                         <select name="subtype_id" class="custom-select">
                         @foreach ($equipment_subtypes as $equipment_subtypes)
                             <option  value="{!! $equipment_subtypes->id !!}">
-                                {{ $equipment_subtypes->name }}
+                              {{ $equipment_subtypes->name }}
                             </option>
                         @endforeach
                         </select>
@@ -708,9 +719,13 @@
                         <hr>
                         <!-- Name -->
                         <div class="row">
-                        <p class="card-title">Name</p>
+                        <p class="card-title">Model</p>
                             <div class="input-group mb-3">
-                            <input name="name" type="text" class="form-control">
+                            <input name="model" type="text" class="form-control">
+                        </div>
+                        <p class="card-title">Brand</p>
+                            <div class="input-group mb-3">
+                            <input name="brand" type="text" class="form-control">
                         </div>
 
                         <label for="details">Details</p>
@@ -1254,7 +1269,7 @@
                             <div class="col-md-3">
                                 <input name="unit[supplier]" type="text" class="form-control">
                             </div>
-                            <p class="card-title">Mac Address</p>
+                            <p class="card-title">Name</p>
                             <div class="col-md-3">
                                 <input name="unit[mac_address]" type="text" class="form-control">
                             </div>
@@ -1329,7 +1344,7 @@
                               <datalist id="items">
                                 <select>
                                 @foreach ($equipments as $equipment)
-                                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}}">{{ $equipment->subtype_name}}</option>
+                                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}}">{{ $equipment->subtype_name}}</option>
                                 @endforeach
                                 @foreach ($systemunits as $systemunits)
                                 <option data-customvalue="System Unit-{{ $systemunits->id}}" value="{{ $systemunits->description}}-{{ $systemunits->id}}">System Unit</option>
@@ -1376,7 +1391,7 @@
                           <datalist id="item">
                             <select>
                             @foreach ($equipments as $equipment)
-                            <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->name}}">{{ $equipment->subtype_name}}</option>
+                            <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}}">{{ $equipment->subtype_name}}</option>
                             @endforeach
                             @foreach ($units_system as $units_system)
                             <option data-customvalue="System Unit-{{ $units_system->id}}" value="{{ $units_system->description}}-{{ $units_system->id}}">System Unit</option>
@@ -1554,7 +1569,7 @@
         }
 
         $(document).ready(function() {
-            
+
         }
     </script>
 
