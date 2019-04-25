@@ -27,36 +27,28 @@
 @stop
 
 @section('content')
+<div class="container">
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <!-- Single Add Modal -->
 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="Multi Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"></a>
-                </button>
+             
 
                 <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="Edit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}"></a>
                 </button>
 
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="Hide/Unhide">
-                    <img class="tool-item"  src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}"></a>
-                </button>
+               
                 <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
             </button>
                 <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="delete">
                         <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
                     </button>
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="sort">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png"></a>
-                    </button>
+               
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
@@ -69,7 +61,7 @@
 		<div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
 			<div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
-                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
+                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                         <tr>
 
@@ -107,9 +99,9 @@
 
                 </table>
             </div>
-            <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
+            <div class="modal fade bd-example-modal-lg" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
 
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
 
     <div class="modal-content">
        <div id ="viewItem" class="modal-header">
@@ -122,18 +114,42 @@
       <div class="modal-body">
 
       <form>
-        Equipment Issued:<input type="text" name="equipmentIssued" id="equipmentIssued"><br><br>
-        Equipment Subtype:<input type="text" name="equipmentSubtype" id="equipmentSubtype"><br><br>
-        System Unit Issued:<input type="text" name="unitIssued" id="unitIssued"><br><br>
-        Issued To:<input type="text" name="issuedTo" id="issuedTo"><br><br>
-        Issued By:<input type="text" name="issuedBy" id="issuedBy"><br><br>
-        Date Issued:<input type="text" name="dateIssued" id="dateIssued"><br><br>
-        Date Updated:<input type="text" name="dateUpdated" id="dateUpdated"><br><br>
-        Issued Until:<input type="text" name="issueUntil" id="issueUntil"><br><br>
-        Date Returned:<input type="text" name="dateReturned" id="dateReturned"><br><br>
-        Remarks:<input type="text" name="remarks" id="remarks"><br><br>
+          <div class="row">
+            <div class="col"> <p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued"></div>
+            <div class="col"> <p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype"></div>
+               <div class="col"> <p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued"></div>
+          </div>
+          
+           <div class="row pt-4">
+               <div class="col"> <p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25"></div>
+                <div class="col"> <p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25"></div>
+          </div>
+          
+          <div class="row pt-4">
+               <div class="col"> <p class="card-title text-dark"> Date Issued:</p>
+                   <input type="text" name="dateIssued" id="dateIssued">
+<!--                    <input type="date" id="dateIssued" name="unit[dateIssued]" value="dateIssued">-->
+              </div>
+                <div class="col"> <p class="card-title text-dark">Date Updated:</p><input type="text" name="dateUpdated" id="dateUpdated"></div>
+                
+          </div>
+          <div class="row pt-4">
+              
+              <div class="col"> <p class="card-title text-dark">Issued Until:</p><input type="text" name="issueUntil" id="issueUntil"></div>
+              <div class="col"> <p class="card-title text-dark"> Date Returned:</p><input type="text" name="dateReturned" id="dateReturned"></div>
+          </div>
+           <div class="row pt-4">
+              
+              <div class="col"> <p class="card-title text-dark"> Remarks:</p> <input type="text" name="remarks" id="remarks" size="50;"><br><br></div>
+              
+          </div>
+          
+      
+      
+      
+    </form>
       </div>
-      </form>
+   
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -250,7 +266,7 @@
                     </div>
                 </div>
             </div>
-
+</div>
 
 @stop
 
