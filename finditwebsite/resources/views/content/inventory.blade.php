@@ -7,20 +7,10 @@
   // $img_path = $session['img_path'];
 ?>
 
-@extends('../template')
-
-@section('css')
+    @extends('../template') @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-@stop
-
-@section('title')
-    Inventory
-@stop
-
-@section('../layout/breadcrumbs')
-    @section('breadcrumbs-title')
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}"> @stop @section('title') Inventory @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
     <i class="fas fa-chart-line">Inventory
     @stop
 @stop
@@ -29,9 +19,9 @@
 <div class="container">
 
     <!-- Tabs -->
-    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist">
-        <li class="nav-item text-uppercase">
-            <a class="nav-link active " id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
+    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
+        <li class="nav-item text-uppercase" >
+            <a class="nav-link active" id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
                 All
             </a>
         </li>
@@ -67,23 +57,17 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <!-- Hide/Unhide Column -->
+<!--
+                 Hide/Unhide Column 
                 <button type="button" class="btn hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
                     aria-expanded="false">
                     <a href="#" data-toggle="tooltip" title="Hide/Unhide">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}">
                     </a>
                 </button>
+-->
 
-                <!-- <select name="toggle_column" id="toggle_column">
-                    <option value="1">Name</option>
-                    <option value="2">Details</option>
-                    <option value="3">Serial No</option>
-                    <option value="4">OR No</option>
-                    <option value="5">Added At</option>
-                    <option value="6">Edited At</option>
-                    <option value="7">Status</option>
-                </select> -->
+                
 
                 <!-- Multiple Select -->
                 <button type="button" class="btn disabled" id="multiple-select">
@@ -92,12 +76,14 @@
                     </a>
                 </button>
 
-                <!-- Edit -->
+<!--
+                 Edit 
                 <button type="button" class="btn disabled" id="edit">
                     <a href="#" data-toggle="tooltip" title="Edit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}">
                     </a>
                 </button>
+-->
 
                 <!-- Add Option-->
                 <div class="dropdown">
@@ -146,7 +132,7 @@
         <!-- All Items in the Inventory -->
         <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
 
-            <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%">
+            <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
                 <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
@@ -181,11 +167,18 @@
                     <!-- View Details Modal -->
                     <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->name !!}"
                         aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-dialog modal-lg" role="document" style=" width: 800px;">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <p>Official Receipt No: {{ $equipment->or_no }}</p>
-                                    <h5 class="modal-title">{{ $equipment->name }}</h5>
+                                    
+                                    <div class="row">
+                                       
+                                        <div class="col"><p>Official Receipt No: {{ $equipment->or_no }}</p></div>
+                                        <div class="col"><h5 class="modal-title">{{ $equipment->name }}</h5></div>
+                                    
+                                    </div>
+                                    
+                                
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -197,28 +190,27 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                                <h5 class="font-weight-bolder text-uppercase text-left">ID:</h5> {{ $equipment->id }}
-                                                <h5 class="font-weight-bolder text-uppercase text-left">Serial Number:</h5> {{ $equipment->serial_no }}
+                                                <h6 class="font-weight-bolder text-uppercase text-left">ID:</h6> 
+                                                <p style="color:black; font-size:16px;">{{ $equipment->id }}</p>
+                                                <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6> 
+                                                <p style="color:black; font-size:16px;">{{ $equipment->serial_no }}</p>
                                         </div>
                                         <div class="col-sm-6">
-                                                <h5 class="font-weight-bolder text-uppercase text-left">Type:</h5>
-                                                {{ $equipment->type_name }}
-                                                <h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5> {{ $equipment->subtype_name }}
+                                                <h6 class="font-weight-bolder text-uppercase text-left">Type:</h6>
+                                                <p style="color:black; font-size:16px;">{{ $equipment->type_name }}</p>
+                                                <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
+                                                <p style="color:black; font-size:16px">{{ $equipment->subtype_name }}</p>
                                         </div>
                                     
-                                        <div class="col-sm-12 m-1">
-                                                    <h5 class="font-weight-bolder text-uppercase">Details:</h5>
-                                                    {{ $equipment->details }}
-                                        </div>
-                                        
+                                       
                                         <div class="col-sm-6">
                                                 @isset( $equipment->unit_id )
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
-                                                    {{ $equipment->unit_id }}
+                                                    <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
+                                                    <p style="color:black; font-size:16px;">{{ $equipment->unit_id }}</p>
                                                 @endisset
                                                 @empty( $equipment->unit_id )
                                                 <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                    <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
                                                     Not Assigned to A Unit
                                                 @endempty
                                         </div>
@@ -226,34 +218,43 @@
                                         <div class="col-sm-6">
                                                 @if( $equipment->type_id == 3)
                                                 @isset( $equipment->imei_or_macaddress )
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
-                                                    {{ $equipment->imei_or_macaddress }}
+                                                    <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
+                                                    <p  style="color:black; font-size:16px;">{{ $equipment->imei_or_macaddress }}</p>
                                                 </li>
                                                 @endisset
                                                 @empty( $equipment->imei_or_macaddress )
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                    <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
                                                     None
                                                 </li>
                                                 @endempty
                                                 @elseif( $equipment->type_id != 3)
                                                 @isset( $equipment->imei_or_macaddress )
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
-                                                    {{ $equipment->imei_or_macaddress }}
+                                                    <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
+                                                    <p style="color:black; font-size:16px;">{{ $equipment->imei_or_macaddress }}</p>
                                                 </li>
                                                 @endisset
                                                 @empty( $equipment->imei_or_macaddress )
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                    <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
                                                     None
                                                 @endempty
                                                 @endif
                                             </ul>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">Supplier:</h5>
-                                                    {{ $equipment->supplier }}
-                                        </div> 
                                     </div>
+                                    <div class="row pt-2">
+                                         <div class="col-6">
+                                            <h6 class="font-weight-bolder text-uppercase">Details:</h6>
+                                            <p>{{ $equipment->details }}</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <h6 class="font-weight-bolder text-uppercase text-left">Supplier:</h6>
+                                            <p style="color:black; font-size:16px;">{{ $equipment->supplier }}</p>
+                                        </div> 
+                                        
+                
+                                    </div>
+                    
                                 </div>
 
                                 <div class="modal-footer">
@@ -281,36 +282,35 @@
     
                                     <div class="modal-body">
                                         <div class="row">
-                                            <div class="col-sm-12">
+                                            <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">Name</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Name:</h6>
                                                         <input name="name" value="{!! $equipment->name !!}">
                                                     </li>
                                                 </ul>
                                             </div>
 
-                                            <div class="col-sm-6 m-2">
+                                            <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">Serial Number:</h5> 
-                                                        <input name="serial_no" value="{!! $equipment->serial_no !!}">
-                                                    </li>
-
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6> 
+                                                        <input name="serial_no" value="{!! $equipment->serial_no !!}" >
+                                                  
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">Official Receipt No</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Official Receipt No</h6>
                                                         <input name="or_no" value="{!! $equipment->or_no !!}">
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="col-sm-6 m-2">
+                                            <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">Type:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Type:</h6>
                                                         {{ $equipment->type_name }}
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
                                                         <input name="subtype_id" value="{!! $equipment->subtype_id !!}">
                                                     </li>
                                                 </ul>
@@ -319,8 +319,8 @@
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase">Details:</h5>
-                                                        <textarea name="details">{{ $equipment->details }}</textarea>
+                                                        <h6 class="font-weight-bolder text-uppercase">Details:</h6>
+                                                        <textarea rows="4" cols="50" name="details">{{ $equipment->details }}</textarea>
                                                         
                                                     </li>
                                                 </ul>
@@ -329,13 +329,13 @@
                                                 <ul class="list-group">
                                                     @isset( $equipment->unit_id )
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
                                                         {{ $equipment->unit_id }}
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->unit_id )
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
                                                         Not Assigned to A Unit
                                                     </li>
                                                     @endempty
@@ -347,26 +347,26 @@
                                                     @if( $equipment->type_id == 3)
                                                     @isset( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
                                                         <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">                                                        
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
                                                         <input name="imei_or_macaddress" value="None">
                                                     </li>
                                                     @endempty
                                                     @elseif( $equipment->type_id != 3)
                                                     @isset( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
                                                         <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">                                                        
                                                     </li>
                                                     @endisset
                                                     @empty( $equipment->imei_or_macaddress )
                                                     <li class="list-group-item">
-                                                        <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
                                                         <input name="imei_or_macaddress" value="None">
                                                     </li>
                                                     @endempty
@@ -377,7 +377,7 @@
                                     </div>
     
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase"">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
@@ -779,29 +779,29 @@
             <div class="modal-content">
                 <div id="buildFromPartsHeader" class="modal-header">
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Parts</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="container" style="padding:2rem">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="container" style="padding:2rem">
 
 
 
 
-                    <table class="table table-borderless table-striped table-hover" style="width:100%">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Quantity</th>
-                                <th>Component</th>
-                                <th>Details</th>
-                                <th>OR no.</th>
-                                <th>Serial no.</th>
-                            </tr>
-                        </thead>
+        <table class="table table-borderless table-striped table-hover" style="width:100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Quantity</th>
+                    <th>Component</th>
+                    <th>Details</th>
+                    <th>OR no.</th>
+                    <th>Serial no.</th>
+                </tr>
+            </thead>
 
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Select Motherboard</option>
                                       <optgroup label="Motherboard category">
                                         <option></option>
@@ -809,15 +809,15 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Select CPU</option>
                                       <optgroup label="Cpu category">
                                         <option></option>
@@ -825,15 +825,15 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
+                <tr>
+                    <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
 
-                                <td>
-                                    <select class="selectpicker">
+                    <td>
+                        <select class="selectpicker">
                                     <option>Select Storage</option>
                                       <optgroup label="Storage category">
                                         <option></option>
@@ -841,14 +841,14 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Select RAM</option>
                                       <optgroup label="RAM category">
                                         <option></option>
@@ -856,14 +856,14 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td><input type="number" min="1" max="8" id="gpuCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td><input type="number" min="1" max="8" id="gpuCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Select GPU</option>
                                       <optgroup label="GPU category">
                                         <option></option>
@@ -871,12 +871,12 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
 
-                            <!--optional
+                <!--optional
     <tr>
         <td></td>
         <td>
@@ -907,10 +907,10 @@
     </tr>
 -->
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Select Power Supply</option>
                                       <optgroup label="Select Power category">
                                         <option></option>
@@ -918,14 +918,14 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Case</option>
                                       <optgroup label="Case category">
                                         <option></option>
@@ -933,14 +933,14 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Heat Sink Fan</option>
                                       <optgroup label="Heat Sink Fan">
                                         <option></option>
@@ -948,14 +948,14 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Mouse</option>
                                       <optgroup label="Mouse category">
                                         <option></option>
@@ -963,15 +963,15 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
 
-                            </tr>
+                </tr>
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Keyboard</option>
                                       <optgroup label="Keyboard category">
                                         <option></option>
@@ -979,15 +979,15 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
+                </tr>
 
 
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <select class="selectpicker">
+                <tr>
+                    <td></td>
+                    <td>
+                        <select class="selectpicker">
                                     <option>Monitor</option>
                                       <optgroup label="Monitor category">
                                         <option></option>
@@ -995,26 +995,26 @@
                                         <option></option>
                                       </optgroup>
                                     </select>
-                                </td>
+                    </td>
 
-                            </tr>
-
-
+                </tr>
 
 
 
-                        </tbody>
-
-                    </table>
-                    <div class="modal-footer">
-                        <button id="save" type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="#successAssociate"> <span class="fas fa-wrench"></span>Build</button>
-                        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-                    </div>
 
 
-                </div>
-            </div>
+            </tbody>
+
+        </table>
+        <div class="modal-footer">
+            <button id="save" type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="#successAssociate"> <span class="fas fa-wrench"></span>Build</button>
+            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
         </div>
+
+
+    </div>
+    </div>
+    </div>
     </div>
 
 
@@ -1032,35 +1032,35 @@
                 </div>
 
                 <div class="container">
-                  <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
-                      {!! csrf_field() !!}
+                    <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+                        {!! csrf_field() !!}
 
-                    <div class="row">
-                        <div class="col-sm">
+                        <div class="row">
+                            <div class="col-sm">
 
-                            <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
-                                <thead>
-                                    <tr>
-                                        <th>Mac Address</th>
-                                        <th>Supplier</th>
-                                        <th>OR no.</th>
-                                        <th>Warranty</th>
-
-
+                                <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
+                                    <thead>
+                                        <tr>
+                                            <th>Mac Address</th>
+                                            <th>Supplier</th>
+                                            <th>OR no.</th>
+                                            <th>Warranty</th>
 
 
-                                    </tr>
 
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                      <td> <input type="text" name="unit[mac_address]"></td>
-                                        <td>
-                                        <input type="text" name="unit[supplier]"><br>
 
-                                        </td>
-                                        <td> <input type="text" name="unit[or_no]"></td>
-                                        <td>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> <input type="text" name="unit[mac_address]"></td>
+                                            <td>
+                                                <input type="text" name="unit[supplier]"><br>
+
+                                            </td>
+                                            <td> <input type="text" name="unit[or_no]"></td>
+                                            <td>
                                                 <label for="start">Start date:</label>
                                                 <input type="date" id="start" name="unit[warranty_start]">
                                                 <br>
@@ -1068,126 +1068,126 @@
                                                 <input type="date" id="start" name="unit[warranty_end]">
 
 
-                                        </td>
+                                            </td>
 
 
-                                    </tr>
-                                </tbody>
+                                        </tr>
+                                    </tbody>
 
 
 
-                            </table>
-                        </div>
-                        <div class="col-sm">
-                            <table class="table table-borderless table-striped table-hover table-responsive" style="width:100%">
-                                <thead class="">
-                                    <tr>
-                                        <th>Component</th>
-                                        <th>Name</th>
-                                        <th>Serial no.</th>
-                                        <th>Details</th>
-                                    </tr>
-                                </thead>
+                                </table>
+                            </div>
+                            <div class="col-sm">
+                                <table class="table table-borderless table-striped table-hover table-responsive" style="width:100%">
+                                    <thead class="">
+                                        <tr>
+                                            <th>Component</th>
+                                            <th>Name</th>
+                                            <th>Serial no.</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td>Motherboard <input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                    <tbody>
+                                        <tr>
+                                            <td>Motherboard <input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
 
-                                    </tr>
+                                        </tr>
 
 
-                                    <tr>
-                                        <td>CPU<input type="text" name="equipment[subtype_id][]" value="2" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>CPU<input type="text" name="equipment[subtype_id][]" value="2" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
-                                    </tr>
+                                                </td>
+                                        </tr>
 
-                                    <tr>
-                                        <td>Storage<input type="text" name="equipment[subtype_id][]" value="3" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>Storage<input type="text" name="equipment[subtype_id][]" value="3" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
 
 
-                                    </tr>
+                                        </tr>
 
-                                    <tr>
-                                        <td>RAM<input type="text" name="equipment[subtype_id][]" value="4" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>RAM<input type="text" name="equipment[subtype_id][]" value="4" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
 
-                                    </tr>
+                                        </tr>
 
-                                    <tr>
-                                        <td>GPU<input type="text" name="equipment[subtype_id][]" value="5" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>GPU<input type="text" name="equipment[subtype_id][]" value="5" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
-                                    </tr>
+                                        </tr>
 
 
 
-                                    <tr>
-                                        <td>Case<input type="text" name="equipment[subtype_id][]" value="7" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>Case<input type="text" name="equipment[subtype_id][]" value="7" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
 
 
-                                    </tr>
+                                        </tr>
 
-                                    <tr>
-                                        <td>Heat Sink Fan<input type="text" name="equipment[subtype_id][]" value="8" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>Heat Sink Fan<input type="text" name="equipment[subtype_id][]" value="8" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
 
-                                    </tr>
+                                        </tr>
 
-                                    <tr>
-                                        <td>Sound Card<input type="text" name="equipment[subtype_id][]" value="18" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
+                                        <tr>
+                                            <td>Sound Card<input type="text" name="equipment[subtype_id][]" value="18" hidden></td>
+                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                                <td>
+                                                    <textarea name="equipment[details][]" rows="2" cols="22">
                                             </textarea>
-                                        </td>
+                                                </td>
 
 
-                                    </tr>
-<!--
+                                        </tr>
+                                        <!--
                                     <tr>
                                         <td>Optical Disk<input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
                                         <td> <input type="text" name="equipment[name][]"></td>
@@ -1206,72 +1206,74 @@
 
 
 
-                                </tbody>
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
+
                         </div>
 
-                    </div>
 
 
 
 
 
+                        <div class="modal-footer">
+                            <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                        </div>
 
-                    <div class="modal-footer">
-                        <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
-                        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-                    </div>
-
-                  </form>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
 
-            <!-- Add system_unit-->
-            <div class="modal fade bd-example-modal-lg" id="addUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Add System Unit</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- Add system_unit-->
+    <div class="modal fade bd-example-modal-lg" id="addUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle">Add System Unit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                             </button>
+                </div>
+
+                <!-- Add system unit Form -->
+                <div class="modal-body">
+                    <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+                        {!! csrf_field() !!}
+                        <div class="row">
+                            <p class="card-title">OR No.</p>
+                            <div class="col-md-3">
+                                <input name="unit[or_no]" type="text" class="form-control">
+                            </div>
+                            <p class="card-title">Supplier</p>
+                            <div class="col-md-3">
+                                <input name="unit[supplier]" type="text" class="form-control">
+                            </div>
+                            <p class="card-title">Mac Address</p>
+                            <div class="col-md-3">
+                                <input name="unit[mac_address]" type="text" class="form-control">
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                            </div>
+                        </div>
+                        <div class="row">
 
-                        <!-- Add system unit Form -->
-                        <div class="modal-body">
-                          <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
-                              {!! csrf_field() !!}
-                              <div class="row">
-                                <p class="card-title">OR No.</p>
-                                  <div class="col-md-3">
-                                    <input name="unit[or_no]" type="text" class="form-control">
-                                  </div>
-                                  <p class="card-title">Supplier</p>
-                                    <div class="col-md-3">
-                                      <input name="unit[supplier]" type="text" class="form-control">
-                                    </div>
-                                    <p class="card-title">Mac Address</p>
-                                      <div class="col-md-3">
-                                        <input name="unit[mac_address]" type="text" class="form-control">
-                                      </div>
-                              </div>
-                              <div class="row">
-                              <div class="col-md-2">
-                              </div></div>
-                              <div class="row">
+                            <!-- Name -->
+                            <p class="card-title">Motherboard:</p>
+                            <hr>
+                            <p class="card-title">Name</p>
+                            <div class="col-md-3">
+                                <input name="equipment[name][]" type="text" class="form-control">
+                            </div>
 
-                                  <!-- Name -->
-                                  <p class="card-title">Motherboard:</p> <hr>
-                                  <p class="card-title">Name</p>
-                                    <div class="col-md-3">
-                                      <input name="equipment[name][]" type="text" class="form-control">
-                                  </div>
-
-                                  <label for="details">Details</p>
+                            <label for="details">Details</p>
                                     <div class="col-md-15">
                                       <textarea name="equipment[details][]" class="form-control" aria-label="With textarea"></textarea>
                                   </div>
