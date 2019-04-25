@@ -254,8 +254,6 @@
                                             <h6 class="font-weight-bolder text-uppercase text-left">Supplier:</h6>
                                             <p style="color:black; font-size:16px;">{{ $equipment->supplier }}</p>
                                         </div>
-
-
                                     </div>
 
                                 </div>
@@ -403,7 +401,6 @@
             <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Type</th>
@@ -541,7 +538,6 @@
             <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Subtype</th>
@@ -706,8 +702,9 @@
             <div class="modal-body">
                 <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}
-                    <div class="row">
-                        <p class="card-title">Equipment Subtype</p>
+                    <div class="row pb-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Subtype:</p>
                         <select name="subtype_id" class="custom-select">
                         @foreach ($equipment_subtypes as $equipment_subtypes)
                             <option  value="{!! $equipment_subtypes->id !!}">
@@ -715,54 +712,88 @@
                             </option>
                         @endforeach
                         </select>
-                      </div>
-                        <hr>
+                        </div>
+                    </div>
                         <!-- Name -->
                         <div class="row">
-                        <p class="card-title">Model</p>
-                            <div class="input-group mb-3">
-                            <input name="model" type="text" class="form-control">
+                            <div class="col-5">
+                                    <p class="card-title text-dark">Model:</p>
+                                        <div class="input-group mb-3">
+                                        <input name="model" type="text" class="form-control">
+                                        </div>
+                            </div>
+                            <div class="col-4">
+                                    <p class="card-title text-dark">Brand:</p>
+                                    <div class="input-group mb-3">
+                                    <input name="brand" type="text" class="form-control">
+                                    </div>
+                            </div>
+                      </div>
+                        <div class="row">
+                        <div class="col-9">
+                            <label for="details" class="card-title text-dark">Details:</label>
+                            <div class="input-group mb-1">
+                                <textarea name="details" class="form-control" aria-label="With textarea" rows="3"></textarea>
+                            </div>
                         </div>
-                        <p class="card-title">Brand</p>
-                            <div class="input-group mb-3">
-                            <input name="brand" type="text" class="form-control">
                         </div>
-
-                        <label for="details">Details</p>
-                        <div class="input-group mb-1">
-                            <textarea name="details" class="form-control" aria-label="With textarea"></textarea>
+                    
+                    
+                    
+                      <div class="row pb-2">
+                        <div class="col">
+                            
+                          <label for="details" class="card-title text-dark">Warranty:</label>
+                            <div class="row">
+                            <div class="col">
+                                <p>Start</p>
+                             <input type="date" id="start" name="unit[warranty_start]">
+                            </div>
+                            <div class="col">
+                                <p>End</p>
+                             <input type="date" id="start" name="unit[warranty_start]">
+                            </div>
+                                </div>
+                        
+                            
                         </div>
                       </div>
-                      <div class="row">
-                        <label for="details">Warranty start</p>
+                    <br>
+                        <div class="row">
+                            <div class="col-6">
+                        <label for="serial_no" class="card-title text-dark">Serial Number:</label>
                         <div class="input-group mb-1">
-                            <textarea name="warranty_details" class="form-control" aria-label="With textarea"></textarea>
+                            <input name="serial_no" type="text" class="form-control" >
                         </div>
-                        <label for="details">Warranty end</p>
-                        <div class="input-group mb-1">
-                            <textarea name="warranty_details" class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                      </div>
-                        <label for="serial_no">Serial Number</p>
-                        <div class="input-group mb-1">
-                            <input name="serial_no" type="text" class="form-control">
-                        </div>
-
-                        <label for="serial_no">IMEI/MAC address</p>
+                                </div>
+                            <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
                         <div class="input-group mb-1">
                             <input name="imei_or_macaddress" type="text" class="form-control">
                         </div>
+                            
+                            </div>
+                            </div>
 
-                        <p class="card-title">Official Receipt Numbers</p>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                        <p class="card-title text-dark">Official Receipt Numbers:</p>
                         <div class="input-group mb-1">
-                            <input name="or_no" type="text" class="form-control">
+                            <input name="or_no" type="text" class="form-control" size="20px;">
                         </div>
-                        <label for="serial_no">Supplier</p>
+                                </div>
+                            <div class="col-6">
+                                
+                                <label for="serial_no" class="card-title text-dark">Supplier:</label>
                         <div class="input-group mb-1">
                             <input name="supplier" type="text" class="form-control">
                         </div>
+                            </div>
+                    </div>
+                        
 
-                        <p class="card-title">System Unit Assigned To</p>
+                        <p class="card-title">System Unit Assigned To:</p>
                         <select name="unit_id" class="custom-select">
                             <option value="NULL">Not Assigned</option>
                             @foreach ($units as $units)
