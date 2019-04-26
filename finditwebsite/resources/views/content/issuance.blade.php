@@ -34,22 +34,14 @@
             <!-- Single Add Modal -->
 
             <div class="btn-group" role="group" aria-label="Basic example">
-             
-
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="Edit">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}"></a>
-                </button>
-
                
                 <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
-            </button>
+                </button>
                 <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="delete">
                         <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
-                    </button>
+                </button>
                
-
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
                     <a class="dropdown-item" href="#">Issue Multiple Items</a>
@@ -87,9 +79,9 @@
                             <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
                             <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
                             <td> {{ $issuance->userfname }} {{ $issuance->userlname }}  </td>
-                            <td> {{ $issuance->created_at }} </td>
-                            <td > {{ $issuance->updated_at }} </td>
-                            <td> {{ $issuance->issued_until }} </td>
+                            <td>{{ $issuance->created_at }}</td>
+                            <td>{{ $issuance->updated_at }}</td>
+                            <td>{{ $issuance->issued_until }}</td>
                             <td> {{ $issuance->returned_at }} </td>
                             <td> {{ $issuance->remarks }} </td>
                         </tr>
@@ -115,33 +107,32 @@
 
       <form>
           <div class="row">
-            <div class="col"> <p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued"></div>
-            <div class="col"> <p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype"></div>
-               <div class="col"> <p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued"></div>
+            <div class="col"><p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued"></div>
+            <div class="col"><p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype"></div>
+               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued"></div>
           </div>
           
            <div class="row pt-4">
-               <div class="col"> <p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25"></div>
-                <div class="col"> <p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25"></div>
+               <div class="col"><p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25"></div>
+                <div class="col"><p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25"></div>
           </div>
           
           <div class="row pt-4">
-               <div class="col"> <p class="card-title text-dark"> Date Issued:</p>
+               <div class="col"><p class="card-title text-dark">Date Issued:</p>
                    <input type="text" name="dateIssued" id="dateIssued">
-<!--                    <input type="date" id="dateIssued" name="unit[dateIssued]" value="dateIssued">-->
               </div>
-                <div class="col"> <p class="card-title text-dark">Date Updated:</p><input type="text" name="dateUpdated" id="dateUpdated"></div>
+                <div class="col"><p class="card-title text-dark">Date Updated:</p><input type="date" name="dateUpdated" id="dateUpdated"></div>
                 
           </div>
           <div class="row pt-4">
               
-              <div class="col"> <p class="card-title text-dark">Issued Until:</p><input type="text" name="issueUntil" id="issueUntil"></div>
-              <div class="col"> <p class="card-title text-dark"> Date Returned:</p><input type="text" name="dateReturned" id="dateReturned"></div>
+              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil"></div>
+              <div class="col"><p class="card-title text-dark">Date Returned:</p><input type="date" name="dateReturned" id="dateReturned"></div>
           </div>
            <div class="row pt-4">
               
-              <div class="col"> <p class="card-title text-dark"> Remarks:</p> <input type="text" name="remarks" id="remarks" size="50;"><br><br></div>
-              
+              <div class="col"><p class="card-title text-dark">Remarks:</p> <input type="text" name="remarks" id="remarks" size="50;"></div>
+               
           </div>
           
       
@@ -201,7 +192,6 @@
                                       </div>
 
                                       <div class="row">
-
                                               <div class="col-md-4"><table></table></div>
                                       </div>
 
@@ -293,16 +283,16 @@
         table.rows[i].onclick = function()
         {
              //rIndex = this.rowIndex;
-             document.getElementById("equipmentIssued").value = this.cells[0].innerHTML;
-             document.getElementById("equipmentSubtype").value = this.cells[1].innerHTML;
-             document.getElementById("unitIssued").value = this.cells[2].innerHTML;
-             document.getElementById("issuedTo").value = this.cells[3].innerHTML;
-             document.getElementById("issuedBy").value = this.cells[4].innerHTML;
-             document.getElementById("dateIssued").value = this.cells[5].innerHTML;
-             document.getElementById("dateUpdated").value = this.cells[6].innerHTML;
-             document.getElementById("issueUntil").value = this.cells[7].innerHTML;
-             document.getElementById("dateReturned").value = this.cells[8].innerHTML;
-             document.getElementById("remarks").value = this.cells[9].innerHTML;
+             document.getElementById("equipmentIssued").setAttribute('value', this.cells[0].innerHTML);
+             document.getElementById("equipmentSubtype").setAttribute('value', this.cells[1].innerHTML);
+             document.getElementById("unitIssued").setAttribute('value', this.cells[2].innerHTML);
+             document.getElementById("issuedTo").setAttribute('value', this.cells[3].innerHTML);
+             document.getElementById("issuedBy").setAttribute('value', this.cells[4].innerHTML);
+             document.getElementById("dateIssued").setAttribute('value', this.cells[5].innerHTML);
+             document.getElementById("dateUpdated").setAttribute('value', this.cells[6].innerHTML);
+             document.getElementById("issueUntil").setAttribute('value', this.cells[7].innerHTML);
+             document.getElementById("dateReturned").setAttribute('value', this.cells[8].innerHTML);
+             document.getElementById("remarks").setAttribute('value', this.cells[9].innerHTML);
 
         };
     }
