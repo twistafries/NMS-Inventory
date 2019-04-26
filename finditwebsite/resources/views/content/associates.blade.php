@@ -70,6 +70,266 @@
         </div>
     </div> -->
 
+                        <!-- Page Content -->
+                    <div class="container p-lg-2 p-md-1 p-sm-0">
+                        <div class="container">
+
+                            <!-- Toolbox -->
+                            <div class="d-flex flex-row-reverse">
+                                <div class="p-2">
+
+
+
+
+                                    <!-- Add User Modal -->
+                                    <div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div id="addUserHeader" class="modal-header">
+                                                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Add User</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <form>
+                                                                <label class="label">Employee Name: </label>
+                                                                <br>
+                                                                <!--<input type="text" name="name" size="35"><br>-->
+                                                                <!--Bootstrap-select name-->
+                                                                <select class="selectpicker" data-live-search="true" size="35">
+                                                                <!--Add key words to options to improve their searchability using data-tokens.-->
+                                                                    <option data-tokens="">Justine Garcia</option>
+                                                                    <option data-tokens="">Lovelyn  Paris</option>
+                                                                    <option data-tokens="">Aika Vien</option>
+                                                                    <option data-tokens="">Jon Paulo</option>
+                                                                    <option data-tokens="">Gavin Roy</option>
+                                                                    <option data-tokens="">Mehanie Lonogan</option>
+                                                                    <option data-tokens="">Kim  Willy</option>
+                                                                    <option data-tokens="">Amy  Santiago</option>
+                                                                    <option data-tokens="">Raymond  Holt</option>        
+                                                                </select>
+                                                            </form>
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                    <br>
+
+                                                    <!--User type dropdown-->
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <form>
+                                                                <label class="label">User Type:</label>
+                                                                <br>
+                                                                <div class="form-group">
+                                                                    <select class="exampleFormControlSelect1">
+                                                                    <option>Admin</option>
+                                                                    <option>Associate</option>
+                                                                   
+                                                                    </select>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <br>
+                                                    <!--Employee Details Table-->
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label class="label">Details</label>
+                                                            <br>
+                                                            <div class="container">
+                                                                <table style="width:100%">
+                                                                    <tr>
+                                                                        <th>Firstname</th>
+                                                                        <th>Lastname</th>
+                                                                        <th>Email</th>
+                                                                        <th>Department</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Null</td>
+                                                                        <td>Null</td>
+                                                                        <td>Null</td>
+                                                                        <td>Null</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="modal-footer">
+                                                    <button id="save" type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="#successAssociate"> <span class="fas fa-plus"></span>ADD</button>
+                                                    <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                   
+
+                                    <!-- Remove User Modal -->
+                                    <div class="modal fade" id="removeUser" tabindex="-1" role="dialog" aria-labelledby="removeUserTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div id="removeUserHeader" class="modal-header">
+                                                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Remove User</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <form>
+                                                                <label class="label">Employee Name: </label>
+                                                                <br>
+                                                                <!--<input type="text" name="name" size="35"><br>-->
+                                                                <!--Bootstrap-select name-->
+                                                                <select class="selectpicker" data-live-search="true" size="35">
+                                                                    <option data-tokens="">Justine Garcia</option>
+                                                                    <option data-tokens="">Lovelyn  Paris</option>
+                                                                    <option data-tokens="">Aika Vien</option>
+                                                                    <option data-tokens="">Jon Paulo</option>
+                                                                    <option data-tokens="">Gavin Roy</option>
+                                                                    <option data-tokens="">Mehanie Lonogan</option>
+                                                                    <option data-tokens="">Kim  Willy</option>
+                                                                    <option data-tokens="">Amy  Santiago</option>
+                                                                    <option data-tokens="">Raymond  Holt</option>   
+                                                                </select>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+                                                    <!--Employee Details Table-->
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label class="label">Details</label>
+                                                            <br>
+                                                            <div class="container">
+                                                                <table style="width:100%">
+                                                                    <tr>
+                                                                        <th>Firstname</th>
+                                                                        <th>Lastname</th>
+                                                                        <th>Email</th>
+                                                                        <th>Department</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Null</td>
+                                                                        <td>Null</td>
+                                                                        <td>Null</td>
+                                                                        <td>Null</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="save" type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" href="#successRemoveAssociate"> <span class="fas fa-minus"></span>    REMOVE</button>
+                                                    <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- Modal Associate successfully added!-->
+                                    <div class="modal fade" id="successAssociate" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div id="successAssociate" class="modal-header">
+                                                    <h5 class="modal-title" id="ModalTitle"></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <i id="successIcon" class="far fa-check-circle fa-10x"></i>
+                                                    <p id="successText">User ($Name) successfully added!</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="okSuccessButton" type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal Associate successfully removed!-->
+                                    <div class="modal fade" id="successRemoveAssociate" tabindex="-1" role="dialog" aria-labelledby="successRemoveModalTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div id="successRemoveAssociate" class="modal-header">
+                                                    <h5 class="modal-title" id="ModalTitle"></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <i id="successIcon" class="far fa-check-circle fa-10x"></i>
+                                                    <p id="successText">User ($Name) successfully removed!</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="okSuccessButton" type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--- Failed To Add Associate Modal Design --->
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="failedModal" tabindex="-1" role="dialog" aria-labelledby="failedModalTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div id="failedHeader" class="modal-header">
+                                                    <h5 class="modal-title" id="ModalTitle"></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <i id="failedIcon" class="far fa-times-circle fa-10x"></i>
+                                                    <p id="failedText">Failed to add ($Name) Associate!</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="retryFailedButton" type="button" class="btn btn-danger" data-dismiss="modal">RETRY</button>
+                                                    <button id="okFailedButton" type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <!-- Associate tools ADD EDIT DELETE-->
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn " data-toggle="modal" data-target="#addUser" style="padding-left: 15px;"><span class="fas fa-user-plus" data-toggle="tooltip" title="Add  User" ></span>Add </button>
+                                        <!--                                        <button type="button" class="btn" data-toggle="modal" data-target="#"><span class="fas fa-user-edit" data-toggle="tooltip" title="Edit Associate"></span></button>-->
+                                        <button type="button" class="btn " data-toggle="modal" data-target="#removeUser"><span class="fas fa-user-minus" data-toggle="tooltip" title="Remove User"></span>Remove</button>
+
+
+                                        <!--
+                                        <button  type="button" class="btn btn-secondary rounded-10 border-0" data-toggle="modal" data-target="#addAssociate"><span class="fas fa-user-plus" style="padding:5px; margin: auto;   "></span>Add Associate</button>
+                                        
+                                        <button  type="button" class="btn btn-secondary rounded-10 border-0" data-toggle="modal" data-target="#addAssociate"><span class="fas fa-user-plus" style="padding-right: 5px; padding-left: 5; "></span>Add Associate</button>
+                                        
+                                        <button  type="button" class="btn btn-secondary rounded-10 border-0" data-toggle="modal" data-target="#addAssociate"><span class="fas fa-user-plus" style="padding-right: 5px"></span>Add Associate</button>
+-->
+
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
     <!-- Tabs -->
     <div class="container">
       <div style="height:10px"></div>
