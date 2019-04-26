@@ -316,7 +316,7 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
-                                                        <input name="subtype_id" value="{!! $equipment->subtype_id !!}">
+                                                        <input name="subtype_id" value="{!! $equipment->subtype_name !!}">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -718,14 +718,14 @@
                         <div class="row">
                             <div class="col-5">
                                     <p class="card-title text-dark">Model:</p>
-                                        <div class="input-group mb-3">
-                                        <input name="model" type="text" class="form-control">
+                                        <div class="input-group">
+                                        <input name="model" type="text" size="30">
                                         </div>
                             </div>
                             <div class="col-4">
                                     <p class="card-title text-dark">Brand:</p>
-                                    <div class="input-group mb-3">
-                                    <input name="brand" type="text" class="form-control">
+                                    <div class="input-group">
+                                    <input name="brand" type="text" size="30">
                                     </div>
                             </div>
                       </div>
@@ -733,7 +733,7 @@
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
                             <div class="input-group mb-1">
-                                <textarea name="details" class="form-control" aria-label="With textarea" rows="3"></textarea>
+                                <textarea name="details" class="form-control" aria-label="With textarea" rows="2"></textarea>
                             </div>
                         </div>
                         </div>
@@ -763,13 +763,13 @@
                             <div class="col-6">
                         <label for="serial_no" class="card-title text-dark">Serial Number:</label>
                         <div class="input-group mb-1">
-                            <input name="serial_no" type="text" class="form-control" >
+                            <input name="serial_no" type="text" size="30" >
                         </div>
                                 </div>
                             <div class="col-6">
                             <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
                         <div class="input-group mb-1">
-                            <input name="imei_or_macaddress" type="text" class="form-control">
+                            <input name="imei_or_macaddress" type="text" size="30">
                         </div>
                             
                             </div>
@@ -780,20 +780,21 @@
                             <div class="col-6">
                         <p class="card-title text-dark">Official Receipt Numbers:</p>
                         <div class="input-group mb-1">
-                            <input name="or_no" type="text" class="form-control" size="20px;">
+                            <input name="or_no" type="text" size="30">
                         </div>
                                 </div>
                             <div class="col-6">
                                 
                                 <label for="serial_no" class="card-title text-dark">Supplier:</label>
                         <div class="input-group mb-1">
-                            <input name="supplier" type="text" class="form-control">
+                            <input name="supplier" type="text" size="30">
                         </div>
                             </div>
                     </div>
                         
-
-                        <p class="card-title">System Unit Assigned To:</p>
+                    <div class="row">
+                        <div class="col-6">
+                     <p class="card-title text-dark">System Unit Assigned To:</p>
                         <select name="unit_id" class="custom-select">
                             <option value="NULL">Not Assigned</option>
                             @foreach ($units as $units)
@@ -804,6 +805,38 @@
                             </option>
                             @endforeach
                         </select>
+                            </div>
+                        <div class="col-6">
+                            <p class="card-title text-dark">Status:</p>
+                            <select class="custom-select" name="" >
+                                    <option value="">Available</option>
+                                    <option value="">Issued</option>
+                                    <option value="">For repair</option>
+                                    <option value="">For return</option>
+                                    <option value="">For disposal</option>
+                                    <option value="">Pending</option>
+                                    <option value="">Decommissioned</option>
+                                    <option value="">In-use</option>
+                            </select>
+
+                        </div>
+                        
+
+                    
+                    </div>
+                    
+                     <div class="row">
+                    
+                         <div class="col-4">
+                            <p class="card-title text-dark"></p>
+                              <button class="btn btn-info" type="submit" id= "AddEquipment">Issue Item</button>
+                            
+
+                        </div>
+
+                    
+                    </div>
+                       
                     </div>
                 <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
             </div>
