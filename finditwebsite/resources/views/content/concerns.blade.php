@@ -16,7 +16,7 @@
 @stop
 
 @section('title')
-    Inventory
+    Inventory Concerns
 @stop
 
 @section('../layout/breadcrumbs')
@@ -89,8 +89,8 @@
                             <th>Serial No</th>
                             <th>OR No</th>
                             <th>Supplier</th>
-                            <th>Added At</th>
-                            <th width="15%">Edited At</th>
+                            <th>Date Added</th>
+                            <th width="15%">Date Edited</th>
                             <th>Added by</th>
                             <th>Status</th>
                         </tr>
@@ -128,8 +128,8 @@
                             <th>Serial No</th>
                             <th>OR No</th>
                             <th>Supplier</th>
-                            <th>Added At</th>
-                            <th width="15%">Edited At</th>
+                            <th>Date Added</th>
+                            <th width="15%">Date Edited</th>
                             <th>Added By</th>
                             <th>Last User</th>
                             <th>Warranty</th>
@@ -186,9 +186,9 @@
                                   <th>Serial No</th>
                                   <th>OR No</th>
                                   <th>Supplier</th>
-                                  <th>Added At</th>
+                                  <th>Date Added</th>
                                   <th width="15%">Edited At</th>
-                                  <th>Added By</th>
+                                  <th>Date Added</th>
                                   <th>Remarks</th>
                               </tr>
                           </thead>
@@ -226,8 +226,8 @@
                             <th>Serial No</th>
                             <th>OR No</th>
                             <th>Supplier</th>
-                            <th>Added At</th>
-                            <th width="15%">Edited At</th>
+                            <th>Date Added</th>
+                            <th width="15%">Date Edited</th>
                             <th>Added By</th>
                             <th>Remarks</th>
                         </tr>

@@ -19,7 +19,7 @@
 
 
 @section('title')
-    dashboard
+    Dashboard
 @stop
 
 

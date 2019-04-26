@@ -17,7 +17,7 @@
 @stop
 
 @section('title')
-    Inventory
+    Associates
 @stop
 
 @section('../layout/breadcrumbs')

@@ -17,7 +17,7 @@
 @stop
 
 @section('title')
-    Generate REport
+    Generate Report
 @stop
 
 @section('../layout/breadcrumbs')
