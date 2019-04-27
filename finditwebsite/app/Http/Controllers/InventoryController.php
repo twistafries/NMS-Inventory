@@ -42,7 +42,7 @@ class InventoryController extends BaseController
       $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['parts'] = TblItEquipment::get_computer_component();
       return view ('content/inventory' , $data);
-  }
+    }
 
 
     public function showInputValues(){
@@ -60,139 +60,142 @@ class InventoryController extends BaseController
         return view ('content/temporary-add-equipment' , $data);
     }
 
-    // INSERT INTO `findit`.`it_equipment`
-    // (`subtype_id`, `name`, `details`,
-    // `serial_no`, `or_no`, `user_id`, `status_id`)
-    // VALUES ('6', 'EVGA SuperNOVA 750', '750 W', '80-R5-7854-TY', '43790', '1', '1');
+    public function addEquipment(Request $request){
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+        return \Redirect::to('/loginpage');
+      }
+      
+      $session=Session::get('loggedIn');
+      $user_id = $session['id'];
+      // dd($user_id);
 
-public function addSystemUnit(Request $request){
-  if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-            return \Redirect::to('/loginpage');
+      $data = $request->all();
+        // dd($data);
+        
+      $data['user_id'] = $user_id;
+      // $data['subtype_id'] = (int)$request->get('subtype_id');
+      // dd($data);
+
+      if(isset($data['subtype_id']) 
+      && isset($data['brand']) 
+      && isset($data['model']) 
+      && isset($data['details']) 
+      && isset($data['user_id']) 
+      && isset($data['warranty_start']) 
+      && isset($data['warranty_end']) 
+      && isset($data['supplier'])
+      && isset($data['serial_no']) 
+      && isset($data['or_no'])  
+      && isset($data['status_id']) ){
+          TblItEquipment::add_equipment($data);
+          return \Redirect::to('/inventory')->with('equipment has been added');
+      }else{
+           return redirect()->back()->with('error', 'Please fill out ALL fields');
+          // return redirect()->intended('/content/inventory')->with('error', 'Please fill out ALL fields');
+      }
+    }
+
+    public function addSystemUnit(Request $request){
+      if(Session::get('loggedIn')['user_type']!='admin' && 
+      Session::get('loggedIn')['user_type'] != "associate"){
+        return \Redirect::to('/loginpage');
       }
 
-  $show = $request->all();
-  $data = $request->input('unit.*');
-  $data['user_id'] = 2;
-  $data['mac_address'] = $data[0];
-  $data['supplier'] = $data[1];
-  $data['or_no'] = $data[2];
-  $data['warranty_start'] = $data[3];
-  $data['warranty_end'] = $data[4];
+      $session=Session::get('loggedIn');
+      $user_id = $session['id'];
 
-  $id = TblSystemUnits::add_system_unit($data);
-  $data['unit_id'] = $id;
-  $data['action'] = "added";
-  TblActivityLogs::add_log($data);
+      // $show = $request->all();
+      $data = $request->input('unit.*');
+      $data['user_id'] = $user_id;
+      $data['description'] = $data[0];
+      $data['supplier'] = $data[1];
+      $data['or_no'] = $data[2];
+      $data['warranty_start'] = $data[3];
+      $data['warranty_end'] = $data[4];
 
-  $data['equipments'] = collect([]);
-  $names = $request->get('equipment')['name'];
-  $subtype_id = $request->get('equipment')['subtype_id'];
-  $details = $request->get('equipment')['details'];
-  $serial_no = $request->get('equipment')['serial_no'];
-  $unit_id = $id;
-  $supplier = $data['supplier'];
-  $user_id = $data['user_id'] ;
-  $or_no = $data['or_no'];
-  $warranty_start = $data['warranty_start'];
-  $warranty_end = $data['warranty_end'];
-  $status = 8;
+      $id = TblSystemUnits::add_system_unit($data);
 
-  $ctr = 0;
-  foreach ($names as $name) {
-    $data['equipments'] ->push(['name'=> $name, 'details'=> $details[$ctr], 'subtype_id'=> $subtype_id[$ctr], 'serial_no'=> $serial_no[$ctr],
-                                'warranty_start'=> $warranty_start, 'warranty_end'=> $warranty_end, 'user_id'=> $user_id,'or_no'=> $or_no, 'supplier'=> $supplier, 'unit_id'=>$unit_id, 'status_id'=> $status]);
-    $ctr++;
-    // code...
-  }
+      $data['equipments'] = collect([]);
+      $brands = $request->get('equipment')['brand'];
+      $model = $request->get('equipment')['model'];
+      // $names = $request->get('equipment')['name'];
+      $subtype_id = $request->get('equipment')['subtype_id'];
+      $details = $request->get('equipment')['details'];
+      $serial_no = $request->get('equipment')['serial_no'];
+      $unit_id = $id;
+      $supplier = $data['supplier'];
+      $user_id = $data['user_id'] ;
+      $or_no = $data['or_no'];
+      $warranty_start = $data['warranty_start'];
+      $warranty_end = $data['warranty_end'];
+      $status = 8;
+
+      $ctr = 0;
+      foreach ($brands as $brand) {
+        $data['equipments'] ->push([
+          'brand'=> $brand, 
+          'model'=> $model, 
+          'details'=> $details[$ctr], 
+          'subtype_id'=> $subtype_id[$ctr], 
+          'serial_no'=> $serial_no[$ctr],
+          'warranty_start'=> $warranty_start, 
+          'warranty_end'=> $warranty_end, 
+          'user_id'=> $user_id,
+          'or_no'=> $or_no, 
+          'supplier'=> $supplier, 
+          'unit_id'=>$unit_id, 
+          'status_id'=> $status]);
+        $ctr++;
+        // code...
+      }
 
 
-  foreach($data['equipments'] as $equipment){
-    $id = TblItEquipment::add_equipment($equipment);
-    $data['equipment_id'] = $id;
-    $data['action'] = "added";
-    TblActivityLogs::add_log($data);
+      foreach($data['equipments'] as $equipment){
+        TblItEquipment::add_equipment($equipment);
+      }
+      // dd($data['show']);
 
-  }
-  // dd($data['show']);
+        // foreach ($data['equipments'] as $equipment) {
+        //   dd($equipment['name']);
+        // }
+        return \Redirect::to('/inventory')->with('equipment has been added');
 
-    // foreach ($data['equipments'] as $equipment) {
-    //   dd($equipment['name']);
-    // }
-    return \Redirect::to('/inventory')->with('equipment has been added');
-
-}
-   public function addEquipment(Request $request){
-    if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-            return \Redirect::to('/loginpage');
     }
 
-    // dd("Inside");
+
+    public function editEquipment(Request $request){
         $data = $request->all();
-          // dd($data);
-        $data['user_id'] = 2;
-        $data['status_id'] = 1;
-        $data['subtype_id'] = (int)$request->get('subtype_id');
-       if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['user_id']) && isset($data['warranty_details']) && isset($data['supplier'])
-       && isset($data['serial_no']) && isset($data['or_no'])  && isset($data['status_id']) ){
-           $id = TblItEquipment::add_equipment($data);
-           $data['equipment_id'] = $id;
-           $data['action'] = "added";
-           TblActivityLogs::add_log($data);
-
-           return \Redirect::to('/inventory')->with('equipment has been added');
-       }else{
-
-        //    return redirect()->back()->with('error', 'Please fill out ALL fields');
-           return redirect()->intended('/content/inventory')->with('error', 'Please fill out ALL fields');
-       }
-   }
-
-   public function bulkAdd(){
-       return view('content/bulk-add');
-   }
-
-   public function editEquipment(Request $request){
-      $data = $request->all();
-      // dd($data);
-       $id = TblItEquipment::edit_equipment($data);
-       $data['it_equipment'] = $id;
-       $data['action'] = "updated";
-       TblActivityLogs::add_log($data);
-       return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
-   }
-
-
-public function softDeleteEquipment(Request $request){
-  $data = $request->all();
-   $pieces = explode("-", $data['items']);
-   if($pieces[0] == "Mobile Device"){
-     $data['equipment_id']=(int)$pieces[1];
-    TblItEquipment::update_equipment_status($data['equipment_id'],7);
-   }else{
-     $data['unit_id']=(int)$pieces[1] ;
-     TblSystemUnits::update_unit_status($data['unit_id'],7);
-   }
-
-    return \Redirect::to('/inventory')->with('equipment has been deleted');
- }
-
- public function hardDeleteEquipment(Request $request){
-   $data = $request->all();
-    $pieces = explode("-", $data['item']);
-    if($pieces[0] == "Mobile Device"){
-      $data['equipment_id']=(int)$pieces[1];
-     $id = TblItEquipment::delete_equipment($data['equipment_id']);
-     $data['it_equipment'] = $id;
-     $data['action'] = "deleted";
-     TblActivityLogs::add_log($data);
-    }else{
-      $data['unit_id']=(int)$pieces[1] ;
-      $id = TblSystemUnits::delete_unit($data['unit_id']);
-      $data['system_units'] = $id;
-      $data['action'] = "deleted";
-      TblActivityLogs::add_log($data);
+        // dd($data);
+        TblItEquipment::edit_equipment($data);
+        return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
     }
 
-     return \Redirect::to('/inventory')->with('equipment has been deleted');
-  }
-}
+
+    public function softDeleteEquipment(Request $request){
+      $data = $request->all();
+      $pieces = explode("-", $data['items']);
+      if($pieces[0] == "Mobile Device"){
+        $data['equipment_id']=(int)$pieces[1];
+        TblItEquipment::update_equipment_status($data['equipment_id'],7);
+      }else{
+        $data['unit_id']=(int)$pieces[1] ;
+        TblSystemUnits::update_unit_status($data['unit_id'],7);
+      }
+
+        return \Redirect::to('/inventory')->with('equipment has been deleted');
+    }
+
+    public function hardDeleteEquipment(Request $request){
+      $data = $request->all();
+        $pieces = explode("-", $data['item']);
+        if($pieces[0] == "Mobile Device"){
+          $data['equipment_id']=(int)$pieces[1];
+        TblItEquipment::delete_equipment($data['equipment_id']);
+        }else{
+          $data['unit_id']=(int)$pieces[1] ;
+          TblSystemUnits::delete_unit($data['unit_id']);
+        }
+
+        return \Redirect::to('/inventory')->with('equipment has been deleted');
+      }
+    }

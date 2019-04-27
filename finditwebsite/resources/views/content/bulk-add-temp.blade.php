@@ -26,7 +26,7 @@ Temporary Bulk-Add Page
 <!-- Table Form -->
 <div class="col-12 card">
     <div class="card-body">
-        <form method="post" id="bulk_form" action="{!! url('/temp-bulk-add-post'); !!}">
+        <form method="post" id="bulk_form">
             {!! csrf_field() !!}
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
@@ -44,6 +44,7 @@ Temporary Bulk-Add Page
                             <th>Unit ID</th>
                             <th>Supplier</th>
                             <th>Warranty Details</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -277,23 +278,23 @@ Temporary Bulk-Add Page
             //     }
             // });
             console.log(form_data);
-            // $.ajax({
-            //     url: "{!! url('/temp-bulk-add-post'); !!}" , 
-            //     method: "POST" ,
-            //     data: {
-            //         'form_data': form_data,
-            //     },
-            //     success: function(data){
-            //         $('#equipment_data').find("tr:gt(0)").remove();
-            //         $('#successModal').modal('show')
-            //         console.log("Data Inserted Successfully");
-            //     }
-            // })
+            $.ajax({
+                url: "{!! url('/temp-bulk-add-post'); !!}" , 
+                method: "POST" ,
+                data: {
+                    'form_data': form_data,
+                },
+                success: function(data){
+                    $('#equipment_data').find("tr:gt(0)").remove();
+                    $('#successModal').modal('show')
+                    console.log("Data Inserted Successfully");
+                }
+            })
         }else{
             $('#emptyModal').modal('show')
-            // $('#successModal').on('shown.bs.modal', function () {
-            //     $('#myInput').trigger('focus')
-            // })
+            $('#successModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
         }
     });
 

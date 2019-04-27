@@ -33,11 +33,12 @@ Route::get('/reportpage', function () {
     return view('content/report');
 });
 
+
 Route::group(['middleware' => 'preventBackHistory'],function(){
-	Auth::routes();
-  Route::get('/loginpage', function () {
-      return view('content/loginpage');
-  });
+    Auth::routes();
+    Route::get('/loginpage', function () {
+        return view('content/loginpage');
+    });
 });
 // Route::get('/inventory', 'InventoryController@showAllInventory');
 
@@ -68,6 +69,7 @@ Route::post('/removeUser', 'AssociateController@removeUser');
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 
 Route::get('/bulk-add', 'BulkController@showFields');
+Route::get('/bulkadd', 'BulkController@showFields');
 Route::get('/temp-bulk-add', 'BulkController@showFields');
 Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 

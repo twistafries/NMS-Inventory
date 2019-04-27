@@ -42,7 +42,7 @@ class TblSystemUnits extends Model
       $system_units->description = 'PC Workstation';
       $system_units->user_id = $params['user_id'];
       $system_units->status_id = 1;
-      $system_units->mac_address = $params['mac_address'];
+      // $system_units->mac_address = $params['mac_address'];
       try {
         $system_units->save();
         $id = DB::getPdo()->lastInsertId();

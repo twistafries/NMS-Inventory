@@ -200,7 +200,6 @@
                         <th>OR No</th>
                         <th>Added by</th>
                         <th>Date Added</th>
-                        <th width="15%">Date Edited</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -219,11 +218,10 @@
                         <td> {{ $equipment->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
-                        <td > {{ $equipment->updated_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
                     </tr>
 
-                    <!-- View Details Modal -->
+                    <!-- View Details All Modal -->
                     <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document" style=" width: 800px;">
@@ -232,9 +230,11 @@
 
                                     <div class="row">
 
-                                        <div class="col"><p>Official Receipt No: {{ $equipment->or_no }}</p></div>
-                                        <div class="col"><h5 class="modal-title">{{ $equipment->brand }}</h5></div>
-                                        <div class="col"><h5 class="modal-title">{{ $equipment->model }}</h5></div>
+                                        <div class="col-3"><p>Official Receipt No: {{ $equipment->or_no }}</p></div>
+                                        <div class="col-9">
+                                            <h5 class="modal-title">{{ $equipment->brand }} {{ $equipment->model }}</h5>
+                                            <p class="text-light">ID: {{ $equipment->id }}</p>
+                                        </div>
 
                                     </div>
 
@@ -249,17 +249,20 @@
 
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                                <h6 class="font-weight-bolder text-uppercase text-left">ID:</h6>
-                                                <p style="color:black; font-size:16px;">{{ $equipment->id }}</p>
-                                                <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6>
-                                                <p style="color:black; font-size:16px;">{{ $equipment->serial_no }}</p>
+                                        <div class="col-12">
+                                            <h6 class="font-weight-bolder text-uppercase">Details:</h6>
+                                            <p>{{ $equipment->details }}</p>
                                         </div>
                                         <div class="col-sm-6">
-                                                <h6 class="font-weight-bolder text-uppercase text-left">Type:</h6>
-                                                <p style="color:black; font-size:16px;">{{ $equipment->type_name }}</p>
-                                                <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
-                                                <p style="color:black; font-size:16px">{{ $equipment->subtype_name }}</p>
+                                            <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6>
+                                            <p style="color:black; font-size:16px;">{{ $equipment->serial_no }}</p>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h6 class="font-weight-bolder text-uppercase text-left">Type:</h6>
+                                            <p style="color:black; font-size:16px;">{{ $equipment->type_name }}</p>
+                                            <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
+                                            <p style="color:black; font-size:16px">{{ $equipment->subtype_name }}</p>
+                                            
                                         </div>
 
 
@@ -282,23 +285,7 @@
                                                     <p  style="color:black; font-size:16px;">{{ $equipment->imei_or_macaddress }}</p>
                                                 </li>
                                                 @endisset
-                                                @empty( $equipment->imei_or_macaddress )
-                                                    <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
-                                                    None
-                                                </li>
-                                                @endempty
-                                                @elseif( $equipment->type_id != 3)
-                                                @isset( $equipment->imei_or_macaddress )
-                                                    <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
-                                                    <p style="color:black; font-size:16px;">{{ $equipment->imei_or_macaddress }}</p>
-                                                </li>
-                                                @endisset
-                                                @empty( $equipment->imei_or_macaddress )
-                                                    <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
-                                                    None
-                                                @endempty
                                                 @endif
-                                            </ul>
                                         </div>
 
                                     </div>
@@ -317,6 +304,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -365,6 +353,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
+                                            
                                             <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
@@ -387,6 +376,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
+
                                             <div class="col-sm-6">
                                                 <ul class="list-group">
                                                     @isset( $equipment->unit_id )
@@ -446,8 +436,51 @@
                             </div>
                         </form>
                     </div>
-                    @endforeach
+
+                    <!-- Change Status -->
+                    <div class="modal fade" id="change-status-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
+                        aria-hidden="true">
+                        <form action="{!! url('/editEquipment'); !!}" method="post">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">Change Status</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <p class="card-title">Status</p>
+                                            <select name="status_id" class="custom-select">
+                                                <option value="1">Available</option>
+                                                <option value="2">Issued</option>
+                                                <option value="3">For Repair</option>
+                                                <option value="4">For Return</option>
+                                                <option value="5">For Disposal</option>
+                                                <option value="6">Pending</option>
+                                                <option value="7">Decomissioned</option>
+                                                @if( $equipment->type_id == 1)
+                                                <option value="8">In Use</option>
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
                 </tbody>
+                @endforeach
 
 
             </table>
@@ -488,7 +521,6 @@
                         <td> {{ $components->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $components->created_at }} </td>
-                        <td> {{ $components->updated_at }} </td>
                         <td> {{ $components->status_name }} </td>
                     </tr>
 
@@ -762,193 +794,183 @@
 </div>
 </div>
 </div>
-<!-- Single Add Modal -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">Single Add</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
 
-            <!-- Add Equipment Form -->
-            <div class="modal-body">
-                <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
-                    {!! csrf_field() !!}
-                    <div class="row pb-2">
-                        <div class="col">
-                        <p class="card-title text-dark">Equipment Subtype:</p>
-                        <select name="subtype_id" class="custom-select">
-                        @foreach ($equipment_subtypes as $equipment_subtypes)
-                            <option  value="{!! $equipment_subtypes->id !!}">
-                              {{ $equipment_subtypes->name }}
-                            </option>
-                        @endforeach
-                        </select>
-                        </div>
+    <!-- Single Add Modal -->
+    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+        {!! csrf_field() !!}
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalTitle">Single Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                        <!-- Name -->
+
+                    <!-- Add Equipment Form -->
+                    <div class="modal-body">
+                        <input type="hidden" name="action" value="add">
+                        <div class="row pb-2">
+                            <div class="col">
+                            <p class="card-title text-dark">Equipment Subtype:</p>
+                            <select name="subtype_id" class="custom-select">
+                            @foreach ($equipment_subtypes as $equipment_subtypes)
+                                <option  value="{!! $equipment_subtypes->id !!}">
+                                    {{ $equipment_subtypes->name }}
+                                </option>
+                            @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Model & Brand -->
                         <div class="row">
                             <div class="col-5">
-                                    <p class="card-title text-dark">Model:</p>
-                                        <div class="input-group">
-                                        <input name="model" type="text" size="30">
-                                        </div>
+                                <p class="card-title text-dark">Model:</p>
+                                <div class="input-group">
+                                    <input name="model" type="text" size="30">
+                                </div>
                             </div>
                             <div class="col-4">
-                                    <p class="card-title text-dark">Brand:</p>
-                                    <div class="input-group">
+                                <p class="card-title text-dark">Brand:</p>
+                                <div class="input-group">
                                     <input name="brand" type="text" size="30">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="row">
+                            <div class="col-9">
+                                <label for="details" class="card-title text-dark">Details:</label>
+                                <div class="input-group mb-1">
+                                    <textarea name="details" class="form-control" aria-label="With textarea" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <!-- Warranty -->
+                        <div class="row pb-2">
+                            <div class="col">        
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="details" class="card-title text-dark">Warranty Start:</label>
+                                        <input type="date" id="start" name="warranty_start">
                                     </div>
-                            </div>
-                      </div>
-                        <div class="row">
-                        <div class="col-9">
-                            <label for="details" class="card-title text-dark">Details:</label>
-                            <div class="input-group mb-1">
-                                <textarea name="details" class="form-control" aria-label="With textarea" rows="2"></textarea>
+
+                                    <div class="col">
+                                        <label for="details" class="card-title text-dark">Warranty End:</label>
+                                        <input type="date" id="start" name="warranty_end">
+                                    </div>
+                                </div>                            
                             </div>
                         </div>
-                        </div>
 
+                        <br>
 
-
-                      <div class="row pb-2">
-                        <div class="col">
-
-                          <label for="details" class="card-title text-dark">Warranty:</label>
-                            <div class="row">
-                            <div class="col">
-                                <p>Start</p>
-                             <input type="date" id="start" name="unit[warranty_start]">
-                            </div>
-                            <div class="col">
-                                <p>End</p>
-                             <input type="date" id="start" name="unit[warranty_start]">
-                            </div>
-                                </div>
-
-
-                        </div>
-                      </div>
-                    <br>
+                        <!-- Serial and IMEI/MAC -->
                         <div class="row">
                             <div class="col-6">
-                        <label for="serial_no" class="card-title text-dark">Serial Number:</label>
-                        <div class="input-group mb-1">
-                            <input name="serial_no" type="text" size="30" >
-                        </div>
+                                <label for="serial_no" class="card-title text-dark">Serial Number:</label>
+                                <div class="input-group mb-1">
+                                    <input name="serial_no" type="text" size="30" >
                                 </div>
+                            </div>
+
                             <div class="col-6">
-                            <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
-                        <div class="input-group mb-1">
-                            <input name="imei_or_macaddress" type="text" size="30">
+                                <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
+                                <div class="input-group mb-1">
+                                    <input name="imei_or_macaddress" type="text" size="30">
+                                </div>    
+                            </div>    
                         </div>
 
-                            </div>
-                            </div>
-
-
+                        <!-- OR & Supplier -->
                         <div class="row">
                             <div class="col-6">
-                        <p class="card-title text-dark">Official Receipt Numbers:</p>
-                        <div class="input-group mb-1">
-                            <input name="or_no" type="text" size="30">
-                        </div>
+                                <p class="card-title text-dark">Official Receipt Numbers:</p>
+                                <div class="input-group mb-1">
+                                    <input name="or_no" type="text" size="30">
                                 </div>
-                            <div class="col-6">
+                            </div>
 
+                            <div class="col-6">        
                                 <label for="serial_no" class="card-title text-dark">Supplier:</label>
-                        <div class="input-group mb-1">
-                            <input name="supplier" type="text" size="30">
-                        </div>
+                                <div class="input-group mb-1">
+                                    <input name="supplier" type="text" size="30">
+                                </div>
                             </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-6">
-                     <p class="card-title text-dark">System Unit Assigned To:</p>
-                        <select name="unit_id" class="custom-select">
-                            <option value="NULL">Not Assigned</option>
-                            @foreach ($units as $units)
-
-                            <hr>
-                            <option value="{!! $system_units->id !!}">
-                                {{ $units->description }}-{{ $units->id }}
-                            </option>
-                            @endforeach
-                        </select>
+                        </div>
+                        
+                        <!-- System Unit & Status -->
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="card-title text-dark">System Unit Assigned To:</p>
+                                <select name="unit_id" class="custom-select">
+                                    <option value="NULL">Not Assigned</option>
+                                    @foreach ($units as $units)
+                                    <option value="{!! $system_units->id !!}">
+                                        {{ $units->description }}-{{ $units->id }}
+                                    </option>
+                                    @endforeach
+                                </select>
                             </div>
-                        <div class="col-6">
-                            <p class="card-title text-dark">Status:</p>
-                            <select class="custom-select" name="" >
-                                    <option value="">Available</option>
-                                    <option value="">Issued</option>
-                                    <option value="">For repair</option>
-                                    <option value="">For return</option>
-                                    <option value="">For disposal</option>
-                                    <option value="">Pending</option>
-                                    <option value="">Decommissioned</option>
-                                    <option value="">In-use</option>
-                            </select>
 
+                            <div class="col-6">
+                                <p class="card-title text-dark">Status:</p>
+                                <select class="custom-select" name="status_id" >
+                                    <option value="1">Available</option>
+                                    <option value="4">For return</option>
+                                    <option value="6">Pending</option>
+                                    <option value="8">In-use</option>
+                                </select>
+                            </div>                    
                         </div>
-
-
-
-                    </div>
-
-                     <div class="row">
-
-                         <div class="col-4">
-                            <p class="card-title text-dark"></p>
-                              <button class="btn btn-info" type="submit" id= "AddEquipment">Issue Item</button>
-
-
+                        
+                        <div class="row">
+                            <div class="col-4">
+                                <p class="card-title text-dark"></p>
+                                <button class="btn btn-info" id= "AddEquipment">Issue Item</button>
+                            </div>
                         </div>
-
-
+                            
                     </div>
 
+                    <div class="modal-footer text-uppercase">
+                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
-                <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                    
+                </div>
             </div>
+        </div>
+        </div>
+    </form>
 
-
-            <div class="modal-footer text-uppercase">
-                <button class="btn btn-info" type="submit" id= "AddEquipment">Add</button>
-
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
-            </div>
-            </form>
-          </div>
-      </div>
-    </div>
-    <!-- From Parts Modal-->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
+    <!--Build From Parts Modal-->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div id="buildFromPartsHeader" class="modal-header">
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Parts</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
-    <div class="container" style="padding:2rem">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="container" style="padding:2rem">
 
-        <div class="container">
+            <div class="container">
 
-        </div>
+            </div>
 
 
         <table class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="">
                 <tr>
                   <th><p class="card-title text-dark">Name:</p>
-                                        <div class="input-group">
-                                        <input name="model" type="text" size="30">
-                                        </div>
+                    <div class="input-group">
+                        <input name="model" type="text" size="30">
+                    </div>
                 </th>
                 </tr>
             </thead>
@@ -1005,7 +1027,6 @@
 
 
     <!-- Add System Unit Modal                                   -->
-
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="addUnit">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -1025,17 +1046,13 @@
                                 <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
                                     <thead>
                                         <tr>
-                                            <th>Mac Address</th>
+                                            <th>PC Description</th>
                                             <th>Supplier</th>
-                                            <th>OR no.</th>
+                                            <th>OR No.</th>
                                             <th>Warranty</th>
-
-
-
-
                                         </tr>
-
                                     </thead>
+
                                     <tbody>
                                         <tr>
                                             <td> <input type="text" name="unit[mac_address]"></td>
@@ -1050,24 +1067,19 @@
                                                 <br>
                                                 <label for="start">End date:</label>
                                                 <input type="date" id="start" name="unit[warranty_end]">
-
-
                                             </td>
-
-
                                         </tr>
                                     </tbody>
-
-
-
                                 </table>
+
                             </div>
                             <div class="col-sm">
                                 <table class="table table-borderless table-striped table-hover table-responsive" style="width:100%">
                                     <thead class="">
                                         <tr>
                                             <th>Component</th>
-                                            <th>Name</th>
+                                            <th>Brand</th>
+                                            <th>Model</th>
                                             <th>Serial no.</th>
                                             <th>Details</th>
                                         </tr>
@@ -1076,132 +1088,74 @@
                                     <tbody>
                                         <tr>
                                             <td>Motherboard <input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
-
-
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
 
                                         <tr>
                                             <td>CPU<input type="text" name="equipment[subtype_id][]" value="2" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
                                         <tr>
                                             <td>Storage<input type="text" name="equipment[subtype_id][]" value="3" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
-
-
-
-                                        </tr>
 
                                         <tr>
                                             <td>RAM<input type="text" name="equipment[subtype_id][]" value="4" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
-
-
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
                                         <tr>
                                             <td>GPU<input type="text" name="equipment[subtype_id][]" value="5" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
-
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
-
-
 
                                         <tr>
                                             <td>Case<input type="text" name="equipment[subtype_id][]" value="7" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
-
-
-
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
                                         <tr>
                                             <td>Heat Sink Fan<input type="text" name="equipment[subtype_id][]" value="8" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
 
 
                                         </tr>
 
                                         <tr>
                                             <td>Sound Card<input type="text" name="equipment[subtype_id][]" value="18" hidden></td>
-                                            <td> <input type="text" name="equipment[name][]"></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
                                             <td> <input type="text" name="equipment[serial_no][]" </td>
-                                                <td>
-                                                    <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                                </td>
-
-
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
-                                        <!--
-                                    <tr>
-                                        <td>Optical Disk<input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
-                                        <td> <input type="text" name="equipment[name][]"></td>
-                                        <td> <input type="text" name="equipment[serial_no][]"</td>
-                                        <td>
-                                            <textarea name="equipment[details][]" rows="2" cols="22">
-                                            </textarea>
-                                        </td>
-
-
-                                    </tr> -->
-
-
-
-
-
-
-
                                     </tbody>
 
                                 </table>
                             </div>
 
                         </div>
-
-
-
-
-
-
                         <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
                             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
@@ -1547,7 +1501,7 @@ $(document).ready(function() {
         var item1 = $(hequipment).val();
         document.getElementById("hequipment").value = $('#item [value="' + item1 + '"]').data('customvalue');
         return true;
-        }
+        };
     </script>
     <script>
     $.fn.dataTable.ext.search.push(
@@ -1724,8 +1678,9 @@ $('#subtypes').on('keyup change',  function() {
             reset()
 
           }
+        };
 
-        }
+        
     </script>
 
 
