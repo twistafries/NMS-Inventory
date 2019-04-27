@@ -84,7 +84,7 @@ class BulkController extends BaseController
             TblItEquipment::add_equipment($inventory);
         }
 
-        return \Redirect::to('/inventory')->with($count + 'equipment has been added');
+        return \Redirect::to('/inventory')->with('equipment has been added');
         
     }
 }
