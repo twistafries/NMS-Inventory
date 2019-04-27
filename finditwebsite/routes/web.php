@@ -47,6 +47,8 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
 Route::get('/dashboard', 'Dashboard@showAllStatus');
+Route::get('/reportpage', 'Reports@showAllStatus');
+
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
 Route::post('/deactivate', 'AssociateController@update_associate_status');

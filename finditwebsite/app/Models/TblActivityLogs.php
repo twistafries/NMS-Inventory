@@ -111,4 +111,84 @@ public static function get_activities_dashboard($params = null){
     return $query;
 }
 
+public static function get_for_return_Month($params){
+  $query = \DB::table('activity_logs as a')
+  ->leftjoin('users', 'users.id', '=', 'a.done_by')
+  ->leftjoin('users as u', 'u.id', '=', 'a.user_id')
+  ->leftjoin('departments', 'departments.id', '=', 'a.dept_id')
+  ->leftjoin('employees', 'employees.id', '=', 'a.employee_id')
+  ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.status_id')
+  ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.concerns_id')
+  ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance_id')
+  ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.equipment_id')
+  ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.subtype_id')
+  ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.type_id')
+  ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_id')
+  ->leftjoin('system_units', 'system_units.id', '=', 'a.unit_id')
+  ->where('a.action', '=', 'changed status')
+  ->where('a.status_id', '=', 4)
+  ->whereMonth('a.created_at', '=', $params)
+  -> get();
+  return $query;
+}
+public static function get_for_repair_Month($params){
+  $query = \DB::table('activity_logs as a')
+  ->leftjoin('users', 'users.id', '=', 'a.done_by')
+  ->leftjoin('users as u', 'u.id', '=', 'a.user_id')
+  ->leftjoin('departments', 'departments.id', '=', 'a.dept_id')
+  ->leftjoin('employees', 'employees.id', '=', 'a.employee_id')
+  ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.status_id')
+  ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.concerns_id')
+  ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance_id')
+  ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.equipment_id')
+  ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.subtype_id')
+  ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.type_id')
+  ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_id')
+  ->leftjoin('system_units', 'system_units.id', '=', 'a.unit_id')
+  ->where('a.action', '=', 'changed status')
+  ->where('a.status_id', '=', '3')
+  ->whereMonth('a.created_at', '=', $params)
+  -> get();
+  return $query;
+}
+public static function get_for_pend_Month($params){
+  $query = \DB::table('activity_logs as a')
+  ->leftjoin('users', 'users.id', '=', 'a.done_by')
+  ->leftjoin('users as u', 'u.id', '=', 'a.user_id')
+  ->leftjoin('departments', 'departments.id', '=', 'a.dept_id')
+  ->leftjoin('employees', 'employees.id', '=', 'a.employee_id')
+  ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.status_id')
+  ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.concerns_id')
+  ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance_id')
+  ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.equipment_id')
+  ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.subtype_id')
+  ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.type_id')
+  ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_id')
+  ->leftjoin('system_units', 'system_units.id', '=', 'a.unit_id')
+  ->where('a.action', '=', 'changed status')
+  ->where('a.status_id', '=', '6')
+  ->whereMonth('a.created_at', '=', $params)
+  -> get();
+  return $query;
+}
+public static function get_for_decom_Month($params){
+  $query = \DB::table('activity_logs as a')
+  ->leftjoin('users', 'users.id', '=', 'a.done_by')
+  ->leftjoin('users as u', 'u.id', '=', 'a.user_id')
+  ->leftjoin('departments', 'departments.id', '=', 'a.dept_id')
+  ->leftjoin('employees', 'employees.id', '=', 'a.employee_id')
+  ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.status_id')
+  ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.concerns_id')
+  ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance_id')
+  ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.equipment_id')
+  ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.subtype_id')
+  ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.type_id')
+  ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_id')
+  ->leftjoin('system_units', 'system_units.id', '=', 'a.unit_id')
+  ->where('a.action', '=', 'changed status')
+  ->where('a.status_id', '=', '7')
+  ->whereMonth('a.created_at', '=', $params)
+  -> get();
+  return $query;
+}
 }
