@@ -33,6 +33,10 @@ Route::get('/reportpage', function () {
     return view('content/report');
 });
 
+Route::get('/bulk', function () {
+    return view('content/bulkadd');
+});
+
 Route::group(['middleware' => 'preventBackHistory'],function(){
 	Auth::routes();
   Route::get('/loginpage', function () {
@@ -62,6 +66,7 @@ Route::post('/addEmployee', 'ForStatusController@addEmployee');
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 
 Route::get('/bulk-add', 'BulkController@showFields');
+Route::get('/bulkadd', 'BulkController@showFields');
 Route::get('/temp-bulk-add', 'BulkController@showFields');
 Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 
