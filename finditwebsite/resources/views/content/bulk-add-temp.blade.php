@@ -44,6 +44,7 @@ Temporary Bulk-Add Page
                             <th>Unit ID</th>
                             <th>Supplier</th>
                             <th>Warranty Details</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>

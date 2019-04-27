@@ -9,6 +9,14 @@ class TblEquipmentStatus extends Model
     protected $table = 'it_equipment';
     public $timestamps = false;
 
+    public static function get_all_status($params = null){
+        $query = \DB::table('equipment_status')
+        -> orderBy('created_at' , 'asc')
+        -> get();
+
+        return $query;
+    }
+
     public static function get_for_repair($params = null){
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
