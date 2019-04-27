@@ -9,11 +9,10 @@ class TblAssociate extends Model
     protected $table = 'users';
     public $timestamps = false;
 
-    public static function get_all_associates($params = null){
+    public static function get_all_users($params = null){
         $query = \DB::table('users')
         -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
-        -> select('users.*', 'departments.name', 'users.status as stat')
-        -> where('users.user_type' , '=' , 'associate')
+        -> select('users.*', 'users.id as id', 'departments.name as department', 'departments.id as dept_id', 'users.status as status')
         -> orderBy('users.email' , 'asc')
         -> get();
         return $query;

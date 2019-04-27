@@ -87,6 +87,7 @@ class TblEquipmentStatus extends Model
         -> get();
         return $query;
     }
+    
     public static function get_available_units($params = null){
         $query = \DB::table('system_units')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
