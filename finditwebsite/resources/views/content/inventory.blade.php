@@ -198,6 +198,7 @@
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
+                        <th>Added by</th>
                         <th>Date Added</th>
                         <th width="15%">Date Edited</th>
                         <th>Status</th>
@@ -216,6 +217,7 @@
                         <td width="30%"> {{ $equipment->details }} </td>
                         <td> {{ $equipment->serial_no }} </td>
                         <td> {{ $equipment->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
                         <td > {{ $equipment->updated_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
@@ -465,6 +467,7 @@
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
+                      <th>Added By</>
                       <th>Date Added</th>
                       <th width="15%">Date Edited</th>
                       <th>Status</th>
@@ -483,6 +486,7 @@
                         <td width="30%"> {{ $components->details }} </td>
                         <td> {{ $components->serial_no }} </td>
                         <td> {{ $components->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $components->created_at }} </td>
                         <td> {{ $components->updated_at }} </td>
                         <td> {{ $components->status_name }} </td>
@@ -604,8 +608,9 @@
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
-                        <th>Added At</th>
-                        <th width="15%">Edited At</th>
+                        <th>Added by</th>
+                        <th>Date Added</th>
+                        <th width="15%">Date Edited</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -621,6 +626,7 @@
                         <td width="30%"> {{ $peripherals->details }} </td>
                         <td> {{ $peripherals->serial_no }} </td>
                         <td> {{ $peripherals->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $peripherals->created_at }} </td>
                         <td> {{ $peripherals->updated_at }} </td>
                         <td> {{ $peripherals->status_name }} </td>
@@ -645,8 +651,9 @@
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
-                        <th>Added At</th>
-                        <th width="15%">Edited At</th>
+                        <th>Added by</th>
+                        <th>Date Added</th>
+                        <th width="15%">Date Edited</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -661,6 +668,7 @@
                         <td width="30%"> {{ $mobile->details }} </td>
                         <td> {{ $mobile->serial_no }} </td>
                         <td> {{ $mobile->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $mobile->created_at }} </td>
                         <td> {{ $mobile->updated_at }} </td>
                         <td> {{ $mobile->status_name }} </td>
@@ -685,8 +693,9 @@
                 <th>Details</th>
                 <th>Serial No</th>
                 <th>OR No</th>
-                <th>Added At</th>
-                <th width="15%">Edited At</th>
+                <th>Added by</th>
+                <th>Date Added</th>
+                <th width="15%">Date Edited</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -701,6 +710,7 @@
                 <td width="30%"> {{ $software->details }} </td>
                 <td> {{ $software->serial_no }} </td>
                 <td> {{ $software->or_no }} </td>
+                <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                 <td> {{ $software->created_at }} </td>
                 <td> {{ $software->updated_at }} </td>
                 <td> {{ $software->status_name }} </td>
@@ -720,8 +730,8 @@
 
               <th>Name</th>
               <th>Details</th>
-              <th>Added At</th>
-              <th width="15%">Edited At</th>
+              <th>Date Added</th>
+              <th width="15%">Date Edited</th>
               <th>Added by</th>
               <th></th>
           </tr>
@@ -1533,7 +1543,7 @@ var types = data[3]; // use data for the age column
 var subtypes = data[4];
 var suppliers = data[5];
 var brands = data[2];
-var statuses = data[11];
+var statuses = data[12];
 if ( type == types || type == "any"){
   if (subtype == subtypes || subtype == "any"){
     if (supplier == suppliers || supplier == "any"){

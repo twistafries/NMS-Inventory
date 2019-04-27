@@ -34,14 +34,14 @@
             <!-- Single Add Modal -->
 
             <div class="btn-group" role="group" aria-label="Basic example">
-               
+
                 <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
                 </button>
                 <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="delete">
                         <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
                 </button>
-               
+
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
                     <a class="dropdown-item" href="#">Issue Multiple Items</a>
@@ -84,6 +84,8 @@
                             <td>{{ $issuance->issued_until }}</td>
                             <td> {{ $issuance->returned_at }} </td>
                             <td> {{ $issuance->remarks }} </td>
+                            <td hidden> {{ $issuance->id }} </td>
+
                         </tr>
                         @endforeach
                     </tbody>
@@ -91,9 +93,8 @@
 
                 </table>
             </div>
-            <div class="modal fade bd-example-modal-lg" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
-
-                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+  <div class="modal fade bd-example-modal-xl" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
 
     <div class="modal-content">
        <div id ="viewItem" class="modal-header">
@@ -105,45 +106,46 @@
 
       <div class="modal-body">
 
-      <form>
+        <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+            {!! csrf_field() !!}
           <div class="row">
-            <div class="col"><p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued"></div>
-            <div class="col"><p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype"></div>
-               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued"></div>
+            <div class="col"><p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued" disabled></div>
+            <div class="col"><p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype" disabled></div>
+               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued" disabled></div>
           </div>
-          
+
            <div class="row pt-4">
-               <div class="col"><p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25"></div>
-                <div class="col"><p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25"></div>
+               <div class="col"><p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25" disabled></div>
+                <div class="col"><p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25" disabled></div>
           </div>
-          
+
           <div class="row pt-4">
                <div class="col"><p class="card-title text-dark">Date Issued:</p>
-                   <input type="text" name="dateIssued" id="dateIssued">
+                   <input type="text" name="dateIssued" id="dateIssued" disabled>
               </div>
-                <div class="col"><p class="card-title text-dark">Date Updated:</p><input type="date" name="dateUpdated" id="dateUpdated"></div>
-                
+                <div class="col"><p class="card-title text-dark">Date Updated:</p><input type="date" name="dateUpdated" id="dateUpdated" disabled></div>
+
           </div>
           <div class="row pt-4">
-              
-              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil"></div>
-              <div class="col"><p class="card-title text-dark">Date Returned:</p><input type="date" name="dateReturned" id="dateReturned"></div>
+
+              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil" disabled></div>
+              <div class="col"><p class="card-title text-dark">Date Returned:</p><input type="date" name="dateReturned" id="dateReturned" disabled></div>
           </div>
            <div class="row pt-4">
-              
-              <div class="col"><p class="card-title text-dark">Remarks:</p> <input type="text" name="remarks" id="remarks" size="50;"></div>
-               
+
+              <div class="col"><p class="card-title text-dark">Remarks:</p> <textarea name="remarks" id="remarks" rows="2" cols="22" disabled></textarea></div>
+
           </div>
-          
-      
-      
-      
+
+
+
+
     </form>
       </div>
-   
+
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+        <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton" onclick="editValues()">Edit Values</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -159,7 +161,7 @@
                             </button>
                         </div>
 
-                        <!-- Add Equipment Form -->
+                        <!-- Issue Form -->
                         <div class="modal-body">
                             <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" method="post"  onsubmit="DoSubmit()" role="form">
                                 {!! csrf_field() !!}
@@ -191,9 +193,13 @@
                                           </div>
                                       </div>
 
-                                      <div class="row">
-                                              <div class="col-md-4"><table></table></div>
-                                      </div>
+                                      <table id="addMoreList">
+                                                 <tbody>
+                                                 </tbody>
+                                             </table>
+
+
+                                     <br>
 
                                       <br>
                                       <div class="row">
@@ -292,7 +298,7 @@
              document.getElementById("dateUpdated").setAttribute('value', this.cells[6].innerHTML);
              document.getElementById("issueUntil").setAttribute('value', this.cells[7].innerHTML);
              document.getElementById("dateReturned").setAttribute('value', this.cells[8].innerHTML);
-             document.getElementById("remarks").setAttribute('value', this.cells[9].innerHTML);
+             document.getElementById("remarks").innerHTML=this.cells[9].innerHTML;
 
         };
     }
@@ -316,6 +322,16 @@
            responsive: true,
            "order": []});
     } );
+    </script>
+    <script>
+      function editValues() {
+          document.getElementById("editButton").innerHTML = "Save Changes";
+          document.getElementById("editButton").setAttribute('type', 'submit');
+          $("#editButton").off('click');
+          document.getElementById("issueUntil").disabled = false;
+          document.getElementById("equipmentIssued").disabled = false;
+          document.getElementById("issueUntil").disabled = false;
+      }
     </script>
     <script>
     function DoSubmit(){
@@ -356,5 +372,15 @@
         return false ; // text does not matched ;
     }
   </script>
+  <script>function rm() {
+  $(event.target).closest("tr").remove();
+}
+
+function add() {
+                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td>  <div class=\"col-md-5\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-11\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br>");
+            }
+    </script>
+
+
 
 @stop
