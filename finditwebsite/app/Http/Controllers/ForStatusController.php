@@ -116,7 +116,7 @@ class ForStatusController extends BaseController
       $id = TblEmployees::edit_employee($data);
 
       $data['employees'] = $id;
-      $data['action'] = "edited";
+      $data['action'] = "updated";
       TblActivityLogs::add_log($data);
 
       return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');

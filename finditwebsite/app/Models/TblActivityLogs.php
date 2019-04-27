@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use DB, Session;
 
 class TblActivityLogs extends Model {
 
@@ -18,7 +18,7 @@ class TblActivityLogs extends Model {
 
     	$log = new TblActivityLogs;
 
-    	$log->done_by = $params['user_id'];
+    	$log->done_by = Session::get('loggedIn')['id'];
     	$log->action = $params['action'];
     	
         if(isset($params['departments']))
