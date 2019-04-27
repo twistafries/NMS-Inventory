@@ -59,6 +59,10 @@ Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
+Route::post('/removeEmployee', 'ForStatusController@removeEmployee');
+Route::post('/addUsers', 'AssociateController@addUsers');
+Route::post('/removeUser', 'AssociateController@removeUser');
+
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 
 Route::get('/bulk-add', 'BulkController@showFields');

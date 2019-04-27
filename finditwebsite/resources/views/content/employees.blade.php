@@ -26,7 +26,7 @@
                                 <div class="p-2">
 
       <div class="btn-group" role="group" aria-label="Basic example">
-          
+
                                     <button type="button" class="btn" data-toggle="modal" data-target="#addAssociate" style="padding-left: 15px;"><span class="fas fa-user-plus" data-toggle="tooltip" title="Add Associate" ></span>Add </button>
                                     <button type="button" class="btn " data-toggle="modal" data-target="#removeEmployee"><span class="fas fa-user-minus" data-toggle="tooltip" title="Remove Associate"></span>Remove</button>
 
@@ -40,7 +40,7 @@
                     <th>Email</th>
                     <th>Department</th>
                     <th>Status</th>
-                    
+
                 </tr>
             </thead>
 
@@ -52,10 +52,10 @@
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->department }}</td>
                     <td>{{ $employee->status }}</td>
-                
+
                 </tr>
 
-                
+
                 <!-- View Details Modal -->
                 <div class="modal fade" id="modal-{!! $employee->id !!}" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg row">
@@ -82,7 +82,7 @@
                                         <h5 class="account-settings">Account Settings</h5>
                                         <hr style="color: #FDAD4E; background: #FDAD4E; height: 1px; margin-right: 2rem;">
                                     </div>
-                                    
+
                                     <div class="" style="margin-left: 1rem; margin-right: 2rem;">
                                         <form action="{!! url('/editEmployee'); !!}" class="profile-form" id="profile-form" method="post">
                                             <input type="hidden" name="id" value="{!! $employee->id !!}">
@@ -120,7 +120,7 @@
                                                     <div class="col col-1 edit" id="department-edit"><u>Edit</u></div>
                                                 </div>
                                                 <!--department collapse-->
-                                                <div class="display" id="department"> 
+                                                <div class="display" id="department">
                                                     <div class="margin">
                                                         <div class="form-group row">
                                                             <select class="department-select" name="department">
@@ -134,7 +134,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <!--Email-->
                                             <div id="divemail">
                                                 <div class="row row-details">
@@ -248,7 +248,8 @@
         <div class="modal-body" style="height: auto">
             <div class="row">
                 <div class="col-3">
-                  <label class="label">Id No.</label><p>1</p>
+                  <label class="label">Id No.</label>{{$lastid->id+1}}
+                  <input type="text" value="{!! $lastid->id+1 !!}" name="id" hidden>
                 </div>
             </div>
 
@@ -273,7 +274,7 @@
                 <br>
             </div>
             <div class="row">
-                
+
                 <div class="col-12">
                     <label class="label">Department:</label>
                     <div class="form-group">
@@ -285,17 +286,30 @@
                                                                             </select>
                     </div>
                 </div>
-      
-              
+
+
             </div>
         </div>
         <div class="modal-footer">
-            <button id="save" type="submit" class="btn-success"> <span class="fas fa-plus"></span>ADD</button>
+            <button id="save" type="submit" class="btn-success" data-toggle="modal" data-target="#success-message"> <span class="fas fa-plus"></span>ADD</button>
             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
         </div>
         </div>
     </form>
     </div>
+    </div>
+
+     <div id="success-message" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div> -->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p><center>You have successfully added an employee.</center></p>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -307,20 +321,38 @@
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Remove Employee</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <form action="{!! url('/removeEmployee'); !!}" enctype="multipart/form-data" method="post" role="form">
+                <form action="{!! url('/removeEmployee'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post" role="form">
                     {!! csrf_field() !!}
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6">
-                                <label class="label">Name:</label>
-                                <br>
                                 <div class="form-group">
-                                    <select class="selectpicker" data-live-search="true" name="employee_id">
-                                                              @foreach ($employees as $employee)
-                                                                <option value="{{$employee->id}}">{{$employee->fname}} {{$employee->lname}} ID:{{$employee->id}}</option>
-                                                              @endforeach
+                                  <label class="label">Employee Name: </label>
+                                  <br>
+                                  <!--<input type="text" name="name" size="35"><br>-->
+                                  <!--Bootstrap-select name-->
+                                  <input list="employee" name="employee_id" id="employee_id" onchange="insertValues()" required>
+                                  <datalist id="employee">
+                                      @foreach ($employees as $employees)
+                                      <option data-customvalue="{{ $employees->id}}" data-customdept="{{$employees->dept_id}}" data-email="{{ $employees->email}}" data-cname="{{ $employees->fname}} {{ $employees->lname}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
+                                        @switch($employees->dept_id)
+                                          @case(1)
+                                              ITDD
+                                              @break
+                                          @case(2)
+                                              PDD
+                                              @break
+                                          @case(3)
+                                              FD
+                                              @break
+                                          @case(4)
+                                              HRD
+                                              @break
 
-                                                            </select>
+                                      @endswitch
+                                      </option>
+                                      @endforeach
+                                    </datalist>
                                 </div>
                             </div>
                         </div>
@@ -331,20 +363,18 @@
                                 <div class="container">
 
 
-                                    <table style="width:100%">
+                                    <table id="info" style="width:100%">
                                         <tr>
                                             <th>ID Number</th>
-                                            <th>Firstname</th>
-                                            <th>Lastname</th>
+                                            <th>Fullname</th>
                                             <th>Email</th>
                                             <th>Department</th>
                                         </tr>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td id="idnum"></td>
+                                            <td id="cname"></td>
+                                            <td id="email-in"></td>
+                                            <td id="dept"></td>
                                         </tr>
 
                                     </table>
@@ -357,8 +387,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button id="save" type="submit" class="btn btn-success"> <span class="fas fa-save"></span>SAVE</button>
-                        <button id="cancel" type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                        <button id="save" type="submit" class="btn btn-warning"> <span class="fas fa-trash "></span>REMOVE</button>
+                        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                     </div>
                 </form>
             </div>
@@ -382,14 +412,6 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 
 
-
-
-    <script>
-        $(function() {
-            $('select').selectpicker();
-        });
-
-    </script>
     <script>
         $(document).ready(function() {
             $('#employees').addClass('active');
@@ -459,6 +481,36 @@
             });
         });
 
+    </script>
+    <script>
+      function insertValues(){
+        var employee = $(employee_id).val();
+        document.getElementById("idnum").innerHTML = $('#employee [value="' + employee + '"]').data('customvalue');
+        document.getElementById("cname").innerHTML = $('#employee [value="' + employee + '"]').data('cname');
+        document.getElementById("email-in").innerHTML = $('#employee [value="' + employee + '"]').data('email');
+        var dept = ""
+        switch($('#employee [value="' + employee + '"]').data('customdept')){
+          case 1:
+              dept = "ITDD";
+              break;
+          case 2:
+              dept = "PDD";
+              break;
+        case 3:
+              dept = "FD";
+              break;
+          case 4:
+              dept = "HRD";
+              break;
+        }
+
+        document.getElementById("dept").innerHTML = dept;
+      }
+      function DoSubmit(){
+        var employee = $(employee_id).val();
+        document.getElementById("employee_id").value = $('#employee [value="' + employee + '"]').data('customvalue');
+        return true;
+        }
     </script>
 
 

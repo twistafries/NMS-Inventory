@@ -102,7 +102,7 @@ class TblUsers extends Authenticatable {
 		return $query;
 	}
 
-	public static function add_associate( $params ){
+	public static function add_user( $params ){
 		$results = [];
 
 		$results['error'] = 1;
@@ -114,13 +114,18 @@ class TblUsers extends Authenticatable {
     	$user->fname = $params['fname'];
     	$user->lname = $params['lname'];
     	$user->dept_id = $params['dept_id'];
+			$user->user_type = $params['user_type'];
+
 
     	try{
 			$user->save();
+<<<<<<< HEAD
 			$id = DB::getPdo()->lastInsertId();
 			return $id;
 			$results['error'] = 0;
 			$results['message'] = 'user has been save';
+=======
+>>>>>>> 2637e718c30d4207efce4f006b2cb51d2b2afdaa
 		}
 		catch ( QueryException $e ){
 			$results['error'] = 1;
@@ -128,6 +133,10 @@ class TblUsers extends Authenticatable {
 		}
 
 		return $results;
+	}
+	public static function remove_user($params){
+	$user = TblUsers::find($params['id']);
+		$user->delete();
 	}
 
 }
