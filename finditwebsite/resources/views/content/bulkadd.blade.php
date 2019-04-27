@@ -189,32 +189,12 @@ body{
                     </div>
                 </div>
 
-    </div>
-</div>
-
-<!-- Empty Modal -->
-<div class="modal fade empty-modal" id="emptyModal" tabindex="-1" role="dialog" aria-labelledby="emptyModalTitle"
-    aria-hidden="true">
-
-    <div class="modal-sm modal-dialog modal-dialog-centered" role="document">
-
-        <div class="modal-content">
-            <div class="modal-header success-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body empty-body" id="empty-message">
-                <p id="successText">Empty fields. No data selected.</p>
-            </div>
-
-            <div class="modal-footer success-footer">
-                <button id="okSuccessButton" type="button" class="btn btn-success" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
+    
 </div>
+
 
 @endsection
 

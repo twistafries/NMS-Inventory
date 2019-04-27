@@ -83,6 +83,8 @@ class BulkController extends BaseController
         foreach($data['inventory'] as $inventory){
             TblItEquipment::add_equipment($inventory);
         }
+
+        return \Redirect::to('/inventory')->with($count + 'equipment has been added');
         
     }
 }

@@ -123,7 +123,10 @@ class TblItEquipment extends Model
         if(isset($params['subtype_id']))
         $it_equipment->subtype_id = $params['subtype_id'];
 
-        if(isset($params['name']))
+        if(isset($params['brand']))
+        $it_equipment->name = $params['name'];
+        
+        if(isset($params['model']))
         $it_equipment->name = $params['name'];
         
         if(isset($params['details']))

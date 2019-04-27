@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class TblIssuableItems extends Model{
-	protected table = it_equipment
+	protected table = it_equipment;
 	public $timestamp = false;
 
 	public static function getAllEquipment($params = null){
