@@ -21,7 +21,7 @@
     <!-- Tabs -->
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
-            <a class="nav-link active" id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
+            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
                 All
             </a>
         </li>
@@ -30,7 +30,7 @@
 
         @foreach ($equipment_types as $equipment_types)
         <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
+            <a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" onclick="restore(false)" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
                 {{ $equipment_types->name }}
             </a>
         </li>
@@ -70,7 +70,7 @@
 
 
                 <!-- Multiple Select -->
-                <button type="button" class="btn disabled" id="multiple-select">
+                <button type="button" class="btn" id="multiple-select" onclick="enable()">
                     <a href="#" data-toggle="tooltip" title="Multiple Select">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
                     </a>
@@ -128,6 +128,59 @@
         </div>
     </div>
 
+<table>
+<thead>
+  <tr>
+    <th>
+      <label for="types" id="labelTypes">Types: </label>
+      <select id="types" name="types">
+        <option value="any">Any</option>
+        <option value="Computer Component">Component</option>
+        <option value="Computer Peripherals">Peripherals</option>
+        <option value="Mobile Device">Mobile Device</option>
+      </select>
+    </th>
+    <th>
+      <label for="subtypes">Subtype: </label>
+      <select id="subtypes" name="subtypes">
+        <option value="any">Any</option>
+        <option value="Motherboard">Motherboard</option>
+        <option value="RAM">RAM</option>
+        <option value="Case">Case</option>
+      </select>
+  </th>
+  <th>
+    <label for="supplier">Supplier: </label>
+    <select id="supplier" name="supplier">
+      <option value="any">Any</option>
+      <option value="Octagon">Octagon</option>
+      <option value="Chelsey">Chelsey</option>
+      <option value="Case">Case</option>
+    </select>
+</th>
+<th>
+  <label for="brand">Brand: </label>
+  <select id="brand" name="brand">
+    <option value="any">Any</option>
+    <option value="Asus">Asus</option>
+    <option value="MSI">MSI</option>
+    <option value="Apple">Apple</option>
+  </select>
+</th>
+<th>
+  <label for="status">Status: </label>
+  <select id="status" name="status">
+    <option value="any">Any</option>
+    <option value="Issued">Issued</option>
+    <option value="Available">Available</option>
+  </select>
+</th>
+  </tr>
+  <tr>
+    <button type="button" onclick="reset()">Reset</button>
+  </tr>
+</thead>
+</table>
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
         <!-- All Items in the Inventory -->
@@ -136,6 +189,7 @@
             <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
                 <thead class="thead-dark">
                     <tr>
+                      <th id="checkbox" hidden></th>
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Types</th>
@@ -153,7 +207,7 @@
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-
+                        <td hidden><input type="checkbox"></td>
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -402,25 +456,29 @@
             <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Type</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
-                        <th>Serial No</th>
-                        <th>OR No</th>
-                        <th>Added At</th>
-                        <th width="15%">Edited At</th>
-                        <th>Status</th>
+                      <th id="checkbox" hidden></th>
+                      <th>Model</th>
+                      <th>Brand</th>
+                      <th>Subtypes</th>
+                      <th hidden>Subtype</th>
+                      <th>Supplier</th>
+                      <th>Details</th>
+                      <th>Serial No</th>
+                      <th>OR No</th>
+                      <th>Date Added</th>
+                      <th width="15%">Date Edited</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($component as $components)
                     <tr>
+                      <td hidden></td>
                         <td> {{ $components->model }} </td>
                         <td> {{ $components->brand }} </td>
                         <td> {{ $components->subtype_name }} </td>
+                        <td hidden></td>
                         <td> {{ $components->supplier }} </td>
                         <td width="30%"> {{ $components->details }} </td>
                         <td> {{ $components->serial_no }} </td>
@@ -536,7 +594,7 @@
         </div>
 
         <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
-            <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
+            <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
                         <th>Model</th>
@@ -738,12 +796,12 @@
                             </div>
                         </div>
                         </div>
-                    
-                    
-                    
+
+
+
                       <div class="row pb-2">
                         <div class="col">
-                            
+
                           <label for="details" class="card-title text-dark">Warranty:</label>
                             <div class="row">
                             <div class="col">
@@ -755,8 +813,8 @@
                              <input type="date" id="start" name="unit[warranty_start]">
                             </div>
                                 </div>
-                        
-                            
+
+
                         </div>
                       </div>
                     <br>
@@ -772,11 +830,11 @@
                         <div class="input-group mb-1">
                             <input name="imei_or_macaddress" type="text" size="30">
                         </div>
-                            
+
                             </div>
                             </div>
 
-                        
+
                         <div class="row">
                             <div class="col-6">
                         <p class="card-title text-dark">Official Receipt Numbers:</p>
@@ -785,14 +843,14 @@
                         </div>
                                 </div>
                             <div class="col-6">
-                                
+
                                 <label for="serial_no" class="card-title text-dark">Supplier:</label>
                         <div class="input-group mb-1">
                             <input name="supplier" type="text" size="30">
                         </div>
                             </div>
                     </div>
-                        
+
                     <div class="row">
                         <div class="col-6">
                      <p class="card-title text-dark">System Unit Assigned To:</p>
@@ -821,23 +879,23 @@
                             </select>
 
                         </div>
-                        
 
-                    
+
+
                     </div>
-                    
+
                      <div class="row">
-                    
+
                          <div class="col-4">
                             <p class="card-title text-dark"></p>
                               <button class="btn btn-info" type="submit" id= "AddEquipment">Issue Item</button>
-                            
+
 
                         </div>
 
-                    
+
                     </div>
-                       
+
                     </div>
                 <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
             </div>
@@ -864,10 +922,10 @@
     <div class="container" style="padding:2rem">
 
         <div class="container">
-         
+
         </div>
-        
-            
+
+
         <table class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="">
                 <tr>
@@ -879,7 +937,7 @@
                 </tr>
             </thead>
         </table>
-        
+
         <table class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>
@@ -1462,8 +1520,94 @@
         document.getElementById("hequipment").value = $('#item [value="' + item1 + '"]').data('customvalue');
         return true;
         }
+    </script>
+    <script>
+    $.fn.dataTable.ext.search.push(
+function( settings, data, dataIndex ) {
+var type =  $('#types').val();
+var subtype =  $('#subtypes').val();
+var supplier =  $('#supplier').val();
+var brand =  $('#brand').val();
+var status =  $('#status').val();
+var types = data[3]; // use data for the age column
+var subtypes = data[4];
+var suppliers = data[5];
+var brands = data[2];
+var statuses = data[11];
+if ( type == types || type == "any"){
+  if (subtype == subtypes || subtype == "any"){
+    if (supplier == suppliers || supplier == "any"){
+      if (brand == brands || brand == "any"){
+        if (status == statuses || status == "any"){
+          return true;
+        }
+      }
+    }
+  }
 
+}
+return false;
+}
+);
+
+$(document).ready(function() {
+var table = $('#myDataTable').DataTable();
+
+// Event listener to the two range filtering inputs to redraw on input
+$('#subtypes').on('keyup change',  function() {
+    table.draw();
+    } );
+    $('#types').on('keyup change',  function() {
+        table.draw();
+        } );
+        $('#supplier').on('keyup change',  function() {
+            table.draw();
+            } );
+            $('#brand').on('keyup change',  function() {
+                table.draw();
+                } );
+                $('#status').on('keyup change',  function() {
+                    table.draw();
+                    } );
+        } );
         $(document).ready(function() {
+        var table = $('#myDataTable1').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#subtypes').on('keyup change',  function() {
+            table.draw();
+            } );
+            $('#types').on('keyup change',  function() {
+                table.draw();
+                } );
+                $('#supplier').on('keyup change',  function() {
+                    table.draw();
+                    } );
+                    $('#brand').on('keyup change',  function() {
+                        table.draw();
+                        } );
+                        $('#status').on('keyup change',  function() {
+                            table.draw();
+                            } );
+                } );
+
+        function reset(){
+          document.getElementById("subtypes").selectedIndex = "0";
+          document.getElementById("types").selectedIndex = "0";
+          document.getElementById("supplier").selectedIndex = "0";
+          document.getElementById("brand").selectedIndex = "0";
+          document.getElementById("status").selectedIndex = "0";
+
+        }
+        function restore(option){
+          if(option== false){
+              $("#types").hide();
+            $("#labelTypes").hide();
+          } else{
+            $("#types").show();
+            $("#labelTypes").show();
+
+          }
 
         }
     </script>
