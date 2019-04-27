@@ -14,6 +14,7 @@ use App\Models\TblItEquipmentSubtype;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\Equipment;
+use App\Modles\TblActivityLogs;
 use Session, Auth;
 
 class InventoryController extends BaseController
@@ -79,6 +80,9 @@ public function addSystemUnit(Request $request){
   $data['warranty_end'] = $data[4];
 
   $id = TblSystemUnits::add_system_unit($data);
+  $data['unit_id'] = $id;
+  $data['action'] = "added";
+  TblActivityLogs::add_log($data);
 
   $data['equipments'] = collect([]);
   $names = $request->get('equipment')['name'];
@@ -103,7 +107,10 @@ public function addSystemUnit(Request $request){
 
 
   foreach($data['equipments'] as $equipment){
-    TblItEquipment::add_equipment($equipment);
+    $id = TblItEquipment::add_equipment($equipment);
+    $data['equipment_id'] = $id;
+    $data['action'] = "added";
+    TblActivityLogs::add_log($data);
 
   }
   // dd($data['show']);
@@ -127,7 +134,10 @@ public function addSystemUnit(Request $request){
         $data['subtype_id'] = (int)$request->get('subtype_id');
        if(isset($data['subtype_id']) && isset($data['name']) && isset($data['details']) && isset($data['user_id']) && isset($data['warranty_details']) && isset($data['supplier'])
        && isset($data['serial_no']) && isset($data['or_no'])  && isset($data['status_id']) ){
-           TblItEquipment::add_equipment($data);
+           $id = TblItEquipment::add_equipment($data);
+           $data['equipment_id'] = $id;
+           $data['action'] = "added";
+           TblActivityLogs::add_log($data);
 
            return \Redirect::to('/inventory')->with('equipment has been added');
        }else{
@@ -144,7 +154,10 @@ public function addSystemUnit(Request $request){
    public function editEquipment(Request $request){
       $data = $request->all();
       // dd($data);
-       TblItEquipment::edit_equipment($data);
+       $id = TblItEquipment::edit_equipment($data);
+       $data['it_equipment'] = $id;
+       $data['action'] = "updated";
+       TblActivityLogs::add_log($data);
        return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
    }
 
@@ -168,10 +181,16 @@ public function softDeleteEquipment(Request $request){
     $pieces = explode("-", $data['item']);
     if($pieces[0] == "Mobile Device"){
       $data['equipment_id']=(int)$pieces[1];
-     TblItEquipment::delete_equipment($data['equipment_id']);
+     $id = TblItEquipment::delete_equipment($data['equipment_id']);
+     $data['it_equipment'] = $id;
+     $data['action'] = "deleted";
+     TblActivityLogs::add_log($data);
     }else{
       $data['unit_id']=(int)$pieces[1] ;
-      TblSystemUnits::delete_unit($data['unit_id']);
+      $id = TblSystemUnits::delete_unit($data['unit_id']);
+      $data['system_units'] = $id;
+      $data['action'] = "deleted";
+      TblActivityLogs::add_log($data);
     }
 
      return \Redirect::to('/inventory')->with('equipment has been deleted');

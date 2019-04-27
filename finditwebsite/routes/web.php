@@ -70,5 +70,6 @@ Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
 
 Route::post('/template', 'InventoryController@addEquipment');
 
-
 Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
+Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');

@@ -21,13 +21,19 @@ class TblSystemUnits extends Model
 
     public static function update_unit_status($id,$status){
       $system_units = TblSystemUnits::find($id);
+      $unit_id = TblSystemUnits::find($id);
+
       $system_units->status_id = $status;
       $system_units->save();
+      return $unit_id;
     }
 
     public static function delete_equipment($params){
       $system_units = TblSystemUnits::find($params);
+      $id = TblSystemUnits::find($params);
+
       $system_units->delete();
+      return $id;
     }
 
     public static function add_system_unit($params){

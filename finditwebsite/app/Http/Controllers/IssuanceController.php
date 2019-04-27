@@ -15,6 +15,7 @@ use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\TblIssuances;
 use App\Models\TblEmployees;
+use App\Models\TblActivityLogs;
 use Session, Auth;
 
 class IssuanceController extends BaseController {
@@ -52,7 +53,11 @@ class IssuanceController extends BaseController {
 			 }
 			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['user_id'])  && isset($data['status_id']) ){
 
-					TblIssuances::add_issuance($data);
+					$id = TblIssuances::add_issuance($data);
+
+					$data['issuance'] = $id;
+					$data['action'] = "issued";
+					TblActivityLogs::add_log($data);
 
 					return \Redirect::to('/issuance')->with('issuance has been added');
 			}else{

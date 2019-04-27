@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
+use App\Models\TblActivityLogs;
 
 class ForStatusController extends BaseController
 {
@@ -83,7 +84,11 @@ class ForStatusController extends BaseController
            $results['error'] = 1;
            $results['message'] = $validator->errors();
        } else {
-           $results = TblEmployees::add_employee($data);
+           $id = TblEmployees::add_employee($data);
+
+           $data['employees'] = $id;
+           $data['action'] = "added";
+           TblActivityLogs::add_log($data);
        }
 
          return \Redirect::to('/employees');
@@ -105,7 +110,12 @@ class ForStatusController extends BaseController
    {
       $data = $request->all();
       // dd($data);
-      TblEmployees::edit_employee($data);
+      $id = TblEmployees::edit_employee($data);
+
+      $data['employees'] = $id;
+      $data['action'] = "edited";
+      TblActivityLogs::add_log($data);
+
       return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
 
    }
