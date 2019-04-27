@@ -33,33 +33,10 @@ class BulkController extends BaseController
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['component_subtypes'] = TblItEquipmentSubtype::get_component_subtype();
         $data['equipment_status'] = TblEquipmentStatus::get_all_status();
-        // $data['system_units'] = TblSystemUnits::get_all_system_units();
-        
-        // return view ('content/bulk-add' , $data);
-        // return view ('content/bulk-add-temp' , $data);
         return view ('content/bulkadd' , $data);
     }
 
    public function bulkAddInventory(Request $request){
-    //    dd($request);
-    
-    // for($count = 0; $count<count($_POST['hidden_name']); $count++){
-    //     $data = array(
-    //         'name'=>$request->hidden_name[$count],
-    //         'details'=>$request->hidden_details[$count],
-    //         'serial_no'=>$request->hidden_serial_no[$count],
-    //         'or_no'=>$request->or_no[$count],
-    //         'supplier'=>$request->hidden_supplier[$count],
-    //     );
-        
-    //     // $data = array(
-    //         // ':name' => $_POST['hidden_name'][$count],
-    //         // ':details' => $_POST['hidden_details'][$count]
-    //         // );
-    //         // $statement = $connect->prepare($query);
-    //         // $statement->execute($data);
-    // }
-    // for($count = 0; $count<count($_POST['bulk_brand']); $count++){
         // dd($request);
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
