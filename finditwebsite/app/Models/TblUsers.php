@@ -119,13 +119,12 @@ class TblUsers extends Authenticatable {
 
     	try{
 			$user->save();
-<<<<<<< HEAD
+
 			$id = DB::getPdo()->lastInsertId();
 			return $id;
 			$results['error'] = 0;
 			$results['message'] = 'user has been save';
-=======
->>>>>>> 2637e718c30d4207efce4f006b2cb51d2b2afdaa
+
 		}
 		catch ( QueryException $e ){
 			$results['error'] = 1;

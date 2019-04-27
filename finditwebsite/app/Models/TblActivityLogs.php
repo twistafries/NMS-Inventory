@@ -3,31 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
-
-class TblActivityLogs extends Model
-{
-    protected $table = 'activity_log';
-    public $timestamps = false;
-
-    public static function get_all_activities($params = null){
-        $query = \DB::table('activity_log as a')
-        -> leftjoin('users' , 'users.id', '=', 'a.done_by')
-        -> leftjoin('employees' , 'employees.id', '=', 'a.employee_id')
-        -> leftjoin('it_equipment' , 'it_equipment.id', '=', 'a.equipment_id')
-        -> select('activity_logs.*', 'users.fname as ufname', 'users.lname as ulname', 'employees.fname as efname', 'employees.lname as elname',
-                  'it_equipment.model as model', 'it_equipment.brand as brand')
-        -> orderBy('a.created_at' , 'desc')
-        -> get();
-        return $query;
-    }
-
-    public static function update_associate_status(){
-
-    }
-
-}
-=======
 use DB, Session;
 
 class TblActivityLogs extends Model {
@@ -45,7 +20,7 @@ class TblActivityLogs extends Model {
 
     	$log->done_by = Session::get('loggedIn')['id'];
     	$log->action = $params['action'];
-    	
+
         if(isset($params['departments']))
         $log->departments = $params['departments'];
 
@@ -97,16 +72,16 @@ class TblActivityLogs extends Model {
     public static function get_logs() {
         $query = DB::table('activity_logs as a')
         ->leftjoin('users', 'users.id', '=', 'a.done_by')
-        ->leftjoin('departments', 'departments.id', '=', 'a.departments')
-        ->leftjoin('employees', 'employees.id', '=', 'a.employees')
-        ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.equipment_status')
-        ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.inventory_concerns')
-        ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance')
-        ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.it_equipment')
-        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.it_equipment_subtype')
-        ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.it_equipment_type')
-        ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_issuance')
-        ->leftjoin('system_units', 'system_units.id', '=', 'a.system_units')
+        ->leftjoin('departments', 'departments.id', '=', 'a.dept_id')
+        ->leftjoin('employees', 'employees.id', '=', 'a.employee_id')
+        ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.status_id')
+        ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.concerns_id')
+        ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance_id')
+        ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.equipment_id')
+        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.subtype_id')
+        ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.type_id')
+        ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_id')
+        ->leftjoin('system_units', 'system_units.id', '=', 'a.unit_id')
         ->select('users.fname as firstname','users.lname as lastname', 'users.id as user_id', 'departments.name as dept_name', 'equipment_status.name as status_name', 'issuance.issued_to as issued_to', 'it_equipment.brand as brand', 'it_equipment.model', 'it_equipment.unit_id as part_unit', 'it_equipment_subtype.name as subtype_name', 'it_equipment_type.name as type_name', 'system_units.description as unit_description', 'system_units.id as unit_id', 'a.action as action', 'a.created_at as date_added')
         ->orderBy('a.created_at' , 'desc')
         ->get();
@@ -114,5 +89,26 @@ class TblActivityLogs extends Model {
         return $query;
 
     }
+
+public static function get_activities_dashboard($params = null){
+    $query = \DB::table('activity_logs as a')
+    ->leftjoin('users', 'users.id', '=', 'a.done_by')
+    ->leftjoin('users as u', 'u.id', '=', 'a.user_id')
+    ->leftjoin('departments', 'departments.id', '=', 'a.dept_id')
+    ->leftjoin('employees', 'employees.id', '=', 'a.employee_id')
+    ->leftjoin('equipment_status', 'equipment_status.id', '=', 'a.status_id')
+    ->leftjoin('inventory_concerns', 'inventory_concerns.id', '=', 'a.concerns_id')
+    ->leftjoin('issuance', 'issuance.id', '=', 'a.issuance_id')
+    ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.equipment_id')
+    ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'a.subtype_id')
+    ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.type_id')
+    ->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_id')
+    ->leftjoin('system_units', 'system_units.id', '=', 'a.unit_id')
+    ->select('users.fname as firstname','users.lname as lastname', 'users.id as user_id', 'employees.fname as efname', 'employees.lname as elname','departments.name as dept_name', 'equipment_status.name as status_name', 'issuance.issued_to as issued_to', 'it_equipment.brand as brand', 'it_equipment.model as model', 'it_equipment.unit_id as part_unit', 'it_equipment_subtype.name as subtype_name', 'it_equipment_type.name as type_name', 'a.unit_id as unitd', 'system_units.description as unit_description', 'system_units.id as unit_id', 'a.action as action', 'a.created_at as date_added', 'u.fname as userfname', 'u.lname as userlname')
+    -> orderBy('a.created_at' , 'desc')
+    -> limit(12)
+    -> get();
+    return $query;
 }
->>>>>>> 8ff778587959b98789cf00621d4700c031d3ed52
+
+}

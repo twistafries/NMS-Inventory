@@ -12,7 +12,7 @@ use App\Models\TblEmployees;
 use App\Models\TblDepartments;
 use App\Models\TblItEquipment;
 use App\Models\TblSystemUnits;
-use App\Models\Activities;
+use App\Models\TblActivityLogs;
 
 
 class Dashboard extends BaseController
@@ -29,7 +29,10 @@ class Dashboard extends BaseController
         $data['employees'] = TblEmployees::get_employees();
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
-        $data['recent_activities'] = Activities::get_all_activities();
+        $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
+        // $data['most_issued'] = TblActivityLogs
+
+
         return view ('content/dashboard' , $data);
     }
 }
