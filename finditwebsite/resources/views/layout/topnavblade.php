@@ -143,10 +143,10 @@
                                              <div class="row row-details">
                                                <div class="col col-4 detail-header">PASSWORD</div>
                                                <div class="col col-7 details" id="password-info">***********</div>
-                                               <div class="col col-1 edit" id="password-edit"><u>Edit</u></div>
+                                               <div class="col col-1 edit"><a href data-toggle="modal" data-target="#change-password">Edit</a></div>
                                              </div>
                                              <!--password modal-->
-                                             <div class="text-center display remove-padding" id="password">
+                                             <div class="text-center display remove-padding" id="change-password">
                                                <div class="margin">
                                                  <div class="form-group row">
                                                    <div class="col col-4">

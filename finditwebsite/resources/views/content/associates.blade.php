@@ -98,18 +98,30 @@
                                                                 <br>
                                                                 <!--<input type="text" name="name" size="35"><br>-->
                                                                 <!--Bootstrap-select name-->
-                                                                <select class="selectpicker" data-live-search="true" size="35">
-                                                                <!--Add key words to options to improve their searchability using data-tokens.-->
-                                                                    <option data-tokens="">Justine Garcia</option>
-                                                                    <option data-tokens="">Lovelyn  Paris</option>
-                                                                    <option data-tokens="">Aika Vien</option>
-                                                                    <option data-tokens="">Jon Paulo</option>
-                                                                    <option data-tokens="">Gavin Roy</option>
-                                                                    <option data-tokens="">Mehanie Lonogan</option>
-                                                                    <option data-tokens="">Kim  Willy</option>
-                                                                    <option data-tokens="">Amy  Santiago</option>
-                                                                    <option data-tokens="">Raymond  Holt</option>        
-                                                                </select>
+                                                                <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
+                                                                  <datalist id="items">
+                                                                    <select>
+                                                                    @foreach ($employees as $employees)
+                                                                    <option value="{{ $employees->fname }} {{ $employees->lname }} (ID:{{ $employees->id }})">
+                                                                          @switch($employees->dept_id)
+                                                                            @case(1)
+                                                                                ITDD
+                                                                                @break
+                                                                            @case(2)
+                                                                                PDD
+                                                                                @break
+                                                                            @case(3)
+                                                                                FD
+                                                                                @break
+                                                                            @case(4)
+                                                                                HRD
+                                                                                @break
+
+                                                                        @endswitch
+                                                                    </option>
+                                                                    @endforeach
+                                                                  </select>
+                                                                  </datalist>
                                                             </form>
 
 
@@ -192,17 +204,30 @@
                                                                 <br>
                                                                 <!--<input type="text" name="name" size="35"><br>-->
                                                                 <!--Bootstrap-select name-->
-                                                                <select class="selectpicker" data-live-search="true" size="35">
-                                                                    <option data-tokens="">Justine Garcia</option>
-                                                                    <option data-tokens="">Lovelyn  Paris</option>
-                                                                    <option data-tokens="">Aika Vien</option>
-                                                                    <option data-tokens="">Jon Paulo</option>
-                                                                    <option data-tokens="">Gavin Roy</option>
-                                                                    <option data-tokens="">Mehanie Lonogan</option>
-                                                                    <option data-tokens="">Kim  Willy</option>
-                                                                    <option data-tokens="">Amy  Santiago</option>
-                                                                    <option data-tokens="">Raymond  Holt</option>   
-                                                                </select>
+                                                                <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
+                                                                  <datalist id="items">
+                                                                    <select>
+                                                                    @foreach ($associates as $associate)
+                                                                    <option value="{{ $associate->fname }} {{ $associate->lname }} (ID:{{ $associate->id }})">
+                                                                          @switch($associate->dept_id)
+                                                                            @case(1)
+                                                                                ITDD
+                                                                                @break
+                                                                            @case(2)
+                                                                                PDD
+                                                                                @break
+                                                                            @case(3)
+                                                                                FD
+                                                                                @break
+                                                                            @case(4)
+                                                                                HRD
+                                                                                @break
+
+                                                                        @endswitch
+                                                                    </option>
+                                                                    @endforeach
+                                                                  </select>
+                                                                  </datalist>
                                                             </form>
                                                         </div>
                                                     </div>
