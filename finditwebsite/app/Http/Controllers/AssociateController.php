@@ -10,7 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblUsers;
 use App\Models\TblAssociate;
-
+use App\Models\TblEmployees;
 
 class AssociateController extends BaseController
 {
@@ -21,6 +21,8 @@ class AssociateController extends BaseController
 
         $data = [];
         $data['associates'] = TblAssociate::get_all_associates();
+        $data['employees'] = TblEmployees::get_employees();
+        
         // dd($data);
         return view ('content/associates' , $data);
     }
@@ -43,6 +45,8 @@ class AssociateController extends BaseController
 
         $data = $request->all();
         $results = [];
+
+        $data['employees'] = TblEmployees::get_employees();
 
         //error is by default 1, 1 - meaning there is an error, 0 - where there is no error.
         $results['error'] = 1;

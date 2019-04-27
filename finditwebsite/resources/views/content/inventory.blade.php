@@ -144,8 +144,8 @@
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
-                        <th>Added At</th>
-                        <th width="15%">Edited At</th>
+                        <th>Date Added</th>
+                        <th width="15%">Date Edited</th>
                         <th>Status</th>
                     </tr>
                 </thead>

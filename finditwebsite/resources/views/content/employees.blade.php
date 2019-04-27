@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}"> @stop @section('title') Inventory @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
+    <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}"> @stop @section('title') Employees @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
     <i class="fas fa-chart-line">Inventory
     @stop
 @stop

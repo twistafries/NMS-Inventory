@@ -44,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- To be Repaired Card -->
                 <div class="col-md">
                     <div class="card">
@@ -78,7 +78,7 @@
                                 <div class="col-6 d-flex align-items-center">
                                     <div class="numbers">
                                         <p class="" style="font-size:9px;">Decommissioned</p>
-                                        
+
                                         <h3 class="font-weight-bold">15</h3>
                                     </div>
                                 </div>
@@ -86,8 +86,8 @@
                         </div>
                     </div>
                 </div>
-                    
-               
+
+
                 <!-- Low in Stock Card -->
                 <div class="col-md">
                     <div class="card pb-4">
@@ -134,10 +134,10 @@
                         </div>
                     </div>
                 </div>
-                
 
 
-              
+
+
             </div>
         </div>
 
@@ -152,8 +152,8 @@
                             <div class="card-header text-white mb-3" id="card-header"><i class="far fa-arrow-alt-circle-down"></i>
                                 Low in Stock</div>
 
-                            
-                                
+
+
 									<div class="card-body">
 										<div class="progress-card">
 											<div class="d-flex justify-content-between mb-1">
@@ -162,7 +162,7 @@
 											</div>
 											<div class="progress mb-2" style="height: 7px;">
 <!--                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" data-original-title="65%"></div>-->
-												
+
 											</div>
 										</div>
 										<div class="progress-card">
@@ -171,7 +171,7 @@
 												<span class="text-muted fw-bold">15</span>
 											</div>
 											<div class="progress mb-2" style="height: 7px;">
-												
+
 											</div>
 										</div>
 										<div class="progress-card">
@@ -180,7 +180,7 @@
 												<span class="text-muted fw-bold">5</span>
 											</div>
 											<div class="progress mb-2" style="height: 7px;">
-											
+
 											</div>
 										</div>
 										<div class="progress-card">
@@ -189,12 +189,12 @@
 												<span class="text-muted fw-bold">7</span>
 											</div>
 											<div class="progress mb-2" style="height: 7px;">
-												
+
 											</div>
 										</div>
-                                      
+
 									</div>
-								
+
 
 
 
@@ -288,7 +288,7 @@
                                     <th>Employee</th>
                                     <th>Department</th>
                                     <th>Equipment Destroyed</th>
-                                    
+
                                     <tr>
                                         <td>Employee 1</td>
                                         <td>Available:</td>
@@ -370,10 +370,10 @@
                 </div>
             </div>
         </div>
-        
+
 <!--        modals-->
-        
-        
+
+
 
     </div>
     </div>
