@@ -598,30 +598,33 @@
         </div>
 
         <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
-            <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
+            <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Subtype</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
-                        <th>Serial No</th>
-                        <th>OR No</th>
-                        <th>Added by</th>
-                        <th>Date Added</th>
-                        <th width="15%">Date Edited</th>
-                        <th>Status</th>
+                      <th id="checkbox" hidden></th>
+                      <th>Model</th>
+                      <th>Brand</th>
+                      <th>Subtypes</th>
+                      <th hidden>Subtype</th>
+                      <th>Supplier</th>
+                      <th>Details</th>
+                      <th>Serial No</th>
+                      <th>OR No</th>
+                      <th>Added By</>
+                      <th>Date Added</th>
+                      <th width="15%">Date Edited</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($peripherals as $peripherals)
                     <tr >
-
+                        <td hidden></td>
                         <td> {{ $peripherals->model }} </td>
                         <td> {{ $peripherals->brand }} </td>
                         <td> {{ $peripherals->subtype_name }} </td>
+                        <td hidden></td>
                         <td> {{ $peripherals->supplier }} </td>
                         <td width="30%"> {{ $peripherals->details }} </td>
                         <td> {{ $peripherals->serial_no }} </td>
@@ -643,27 +646,30 @@
             <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Subtype</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
-                        <th>Serial No</th>
-                        <th>OR No</th>
-                        <th>Added by</th>
-                        <th>Date Added</th>
-                        <th width="15%">Date Edited</th>
-                        <th>Status</th>
+                      <th id="checkbox" hidden></th>
+                      <th>Model</th>
+                      <th>Brand</th>
+                      <th>Subtypes</th>
+                      <th hidden>Subtype</th>
+                      <th>Supplier</th>
+                      <th>Details</th>
+                      <th>Serial No</th>
+                      <th>OR No</th>
+                      <th>Added By</>
+                      <th>Date Added</th>
+                      <th width="15%">Date Edited</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($mobile as $mobile)
                     <tr>
+                      <td hidden></td>
                         <td> {{ $mobile->model }} </td>
                         <td> {{ $mobile->brand }} </td>
                         <td> {{ $mobile->subtype_name }} </td>
+                        <td hidden></td>
                         <td> {{ $mobile->supplier }} </td>
                         <td width="30%"> {{ $mobile->details }} </td>
                         <td> {{ $mobile->serial_no }} </td>
@@ -682,7 +688,7 @@
 
 <!-- Mobile Devices -->
 <div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
-    <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
+    <table id="myDataTable4" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
 
@@ -722,9 +728,9 @@
     </table>
 </div>
 
-<!-- Mobile Devices -->
+<!-- System Units -->
 <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab">
-    <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
+    <table id="myDataTable5" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
 
@@ -1507,6 +1513,18 @@
         "order": []});
     } );
   </script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#myDataTable4').DataTable({ "pagingType": "full_numbers",
+      "order": []});
+  } );
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#myDataTable5').DataTable({ "pagingType": "full_numbers",
+    "order": []});
+} );
+</script>
     <!-- <script>
       $(document).ready(function() {
             $('table.display').DataTable({
@@ -1601,21 +1619,109 @@ $('#subtypes').on('keyup change',  function() {
                             } );
                 } );
 
+              $(document).ready(function() {
+                var table = $('#myDataTable2').DataTable();
+
+                // Event listener to the two range filtering inputs to redraw on input
+                $('#subtypes').on('keyup change',  function() {
+                    table.draw();
+                    } );
+                    $('#types').on('keyup change',  function() {
+                        table.draw();
+                        } );
+                        $('#supplier').on('keyup change',  function() {
+                            table.draw();
+                            } );
+                            $('#brand').on('keyup change',  function() {
+                                table.draw();
+                                } );
+                                $('#status').on('keyup change',  function() {
+                                    table.draw();
+                                    } );
+                        } );
+                        $(document).ready(function() {
+                          var table = $('#myDataTable3').DataTable();
+
+                          // Event listener to the two range filtering inputs to redraw on input
+                          $('#subtypes').on('keyup change',  function() {
+                              table.draw();
+                              } );
+                              $('#types').on('keyup change',  function() {
+                                  table.draw();
+                                  } );
+                                  $('#supplier').on('keyup change',  function() {
+                                      table.draw();
+                                      } );
+                                      $('#brand').on('keyup change',  function() {
+                                          table.draw();
+                                          } );
+                                          $('#status').on('keyup change',  function() {
+                                              table.draw();
+                                              } );
+                                  } );
+                                  $(document).ready(function() {
+                                    var table = $('#myDataTable4').DataTable();
+
+                                    // Event listener to the two range filtering inputs to redraw on input
+                                    $('#subtypes').on('keyup change',  function() {
+                                        table.draw();
+                                        } );
+                                        $('#types').on('keyup change',  function() {
+                                            table.draw();
+                                            } );
+                                            $('#supplier').on('keyup change',  function() {
+                                                table.draw();
+                                                } );
+                                                $('#brand').on('keyup change',  function() {
+                                                    table.draw();
+                                                    } );
+                                                    $('#status').on('keyup change',  function() {
+                                                        table.draw();
+                                                        } );
+                                            } );
+                                            $(document).ready(function() {
+                                              var table = $('#myDataTable5').DataTable();
+
+                                              // Event listener to the two range filtering inputs to redraw on input
+                                              $('#subtypes').on('keyup change',  function() {
+                                                  table.draw();
+                                                  } );
+                                                  $('#types').on('keyup change',  function() {
+                                                      table.draw();
+                                                      } );
+                                                      $('#supplier').on('keyup change',  function() {
+                                                          table.draw();
+                                                          } );
+                                                          $('#brand').on('keyup change',  function() {
+                                                              table.draw();
+                                                              } );
+                                                              $('#status').on('keyup change',  function() {
+                                                                  table.draw();
+                                                                  } );
+                                                      } );
         function reset(){
           document.getElementById("subtypes").selectedIndex = "0";
           document.getElementById("types").selectedIndex = "0";
           document.getElementById("supplier").selectedIndex = "0";
           document.getElementById("brand").selectedIndex = "0";
           document.getElementById("status").selectedIndex = "0";
+          $('#myDataTable').DataTable().search('').draw();
+          $('#myDataTable1').DataTable().search('').draw();
+          $('#myDataTable2').DataTable().search('').draw();
+          $('#myDataTable3').DataTable().search('').draw();
+          $('#myDataTable4').DataTable().search('').draw();
+          $('#myDataTable5').DataTable().search('').draw();
 
         }
         function restore(option){
           if(option== false){
               $("#types").hide();
             $("#labelTypes").hide();
+            reset()
           } else{
             $("#types").show();
             $("#labelTypes").show();
+            reset()
 
           }
 
