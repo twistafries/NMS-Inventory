@@ -37,7 +37,7 @@
                                 <div class="col-6 d-flex align-items-center">
                                     <div class="numbers">
                                         <p class="">To be Returned</p>
-                                        <h3 class="font-weight-bold">25</h3>
+                                        <h3 class="font-weight-bold">{{$for_return->count()}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                 <div class="col-6 d-flex align-items-center">
                                     <div class="numbers">
                                         <p class="">To be Repaired</p>
-                                        <h3 class="font-weight-bold">15</h3>
+                                        <h3 class="font-weight-bold">{{$for_repair->count()}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <div class="numbers">
                                         <p class="" style="font-size:9px;">Decommissioned</p>
 
-                                        <h3 class="font-weight-bold">15</h3>
+                                        <h3 class="font-weight-bold">{{$decommissioned->count()}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                 <div class="col-6 d-flex align-items-center">
                                     <div class="numbers">
                                         <p class="">Employees</p>
-                                        <h3 class="font-weight-bold">400</h3>
+                                        <h3 class="font-weight-bold">{{$employees->count()}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                                 <div class="col-6 d-flex align-items-center">
                                     <div class="numbers">
                                         <p class="">On Hand</p>
-                                        <h3 class="font-weight-bold">200</h3>
+                                        <h3 class="font-weight-bold">{{$equipment->count() + $system_units->count()}}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -338,27 +338,15 @@
                     <div class="card-body height">
                         <table class="table table-borderless table-responsive">
                             <tbody>
+                              @foreach ($recent_activities as $recent_activities)
                                 <tr>
-                                    <td>Chris issued item PC002 to jane a few minutes ago</td>
+                                    <td>{{$recent_activities->ufname}} {{$recent_activities->ulname}} {{$recent_activities->action}} {{$recent_activities->efname}}{{$recent_activities->elname}} {{$recent_activities->model}}{{$recent_activities->brand}}
+                                    @if($recent_activities->action=="issued")
+                                    to 
+                                    @endif
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Chris added associate John 10 hours ago</td>
-                                </tr>
-                                <tr>
-                                    <td>Chris issued item PC001 to John 5 minutes ago</td>
-                                </tr>
-                                <tr>
-                                    <td>Chris issued item PC001 to John 5 minutes ago</td>
-                                </tr>
-                                <tr>
-                                    <td>Chris issued item PC001 to John 5 minutes ago</td>
-                                </tr>
-                                <tr>
-                                    <td>Chris issued item PC001 to John 5 minutes ago</td>
-                                </tr>
-                                <tr>
-                                    <td>Chris issued item PC001 to John 5 minutes ago</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>

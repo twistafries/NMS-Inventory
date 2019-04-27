@@ -10,6 +10,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
+use App\Models\TblItEquipment;
+use App\Models\TblSystemUnits;
+use App\Models\Activities;
+
 
 class Dashboard extends BaseController
 {
@@ -21,7 +25,11 @@ class Dashboard extends BaseController
         $data = [];
         $data['for_repair'] = TblEquipmentStatus::get_for_repair();
         $data['for_return'] = TblEquipmentStatus::get_for_return();
-        $data['for_disposal'] = TblEquipmentStatus::get_for_disposal();
+        $data['decommissioned'] = TblEquipmentStatus::get_for_disposal();
+        $data['employees'] = TblEmployees::get_employees();
+        $data['equipment'] = TblItEquipment::get_all_equipment();
+        $data['system_units'] = TblSystemUnits::get_all_system_units();
+        $data['recent_activities'] = Activities::get_all_activities();
         return view ('content/dashboard' , $data);
     }
 }

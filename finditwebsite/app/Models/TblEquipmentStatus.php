@@ -42,7 +42,7 @@ class TblEquipmentStatus extends Model
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         // -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
         -> select('it_equipment.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat')
-        -> where('status_id' , '=' , '5')
+        -> where('status_id' , '=' , '7')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
@@ -87,7 +87,7 @@ class TblEquipmentStatus extends Model
         -> get();
         return $query;
     }
-    
+
     public static function get_available_units($params = null){
         $query = \DB::table('system_units')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
