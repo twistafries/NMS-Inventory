@@ -14,6 +14,7 @@ use App\Models\TblItEquipmentSubtype;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\Equipment;
+use App\Modles\TblActivityLogs;
 use Session, Auth;
 
 class InventoryController extends BaseController
@@ -38,6 +39,8 @@ class InventoryController extends BaseController
       $data['units_system'] = TblSystemUnits::get_all_system_units();
       $data['all_units'] = TblSystemUnits::get_all_system_units();
       $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['parts'] = TblItEquipment::get_computer_component();
       return view ('content/inventory' , $data);
     }
 

@@ -17,12 +17,12 @@
 @stop
 
 @section('title')
-    Issuance
+    Activity Logs
 @stop
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    <i class="fas fa-chart-line">Issuance
+    <i class="fas fa-chart-line">Activity Logs
     @stop
 @stop
 
@@ -57,34 +57,17 @@
                     <thead class="thead-dark">
                         <tr>
 
-                            <th>Equipment Issued</th>
-                            <th>Equipment Subtype</th>
-                            <th>System Unit Issued</th>
-                            <th>Issued To</th>
-                            <th>Issued By</th>
-                            <th>Date Issued</th>
-                            <th width="15%">Date Updated</th>
-                            <th>Issued Until</th>
-                            <th>Date Returned</th>
-                            <th>Remarks</th>
+                            <th>Activities</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($issuance as $issuance)
+                        @foreach ($logs as $log)
                         <tr data-toggle="modal" data-target="#viewItemModal">
 
-                            <td> {{ $issuance->model}} {{ $issuance->brand}} </td>
-                            <td> {{ $issuance->subtype}} </td>
-                            <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
-                            <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
-                            <td> {{ $issuance->userfname }} {{ $issuance->userlname }}  </td>
-                            <td>{{ $issuance->created_at }}</td>
-                            <td>{{ $issuance->updated_at }}</td>
-                            <td>{{ $issuance->issued_until }}</td>
-                            <td> {{ $issuance->returned_at }} </td>
-                            <td> {{ $issuance->remarks }} </td>
-                            <td hidden> {{ $issuance->id }} </td>
+                            <td> {{ $log->firstname }} {{ $log->lastname }} {{ $log->action }} </td>
+                            <td> {{ $log->date_added }} </td>
 
                         </tr>
                         @endforeach
@@ -161,38 +144,6 @@
                             </button>
                         </div>
 
-                        <!-- Issue Form -->
-                        <div class="modal-body">
-                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" method="post"  onsubmit="DoSubmit()" role="form">
-                                {!! csrf_field() !!}
-                                <div class="row">
-
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issue Item:</p>
-                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
-                                                <datalist id="items">
-                                                  <select>
-                                                  @foreach ($equipment as $equipment)
-                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
-                                                  @endforeach
-                                                  @foreach ($units as $units)
-                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
-                                                  @endforeach
-                                                </select>
-                                                </datalist>
-
-                                          </div>
-                                          <div class="col-md-2">
-                                          </div>
-
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issued_until</p>
-                                                  <div class="input-group mb-3">
-                                                  <input  name="issued_until" type="date" class="form-control" required>
-                                                  </div>
-                                          </div>
-                                      </div>
-
                                       <table id="addMoreList">
                                                  <tbody>
                                                  </tbody>
@@ -211,33 +162,6 @@
 
                                       <br>
 
-                                     <div class="row">
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issue to:</p>
-                                              <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
-                                              <datalist id="employee">
-                                                  @foreach ($employees as $employees)
-                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
-                                                    @switch($employees->dept_id)
-                                                      @case(1)
-                                                          ITDD
-                                                          @break
-                                                      @case(2)
-                                                          PDD
-                                                          @break
-                                                      @case(3)
-                                                          FD
-                                                          @break
-                                                      @case(4)
-                                                          HRD
-                                                          @break
-
-                                                  @endswitch
-                                                  </option>
-                                                  @endforeach
-                                                </datalist>
-                                          </div>
-                                    </div>
 
                                       <div class="row">
 
@@ -307,7 +231,7 @@
 
     <script>
       $(document).ready(function(){
-      $('#issuance').addClass('active');
+      $('#activityLogs').addClass('active');
       });
     </script>
     <script type="text/javascript">

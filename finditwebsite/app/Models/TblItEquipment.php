@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class TblItEquipment extends Model
 {
@@ -14,7 +15,8 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
@@ -24,7 +26,8 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '2')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -35,7 +38,8 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '1')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -47,7 +51,8 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '3')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -57,7 +62,8 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '4')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -93,6 +99,8 @@ class TblItEquipment extends Model
 
         try{
           $it_equipment->save();
+          $id = DB::getPdo()->lastInsertId();
+          return $id;
           $results['error'] = 0;
           $results['message'] = 'equipment has been added';
 
@@ -108,27 +116,31 @@ class TblItEquipment extends Model
       $it_equipment = TblItEquipment::find($id);
       $it_equipment->status_id = $status;
       $it_equipment->save();
+      $id = DB::getPdo()->lastInsertId();
+      return $id;
     }
 
     public static function delete_equipment($params){
       $it_equipment = TblItEquipment::find($params);
       $it_equipment->delete();
+      $id = DB::getPdo()->lastInsertId();
+      return $id;
     }
 
-    // Parehas ba to sa add equipment????
 
     public static function edit_equipment( $params ){
         $it_equipment = TblItEquipment::find($params['id']);
+        $id = TblItEquipment::find($params['id']);
 
         if(isset($params['subtype_id']))
         $it_equipment->subtype_id = $params['subtype_id'];
 
         if(isset($params['brand']))
-        $it_equipment->name = $params['name'];
-        
+        $it_equipment->brand = $params['brand'];
+
         if(isset($params['model']))
-        $it_equipment->name = $params['name'];
-        
+        $it_equipment->model = $params['model'];
+
         if(isset($params['details']))
         $it_equipment->details = $params['details'];
 
@@ -140,7 +152,7 @@ class TblItEquipment extends Model
 
         if(isset($params['status_id']))
         $it_equipment->status_id = $params['status_id'];
-        
+
         if(isset($params['supplier']))
         $it_equipment->status_id = $params['supplier'];
 
@@ -148,13 +160,14 @@ class TblItEquipment extends Model
 
         try {
             $it_equipment->save();
+            return $id;
         }catch(QueryException $e){
             die($e);
         }
     }
 
 
-    
+
 
 
 

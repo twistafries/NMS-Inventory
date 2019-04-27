@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class TblIssuances extends Model {
 
@@ -66,6 +67,8 @@ class TblIssuances extends Model {
 
 		try {
 			$issuance->save();
+			$id = DB::getPdo()->lastInsertId();
+			return $id;
 		}catch(QueryException $e) {
 			die($e);
 		}
@@ -73,6 +76,7 @@ class TblIssuances extends Model {
 
 	public static function updateIssuance($params) {
 		$issuance = TblIssuances::find($params['id']);
+		$id = TblIssuances::find($params['id']);
 
 		if(isset($params['equipment_id']))
 			$issuance->unit_id = $params['equipment_id'];
@@ -98,6 +102,7 @@ class TblIssuances extends Model {
 
 		try {
 			$event->save();
+			return $id;
 		} catch(QueryException $e) {
 			die($e);
 		}

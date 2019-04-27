@@ -74,7 +74,7 @@
         </li>
 
         <li id="activityLog">
-            <a href="#">
+            <a href="{!! url('/activitylogs') !!}">
                 <i class="fas fa-list-alt"></i>
                 <span class="hide-menu">Activity Logs</span>
             </a>

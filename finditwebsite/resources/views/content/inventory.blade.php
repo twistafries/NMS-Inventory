@@ -21,7 +21,7 @@
     <!-- Tabs -->
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
-            <a class="nav-link active" id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
+            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
                 All
             </a>
         </li>
@@ -30,7 +30,7 @@
 
         @foreach ($equipment_types as $equipment_types)
         <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
+            <a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" onclick="restore(false)" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
                 {{ $equipment_types->name }}
             </a>
         </li>
@@ -70,7 +70,7 @@
 
 
                 <!-- Multiple Select -->
-                <button type="button" class="btn disabled" id="multiple-select">
+                <button type="button" class="btn" id="multiple-select" onclick="enable()">
                     <a href="#" data-toggle="tooltip" title="Multiple Select">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
                     </a>
@@ -94,8 +94,9 @@
                   </button>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
-                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a></li>
+                      <li><a class="dropdown-item" href="#">Bulk Add</a></li>
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a></li
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
                     </ul>
               </div>
                 <!-- Delete -->
@@ -127,6 +128,59 @@
         </div>
     </div>
 
+<table>
+<thead>
+  <tr>
+    <th>
+      <label for="types" id="labelTypes">Types: </label>
+      <select id="types" name="types">
+        <option value="any">Any</option>
+        <option value="Computer Component">Component</option>
+        <option value="Computer Peripherals">Peripherals</option>
+        <option value="Mobile Device">Mobile Device</option>
+      </select>
+    </th>
+    <th>
+      <label for="subtypes">Subtype: </label>
+      <select id="subtypes" name="subtypes">
+        <option value="any">Any</option>
+        <option value="Motherboard">Motherboard</option>
+        <option value="RAM">RAM</option>
+        <option value="Case">Case</option>
+      </select>
+  </th>
+  <th>
+    <label for="supplier">Supplier: </label>
+    <select id="supplier" name="supplier">
+      <option value="any">Any</option>
+      <option value="Octagon">Octagon</option>
+      <option value="Chelsey">Chelsey</option>
+      <option value="Case">Case</option>
+    </select>
+</th>
+<th>
+  <label for="brand">Brand: </label>
+  <select id="brand" name="brand">
+    <option value="any">Any</option>
+    <option value="Asus">Asus</option>
+    <option value="MSI">MSI</option>
+    <option value="Apple">Apple</option>
+  </select>
+</th>
+<th>
+  <label for="status">Status: </label>
+  <select id="status" name="status">
+    <option value="any">Any</option>
+    <option value="Issued">Issued</option>
+    <option value="Available">Available</option>
+  </select>
+</th>
+  </tr>
+  <tr>
+    <button type="button" onclick="reset()">Reset</button>
+  </tr>
+</thead>
+</table>
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
         <!-- All Items in the Inventory -->
@@ -135,6 +189,7 @@
             <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
                 <thead class="thead-dark">
                     <tr>
+                      <th id="checkbox" hidden></th>
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Types</th>
@@ -143,6 +198,7 @@
                         <th>Details</th>
                         <th>Serial No</th>
                         <th>OR No</th>
+                        <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
                     </tr>
@@ -151,7 +207,7 @@
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-
+                        <td hidden><input type="checkbox"></td>
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -160,6 +216,7 @@
                         <td width="30%"> {{ $equipment->details }} </td>
                         <td> {{ $equipment->serial_no }} </td>
                         <td> {{ $equipment->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
                     </tr>
@@ -434,28 +491,35 @@
             <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Type</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
-                        <th>Serial No</th>
-                        <th>OR No</th>
-                        <th>Added At</th>
-                        <th>Status</th>
+                      <th id="checkbox" hidden></th>
+                      <th>Model</th>
+                      <th>Brand</th>
+                      <th>Subtypes</th>
+                      <th hidden>Subtype</th>
+                      <th>Supplier</th>
+                      <th>Details</th>
+                      <th>Serial No</th>
+                      <th>OR No</th>
+                      <th>Added By</>
+                      <th>Date Added</th>
+                      <th width="15%">Date Edited</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($component as $components)
                     <tr>
+                      <td hidden></td>
                         <td> {{ $components->model }} </td>
                         <td> {{ $components->brand }} </td>
                         <td> {{ $components->subtype_name }} </td>
+                        <td hidden></td>
                         <td> {{ $components->supplier }} </td>
                         <td width="30%"> {{ $components->details }} </td>
                         <td> {{ $components->serial_no }} </td>
                         <td> {{ $components->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $components->created_at }} </td>
                         <td> {{ $components->status_name }} </td>
                     </tr>
@@ -569,30 +633,35 @@
             <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Subtype</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
-                        <th>Serial No</th>
-                        <th>OR No</th>
-                        <th>Added At</th>
-                        <th width="15%">Edited At</th>
-                        <th>Status</th>
+                      <th id="checkbox" hidden></th>
+                      <th>Model</th>
+                      <th>Brand</th>
+                      <th>Subtypes</th>
+                      <th hidden>Subtype</th>
+                      <th>Supplier</th>
+                      <th>Details</th>
+                      <th>Serial No</th>
+                      <th>OR No</th>
+                      <th>Added By</>
+                      <th>Date Added</th>
+                      <th width="15%">Date Edited</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($peripherals as $peripherals)
                     <tr >
-
+                        <td hidden></td>
                         <td> {{ $peripherals->model }} </td>
                         <td> {{ $peripherals->brand }} </td>
                         <td> {{ $peripherals->subtype_name }} </td>
+                        <td hidden></td>
                         <td> {{ $peripherals->supplier }} </td>
                         <td width="30%"> {{ $peripherals->details }} </td>
                         <td> {{ $peripherals->serial_no }} </td>
                         <td> {{ $peripherals->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $peripherals->created_at }} </td>
                         <td> {{ $peripherals->updated_at }} </td>
                         <td> {{ $peripherals->status_name }} </td>
@@ -609,30 +678,35 @@
             <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-
-                        <th>Model</th>
-                        <th>Brand</th>
-                        <th>Subtype</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
-                        <th>Serial No</th>
-                        <th>OR No</th>
-                        <th>Added At</th>
-                        <th width="15%">Edited At</th>
-                        <th>Status</th>
+                      <th id="checkbox" hidden></th>
+                      <th>Model</th>
+                      <th>Brand</th>
+                      <th>Subtypes</th>
+                      <th hidden>Subtype</th>
+                      <th>Supplier</th>
+                      <th>Details</th>
+                      <th>Serial No</th>
+                      <th>OR No</th>
+                      <th>Added By</>
+                      <th>Date Added</th>
+                      <th width="15%">Date Edited</th>
+                      <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($mobile as $mobile)
                     <tr>
+                      <td hidden></td>
                         <td> {{ $mobile->model }} </td>
                         <td> {{ $mobile->brand }} </td>
                         <td> {{ $mobile->subtype_name }} </td>
+                        <td hidden></td>
                         <td> {{ $mobile->supplier }} </td>
                         <td width="30%"> {{ $mobile->details }} </td>
                         <td> {{ $mobile->serial_no }} </td>
                         <td> {{ $mobile->or_no }} </td>
+                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $mobile->created_at }} </td>
                         <td> {{ $mobile->updated_at }} </td>
                         <td> {{ $mobile->status_name }} </td>
@@ -646,7 +720,7 @@
 
 <!-- Mobile Devices -->
 <div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
-    <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
+    <table id="myDataTable4" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
 
@@ -657,8 +731,9 @@
                 <th>Details</th>
                 <th>Serial No</th>
                 <th>OR No</th>
-                <th>Added At</th>
-                <th width="15%">Edited At</th>
+                <th>Added by</th>
+                <th>Date Added</th>
+                <th width="15%">Date Edited</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -673,6 +748,7 @@
                 <td width="30%"> {{ $software->details }} </td>
                 <td> {{ $software->serial_no }} </td>
                 <td> {{ $software->or_no }} </td>
+                <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                 <td> {{ $software->created_at }} </td>
                 <td> {{ $software->updated_at }} </td>
                 <td> {{ $software->status_name }} </td>
@@ -684,16 +760,16 @@
     </table>
 </div>
 
-<!-- Mobile Devices -->
+<!-- System Units -->
 <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab">
-    <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
+    <table id="myDataTable5" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
 
               <th>Name</th>
               <th>Details</th>
-              <th>Added At</th>
-              <th width="15%">Edited At</th>
+              <th>Date Added</th>
+              <th width="15%">Date Edited</th>
               <th>Added by</th>
               <th></th>
           </tr>
@@ -874,235 +950,66 @@
     </form>
 
     <!--Build From Parts Modal-->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div id="buildFromPartsHeader" class="modal-header">
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Parts</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
-    <div class="container" style="padding:2rem">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            <div class="container" style="padding:2rem">
+
+            <div class="container">
+
+            </div>
 
 
-
+        <table class="table table-borderless table-striped table-hover" style="width:100%">
+            <thead class="">
+                <tr>
+                  <th><p class="card-title text-dark">Name:</p>
+                    <div class="input-group">
+                        <input name="model" type="text" size="30">
+                    </div>
+                </th>
+                </tr>
+            </thead>
+        </table>
 
         <table class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>
-                    <th>Quantity</th>
-                    <th>Component</th>
-                    <th>Details</th>
-                    <th>OR no.</th>
-                    <th>Serial no.</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select Motherboard</option>
-                                      <optgroup label="Motherboard category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
+                @foreach ($subtypes as $subtypes)
 
-                </tr>
-
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select CPU</option>
-                                      <optgroup label="Cpu category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
 
                     <td>
-                        <select class="selectpicker">
-                                    <option>Select Storage</option>
-                                      <optgroup label="Storage category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
+                      <p class="card-title">{{$subtypes->name}}: </p>
+                          <input  list="items{{$subtypes->id}}" name="items" id="{{$subtypes->id}}" onblur="CheckListed(this.value);" required>
+                            <datalist id="items{{$subtypes->id}}">
+                              <select>
+                              @foreach ($parts as $part)
+                              @if ($part->subtype_id==$subtypes->id)
+                              <option data-customvalue="Mobile Device-{{ $part->id}}" value="{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}} ">{{ $part->subtype_name}}</option>
+                              @endif
+                              @endforeach
+                            </select>
+                            </datalist>
+
+
                     </td>
-
-                </tr>
-
-                <tr>
-                    <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select RAM</option>
-                                      <optgroup label="RAM category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td><input type="number" min="1" max="8" id="gpuCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select GPU</option>
-                                      <optgroup label="GPU category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-
-                <!--optional
-    <tr>
-        <td></td>
-        <td>
-            <select class="selectpicker">
-            <option>Select HDD</option>
-              <optgroup label="cpu category">
-                <option></option>
-                <option></option>
-                <option></option>
-              </optgroup>
-            </select>
-        </td>
-
-    </tr>
-<tr>
-        <td></td>
-        <td>
-            <select class="selectpicker">
-            <option>Select SDD</option>
-              <optgroup label="cpu category">
-                <option></option>
-                <option></option>
-                <option></option>
-              </optgroup>
-            </select>
-        </td>
-
-    </tr>
--->
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select Power Supply</option>
-                                      <optgroup label="Select Power category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Case</option>
-                                      <optgroup label="Case category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Heat Sink Fan</option>
-                                      <optgroup label="Heat Sink Fan">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Mouse</option>
-                                      <optgroup label="Mouse category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Keyboard</option>
-                                      <optgroup label="Keyboard category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Monitor</option>
-                                      <optgroup label="Monitor category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-
-
-
-
+                      @if((int)$subtypes->id % 3==0)
+                      </tr>
+                      @endif
+                @endforeach
+                  </tr>
             </tbody>
 
         </table>
@@ -1116,7 +1023,6 @@
     </div>
     </div>
     </div>
-
 
 
 
@@ -1561,6 +1467,18 @@
         "order": []});
     } );
   </script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $('#myDataTable4').DataTable({ "pagingType": "full_numbers",
+      "order": []});
+  } );
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#myDataTable5').DataTable({ "pagingType": "full_numbers",
+    "order": []});
+} );
+</script>
     <!-- <script>
       $(document).ready(function() {
             $('table.display').DataTable({
@@ -1583,6 +1501,183 @@
         var item1 = $(hequipment).val();
         document.getElementById("hequipment").value = $('#item [value="' + item1 + '"]').data('customvalue');
         return true;
+        };
+    </script>
+    <script>
+    $.fn.dataTable.ext.search.push(
+function( settings, data, dataIndex ) {
+var type =  $('#types').val();
+var subtype =  $('#subtypes').val();
+var supplier =  $('#supplier').val();
+var brand =  $('#brand').val();
+var status =  $('#status').val();
+var types = data[3]; // use data for the age column
+var subtypes = data[4];
+var suppliers = data[5];
+var brands = data[2];
+var statuses = data[12];
+if ( type == types || type == "any"){
+  if (subtype == subtypes || subtype == "any"){
+    if (supplier == suppliers || supplier == "any"){
+      if (brand == brands || brand == "any"){
+        if (status == statuses || status == "any"){
+          return true;
+        }
+      }
+    }
+  }
+
+}
+return false;
+}
+);
+
+$(document).ready(function() {
+var table = $('#myDataTable').DataTable();
+
+// Event listener to the two range filtering inputs to redraw on input
+$('#subtypes').on('keyup change',  function() {
+    table.draw();
+    } );
+    $('#types').on('keyup change',  function() {
+        table.draw();
+        } );
+        $('#supplier').on('keyup change',  function() {
+            table.draw();
+            } );
+            $('#brand').on('keyup change',  function() {
+                table.draw();
+                } );
+                $('#status').on('keyup change',  function() {
+                    table.draw();
+                    } );
+        } );
+        $(document).ready(function() {
+        var table = $('#myDataTable1').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+        $('#subtypes').on('keyup change',  function() {
+            table.draw();
+            } );
+            $('#types').on('keyup change',  function() {
+                table.draw();
+                } );
+                $('#supplier').on('keyup change',  function() {
+                    table.draw();
+                    } );
+                    $('#brand').on('keyup change',  function() {
+                        table.draw();
+                        } );
+                        $('#status').on('keyup change',  function() {
+                            table.draw();
+                            } );
+                } );
+
+              $(document).ready(function() {
+                var table = $('#myDataTable2').DataTable();
+
+                // Event listener to the two range filtering inputs to redraw on input
+                $('#subtypes').on('keyup change',  function() {
+                    table.draw();
+                    } );
+                    $('#types').on('keyup change',  function() {
+                        table.draw();
+                        } );
+                        $('#supplier').on('keyup change',  function() {
+                            table.draw();
+                            } );
+                            $('#brand').on('keyup change',  function() {
+                                table.draw();
+                                } );
+                                $('#status').on('keyup change',  function() {
+                                    table.draw();
+                                    } );
+                        } );
+                        $(document).ready(function() {
+                          var table = $('#myDataTable3').DataTable();
+
+                          // Event listener to the two range filtering inputs to redraw on input
+                          $('#subtypes').on('keyup change',  function() {
+                              table.draw();
+                              } );
+                              $('#types').on('keyup change',  function() {
+                                  table.draw();
+                                  } );
+                                  $('#supplier').on('keyup change',  function() {
+                                      table.draw();
+                                      } );
+                                      $('#brand').on('keyup change',  function() {
+                                          table.draw();
+                                          } );
+                                          $('#status').on('keyup change',  function() {
+                                              table.draw();
+                                              } );
+                                  } );
+                                  $(document).ready(function() {
+                                    var table = $('#myDataTable4').DataTable();
+
+                                    // Event listener to the two range filtering inputs to redraw on input
+                                    $('#subtypes').on('keyup change',  function() {
+                                        table.draw();
+                                        } );
+                                        $('#types').on('keyup change',  function() {
+                                            table.draw();
+                                            } );
+                                            $('#supplier').on('keyup change',  function() {
+                                                table.draw();
+                                                } );
+                                                $('#brand').on('keyup change',  function() {
+                                                    table.draw();
+                                                    } );
+                                                    $('#status').on('keyup change',  function() {
+                                                        table.draw();
+                                                        } );
+                                            } );
+                                            $(document).ready(function() {
+                                              var table = $('#myDataTable5').DataTable();
+
+                                              // Event listener to the two range filtering inputs to redraw on input
+                                              $('#subtypes').on('keyup change',  function() {
+                                                  table.draw();
+                                                  } );
+                                                  $('#types').on('keyup change',  function() {
+                                                      table.draw();
+                                                      } );
+                                                      $('#supplier').on('keyup change',  function() {
+                                                          table.draw();
+                                                          } );
+                                                          $('#brand').on('keyup change',  function() {
+                                                              table.draw();
+                                                              } );
+                                                              $('#status').on('keyup change',  function() {
+                                                                  table.draw();
+                                                                  } );
+                                                      } );
+        function reset(){
+          document.getElementById("subtypes").selectedIndex = "0";
+          document.getElementById("types").selectedIndex = "0";
+          document.getElementById("supplier").selectedIndex = "0";
+          document.getElementById("brand").selectedIndex = "0";
+          document.getElementById("status").selectedIndex = "0";
+          $('#myDataTable').DataTable().search('').draw();
+          $('#myDataTable1').DataTable().search('').draw();
+          $('#myDataTable2').DataTable().search('').draw();
+          $('#myDataTable3').DataTable().search('').draw();
+          $('#myDataTable4').DataTable().search('').draw();
+          $('#myDataTable5').DataTable().search('').draw();
+
+        }
+        function restore(option){
+          if(option== false){
+              $("#types").hide();
+            $("#labelTypes").hide();
+            reset()
+          } else{
+            $("#types").show();
+            $("#labelTypes").show();
+            reset()
+
+          }
         };
 
         

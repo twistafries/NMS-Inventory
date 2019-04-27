@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class TblEmployees extends Model {
 
@@ -17,11 +18,15 @@ class TblEmployees extends Model {
 			$query = \DB::table('employees as e')
 				->where('e.status', '=', 'active')
 				->get();
-		}else {
+		}else	if(isset($params['emails'])) {
+				$query = \DB::table('employees as e')
+					->whereNotIn('e.email', $params['emails'])
+					->get();
+			}else {
 			$query = \DB::table('employees as e')
 				->leftjoin('departments', 'departments.id', '=', 'e.dept_id')
 				->select('e.*', 'departments.name as department')
-				->orderBy('lname', 'asc')
+				->orderBy('e.created_at', 'desc')
 				->get();
 		}
 			return $query;
@@ -29,6 +34,7 @@ class TblEmployees extends Model {
 
 	public static function add_employee($params) {
 		$empl = new TblEmployees;
+		$empl->id = $params['id'];
 		$empl->fname = $params['fname'];
 		$empl->lname = $params['lname'];
 		$empl->email = $params['email'];
@@ -37,27 +43,36 @@ class TblEmployees extends Model {
 
 		try {
 			$empl->save();
+			$id = DB::getPdo()->lastInsertId();
+			return $id;
 		}catch(QueryException $e) {
 			die($e);
 		}
 
 	}
+	public static function remove_employee($params){
+	$employees = TblEmployees::find($params['id']);
+	$id = TblEmployees::find($params['id']);
+	$employees->delete();
+	return $id;
+	}
 
 	public static function edit_employee( $params ){
 		$employees = TblEmployees::find($params['id']);
-
+        $id = TblEmployees::find($params['id']);
+        
 		if(isset($params['fname']))
 		$employees->fname = $params['fname'];
-		
+
 		if(isset($params['lname']))
 		$employees->lname = $params['lname'];
 
 		if(isset($params['email']))
 		$employees->email = $params['email'];
-		
+
 		if(isset($params['dept_id']))
 		$employees->dept_id = $params['dept_id'];
-		
+
 		if(isset($params['status']))
 		$employees->status = $params['status'];
 
@@ -65,6 +80,7 @@ class TblEmployees extends Model {
 
 		try {
             $employees->save();
+            return $id;
         }catch(QueryException $e){
             die($e);
         }

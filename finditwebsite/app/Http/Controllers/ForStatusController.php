@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use View, Validator, Session, Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -10,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
+use App\Models\TblActivityLogs;
 
 class ForStatusController extends BaseController
 {
@@ -42,7 +44,7 @@ class ForStatusController extends BaseController
    public function showIssuable(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
-      } 
+      }
 
      $data = [];
      $data['available'] = TblEquipmentStatus::get_available();
@@ -55,12 +57,14 @@ class ForStatusController extends BaseController
    public function showEmployees(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
-      } 
+      }
 
      $data = [];
      $data['employees'] = TblEmployees::get_employees();
      $data['employees'] = TblEmployees::get_employees();
      $data['departments'] = TblDepartments::getDept();
+     $lastid = DB::table('employees')->orderBy('id', 'DESC')->first();
+     $data['lastid'] = $lastid;
 
      return view ('content/employees' , $data);
    }
@@ -69,7 +73,7 @@ class ForStatusController extends BaseController
    {
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
-      } 
+      }
 
        $data = $request->all();
        $results = [];
@@ -83,7 +87,11 @@ class ForStatusController extends BaseController
            $results['error'] = 1;
            $results['message'] = $validator->errors();
        } else {
-           $results = TblEmployees::add_employee($data);
+           $id = TblEmployees::add_employee($data);
+
+           $data['employees'] = $id;
+           $data['action'] = "added";
+           TblActivityLogs::add_log($data);
        }
 
          return \Redirect::to('/employees');
@@ -94,7 +102,7 @@ class ForStatusController extends BaseController
        $rules = array(
            'fname' => 'required',
            'lname' => 'required',
-           'email' => 'required|email',
+           'email' => 'required|email|unique:employees,email',
            'dept_id' => 'required|min:1'
        );
 
@@ -105,7 +113,20 @@ class ForStatusController extends BaseController
    {
       $data = $request->all();
       // dd($data);
-      TblEmployees::edit_employee($data);
+      $id = TblEmployees::edit_employee($data);
+
+      $data['employees'] = $id;
+      $data['action'] = "updated";
+      TblActivityLogs::add_log($data);
+
+      return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
+
+   }
+
+   public function removeEmployee(Request $request)
+   {
+      $data['id'] = $request->get('employee_id');
+      TblEmployees::remove_employee($data);
       return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
 
    }

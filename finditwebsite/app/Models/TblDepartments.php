@@ -14,6 +14,8 @@ class TblDepartments extends Model {
 
 		try {
 			$dept->save();
+			$id = DB::getPdo()->lastInsertId();
+			return $id;
 		}catch(QueryException $e) {
 			die($e);
 		}
@@ -27,6 +29,7 @@ class TblDepartments extends Model {
 
 	public static function updateStatus($params) {
 		$dept = TblDepartments::find($params['id']);
+		$id = TblDepartments::find($params['id']);
 
 		if(isset($params['name']))
 			$dept-> name = $params['name'];
@@ -35,6 +38,7 @@ class TblDepartments extends Model {
 
 		try {
 			$dept->save();
+			return $id;
 		}catch(QueryException $e) {
 			die($e);
 		}

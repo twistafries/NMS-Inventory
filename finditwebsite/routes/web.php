@@ -47,7 +47,7 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
-Route::get('/dashboard', 'ForStatusController@showAllStatus');
+Route::get('/dashboard', 'Dashboard@showAllStatus');
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/associates', 'AssociateController@showAllAssociate');
 Route::post('/deactivate', 'AssociateController@update_associate_status');
@@ -60,6 +60,10 @@ Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
+Route::post('/removeEmployee', 'ForStatusController@removeEmployee');
+Route::post('/addUsers', 'AssociateController@addUsers');
+Route::post('/removeUser', 'AssociateController@removeUser');
+
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 
 Route::get('/bulk-add', 'BulkController@showFields');
@@ -72,5 +76,6 @@ Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
 
 Route::post('/template', 'InventoryController@addEquipment');
 
-
 Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
+Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
