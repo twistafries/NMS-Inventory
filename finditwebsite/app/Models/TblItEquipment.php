@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class TblItEquipment extends Model
 {
@@ -102,6 +103,8 @@ class TblItEquipment extends Model
 
         try{
           $it_equipment->save();
+          $id = DB::getPdo()->lastInsertId();
+          return $id;
           $results['error'] = 0;
           $results['message'] = 'equipment has been added';
 
@@ -117,11 +120,15 @@ class TblItEquipment extends Model
       $it_equipment = TblItEquipment::find($id);
       $it_equipment->status_id = $status;
       $it_equipment->save();
+      $id = DB::getPdo()->lastInsertId();
+      return $id;
     }
 
     public static function delete_equipment($params){
       $it_equipment = TblItEquipment::find($params);
       $it_equipment->delete();
+      $id = DB::getPdo()->lastInsertId();
+      return $id;
     }
 
     // Parehas ba to sa add equipment????
@@ -162,12 +169,16 @@ class TblItEquipment extends Model
 
     public static function edit_equipment( $params ){
         $it_equipment = TblItEquipment::find($params['id']);
+        $id = TblItEquipment::find($params['id']);
 
         if(isset($params['subtype_id']))
         $it_equipment->subtype_id = $params['subtype_id'];
 
-        if(isset($params['name']))
-        $it_equipment->name = $params['name'];
+        if(isset($params['brand']))
+        $it_equipment->brand = $params['brand'];
+
+        if(isset($params['model']))
+        $it_equipment->model = $params['model'];
 
         if(isset($params['details']))
         $it_equipment->details = $params['details'];
@@ -188,6 +199,7 @@ class TblItEquipment extends Model
 
         try {
             $it_equipment->save();
+            return $id;
         }catch(QueryException $e){
             die($e);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class TblEmployees extends Model {
 
@@ -42,6 +43,8 @@ class TblEmployees extends Model {
 
 		try {
 			$empl->save();
+			$id = DB::getPdo()->lastInsertId();
+			return $id;
 		}catch(QueryException $e) {
 			die($e);
 		}
@@ -49,12 +52,15 @@ class TblEmployees extends Model {
 	}
 	public static function remove_employee($params){
 	$employees = TblEmployees::find($params['id']);
-		$employees->delete();
+	$id = TblEmployees::find($params['id']);
+	$employees->delete();
+	return $id;
 	}
 
 	public static function edit_employee( $params ){
 		$employees = TblEmployees::find($params['id']);
-
+        $id = TblEmployees::find($params['id']);
+        
 		if(isset($params['fname']))
 		$employees->fname = $params['fname'];
 
@@ -74,6 +80,7 @@ class TblEmployees extends Model {
 
 		try {
             $employees->save();
+            return $id;
         }catch(QueryException $e){
             die($e);
         }

@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblUsers;
 use App\Models\TblAssociate;
 use App\Models\TblEmployees;
+use App\Models\TblActivityLogs;
 
 class AssociateController extends BaseController
 {
@@ -41,6 +42,10 @@ class AssociateController extends BaseController
     //    $this->checkIfAdmin
         $data = $request->all();
         $updated = TblUsers::update_user($data);
+        $id = TblUsers::update_user($data);
+        $data['users'] = $id;
+        $data['action'] = "deactivated";
+        ActivityLogs::add_log($data);
    }
 
     //adding associate

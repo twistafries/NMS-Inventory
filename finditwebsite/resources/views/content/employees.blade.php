@@ -291,12 +291,30 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button id="save" type="submit" class="btn-success"> <span class="fas fa-plus"></span>ADD</button>
+            <button id="save" type="submit" class="btn-success" data-toggle="modal" data-target="#success-message"> <span class="fas fa-plus"></span>ADD</button>
             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
         </div>
         </div>
     </form>
     </div>
+    </div>
+
+     <div class="modal fade" id="success-message" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div id="successAssociate" class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <i id="successIcon" class="far fa-check-circle fa-10x"></i>
+                    <p id="successText">Employee was successfully added!</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="okSuccessButton" type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 
