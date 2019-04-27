@@ -37,8 +37,12 @@ class TblItEquipment extends Model
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+<<<<<<< HEAD
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
         -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
+=======
+        -> select('it_equipment.*', 'equipment_status.name as status_name', 'it_equipment.subtype_id as subtype_id', 'it_equipment_subtype.name as subtype_name')
+>>>>>>> d3736a732aaf446511e76e030f4ee37cab49ccae
         -> where('it_equipment_subtype.type_id' , '=' , '1')
         -> orderBy('created_at' , 'desc')
         -> get();

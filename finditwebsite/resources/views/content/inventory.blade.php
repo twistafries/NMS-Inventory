@@ -95,7 +95,8 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
                       <li><a class="dropdown-item" href="#">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a></li>
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a></li
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
                     </ul>
               </div>
                 <!-- Delete -->
@@ -862,8 +863,8 @@
           </div>
       </div>
     </div>
-    <!--Build From Parts Modal-->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <!-- From Parts Modal-->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div id="buildFromPartsHeader" class="modal-header">
@@ -872,226 +873,57 @@
     </div>
     <div class="container" style="padding:2rem">
 
-
-
-
+        <div class="container">
+         
+        </div>
+        
+            
+        <table class="table table-borderless table-striped table-hover" style="width:100%">
+            <thead class="">
+                <tr>
+                  <th><p class="card-title text-dark">Name:</p>
+                                        <div class="input-group">
+                                        <input name="model" type="text" size="30">
+                                        </div>
+                </th>
+                </tr>
+            </thead>
+        </table>
+        
         <table class="table table-borderless table-striped table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>
-                    <th>Quantity</th>
-                    <th>Component</th>
-                    <th>Details</th>
-                    <th>OR no.</th>
-                    <th>Serial no.</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select Motherboard</option>
-                                      <optgroup label="Motherboard category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
+                @foreach ($subtypes as $subtypes)
 
-                </tr>
-
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select CPU</option>
-                                      <optgroup label="Cpu category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
 
                     <td>
-                        <select class="selectpicker">
-                                    <option>Select Storage</option>
-                                      <optgroup label="Storage category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
+                      <p class="card-title">{{$subtypes->name}}: </p>
+                          <input  list="items{{$subtypes->id}}" name="items" id="{{$subtypes->id}}" onblur="CheckListed(this.value);" required>
+                            <datalist id="items{{$subtypes->id}}">
+                              <select>
+                              @foreach ($parts as $part)
+                              @if ($part->subtype_id==$subtypes->id)
+                              <option data-customvalue="Mobile Device-{{ $part->id}}" value="{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}} ">{{ $part->subtype_name}}</option>
+                              @endif
+                              @endforeach
+                            </select>
+                            </datalist>
+
+
                     </td>
-
-                </tr>
-
-                <tr>
-                    <td><input type="number" min="1" max="8" id="ramCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select RAM</option>
-                                      <optgroup label="RAM category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td><input type="number" min="1" max="8" id="gpuCount" class="form-control border" style="width:75px; max-width:75px; text-align: center;" value="1"></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select GPU</option>
-                                      <optgroup label="GPU category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-
-                <!--optional
-    <tr>
-        <td></td>
-        <td>
-            <select class="selectpicker">
-            <option>Select HDD</option>
-              <optgroup label="cpu category">
-                <option></option>
-                <option></option>
-                <option></option>
-              </optgroup>
-            </select>
-        </td>
-
-    </tr>
-<tr>
-        <td></td>
-        <td>
-            <select class="selectpicker">
-            <option>Select SDD</option>
-              <optgroup label="cpu category">
-                <option></option>
-                <option></option>
-                <option></option>
-              </optgroup>
-            </select>
-        </td>
-
-    </tr>
--->
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Select Power Supply</option>
-                                      <optgroup label="Select Power category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Case</option>
-                                      <optgroup label="Case category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Heat Sink Fan</option>
-                                      <optgroup label="Heat Sink Fan">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Mouse</option>
-                                      <optgroup label="Mouse category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Keyboard</option>
-                                      <optgroup label="Keyboard category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-
-                <tr>
-                    <td></td>
-                    <td>
-                        <select class="selectpicker">
-                                    <option>Monitor</option>
-                                      <optgroup label="Monitor category">
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                      </optgroup>
-                                    </select>
-                    </td>
-
-                </tr>
-
-
-
-
-
+                      @if((int)$subtypes->id % 3==0)
+                      </tr>
+                      @endif
+                @endforeach
+                  </tr>
             </tbody>
 
         </table>
@@ -1105,7 +937,6 @@
     </div>
     </div>
     </div>
-
 
 
 
