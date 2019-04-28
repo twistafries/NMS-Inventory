@@ -50,7 +50,7 @@ body{
                     <th>Supplier</th>
                     <th>Warranty Start</th>
                     <th>Warranty End</th>
-                    <th>Action</th>
+                    <!-- <th>Action</th> -->
                 </tr>
             </thead>
 <!-- subtype_id`, `brand`, `model`, `details`, `serial_no`, `or_no`, `supplier`, `warranty_start`, `warranty_end`, `user_id`,
@@ -261,8 +261,8 @@ body{
                         output += '<td>' + warranty_start + ' <input type="hidden" name="bulk[warranty_start][]" id="warranty_start' + count + '" class="warranty_start" value="' + warranty_start + '" /></td>';
                         output += '<td>' + warranty_end + ' <input type="hidden" name="bulk[warranty_end][]" id="warranty_end' + count + '" class="warranty_end" value="' + warranty_end + '" /></td>';
     
-                        output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="' + count + '">View</button>';
-                        output += '<button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="' + count + '">Remove</button></td>';
+                        // output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="' + count + '">View</button>';
+                        // output += '<button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="' + count + '">Remove</button></td>';
                         output += '</tr>';
                         $('#equipment_data').append(output);
                         

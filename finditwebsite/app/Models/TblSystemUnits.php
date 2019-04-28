@@ -38,11 +38,10 @@ class TblSystemUnits extends Model
 
     public static function add_system_unit($params){
       $system_units = new TblSystemUnits;
-
-      $system_units->description = 'PC Workstation';
+      $system_units->description = $params['description'];
       $system_units->user_id = $params['user_id'];
+      
       $system_units->status_id = 1;
-      // $system_units->mac_address = $params['mac_address'];
       try {
         $system_units->save();
         $id = DB::getPdo()->lastInsertId();
