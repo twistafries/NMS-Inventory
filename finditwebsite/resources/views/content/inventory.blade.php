@@ -676,7 +676,7 @@
             </table>
         </div>
 
-<!-- Mobile Devices -->
+<!-- Software -->
 <div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
     <table id="myDataTable4" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
@@ -737,7 +737,7 @@
       <tbody>
 
           @foreach ($system_units as $system_units)
-          <tr>
+          <tr data-toggle="modal" data-target="#pc-component-{!! $system_units->id !!}">
             <td hidden><input class="checkbox" type="checkbox"></td>
               <td> {{ $system_units->description }}-{{ $system_units->id }} </td>
               <td width="30%"> NONE </td>
@@ -746,6 +746,72 @@
               <td> {{ $system_units->fname }} {{ $system_units->lname }}</td>
               <td>  </td>
           </tr>
+
+             <div class="modal fade" id="pc-component-{!! $system_units->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $system_units->id!!}"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="container">
+                                        <div class="col-12">
+                                        </div>
+
+                                        <div class="col col-8">
+                                            <h5 class="modal-title">{{ $system_units->description }}</h5>
+                                        </div>
+
+                                        <div class="col col-4">
+                                            <p class="text-light">ID: PC-{{ $system_units->id }}</p>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button> 
+                                </div>
+                                
+                                
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        
+                                        <!--Component Details -->
+                                        <div class="row">
+                                          
+                                            @foreach( $unit_parts as $unit_part)
+                                            @if($system_units->id==$unit_part->unit_id)
+                                            
+ 
+                                            
+                                                        
+                                            
+                                            <div class="col col-12 details">
+                                                <strong>{{ $unit_part->subtype_name }}</strong>
+                                                <p class="text">ID: {{ $unit_part->id }} </p>
+                                                <p class="text">Serial Number: {{ $unit_part->serial_no }}</p>    
+                                                <p class="text">{{ $unit_part->brand }} {{ $unit_part->model }}</p>
+                                                <p class="text">{{ $unit_part->details }}</p>
+                                            </div>
+                                            <hr>
+
+                                            
+                                            @endif
+                                        
+                                        @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+          
           @endforeach
         </tbody>
 
