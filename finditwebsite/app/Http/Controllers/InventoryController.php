@@ -48,6 +48,11 @@ class InventoryController extends BaseController
       $data['suppliers'] = TblItEquipment::get_supplier();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
+      $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['unit_parts'] = TblItEquipment::get_all_equipment();
+      $data['pc'] = TblSystemUnits::get_all_system_units();
+
 
 
 
