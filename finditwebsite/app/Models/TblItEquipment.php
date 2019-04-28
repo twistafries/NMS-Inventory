@@ -177,6 +177,8 @@ class TblItEquipment extends Model
 
 
     public static function edit_equipment( $params ){
+        // dd($params);
+        
         $it_equipment = TblItEquipment::find($params['id']);
         $id = TblItEquipment::find($params['id']);
 
@@ -202,7 +204,10 @@ class TblItEquipment extends Model
         $it_equipment->status_id = $params['status_id'];
 
         if(isset($params['supplier']))
-        $it_equipment->status_id = $params['supplier'];
+        $it_equipment->supplier = $params['supplier'];
+        
+        if(isset($params['unit_id']))
+        $it_equipment->unit_id = $params['unit_id'];
 
         $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
 
