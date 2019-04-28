@@ -76,8 +76,8 @@ class InventoryController extends BaseController
       }
 
       $session=Session::get('loggedIn');
+      // dd($request->all());
       $user_id = $session['id'];
-      // dd($user_id);
 
       $data = $request->all();
         // dd($data);
@@ -169,9 +169,9 @@ class InventoryController extends BaseController
         //   dd($equipment['name']);
         // }
         return \Redirect::to('/inventory')->with('equipment has been added');
-
-    }
-
+        
+      }
+      
 
     public function editEquipment(Request $request){
         $data = $request->all();
@@ -221,4 +221,37 @@ class InventoryController extends BaseController
 
         return \Redirect::to('/inventory')->with('equipment has been deleted');
       }
+
+    public function buildUnit(Request $request){
+      $data = $request->all();
+
+      // dd($request->all());
+      $session=Session::get('loggedIn');
+      $user_id = $session['id'];
+      $data['user_id'] = $user_id;
+      // dd($data['items']); 
+
+      $unit_id = TblSystemUnits::add_system_unit($data);
+      
+      $components = $data['items'];
+      $count = 0;
+      foreach($components as $component){
+        $data['unit_id'] = $unit_id;
+        $data['status_id'] = 8;
+        $data['id'] = $component;
+        TblItEquipment::edit_equipment($data);
+        // TblItEquipment::
+      }
+        
+      return \Redirect::to('/inventory')->with('equipment has been added');
+
+      // dd($data);
+      
+      
+
     }
+
+
+
+}
+

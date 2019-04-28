@@ -78,6 +78,8 @@ Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');
 Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
 
+Route::post('/buildUnit', 'InventoryController@buildUnit');
+
 Route::post('/template', 'InventoryController@addEquipment');
 
 Route::get('/issuance', 'IssuanceController@showAllIssuance');

@@ -66,9 +66,6 @@
                     </a>
                 </button>
 -->
-
-
-
                 <!-- Multiple Select -->
                 <button type="button" class="btn" id="multiple-select" onclick="enable()">
                     <a href="#" data-toggle="tooltip" title="Multiple Select">
@@ -94,7 +91,7 @@
                   </button>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
-                      <li><a class="dropdown-item" href="#">Bulk Add</a></li>
+                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#addUnit" href="#">Add System Unit</a></li
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
                     </ul>
@@ -770,219 +767,191 @@
 
     <!-- Single Add Modal -->
 
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalTitle">Single Add</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <!-- Add Equipment Form -->
-                    <div class="modal-body">
-                      <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
-                          {!! csrf_field() !!}
-                        <div class="row pb-2">
-                            <div class="col">
-                            <p class="card-title text-dark">Equipment Subtype:</p>
-                            <select name="subtype_id" class="custom-select">
-                            @foreach ($equipment_subtypes as $equipment_subtypes)
-                                <option  value="{!! $equipment_subtypes->id !!}">
-                                    {{ $equipment_subtypes->name }}
-                                </option>
-                            @endforeach
-                            </select>
-                            </div>
-                        </div>
-
-                        <!-- Model & Brand -->
-                        <div class="row">
-                            <div class="col-5">
-                                <p class="card-title text-dark">Model:</p>
-                                <div class="input-group">
-                                    <input name="model" type="text" size="30">
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <p class="card-title text-dark">Brand:</p>
-                                <div class="input-group">
-                                    <input name="brand" type="text" size="30">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Details -->
-                        <div class="row">
-                            <div class="col-9">
-                                <label for="details" class="card-title text-dark">Details:</label>
-                                <div class="input-group mb-1">
-                                    <textarea name="details" class="form-control" aria-label="With textarea" rows="2"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-                        <!-- Warranty -->
-                        <div class="row pb-2">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <label for="details" class="card-title text-dark">Warranty Start:</label>
-                                        <input type="date" id="start" name="warranty_start">
-                                    </div>
-
-                                    <div class="col">
-                                        <label for="details" class="card-title text-dark">Warranty End:</label>
-                                        <input type="date" id="start" name="warranty_end">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-
-                        <!-- Serial and IMEI/MAC -->
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="serial_no" class="card-title text-dark">Serial Number:</label>
-                                <div class="input-group mb-1">
-                                    <input name="serial_no" type="text" size="30" >
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
-                                <div class="input-group mb-1">
-                                    <input name="imei_or_macaddress" type="text" size="30">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- OR & Supplier -->
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-title text-dark">Official Receipt Numbers:</p>
-                                <div class="input-group mb-1">
-                                    <input name="or_no" type="text" size="30">
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <label for="serial_no" class="card-title text-dark">Supplier:</label>
-                                <div class="input-group mb-1">
-                                    <input name="supplier" type="text" size="30">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- System Unit & Status -->
-                        <div class="row">
-                            <div class="col-6">
-                                <p class="card-title text-dark">System Unit Assigned To:</p>
-                                <select name="unit_id" class="custom-select">
-                                    <option value="NULL">Not Assigned</option>
-                                    @foreach ($units as $units)
-                                    <option value="{!! $system_units->id !!}">
-                                        {{ $units->description }}-{{ $units->id }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-6">
-                                <p class="card-title text-dark">Status:</p>
-                                <select class="custom-select" name="status_id" >
-                                    <option value="1">Available</option>
-                                    <option value="4">For return</option>
-                                    <option value="6">Pending</option>
-                                    <option value="8">In-use</option>
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer text-uppercase">
-                        <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    </div>
-                      </form>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle">Single Add</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+
+                <!-- Add Equipment Form -->
+                <div class="modal-body">
+                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                    {!! csrf_field() !!}
+                    <div class="row pb-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Subtype:</p>
+                        <select name="subtype_id" class="custom-select">
+                        @foreach ($equipment_subtypes as $equipment_subtypes)
+                            <option  value="{!! $equipment_subtypes->id !!}">
+                                {{ $equipment_subtypes->name }}
+                            </option>
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
+
+                    <!-- Model & Brand -->
+                    <div class="row">
+                        <div class="col-5">
+                            <p class="card-title text-dark">Model:</p>
+                            <div class="input-group">
+                                <input name="model" type="text" size="30">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-title text-dark">Brand:</p>
+                            <div class="input-group">
+                                <input name="brand" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="row">
+                        <div class="col-9">
+                            <label for="details" class="card-title text-dark">Details:</label>
+                            <div class="input-group mb-1">
+                                <textarea name="details" class="form-control" aria-label="With textarea" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- Warranty -->
+                    <div class="row pb-2">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="details" class="card-title text-dark">Warranty Start:</label>
+                                    <input type="date" id="start" name="warranty_start">
+                                </div>
+
+                                <div class="col">
+                                    <label for="details" class="card-title text-dark">Warranty End:</label>
+                                    <input type="date" id="start" name="warranty_end">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- Serial and IMEI/MAC -->
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">Serial Number:</label>
+                            <div class="input-group mb-1">
+                                <input name="serial_no" type="text" size="30" >
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
+                            <div class="input-group mb-1">
+                                <input name="imei_or_macaddress" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OR & Supplier -->
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-title text-dark">Official Receipt Numbers:</p>
+                            <div class="input-group mb-1">
+                                <input name="or_no" type="text" size="30">
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">Supplier:</label>
+                            <div class="input-group mb-1">
+                                <input name="supplier" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Unit & Status -->
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-title text-dark">System Unit Assigned To:</p>
+                            <select name="unit_id" class="custom-select">
+                                <option value="NULL">Not Assigned</option>
+                                @foreach ($units as $units)
+                                <option value="{!! $system_units->id !!}">
+                                    {{ $units->description }}-{{ $units->id }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-6">
+                            <p class="card-title text-dark">Status:</p>
+                            <select class="custom-select" name="status_id" >
+                                <option value="1">Available</option>
+                                <option value="4">For return</option>
+                                <option value="6">Pending</option>
+                                <option value="8">In-use</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer text-uppercase">
+                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+                    </form>
             </div>
         </div>
-        </div>
+    </div>
 
 
     <!--Build From Parts Modal-->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
+        
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div id="buildFromPartsHeader" class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Parts</h5>
+                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
             <div class="container" style="padding:2rem">
 
+        
+        <form action="{!! url('/buildUnit'); !!}" method="post">
+            {!! csrf_field() !!}
             <div class="container">
-
+                <p class="card-title text-dark">Name:</p>
+                    <div class="input-group">
+                        <input name="description" type="text" class="form-control" required>
+                    </div>
+            <div class="row">
+                @foreach ($subtypes as $subtypes)
+                <div class="col col-6 mb-2">
+                    <p class="card-title">{{$subtypes->name}}: </p>
+                    <select name="items[]" class="custom-select">
+                        @foreach ($parts as $part)
+                        @if ($part->subtype_id==$subtypes->id)
+                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
+                        @endif
+                        @endforeach                    
+                    </select>
+                </div>
+                @endforeach
             </div>
 
 
-        <table class="table table-borderless table-striped table-hover" style="width:100%">
-            <thead class="">
-                <tr>
-                  <th><p class="card-title text-dark">Name:</p>
-                    <div class="input-group">
-                        <input name="model" type="text" size="30">
-                    </div>
-                </th>
-                </tr>
-            </thead>
-        </table>
-
-        <table class="table table-borderless table-striped table-hover" style="width:100%">
-            <thead class="thead-dark">
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                @foreach ($subtypes as $subtypes)
-
-
-                    <td>
-                      <p class="card-title">{{$subtypes->name}}: </p>
-                          <input  list="items{{$subtypes->id}}" name="items" id="{{$subtypes->id}}" onblur="CheckListed(this.value);" required>
-                            <datalist id="items{{$subtypes->id}}">
-                              <select>
-                              @foreach ($parts as $part)
-                              @if ($part->subtype_id==$subtypes->id)
-                              <option data-customvalue="Mobile Device-{{ $part->id}}" value="{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}} ">{{ $part->subtype_name}}</option>
-                              @endif
-                              @endforeach
-                            </select>
-                            </datalist>
-
-
-                    </td>
-                      @if((int)$subtypes->id % 3==0)
-                      </tr>
-                      @endif
-                @endforeach
-                  </tr>
-            </tbody>
-
-        </table>
         <div class="modal-footer">
-            <button id="save" type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" href="#successAssociate"> <span class="fas fa-wrench"></span>Build</button>
+
+            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
         </div>
+        </form>
 
 
     </div>

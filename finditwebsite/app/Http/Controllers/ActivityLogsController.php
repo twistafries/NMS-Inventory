@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblUsers;
 use App\Models\TblAssociate;
 use App\Models\TblEmployees;
+use App\Models\TblIssuances;
 use App\Models\TblActivityLogs;
 
 class ActivityLogsController extends BaseController {
@@ -22,6 +23,7 @@ class ActivityLogsController extends BaseController {
 
         $data = [];
         $data['logs'] = TblActivityLogs::get_logs();
+        $data['issuance'] = TblIssuances::getIssuance();
         
         // dd($data);
         return view ('content/activitylogs' , $data);
