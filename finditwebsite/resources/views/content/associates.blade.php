@@ -142,7 +142,7 @@
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">DEPARTMENT</div>
                                                     <div class="col col-7 details" id="department-info">IT Department</div>
-                                                    <div class="col col-1 edit" id="department-edit"><u>Edit</u></div>
+                                                    <div class="col col-1 edit" id="department-edit"><a href="#">Edit</a></div>
                                                 </div>
                                                 <!--department collapse-->
                                                 <div class="display" id="department">
@@ -165,7 +165,7 @@
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">EMAIL</div>
                                                     <div class="col col-7 details" id="email-add">{{ $associates->email }}</div>
-                                                    <div class="col col-1 edit" id="email-edit"><u>Edit</u></div>
+                                                    <div class="col col-1 edit" id="email-edit"><a href="#">Edit</a></div>
                                                 </div>
                                                 <!--email collapse-->
                                                 <div class="text-center display remove-padding" id="email">
@@ -189,8 +189,7 @@
                                             <div id="divpassword">
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">PASSWORD</div>
-                                                    <div class="col col-7 details" id="password-info">***********</div>
-                                                    <div class="col col-1 edit" id="password-edit"><u>Reset</u></div>
+                                                    <div class="col col-1 edit" id="password-edit"><a href="#">Reset Password</a></div>
                                                 </div>
                                                 <!--password modal-->
                                                 <div class="text-center display remove-padding" id="password">

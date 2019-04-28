@@ -340,11 +340,11 @@
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Model:</h6>
-                                                        <input name="name" value="{!! $equipment->model !!}">
+                                                        <input name="model" value="{!! $equipment->model !!}">
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Brand:</h6>
-                                                        <input name="name" value="{!! $equipment->brand !!}">
+                                                        <input name="brand" value="{!! $equipment->brand !!}">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -362,18 +362,6 @@
                                                 </ul>
                                             </div>
                                             
-                                            <div class="col">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Type:</h6>
-                                                        {{ $equipment->type_name }}
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
-                                                        <input name="subtype_id" value="{!! $equipment->subtype_name !!}">
-                                                    </li>
-                                                </ul>
-                                            </div>
 
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
@@ -382,23 +370,6 @@
                                                         <textarea rows="4" cols="50" name="details">{{ $equipment->details }}</textarea>
 
                                                     </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <ul class="list-group">
-                                                    @isset( $equipment->unit_id )
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
-                                                        {{ $equipment->unit_id }}
-                                                    </li>
-                                                    @endisset
-                                                    @empty( $equipment->unit_id )
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
-                                                        Not Assigned to A Unit
-                                                    </li>
-                                                    @endempty
                                                 </ul>
                                             </div>
 
