@@ -143,6 +143,9 @@
                                                     <div class="col col-4 detail-header">DEPARTMENT</div>
                                                     <div class="col col-7 details" id="department-info">IT Department</div>
                                                     <div class="col col-1 edit" id="department-edit"><a href="#">Edit</a></div>
+                                                    <div class="form-group col col-12">
+                                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                    </div>
                                                 </div>
                                                 <!--department collapse-->
                                                 <div class="display" id="department">
@@ -160,30 +163,6 @@
                                                 </div>
                                             </div>
 
-                                            <!--Email-->
-                                            <div id="divemail">
-                                                <div class="row row-details">
-                                                    <div class="col col-4 detail-header">EMAIL</div>
-                                                    <div class="col col-7 details" id="email-add">{{ $associates->email }}</div>
-                                                    <div class="col col-1 edit" id="email-edit"><a href="#">Edit</a></div>
-                                                </div>
-                                                <!--email collapse-->
-                                                <div class="text-center display remove-padding" id="email">
-                                                    <div class="margin">
-                                                        <div class="form-group row">
-                                                            <div class="col col-2">
-                                                                <label for="label" class="col-form-label label">Email</label>
-                                                            </div>
-                                                            <div class="col col-10">
-                                                                <input type="email" name="email" class="form-inline input" value="{!! $associates->email !!}">
-                                                            </div>
-                                                            <div class="form-group col col-12">
-                                                                <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                             <!--password-->
                                             <div id="divpassword">

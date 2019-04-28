@@ -174,9 +174,9 @@ class InventoryController extends BaseController
         //   dd($equipment['name']);
         // }
         return \Redirect::to('/inventory')->with('equipment has been added');
-        
+
       }
-      
+
 
     public function editEquipment(Request $request){
         $data = $request->all();
@@ -187,12 +187,13 @@ class InventoryController extends BaseController
 
     public function changeStatus(Request $request){
         $data = $request->all();
-        // dd($data);
+
         $act = [];
       //  $act['equipment_status']=$data['id'];
         TblItEquipment::edit_equipment($data);
         $act['status_id']=$data['status_id'];
-        $act['action']="changed status";
+        $act['action']="changed the status of";
+        $act['it_equipment']=$data['id'];
         // dd($act);
         TblActivityLogs::add_log($act);
         return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
@@ -223,7 +224,10 @@ class InventoryController extends BaseController
           $data['unit_id']=(int)$pieces[1] ;
           TblSystemUnits::delete_unit($data['unit_id']);
         }
-
+        $act=[];
+        $act['it_equipment']=$data['id'];
+        $act['action'] = "deleted";
+        TblActivityLogs::add_log($act);
         return \Redirect::to('/inventory')->with('equipment has been deleted');
       }
 
@@ -234,10 +238,10 @@ class InventoryController extends BaseController
       $session=Session::get('loggedIn');
       $user_id = $session['id'];
       $data['user_id'] = $user_id;
-      // dd($data['items']); 
+      // dd($data['items']);
 
       $unit_id = TblSystemUnits::add_system_unit($data);
-      
+
       $components = $data['items'];
       $count = 0;
       foreach($components as $component){
@@ -247,16 +251,15 @@ class InventoryController extends BaseController
         TblItEquipment::edit_equipment($data);
         // TblItEquipment::
       }
-        
+
       return \Redirect::to('/inventory')->with('equipment has been added');
 
       // dd($data);
-      
-      
+
+
 
     }
 
 
 
 }
-

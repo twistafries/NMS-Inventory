@@ -37,7 +37,7 @@ class TblActivityLogs extends Model {
     	$log->issuance = $params['issuance'];
 
       if(isset($params['it_equipment']))
-    	$log->it_equipment = $params['equipment_id'];
+    	$log->it_equipment = $params['it_equipment'];
 
       if(isset($params['it_equipment_type']))
     	$log->it_equipment_type = $params['it_equipment_type'];
@@ -128,7 +128,7 @@ public static function get_for_return_Month($params){
 	->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.it_equipment_type')
 	->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_issuance')
 	->leftjoin('system_units', 'system_units.id', '=', 'a.system_units')
-  ->where('a.action', '=', 'changed status')
+  ->where('a.action', '=', 'changed the status of')
   ->where('a.status_id', '=', 4)
   ->whereMonth('a.created_at', '=', $params)
   -> get();
@@ -148,7 +148,7 @@ public static function get_for_repair_Month($params){
 	->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.it_equipment_type')
 	->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_issuance')
 	->leftjoin('system_units', 'system_units.id', '=', 'a.system_units')
-  ->where('a.action', '=', 'changed status')
+  ->where('a.action', '=', 'changed the status of')
   ->where('a.status_id', '=', '3')
   ->whereMonth('a.created_at', '=', $params)
   -> get();
@@ -169,7 +169,7 @@ public static function get_for_pend_Month($params){
 	->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.it_equipment_type')
 	->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_issuance')
 	->leftjoin('system_units', 'system_units.id', '=', 'a.system_units')
-  ->where('a.action', '=', 'changed status')
+  ->where('a.action', '=', 'changed the status of')
   ->where('a.status_id', '=', '6')
   ->whereMonth('a.created_at', '=', $params)
   -> get();
@@ -190,7 +190,7 @@ public static function get_for_decom_Month($params){
 	->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'a.it_equipment_type')
 	->leftjoin('replacement_issuance', 'replacement_issuance.id', '=', 'a.replacement_issuance')
 	->leftjoin('system_units', 'system_units.id', '=', 'a.system_units')
-  ->where('a.action', '=', 'changed status')
+  ->where('a.action', '=', 'changed the status of')
   ->where('a.status_id', '=', '7')
   ->whereMonth('a.created_at', '=', $params)
   -> get();

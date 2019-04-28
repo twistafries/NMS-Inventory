@@ -22,19 +22,9 @@
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-                All
+              IT Equipments
             </a>
         </li>
-
-
-
-        @foreach ($equipment_types as $equipment_types)
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-{!! $equipment_types->id !!}-tab" data-toggle="pill" onclick="restore(false)" href="#pills-{!! $equipment_types->id !!}" role="tab" aria-controls="pills-{!! $equipment_types->id !!}" aria-selected="false">
-                {{ $equipment_types->name }}
-            </a>
-        </li>
-        @endforeach
         <li class="nav-item text-uppercase">
         <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
         </a>
@@ -979,7 +969,7 @@
 
     <!--Build From Parts Modal-->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
-        
+
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div id="buildFromPartsHeader" class="modal-header">
@@ -988,7 +978,7 @@
                 </div>
             <div class="container" style="padding:2rem">
 
-        
+
         <form action="{!! url('/buildUnit'); !!}" method="post">
             {!! csrf_field() !!}
             <div class="container">
@@ -1005,7 +995,7 @@
                         @if ($part->subtype_id==$subtypes->id)
                         <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
                         @endif
-                        @endforeach                    
+                        @endforeach
                     </select>
                 </div>
                 @endforeach

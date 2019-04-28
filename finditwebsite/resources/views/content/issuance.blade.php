@@ -109,7 +109,7 @@
 
       <div class="modal-body">
 
-        <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+        <form action="{!! url('/editIssuance'); !!}" enctype="multipart/form-data" method="post" role="form">
             {!! csrf_field() !!}
           <div class="row">
             <div class="col"><p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued" disabled></div>
@@ -149,7 +149,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton" onclick="editValues()">Edit Values</button>
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger" type="submit">Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
