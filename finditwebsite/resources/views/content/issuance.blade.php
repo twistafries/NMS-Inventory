@@ -149,6 +149,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton" onclick="editValues()">Edit Values</button>
+        <button class="btn btn-danger">Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -257,7 +258,6 @@
 
                           <div class="modal-footer text-uppercase">
                               <button class="btn btn-info">Add</button>
-
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
                           </div>

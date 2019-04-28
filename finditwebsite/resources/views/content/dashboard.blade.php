@@ -341,7 +341,7 @@
                               @foreach ($recent_activities as $recent_activities)
                                 <tr>
                                     <td>{{$recent_activities->firstname}} {{$recent_activities->lastname}} {{$recent_activities->action}} {{$recent_activities->efname}}{{$recent_activities->elname}} {{$recent_activities->model}}{{$recent_activities->brand}}
-                                      {{$recent_activities->unit_description}} {{$recent_activities->unitd}} {{$recent_activities->userfname}} {{$recent_activities->userlname}}
+                                      {{$recent_activities->unit_description}} {{$recent_activities->unit_description}} {{$recent_activities->userfname}} {{$recent_activities->userlname}}
                                     @if($recent_activities->action=="issued")
                                     to
                                     @endif
