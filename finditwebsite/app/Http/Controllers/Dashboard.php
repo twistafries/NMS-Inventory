@@ -11,6 +11,7 @@ use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
 use App\Models\TblItEquipment;
+use App\Models\TblIssuances;
 use App\Models\TblSystemUnits;
 use App\Models\TblActivityLogs;
 
@@ -30,6 +31,8 @@ class Dashboard extends BaseController
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
         $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
+        $data['issuance'] = TblIssuances::getIssuance();
+        
         // $data['most_issued'] = TblActivityLogs
 
         // $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
