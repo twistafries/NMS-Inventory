@@ -52,6 +52,7 @@
 
 		<div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
+
 			<div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
                 <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
