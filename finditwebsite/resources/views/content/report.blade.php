@@ -88,7 +88,7 @@
                           </button>
                         </div>
                         <div class="selectpicker">
-                          <button type="button" id="print" class="btn btn-info p-2 text-uppercase">
+                          <button type="button" id="print" onclick="printContent('sample')" class="btn btn-info p-2 text-uppercase">
                             <span class="fas fa-print" style="padding-right: 5px"></span>Print
                           </button>
                         </div>
@@ -167,7 +167,8 @@
                               </select>
                             </div>
                         </div>
-                        <div class="card add" id="" style="margin-left: 2rem; margin-right: 2rem;">
+                        <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
+                        
                           <div class="" style=" margin-top: 1rem;">
                             <p class="card-title text-right date">Date:</p>
                             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
@@ -346,7 +347,7 @@
                                             <td> {{ $for_disposal->created_at }} </td>
                                             <td> {{ $for_disposal->updated_at }} </td>
                                             <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
-                                        
+
                                         </tr>
 
                                         @endforeach

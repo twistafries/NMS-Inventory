@@ -145,7 +145,7 @@ class AssociateController extends BaseController
     public function editAssociates(Request $request)
     {
        $data = $request->all();
-       dd($data);
+    
       if(Session::get('loggedIn')['id']==$data['id']&&$data['status']=="inactive"){
         Session::flash('errorLogin', 'You can not deactivate yourself.');
         return \Redirect::to('/associates');
