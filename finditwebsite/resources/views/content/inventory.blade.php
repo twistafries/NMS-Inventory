@@ -36,7 +36,7 @@
         </li>
         @endforeach
         <li class="nav-item text-uppercase">
-        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" aria-controls="pills-6" aria-selected="false"> System Unit
+        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
         </a>
       </li>
 
@@ -101,15 +101,11 @@
               </div>
                 <!-- Delete -->
                 <div class="dropdown">
-                  <button class="btn" type="button" id="deleteOption" data-toggle="dropdown"   aria-haspopup="true" aria-expanded="false">
+                  <button class="btn" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
                       </a>
                       </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#softDelete" href="#">Soft Delete</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#hardDelete" href="#">Hard Delete</a></li>
-                    </ul>
               </div>
 
 
@@ -176,11 +172,12 @@
     @endforeach
   </select>
 </th>
-  </tr>
-  <tr>
-    <button type="button" onclick="reset()">Reset</button>
-  </tr>
+<th></th><th></th>
+  <th>
+    <button class="btn btn-primary text-uppercase" type="button" onclick="reset()">Reset</button>
+</th>
 </thead>
+<tr height="10px"></tr>
 </table>
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
@@ -208,7 +205,7 @@
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-                        <td hidden><input type="checkbox"></td>
+                        <td hidden><input class="checkbox" type="checkbox"></td>
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -418,7 +415,7 @@
                     <!-- Change Status -->
                     <div class="modal fade" id="change-status-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
                         aria-hidden="true">
-                        <form action="{!! url('/editEquipment'); !!}" method="post">
+                        <form action="{!! url('/editStatus'); !!}" method="post">
                             {!! csrf_field() !!}
                             <input type="hidden" name="id" value="{!! $equipment->id !!}">
                             <div class="modal-dialog" role="document">
@@ -487,7 +484,7 @@
 
                     @foreach ($component as $components)
                     <tr>
-                      <td hidden></td>
+                        <td hidden><input class="checkbox" type="checkbox"></td>
                         <td> {{ $components->model }} </td>
                         <td> {{ $components->brand }} </td>
                         <td hidden></td>
@@ -629,7 +626,7 @@
 
                     @foreach ($peripherals as $peripherals)
                     <tr >
-                        <td hidden></td>
+                        <td hidden><input class="checkbox" type="checkbox"></td>
                         <td> {{ $peripherals->model }} </td>
                         <td> {{ $peripherals->brand }} </td>
                         <td hidden></td>
@@ -654,7 +651,7 @@
             <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
                 <thead class="thead-dark">
                     <tr>
-                      <th id="checkbox" hidden></th>
+                      <th id="checkbox" onclick="selectAll()" hidden></th>
                       <th>Model</th>
                       <th>Brand</th>
                       <th hidden>Subtype</th>
@@ -672,7 +669,7 @@
 
                     @foreach ($mobile as $mobile)
                     <tr>
-                      <td hidden></td>
+                      <td hidden><input class="checkbox" type="checkbox"></td>
                         <td> {{ $mobile->model }} </td>
                         <td> {{ $mobile->brand }} </td>
                         <td hidden></td>
@@ -716,7 +713,7 @@
 
             @foreach ($software as $software)
             <tr>
-              <td hidden></td>
+            <td hidden><input class="checkbox" type="checkbox"></td>
                 <td> {{ $software->model }} </td>
                 <td> {{ $software->brand }} </td>
                 <td> {{ $software->subtype_name }} </td>
@@ -741,7 +738,7 @@
     <table id="myDataTable5" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
-
+              <th id="checkbox" hidden></th>
               <th>Name</th>
               <th>Details</th>
               <th>Date Added</th>
@@ -754,7 +751,7 @@
 
           @foreach ($system_units as $system_units)
           <tr>
-
+            <td hidden><input class="checkbox" type="checkbox"></td>
               <td> {{ $system_units->description }}-{{ $system_units->id }} </td>
               <td width="30%"> NONE </td>
               <td> {{ $system_units->created_at }} </td>
@@ -772,8 +769,7 @@
 </div>
 
     <!-- Single Add Modal -->
-    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
-        {!! csrf_field() !!}
+
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -786,7 +782,8 @@
 
                     <!-- Add Equipment Form -->
                     <div class="modal-body">
-                        <input type="hidden" name="action" value="add">
+                      <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                          {!! csrf_field() !!}
                         <div class="row pb-2">
                             <div class="col">
                             <p class="card-title text-dark">Equipment Subtype:</p>
@@ -905,25 +902,18 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-4">
-                                <p class="card-title text-dark"></p>
-                                <button class="btn btn-info" id= "AddEquipment">Issue Item</button>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="modal-footer text-uppercase">
-                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                        <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
-
+                      </form>
                 </div>
             </div>
         </div>
         </div>
-    </form>
+
 
     <!--Build From Parts Modal-->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
