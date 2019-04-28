@@ -149,7 +149,7 @@ class InventoryController extends BaseController
       foreach ($brands as $brand) {
         $data['equipments'] ->push([
           'brand'=> $brand,
-          'model'=> $model,
+          'model'=> $model[$ctr],
           'details'=> $details[$ctr],
           'subtype_id'=> $subtype_id[$ctr],
           'serial_no'=> $serial_no[$ctr],
