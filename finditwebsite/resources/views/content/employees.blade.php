@@ -36,6 +36,7 @@
         <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%; cursor:pointer;">
             <thead class="thead-dark">
                 <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Department</th>
@@ -48,6 +49,7 @@
                 @foreach ($employees as $employee)
                 <tr data-toggle="modal" data-target="#modal-{!! $employee->id !!}">
 
+                    <td>{{ $employee->id  }}</td>
                     <td>{{ $employee->fname  }} {{ $employee->lname }}</td>
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->department }}</td>
@@ -92,7 +94,7 @@
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">NAME</div>
                                                     <div class="col col-7 details" id="fullname">{{ $employee->fname  }} {{ $employee->lname }}</div>
-                                                    <div class="col col-1 edit" id="name-edit"><u>Edit</u></div>
+                                                    <div class="col col-1 edit" id="name-edit"><a href="#">Edit</a></div>
                                                 </div>
 
                                                 <div class="display" id="name">
@@ -116,20 +118,24 @@
                                             <div id="divdepartment">
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">DEPARTMENT</div>
-                                                    <div class="col col-7 details" id="department-info">IT Department</div>
-                                                    <div class="col col-1 edit" id="department-edit"><u>Edit</u></div>
+                                                    <div class="col col-7 details" id="department-info">{{ $employee->department }}</div>
+                                                    <div class="col col-1 edit" id="department-edit"><a href="#">Edit</a></div>
                                                 </div>
                                                 <!--department collapse-->
                                                 <div class="display" id="department">
                                                     <div class="margin">
                                                         <div class="form-group row">
-                                                            <select class="department-select" name="department">
-                                                                <option></option>
-                                                                <option value="dept1">Information Technology Development Department</option>
-                                                                <option value="dept2">Production Development Department</option>
-                                                                <option value="dept3">Financial Department</option>
-                                                                <option value="dept4">Human Resources Department</option>
+                                                            <select class="department-select" name="dept_id">
+                                                                <option value="{!! $employee->dept_id !!}"></option>
+                                                                <option value="1">Information Technology Development Department</option>
+                                                                <option value="2">Production Development Department</option>
+                                                                <option value="3">Financial Department</option>
+                                                                <option value="4">Human Resources Department</option>
                                                             </select>
+                                                        </div>
+
+                                                        <div class="form-group col col-12">
+                                                            <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -140,7 +146,7 @@
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">EMAIL</div>
                                                     <div class="col col-7 details" id="email-add">{{ $employee->email }}</div>
-                                                    <div class="col col-1 edit" id="email-edit"><u>Edit</u></div>
+                                                    <div class="col col-1 edit" id="email-edit"><a href="#">Edit</a></div>
                                                 </div>
                                                 <!--email collapse-->
                                                 <div class="text-center display remove-padding" id="email">
@@ -157,55 +163,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                            <!--password-->
-                                            <div id="divpassword">
-                                                <div class="row row-details">
-                                                    <div class="col col-4 detail-header">PASSWORD</div>
-                                                    <div class="col col-7 details" id="password-info">***********</div>
-                                                    <div class="col col-1 edit" id="password-edit"><u>Reset</u></div>
-                                                </div>
-                                                <!--password modal-->
-                                                <div class="text-center display remove-padding" id="password">
-                                                    <div class="margin">
-                                                        <div class="form-group row">
-                                                            <div class="col col-4">
-                                                                <label for="" class="col-form-label label">Old Password</label>
-                                                            </div>
-                                                            <div class="col col-8">
-                                                                <input type="password" class="form-inline input" id=""
-                                                                    name="oldPassword">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="margin">
-                                                        <div class="form-group row">
-                                                            <div class="col col-4">
-                                                                <label for="" class="col-form-label label">New Password</label>
-                                                            </div>
-                                                            <div class="col col-8">
-                                                                <input type="password" class="form-inline input" id=""
-                                                                    name="newPassword">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="margin">
-                                                        <div class="form-group row">
-                                                            <div class="col col-4">
-                                                                <label for="" class="col-form-label label">Repeat Password</label>
-                                                            </div>
-                                                            <div class="col col-8">
-                                                                <input type="password" class="form-inline input" id="" name="repeat">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center display" id="cancel-save">
-                                                    <button type="button" class="btn btn-danger b password-cancel cancel" id="buttons"
-                                                        name="">Cancel</button>
-                                                    <button type="button" class="btn btn-success b cancel" id="buttons">Save</button>
                                                 </div>
                                             </div>
 
@@ -279,11 +236,11 @@
                     <label class="label">Department:</label>
                     <div class="form-group">
                         <select class="exampleFormControlSelect1" name="dept_id" style="width:380px;">
-                                                                            <option value="1">Information Technology Development Department</option>
-                                                                            <option value="2">Production Development Department</option>
-                                                                            <option value="3">Financial Department</option>
-                                                                            <option value="4">Human Resources Department</option>
-                                                                            </select>
+                            <option value="1">Information Technology Development Department</option>
+                            <option value="2">Production Development Department</option>
+                            <option value="3">Financial Department</option>
+                            <option value="4">Human Resources Department</option>
+                        </select>
                     </div>
                 </div>
 

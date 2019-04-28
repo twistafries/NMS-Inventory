@@ -226,19 +226,23 @@
                     <!-- View Details All Modal -->
                     <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document" style=" width: 800px;">
+                        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
                             <div class="modal-content">
                                 <div class="modal-header">
-
-                                    <div class="row">
-
-                                        <div class="col-3"><p>Official Receipt No: {{ $equipment->or_no }}</p></div>
-                                        <div class="col-9">
+                                    <div class="container">
+                                        <div class="col-12">
+                                            <p>Official Receipt No: {{ $equipment->or_no }}</p>
+                                        </div>
+                                    
+                                        <div class="col col-8">
                                             <h5 class="modal-title">{{ $equipment->brand }} {{ $equipment->model }}</h5>
+                                        </div>
+                                        
+                                        <div class="col col-4">
                                             <p class="text-light">ID: {{ $equipment->id }}</p>
                                         </div>
-
                                     </div>
+
 
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -248,60 +252,62 @@
 
                                 <div class="modal-body">
                                     <div class="container-fluid">
+                                        <!-- Details -->
+                                        <div class="row row-details">
+                                            <div class="col col-4 detail-header text-uppercase">Equipment Details</div>
+                                            <div class="col col-7 details" id="fullname">{{ $equipment->details }}</div>
+                                        </div>
+                                        
+                                        <hr>
+
+                                        <!-- Type & Subtype -->
+                                        <div class="row row-details">
+                                            <div class="col col-2 detail-header text-uppercase">Type:</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->type_name }}</div>
+                                            
+                                            <div class="col col-2 detail-header text-uppercase">Subtype:</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->subtype_name }}</div>
+                                        
+                                        <!-- SN & PC Number -->
+                                            <div class="col col-2 detail-header text-uppercase">Supplier:</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->supplier }}</div>
+                                            @isset( $equipment->imei_or_macaddress)
+                                            <div class="col col-2 detail-header text-uppercase">IMEI or MAC:</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->imei_or_macaddress }}</div>
+                                            @endisset
+                                            @empty( $equipment->unit_id )
+                                            <div class="col col-2 detail-header text-uppercase">IMEI or MAC:</div>
+                                            <div class="col col-4 details" id="fullname">None</div>
+                                            @endempty                                                                              
+                                        </div>
+
+                                        <hr>
+                                        
+                                        <div class="row row-details">
+                                            <div class="col col-2 detail-header text-uppercase">Added At</div>                                        
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->created_at }}</div>                                       
+                                            
+                                            @isset( $equipment->updated_at)
+                                            <div class="col col-2 detail-header text-uppercase">Last Edit by</div>                                            
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->firstname }} {{ $equipment->lastname }}</div>
+                                            @endisset
+                                            @empty( $equipment->updated_at)
+                                            <div class="col col-2 detail-header text-uppercase">Added by</div>                                            
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->firstname }} {{ $equipment->lastname }}</div>
+                                            @endisset
+
+                                            
+                                            <div class="col col-2 detail-header text-uppercase">Edited At</div>                                        
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->updated_at }}</div>                                       
+                                        </div>
+
+                                        <!-- Warranty -->
+                                        <div class="row row-details">
+                                            <div class="col col-4 detail-header text-uppercase">Warranty Period:</div>
+                                            <div class="col col-7 details" id="fullname">{{ $equipment->warranty_start }} - {{ $equipment->warranty_end }}</div>
+                                        </div>
 
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <h6 class="font-weight-bolder text-uppercase">Details:</h6>
-                                            <p>{{ $equipment->details }}</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6>
-                                            <p style="color:black; font-size:16px;">{{ $equipment->serial_no }}</p>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h6 class="font-weight-bolder text-uppercase text-left">Type:</h6>
-                                            <p style="color:black; font-size:16px;">{{ $equipment->type_name }}</p>
-                                            <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
-                                            <p style="color:black; font-size:16px">{{ $equipment->subtype_name }}</p>
-
-                                        </div>
-
-
-                                        <div class="col-sm-6">
-                                                @isset( $equipment->unit_id )
-                                                    <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
-                                                    <p style="color:black; font-size:16px;">{{ $equipment->unit_id }}</p>
-                                                @endisset
-                                                @empty( $equipment->unit_id )
-                                                <li class="list-group-item">
-                                                    <h6 class="font-weight-bolder text-uppercase text-left">PC Number:</h6>
-                                                    Not Assigned to A Unit
-                                                @endempty
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                                @if( $equipment->type_id == 3)
-                                                @isset( $equipment->imei_or_macaddress )
-                                                    <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
-                                                    <p  style="color:black; font-size:16px;">{{ $equipment->imei_or_macaddress }}</p>
-                                                </li>
-                                                @endisset
-                                                @endif
-                                        </div>
-
-                                    </div>
-                                    <div class="row pt-2">
-                                         <div class="col-6">
-                                            <h6 class="font-weight-bolder text-uppercase">Details:</h6>
-                                            <p>{{ $equipment->details }}</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <h6 class="font-weight-bolder text-uppercase text-left">Supplier:</h6>
-                                            <p style="color:black; font-size:16px;">{{ $equipment->supplier }}</p>
-                                        </div>
-                                    </div>
-
                                 </div>
 
                                 <div class="modal-footer">
@@ -355,7 +361,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-
+                                            
                                             <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
@@ -442,7 +448,7 @@
                     <!-- Change Status -->
                     <div class="modal fade" id="change-status-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
                         aria-hidden="true">
-                        <form action="{!! url('/editStatus'); !!}" method="post">
+                        <form action="{!! url('/editEquipment'); !!}" method="post">
                             {!! csrf_field() !!}
                             <input type="hidden" name="id" value="{!! $equipment->id !!}">
                             <div class="modal-dialog" role="document">
@@ -471,7 +477,7 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>

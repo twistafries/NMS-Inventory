@@ -57,6 +57,7 @@
         <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%; cursor:pointer;">
             <thead class="thead-dark">
                 <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Department</th>
@@ -70,6 +71,7 @@
                 @foreach ($associates as $associates)
                 <tr data-toggle="modal" data-target="#modal-{!! $associates->id !!}">
 
+                    <td>{{ $associates->id  }}</td>
                     <td>{{ $associates->fname  }} {{ $associates->lname }}</td>
                     <td>{{ $associates->email }}</td>
                     <td>{{ $associates->department }}</td>
