@@ -164,7 +164,7 @@ class InventoryController extends BaseController
         // code...
       }
 
-dd($data);
+
       foreach($data['equipments'] as $equipment){
         TblItEquipment::add_equipment($equipment);
       }
