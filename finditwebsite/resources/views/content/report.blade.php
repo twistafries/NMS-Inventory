@@ -1472,19 +1472,19 @@
           },
           series: [{
               name: 'For Repair',
-              data: [{{$JanuaryRepair->count()}}, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+              data: [{{$JanuaryRepair->count()}}, {{$FebruaryRepair->count()}}, {{$MarchRepair->count()}}, {{$AprilRepair->count()}}, {{$MayRepair->count()}}, {{$JuneRepair->count()}}, {{$JulyRepair->count()}}, {{$AugustRepair->count()}}, {{$SeptemberRepair->count()}}, {{$OctoberRepair->count()}}, {{$NovemberRepair->count()}}, {{$DecemberRepair->count()}}]
 
           }, {
               name: 'To be Returned',
-              data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+              data: [{{$JanuaryReturn->count()}}, {{$FebruaryReturn->count()}}, {{$MarchReturn->count()}}, {{$AprilReturn->count()}}, {{$MayReturn->count()}}, {{$JuneReturn->count()}}, {{$JulyReturn->count()}}, {{$AugustReturn->count()}}, {{$SeptemberReturn->count()}}, {{$OctoberReturn->count()}}, {{$NovemberReturn->count()}}, {{$DecemberReturn->count()}}]
 
           }, {
               name: 'Decommissioned',
-              data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+              data: [{{$JanuaryDecom->count()}}, {{$FebruaryDecom->count()}}, {{$MarchRDecom->count()}}, {{$AprilDecom->count()}}, {{$MayDecom->count()}}, {{$JuneDecom->count()}}, {{$JulyDecom->count()}}, {{$AugustDecom->count()}}, {{$SeptemberDecom->count()}}, {{$OctoberDecom->count()}}, {{$NovemberDecom->count()}}, {{$DecemberDecom->count()}}]
 
           }, {
               name: 'Pending',
-              data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+              data: [{{$JanuaryPending->count()}}, {{$FebruaryPending->count()}}, {{$MarchPending->count()}}, {{$AprilPending->count()}}, {{$MayPending->count()}}, {{$JunePending->count()}}, {{$JulyPending->count()}}, {{$AugustPending->count()}}, {{$SeptemberPending->count()}}, {{$OctoberPending->count()}}, {{$NovemberPending->count()}}, {{$DecemberPending->count()}}]
 
              }]
           });
@@ -1521,18 +1521,18 @@
               colorByPoint: true,
               data: [{
                   name: 'For Repair',
-                  y: 41.41,
+                  y: {{$ThisMonthRepair->count()}},
                   sliced: true,
                   selected: true
               }, {
                   name: 'To be Returned',
-                  y: 15.85
+                  y: {{$ThisMonthReturn->count()}}
               }, {
                   name: 'Decommissioned',
-                  y: 21.84
-              }, {
+                  y: {{$ThisMonthDecom->count()}}
+,              }, {
                   name: 'Pending',
-                  y: 9.67
+                  y: {{$ThisMonthPending->count()}}
               }]
             }]
           });

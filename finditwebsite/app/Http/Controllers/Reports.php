@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+  use Carbon\Carbon;
 use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
@@ -83,6 +84,11 @@ class Reports extends BaseController
         $data['NovemberDecom'] = TblActivityLogs::get_for_decom_Month('11');
         $data['DecemberDecom'] = TblActivityLogs::get_for_decom_Month('12');
         // $data['most_issued'] = TblActivityLogs
+        $monthToday=Carbon::now()->month;
+          $data['ThisMonthReturn'] = TblActivityLogs::get_for_return_Month($monthToday);
+          $data['ThisMonthRepair'] = TblActivityLogs::get_for_repair_Month($monthToday);
+          $data['ThisMonthPending']  = TblActivityLogs::get_for_pend_Month($monthToday);
+          $data['ThisMonthDecom'] = TblActivityLogs::get_for_decom_Month($monthToday);
 
 
         return view ('content/report' , $data);
