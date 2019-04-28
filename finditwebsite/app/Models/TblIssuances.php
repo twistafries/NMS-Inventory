@@ -16,7 +16,8 @@ class TblIssuances extends Model {
 		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
 		->leftjoin('users' , 'users.id', '=', 'i.user_id')
 		->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
-		->select('i.*', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.description as unit_name',
+		->leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+		->select('i.*', 'it_equipment.serial_no as serial_no', 'it_equipment.or_no as or_no', 'it_equipment_type.name as type', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.description as unit_name',
 		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
 		->where('i.status_id', '=', '2')
 		->orderBy('i.created_at', 'desc')
@@ -29,7 +30,19 @@ class TblIssuances extends Model {
 		return $query;
 	}
 
-
+	public static function most_issued(){
+		$query = \DB::table('it_equipment as i')
+		->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+		->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
+		->select( "i.subtype_id", DB::raw("COUNT(i.subtype_id) as count"))
+		->where('status_id', '=', '1')
+		->orwhere('status_id', '=', '2')
+		->orwhere('status_id', '=', '3')
+		->orwhere('status_id', '=', '4')
+		->groupBy('i.subtype_id')
+		->get();
+		return $query;
+	}
 
 	public static function getID($params) {
 		$query = \DB::table('it_equipment')
