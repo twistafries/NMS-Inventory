@@ -252,8 +252,10 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
 }
 
 .modal-content{
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    /* height: 850px; */
+    /* height: 75%; */
 }
 
 .modal-dialog{
@@ -270,6 +272,16 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
     height: 332px;
     overflow-y: auto;
     text-align: justify;
+}
+
+.modal-content, .modal-length{
+    height: 850px;
+     
+}
+
+.modal-small{
+    height: 300px;
+     
 }
 
 /* ================================================
