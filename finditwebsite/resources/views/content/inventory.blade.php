@@ -135,9 +135,9 @@
       <label for="types" id="labelTypes">Types: </label>
       <select id="types" name="types">
         <option value="any">Any</option>
-        <option value="Computer Component">Component</option>
-        <option value="Computer Peripherals">Peripherals</option>
-        <option value="Mobile Device">Mobile Device</option>
+        @foreach ($typesSel as $typesSel)
+        <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+        @endforeach
       </select>
     </th>
     <th>
@@ -145,34 +145,36 @@
       <select id="subtypes" name="subtypes">
         <option value="any">Any</option>
         <option value="Motherboard">Motherboard</option>
-        <option value="RAM">RAM</option>
-        <option value="Case">Case</option>
+        @foreach ($subtypesSel as $subtypesSel)
+        <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+        @endforeach
       </select>
   </th>
   <th>
     <label for="supplier">Supplier: </label>
     <select id="supplier" name="supplier">
       <option value="any">Any</option>
-      <option value="Octagon">Octagon</option>
-      <option value="Chelsey">Chelsey</option>
-      <option value="Case">Case</option>
+      @foreach ($suppliers as $suppliers)
+      <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
+      @endforeach
     </select>
 </th>
 <th>
   <label for="brand">Brand: </label>
   <select id="brand" name="brand">
     <option value="any">Any</option>
-    <option value="Asus">Asus</option>
-    <option value="MSI">MSI</option>
-    <option value="Apple">Apple</option>
+    @foreach ($brands as $brands)
+    <option value="{{$brands->brand}}">{{$brands->brand}}</option>
+    @endforeach
   </select>
 </th>
 <th>
   <label for="status">Status: </label>
   <select id="status" name="status">
     <option value="any">Any</option>
-    <option value="Issued">Issued</option>
-    <option value="Available">Available</option>
+    @foreach ($status as $status)
+    <option value="{{$status->name}}">{{$status->name}}</option>
+    @endforeach
   </select>
 </th>
   </tr>
@@ -262,7 +264,7 @@
                                             <p style="color:black; font-size:16px;">{{ $equipment->type_name }}</p>
                                             <h6 class="font-weight-bolder text-uppercase text-left">Subtype:</h6>
                                             <p style="color:black; font-size:16px">{{ $equipment->subtype_name }}</p>
-                                            
+
                                         </div>
 
 
@@ -353,7 +355,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            
+
                                             <div class="col">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
@@ -440,7 +442,7 @@
                     <!-- Change Status -->
                     <div class="modal fade" id="change-status-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
                         aria-hidden="true">
-                        <form action="{!! url('/editEquipment'); !!}" method="post">
+                        <form action="{!! url('/editStatus'); !!}" method="post">
                             {!! csrf_field() !!}
                             <input type="hidden" name="id" value="{!! $equipment->id !!}">
                             <div class="modal-dialog" role="document">
@@ -469,7 +471,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
@@ -478,7 +480,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div> 
+                    </div>
                 </tbody>
                 @endforeach
 
@@ -502,7 +504,6 @@
                       <th>OR No</th>
                       <th>Added By</>
                       <th>Date Added</th>
-                      <th width="15%">Date Edited</th>
                       <th>Status</th>
                     </tr>
                 </thead>
@@ -644,7 +645,6 @@
                       <th>OR No</th>
                       <th>Added By</>
                       <th>Date Added</th>
-                      <th width="15%">Date Edited</th>
                       <th>Status</th>
                     </tr>
                 </thead>
@@ -663,7 +663,6 @@
                         <td> {{ $peripherals->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $peripherals->created_at }} </td>
-                        <td> {{ $peripherals->updated_at }} </td>
                         <td> {{ $peripherals->status_name }} </td>
                     </tr>
 
@@ -689,7 +688,6 @@
                       <th>OR No</th>
                       <th>Added By</>
                       <th>Date Added</th>
-                      <th width="15%">Date Edited</th>
                       <th>Status</th>
                     </tr>
                 </thead>
@@ -708,7 +706,6 @@
                         <td> {{ $mobile->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $mobile->created_at }} </td>
-                        <td> {{ $mobile->updated_at }} </td>
                         <td> {{ $mobile->status_name }} </td>
                     </tr>
 
@@ -724,33 +721,35 @@
         <thead class="thead-dark">
             <tr>
 
-                <th>Model</th>
-                <th>Brand</th>
-                <th>Subtype</th>
-                <th>Supplier</th>
-                <th>Details</th>
-                <th>Serial No</th>
-                <th>OR No</th>
-                <th>Added by</th>
-                <th>Date Added</th>
-                <th width="15%">Date Edited</th>
-                <th>Status</th>
+              <th id="checkbox" hidden></th>
+              <th>Model</th>
+              <th>Brand</th>
+              <th>Subtypes</th>
+              <th hidden>Subtype</th>
+              <th>Supplier</th>
+              <th>Details</th>
+              <th>Serial No</th>
+              <th>OR No</th>
+              <th>Added By</>
+              <th>Date Added</th>
+              <th>Status</th>
             </tr>
         </thead>
         <tbody>
 
             @foreach ($software as $software)
             <tr>
+              <td hidden></td>
                 <td> {{ $software->model }} </td>
                 <td> {{ $software->brand }} </td>
                 <td> {{ $software->subtype_name }} </td>
                 <td> {{ $software->supplier }} </td>
                 <td width="30%"> {{ $software->details }} </td>
+                <td hidden></td>
                 <td> {{ $software->serial_no }} </td>
                 <td> {{ $software->or_no }} </td>
                 <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                 <td> {{ $software->created_at }} </td>
-                <td> {{ $software->updated_at }} </td>
                 <td> {{ $software->status_name }} </td>
             </tr>
 
@@ -823,7 +822,7 @@
                             </select>
                             </div>
                         </div>
-                        
+
                         <!-- Model & Brand -->
                         <div class="row">
                             <div class="col-5">
@@ -839,7 +838,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Details -->
                         <div class="row">
                             <div class="col-9">
@@ -849,11 +848,11 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <br>
                         <!-- Warranty -->
                         <div class="row pb-2">
-                            <div class="col">        
+                            <div class="col">
                                 <div class="row">
                                     <div class="col">
                                         <label for="details" class="card-title text-dark">Warranty Start:</label>
@@ -864,7 +863,7 @@
                                         <label for="details" class="card-title text-dark">Warranty End:</label>
                                         <input type="date" id="start" name="warranty_end">
                                     </div>
-                                </div>                            
+                                </div>
                             </div>
                         </div>
 
@@ -883,8 +882,8 @@
                                 <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
                                 <div class="input-group mb-1">
                                     <input name="imei_or_macaddress" type="text" size="30">
-                                </div>    
-                            </div>    
+                                </div>
+                            </div>
                         </div>
 
                         <!-- OR & Supplier -->
@@ -896,14 +895,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-6">        
+                            <div class="col-6">
                                 <label for="serial_no" class="card-title text-dark">Supplier:</label>
                                 <div class="input-group mb-1">
                                     <input name="supplier" type="text" size="30">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- System Unit & Status -->
                         <div class="row">
                             <div class="col-6">
@@ -926,23 +925,23 @@
                                     <option value="6">Pending</option>
                                     <option value="8">In-use</option>
                                 </select>
-                            </div>                    
+                            </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-4">
                                 <p class="card-title text-dark"></p>
                                 <button class="btn btn-info" id= "AddEquipment">Issue Item</button>
                             </div>
                         </div>
-                            
+
                     </div>
 
                     <div class="modal-footer text-uppercase">
                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -1515,7 +1514,7 @@ var types = data[3]; // use data for the age column
 var subtypes = data[4];
 var suppliers = data[5];
 var brands = data[2];
-var statuses = data[12];
+var statuses = data[11];
 if ( type == types || type == "any"){
   if (subtype == subtypes || subtype == "any"){
     if (supplier == suppliers || supplier == "any"){
@@ -1633,26 +1632,26 @@ $('#subtypes').on('keyup change',  function() {
                                                         table.draw();
                                                         } );
                                             } );
-                                            $(document).ready(function() {
-                                              var table = $('#myDataTable5').DataTable();
-
-                                              // Event listener to the two range filtering inputs to redraw on input
-                                              $('#subtypes').on('keyup change',  function() {
-                                                  table.draw();
-                                                  } );
-                                                  $('#types').on('keyup change',  function() {
-                                                      table.draw();
-                                                      } );
-                                                      $('#supplier').on('keyup change',  function() {
-                                                          table.draw();
-                                                          } );
-                                                          $('#brand').on('keyup change',  function() {
-                                                              table.draw();
-                                                              } );
-                                                              $('#status').on('keyup change',  function() {
-                                                                  table.draw();
-                                                                  } );
-                                                      } );
+                                            // $(document).ready(function() {
+                                            //   var table = $('#myDataTable5').DataTable();
+                                            //
+                                            //   // Event listener to the two range filtering inputs to redraw on input
+                                            //   $('#subtypes').on('keyup change',  function() {
+                                            //       table.draw();
+                                            //       } );
+                                            //       $('#types').on('keyup change',  function() {
+                                            //           table.draw();
+                                            //           } );
+                                            //           $('#supplier').on('keyup change',  function() {
+                                            //               table.draw();
+                                            //               } );
+                                            //               $('#brand').on('keyup change',  function() {
+                                            //                   table.draw();
+                                            //                   } );
+                                            //                   $('#status').on('keyup change',  function() {
+                                            //                       table.draw();
+                                            //                       } );
+                                            //           } );
         function reset(){
           document.getElementById("subtypes").selectedIndex = "0";
           document.getElementById("types").selectedIndex = "0";
@@ -1664,7 +1663,7 @@ $('#subtypes').on('keyup change',  function() {
           $('#myDataTable2').DataTable().search('').draw();
           $('#myDataTable3').DataTable().search('').draw();
           $('#myDataTable4').DataTable().search('').draw();
-          $('#myDataTable5').DataTable().search('').draw();
+          // $('#myDataTable5').DataTable().search('').draw();
 
         }
         function restore(option){
@@ -1680,7 +1679,7 @@ $('#subtypes').on('keyup change',  function() {
           }
         };
 
-        
+
     </script>
 
 

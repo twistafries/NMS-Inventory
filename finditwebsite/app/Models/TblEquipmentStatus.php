@@ -13,7 +13,6 @@ class TblEquipmentStatus extends Model
         $query = \DB::table('equipment_status')
         -> orderBy('created_at' , 'asc')
         -> get();
-
         return $query;
     }
 

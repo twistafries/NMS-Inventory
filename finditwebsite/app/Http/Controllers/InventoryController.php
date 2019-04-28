@@ -13,8 +13,9 @@ use App\Models\TblItEquipmentType;
 use App\Models\TblItEquipmentSubtype;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
+use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
-use App\Modles\TblActivityLogs;
+use App\Models\TblActivityLogs;
 use Session, Auth;
 
 class InventoryController extends BaseController
@@ -22,7 +23,7 @@ class InventoryController extends BaseController
     public function showAllInventory(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
-      } 
+      }
 
       $data = [];
       $data['equipment'] = TblItEquipment::get_all_equipment();
@@ -41,6 +42,15 @@ class InventoryController extends BaseController
       $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['parts'] = TblItEquipment::get_computer_component();
+      $data['status'] = TblEquipmentStatus::get_all_status();
+      $data['subtypesSel'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['brands'] = TblItEquipment::get_brand();
+      $data['models'] = TblItEquipment::get_model();
+
+
+
       return view ('content/inventory' , $data);
     }
 
@@ -64,28 +74,28 @@ class InventoryController extends BaseController
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
         return \Redirect::to('/loginpage');
       }
-      
+
       $session=Session::get('loggedIn');
       $user_id = $session['id'];
       // dd($user_id);
 
       $data = $request->all();
         // dd($data);
-        
+
       $data['user_id'] = $user_id;
       // $data['subtype_id'] = (int)$request->get('subtype_id');
       // dd($data);
 
-      if(isset($data['subtype_id']) 
-      && isset($data['brand']) 
-      && isset($data['model']) 
-      && isset($data['details']) 
-      && isset($data['user_id']) 
-      && isset($data['warranty_start']) 
-      && isset($data['warranty_end']) 
+      if(isset($data['subtype_id'])
+      && isset($data['brand'])
+      && isset($data['model'])
+      && isset($data['details'])
+      && isset($data['user_id'])
+      && isset($data['warranty_start'])
+      && isset($data['warranty_end'])
       && isset($data['supplier'])
-      && isset($data['serial_no']) 
-      && isset($data['or_no'])  
+      && isset($data['serial_no'])
+      && isset($data['or_no'])
       && isset($data['status_id']) ){
           TblItEquipment::add_equipment($data);
           return \Redirect::to('/inventory')->with('equipment has been added');
@@ -96,7 +106,7 @@ class InventoryController extends BaseController
     }
 
     public function addSystemUnit(Request $request){
-      if(Session::get('loggedIn')['user_type']!='admin' && 
+      if(Session::get('loggedIn')['user_type']!='admin' &&
       Session::get('loggedIn')['user_type'] != "associate"){
         return \Redirect::to('/loginpage');
       }
@@ -133,17 +143,17 @@ class InventoryController extends BaseController
       $ctr = 0;
       foreach ($brands as $brand) {
         $data['equipments'] ->push([
-          'brand'=> $brand, 
-          'model'=> $model, 
-          'details'=> $details[$ctr], 
-          'subtype_id'=> $subtype_id[$ctr], 
+          'brand'=> $brand,
+          'model'=> $model,
+          'details'=> $details[$ctr],
+          'subtype_id'=> $subtype_id[$ctr],
           'serial_no'=> $serial_no[$ctr],
-          'warranty_start'=> $warranty_start, 
-          'warranty_end'=> $warranty_end, 
+          'warranty_start'=> $warranty_start,
+          'warranty_end'=> $warranty_end,
           'user_id'=> $user_id,
-          'or_no'=> $or_no, 
-          'supplier'=> $supplier, 
-          'unit_id'=>$unit_id, 
+          'or_no'=> $or_no,
+          'supplier'=> $supplier,
+          'unit_id'=>$unit_id,
           'status_id'=> $status]);
         $ctr++;
         // code...
@@ -167,6 +177,19 @@ class InventoryController extends BaseController
         $data = $request->all();
         // dd($data);
         TblItEquipment::edit_equipment($data);
+        return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
+    }
+
+    public function changeStatus(Request $request){
+        $data = $request->all();
+        // dd($data);
+        $act = [];
+      //  $act['equipment_status']=$data['id'];
+        TblItEquipment::edit_equipment($data);
+        $act['status_id']=$data['status_id'];
+        $act['action']="changed status";
+        // dd($act);
+        TblActivityLogs::add_log($act);
         return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
     }
 

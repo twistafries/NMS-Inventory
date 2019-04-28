@@ -67,6 +67,8 @@ Route::post('/addUsers', 'AssociateController@addUsers');
 Route::post('/removeUser', 'AssociateController@removeUser');
 
 Route::post('/editEquipment', 'InventoryController@editEquipment');
+Route::post('/editStatus', 'InventoryController@changeStatus');
+
 
 Route::get('/bulk-add', 'BulkController@showFields');
 Route::get('/bulkadd', 'BulkController@showFields');
