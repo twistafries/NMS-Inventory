@@ -30,6 +30,7 @@ class IssuanceController extends BaseController {
 		$data['equipment'] = TblEquipmentStatus::get_available();
 		$data['units'] = TblEquipmentStatus::get_available_units();
 		$data['employees'] = TblEmployees::get_employees('active');
+		$data['target'] = "";
 		return view('content/issuance', $data);
 	}
 
@@ -55,11 +56,10 @@ class IssuanceController extends BaseController {
 
 					$id = TblIssuances::add_issuance($data);
 
-					$data['issuance'] = $id;
+					$data['issuance_id'] = $id;
 					$data['action'] = "issued";
 					TblActivityLogs::add_log($data);
-
-					return \Redirect::to('/issuance')->with('issuance has been added');
+					return redirect()->back()->with('success', ['Issuance Success']);
 			}else{
 
 			 //    return redirect()->back()->with('error', 'Please fill out ALL fields');

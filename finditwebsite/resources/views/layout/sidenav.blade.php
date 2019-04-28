@@ -65,7 +65,7 @@
                 <span class="hide-menu">Issuable Items</span>
             </a>
         </li> -->
-
+@if ($user_type=="admin")
         <li id="activityLog">
             <a href="{!! url('/activitylogs') !!}">
                 <i class="fas fa-list-alt"></i>
@@ -79,5 +79,6 @@
                 <span class="hide-menu">Generate Reports</span>
             </a>
         </li>
+          @endif
     </ul>
 </nav>

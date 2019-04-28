@@ -49,10 +49,8 @@
             </div>
         </div>
     </div>
-
-		<div class="tab-content" id="pills-tabContent">
+    <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
-
 			<div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
                 <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
@@ -68,6 +66,7 @@
                             <th>Issued Until</th>
                             <th>Date Returned</th>
                             <th>Remarks</th>
+                            <th hidden></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,6 +93,9 @@
 
                 </table>
             </div>
+          </div>
+        </div>
+
   <div class="modal fade bd-example-modal-xl" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-xl">
 
@@ -264,12 +266,17 @@
                 </div>
             </div>
 </div>
-</div>
 
 @stop
 
 @section('script')
-
+@if (Session::has('success'))
+<script type="text/javascript">
+$(window).load(function(){
+      alert("Issuance Success!");
+    });
+</script>
+@endif
     <!-- Datatable -->
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
