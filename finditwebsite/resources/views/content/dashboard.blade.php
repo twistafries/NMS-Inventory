@@ -157,41 +157,32 @@
 									<div class="card-body">
 										<div class="progress-card">
 											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Mouse</span>
-												<span class="text-muted fw-bold">12</span>
+												<span class="text-muted">Equipment Subtype:</span>
+												<span class="text-muted fw-bold">Available Quantity:</span>
 											</div>
 											<div class="progress mb-2" style="height: 7px;">
 <!--                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" data-original-title="65%"></div>-->
 
 											</div>
 										</div>
+                    @if($lowStackView->count()==0)
+                    <div class="progress-card">
+											<div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Good! No notable issues.</span>
+                        </div>
+                      </div>
+                    @endif
+                    @foreach($lowStackView as $lowStackView)
 										<div class="progress-card">
 											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Iphone</span>
-												<span class="text-muted fw-bold">15</span>
+												<span class="text-muted">{{$lowStackView->name}}</span>
+												<span class="text-muted fw-bold">{{$lowStackView->available}}</span>
 											</div>
 											<div class="progress mb-2" style="height: 7px;">
 
 											</div>
 										</div>
-										<div class="progress-card">
-											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Monitor</span>
-												<span class="text-muted fw-bold">5</span>
-											</div>
-											<div class="progress mb-2" style="height: 7px;">
-
-											</div>
-										</div>
-										<div class="progress-card">
-											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Computer Units</span>
-												<span class="text-muted fw-bold">7</span>
-											</div>
-											<div class="progress mb-2" style="height: 7px;">
-
-											</div>
-										</div>
+                    @endforeach
 
 									</div>
 
@@ -340,11 +331,15 @@
                             <tbody>
                               @foreach ($recent_activities as $recent_activities)
                                 <tr>
-                                    <td>{{$recent_activities->firstname}} {{$recent_activities->lastname}} {{$recent_activities->action}} {{$recent_activities->efname}}{{$recent_activities->elname}} {{$recent_activities->model}}{{$recent_activities->brand}}
-                                      {{$recent_activities->unit_description}} {{$recent_activities->unit_description}} {{$recent_activities->userfname}} {{$recent_activities->userlname}}
-                                    @if($recent_activities->action=="issued")
-                                    to
-                                    @endif
+                                    <td>{{$recent_activities->firstname}} {{$recent_activities->lastname}} {{$recent_activities->action}} {{$recent_activities->efname}} {{$recent_activities->elname}} {{$recent_activities->model}} {{$recent_activities->brand}}
+                                      {{$recent_activities->unit_description}} {{$recent_activities->unit}} {{$recent_activities->userfname}} {{$recent_activities->userlname}} {{$recent_activities->dept_name}} {{$recent_activities->status_name}} {{$recent_activities->subtype_name}} {{$recent_activities->type_name}}
+                              @if($recent_activities->action=="issued")
+                                  @foreach($issuance as $issuance)
+                                      @if($recent_activities->issuance_id == $issuance->id)
+                                        {{$issuance->brand}} {{$issuance->model}} {{$issuance->unit_name}} to {{$issuance->givenname}} {{$issuance->surname}}
+                                      @endif
+                                  @endforeach
+                              @endif                                    
                                     </td>
                                 </tr>
                                 @endforeach

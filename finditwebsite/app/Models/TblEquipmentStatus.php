@@ -60,8 +60,10 @@ class TblEquipmentStatus extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('users' , 'users.id', '=', 'it_equipment.user_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        ->leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+
         // -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
-        -> select('it_equipment.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat')
+        -> select('it_equipment.*', 'it_equipment_type.name as type', 'it_equipment_subtype.name as subtype', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat')
         -> where('status_id' , '=' , '4')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -76,6 +78,19 @@ class TblEquipmentStatus extends Model
         // -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
         -> select('it_equipment.*', 'equipment_status.name as stat')
         -> where('status_id' , '=' , '6')
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
+
+    public static function get_decommissioned($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('users' , 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        // -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
+        -> select('it_equipment.*', 'equipment_status.name as stat')
+        -> where('status_id' , '=' , '7')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;

@@ -11,8 +11,10 @@ use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
 use App\Models\TblDepartments;
 use App\Models\TblItEquipment;
+use App\Models\TblIssuances;
 use App\Models\TblSystemUnits;
 use App\Models\TblActivityLogs;
+use App\Models\TblItEquipmentSubtype;
 
 
 class Dashboard extends BaseController
@@ -30,19 +32,43 @@ class Dashboard extends BaseController
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
         $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
+        $data['issuance'] = TblIssuances::getIssuance();
+        
         // $data['most_issued'] = TblActivityLogs
 
-        // $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
-        // // $data['onhand'] = TblItEquipment::countSubtypes();
-        // // $data['onhandAvailable'] = TblItEquipment::countSubtypes();
-        // // $data['lowStack'] = collect([]);
-        // // foreach ($data['onhand'] as $onhand) {
-        // //   if($onhound)
-        // //   $data['lowStack'] ->push([
-        // //     'id'->
-        // //   ])
-        // // }
-        // // dd($data);
+        $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+        $data['onhand'] = TblItEquipment::countSubtypes();
+        $data['onhandAvailable'] = TblItEquipment::countSubtypes();
+
+        $ctr = 0;
+        $data['lowStack'] = collect([]);
+          foreach ($data['onhand'] as $onhand) {
+            foreach ($data['onhandAvailable'] as $avail) {
+              if($onhand->subtype_id==$avail->subtype_id){
+                foreach ($data['subtypesSel'] as $type) {
+                  if($onhand->subtype_id==$avail->subtype_id && $avail->subtype_id == $type->id)
+                  $data['lowStack'] ->push([
+                    'name'=> $type->name,
+                    'totalCount'=> $onhand->count,
+                    'available'=> $avail->count,
+                  ]);
+                }
+              }
+
+            }
+          }
+        $data['lowStackView'] = collect([]);
+        foreach ($data['lowStack']  as $lowStack) {
+            if($lowStack['totalCount']*.10 >= $lowStack['available']){
+              $data['lowStackView'] ->push([
+                'name'=> $lowStack['name'],
+                'available'=> $lowStack['available'],
+              ]);
+            }
+          }
+
+
+      
 
         return view ('content/dashboard' , $data);
     }

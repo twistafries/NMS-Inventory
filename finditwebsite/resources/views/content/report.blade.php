@@ -181,33 +181,59 @@
                             <table class="table examples" id="example">
                               <thead class="thead-dark" style="font-size: 14px;">
                                 <tr>
-                                  <th scope="col">Item Name </th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">Subtype</th>
-                                  <th scope="col">Description</th>
-                                  <th scope="col">Serial No.</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Last User</th>
-                                  <th scope="col">Remarks</th>
-                                  <th scope="col">Date</th>
-                                  <th scope="col">Added By</th>
-                                </tr>
+                                  <tr>
+
+                                      <th>Name</th>
+                                      <th>Details</th>
+                                      <th>Serial No</th>
+                                      <th>OR No</th>
+                                      <th>Supplier</th>
+                                      <th>Date Added</th>
+                                      <th width="15%">Date Edited</th>
+                                      <th>Added By</th>
+                                      <th>Last User</th>
+                                      <th>Warranty</th>
+
+
+                                  </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                </tr>
+
+                                  @foreach ($for_repair as $for_repair)
+                                  <tr>
+
+                                      <td> {{ $for_repair->model }} {{ $for_repair->model }} </td>
+                                      <td> {{ $for_repair->details }} </td>
+                                      <td> {{ $for_repair->serial_no }} </td>
+                                      <td> {{ $for_repair->or_no }} </td>
+                                      <td> {{ $for_repair->supplier }} </td>
+                                      <td> {{ $for_repair->created_at }} </td>
+                                      <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
+                                      <td></td>
+                                      <td>{{ $for_repair->warranty_start }}-{{ $for_repair->warranty_start }}</td>
+
+                                  </tr>
+
+                                  @endforeach
+                                  @foreach ($for_repair_units as $for_repair_units)
+                                  <tr>
+
+                                      <td> {{ $for_repair_units->description }}  {{ $for_repair_units->id }} </td>
+                                      <td> No Details </td>
+                                      <td> None </td>
+                                      <td> None </td>
+                                      <td> None </td>
+                                      <td> {{ $for_repair_units->created_at }} </td>
+                                      <td> {{ $for_repair_units->updated_at }} </td>
+                                      <td> {{ $for_repair_units->firstname}} {{ $for_repair_units->lastname}}  </td>
+                                      <td></td>
+                                      <td> None </td>
+                                  </tr>
+
+                                  @endforeach
                               </tbody>
-                            </table>
+
+                          </table>
                           </div>
                           <!--To be returned-->
                           <div class="collapse all" id="inventoryTable2">
@@ -223,24 +249,26 @@
                                   <th scope="col">Description</th>
                                   <th scope="col">Serial No.</th>
                                   <th scope="col">Status</th>
-                                  <th scope="col">Last User</th>
-                                  <th scope="col">Remarks</th>
                                   <th scope="col">Date</th>
                                   <th scope="col">Added By</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+                                  @foreach ($for_return as $for_return)
+                                  <tr>
+
+                                      <td> {{ $for_return->model }} {{ $for_return->brand }} </td>
+                                      <td> {{ $for_return->type }}</td>
+                                      <td> {{ $for_return->subtype }} </td>
+                                      <td > {{ $for_return->details }} </td>
+                                      <td> {{ $for_return->serial_no }} </td>
+                                      <td> {{ $for_return->stat }} </td>
+                                      <td > {{ $for_return->created_at }} </td>
+                                      <td> {{ $for_return->firstname }} {{ $for_return->lastname }}</td>
+
+                                  </tr>
+                                  @endforeach
                                 </tr>
                               </tbody>
                             </table>
@@ -253,32 +281,36 @@
                             <table class="table">
                               <thead class="thead-dark" style="font-size: 14px;">
                                 <tr>
-                                  <th scope="col">Item Name </th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">Subtype</th>
-                                  <th scope="col">Description</th>
-                                  <th scope="col">Serial No.</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Last User</th>
-                                  <th scope="col">Remarks</th>
-                                  <th scope="col">Date</th>
-                                  <th scope="col">Added By</th>
+
+                                    <th>Name</th>
+                                    <th>Details</th>
+                                    <th>Serial No</th>
+                                    <th>OR No</th>
+                                    <th>Supplier</th>
+                                    <th>Date Added</th>
+                                    <th width="15%">Date Edited</th>
+                                    <th>Added By</th>
+                                    <th>Remarks</th>
                                 </tr>
-                              </thead>
-                              <tbody>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($pending as $pending)
                                 <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+
+                                    <td> {{ $pending->name }} </td>
+                                    <td width="30%"> {{ $pending->details }} </td>
+                                    <td> {{ $pending->serial_no }} </td>
+                                    <td> {{ $pending->or_no }} </td>
+                                    <td> {{ $pending->supplier }} </td>
+                                    <td> {{ $pending->created_at }} </td>
+                                    <td> {{ $pending->updated_at }} </td>
+                                    <td> {{ $pending->firstname}} {{ $pending->lastname}}  </td>
+                                    <td> <!--{{ $pending->remarks }}--> </td>
                                 </tr>
-                              </tbody>
+
+                                @endforeach
+                            </tbody>
                             </table>
                           </div>
                           <!--Pending-->
@@ -288,34 +320,39 @@
                             </div>
                             <table class="table">
                               <thead class="thead-dark" style="font-size: 14px;">
-                                <tr>
-                                  <th scope="col">Item Name </th>
-                                  <th scope="col">Type</th>
-                                  <th scope="col">Subtype</th>
-                                  <th scope="col">Description</th>
-                                  <th scope="col">Serial No.</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Last User</th>
-                                  <th scope="col">Remarks</th>
-                                  <th scope="col">Date</th>
-                                  <th scope="col">Added By</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                </tr>
-                              </tbody>
-                            </table>
+                                <tr>        <tr>
+
+                                            <th>Name</th>
+                                            <th>Details</th>
+                                            <th>Serial No</th>
+                                            <th>OR No</th>
+                                            <th>Supplier</th>
+                                            <th>Date Added</th>
+                                            <th width="15%">Edited At</th>
+                                            <th>Date Added</th>
+                                            <th>Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($for_disposal as $for_disposal)
+                                        <tr>
+
+                                            <td> {{ $for_disposal->model }} {{ $for_disposal->brand }} </td>
+                                            <td width="30%"> {{ $for_disposal->details }} </td>
+                                            <td> {{ $for_disposal->serial_no }} </td>
+                                            <td> {{ $for_disposal->or_no }} </td>
+                                            <td> {{ $for_disposal->supplier }} </td>
+                                            <td> {{ $for_disposal->created_at }} </td>
+                                            <td> {{ $for_disposal->updated_at }} </td>
+                                            <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
+                                            <td> <!--{{ $for_disposal->remarks }}--> </td>
+                                        </tr>
+
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
                           </div>
                         </div>
                       </div>
@@ -877,21 +914,34 @@
                             <table class="table">
                               <thead class="thead-dark" style="font-size: 14px;">
                                 <tr>
-                                  <th scope="col">Item Name</th>
-                                  <th scope="col">Description</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Remarks</th>
-                                  <th scope="col">Date Purchased</th>
+                                    <th scope="col">Model</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Types</th>
+                                    <th scope="col">Subtype</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Serial No</th>
+                                    <th scope="col">OR No</th>
+                                    <th scope="col">Added by</th>
+                                    <th scope="col">Date Added</th>
+                                    <th scope="col">Status</th>
                                 </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($equipment as $equipment)
+                                <tr >
+                                    <td> {{ $equipment->model }} </td>
+                                    <td> {{ $equipment->brand }} </td>
+                                    <td> {{ $equipment->type_name }} </td>
+                                    <td> {{ $equipment->subtype_name }} </td>
+                                    <td> {{ $equipment->supplier }} </td>
+                                    <td> {{ $equipment->serial_no }} </td>
+                                    <td> {{ $equipment->or_no }} </td>
+                                    <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
+                                    <td> {{ $equipment->created_at }} </td>
+                                    <td> {{ $equipment->status_name }} </td>
                                 </tr>
+                                @endforeach
                               </tbody>
                             </table>
                           </div>
@@ -982,7 +1032,8 @@
                             <div class="inventory">
                               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Admin - Issuance of Items</p>
                             </div>
-                            <table class="table">
+
+                            <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                               <thead class="thead-dark" style="font-size: 14px;">
                                 <tr>
                                   <th scope="col">Item Name</th>
@@ -990,7 +1041,6 @@
                                   <th scope="col">Subtype</th>
                                   <th scope="col">Serial No.</th>
                                   <th scope="col">Or No.</th>
-                                  <th scope="col">Equipment Status</th>
                                   <th scope="col">Issued to</th>
                                   <th scope="col">Issued By</th>
                                   <th scope="col">Issued at</th>
@@ -999,22 +1049,25 @@
                                   <th scope="col">Remarks</th>
                                 </tr>
                               </thead>
-                              <tbody>
-                                <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                </tr>
-                              </tbody>
+                                  <tbody>
+                                    @foreach ($issuance as $issuance)
+                                    <tr>
+
+                                          <td> {{ $issuance->model}} {{ $issuance->brand}}{{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
+                                          <td>{{ $issuance->type}}  </td>
+                                          <td> {{ $issuance->subtype}} </td>
+                                          <td width="30%"> {{ $issuance->serial_no}}</td>
+                                          <td>{{ $issuance->or_no}} </td>
+                                          <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
+                                          <td> {{ $issuance->userfname }} {{ $issuance->userlname }}  </td>
+                                          <td>{{ $issuance->created_at }}</td>
+                                          <td>{{ $issuance->issued_until }}</td>
+                                          <td> {{ $issuance->returned_at }} </td>
+                                          <td> {{ $issuance->remarks }} </td>
+
+                                      </tr>
+                                      @endforeach
+                                  </tbody>
                             </table>
                           </div>
                           <!--Admin - AssociateIssuance-->

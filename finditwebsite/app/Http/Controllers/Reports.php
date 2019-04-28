@@ -14,6 +14,7 @@ use App\Models\TblDepartments;
 use App\Models\TblItEquipment;
 use App\Models\TblSystemUnits;
 use App\Models\TblActivityLogs;
+use App\Models\TblIssuances;
 
 
 class Reports extends BaseController
@@ -80,6 +81,8 @@ class Reports extends BaseController
         $data['JulyDecom'] = TblActivityLogs::get_for_decom_Month('7');
         $data['AugustDecom'] = TblActivityLogs::get_for_decom_Month('8');
         $data['SeptemberDecom'] = TblActivityLogs::get_for_decom_Month('9');
+        $data['pending'] = TblEquipmentStatus::get_pending();
+        $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['OctoberDecom'] = TblActivityLogs::get_for_decom_Month('10');
         $data['NovemberDecom'] = TblActivityLogs::get_for_decom_Month('11');
         $data['DecemberDecom'] = TblActivityLogs::get_for_decom_Month('12');
@@ -90,7 +93,14 @@ class Reports extends BaseController
           $data['ThisMonthPending']  = TblActivityLogs::get_for_pend_Month($monthToday);
           $data['ThisMonthDecom'] = TblActivityLogs::get_for_decom_Month($monthToday);
 
-
+      		$data['issuance'] = TblIssuances::getIssuance();
+          $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+          $data['for_return'] = TblEquipmentStatus::get_for_return();
+          $data['for_disposal'] = TblEquipmentStatus::get_decommissioned();
+          $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+          $data['pending'] = TblEquipmentStatus::get_pending();
+          $data['equipment'] = TblItEquipment::get_all_equipment();
+          
         return view ('content/report' , $data);
     }
 }

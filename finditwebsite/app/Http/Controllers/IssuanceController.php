@@ -30,7 +30,6 @@ class IssuanceController extends BaseController {
 		$data['equipment'] = TblEquipmentStatus::get_available();
 		$data['units'] = TblEquipmentStatus::get_available_units();
 		$data['employees'] = TblEmployees::get_employees('active');
-		$data['target'] = "";
 		return view('content/issuance', $data);
 	}
 

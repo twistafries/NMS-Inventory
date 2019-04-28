@@ -64,13 +64,23 @@
                     <tbody>
 
                         @foreach ($logs as $log)
-                        <tr data-toggle="modal" data-target="#viewItemModal">
+                          <tr>
+                              <td>{{$log->firstname}} {{$log->lastname}} {{$log->action}} {{$log->efname}} {{$log->elname}} {{$log->model}} {{$log->brand}}
+                                {{$log->unit_description}} {{$log->unit}} {{$log->userfname}} {{$log->userlname}} {{$log->dept_name}} {{$log->status_name}} {{$log->subtype_name}} {{$log->type_name}}
+                              @if($log->action == "issued")
+                                @foreach($issuance as $issuance)
+                                  @if($log->issuance_id == $issuance->id)
+                                    {{$issuance->brand}} {{$issuance->model}} {{$issuance->unit_name}} to {{$issuance->givenname}} {{$issuance->surname}}
+                                  @endif
+                                @endforeach
+                              @endif
+                              </td>
+                              <td>
+                                {{$log->date}}
+                              </td>
+                          </tr>
+                          @endforeach
 
-                            <td> {{ $log->firstname }} {{ $log->lastname }} {{ $log->action }} </td>
-                            <td> {{ $log->date_added }} </td>
-
-                        </tr>
-                        @endforeach
                     </tbody>
 
 
