@@ -66,7 +66,7 @@
             </a>
         </li> -->
 @if ($user_type=="admin")
-        <li id="activityLog">
+        <li id="activityLogs">
             <a href="{!! url('/activitylogs') !!}">
                 <i class="fas fa-list-alt"></i>
                 <span class="hide-menu">Activity Logs</span>

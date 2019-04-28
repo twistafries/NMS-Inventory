@@ -32,21 +32,6 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <!-- Single Add Modal -->
-
-            <div class="btn-group" role="group" aria-label="Basic example">
-
-                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
-                </button>
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="delete">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
-                </button>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
-                    <a class="dropdown-item" href="#">Issue Multiple Items</a>
-                </div>
-            </div>
         </div>
     </div>
 

@@ -141,4 +141,23 @@ class AssociateController extends BaseController
 
         return Validator::make($params, $rules);
     }
+
+    public function editAssociates(Request $request)
+    {
+       $data = $request->all();
+       dd($data);
+      if(Session::get('loggedIn')['id']==$data['id']&&$data['status']=="inactive"){
+        Session::flash('errorLogin', 'You can not deactivate yourself.');
+        return \Redirect::to('/associates');
+      }
+
+       TblUsers::update_user($data);
+
+       $act['associate'] = $data['id'];
+       $act['action'] = "updated";
+       TblActivityLogs::add_log($act);
+
+       return redirect()->intended('/associates')->with('message', 'Successfully editted equipment details');
+
+    }
 }

@@ -156,10 +156,12 @@
 
 									<div class="card-body">
 										<div class="progress-card">
+                      @if($lowStackView->count()!=0)
 											<div class="d-flex justify-content-between mb-1">
 												<span class="text-muted">Equipment Subtype:</span>
 												<span class="text-muted fw-bold">Available Quantity:</span>
 											</div>
+                      @endif
 											<div class="progress mb-2" style="height: 7px;">
 <!--                                        <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" data-original-title="65%"></div>-->
 
@@ -339,7 +341,10 @@
                                         {{$issuance->brand}} {{$issuance->model}} {{$issuance->unit_name}} to {{$issuance->givenname}} {{$issuance->surname}}
                                       @endif
                                   @endforeach
-                              @endif                                    
+                              @endif
+                              @if($recent_activities->action=="changed the status of")
+
+                              @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use Session;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use App\User as Authenticatable;
 
@@ -22,23 +23,22 @@ class TblUsers extends Authenticatable {
         return $query;
     }
 
-    public static function update_user(){
-    	$logged_in = Session::get('logged_in');
+    public static function update_user($params){
     	$user = TblUsers::find($params['id']);
 
-        if(isset($params['email']))
-			$user->email = $params['email'];
+      //   if(isset($params['email']))
+			// $user->email = $params['email'];
 
 		if(isset($params['password']))
 			$user->password = $params['password'];
 
 		if(isset($params['firstname']))
-			$user->firstname = $params['firstname'];
-			$loggedIn['firstname'] = $params['firstname'];
+			$user->firstname = $params['fname'];
+			$loggedIn['firstname'] = $params['fname'];
 
 		if(isset($params['lastname']))
-			$user->lastname = $params['lastname'];
-			$loggedIn['lastname'] = $params['lastname'];
+			$user->lastname = $params['lname'];
+			$loggedIn['lastname'] = $params['lname'];
 
 		if(isset($params['dept_id']))
 			$user->mobileno = $params['mobileno'];
@@ -63,7 +63,6 @@ class TblUsers extends Authenticatable {
 
 		try {
 			$user->save();
-			Session::put('loggedIn', $loggedIn);
 			return $user->id;
 		}
 		catch (QueryException $e)

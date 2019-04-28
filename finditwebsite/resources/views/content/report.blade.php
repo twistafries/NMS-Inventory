@@ -346,7 +346,7 @@
                                             <td> {{ $for_disposal->created_at }} </td>
                                             <td> {{ $for_disposal->updated_at }} </td>
                                             <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
-                                            <td> <!--{{ $for_disposal->remarks }}--> </td>
+                                        
                                         </tr>
 
                                         @endforeach
@@ -1777,5 +1777,14 @@
                     });
                 });
             </script>
+            <script type="text/javascript">
+      function printContent(el){
+        var restorepage = $('body').html();
+        var printcontent = $('#' + el).clone();
+        $('body').empty().html(printcontent);
+        window.print();
+        $('body').html(restorepage);
+      }
+    </script>
 
 @stop

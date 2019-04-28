@@ -51,8 +51,12 @@ class LoginController extends Controller {
 				'user_type' => $user->user_type,
 				'fname' => $user->fname,
 				'lname' => $user->lname,
+				'status' =>  $user->status,
 			);
-
+			if($logged['status']!="active"){
+				Session::flash('errorLogin', 'Please refer to the admin with regards the details of your account.');
+				return \Redirect::to('/loginpage');
+			}
 			if(Auth::attempt($userdata)) {
 				Session::put(['loggedIn' => $logged]);
 				return \Redirect::to('/dashboard');
