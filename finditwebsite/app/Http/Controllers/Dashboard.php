@@ -32,7 +32,22 @@ class Dashboard extends BaseController
         $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
         // $data['most_issued'] = TblActivityLogs
 
+        // $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+        // // $data['onhand'] = TblItEquipment::countSubtypes();
+        // // $data['onhandAvailable'] = TblItEquipment::countSubtypes();
+        // // $data['lowStack'] = collect([]);
+        // // foreach ($data['onhand'] as $onhand) {
+        // //   if($onhound)
+        // //   $data['lowStack'] ->push([
+        // //     'id'->
+        // //   ])
+        // // }
+        // // dd($data);
 
         return view ('content/dashboard' , $data);
     }
+    //
+    // public function getLowStack(){
+    //   $data['subtypes'] =
+    // }
 }

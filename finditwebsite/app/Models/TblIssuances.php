@@ -29,6 +29,8 @@ class TblIssuances extends Model {
 		return $query;
 	}
 
+
+
 	public static function getID($params) {
 		$query = \DB::table('it_equipment')
 			->select('id')
@@ -107,4 +109,6 @@ class TblIssuances extends Model {
 			die($e);
 		}
 	}
+
+
 }

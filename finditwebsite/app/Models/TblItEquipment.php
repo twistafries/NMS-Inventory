@@ -94,6 +94,30 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function countSubtypes(){
+      $query = \DB::table('it_equipment as i')
+      ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+      ->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
+      ->select( "i.subtype_id", DB::raw("COUNT(i.subtype_id) as count"))
+      ->where('status_id', '=', '1')
+      ->orwhere('status_id', '=', '2')
+      ->orwhere('status_id', '=', '3')
+      ->orwhere('status_id', '=', '4')
+      ->groupBy('i.subtype_id')
+      ->get();
+      return $query;
+    }
+
+    public static function countAvailable(){
+      $query = \DB::table('it_equipment as i')
+      ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+      ->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
+      ->select( "i.subtype_id", DB::raw("COUNT(i.subtype_id) as count"))
+      ->where('status_id', '=', '1')
+      ->groupBy('i.subtype_id')
+      ->get();
+      return $query;
+    }
     public static function add_equipment($params){
         $results = [];
         $results['error'] = 1;
