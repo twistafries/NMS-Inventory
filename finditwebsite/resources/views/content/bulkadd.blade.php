@@ -114,7 +114,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Brand</p>
-                                    <input type="text" name="brand" id="brand" class="form-control" />
+                                    <input type="text" name="brand" id="brand" class="form-control" required/>
                                     <span id="error_brand" class="text-danger"></span>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Model</p>
-                                    <input type="text" name="model" id="model" class="form-control" />
+                                    <input type="text" name="model" id="model" class="form-control" required/>
                                     <span id="error_model" class="text-danger"></span>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@ body{
                             <div class="col col-lg-12 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Details</p>
-                                    <textarea name="details" id="details" class="form-control" ></textarea>
+                                    <textarea name="details" id="details" class="form-control" required></textarea>
                                     <!-- <input type="text" name="details" id="details" class="form-control" /> -->
                                     <span id="error_details" class="text-danger"></span>
                                 </div>
@@ -149,7 +149,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">OR Number</p>
-                                    <input type="text" name="or_no" id="or_no" class="form-control" />
+                                    <input type="text" name="or_no" id="or_no" class="form-control" required/>
                                     <span id="error_or" class="text-danger"></span>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Supplier</p>
-                                    <input type="text" name="supplier" id="supplier" class="form-control" />
+                                    <input type="text" name="supplier" id="supplier" class="form-control" required/>
                                     <span id="error_supplier" class="text-danger"></span>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Warrant Start</p>
-                                    <input type="date" name="warranty_start" id="warranty_start" class="form-control" />
+                                    <input type="date" name="warranty_start" id="warranty_start" class="form-control" required/>
                                     <span id="error_warranty_start" class="text-danger"></span>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Warrant End</p>
-                                    <input type="date" name="warranty_end" id="warranty_end" class="form-control" />
+                                    <input type="date" name="warranty_end" id="warranty_end" class="form-control" required/>
                                     <span id="error_warranty_end" class="text-danger"></span>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@ body{
                         // console.log(name);
                         output = '<tr id="row_' + count + '">';
                         output += '<td>' + count + '</td>';
-                        output += '<td>' + ' <input type="text" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no"/></td>';
+                        output += '<td>' + ' <input type="text" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
                         output += '<td> <input type="hidden" name="bulk[subtype_id][]" id="subtype_id' + count + '" class="subtype_id" value="' + subtype_id + '" />' + subtype_name + '</td>';
                         output += '<td> <input type="hidden" name="bulk[status_id][]" id="status_id' + count + '" class="status_id" value="' + status_id + '" />' + status_name + '</td>';
                         output += '<td>' + brand + ' <input type="hidden" name="bulk[brand][]" id="brand' + count + '" class="name" value="' + brand + '" /></td>';
