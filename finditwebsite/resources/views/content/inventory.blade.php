@@ -1047,18 +1047,18 @@
 
                                     <tbody>
                                         <tr>
-                                            <td> <input type="text" name="unit[mac_address]"></td>
+                                            <td> <input type="text" name="unit[mac_address]" required></td>
                                             <td>
-                                                <input type="text" name="unit[supplier]"><br>
+                                                <input type="text" name="unit[supplier]" required><br>
 
                                             </td>
-                                            <td> <input type="text" name="unit[or_no]"></td>
+                                            <td> <input type="text" name="unit[or_no]" required></td>
                                             <td>
                                                 <label for="start">Start date:</label>
-                                                <input type="date" id="start" name="unit[warranty_start]">
+                                                <input type="date" id="start" name="unit[warranty_start]" required>
                                                 <br>
                                                 <label for="start">End date:</label>
-                                                <input type="date" id="start" name="unit[warranty_end]">
+                                                <input type="date" id="start" name="unit[warranty_end]" required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1080,48 +1080,50 @@
                                     <tbody>
                                         <tr>
                                             <td>Motherboard <input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
-                                            <td> <input type="text" name="equipment[brand][]"></td>
-                                            <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
 
                                         <tr>
                                             <td>CPU<input type="text" name="equipment[subtype_id][]" value="2" hidden></td>
-                                            <td> <input type="text" name="equipment[brand][]"></td>
-                                            <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
                                         <tr>
                                             <td>Storage<input type="text" name="equipment[subtype_id][]" value="3" hidden></td>
-                                            <td> <input type="text" name="equipment[brand][]"></td>
-                                            <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
+
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
 
                                         <tr>
                                             <td>RAM<input type="text" name="equipment[subtype_id][]" value="4" hidden></td>
-                                            <td> <input type="text" name="equipment[brand][]"></td>
-                                            <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
                                         <tr>
                                             <td>GPU<input type="text" name="equipment[subtype_id][]" value="5" hidden></td>
-                                            <td> <input type="text" name="equipment[brand][]"></td>
-                                            <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required> </td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
                                         <tr>
                                             <td>Case<input type="text" name="equipment[subtype_id][]" value="7" hidden></td>
-                                            <td> <input type="text" name="equipment[brand][]"></td>
-                                            <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
 
@@ -1129,7 +1131,7 @@
                                             <td>Heat Sink Fan<input type="text" name="equipment[subtype_id][]" value="8" hidden></td>
                                             <td> <input type="text" name="equipment[brand][]"></td>
                                             <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[serial_no][]"> </td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
 
 
@@ -1139,7 +1141,7 @@
                                             <td>Sound Card<input type="text" name="equipment[subtype_id][]" value="18" hidden></td>
                                             <td> <input type="text" name="equipment[brand][]"></td>
                                             <td> <input type="text" name="equipment[model][]"></td>
-                                            <td> <input type="text" name="equipment[serial_no][]" </td>
+                                            <td> <input type="text" name="equipment[serial_no][]" ></td>
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
                                     </tbody>
