@@ -43,7 +43,7 @@ class InventoryController extends BaseController
       $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['parts'] = TblItEquipment::get_computer_component();
       $data['status'] = TblEquipmentStatus::get_all_status();
-      $data['subtypesSel'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
       $data['suppliers'] = TblItEquipment::get_supplier();
       $data['brands'] = TblItEquipment::get_brand();

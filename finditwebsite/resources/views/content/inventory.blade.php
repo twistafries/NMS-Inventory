@@ -144,7 +144,6 @@
       <label for="subtypes">Subtype: </label>
       <select id="subtypes" name="subtypes">
         <option value="any">Any</option>
-        <option value="Motherboard">Motherboard</option>
         @foreach ($subtypesSel as $subtypesSel)
         <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
         @endforeach
@@ -233,11 +232,11 @@
                                         <div class="col-12">
                                             <p>Official Receipt No: {{ $equipment->or_no }}</p>
                                         </div>
-                                    
+
                                         <div class="col col-8">
                                             <h5 class="modal-title">{{ $equipment->brand }} {{ $equipment->model }}</h5>
                                         </div>
-                                        
+
                                         <div class="col col-4">
                                             <p class="text-light">ID: {{ $equipment->id }}</p>
                                         </div>
@@ -257,17 +256,17 @@
                                             <div class="col col-4 detail-header text-uppercase">Equipment Details</div>
                                             <div class="col col-7 details" id="fullname">{{ $equipment->details }}</div>
                                         </div>
-                                        
+
                                         <hr>
 
                                         <!-- Type & Subtype -->
                                         <div class="row row-details">
                                             <div class="col col-2 detail-header text-uppercase">Type:</div>
                                             <div class="col col-4 details" id="fullname">{{ $equipment->type_name }}</div>
-                                            
+
                                             <div class="col col-2 detail-header text-uppercase">Subtype:</div>
                                             <div class="col col-4 details" id="fullname">{{ $equipment->subtype_name }}</div>
-                                        
+
                                         <!-- SN & PC Number -->
                                             <div class="col col-2 detail-header text-uppercase">Supplier:</div>
                                             <div class="col col-4 details" id="fullname">{{ $equipment->supplier }}</div>
@@ -278,27 +277,27 @@
                                             @empty( $equipment->unit_id )
                                             <div class="col col-2 detail-header text-uppercase">IMEI or MAC:</div>
                                             <div class="col col-4 details" id="fullname">None</div>
-                                            @endempty                                                                              
+                                            @endempty
                                         </div>
 
                                         <hr>
-                                        
+
                                         <div class="row row-details">
-                                            <div class="col col-2 detail-header text-uppercase">Added At</div>                                        
-                                            <div class="col col-4 details" id="fullname">{{ $equipment->created_at }}</div>                                       
-                                            
+                                            <div class="col col-2 detail-header text-uppercase">Added At</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->created_at }}</div>
+
                                             @isset( $equipment->updated_at)
-                                            <div class="col col-2 detail-header text-uppercase">Last Edit by</div>                                            
+                                            <div class="col col-2 detail-header text-uppercase">Last Edit by</div>
                                             <div class="col col-4 details" id="fullname">{{ $equipment->firstname }} {{ $equipment->lastname }}</div>
                                             @endisset
                                             @empty( $equipment->updated_at)
-                                            <div class="col col-2 detail-header text-uppercase">Added by</div>                                            
+                                            <div class="col col-2 detail-header text-uppercase">Added by</div>
                                             <div class="col col-4 details" id="fullname">{{ $equipment->firstname }} {{ $equipment->lastname }}</div>
                                             @endisset
 
-                                            
-                                            <div class="col col-2 detail-header text-uppercase">Edited At</div>                                        
-                                            <div class="col col-4 details" id="fullname">{{ $equipment->updated_at }}</div>                                       
+
+                                            <div class="col col-2 detail-header text-uppercase">Edited At</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->updated_at }}</div>
                                         </div>
 
                                         <!-- Warranty -->
@@ -361,7 +360,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            
+
 
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
@@ -448,7 +447,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
@@ -458,9 +457,9 @@
                             </div>
                         </form>
                     </div>
-                </tbody>
-                @endforeach
 
+                @endforeach
+</tbody>
 
             </table>
         </div>
@@ -473,8 +472,8 @@
                       <th id="checkbox" hidden></th>
                       <th>Model</th>
                       <th>Brand</th>
-                      <th>Subtypes</th>
-                      <th hidden>Subtype</th>
+                      <th hidden>Subtypes</th>
+                      <th>Subtype</th>
                       <th>Supplier</th>
                       <th>Details</th>
                       <th>Serial No</th>
@@ -491,8 +490,9 @@
                       <td hidden></td>
                         <td> {{ $components->model }} </td>
                         <td> {{ $components->brand }} </td>
-                        <td> {{ $components->subtype_name }} </td>
                         <td hidden></td>
+                        <td> {{ $components->subtype_name }} </td>
+
                         <td> {{ $components->supplier }} </td>
                         <td width="30%"> {{ $components->details }} </td>
                         <td> {{ $components->serial_no }} </td>
@@ -614,8 +614,8 @@
                       <th id="checkbox" hidden></th>
                       <th>Model</th>
                       <th>Brand</th>
-                      <th>Subtypes</th>
                       <th hidden>Subtype</th>
+                      <th>Subtypes</th>
                       <th>Supplier</th>
                       <th>Details</th>
                       <th>Serial No</th>
@@ -632,8 +632,8 @@
                         <td hidden></td>
                         <td> {{ $peripherals->model }} </td>
                         <td> {{ $peripherals->brand }} </td>
-                        <td> {{ $peripherals->subtype_name }} </td>
                         <td hidden></td>
+                        <td> {{ $peripherals->subtype_name }} </td>
                         <td> {{ $peripherals->supplier }} </td>
                         <td width="30%"> {{ $peripherals->details }} </td>
                         <td> {{ $peripherals->serial_no }} </td>
@@ -657,8 +657,8 @@
                       <th id="checkbox" hidden></th>
                       <th>Model</th>
                       <th>Brand</th>
-                      <th>Subtypes</th>
                       <th hidden>Subtype</th>
+                      <th>Subtypes</th>
                       <th>Supplier</th>
                       <th>Details</th>
                       <th>Serial No</th>
@@ -675,8 +675,8 @@
                       <td hidden></td>
                         <td> {{ $mobile->model }} </td>
                         <td> {{ $mobile->brand }} </td>
-                        <td> {{ $mobile->subtype_name }} </td>
                         <td hidden></td>
+                        <td> {{ $mobile->subtype_name }} </td>
                         <td> {{ $mobile->supplier }} </td>
                         <td width="30%"> {{ $mobile->details }} </td>
                         <td> {{ $mobile->serial_no }} </td>
@@ -701,8 +701,8 @@
               <th id="checkbox" hidden></th>
               <th>Model</th>
               <th>Brand</th>
-              <th>Subtypes</th>
               <th hidden>Subtype</th>
+              <th>Subtypes</th>
               <th>Supplier</th>
               <th>Details</th>
               <th>Serial No</th>

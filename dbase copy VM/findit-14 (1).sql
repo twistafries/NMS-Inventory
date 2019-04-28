@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 24, 2019 at 05:54 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: Apr 27, 2019 at 09:24 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `findit12`
+-- Database: `findit`
 --
 
 -- --------------------------------------------------------
@@ -26,23 +28,107 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity_logs`
 --
 
-CREATE TABLE `activity_logs` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `activity_logs`;
+CREATE TABLE IF NOT EXISTS `activity_logs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `done_by` bigint(20) NOT NULL,
   `action` varchar(50) NOT NULL,
-  `dept_id` tinyint(4) NOT NULL,
-  `employee_id` bigint(20) NOT NULL,
-  `equipstatus_id` tinyint(4) NOT NULL,
-  `concerns_id` bigint(20) NOT NULL,
-  `issuance_id` bigint(20) NOT NULL,
-  `equipment_id` bigint(20) NOT NULL,
-  `type_id` tinyint(4) NOT NULL,
-  `subtype_id` tinyint(4) NOT NULL,
-  `replacement_id` bigint(20) NOT NULL,
-  `unit_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `dept_id` tinyint(4) DEFAULT NULL,
+  `employee_id` bigint(20) DEFAULT NULL,
+  `equipstatus_id` tinyint(4) DEFAULT NULL,
+  `concerns_id` bigint(20) DEFAULT NULL,
+  `issuance_id` bigint(20) DEFAULT NULL,
+  `equipment_id` bigint(20) DEFAULT NULL,
+  `type_id` tinyint(4) DEFAULT NULL,
+  `subtype_id` tinyint(4) DEFAULT NULL,
+  `replacement_id` bigint(20) DEFAULT NULL,
+  `unit_id` bigint(20) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `status_id` tinyint(4) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`done_by`),
+  KEY `dept_id` (`dept_id`),
+  KEY `employee_id` (`employee_id`),
+  KEY `equipstatus_id` (`equipstatus_id`),
+  KEY `concerns_id` (`concerns_id`),
+  KEY `issuance_id` (`issuance_id`),
+  KEY `equipment_id` (`equipment_id`),
+  KEY `type_id` (`type_id`),
+  KEY `subtype_id` (`subtype_id`),
+  KEY `replacement_id` (`replacement_id`),
+  KEY `unit_id` (`unit_id`),
+  KEY `users_id` (`user_id`),
+  KEY `status_id` (`status_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`id`, `done_by`, `action`, `dept_id`, `employee_id`, `equipstatus_id`, `concerns_id`, `issuance_id`, `equipment_id`, `type_id`, `subtype_id`, `replacement_id`, `unit_id`, `user_id`, `status_id`, `created_at`) VALUES
+(1, 1, 'added', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:43:47'),
+(2, 1, 'added', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:43:47'),
+(3, 1, 'added', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:44:26'),
+(4, 1, 'added', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:44:26'),
+(5, 1, 'added', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:45:27'),
+(6, 1, 'added', NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:45:27'),
+(7, 1, 'added', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:45:49'),
+(8, 1, 'added', NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:45:49'),
+(9, 1, 'added', NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:47:48'),
+(10, 1, 'added', NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:47:48'),
+(11, 1, 'added', NULL, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:48:24'),
+(12, 1, 'added', NULL, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:48:24'),
+(13, 1, 'added', NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:49:12'),
+(14, 1, 'added', NULL, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:49:12'),
+(15, 1, 'added', NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:49:32'),
+(16, 1, 'added', NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:49:32'),
+(19, 1, 'added', NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:56:52'),
+(20, 1, 'added', NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:56:52'),
+(21, 1, 'added', NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:58:54'),
+(22, 1, 'added', NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:58:54'),
+(23, 1, 'added', NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:59:17'),
+(24, 1, 'added', NULL, NULL, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 16:59:17'),
+(25, 1, 'added', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:00:38'),
+(26, 1, 'added', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:01:50'),
+(27, 1, 'added', NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:01:50'),
+(28, 1, 'added', NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:02:19'),
+(29, 2, 'added', NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:02:19'),
+(30, 2, 'added', NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:04:51'),
+(31, 2, 'added', NULL, NULL, NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:04:51'),
+(32, 2, 'added', NULL, NULL, NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:05:51'),
+(33, 2, 'added', NULL, NULL, NULL, NULL, NULL, 8, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:05:51'),
+(34, 2, 'added', NULL, NULL, NULL, NULL, NULL, 9, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:06:38'),
+(35, 2, 'added', NULL, NULL, NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:06:38'),
+(36, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:13:09'),
+(37, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:13:09'),
+(38, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:13:49'),
+(39, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, '2019-04-27 17:13:49'),
+(40, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2019-04-27 17:14:31'),
+(41, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, '2019-04-27 17:14:31'),
+(42, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, '2019-04-27 17:15:51'),
+(43, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, '2019-04-27 17:15:51'),
+(44, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, '2019-04-27 17:16:38'),
+(45, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, '2019-04-27 17:16:38'),
+(46, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, NULL, NULL, NULL, NULL, '2019-04-27 17:17:05'),
+(47, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, NULL, NULL, NULL, NULL, '2019-04-27 17:17:05'),
+(48, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 9, NULL, NULL, NULL, NULL, '2019-04-27 17:17:33'),
+(49, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10, NULL, NULL, NULL, NULL, '2019-04-27 17:17:33'),
+(50, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 11, NULL, NULL, NULL, NULL, '2019-04-27 17:17:58'),
+(51, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 12, NULL, NULL, NULL, NULL, '2019-04-27 17:17:58'),
+(52, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 13, NULL, NULL, NULL, NULL, '2019-04-27 17:18:31'),
+(53, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14, NULL, NULL, NULL, NULL, '2019-04-27 17:18:31'),
+(54, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 15, NULL, NULL, NULL, NULL, '2019-04-27 17:19:00'),
+(55, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 16, NULL, NULL, NULL, NULL, '2019-04-27 17:19:00'),
+(56, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 17, NULL, NULL, NULL, NULL, '2019-04-27 17:19:29'),
+(57, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 18, NULL, NULL, NULL, NULL, '2019-04-27 17:19:29'),
+(58, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '2019-04-27 17:22:28'),
+(59, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '2019-04-27 17:22:28'),
+(60, 2, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, '2019-04-27 17:22:53'),
+(61, 2, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, '2019-04-27 17:22:53'),
+(62, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, '2019-04-27 17:24:15'),
+(63, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, '2019-04-27 17:24:15'),
+(64, 1, 'added', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, '2019-04-27 17:24:27');
 
 -- --------------------------------------------------------
 
@@ -50,13 +136,16 @@ CREATE TABLE `activity_logs` (
 -- Table structure for table `departments`
 --
 
-CREATE TABLE `departments` (
-  `id` tinyint(4) NOT NULL,
+DROP TABLE IF EXISTS `departments`;
+CREATE TABLE IF NOT EXISTS `departments` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
-  `status` varchar(16) NOT NULL DEFAULT 'active'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(16) NOT NULL DEFAULT 'active',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `departments`
@@ -74,16 +163,20 @@ INSERT INTO `departments` (`id`, `name`, `created_at`, `updated_at`, `status`) V
 -- Table structure for table `employees`
 --
 
-CREATE TABLE `employees` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `employees`;
+CREATE TABLE IF NOT EXISTS `employees` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `fname` varchar(55) NOT NULL,
   `lname` varchar(55) NOT NULL,
   `email` varchar(255) NOT NULL,
   `dept_id` tinyint(4) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
-  `status` varchar(16) NOT NULL DEFAULT 'active'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(16) NOT NULL DEFAULT 'active',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `dept_id` (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
@@ -99,7 +192,8 @@ INSERT INTO `employees` (`id`, `fname`, `lname`, `email`, `dept_id`, `created_at
 (7, 'Kim', 'Willy', 'kim@gmail.com', 3, '2019-04-10 12:22:38', NULL, 'active'),
 (8, 'Jake', 'Peralta', 'jake@gmail.com', 4, '2019-04-10 12:22:38', NULL, 'active'),
 (9, 'Amy', 'Santiago', 'amy@gmail.com', 3, '2019-04-10 12:23:25', NULL, 'active'),
-(10, 'Raymond', 'Holt', 'raymond@gmail.com', 4, '2019-04-10 12:23:25', NULL, 'active');
+(10, 'Raymond', 'Holt', 'raymond@gmail.com', 4, '2019-04-10 12:23:25', NULL, 'active'),
+(11, 'Rosa', 'Diaz', 'rosa@gmail.com', 2, '2019-04-26 12:54:07', NULL, 'active');
 
 -- --------------------------------------------------------
 
@@ -107,12 +201,15 @@ INSERT INTO `employees` (`id`, `fname`, `lname`, `email`, `dept_id`, `created_at
 -- Table structure for table `equipment_status`
 --
 
-CREATE TABLE `equipment_status` (
-  `id` tinyint(4) NOT NULL,
+DROP TABLE IF EXISTS `equipment_status`;
+CREATE TABLE IF NOT EXISTS `equipment_status` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `equipment_status`
@@ -134,15 +231,22 @@ INSERT INTO `equipment_status` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `inventory_concerns`
 --
 
-CREATE TABLE `inventory_concerns` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `inventory_concerns`;
+CREATE TABLE IF NOT EXISTS `inventory_concerns` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name_component` bigint(20) NOT NULL,
   `system_unit` bigint(20) NOT NULL,
   `status_id` tinyint(4) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_user` bigint(20) NOT NULL,
   `added_by` bigint(20) NOT NULL,
-  `remarks` varchar(120) NOT NULL
+  `remarks` varchar(120) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name_component` (`name_component`),
+  KEY `system_unit` (`system_unit`),
+  KEY `status_id` (`status_id`),
+  KEY `last_user` (`last_user`),
+  KEY `added_by` (`added_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -151,8 +255,9 @@ CREATE TABLE `inventory_concerns` (
 -- Table structure for table `issuance`
 --
 
-CREATE TABLE `issuance` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `issuance`;
+CREATE TABLE IF NOT EXISTS `issuance` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `equipment_id` bigint(20) DEFAULT NULL,
   `unit_id` bigint(20) DEFAULT NULL,
   `issued_to` bigint(20) NOT NULL,
@@ -162,8 +267,14 @@ CREATE TABLE `issuance` (
   `issued_until` date DEFAULT NULL,
   `returned_at` date DEFAULT NULL,
   `remarks` varchar(120) DEFAULT NULL,
-  `status_id` tinyint(4) NOT NULL DEFAULT '2'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status_id` tinyint(4) NOT NULL DEFAULT '2',
+  PRIMARY KEY (`id`),
+  KEY `unit_id` (`unit_id`),
+  KEY `issued_to` (`issued_to`),
+  KEY `status_id` (`status_id`),
+  KEY `user_id` (`user_id`),
+  KEY `equipment_id` (`equipment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `issuance`
@@ -178,8 +289,9 @@ INSERT INTO `issuance` (`id`, `equipment_id`, `unit_id`, `issued_to`, `user_id`,
 -- Table structure for table `it_equipment`
 --
 
-CREATE TABLE `it_equipment` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `it_equipment`;
+CREATE TABLE IF NOT EXISTS `it_equipment` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `subtype_id` tinyint(4) NOT NULL,
   `brand` varchar(50) NOT NULL,
   `model` varchar(50) NOT NULL,
@@ -194,8 +306,15 @@ CREATE TABLE `it_equipment` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
   `user_id` bigint(20) NOT NULL,
-  `status_id` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status_id` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `serial_no` (`serial_no`),
+  UNIQUE KEY `imei_or_macaddress` (`imei_or_macaddress`),
+  KEY `unit_id` (`unit_id`),
+  KEY `status_id` (`status_id`),
+  KEY `subtype_id` (`subtype_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `it_equipment`
@@ -245,9 +364,9 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (43, 10, 'Razer', 'Cynosa', 'Razer Cynosa Keyboard\r\n', 'RZR-9212611', 'RZR-9212611', NULL, NULL, 'Data Blitz', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
 (44, 10, 'Logitech', 'MK235', 'Logitech MK235 Keyboard\r\nOrange Key Switches\r\nBlue Backlight', 'LGT-M12612', 'LGT-M12612', NULL, NULL, 'Octagon', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
 (45, 10, 'Logitech ', 'K480', 'Logitech K480 Keyboard', 'LGT-K210654', 'LGT-K210654', NULL, NULL, 'Octagon', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
-(46, 11, 'NVISION ', '24" Curved Monitor', 'NVISION 24" Curved Monitor\r\n144 Refresh Rate\r\n1920 x 1080 Screen Resolution', 'NVS-C991284', 'NVS-C991284', NULL, NULL, 'Octagon', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
-(47, 11, 'BenQ', '20" LED Monitor', 'BenQ 20" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212884', 'BEN-C212884', NULL, NULL, 'PC Express', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
-(48, 11, 'Samsung', '24" LED Monitor', 'Samsung 24" LED Curved Monitor\r\n144Hz Refresh Rate\r\n1920 x 1080 Screen Resolution', 'SMS-SW13508', 'SMS-SW13508', NULL, NULL, 'PC Depot', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
+(46, 11, 'NVISION ', '24\" Curved Monitor', 'NVISION 24\" Curved Monitor\r\n144 Refresh Rate\r\n1920 x 1080 Screen Resolution', 'NVS-C991284', 'NVS-C991284', NULL, NULL, 'Octagon', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
+(47, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212884', 'BEN-C212884', NULL, NULL, 'PC Express', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
+(48, 11, 'Samsung', '24\" LED Monitor', 'Samsung 24\" LED Curved Monitor\r\n144Hz Refresh Rate\r\n1920 x 1080 Screen Resolution', 'SMS-SW13508', 'SMS-SW13508', NULL, NULL, 'PC Depot', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
 (49, 7, 'Rakk', 'Kisig PC Case', 'Noctua 3 120mm fans; 158mm Height.\r\nSocket: AM4\r\nTDP: 140W', 'RAK-210421', 'RAK-210421', NULL, NULL, 'Chelsey', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 1, 1),
 (50, 7, 'Rakk ', 'Anyag PC Case', 'Noctua 3 120mm fans; 158mm Height.\r\nSocket: 1151\r\nTDP: 140W', 'RAK-210512', 'RAK-210512', NULL, NULL, 'Chelsey', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 1, 1),
 (51, 7, 'Rakk ', 'Hawani Flow PC Case', 'Noctua 6 120mm fans; 158mm Height.\r\nSocket: 1151 and AM4\r\nTDP: 140W', 'RAK-212123', 'RAK-212123', NULL, NULL, 'Chelsey', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 1, 1),
@@ -259,8 +378,8 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (62, 10, 'A4Tech', 'KD-650', 'Blue Backlight Keyboard\r\nGreen Key Switches', 'RZR-1262212', 'RZR-1262212', NULL, NULL, 'Data Blitz', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
 (63, 10, 'A4Tech', 'KD-126', 'LED Backlight\r\nLaser-inscribed Keys\r\nUltra Slim ', 'RZR-1263311', 'RZR-1263311', NULL, NULL, 'Data Blitz', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
 (65, 9, 'A4Tech', 'G3-220N', 'Wireless mouse\r\n1800 DPI\r\nErgonomic Symmetric Style\r\n3 Mouse Buttons', 'A4-1261132', 'A4-1261132', NULL, NULL, 'Data Blitz', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
-(66, 11, 'Lenovo', '19" Curved Monitor', 'NVISION 24" Curved Monitor\r\n75 Refresh Rate\r\n1280 x 1024 Screen Resolution', 'NVS-C991122', 'NVS-C991122', NULL, NULL, 'Octagon', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
-(67, 11, 'BenQ', '24" LED Monitor', 'BenQ 24" LED Monitor\r\n144hz Refresh Rate\r\n1920 x 1080 Resolution', 'BEN-C212222', 'BEN-C212222', NULL, NULL, 'PC Express', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1);
+(66, 11, 'Lenovo', '19\" Curved Monitor', 'NVISION 24\" Curved Monitor\r\n75 Refresh Rate\r\n1280 x 1024 Screen Resolution', 'NVS-C991122', 'NVS-C991122', NULL, NULL, 'Octagon', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1),
+(67, 11, 'BenQ', '24\" LED Monitor', 'BenQ 24\" LED Monitor\r\n144hz Refresh Rate\r\n1920 x 1080 Resolution', 'BEN-C212222', 'BEN-C212222', NULL, NULL, 'PC Express', '2019-04-14', '2019-04-28', '2019-04-16 19:16:55', NULL, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -268,13 +387,17 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 -- Table structure for table `it_equipment_subtype`
 --
 
-CREATE TABLE `it_equipment_subtype` (
-  `id` tinyint(4) NOT NULL,
+DROP TABLE IF EXISTS `it_equipment_subtype`;
+CREATE TABLE IF NOT EXISTS `it_equipment_subtype` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `type_id` tinyint(4) NOT NULL,
   `name` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  KEY `type_id` (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `it_equipment_subtype`
@@ -306,12 +429,14 @@ INSERT INTO `it_equipment_subtype` (`id`, `type_id`, `name`, `created_at`, `upda
 -- Table structure for table `it_equipment_type`
 --
 
-CREATE TABLE `it_equipment_type` (
-  `id` tinyint(4) NOT NULL,
+DROP TABLE IF EXISTS `it_equipment_type`;
+CREATE TABLE IF NOT EXISTS `it_equipment_type` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `it_equipment_type`
@@ -329,12 +454,16 @@ INSERT INTO `it_equipment_type` (`id`, `name`, `created_at`, `updated_at`) VALUE
 -- Table structure for table `replacement_issuance`
 --
 
-CREATE TABLE `replacement_issuance` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `replacement_issuance`;
+CREATE TABLE IF NOT EXISTS `replacement_issuance` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `current_issuance` bigint(20) NOT NULL,
   `replaced_issuance` bigint(20) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `original_id` (`current_issuance`),
+  KEY `replaced_id` (`replaced_issuance`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -343,14 +472,18 @@ CREATE TABLE `replacement_issuance` (
 -- Table structure for table `system_units`
 --
 
-CREATE TABLE `system_units` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `system_units`;
+CREATE TABLE IF NOT EXISTS `system_units` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
-  `status_id` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status_id` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `status_id` (`status_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `system_units`
@@ -368,8 +501,9 @@ INSERT INTO `system_units` (`id`, `description`, `user_id`, `created_at`, `updat
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -378,8 +512,11 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL,
   `user_type` varchar(16) NOT NULL DEFAULT 'associate',
-  `status` varchar(16) NOT NULL DEFAULT 'active'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(16) NOT NULL DEFAULT 'active',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  KEY `dept_id` (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -392,186 +529,6 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `dept_id`, `cr
 (4, 'Lovelyn', 'Paris', 'lovelynparis@gmail.com', '$2y$10$6NQ8/pk/agR9Jjs82VkYA.caCbz/Y8crIlvMoYCQXEhbk7Jb7dhE6', 4, '2019-04-16 18:28:10', NULL, 'associate', 'active');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `activity_logs`
---
-ALTER TABLE `activity_logs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`done_by`),
-  ADD KEY `dept_id` (`dept_id`),
-  ADD KEY `employee_id` (`employee_id`),
-  ADD KEY `equipstatus_id` (`equipstatus_id`),
-  ADD KEY `concerns_id` (`concerns_id`),
-  ADD KEY `issuance_id` (`issuance_id`),
-  ADD KEY `equipment_id` (`equipment_id`),
-  ADD KEY `type_id` (`type_id`),
-  ADD KEY `subtype_id` (`subtype_id`),
-  ADD KEY `replacement_id` (`replacement_id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `users_id` (`user_id`);
-
---
--- Indexes for table `departments`
---
-ALTER TABLE `departments`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `employees`
---
-ALTER TABLE `employees`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `dept_id` (`dept_id`);
-
---
--- Indexes for table `equipment_status`
---
-ALTER TABLE `equipment_status`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
-
---
--- Indexes for table `inventory_concerns`
---
-ALTER TABLE `inventory_concerns`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name_component` (`name_component`),
-  ADD KEY `system_unit` (`system_unit`),
-  ADD KEY `status_id` (`status_id`),
-  ADD KEY `last_user` (`last_user`),
-  ADD KEY `added_by` (`added_by`);
-
---
--- Indexes for table `issuance`
---
-ALTER TABLE `issuance`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `issued_to` (`issued_to`),
-  ADD KEY `status_id` (`status_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `equipment_id` (`equipment_id`);
-
---
--- Indexes for table `it_equipment`
---
-ALTER TABLE `it_equipment`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `serial_no` (`serial_no`),
-  ADD UNIQUE KEY `imei_or_macaddress` (`imei_or_macaddress`),
-  ADD KEY `unit_id` (`unit_id`),
-  ADD KEY `status_id` (`status_id`),
-  ADD KEY `subtype_id` (`subtype_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `it_equipment_subtype`
---
-ALTER TABLE `it_equipment_subtype`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`),
-  ADD KEY `type_id` (`type_id`);
-
---
--- Indexes for table `it_equipment_type`
---
-ALTER TABLE `it_equipment_type`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `replacement_issuance`
---
-ALTER TABLE `replacement_issuance`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `original_id` (`current_issuance`),
-  ADD KEY `replaced_id` (`replaced_issuance`);
-
---
--- Indexes for table `system_units`
---
-ALTER TABLE `system_units`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `status_id` (`status_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `dept_id` (`dept_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `activity_logs`
---
-ALTER TABLE `activity_logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `departments`
---
-ALTER TABLE `departments`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `employees`
---
-ALTER TABLE `employees`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `equipment_status`
---
-ALTER TABLE `equipment_status`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `inventory_concerns`
---
-ALTER TABLE `inventory_concerns`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `issuance`
---
-ALTER TABLE `issuance`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `it_equipment`
---
-ALTER TABLE `it_equipment`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
---
--- AUTO_INCREMENT for table `it_equipment_subtype`
---
-ALTER TABLE `it_equipment_subtype`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `it_equipment_type`
---
-ALTER TABLE `it_equipment_type`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `replacement_issuance`
---
-ALTER TABLE `replacement_issuance`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `system_units`
---
-ALTER TABLE `system_units`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
 -- Constraints for dumped tables
 --
 
@@ -583,6 +540,7 @@ ALTER TABLE `activity_logs`
   ADD CONSTRAINT `activity_logs_ibfk_10` FOREIGN KEY (`unit_id`) REFERENCES `system_units` (`id`),
   ADD CONSTRAINT `activity_logs_ibfk_11` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `activity_logs_ibfk_12` FOREIGN KEY (`type_id`) REFERENCES `it_equipment_type` (`id`),
+  ADD CONSTRAINT `activity_logs_ibfk_13` FOREIGN KEY (`status_id`) REFERENCES `equipment_status` (`id`),
   ADD CONSTRAINT `activity_logs_ibfk_2` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`id`),
   ADD CONSTRAINT `activity_logs_ibfk_3` FOREIGN KEY (`done_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `activity_logs_ibfk_4` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`),
@@ -652,6 +610,7 @@ ALTER TABLE `system_units`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `departments` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
