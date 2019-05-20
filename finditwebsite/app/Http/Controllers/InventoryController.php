@@ -217,17 +217,22 @@ class InventoryController extends BaseController
     public function hardDeleteEquipment(Request $request){
       $data = $request->all();
         $pieces = explode("-", $data['item']);
+        $act=[];
         if($pieces[0] == "Mobile Device"){
           $data['equipment_id']=(int)$pieces[1];
+            //$act['it_equipment']=$data['equipment_id'];
         TblItEquipment::delete_equipment($data['equipment_id']);
+
         }else{
           $data['unit_id']=(int)$pieces[1] ;
+          //act['system_units']=$data['unit_id'];
           TblSystemUnits::delete_unit($data['unit_id']);
+
         }
-        $act=[];
-        $act['it_equipment']=$data['id'];
-        $act['action'] = "deleted";
-        TblActivityLogs::add_log($act);
+
+
+        //$act['action'] = "deleted";
+        //TblActivityLogs::add_log($act);
         return \Redirect::to('/inventory')->with('equipment has been deleted');
       }
 
