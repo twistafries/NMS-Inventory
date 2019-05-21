@@ -41,6 +41,55 @@ class ForStatusController extends BaseController
      return view ('content/concerns' , $data);
 
    }
+
+
+
+   public function showRepairItems(){
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+     $data = [];
+     $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     return view ('content/repair' , $data);
+   }
+
+
+    public function showPurchases(){
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+     $data = [];
+     $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     return view ('content/purchasenumber' , $data);
+   }
+
+
+    public function showOR(){
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+     $data = [];
+     $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     return view ('content/ornumber' , $data);
+   }
+
+
+   public function showDecommissionedItems(){
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+     $data = [];
+     $data['decommissioned'] = TblEquipmentStatus::get_decommissioned();
+     return view ('content/decommissioned' , $data);
+   }
+   
    public function showIssuable(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
