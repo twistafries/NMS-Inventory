@@ -30,44 +30,63 @@
         </li>
 
         <li id="inventory">
-            <a href="{!! url('/inventory') !!}">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-warehouse"></i>
                 <span class="hide-menu">Inventory</span>
             </a>
-        </li>
-        @if ($user_type=="admin")
-          <li id="associates">
-              <a href="{!! url('/associates') !!}">
-                  <i class="fas fa-users"></i>
-                  <span class="hide-menu">Associates</span>
-              </a>
-          </li>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="{!! url('/inventory') !!}"><i class="fas fa-laptop"></i><span class="hide-menu">Items</span></a>
+                      </li>
+              <li>
+                <a href="{!! url('/repair') !!}"><i class="fas fa-tools"></i><span class="hide-menu">For Repair</span></a>
+              </li>
+             <li>
+              <a href="{!! url('/decommissioned') !!}"><i class="fas fa-trash"></i><span class="hide-menu">Decommissioned</span></a>
+             </li>
+            </ul>
 
-          <li id="employees">
-              <a href="{!! url('/employees') !!}">
-                  <i class="fas fa-vcard"></i>
-                  <span class="hide-menu">Employees</span>
-              </a>
-          </li>
-          @endif
+        </li>
 
 
         <li id="issuance">
-          <a href="{!! url('/issuance') !!}">
+          <a href="#issueSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-hand-holding"></i>
                 <span class="hide-menu">Issuance</span>
             </a>
+
+            <ul class="collapse list-unstyled" id="issueSubmenu">
+                <li>
+                    <a href="{!! url('/issuance') !!}"><span class="hide-menu">Issued Items</span></a>
+                  </li>
+              <li>
+
+                <a href="{!! url('/issue') !!}"><span class="hide-menu">Employee Issuance</span></a>
+              </li>
+            </ul>
+
         </li>
-<!--
-        <li id="issuableItems">
-            <a href="{!! url('/issuableItems') !!}">
-                <i class="fas fa-desktop"></i>
-                <span class="hide-menu">Issuable Items</span>
+
+        <li>
+          <a href="#purchaseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="hide-menu">Purchase History</span>
             </a>
-        </li> -->
-@if ($user_type=="admin")
-        <li id="activityLogs">
-            <a href="{!! url('/activitylogs') !!}">
+
+            <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                <li>
+                    <a href="{!! url('/purchasenumber') !!}"><span class="hide-menu">Purchase Number</span></a>
+                  </li>
+              <li>
+
+                <a href="{!! url('/ornumber') !!}"><span class="hide-menu">OR Number</span></a>
+              </li>
+            </ul>
+
+        </li>
+
+        <li id="activityLog">
+            <a href="#">
                 <i class="fas fa-list-alt"></i>
                 <span class="hide-menu">Activity Logs</span>
             </a>
@@ -76,9 +95,8 @@
         <li id="report">
             <a href="{!! url('/reportpage') !!}">
                 <i class="fas fa-file-export"></i>
-                <span class="hide-menu">Generate Reports</span>
+                <span class="hide-menu">Reports</span>
             </a>
         </li>
-          @endif
     </ul>
 </nav>
