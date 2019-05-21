@@ -57,11 +57,11 @@
 
             <ul class="collapse list-unstyled" id="issueSubmenu">
                 <li>
-                    <a href="{!! url('/issuance') !!}"><span class="hide-menu">Issued Items</span></a>
+                    <a href="{!! url('/issuance') !!}"><i class="fas fa-mobile-alt"></i><span class="hide-menu">Issued Items</span></a>
                   </li>
               <li>
 
-                <a href="{!! url('/issue') !!}"><span class="hide-menu">Employee Issuance</span></a>
+                <a href="{!! url('/issue') !!}"><span class="hide-menu"><i class="fas fa-users"></i>Employee Issuance</span></a>
               </li>
             </ul>
 
@@ -75,11 +75,11 @@
 
             <ul class="collapse list-unstyled" id="purchaseSubmenu">
                 <li>
-                    <a href="{!! url('/purchasenumber') !!}"><span class="hide-menu">Purchase Number</span></a>
+                    <a href="{!! url('/purchasenumber') !!}"><span class="hide-menu"><i class="fas fa-clipboard-list"></i>Purchase Number</span></a>
                   </li>
               <li>
 
-                <a href="{!! url('/ornumber') !!}"><span class="hide-menu">OR Number</span></a>
+                <a href="{!! url('/ornumber') !!}"><span class="hide-menu"><i class="fas fa-list-ol"></i>OR Number</span></a>
               </li>
             </ul>
 
