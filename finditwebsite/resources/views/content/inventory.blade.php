@@ -17,6 +17,22 @@
 
 @section('content')
 <div class="container">
+<nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">INVENTORY</span>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb arr-right">
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/inventory') !!}" class="text-dark active">Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/repair') !!}"  aria-current="page" class="text-warning">For Repair</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
+                    </li>
+                </ol>
+            </nav>
+    </nav>
 
     <!-- Tabs -->
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">

@@ -28,6 +28,21 @@
 
 @section('content')
 <div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">ISSUED ITEMS</span>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb arr-right">
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/issuance') !!}" class="text-dark active" aria-current="page">Issued Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/issue') !!}" class="text-warning">Employee Issuance</a>
+                    </li>
+                </ol>
+            </nav>
+    </nav>
+
+
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
