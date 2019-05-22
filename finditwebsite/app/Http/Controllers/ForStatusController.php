@@ -67,6 +67,15 @@ class ForStatusController extends BaseController
      return view ('content/purchasenumber' , $data);
    }
 
+   public function showPurchaseHistory(){
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+             return \Redirect::to('/loginpage');
+       }
+ 
+      $data = [];
+      return view ('content/purchaseHistory' , $data);
+    }
+
 
     public function showOR(){
      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
