@@ -34,6 +34,9 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
+                        <a href="{!! url('/purchaseHistory') !!}" class="text-warning">History</a>
+                    </li>
+                    <li class="breadcrumb-item ">
                         <a href="{!! url('/purchasenumber') !!}"  class="text-dark active" aria-current="page">Purchase Number</a>
                     </li>
                     <li class="breadcrumb-item ">

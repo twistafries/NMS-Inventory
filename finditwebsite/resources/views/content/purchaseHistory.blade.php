@@ -33,8 +33,11 @@
         <span class="navbar-brand mb-0 h1">PURCHASE HISTORY</span>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb arr-right">
+                <li class="breadcrumb-item ">
+                        <a href="{!! url('/purchaseHistory') !!}"  class="text-dark active" aria-current="page">History</a>
+                    </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/purchasenumber') !!}"  class="text-warning" aria-current="page">Purchase Number</a>
+                        <a href="{!! url('/purchasenumber') !!}" class="text-warning">Purchase Number</a>
                     </li>
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/ornumber') !!}" class="text-warning">OR Number</a>
