@@ -74,11 +74,13 @@
             </a>
 
             <ul class="collapse list-unstyled" id="purchaseSubmenu">
-                <li>
-                    <a href="{!! url('/purchasenumber') !!}"><span class="hide-menu"><i class="fas fa-clipboard-list"></i>Purchase Number</span></a>
-                  </li>
+            <li>
+                <a href="{!! url('/purchaseHistory') !!}"><span class="hide-menu"><i class="fas fa-history"></i></i>History</span></a>
+              </li>
               <li>
-
+                <a href="{!! url('/purchasenumber') !!}"><span class="hide-menu"><i class="fas fa-clipboard-list"></i>Purchase Number</span></a>
+              </li>
+              <li>
                 <a href="{!! url('/ornumber') !!}"><span class="hide-menu"><i class="fas fa-list-ol"></i>OR Number</span></a>
               </li>
             </ul>
