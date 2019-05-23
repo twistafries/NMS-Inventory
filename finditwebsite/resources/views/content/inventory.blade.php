@@ -18,23 +18,23 @@
 @section('content')
 <div class="container">
 <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">INVENTORY</span>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark active">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}"  aria-current="page" class="text-warning">For Repair</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
-                    </li>
-                </ol>
-            </nav>
+    <span class="navbar-brand mb-0 h1">INVENTORY</span>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb arr-right">
+            <li class="breadcrumb-item ">
+                <a href="{!! url('/inventory') !!}" class="text-dark active">Items</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a href="{!! url('/repair') !!}"  aria-current="page" class="text-warning">For Repair</a>
+            </li>
+            <li class="breadcrumb-item ">
+                <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
+            </li>
+        </ol>
     </nav>
+</nav>
 
-    <!-- Tabs -->
+<!-- Tabs -->
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
@@ -42,9 +42,10 @@
             </a>
         </li>
         <li class="nav-item text-uppercase">
-        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
-        </a>
-      </li>
+            <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false">
+              System Unit
+            </a>
+        </li>
 
         <!-- <li class="nav-item text-uppercase">
             <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
@@ -63,30 +64,26 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <div class="btn-group" role="group" aria-label="Basic example">
-<!--
-                 Hide/Unhide Column
-                <button type="button" class="btn hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
-                    aria-expanded="false">
-                    <a href="#" data-toggle="tooltip" title="Hide/Unhide">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}">
-                    </a>
-                </button>
--->
+                <!-- Hide/Unhide Column
+                <button type="button" class="btn hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true" aria-expanded="false">
+                  <a href="#" data-toggle="tooltip" title="Hide/Unhide">
+                    <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}">
+                  </a>
+                </button> -->
+
                 <!-- Multiple Select -->
                 <button type="button" class="btn" id="multiple-select" onclick="enable()">
-                    <a href="#" data-toggle="tooltip" title="Multiple Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
-                    </a>
+                  <a href="#" data-toggle="tooltip" title="Multiple Select">
+                    <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
+                  </a>
                 </button>
 
-<!--
-                 Edit
+                <!-- Edit
                 <button type="button" class="btn disabled" id="edit">
                     <a href="#" data-toggle="tooltip" title="Edit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}">
                     </a>
-                </button>
--->
+                </button> -->
 
                 <!-- Add Option-->
                 <div class="dropdown">
@@ -105,34 +102,26 @@
                 <!-- Delete -->
                 <div class="dropdown">
                   <button class="btn" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
-                      </a>
-                      </button>
-              </div>
-
-
+                    <a href="#" data-toggle="tooltip" title="delete">
+                      <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
+                    </a>
+                  </button>
+                </div>
                 <!-- Sort -->
                 <!-- <button type="button" class="btn">
                     <a href="#" data-toggle="tooltip" title="sort">
                         <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
                     </a>
                 </button> -->
-
-
-
             </div>
-
-
         </div>
     </div>
-
 <table>
 <thead>
   <tr>
     <th>
       <label for="types" id="labelTypes">Types: </label>
-      <select id="types" name="types">
+      <select id="types" name="types" class="inventory-filter">
         <option value="any">Any</option>
         @foreach ($typesSel as $typesSel)
         <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
@@ -141,7 +130,7 @@
     </th>
     <th>
       <label for="subtypes">Subtype: </label>
-      <select id="subtypes" name="subtypes">
+      <select id="subtypes" name="subtypes" class="inventory-filter">
         <option value="any">Any</option>
         @foreach ($subtypesSel as $subtypesSel)
         <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
@@ -150,7 +139,7 @@
   </th>
   <th>
     <label for="supplier">Supplier: </label>
-    <select id="supplier" name="supplier">
+    <select id="supplier" name="supplier" class="inventory-filter">
       <option value="any">Any</option>
       @foreach ($suppliers as $suppliers)
       <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
@@ -159,7 +148,7 @@
 </th>
 <th>
   <label for="brand">Brand: </label>
-  <select id="brand" name="brand">
+  <select id="brand" name="brand" class="inventory-filter">
     <option value="any">Any</option>
     @foreach ($brands as $brands)
     <option value="{{$brands->brand}}">{{$brands->brand}}</option>
@@ -168,7 +157,7 @@
 </th>
 <th>
   <label for="status">Status: </label>
-  <select id="status" name="status">
+  <select id="status" name="status" class="inventory-filter">
     <option value="any">Any</option>
     @foreach ($status as $status)
     <option value="{{$status->name}}">{{$status->name}}</option>
@@ -187,7 +176,7 @@
         <!-- All Items in the Inventory -->
         <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
 
-            <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
+            <table id="myDataTable" class="table table-borderless table-striped table-hover font" style="width:100%;cursor:pointer;">
                 <thead class="thead-dark">
                     <tr>
                       <th id="checkbox" hidden></th>
@@ -204,8 +193,7 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
-
+                <tbody class="font">
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
                         <td hidden><input class="checkbox" type="checkbox"></td>
@@ -223,8 +211,7 @@
                     </tr>
 
                     <!-- View Details All Modal -->
-                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
-                        aria-hidden="true">
+                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -241,8 +228,6 @@
                                             <p class="text-light">ID: {{ $equipment->id }}</p>
                                         </div>
                                     </div>
-
-
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -752,86 +737,69 @@
       </thead>
       <tbody>
 
-          @foreach ($system_units as $system_units)
-          <tr data-toggle="modal" data-target="#pc-component-{!! $system_units->id !!}">
-            <td hidden><input class="checkbox" type="checkbox"></td>
-              <td> {{ $system_units->description }}-{{ $system_units->id }} </td>
-              <td width="30%"> NONE </td>
-              <td> {{ $system_units->created_at }} </td>
-              <td > {{ $system_units->updated_at }} </td>
-              <td> {{ $system_units->fname }} {{ $system_units->lname }}</td>
-              <td>  </td>
-          </tr>
+      @foreach ($system_units as $system_units)
+      <tr data-toggle="modal" data-target="#pc-component-{!! $system_units->id !!}">
+          <td hidden><input class="checkbox" type="checkbox"></td>
+          <td> {{ $system_units->description }}-{{ $system_units->id }} </td>
+          <td width="30%"> NONE </td>
+          <td> {{ $system_units->created_at }} </td>
+          <td> {{ $system_units->updated_at }} </td>
+          <td> {{ $system_units->fname }} {{ $system_units->lname }}</td>
+          <td></td>
+      </tr>
 
-             <div class="modal fade" id="pc-component-{!! $system_units->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $system_units->id!!}"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <div class="container">
-                                        <div class="col-12">
-                                        </div>
+      <div class="modal fade" id="pc-component-{!! $system_units->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $system_units->id!!}" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <div class="container">
+                          <div class="col-12">
+                          </div>
+                          <div class="col col-8">
+                              <h5 class="modal-title">{{ $system_units->description }}</h5>
+                          </div>
+                          <div class="col col-4">
+                              <p class="text-light">ID: PC-{{ $system_units->id }}</p>
+                          </div>
+                      </div>
 
-                                        <div class="col col-8">
-                                            <h5 class="modal-title">{{ $system_units->description }}</h5>
-                                        </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
 
-                                        <div class="col col-4">
-                                            <p class="text-light">ID: PC-{{ $system_units->id }}</p>
-                                        </div>
-                                    </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <!--Component Details -->
+                          <div class="row">
+                              @foreach( $unit_parts as $unit_part)
+                              @if($system_units->id==$unit_part->unit_id)
+                              <div class="col col-12 details component-details">
+                                  <strong>{{ $unit_part->subtype_name }}</strong>
+                                  <p class="text">ID: {{ $unit_part->id }} </p>
+                                  <p class="text">Serial Number: {{ $unit_part->serial_no }}</p>
+                                  <p class="text">{{ $unit_part->brand }} {{ $unit_part->model }}</p>
+                                  <p class="text">{{ $unit_part->details }}</p>
+                              </div>
+                              <hr>
+                              @endif
+                              @endforeach
+                          </div>
+                      </div>
+                  </div>
 
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
+                      <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
+                      <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-
-                                        <!--Component Details -->
-                                        <div class="row">
-
-                                            @foreach( $unit_parts as $unit_part)
-                                            @if($system_units->id==$unit_part->unit_id)
-
-
-
-
-
-                                            <div class="col col-12 details">
-                                                <strong>{{ $unit_part->subtype_name }}</strong>
-                                                <p class="text">ID: {{ $unit_part->id }} </p>
-                                                <p class="text">Serial Number: {{ $unit_part->serial_no }}</p>
-                                                <p class="text">{{ $unit_part->brand }} {{ $unit_part->model }}</p>
-                                                <p class="text">{{ $unit_part->details }}</p>
-                                            </div>
-                                            <hr>
-
-
-                                            @endif
-
-                                        @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-          @endforeach
-        </tbody>
-
-    </table>
+      @endforeach
+      </tbody>
+  </table>
 
 </div>
 </div>
