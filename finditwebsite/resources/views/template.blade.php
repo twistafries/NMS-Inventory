@@ -27,7 +27,7 @@
 </head>
 
 <body onpageshow="ShowLocalDate()">
-    <div class="fluid-container">
+    <div class="fluid-container bg-light">
         <div class="wrapper">
             @include('layout/sidenav')
 
