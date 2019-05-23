@@ -14,10 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> @stop @section('title') Dashboard @stop @section('content')
 
 
-    <style>
-
-
-    </style>
     <div class="container p-lg-2 p-md-1 p-sm-0">
         <div class="cards-component">
 
@@ -140,7 +136,37 @@
 
             </div>
         </div>
+        
+        <div class="row card-row">
+            <div class="col-6">
+                
+                  <div class="card">
+                            <div class="card-header text-white mb-3" id="card-header">
+                                Total no. of Available</div>
+									<div class="card-body">
+						              
+									</div>
 
+                        </div>
+            
+            </div>
+             <div class="col-6">
+                
+                  <div class="card">
+                            <div class="card-header text-white mb-3" id="card-header">
+                                Total no. of Repair</div>
+									<div class="card-body">
+						              <h5>Due for Repair</h5>
+                                        <p>total</p>
+                                        <h5>In Repair</h5>
+                                        <p>total</p>
+									</div>
+
+                        </div>
+            
+            </div>
+        
+        </div>
 
         <div class="row card-row ">
             <div class="col-8">
