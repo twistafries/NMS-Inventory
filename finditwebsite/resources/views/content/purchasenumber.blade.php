@@ -29,19 +29,22 @@
 
 @section('content')
 
-  <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">PURCHASE NUMBER</span>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/purchasenumber') !!}"  class="text-dark active" aria-current="page">Purchase Number</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/ornumber') !!}" class="text-warning">OR Number</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
+<nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">PURCHASE NUMBER</span>
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb arr-right">
+              <li class="breadcrumb-item ">
+                      <a href="{!! url('/purchaseHistory') !!}"  class="text-warning" aria-current="page">History</a>
+                  </li>
+                  <li class="breadcrumb-item ">
+                      <a href="{!! url('/purchasenumber') !!}" class="text-dark active">Purchase Number</a>
+                  </li>
+                  <li class="breadcrumb-item ">
+                      <a href="{!! url('/ornumber') !!}" class="text-warning">OR Number</a>
+                  </li>
+              </ol>
+          </nav>
+  </nav>
 
 <form action="" id="form1">
     <!-- Toolbox -->

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
-    
+
 @stop
 
 @section('title')
@@ -23,25 +23,28 @@
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    
+
     @stop
 @stop
 
 @section('content')
 
-  <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">OR NUMBER</span>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/purchasenumber') !!}" class="text-warning">Purchase Number</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/ornumber') !!}"  class="text-dark active" aria-current="page">OR Number</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
+<nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">PURCHASE HISTORY</span>
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb arr-right">
+              <li class="breadcrumb-item ">
+                      <a href="{!! url('/purchaseHistory') !!}"  class="text-warning" aria-current="page">History</a>
+                  </li>
+                  <li class="breadcrumb-item ">
+                      <a href="{!! url('/purchasenumber') !!}" class="text-warning">Purchase Number</a>
+                  </li>
+                  <li class="breadcrumb-item ">
+                      <a href="{!! url('/ornumber') !!}" class="text-dark active">OR Number</a>
+                  </li>
+              </ol>
+          </nav>
+  </nav>
 
 <form action="" id="form1">
     <!-- Toolbox -->
@@ -75,7 +78,7 @@
 
     <!-- Tabs -->
     <div class="container">
-    
+
         <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
             <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
@@ -99,7 +102,7 @@
                             <td> {{ $for_repair->or_no }} </td>
                             <td> {{ $for_repair->supplier }} </td>
                             <td> {{ $for_repair->created_at }} </td>
-                                    
+
                         </tr>
 
                         @endforeach
@@ -123,7 +126,7 @@
                     </tbody>
 
                 </table>
-            
+
             </div>
         </div>
 </div>
