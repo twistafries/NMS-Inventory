@@ -157,6 +157,9 @@
 <div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">Warning</h4>
     {{ Session::get('warning') }}
+    <button type="button" class="close btn-primary" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
     
@@ -179,6 +182,9 @@
   @if(Session::has('target') !== null)
     <a class="alert-link" data-toggle="modal" data-target="{!! Session::get('target') !!}" href="#">Please try again</a>
   @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 
@@ -208,6 +214,9 @@
     </div>
  
   @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 
