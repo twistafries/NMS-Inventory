@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Database\QueryException;
 use App\Models\TblItEquipment;
 use App\Models\TblItEquipmentType;
 use App\Models\TblItEquipmentSubtype;
@@ -123,29 +124,52 @@ class InventoryController extends BaseController
       // dd($request->all());
       $user_id = $session['id'];
 
-      $data = $request->all();
+      try{
+        $data = $request->all();
+          // dd($data);
+
+        $data['user_id'] = $user_id;
+        // $data['subtype_id'] = (int)$request->get('subtype_id');
         // dd($data);
 
-      $data['user_id'] = $user_id;
-      // $data['subtype_id'] = (int)$request->get('subtype_id');
-      // dd($data);
+        if(isset($data['subtype_id'])
+        && isset($data['brand'])
+        && isset($data['model'])
+        && isset($data['details'])
+        && isset($data['user_id'])
+        && isset($data['warranty_start'])
+        && isset($data['warranty_end'])
+        && isset($data['supplier'])
+        && isset($data['serial_no'])
+        && isset($data['or_no'])
+        && isset($data['status_id']) ){
+            TblItEquipment::add_equipment($data);
+            // Session::flash('message', 'Successfully added equipment to inventory'); 
 
-      if(isset($data['subtype_id'])
-      && isset($data['brand'])
-      && isset($data['model'])
-      && isset($data['details'])
-      && isset($data['user_id'])
-      && isset($data['warranty_start'])
-      && isset($data['warranty_end'])
-      && isset($data['supplier'])
-      && isset($data['serial_no'])
-      && isset($data['or_no'])
-      && isset($data['status_id']) ){
-          TblItEquipment::add_equipment($data);
-          return \Redirect::to('/inventory')->with('equipment has been added');
-      }else{
-           return redirect()->back()->with('error', 'Please fill out ALL fields');
-          // return redirect()->intended('/content/inventory')->with('error', 'Please fill out ALL fields');
+            // return \Redirect::to('/inventory');
+            return redirect()->back()
+              ->with('message' , 'Successfully added equipment to inventory');
+        }else{
+            // Session::flash('error', 'Failed to add equipment to inventory, please fill out all the fields'); 
+            // if(Session::has('error'))
+              // dd(Session::get('error'));
+            
+            return redirect()->back()
+              ->with('error' , 'Please fill out ALL the fields')
+              ->with('target' , '#singleAdd');
+            // return redirect()->intended('/content/inventory')->with('error', 'Please fill out ALL fields');
+        }
+      }catch(Exception $e){
+        return redirect()->back()
+              ->with('error' , 'Please fill out ALL the fields')
+              ->with('error_info' , $e->getMessage())
+              ->with('target' , '#singleAdd');
+            
+      }catch(QueryException $qe){
+        return redirect()->back()
+              ->with('error' , 'Please fill out ALL the fields')
+              ->with('error_info' , $e->getMessage())
+              ->with('target' , '#singleAdd');
       }
     }
 
@@ -157,75 +181,114 @@ class InventoryController extends BaseController
 
       $session=Session::get('loggedIn');
       $user_id = $session['id'];
+      try{
+        $data = $request->input('unit.*');
+        $data['user_id'] = $user_id;
+        $data['description'] = $data[0];
+        $data['supplier'] = $data[1];
+        $data['or_no'] = $data[2];
+        $data['warranty_start'] = $data[3];
+        $data['warranty_end'] = $data[4];
 
-      // $show = $request->all();
-      $data = $request->input('unit.*');
-      $data['user_id'] = $user_id;
-      $data['description'] = $data[0];
-      $data['supplier'] = $data[1];
-      $data['or_no'] = $data[2];
-      $data['warranty_start'] = $data[3];
-      $data['warranty_end'] = $data[4];
+        $id = TblSystemUnits::add_system_unit($data);
 
-      $id = TblSystemUnits::add_system_unit($data);
+        $data['equipments'] = collect([]);
+        $brands = $request->get('equipment')['brand'];
+        $model = $request->get('equipment')['model'];
+        // $names = $request->get('equipment')['name'];
+        $subtype_id = $request->get('equipment')['subtype_id'];
+        $details = $request->get('equipment')['details'];
+        $serial_no = $request->get('equipment')['serial_no'];
+        $unit_id = $id;
+        $supplier = $data['supplier'];
+        $user_id = $data['user_id'] ;
+        $or_no = $data['or_no'];
+        $warranty_start = $data['warranty_start'];
+        $warranty_end = $data['warranty_end'];
+        $status = 8;
 
-      $data['equipments'] = collect([]);
-      $brands = $request->get('equipment')['brand'];
-      $model = $request->get('equipment')['model'];
-      // $names = $request->get('equipment')['name'];
-      $subtype_id = $request->get('equipment')['subtype_id'];
-      $details = $request->get('equipment')['details'];
-      $serial_no = $request->get('equipment')['serial_no'];
-      $unit_id = $id;
-      $supplier = $data['supplier'];
-      $user_id = $data['user_id'] ;
-      $or_no = $data['or_no'];
-      $warranty_start = $data['warranty_start'];
-      $warranty_end = $data['warranty_end'];
-      $status = 8;
+        $ctr = 0;
+        foreach ($brands as $brand) {
+            $data['equipments'] ->push([
+              'brand'=> $brand,
+              'model'=> $model[$ctr],
+              'details'=> $details[$ctr],
+              'subtype_id'=> $subtype_id[$ctr],
+              'serial_no'=> $serial_no[$ctr],
+              'warranty_start'=> $warranty_start,
+              'warranty_end'=> $warranty_end,
+              'user_id'=> $user_id,
+              'or_no'=> $or_no,
+              'supplier'=> $supplier,
+              'unit_id'=>$unit_id,
+              'status_id'=> $status]);
+            $ctr++;
+            // code...
+        }
 
-      $ctr = 0;
-      foreach ($brands as $brand) {
-        $data['equipments'] ->push([
-          'brand'=> $brand,
-          'model'=> $model[$ctr],
-          'details'=> $details[$ctr],
-          'subtype_id'=> $subtype_id[$ctr],
-          'serial_no'=> $serial_no[$ctr],
-          'warranty_start'=> $warranty_start,
-          'warranty_end'=> $warranty_end,
-          'user_id'=> $user_id,
-          'or_no'=> $or_no,
-          'supplier'=> $supplier,
-          'unit_id'=>$unit_id,
-          'status_id'=> $status]);
-        $ctr++;
-        // code...
-      }
-
-
-      foreach($data['equipments'] as $equipment){
-        TblItEquipment::add_equipment($equipment);
-      }
-      // dd($data['show']);
-
-        // foreach ($data['equipments'] as $equipment) {
-        //   dd($equipment['name']);
-        // }
-        return \Redirect::to('/inventory')->with('equipment has been added');
-
-      }
+        foreach($data['equipments'] as $equipment){
+          TblItEquipment::add_equipment($equipment);
+        }
+        
+        return \Redirect::to('/inventoryAll')->with('message' , 'PC has been added');
+            
+        }catch(Exception $e){
+          return \Redirect::to('/inventoryAll')
+          ->with('error' , $e)
+          ->with('error_info' , $e->getMessage())
+          ->with('target' , '#systemUnit');
+        }catch(QueryException $qe){
+          // dd($qe->getMessage());
+          return \Redirect::to('/inventoryAll')
+          ->with('error' , 'Database cannot read input value.')
+          ->with('error_info' , $qe->getMessage())
+          ->with('target' , '#systemUnit');
+        }      
+    }
 
 
     public function editEquipment(Request $request){
-        $data = $request->all();
-        // dd($data);
+      try{
+          $data = $request->all();
         TblItEquipment::edit_equipment($data);
-        return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
+        Session::flash('message', 'Successfully edited equipment values:'); 
+        return redirect()->intended('/inventoryAll')
+        ->with(
+          'eq_id', $data['id'])
+        ->with(
+          'brand', $data['brand'])
+        ->with(
+          'model', $data['model'])
+        ->with(
+          'details', $data['details'])
+        ->with(
+          'warranty_start', $data['warranty_start'])
+        ->with(
+          'warranty_end', $data['warranty_end'])
+        ->with(
+          'serial_no ', $data['serial_no'])
+        ->with(
+          'imei', $data['imei_or_macaddress'])
+        ->with(
+          'or_no', $data['or_no']
+        );
+      }catch(Exception $e){
+        return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Database cannot read input value.')
+        ->with('error_info' , $e->getMessage())
+        ->with('target' , '#edit-'.$data['id']); 
+      }catch(QueryException $qe){
+        return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Database cannot read input value.')
+        ->with('error_info' , $e->getMessage())
+        ->with('target' , '#edit-'.$data['id']); 
+      }
+      
     }
 
     public function changeStatus(Request $request){
-        $data = $request->all();
+      try{
+         $data = $request->all();
 
         $act = [];
       //  $act['equipment_status']=$data['id'];
@@ -235,7 +298,20 @@ class InventoryController extends BaseController
         $act['it_equipment']=$data['id'];
         // dd($act);
         TblActivityLogs::add_log($act);
-        return redirect()->intended('/inventory')->with('message', 'Successfully editted equipment details');
+        return redirect()->back()
+        ->with('message', 'Changed status of ')
+        ->with('data', $data);
+      }catch(Exception $e){
+        return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Database cannot read input value.')
+        ->with('error_info' , $e->getMessage())
+        ->with('target' , '#change-status-'.$data['id']); 
+      }catch(QueryException $qe){
+         return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Database cannot read input value.')
+        ->with('error_info' , $qe->getMessage())
+        ->with('target' , '#change-status-'. $data['id']); 
+      }  
     }
 
 
@@ -250,11 +326,17 @@ class InventoryController extends BaseController
         TblSystemUnits::update_unit_status($data['unit_id'],7);
       }
 
-        return \Redirect::to('/inventory')->with('equipment has been deleted');
+        return \Redirect::to('/inventoryAll')->with('message' , 'Equipment has been deleted from the Inventory');
     }
 
     public function hardDeleteEquipment(Request $request){
-      $data = $request->all();
+      if(Session::get('loggedIn')['user_type']!='admin' &&
+      Session::get('loggedIn')['user_type'] != "associate"){
+        return redirect()->back()
+        ->with('warning' , 'You dont have the right privelege to access this feature');
+      }
+      try{
+         $data = $request->all();
         $pieces = explode("-", $data['item']);
         $act=[];
         if($pieces[0] == "Mobile Device"){
@@ -272,38 +354,58 @@ class InventoryController extends BaseController
 
         //$act['action'] = "deleted";
         //TblActivityLogs::add_log($act);
-        return \Redirect::to('/inventory')->with('equipment has been deleted');
+        return \Redirect::to('/inventoryAll')->with('message' , 'Equipment has been removed from the Database');
+
+      }catch(Exception $e){
+        return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Could not remove equipment from the database')
+        ->with('error_info' , $e->getMessage())
+        ->with('target' , '#hardDelete');
+
+      }catch(QueryException $qe){
+        return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Could not remove equipment from the database')
+        ->with('error_info' , $qe->getMessage())
+        ->with('target' , '#hardDelete');
       }
+    }
 
     public function buildUnit(Request $request){
-      $data = $request->all();
-
-      // dd($request->all());
-      $session=Session::get('loggedIn');
-      $user_id = $session['id'];
-      $data['user_id'] = $user_id;
-      // dd($data['items']);
-
-      $unit_id = TblSystemUnits::add_system_unit($data);
-
-      $components = $data['items'];
-      $count = 0;
-      foreach($components as $component){
-        $data['unit_id'] = $unit_id;
-        $data['status_id'] = 8;
-        $data['id'] = $component;
-        TblItEquipment::edit_equipment($data);
-        // TblItEquipment::
+      try{
+        $data = $request->all();
+  
+        // dd($request->all());
+        $session=Session::get('loggedIn');
+        $user_id = $session['id'];
+        $data['user_id'] = $user_id;
+        // dd($data['items']);
+  
+        $unit_id = TblSystemUnits::add_system_unit($data);
+  
+        $components = $data['items'];
+        $count = 0;
+        foreach($components as $component){
+          $data['unit_id'] = $unit_id;
+          $data['status_id'] = 8;
+          $data['id'] = $component;
+          TblItEquipment::edit_equipment($data);
+        }
+  
+        return \Redirect::to('/inventoryAll')->with('equipment has been added');
+  
+      }catch(QueryException $qe){
+        // $info = Self::getErrorInfo();
+        // dd($qe);
+        // dd($info);
+        return \Redirect::to('/inventoryAll')
+        ->with('error' , 'Database cannot read input value.')
+        ->with('error_info' , $qe->getMessage())
+        ->with('target' , '#build'); 
       }
-
-      return \Redirect::to('/inventory')->with('equipment has been added');
 
       // dd($data);
 
 
 
     }
-
-
-
 }

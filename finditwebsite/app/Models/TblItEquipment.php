@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
+
 use DB;
 
 class TblItEquipment extends Model
@@ -216,7 +218,10 @@ class TblItEquipment extends Model
             $id = DB::getPdo()->lastInsertId();
             return $id;
         }catch(QueryException $e){
-            die($e);
+            return \Redirect::to('/inventoryAll')
+            ->with('error' , 'Database cannot read input value.')
+            ->with('error_info' , $qe->getMessage())
+            ->with('target' , '#edit-'.$data['id']);         
         }
     }
 
