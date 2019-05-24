@@ -41,7 +41,6 @@ $(function(){
                 minlength: 1,
                 maxlength: 50
             },
-
         },
 
         messages: {
@@ -98,4 +97,93 @@ $(function(){
             }
         }
     })
+
+    $('#addSystemUnitForm').validate({
+        rules: {
+            'unit[mac_address]': {
+                // required: true,
+                // minlength: 1,
+                maxlength: 50,
+            },
+            'unit[supplier]': {
+                required: true,
+                minlength: 1,
+                maxlength: 50,
+            },
+            'unit[or_no]': {
+                required: true,
+                minlength: 1,
+                maxlength: 50,
+            },
+            'unit[warranty_start]': {
+                required: true,
+                // minlength: 1,
+                // maxlength: 50,
+            },
+            'unit[warranty_end]': {
+                required: true,
+                // minlength: 1,
+                // maxlength: 50,
+            },
+            'equipment[brand][]': {
+                required: true,
+                minlength: 1,
+                maxlength: 50,
+            },
+            'equipment[model][]': {
+                required: true,
+                minlength: 1,
+                maxlength: 50,
+            },
+            'equipment[serial_no][]': {
+                required: true,
+                minlength: 1,
+                maxlength: 50,
+            },
+
+        },
+
+        messages: {
+            'unit[mac_address]': {
+                // required: true,
+                // minlength: 1,
+                maxlength: 'Maximum of 50 characters',
+            },
+            'unit[supplier]': {
+                required: 'Please fill out this field',
+                minlength: 'Please fill out this field',
+                maxlength: 'Maximum of 50 characters',
+            },
+            'unit[or_no]': {
+                required: 'Please fill out this field',
+                minlength: 'Please fill out this field',
+                maxlength: 'Maximum of 50 characters',
+            },
+            'unit[warranty_start]': {
+                required: 'Please fill out this field',
+                // minlength: 1,
+                // maxlength: 50,
+            },
+            'unit[warranty_end]': {
+                required: 'Please fill out this field',
+                // minlength: 1,
+                // maxlength: 50,
+            },
+            'equipment[brand][]': {
+                required: 'Please fill out this field',
+                minlength: 'Please fill out this field',
+                maxlength: 'Maximum of 50 characters',
+            },
+            'equipment[model][]': {
+                required: 'Please fill out this field',
+                minlength: 'Please fill out this field',
+                maxlength: 'Maximum of 50 characters',
+            },
+            'equipment[serial_no][]': {
+                required: 'Please fill out this field',
+                minlength: 'Please fill out this field',
+                maxlength: 'Maximum of 50 characters',
+            },            
+        },
+    })    
 });

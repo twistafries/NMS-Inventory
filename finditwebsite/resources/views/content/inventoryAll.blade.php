@@ -1159,7 +1159,7 @@
                 </div>
 
                 <div class="container">
-                    <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+                    <form id="addSystemUnitForm" action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
                         {!! csrf_field() !!}
 
                         <div class="row">
@@ -1177,18 +1177,18 @@
 
                                     <tbody>
                                         <tr>
-                                            <td> <input type="text" name="unit[mac_address]" required></td>
+                                            <td> <input type="text" name="unit[mac_address]"></td>
                                             <td>
-                                                <input type="text" name="unit[supplier]" required><br>
+                                                <input type="text" name="unit[supplier]"><br>
 
                                             </td>
-                                            <td> <input type="text" name="unit[or_no]" required></td>
+                                            <td> <input type="text" name="unit[or_no]"></td>
                                             <td>
                                                 <label for="start">Start date:</label>
-                                                <input type="date" id="start" name="unit[warranty_start]" required>
+                                                <input type="date" id="start" name="unit[warranty_start]">
                                                 <br>
                                                 <label for="start">End date:</label>
-                                                <input type="date" id="start" name="unit[warranty_end]" required>
+                                                <input type="date" id="start" name="unit[warranty_end]">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1395,8 +1395,10 @@
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script> -->
+    <script src="{{ asset('js/jqueryvalidation/dist/jquery.validate.js') }}"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
+    <script src="{{ asset('js/jqueryvalidation/dist/additional-methods.min.js') }}"></script>
 	<script src="{{ asset('js/validation-inventory.js') }}"></script>
 
     <!-- Multiple Select -->
