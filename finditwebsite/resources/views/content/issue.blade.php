@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
-    
+
 @stop
 
 @section('title')
@@ -43,174 +43,264 @@
             </nav>
     </nav>
 
+    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
+
+        <li class="nav-item text-uppercase"  data-target="#departments" data-toggle="">
+            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true" data-toggle="pill">
+              Departments
+            </a>
+        </li>
+
+    </ul>
+
+<div id="departments" class="">
+ <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" role="tablist" style="background-color:white;">
+
+    <li class="nav-item text-uppercase" >
+            <a class="nav-link active" data-toggle="tab" href="#ITDD" role="tab" aria-controls="pills-0" aria-selected="true">
+              Information Technology Development Department
+            </a>
+        </li>
+         <li class="nav-item text-uppercase" >
+            <a class="nav-link" data-toggle="pill" href="#PDD" role="tab" aria-controls="pills-0" aria-selected="true">
+              Production Development Department
+            </a>
+        </li>
+         <li class="nav-item text-uppercase" >
+            <a class="nav-link" data-toggle="pill" href="#FD" role="tab" aria-controls="pills-0" aria-selected="true">
+              Financial Department
+            </a>
+        </li>
+         <li class="nav-item text-uppercase" >
+            <a class="nav-link" data-toggle="pill"f href="#HRD" role="tab" aria-controls="pills-0" aria-selected="true">
+               Human Resources Department
+            </a>
+        </li>
+    </ul>
+  </div>
+
+
+
 <form action="" id="form1">
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <!-- Single Add Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                        </div>
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
 
-                        <div class="modal-body">
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                        </div>
+    <div class="modal-dialog modal-lg" role="document">
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+    <div class="modal-content">
+       <div id ="viewItem" class="modal-header">
+        <h5 class="modal-title" id="ModalTitle">Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-                        </div>
-                    </div>
-                </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home">Issued Items</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#issueItems">Issue Items</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <table class="table" id="myTable">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Items Issued</th>
+                        <th scope="col">Issuance Date</th>
+                        <th scope="col">Issuance End</th>
+                        <th scope="col">Remove Issuance</th>
+
+                    </tr>
+                    </thead>
+                <tbody>
+                    <tr>
+                        <td>Iphone 8</td>
+                        <td>01/25/2019</td>
+                        <td>5/26/2019</td>
+                        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+                    </tr>
+                    <tr>
+                        <td>Macbook</td>
+                        <td>01/25/2019</td>
+                        <td>5/26/2019</td>
+                        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+                    </tr>
+                    <tr>
+                       <td>PC10</td>
+                        <td>01/25/2019</td>
+                        <td>5/26/2019</td>
+                        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
+
+
+    <div id="issueItems" class="container tab-pane fade"><br>
+
+      <h4><button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>     ADD ITEMS</button></h4>
+
+            <table class="table" id="addMoreList">
+                        <tbody>
+                        </tbody>
+            </table>
+            <br>
+        </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
     </div>
 
     <!-- Tabs -->
     <div class="container">
-        <ul class="nav nav-pills mb-3 p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist">
-            <li class="nav-item text-uppercase">
-                <a class="nav-link active " id="pills-0-tab" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-                    ALL</a>
-            </li>
-
-        <li class="nav-item text-uppercase">
-                <a class="nav-link" id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" aria-controls="pills-1" aria-selected="false">
-                    Mobile Device </a>
-            </li>
-            <li class="nav-item text-uppercase">
-                <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                    System Units</a>
-            </li>
-        </ul>
         <div class="tab-content" id="pills-tabContent">
-            <!-- All Items in the Inventory -->
-            <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
-                <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
+
+
+            <div class="container tab-pane active" id="ITDD" role="tabpanel" aria-labelledby="pills-0-tab">
+                <h4>Information Technology Development Department</h4>
+                <table class="table" >
                     <thead class="thead-dark">
                         <tr>
 
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Serial No</th>
-                            <th>IMEI/MAC Address</th>
-                            <th>Added At</th>
-                            <th width="15%">Edited At</th>
-                            <th>Added by</th>
-                            
-                        </tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Number Issued</th>
+
+                    </tr>
                     </thead>
-                    <tbody>
-
-                        @foreach ($all_mobile_device as $all_mobile_device)
-                        <tr>
-
-                            <td> {{ $all_mobile_device->brand }} </td>
-                            <td width="30%"> {{ $all_mobile_device->details }} </td>
-                            <td> {{ $all_mobile_device->serial_no }} </td>
-                            <td> {{ $all_mobile_device->imei_or_macaddress }} </td>
-                            <td> {{ $all_mobile_device->created_at }} </td>
-                            <td > {{ $all_mobile_device->updated_at }} </td>
-                            <td> {{ $all_mobile_device->fname }} {{ $all_mobile_device->lname }}</td>
-                        </tr>
-                        @endforeach
-                        @foreach ($all_units as $all_units)
-                        <tr>
-
-                            <td> {{ $all_units->description }}-{{ $all_units->id }}</td>
-                            <td width="30%"> NONE </td>
-                            <td> NONE </td>
-                            
-                            <td> {{ $all_units->created_at }} </td>
-                            <td > {{ $all_units->updated_at }} </td>
-                            <td> {{ $all_units->fname }} {{ $all_units->lname }}</td>
-                            <td>  </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-
+                <tbody>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Justine Garcia</th>
+                        <td>1</td>
+                        <td>6</td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Lovelyn Paris</th>
+                        <td>2</td>
+                        <td>5</td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Aika Vien Dayrit</th>
+                        <td>3</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
                 </table>
-            </div>
 
-            <!-- Computer Peripherals -->
-            <div class="tab-pane fade" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
-                <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
+                </div>
+
+
+                <div id="PDD" class="container tab-pane fade">
+                <h4>Production Development Department</h4>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr data-toggle="modal" data-target="#modal">
+
+                        <th scope="col">Name</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Number Issued</th>
+
+                    </tr>
+                    </thead>
+                <tbody>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Jake Peralta</th>
+                        <td>1</td>
+                        <td>3</td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Lovelyn Paris</th>
+                        <td>2</td>
+                        <td>4</td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Aika Vien Dayrit</th>
+                        <td>3</td>
+                        <td>6</td>
+                    </tr>
+                </tbody>
+                </table>
+                </div>
+
+                 <div id="FD" class="container tab-pane fade">
+                <h4>Financial Department Department</h4>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr data-toggle="modal" data-target="#modal">
+                        <th scope="col">Name</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Number Issued</th>
+
+                    </tr>
+                    </thead>
+                <tbody>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Justine Garcia</th>
+                        <td>2</td>
+                        <td>6</td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Lovelyn Paris</th>
+                        <td>2</td>
+                        <td>6</td>
+                    </tr>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Aika Vien Dayrit</th>
+                        <td>3</td>
+                        <td>6</td>
+                    </tr>
+                </tbody>
+                </table>
+                </div>
+
+                 <div id="HRD" class="container tab-pane fade">
+                <h4>Human Resources Department</h4>
+                <table class="table">
                     <thead class="thead-dark">
                         <tr>
 
-                          <th>Name</th>
-                          <th>Details</th>
-                          <th>Serial No</th>
-                          <th>IMEI/MAC Address</th>
-                          <th>Added At</th>
-                          <th width="15%">Edited At</th>
-                          <th>Added by</th>
-                          
-                      </tr>
-                  </thead>
-                  <tbody>
+                        <th scope="col">Name</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Number Issued</th>
 
-                      @foreach ($available as $available)
-                      <tr>
-
-                          <td> {{ $available->brand }} </td>
-                          <td width="30%"> {{ $available->details }} </td>
-                          <td> {{ $available->serial_no }} </td>
-                          <td> {{ $available->imei_or_macaddress }} </td>
-                          <td> {{ $available->created_at }} </td>
-                          <td > {{ $available->updated_at }} </td>
-                          <td> {{ $available->fname }} {{ $available->lname }}</td>
-                          
-                      </tr>
-                      @endforeach
-                    </tbody>
-
+                    </tr>
+                    </thead>
+                <tbody>
+                    <tr data-toggle="modal" data-target="#modal">
+                        <th>Justine Garcia</th>
+                        <td>3</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <th>Lovelyn Paris</th>
+                        <td>2</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <th>Aika Vien Dayrit</th>
+                        <td>3</td>
+                        <td>6</td>
+                    </tr>
+                </tbody>
                 </table>
-            </div>
+                </div>
 
-            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
-                      <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
-                          <thead class="thead-dark">
-                              <tr>
 
-                                <th>Name</th>
-                                <th>Details</th>
-                                <th>Serial No</th>
-                                <th>IMEI/MAC Address</th>
-                                <th>Added At</th>
-                                <th width="15%">Edited At</th>
-                                <th>Added by</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach ($units as $units)
-                            <tr>
-
-                                <td> {{ $units->description }}-{{ $units->id }} </td>
-                                <td width="30%"> NONE </td>
-                                <td> NONE </td>
-                                
-                                <td> {{ $units->created_at }} </td>
-                                <td> {{ $units->updated_at }} </td>
-                                <td> {{ $units->fname }} {{ $units->lname }}</td>
-                                <td></td>
-                                
-                            </tr>
-                            @endforeach
-                          </tbody>
-
-                      </table>
-                  </div>
                 </div>
             </div>
 
@@ -259,5 +349,24 @@
         $('#myDataTable2').DataTable();
     } );
     </script>
+
+<script>
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(i);
+}
+</script>
+
+<script>function rm() {
+  $(event.target).closest("tr").remove();
+}
+
+function add() {
+                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-0\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-11\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br>");
+            }
+    </script>
+
+
+
 
 @stop
