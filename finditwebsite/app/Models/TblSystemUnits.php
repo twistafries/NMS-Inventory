@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use DB;
+use Session;
 class TblSystemUnits extends Model
 {
   protected $table = 'system_units';
@@ -46,8 +48,10 @@ class TblSystemUnits extends Model
         $system_units->save();
         $id = DB::getPdo()->lastInsertId();
         return $id;
-      }catch(QueryException $e) {
-        die($e);
+      }catch(QueryException $qa) {
+        // dd($qa::getErrorInfo());
+        // Session::flash('error', 'Input cannot be read by the Database');
+        return \Redirect::to('/inventoryAll')->with('error' , 'Database error(s)');
       }
     }
 }
