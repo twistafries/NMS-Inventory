@@ -217,11 +217,11 @@ class TblItEquipment extends Model
             $it_equipment->save();
             $id = DB::getPdo()->lastInsertId();
             return $id;
-        }catch(QueryException $e){
+        }catch(QueryException $qe){
             return \Redirect::to('/inventoryAll')
             ->with('error' , 'Database cannot read input value.')
             ->with('error_info' , $qe->getMessage())
-            ->with('target' , '#edit-'.$data['id']);         
+            ->with('target' , '#edit-'.$params['id']);         
         }
     }
 

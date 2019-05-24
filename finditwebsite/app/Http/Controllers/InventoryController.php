@@ -167,8 +167,8 @@ class InventoryController extends BaseController
             
       }catch(QueryException $qe){
         return redirect()->back()
-              ->with('error' , 'Please fill out ALL the fields')
-              ->with('error_info' , $e->getMessage())
+              ->with('error' , 'Database cannot read input value.')
+              ->with('error_info' , $qe->getMessage())
               ->with('target' , '#singleAdd');
       }
     }
@@ -280,7 +280,7 @@ class InventoryController extends BaseController
       }catch(QueryException $qe){
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
-        ->with('error_info' , $e->getMessage())
+        ->with('error_info' , $qe->getMessage())
         ->with('target' , '#edit-'.$data['id']); 
       }
       
