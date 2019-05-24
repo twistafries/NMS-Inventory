@@ -35,7 +35,7 @@
     </nav>
 
 <!--
-     Pills Tabs 
+     Pills Tabs
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
@@ -57,11 +57,11 @@
         </li>
         <li class="nav-item text-uppercase">
             <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li> 
+        </li>
     </ul>
 -->
 
-   
+
 <!--    PAGE CONTENT -->
       <div class="container p-lg-2 p-md-1 p-sm-0">
                         <div class="container">
@@ -70,19 +70,19 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link" href="{!! url('/inventory') !!}">Categories</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link active" href="{!! url('/inventoryAll') !!}">All Items</a>
                                 </li>
-                                
+
 
                               </ul>
                                     </div>
                             </div>
 
                         </div>
-                     
+
 
                     </div>
 <!--    PAGE CONTENT END -->
@@ -159,7 +159,7 @@
   <tr>
     <th>
       <label for="types" id="labelTypes">Types: </label>
-      <select id="types" name="types">
+      <select id="types" name="types" class="input-date2">
         <option value="any">Any</option>
         @foreach ($typesSel as $typesSel)
         <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
@@ -168,7 +168,7 @@
     </th>
     <th>
       <label for="subtypes">Subtype: </label>
-      <select id="subtypes" name="subtypes">
+      <select id="subtypes" name="subtypes" class="input-date2">
         <option value="any">Any</option>
         @foreach ($subtypesSel as $subtypesSel)
         <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
@@ -177,7 +177,7 @@
   </th>
   <th>
     <label for="supplier">Supplier: </label>
-    <select id="supplier" name="supplier">
+    <select id="supplier" name="supplier" class="input-date2">
       <option value="any">Any</option>
       @foreach ($suppliers as $suppliers)
       <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
@@ -186,7 +186,7 @@
 </th>
 <th>
   <label for="brand">Brand: </label>
-  <select id="brand" name="brand">
+  <select id="brand" name="brand" class="input-date2">
     <option value="any">Any</option>
     @foreach ($brands as $brands)
     <option value="{{$brands->brand}}">{{$brands->brand}}</option>
@@ -195,7 +195,7 @@
 </th>
 <th>
   <label for="status">Status: </label>
-  <select id="status" name="status">
+  <select id="status" name="status" class="input-date2">
     <option value="any">Any</option>
     @foreach ($status as $status)
     <option value="{{$status->name}}">{{$status->name}}</option>
@@ -877,7 +877,7 @@
                 </div>
 
                 <!-- Add Equipment Form -->
-                <div class="modal-body">
+                <div class="modal-body single-modal">
                     <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
                     {!! csrf_field() !!}
                     <div class="row pb-2">

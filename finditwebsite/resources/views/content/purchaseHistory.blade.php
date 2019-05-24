@@ -18,7 +18,7 @@
 @stop
 
 @section('title')
-    purchasenumber
+    purchaseHistory
 @stop
 
 @section('../layout/breadcrumbs')
@@ -76,7 +76,7 @@
     </div>
 
     <!-- Tabs -->
-    
+
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
           <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">

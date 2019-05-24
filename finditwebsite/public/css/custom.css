@@ -276,12 +276,12 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
 
 .modal-content, .modal-length{
     height: 850px;
-     
+
 }
 
 .modal-small{
     height: 300px;
-     
+
 }
 
 /* ================================================
@@ -1391,4 +1391,37 @@ div.column {
 .sticky-wrap td,
 .sticky-wrap th {
     box-sizing: border-box;
+}
+
+/*table header size changed*/
+table > thead > tr > th {
+    font-weight:600 !important;
+    font-size:17px !important;
+}
+
+table > tbody > tr > td {
+    font-size:16px !important;
+}
+
+div.details, p.text{
+    font-size:16px !important;
+    font-weight: normal;
+    color: #696969;
+}
+
+div.component-details {
+    font-size: 16px !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    color: black;
+}
+
+select.inventory-filter, .input-date2 {
+    height: 1.8rem;
+}
+
+.single-modal {
+  margin-left: 2rem;
+  margin-top: 1rem;
 }

@@ -35,7 +35,7 @@
     </nav>
 
 <!--
-     Pills Tabs 
+     Pills Tabs
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
@@ -57,11 +57,11 @@
         </li>
         <li class="nav-item text-uppercase">
             <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li> 
+        </li>
     </ul>
 -->
 
-   
+
 <!--    PAGE CONTENT -->
       <div class="container p-lg-2 p-md-1 p-sm-0">
                         <div class="container">
@@ -75,21 +75,21 @@
                                 <li class="nav-item">
                                   <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
                                 </li>
-                                
+
 
                               </ul>
                                     </div>
                             </div>
 
                         </div>
-                        
+
                         <div class="container pt-4">
                             <div class="row">
                                 <h4>IT EQUIPMENT</h4>
                                 <div class="container">
                                     <!--
                                     <div class="collapse-group">
-                                        
+
                                         <div class="controls">
                                             <button class="btn btn-primary open-button" type="button">
       Open all
@@ -301,8 +301,8 @@
                                                             <th scope="col">Type</th>
                                                             <th scope="col">Installed</th>
                                                             <th scope="col">Total</th>
-                                                          
-                                                            
+
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -322,12 +322,12 @@
                                                             <td></td>
                                                         </tr>
                                                          <tr>
-                                                          
+
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
-                                                     
+
                                                     </tbody>
                                                 </table>
                                                 </div>
@@ -348,33 +348,33 @@
                                                         <tr>
                                                             <th scope="col">Available</th>
                                                             <th scope="col">Total</th>
-                                                          
-                                                            
+
+
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            
+
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                           
+
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            
+
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
                                                          <tr>
-                                                          
+
                                                             <td></td>
                                                             <td></td>
-                                                           
+
                                                         </tr>
-                                                     
+
                                                     </tbody>
                                                 </table>
                                                 </div>
@@ -433,7 +433,7 @@
                         </div>
 
                         </div>
-                       
+
 
                     </div>
 <!--    PAGE CONTENT END -->

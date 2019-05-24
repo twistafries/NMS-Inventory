@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
-    
+
 @stop
 
 @section('title')
@@ -23,7 +23,7 @@
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    
+
     @stop
 @stop
 
@@ -78,7 +78,7 @@
 
     <!-- Tabs -->
     <div class="container">
-    
+
         <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
             <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
@@ -102,7 +102,7 @@
                             <td> {{ $for_repair->or_no }} </td>
                             <td> {{ $for_repair->supplier }} </td>
                             <td> {{ $for_repair->created_at }} </td>
-                                    
+
                         </tr>
 
                         @endforeach
@@ -126,7 +126,7 @@
                     </tbody>
 
                 </table>
-            
+
             </div>
         </div>
 </div>
