@@ -1420,3 +1420,8 @@ div.component-details {
 select.inventory-filter, .input-date2 {
     height: 1.8rem;
 }
+
+.single-modal {
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
