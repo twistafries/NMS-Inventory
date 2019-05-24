@@ -347,32 +347,29 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Available</th>
+                                                            <th scope="col">Issued</th>
+                                                            <th scope="col">For Repair</th>
                                                             <th scope="col">Total</th>
 
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                      <tr>
+                                                      @foreach ($total_system_units as $total_system_unit)
 
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
+                                                          @if($total_system_unit->status==1)
+                                                            <td>{{$total_system_unit->total}}</td>
+                                                          @endif
+                                                          @if($total_system_unit->status==2)
+                                                            <td>{{$total_system_unit->total}}</td>
+                                                          @endif
+                                                          @if($total_system_unit->status==3)
+                                                            <td>{{$total_system_unit->total}}</td>
+                                                          @endif
 
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                         <tr>
-
-                                                            <td></td>
-                                                            <td></td>
-
+                                                        @endforeach
+                                                          <td>{{$total_system_units->count()}}</td>
                                                         </tr>
 
                                                     </tbody>

@@ -53,6 +53,9 @@ class InventoryController extends BaseController
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
+      $data['total_system_units'] = TblSystemUnits::get_total_system_units();
+      // $data['total_system_unit'] = TblSystemUnits::get_total_system_units();
+      // $data['hardware'] = TblSystemUnits::get_all_hardware();
 
 
 
@@ -144,16 +147,16 @@ class InventoryController extends BaseController
         && isset($data['or_no'])
         && isset($data['status_id']) ){
             TblItEquipment::add_equipment($data);
-            // Session::flash('message', 'Successfully added equipment to inventory'); 
+            // Session::flash('message', 'Successfully added equipment to inventory');
 
             // return \Redirect::to('/inventory');
             return redirect()->back()
               ->with('message' , 'Successfully added equipment to inventory');
         }else{
-            // Session::flash('error', 'Failed to add equipment to inventory, please fill out all the fields'); 
+            // Session::flash('error', 'Failed to add equipment to inventory, please fill out all the fields');
             // if(Session::has('error'))
               // dd(Session::get('error'));
-            
+
             return redirect()->back()
               ->with('error' , 'Please fill out ALL the fields')
               ->with('target' , '#singleAdd');
@@ -164,7 +167,7 @@ class InventoryController extends BaseController
               ->with('error' , 'Please fill out ALL the fields')
               ->with('error_info' , $e->getMessage())
               ->with('target' , '#singleAdd');
-            
+
       }catch(QueryException $qe){
         return redirect()->back()
               ->with('error' , 'Database cannot read input value.')
@@ -184,7 +187,7 @@ class InventoryController extends BaseController
       try{
         $data = $request->input('unit.*');
         $data['user_id'] = $user_id;
-        $data['description'] = $data[0];
+        $data['name'] = $data[0];
         $data['supplier'] = $data[1];
         $data['or_no'] = $data[2];
         $data['warranty_start'] = $data[3];
@@ -229,9 +232,9 @@ class InventoryController extends BaseController
         foreach($data['equipments'] as $equipment){
           TblItEquipment::add_equipment($equipment);
         }
-        
+
         return \Redirect::to('/inventoryAll')->with('message' , 'PC has been added');
-            
+
         }catch(Exception $e){
           return \Redirect::to('/inventoryAll')
           ->with('error' , $e)
@@ -243,7 +246,7 @@ class InventoryController extends BaseController
           ->with('error' , 'Database cannot read input value.')
           ->with('error_info' , $qe->getMessage())
           ->with('target' , '#systemUnit');
-        }      
+        }
     }
 
 
@@ -251,7 +254,7 @@ class InventoryController extends BaseController
       try{
           $data = $request->all();
         TblItEquipment::edit_equipment($data);
-        Session::flash('message', 'Successfully edited equipment values:'); 
+        Session::flash('message', 'Successfully edited equipment values:');
         return redirect()->intended('/inventoryAll')
         ->with(
           'eq_id', $data['id'])
@@ -276,14 +279,14 @@ class InventoryController extends BaseController
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
         ->with('error_info' , $e->getMessage())
-        ->with('target' , '#edit-'.$data['id']); 
+        ->with('target' , '#edit-'.$data['id']);
       }catch(QueryException $qe){
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
         ->with('error_info' , $qe->getMessage())
-        ->with('target' , '#edit-'.$data['id']); 
+        ->with('target' , '#edit-'.$data['id']);
       }
-      
+
     }
 
     public function changeStatus(Request $request){
@@ -305,13 +308,13 @@ class InventoryController extends BaseController
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
         ->with('error_info' , $e->getMessage())
-        ->with('target' , '#change-status-'.$data['id']); 
+        ->with('target' , '#change-status-'.$data['id']);
       }catch(QueryException $qe){
          return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
         ->with('error_info' , $qe->getMessage())
-        ->with('target' , '#change-status-'. $data['id']); 
-      }  
+        ->with('target' , '#change-status-'. $data['id']);
+      }
     }
 
 
@@ -373,15 +376,15 @@ class InventoryController extends BaseController
     public function buildUnit(Request $request){
       try{
         $data = $request->all();
-  
+
         // dd($request->all());
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
         $data['user_id'] = $user_id;
         // dd($data['items']);
-  
+
         $unit_id = TblSystemUnits::add_system_unit($data);
-  
+
         $components = $data['items'];
         $count = 0;
         foreach($components as $component){
@@ -390,9 +393,9 @@ class InventoryController extends BaseController
           $data['id'] = $component;
           TblItEquipment::edit_equipment($data);
         }
-  
+
         return \Redirect::to('/inventoryAll')->with('equipment has been added');
-  
+
       }catch(QueryException $qe){
         // $info = Self::getErrorInfo();
         // dd($qe);
@@ -400,7 +403,7 @@ class InventoryController extends BaseController
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
         ->with('error_info' , $qe->getMessage())
-        ->with('target' , '#build'); 
+        ->with('target' , '#build');
       }
 
       // dd($data);
