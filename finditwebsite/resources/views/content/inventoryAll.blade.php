@@ -965,7 +965,7 @@
 
                 <!-- Add Equipment Form -->
                 <div class="modal-body">
-                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
                     {!! csrf_field() !!}
                     <div class="row pb-2">
                         <div class="col">
@@ -1395,6 +1395,9 @@
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script src="{{ asset('js/validation-inventory.js') }}"></script>
 
     <!-- Multiple Select -->
     <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
