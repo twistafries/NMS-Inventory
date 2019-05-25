@@ -95,7 +95,7 @@
 
                         <div class="container-fluid">
                             <div class="row">
-                                <h4>IT EQUIPMENT</h4>
+                                <h4>IT EQUIPMENT ({{ count($equipment) + count($system_units) }})</h4>
                                 <div class="container-fluid">
                                     <!--
                                     <div class="collapse-group">
@@ -114,7 +114,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-arrow-circle-down"></i> Hardware </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-arrow-circle-down"></i> Hardware ({{ count($hardware) }})</a>
                                             </h5>
                                         </div>
                                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -124,14 +124,14 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
-                                                            <th scope="col">Available</th>
-                                                            <th scope="col">Issued</th>
-                                                            <th scope="col">In-use</th>
-                                                            <th scope="col">For Repair</th>
-                                                            <th scope="col">For Return</th>
-                                                            <th scope="col">Pending</th>
-                                                            <th scope="col">Decommissioned</th>
-                                                            <th scope="col">Total</th>
+                                                            <th scope="col">Available ({{ $countHardwareAvailableStatus  }})</th>
+                                                            <th scope="col">Issued ({{ $countHardwareIssuedStatus  }})</th>
+                                                            <th scope="col">In-use ({{ $countHardwareInUseStatus  }})</th>
+                                                            <th scope="col">For Repair ({{ $countHardwareForRepair  }})</th>
+                                                            <th scope="col">For Return ({{ $countHardwareForReturnStatus  }})</th>
+                                                            <th scope="col">Pending ({{ $countHardwarePendingStatus  }})</th>
+                                                            <th scope="col">Decommissioned ({{ $countHardwareDecommissionedStatus  }})</th>
+                                                            <th scope="col">Total ({{ count($hardware) }})</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -300,21 +300,19 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> Software </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> Software ({{ count($software) }})</a>
                                             </h5>
                                         </div>
                                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
-                                                <div class="container">
-                                                 <table class="table">
+                                                <div class="container-fluid">
+                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
-                                                            <th scope="col">Available</th>
-                                                            <th scope="col">Installed</th>
-                                                            <th scope="col">Total</th>
-
-
+                                                            <th scope="col">Available ({{ $countSoftwareAvailableStatus }})</th>
+                                                            <th scope="col">Installed ({{ $countSoftwareIssuedStatus }})</th>
+                                                            <th scope="col">Total ({{ count($software) }})</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -346,17 +344,18 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> System Units</a>
+                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> 
+                                                System Units ({{ count($system_units) }})</a>
                                             </h5>
                                         </div>
                                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                             <div class="container">
-                                                 <table class="table">
+                                             <div class="container-fluid">
+                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Available</th>
-                                                            <th scope="col">Issued</th>
+                                                            <th scope="col">Available ({{ $available_units }})</th>
+                                                            <th scope="col">Issued ({{ $issued_units }})</th>
                                                             <th scope="col">For Repair</th>
                                                             <th scope="col">Total</th>
 

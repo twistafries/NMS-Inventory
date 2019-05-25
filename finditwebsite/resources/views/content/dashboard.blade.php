@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> @stop @section('title') Dashboard @stop @section('content')
 
     <!--  -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="row card-row pl-0">
         <div class="col-4 p-1">
             <div class="card">
@@ -109,7 +109,7 @@
         </div>
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Total Purchases This Month</div>
+                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Purchases This Month</div>
                 <div class="card-body ">
                 </div>
             </div>

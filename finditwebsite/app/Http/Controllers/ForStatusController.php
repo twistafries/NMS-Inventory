@@ -121,7 +121,7 @@ class ForStatusController extends BaseController
      $data['all_mobile_device'] = TblEquipmentStatus::get_available();
      $data['units'] = TblEquipmentStatus::get_available_units();
      $data['all_units'] = TblEquipmentStatus::get_available_units();
-     return view ('content/issue' , $data);
+//      return view ('content/issue' , $data);
    }
 
    public function showEmployees(){

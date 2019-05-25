@@ -124,19 +124,13 @@
                         <td>Iphone 8</td>
                         <td>01/25/2019</td>
                         <td>5/26/2019</td>
-                        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
-                    </tr>
-                    <tr>
-                        <td>Macbook</td>
-                        <td>01/25/2019</td>
-                        <td>5/26/2019</td>
-                        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
-                    </tr>
-                    <tr>
-                       <td>PC10</td>
-                        <td>01/25/2019</td>
-                        <td>5/26/2019</td>
-                        <td><input type="button" value="Delete" onclick="deleteRow(this)"></td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-success" type="submit" value="" onclick="deleteRow(this)">Make Available</button>
+                                <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)">Repair</button>
+                                <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
                 </table>
