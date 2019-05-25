@@ -76,10 +76,10 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">ALL ITEMS</a>
                                 </li>
 
 
@@ -110,7 +110,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-plus-circle"></i> Hardware </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-arrow-circle-down"></i> Hardware </a>
                                             </h5>
                                         </div>
                                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -311,7 +311,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-plus-circle"></i> Software </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> Software </a>
                                             </h5>
                                         </div>
                                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -357,7 +357,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-plus-circle"></i> System Units</a>
+                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> System Units</a>
                                             </h5>
                                         </div>
                                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -441,9 +441,7 @@
 
 
                             </div>
-                        <div class="row pt-4">
-                            <h4>OFFICE EQUIPMENT</h4>
-                        </div>
+                      
 
                         </div>
 

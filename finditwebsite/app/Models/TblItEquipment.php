@@ -249,6 +249,12 @@ class TblItEquipment extends Model
 
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
+        
+        if(isset($params['warranty_start']))
+        $it_equipment->warranty_start = $params['warranty_start'];
+        
+        if(isset($params['warranty_end']))
+        $it_equipment->warranty_end = $params['warranty_end'];
 
         $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
 

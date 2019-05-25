@@ -2,7 +2,8 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use DB, Session;
+use Carbon\Carbon;
 
 class TblIssuances extends Model {
 
@@ -17,7 +18,7 @@ class TblIssuances extends Model {
 		->leftjoin('users' , 'users.id', '=', 'i.user_id')
 		->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
 		->leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
-		->select('i.*', 'it_equipment.serial_no as serial_no', 'it_equipment.or_no as or_no', 'it_equipment_type.name as type', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.description as unit_name',
+		->select('i.*', 'it_equipment.serial_no as serial_no', 'it_equipment.or_no as or_no', 'it_equipment_type.name as type', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.name as unit_name',
 		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
 		->where('i.status_id', '=', '2')
 		->orderBy('i.created_at', 'desc')
@@ -65,7 +66,7 @@ class TblIssuances extends Model {
 		$issuance = new TblIssuances;
 
 		$issuance->issued_to = $params['issued_to'];
-		$issuance->user_id = $params['user_id'];
+		$issuance->user_id = Session::get('loggedIn')['id'];
 		// $issuance->status_id = $params['status_id'];
 
 		if(isset($params['equipment_id']))

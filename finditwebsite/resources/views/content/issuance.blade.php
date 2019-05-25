@@ -41,17 +41,17 @@
                 </ol>
             </nav>
     </nav>
-
+  <h5 style="padding:1rem;">Filter:</h5>
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
-
+      
         <li class="nav-item text-uppercase"  data-target="#categories" data-toggle="collapse">
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true" data-toggle="pill">
-              Categories
+              Types
             </a>
         </li>
 
         <li class="nav-item text-uppercase"  data-target="#types" data-toggle="collapse">
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Types
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Subtypes
         </a>
       </li>
     </ul>
@@ -348,7 +348,7 @@
                                                   <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
                                                   @endforeach
                                                   @foreach ($units as $units)
-                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
+                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
                                                   @endforeach
                                                 </select>
                                                 </datalist>
@@ -514,8 +514,6 @@ $(window).load(function(){
     function DoSubmit(){
       var item = $(equipment).val();
       document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
-      var employee = $(issued_to).val();
-      document.getElementById("issued_to").value = $('#employee [value="' + employee + '"]').data('customvalue');
       return true;
       }
   </script>
