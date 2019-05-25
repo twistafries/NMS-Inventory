@@ -87,13 +87,13 @@
     </ul>
 
     <!--Tab Content-->
-    <div class="text-right">
+    <!-- <div class="text-right">
       <button type="button" id="print" onclick="printContent('sample');" class="btn btn-info p-2" style="margin-top: 2rem;" data-toggle="modal" data-target="#purchasesmodal">
         <span class="fas fa-plus-circle" style="padding-right: 5px"></span>NEW PURCHASE
       </button>
-    </div>
+    </div> -->
 
-      <nav class="navbar navbar-light bg-light row" style="margin-top: 2rem; margin-left: 0.1rem; margin-right: 0.1rem;">
+      <nav class="navbar navbar-light bg-light row" style="margin-top: 4rem; margin-left: 0.1rem; margin-right: 0.1rem;">
           <span class="navbar-brand mb-0 h1 col-3" style="font-size: 20px;">Purchase #1</span>
           <span class="navbar-brand mb-0 h1 col-3" style="font-size: 20px;">Supplier: Octagon</span>
           <span class="navbar-brand mb-0 h1 col-3" style="font-size: 20px;">Date Purchase: 2/24/2019</span>
