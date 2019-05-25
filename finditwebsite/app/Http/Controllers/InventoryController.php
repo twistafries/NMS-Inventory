@@ -59,6 +59,8 @@ class InventoryController extends BaseController
       $data['motherboard'] = [];
       $data['hardware'] = TblItEquipment::get_all_hardware();
       $data['software'] = TblItEquipmentSubtype::get_software();
+
+      // dd($data['available_units']);s
       foreach ($data['hardware'] as $hardware) {
         foreach ($data['status'] as $status) {
           $data[str_replace(' ', '', $hardware->subtype_name)][$status->name]=count(TblItEquipment::get_qty($hardware->subtype_id,$status->id));
@@ -165,11 +167,7 @@ class InventoryController extends BaseController
         && isset($data['serial_no'])
         && isset($data['or_no'])
         && isset($data['status_id']) ){
-            $id = TblItEquipment::add_equipment($data);
-            $log['data'] = $id;
-          // $log['unit'] = $data['unit_id'];
-            $log['activity'] = "added";
-            TblActivityLogs::add_log($log);
+            TblItEquipment::add_equipment($data);
             // Session::flash('message', 'Successfully added equipment to inventory');
 
             // return \Redirect::to('/inventory');

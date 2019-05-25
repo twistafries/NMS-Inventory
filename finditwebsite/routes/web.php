@@ -47,7 +47,8 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
-Route::get('/dashboard', 'Dashboard@showAllStatus');
+// Route::get('/dashboard', 'DashboardController@showAllStatus');
+Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::get('/purchases', 'Purchases@showAllStatus');
 
 Route::get('/viewPurchases', 'Purchases@viewPurchases');

@@ -159,6 +159,26 @@ class TblItEquipment extends Model
       ->get();
       return $query;
     }
+
+    public static function countByStatusSubtype($status , $subtype){
+        $query = \DB::table('it_equipment as i')
+        -> where('subtype_id', '=', $subtype)
+        -> where('status_id', '=', $status)
+        -> get();
+        return $query;
+
+    }
+    public static function countByStatusType($status , $type){
+        $query = \DB::table('it_equipment as i')
+        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+        ->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
+        -> where('type_id', '=', $subtype)
+        -> where('status_id', '=', $status)
+        -> get();
+        return $query;
+
+    }
+
     public static function add_equipment($params){
         $results = [];
         $results['error'] = 1;
