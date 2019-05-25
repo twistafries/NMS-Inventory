@@ -165,7 +165,11 @@ class InventoryController extends BaseController
         && isset($data['serial_no'])
         && isset($data['or_no'])
         && isset($data['status_id']) ){
-            TblItEquipment::add_equipment($data);
+            $id = TblItEquipment::add_equipment($data);
+            $log['data'] = $id;
+          // $log['unit'] = $data['unit_id'];
+            $log['activity'] = "added";
+            TblActivityLogs::add_log($log);
             // Session::flash('message', 'Successfully added equipment to inventory');
 
             // return \Redirect::to('/inventory');

@@ -70,10 +70,10 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">ALL ITEMS</a>
                                 </li>
 
 
@@ -157,6 +157,9 @@
 <div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">Warning</h4>
     {{ Session::get('warning') }}
+    <button type="button" class="close btn-primary" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 
@@ -179,6 +182,9 @@
   @if(Session::has('target') !== null)
     <a class="alert-link" data-toggle="modal" data-target="{!! Session::get('target') !!}" href="#">Please try again</a>
   @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 
@@ -208,6 +214,9 @@
     </div>
 
   @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 
@@ -956,7 +965,7 @@
 
                 <!-- Add Equipment Form -->
                 <div class="modal-body">
-                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form">
+                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
                     {!! csrf_field() !!}
                     <div class="row pb-2">
                         <div class="col">
@@ -1150,7 +1159,7 @@
                 </div>
 
                 <div class="container">
-                    <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+                    <form id="addSystemUnitForm" action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
                         {!! csrf_field() !!}
 
                         <div class="row">
@@ -1168,18 +1177,18 @@
 
                                     <tbody>
                                         <tr>
-                                            <td> <input type="text" name="unit[mac_address]" required></td>
+                                            <td> <input type="text" name="unit[mac_address]"></td>
                                             <td>
-                                                <input type="text" name="unit[supplier]" required><br>
+                                                <input type="text" name="unit[supplier]"><br>
 
                                             </td>
-                                            <td> <input type="text" name="unit[or_no]" required></td>
+                                            <td> <input type="text" name="unit[or_no]"></td>
                                             <td>
                                                 <label for="start">Start date:</label>
-                                                <input type="date" id="start" name="unit[warranty_start]" required>
+                                                <input type="date" id="start" name="unit[warranty_start]">
                                                 <br>
                                                 <label for="start">End date:</label>
-                                                <input type="date" id="start" name="unit[warranty_end]" required>
+                                                <input type="date" id="start" name="unit[warranty_end]">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1386,6 +1395,11 @@
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script> -->
+    <script src="{{ asset('js/jqueryvalidation/dist/jquery.validate.js') }}"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> -->
+    <script src="{{ asset('js/jqueryvalidation/dist/additional-methods.min.js') }}"></script>
+	<script src="{{ asset('js/validation-inventory.js') }}"></script>
 
     <!-- Multiple Select -->
     <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
@@ -1505,46 +1519,47 @@ $('#subtypes').on('keyup change',  function() {
     } );
     $('#types').on('keyup change',  function() {
         table.draw();
-        } );
-        $('#supplier').on('keyup change',  function() {
-            table.draw();
-            } );
-            $('#brand').on('keyup change',  function() {
-                table.draw();
-                } );
-                $('#status').on('keyup change',  function() {
-                    table.draw();
-                    } );
-        } );
-        $(document).ready(function() {
-        var table = $('#myDataTable1').DataTable();
+    } );
+    $('#supplier').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#brand').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#status').on('keyup change',  function() {
+        table.draw();
+    } );
+} );
+
+$(document).ready(function() {
+    var table = $('#myDataTable1').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+    $('#subtypes').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#types').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#supplier').on('keyup change',  function() {
+    table.draw();
+    } );
+    $('#brand').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#status').on('keyup change',  function() {
+        table.draw();
+    } );
+} );
+
+$(document).ready(function() {
+var table = $('#myDataTable2').DataTable();
 
         // Event listener to the two range filtering inputs to redraw on input
         $('#subtypes').on('keyup change',  function() {
             table.draw();
-            } );
-            $('#types').on('keyup change',  function() {
-                table.draw();
                 } );
-                $('#supplier').on('keyup change',  function() {
-                    table.draw();
-                    } );
-                    $('#brand').on('keyup change',  function() {
-                        table.draw();
-                        } );
-                        $('#status').on('keyup change',  function() {
-                            table.draw();
-                            } );
-                } );
-
-              $(document).ready(function() {
-                var table = $('#myDataTable2').DataTable();
-
-                // Event listener to the two range filtering inputs to redraw on input
-                $('#subtypes').on('keyup change',  function() {
-                    table.draw();
-                    } );
-                    $('#types').on('keyup change',  function() {
+                $('#types').on('keyup change',  function() {
                         table.draw();
                         } );
                         $('#supplier').on('keyup change',  function() {

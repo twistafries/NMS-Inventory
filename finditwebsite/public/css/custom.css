@@ -81,6 +81,21 @@ a[data-toggle="collapse"] {
     position: relative;
 }
 
+/* Error Message Validation */
+.error {
+		margin-bottom: 5px!important;
+    color: #F0AD4E;
+  }
+
+	label.error {
+    font-size: 0.7rem;
+		padding-left: 10px;
+	}
+
+	.error:before {
+		content: "*";
+	}
+
 
 /*================================================
                 2. BUTTON STYLES

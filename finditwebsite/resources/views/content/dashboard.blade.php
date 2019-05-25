@@ -114,13 +114,13 @@
         </div>
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-shopping-cart"></i> Incoming Purchases</div>
+                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-shopping-cart"></i> History of Purchases</div>
                 <div class="card-body ">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Purchase #1</li>
-                        <li class="list-group-item">Purchase #2</li>
-                        <li class="list-group-item">Purchase #3</li>
                         <li class="list-group-item">Purchase #4</li>
+                        <li class="list-group-item">Purchase #3</li>
+                        <li class="list-group-item">Purchase #2</li>
+                        <li class="list-group-item">Purchase #1</li>
                         <button type="button" class="btn btn-light btn-sm">View all</button>
                     </ul>
                 </div>
