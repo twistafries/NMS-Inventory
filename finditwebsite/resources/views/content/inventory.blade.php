@@ -19,16 +19,22 @@
 <div class="container">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
-            <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark active">Items</a>
+                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}"  aria-current="page" class="text-warning">For Repair</a>
+                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
+                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
             </nav>

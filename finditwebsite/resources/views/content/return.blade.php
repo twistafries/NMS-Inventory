@@ -16,12 +16,12 @@
 @stop
 
 @section('title')
-    Repair
+    Return
 @stop
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    <i class="fas fa-chart-line">REPAIR
+    <i class="fas fa-chart-line">Return
     @stop
 @stop
 
@@ -29,17 +29,17 @@
 
 
 <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
-            <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+        <span class="navbar-brand mb-0 h1">FOR RETURN</span>
+        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/inventory') !!}" class="text-dark">Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-warning" aria-current="page">For Repair</a>
+                        <a href="{!! url('/repair') !!}" class="text-dark">For Repair</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
+                        <a href="{!! url('/return') !!}" class="text-warning" aria-current="page">For Return</a>
                     </li>
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
@@ -65,7 +65,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                        </div> 
+                        </div>
 
                         <div class="modal-body">
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -107,16 +107,16 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($for_repair as $for_repair)
+                        @foreach ($for_return as $for_return)
                         <tr>
 
-                            <td> {{ $for_repair->id }} </td>
-                            <td> {{ $for_repair->details }} </td>
-                            <td> {{ $for_repair->serial_no }} </td>
-                            <td> {{ $for_repair->or_no }} </td>
-                            <td> {{ $for_repair->supplier }} </td>
-                            <td> {{ $for_repair->created_at }} </td>
-                            <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
+                            <td> {{ $for_return->id }} </td>
+                            <td> {{ $for_return->details }} </td>
+                            <td> {{ $for_return->serial_no }} </td>
+                            <td> {{ $for_return->or_no }} </td>
+                            <td> {{ $for_return->supplier }} </td>
+                            <td> {{ $for_return->created_at }} </td>
+                            <td> {{ $for_return->firstname}} {{ $for_return->lastname}}  </td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -125,22 +125,6 @@
 
                         @endforeach
 
-                        @foreach ($for_repair_units as $for_repair_units)
-                        <tr>
-
-                            <td> {{ $for_repair_units->description }}  {{ $for_repair_units->id }} </td>
-                            <td> No Details </td>
-                            <td> None </td>
-                            <td> None </td>
-                            <td> None </td>
-                            <td> {{ $for_repair_units->created_at }} </td>
-                            <td> {{ $for_repair_units->updated_at }} </td>
-                            <td> {{ $for_repair_units->firstname}} {{ $for_repair_units->lastname}}  </td>
-                            <td></td>
-                            <td> None </td>
-                        </tr>
-
-                        @endforeach
                     </tbody>
 
                 </table>

@@ -109,7 +109,7 @@
     </div>
 
       <nav class="navbar navbar-light bg-light" style="margin-top: 1rem;">
-          <span class="navbar-brand mb-0 h1">Purchase #1</span>
+          <span class="navbar-brand mb-0 h1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Purchase #1</span>
       </nav>
 
 

@@ -30,13 +30,13 @@
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">ISSUED ITEMS</span>
-            <nav aria-label="breadcrumb">
+          <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issuance') !!}" class="text-dark active" aria-current="page">Issued Items</a>
+                        <a href="{!! url('/issuance') !!}" class="text-warning">Issued Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issue') !!}" class="text-warning">Employee Issuance</a>
+                        <a href="{!! url('/issue') !!}" class="text-dark active" aria-current="page">Employee Issuance</a>
                     </li>
                 </ol>
             </nav>
