@@ -18,6 +18,9 @@ use Session, Auth;
 class BulkController extends BaseController
 {
     public function showFields(){
+        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
         $data = [];
               $data['peripherals'] = TblItEquipment::get_computer_peripherals();
       // dd($data);
@@ -37,7 +40,10 @@ class BulkController extends BaseController
     }
 
    public function bulkAddInventory(Request $request){
-        // dd($request);
+       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+      try{
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
         // dd($user_id);
@@ -84,7 +90,22 @@ class BulkController extends BaseController
             TblItEquipment::add_equipment($inventory);
         }
 
-        return \Redirect::to('/inventory')->with('equipment has been added');
+        return \Redirect::to('/inventoryAll')
+        ->with('message' , $count  . ' equipment has been added');
+
+    }catch(Exception $e){
+        return redirect()->back()
+              ->with('error' , 'Database cannot read input value.')
+              ->with('error_info' , $qe->getMessage())
+              ->with('target' , '#singleAdd');
+    }catch(QueryException $qe){
+        return redirect()->back()
+              ->with('error' , 'Database cannot read input value.')
+              ->with('error_info' , $qe->getMessage())
+              ->with('target' , '#singleAdd');
+    }
+
+        
         
     }
 }
