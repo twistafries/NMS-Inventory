@@ -70,10 +70,10 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link" href="{!! url('/inventory') !!}">Categories</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link active" href="{!! url('/inventoryAll') !!}">All Items</a>
                                 </li>
 
 
@@ -102,7 +102,7 @@
                 <!-- Multiple Select -->
                 <button type="button" class="btn" id="multiple-select" onclick="enable()">
                     <a href="#" data-toggle="tooltip" title="Multiple Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"> Multiple Select
                     </a>
                 </button>
 
@@ -119,7 +119,7 @@
                 <div class="dropdown">
                   <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
                       </a>
                   </button>
                     <ul class="dropdown-menu">
@@ -133,7 +133,7 @@
                 <div class="dropdown">
                   <button class="btn" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
               </div>
