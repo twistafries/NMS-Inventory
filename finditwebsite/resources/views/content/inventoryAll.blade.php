@@ -19,21 +19,26 @@
 <div class="container">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
-            <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark active">Items</a>
+                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}"  aria-current="page" class="text-warning">For Repair</a>
+                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
+                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
             </nav>
     </nav>
-
 <!--
      Pills Tabs
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
@@ -521,10 +526,9 @@
                     </div>
 
                     <!-- Change Status -->
+                    
                     <div class="modal fade" id="change-status-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
                         aria-hidden="true">
-                        <form action="{!! url('/editStatus'); !!}" method="post">
-                            {!! csrf_field() !!}
                             <input type="hidden" name="id" value="{!! $equipment->id !!}">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -536,6 +540,8 @@
                                     </div>
 
                                     <div class="modal-body">
+                                      <form action="{!! url('/editStatus'); !!}" method="post">
+                                      {!! csrf_field() !!}
                                         <div class="form-group">
                                             <p class="card-title">Status</p>
                                             <select name="status_id" class="custom-select">
@@ -551,16 +557,15 @@
                                                 @endif
                                             </select>
                                         </div>
+                                      </form>
                                     </div>
 
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
-
                                 </div>
                             </div>
-                        </form>
                     </div>
 
                 @endforeach
@@ -991,8 +996,8 @@
                     <div class="row">
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
-                            <div class="input-group mb-1">
-                                <textarea name="details" class="form-control" aria-label="With textarea" rows="2"></textarea>
+                            <div class="input-group">
+                                <textarea name="details" rows="3" id="details"></textarea>
                             </div>
                         </div>
                     </div>
@@ -1089,6 +1094,8 @@
 
 
     <!--Build From Parts Modal-->
+       <div class="d-flex flex-row-reverse">
+        <div class="p-2">
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
 
         <div class="modal-dialog modal-lg">
@@ -1097,51 +1104,57 @@
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-            <div class="container" style="padding:2rem">
 
+                <div class="modal-body">
+                <div class="container" style="padding:5rem">
 
-        <form action="{!! url('/buildUnit'); !!}" method="post">
-            {!! csrf_field() !!}
-            <div class="container">
-                <p class="card-title text-dark">Name:</p>
+                  
+                <form action="{!! url('/buildUnit'); !!}" method="post">
+                      {!! csrf_field() !!}
+                
+                  <p class="card-title text-dark">Name:</p>
                     <div class="input-group">
                         <input name="name" type="text" class="form-control" required>
                     </div>
-            <div class="row">
-                @foreach ($subtypes as $subtypes)
-                <div class="col col-6 mb-2">
-                    <p class="card-title">{{$subtypes->name}}: </p>
-                    <select name="items[]" class="custom-select">
+                    <div class="row">
+                      @foreach ($subtypes as $subtypes)
+                    <div class="col col-6 mb-2">
+                      <p class="card-title">{{$subtypes->name}}: </p>
+                      <select name="items[]" class="custom-select">
                         @foreach ($parts as $part)
                         @if ($part->subtype_id==$subtypes->id)
                         <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
                         @endif
                         @endforeach
-                    </select>
-                </div>
+                      </select>
+                    </div>
                 @endforeach
-            </div>
-
-
+                    </div>
+                    </form>
+                  
+                </div>
+              </div>
+      
+      
         <div class="modal-footer">
 
             <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
         </div>
-        </form>
+        
 
 
     </div>
     </div>
     </div>
-    </div>
-  </div>
 
 
 
-    <!-- Add System Unit Modal                                   -->
+
+    <!-- Add System Unit Modal-->
+
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="systemUnit">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xxl">
             <div class="modal-content">
 
                 <div id="addSystemUnit" class="modal-header">
@@ -1149,7 +1162,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
 
-                <div class="container">
+                <div class="modal-body">
                     <form action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
                         {!! csrf_field() !!}
 
@@ -1186,6 +1199,7 @@
                                 </table>
 
                             </div>
+
                             <div class="col-sm">
                                 <table class="table table-borderless table-striped table-hover table-responsive" style="width:100%">
                                     <thead class="">
@@ -1266,22 +1280,23 @@
                                             <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
                                         </tr>
                                     </tbody>
+                                  </table>
+                               </div>
+                              </div>
 
-                                </table>
+                            </form>
                             </div>
 
-                        </div>
                         <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
                             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                         </div>
 
-                    </form>
-                </div>
+                    
+                
             </div>
         </div>
     </div>
-
 
 
     <!-- Soft Delete-->
