@@ -67,7 +67,7 @@
 
         </li>
 
-        <li>
+        <!-- <li>
           <a href="#purchaseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="hide-menu">Purchase History</span>
@@ -84,7 +84,13 @@
                 <a href="{!! url('/ornumber') !!}"><span class="hide-menu"><i class="fas fa-list-ol"></i>OR Number</span></a>
               </li>
             </ul>
+        </li> -->
 
+        <li id="purchases" >
+            <a href="{!! url('/purchases') !!}">
+                <i class="fas fa-list-alt"></i>
+                <span class="hide-menu">PURCHASES</span>
+            </a>
         </li>
         @if ($user_type=="admin")
           <li id="associates">
