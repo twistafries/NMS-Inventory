@@ -70,10 +70,10 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">ALL ITEMS</a>
                                 </li>
 
 
@@ -104,180 +104,196 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-plus-circle"></i> Hardware </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-arrow-circle-down"></i> Hardware </a>
                                             </h5>
                                         </div>
                                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
                                                 <div class="container">
-                                                <table class="table">
+                                                <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
                                                             <th scope="col">Available</th>
                                                             <th scope="col">Issued</th>
-                                                            <th scope="col">In Use</th>
+                                                            <th scope="col">In-use</th>
                                                             <th scope="col">For Repair</th>
                                                             <th scope="col">For Return</th>
                                                             <th scope="col">For Disposal</th>
                                                             <th scope="col">Pending</th>
+                                                            <th scope="col">Decommissioned</th>
                                                             <th scope="col">Total</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="row">Motherboard</th>
-                                                            <td>5</td>
-                                                            <td>6</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <th scope="row"><a href="#mo">Motherboard</a></th>
+
+                                                            <td>{{$Motherboard['Available']}}</td>
+                                                            <td>{{$Motherboard['Issued']}}</td>
+                                                            <td>{{$Motherboard['In-use']}}</td>
+                                                            <td>{{$Motherboard['For repair']}}</td>
+                                                            <td>{{$Motherboard['For return']}}</td>
+                                                            <td>{{$Motherboard['For disposal']}}</td>
+                                                            <td>{{$Motherboard['Pending']}}</td>
+                                                            <td>{{$Motherboard['Decommissioned']}}</td>
+                                                            <td>{{$total_Motherboard}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">CPU</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$CPU['Available']}}</td>
+                                                            <td>{{$CPU['Issued']}}</td>
+                                                            <td>{{$CPU['In-use']}}</td>
+                                                            <td>{{$CPU['For repair']}}</td>
+                                                            <td>{{$CPU['For return']}}</td>
+                                                            <td>{{$CPU['For disposal']}}</td>
+                                                            <td>{{$CPU['Pending']}}</td>
+                                                            <td>{{$CPU['Decommissioned']}}</td>
+                                                            <td>{{$total_CPU}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Storage</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Storage['Available']}}</td>
+                                                            <td>{{$Storage['Issued']}}</td>
+                                                            <td>{{$Storage['In-use']}}</td>
+                                                            <td>{{$Storage['For repair']}}</td>
+                                                            <td>{{$Storage['For return']}}</td>
+                                                            <td>{{$Storage['For disposal']}}</td>
+                                                            <td>{{$Storage['Pending']}}</td>
+                                                            <td>{{$Storage['Decommissioned']}}</td>
+                                                            <td>{{$total_Storage}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">RAM</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                             <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$RAM['Available']}}</td>
+                                                            <td>{{$RAM['Issued']}}</td>
+                                                            <td>{{$RAM['In-use']}}</td>
+                                                            <td>{{$RAM['For repair']}}</td>
+                                                            <td>{{$RAM['For return']}}</td>
+                                                            <td>{{$RAM['For disposal']}}</td>
+                                                            <td>{{$RAM['Pending']}}</td>
+                                                            <td>{{$RAM['Decommissioned']}}</td>
+                                                            <td>{{$total_RAM}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">GPU</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$GPU['Available']}}</td>
+                                                            <td>{{$GPU['Issued']}}</td>
+                                                            <td>{{$GPU['In-use']}}</td>
+                                                            <td>{{$GPU['For repair']}}</td>
+                                                            <td>{{$GPU['For return']}}</td>
+                                                            <td>{{$GPU['For disposal']}}</td>
+                                                            <td>{{$GPU['Pending']}}</td>
+                                                            <td>{{$GPU['Decommissioned']}}</td>
+                                                            <td>{{$total_GPU}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">Power Supply</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$PowerSupply['Available']}}</td>
+                                                            <td>{{$PowerSupply['Issued']}}</td>
+                                                            <td>{{$PowerSupply['In-use']}}</td>
+                                                            <td>{{$PowerSupply['For repair']}}</td>
+                                                            <td>{{$PowerSupply['For return']}}</td>
+                                                            <td>{{$PowerSupply['For disposal']}}</td>
+                                                            <td>{{$PowerSupply['Pending']}}</td>
+                                                            <td>{{$PowerSupply['Decommissioned']}}</td>
+                                                            <td>{{$total_PowerSupply}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">Case</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Case['Available']}}</td>
+                                                            <td>{{$Case['Issued']}}</td>
+                                                            <td>{{$Case['In-use']}}</td>
+                                                            <td>{{$Case['For repair']}}</td>
+                                                            <td>{{$Case['For return']}}</td>
+                                                            <td>{{$Case['For disposal']}}</td>
+                                                            <td>{{$Case['Pending']}}</td>
+                                                            <td>{{$Case['Decommissioned']}}</td>
+                                                            <td>{{$total_Case}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Heat Sink Fan</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$HeatSinkFan['Available']}}</td>
+                                                            <td>{{$HeatSinkFan['Issued']}}</td>
+                                                            <td>{{$HeatSinkFan['In-use']}}</td>
+                                                            <td>{{$HeatSinkFan['For repair']}}</td>
+                                                            <td>{{$HeatSinkFan['For return']}}</td>
+                                                            <td>{{$HeatSinkFan['For disposal']}}</td>
+                                                            <td>{{$HeatSinkFan['Pending']}}</td>
+                                                            <td>{{$HeatSinkFan['Decommissioned']}}</td>
+                                                            <td>{{$total_HeatSinkFan}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Mouse</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Mouse['Available']}}</td>
+                                                            <td>{{$Mouse['Issued']}}</td>
+                                                            <td>{{$Mouse['In-use']}}</td>
+                                                            <td>{{$Mouse['For repair']}}</td>
+                                                            <td>{{$Mouse['For return']}}</td>
+                                                            <td>{{$Mouse['For disposal']}}</td>
+                                                            <td>{{$Mouse['Pending']}}</td>
+                                                            <td>{{$Mouse['Decommissioned']}}</td>
+                                                            <td>{{$total_Mouse}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Keyboard</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Keyboard['Available']}}</td>
+                                                            <td>{{$Keyboard['Issued']}}</td>
+                                                            <td>{{$Keyboard['In-use']}}</td>
+                                                            <td>{{$Keyboard['For repair']}}</td>
+                                                            <td>{{$Keyboard['For return']}}</td>
+                                                            <td>{{$Keyboard['For disposal']}}</td>
+                                                            <td>{{$Keyboard['Pending']}}</td>
+                                                            <td>{{$Keyboard['Decommissioned']}}</td>
+                                                            <td>{{$total_Keyboard}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">Monitor</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                             <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Monitor['Available']}}</td>
+                                                            <td>{{$Monitor['Issued']}}</td>
+                                                            <td>{{$Monitor['In-use']}}</td>
+                                                            <td>{{$Monitor['For repair']}}</td>
+                                                            <td>{{$Monitor['For return']}}</td>
+                                                            <td>{{$Monitor['For disposal']}}</td>
+                                                            <td>{{$Monitor['Pending']}}</td>
+                                                            <td>{{$Monitor['Decommissioned']}}</td>
+                                                            <td>{{$total_Monitor}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">Laptop</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Laptop['Available']}}</td>
+                                                            <td>{{$Laptop['Issued']}}</td>
+                                                            <td>{{$Laptop['In-use']}}</td>
+                                                            <td>{{$Laptop['For repair']}}</td>
+                                                            <td>{{$Laptop['For return']}}</td>
+                                                            <td>{{$Laptop['For disposal']}}</td>
+                                                            <td>{{$Laptop['Pending']}}</td>
+                                                            <td>{{$Laptop['Decommissioned']}}</td>
+                                                            <td>{{$total_Laptop}}</td>
                                                         </tr>
                                                          <tr>
                                                             <th scope="row">Tablet</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$Tablet['Available']}}</td>
+                                                            <td>{{$Tablet['Issued']}}</td>
+                                                            <td>{{$Tablet['In-use']}}</td>
+                                                            <td>{{$Tablet['For repair']}}</td>
+                                                            <td>{{$Tablet['For return']}}</td>
+                                                            <td>{{$Tablet['For disposal']}}</td>
+                                                            <td>{{$Tablet['Pending']}}</td>
+                                                            <td>{{$Tablet['Decommissioned']}}</td>
+                                                            <td>{{$total_Tablet}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Mobile Phone</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$MobilePhone['Available']}}</td>
+                                                            <td>{{$MobilePhone['Issued']}}</td>
+                                                            <td>{{$MobilePhone['In-use']}}</td>
+                                                            <td>{{$MobilePhone['For repair']}}</td>
+                                                            <td>{{$MobilePhone['For return']}}</td>
+                                                            <td>{{$MobilePhone['For disposal']}}</td>
+                                                            <td>{{$MobilePhone['Pending']}}</td>
+                                                            <td>{{$MobilePhone['Decommissioned']}}</td>
+                                                            <td>{{$total_MobilePhone}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -289,7 +305,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-plus-circle"></i> Software </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> Software </a>
                                             </h5>
                                         </div>
                                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -299,6 +315,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
+                                                            <th scope="col">Available</th>
                                                             <th scope="col">Installed</th>
                                                             <th scope="col">Total</th>
 
@@ -308,24 +325,21 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row">Operating System</th>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$OperatingSystem['Available']}}</td>
+                                                            <td>{{$OperatingSystem['Issued']}}</td>
+                                                            <td>{{$total_OperatingSystem}}</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">Licensed Software</th>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{$LicensedSoftware['Available']}}</td>
+                                                            <td>{{$LicensedSoftware['Issued']}}</td>
+                                                            <td>{{$total_LicensedSoftware}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">Operating System</th>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                         <tr>
-
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <th scope="row">Software Suite</th>
+                                                            <td>{{$SoftwareSuite['Available']}}</td>
+                                                            <td>{{$SoftwareSuite['Issued']}}</td>
+                                                            <td>{{$total_SoftwareSuite}}</td>
                                                         </tr>
 
                                                     </tbody>
@@ -337,7 +351,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-plus-circle"></i> System Units</a>
+                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> System Units</a>
                                             </h5>
                                         </div>
                                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -355,21 +369,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <tr>
-                                                      @foreach ($total_system_units as $total_system_unit)
+                                                        <tr>
 
-                                                          @if($total_system_unit->status==1)
-                                                            <td>{{$total_system_unit->total}}</td>
-                                                          @endif
-                                                          @if($total_system_unit->status==2)
-                                                            <td>{{$total_system_unit->total}}</td>
-                                                          @endif
-                                                          @if($total_system_unit->status==3)
-                                                            <td>{{$total_system_unit->total}}</td>
-                                                          @endif
+                                                            <td>{{$available_units}}</td>
 
-                                                        @endforeach
-                                                          <td>{{$total_system_units->count()}}</td>
+
+                                                            <td>{{$issued_units}}</td>
+
+
+                                                            <td>{{$forRepair_units}}</td>
+
+                                                            <td> {{$total_pc}}</td>
                                                         </tr>
 
                                                     </tbody>
@@ -425,9 +435,7 @@
 
 
                             </div>
-                        <div class="row pt-4">
-                            <h4>OFFICE EQUIPMENT</h4>
-                        </div>
+                      
 
                         </div>
 

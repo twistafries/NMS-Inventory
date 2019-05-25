@@ -53,10 +53,29 @@ class InventoryController extends BaseController
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
-      $data['total_system_units'] = TblSystemUnits::get_total_system_units();
-      // $data['total_system_unit'] = TblSystemUnits::get_total_system_units();
-      // $data['hardware'] = TblSystemUnits::get_all_hardware();
+      $data['available_units']  = count(TblSystemUnits::get_total_system_units(1));
+      $data['issued_units']  = count(TblSystemUnits::get_total_system_units(2));
+      $data['forRepair_units']  = count(TblSystemUnits::get_total_system_units(3));
+      $data['motherboard'] = [];
+      $data['hardware'] = TblItEquipment::get_all_hardware();
+      $data['software'] = TblItEquipmentSubtype::get_software();
+      foreach ($data['hardware'] as $hardware) {
+        foreach ($data['status'] as $status) {
+          $data[str_replace(' ', '', $hardware->subtype_name)][$status->name]=count(TblItEquipment::get_qty($hardware->subtype_id,$status->id));
+        }
+        $data['total_'.str_replace(' ', '', $hardware->subtype_name)]=count(TblItEquipment::get_qty($hardware->subtype_id));
+      }
+      foreach ($data['software'] as $software) {
+        foreach ($data['status'] as $status) {
+          $data[str_replace(' ', '', $software->name)][$status->name]=count(TblItEquipment::get_qty($software->id,$status->id));
+        }
+        $data['total_'.str_replace(' ', '', $software->name)]=count(TblItEquipment::get_qty($software->id));
+      }
 
+
+      $data['total_pc']=count($data['pc']);
+      // $data['hardware'] = TblSystemUnits::get_all_hardware();
+       // dd($data['software']);
 
 
 

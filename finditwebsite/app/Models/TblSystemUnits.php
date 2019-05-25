@@ -21,13 +21,9 @@ class TblSystemUnits extends Model
         return $query;
     }
 
-    public static function get_total_system_units($params = null){
+    public static function get_total_system_units($status){
         $query = \DB::table('system_units')
-        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
-        -> leftjoin('users' , 'users.id', '=', 'system_units.user_id')
-        -> select('system_units.status_id as status', DB::raw('count(*) as total'))
-        -> groupBy('system_units.status_id')
-        -> orderBy('system_units.status_id' , 'asc')
+        -> where('system_units.status_id', '=', $status)
         -> get();
         return $query;
     }
