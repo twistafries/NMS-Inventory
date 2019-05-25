@@ -92,19 +92,33 @@
                 <span class="hide-menu">PURCHASES</span>
             </a>
         </li>
+        @if ($user_type=="admin")
+          <li id="associates">
+              <a href="{!! url('/associates') !!}">
+                  <i class="fas fa-users"></i>
+                  <span class="hide-menu">Associates</span>
+              </a>
+          </li>
 
-        <li id="activityLog">
-            <a href="#">
-                <i class="fas fa-list-alt"></i>
-                <span class="hide-menu">Activity Logs</span>
-            </a>
-        </li>
+          <li id="employees">
+              <a href="{!! url('/employees') !!}">
+                  <i class="fas fa-vcard"></i>
+                  <span class="hide-menu">Employees</span>
+              </a>
+          </li>
+          <li id="activityLogs">
+              <a href="{!! url('/activitylogs') !!}">
+                  <i class="fas fa-list-alt"></i>
+                  <span class="hide-menu">Activity Logs</span>
+              </a>
+          </li>
 
-        <li id="report">
-            <a href="{!! url('/reportpage') !!}">
-                <i class="fas fa-file-export"></i>
-                <span class="hide-menu">Reports</span>
-            </a>
-        </li>
+          <li id="report">
+              <a href="{!! url('/reportpage') !!}">
+                  <i class="fas fa-file-export"></i>
+                  <span class="hide-menu">Generate Reports</span>
+              </a>
+          </li>
+        @endif
     </ul>
 </nav>
