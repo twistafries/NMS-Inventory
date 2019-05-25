@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
+
 use DB;
 
 class TblItEquipment extends Model
@@ -18,6 +20,45 @@ class TblItEquipment extends Model
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
         -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
         -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
+    public static function get_qty($subtype, $status = null){
+      	if($status!=null) {
+        $query = \DB::table('it_equipment')
+        -> where('it_equipment.subtype_id' , '=' , $subtype)
+        -> where('it_equipment.status_id' , '=' , $status)
+        -> get();
+      } else {
+        $query = \DB::table('it_equipment')
+        -> where('it_equipment.subtype_id' , '=' , $subtype)
+        -> get();
+      }
+        return $query;
+    }
+
+    public static function get_all_hardware($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> where('it_equipment_subtype.type_id' , '=' , '1')
+        -> orwhere('it_equipment_subtype.type_id' , '=' , '2')
+        -> orwhere('it_equipment_subtype.type_id' , '=' , '3')
+        -> get();
+        return $query;
+    }
+
+    public static function get_all_software($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> where('it_equipment_subtype.type_id' , '=' , '4')
         -> get();
         return $query;
     }
@@ -178,7 +219,7 @@ class TblItEquipment extends Model
 
     public static function edit_equipment( $params ){
         // dd($params);
-        
+
         $it_equipment = TblItEquipment::find($params['id']);
         $id = TblItEquipment::find($params['id']);
 
@@ -205,7 +246,7 @@ class TblItEquipment extends Model
 
         if(isset($params['supplier']))
         $it_equipment->supplier = $params['supplier'];
-        
+
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
 
@@ -215,8 +256,11 @@ class TblItEquipment extends Model
             $it_equipment->save();
             $id = DB::getPdo()->lastInsertId();
             return $id;
-        }catch(QueryException $e){
-            die($e);
+        }catch(QueryException $qe){
+            return \Redirect::to('/inventoryAll')
+            ->with('error' , 'Database cannot read input value.')
+            ->with('error_info' , $qe->getMessage())
+            ->with('target' , '#edit-'.$params['id']);
         }
     }
 

@@ -18,7 +18,7 @@
 @stop
 
 @section('title')
-    purchasenumber
+    viewPurchases
 @stop
 
 @section('../layout/breadcrumbs')
@@ -29,8 +29,8 @@
 
 @section('content')
 <div class="container">
-  <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">PURCHASE HISTORY</span>
+  <!-- <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">PURCHASES</span>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb arr-right">
                 <li class="breadcrumb-item ">
@@ -44,7 +44,7 @@
                     </li>
                 </ol>
             </nav>
-    </nav>
+    </nav> -->
 
 <form action="" id="form1">
     <!-- Toolbox -->
@@ -76,94 +76,97 @@
     </div>
 
     <!-- Tabs -->
-    
+
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
-          <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-            Hardware
-          </a>
+          <a class="nav-link" href="{!! url('/purchases') !!}">Completed Orders and Purchases</a>
         </li>
         <li class="nav-item text-uppercase">
-          <a class="nav-link" id="pills-1-tab" data-toggle="pill" href="#pills-1" role="tab" onclick="changeFilter()" aria-controls="pills-1" aria-selected="false">
-            Software
-          </a>
-        </li>
-        <li class="nav-item text-uppercase">
-          <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" onclick="changeFilter()" aria-controls="pills-2" aria-selected="false">
-            System Unit
-          </a>
+          <a class="nav-link active" href="{!! url('/viewPurchases') !!}">View Purchases</a>
         </li>
     </ul>
 
     <!--Tab Content-->
+    <!-- <div class="text-right">
+      <button type="button" id="print" onclick="printContent('sample');" class="btn btn-info p-2" style="margin-top: 2rem;" data-toggle="modal" data-target="#purchasesmodal">
+        <span class="fas fa-plus-circle" style="padding-right: 5px"></span>NEW PURCHASE
+      </button>
+    </div> -->
+
+      <nav class="navbar navbar-light bg-light row" style="margin-top: 4rem; margin-left: 0.1rem; margin-right: 0.1rem;">
+          <span class="navbar-brand mb-0 h1 col-3" style="font-size: 20px;">Purchase #1</span>
+          <span class="navbar-brand mb-0 h1 col-3" style="font-size: 20px;">Supplier: Octagon</span>
+          <span class="navbar-brand mb-0 h1 col-3" style="font-size: 20px;">Date Purchase: 2/24/2019</span>
+      </nav>
+
+
+      <!-- purchases modal -->
+      <div class="modal fade" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <div class="container">
+                          <h5>Add Purchase</h5>
+                      </div>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                      </div>
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">Purchase #</th>
-              <th scope="col">Quantity</th>
               <th scope="col">Brand</th>
-              <th scope="col">Model</th>
-              <th scope="col">Total</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Type</th>
+              <th scope="col">Subtype</th>
+              <th scope="col">Qty</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>523965</th>
+              <th>ASUS</th>
+              <td></td>
+              <td>Computer Computer</td>
+              <td>Hardware</td>
+              <td>Keyboard</td>
               <td>10</td>
-              <td>ASUS</td>
-              <td>PRIME X370-PRO</td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Logitech</th>
+              <td></td>
+              <td>Computer Peripherals</td>
+              <td>Hardware</td>
+              <td>Mouse</td>
               <td>10</td>
+              <td></td>
             </tr>
             <tr>
-              <th>612712</th>
-              <td>5</td>
-              <td>Logitech</td>
-              <td>SC54701</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th>718311</th>
-              <td>5</td>
-              <td>ASUS</td>
-              <td>SC54701</td>
-              <td>5</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table class="table">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">OR #</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Brand</th>
-              <th scope="col">Model</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>523965</th>
+              <th>ASUS</th>
+              <td></td>
+              <td>Computer Computer</td>
+              <td>Hardware</td>
+              <td>Keyboard</td>
               <td>10</td>
-              <td>ASUS</td>
-              <td>PRIME X370-PRO</td>
-              <td>10</td>
-            </tr>
-            <tr>
-              <th>612712</th>
-              <td>5</td>
-              <td>Logitech</td>
-              <td>SC54701</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th>718311</th>
-              <td>5</td>
-              <td>ASUS</td>
-              <td>SC54701</td>
-              <td>5</td>
+              <td></td>
             </tr>
           </tbody>
         </table>
@@ -191,7 +194,7 @@
 
     <script>
       $(document).ready(function(){
-      $('#issuableItems').addClass('active');
+      $('#purchases').addClass('active');
       });
     </script>
 

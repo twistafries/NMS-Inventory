@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
-    
+
 @stop
 
 @section('title')
@@ -31,13 +31,13 @@
 
   <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">EMPLOYEE ISSUANCE</span>
-            <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issuance') !!}" class="text-warning">Issued Items</a>
+                        <a href="{!! url('/issuance') !!}" class="text-dark active" aria-current="page">Issued Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issue') !!}" class="text-dark active" aria-current="page">Employee Issuance</a>
+                        <a href="{!! url('/issue') !!}" class="text-warning">Employee Issuance</a>
                     </li>
                 </ol>
             </nav>
@@ -116,7 +116,7 @@
                         <th scope="col">Issuance Date</th>
                         <th scope="col">Issuance End</th>
                         <th scope="col">Remove Issuance</th>
-              
+
                     </tr>
                     </thead>
                 <tbody>
@@ -141,10 +141,10 @@
                 </tbody>
                 </table>
             </div>
-        
+
 
     <div id="issueItems" class="container tab-pane fade"><br>
-      
+
       <h4><button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>     ADD ITEMS</button></h4>
 
             <table class="table" id="addMoreList">
@@ -169,18 +169,18 @@
     <!-- Tabs -->
     <div class="container">
         <div class="tab-content" id="pills-tabContent">
-        
-            
+
+
             <div class="container tab-pane active" id="ITDD" role="tabpanel" aria-labelledby="pills-0-tab">
                 <h4>Information Technology Development Department</h4>
                 <table class="table" >
                     <thead class="thead-dark">
                         <tr>
-              
+
                         <th scope="col">Name</th>
                         <th scope="col">ID</th>
                         <th scope="col">Number Issued</th>
-              
+
                     </tr>
                     </thead>
                 <tbody>
@@ -210,11 +210,11 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr data-toggle="modal" data-target="#modal">
-              
+
                         <th scope="col">Name</th>
                         <th scope="col">ID</th>
                         <th scope="col">Number Issued</th>
-              
+
                     </tr>
                     </thead>
                 <tbody>
@@ -245,7 +245,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">ID</th>
                         <th scope="col">Number Issued</th>
-              
+
                     </tr>
                     </thead>
                 <tbody>
@@ -266,18 +266,18 @@
                     </tr>
                 </tbody>
                 </table>
-                </div> 
+                </div>
 
                  <div id="HRD" class="container tab-pane fade">
                 <h4>Human Resources Department</h4>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-              
+
                         <th scope="col">Name</th>
                         <th scope="col">ID</th>
                         <th scope="col">Number Issued</th>
-              
+
                     </tr>
                     </thead>
                 <tbody>

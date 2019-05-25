@@ -83,7 +83,7 @@
                         </div>
                         <!--Export/Print-->
                         <div class="selectpicker" style="margin-left: 2.3rem;">
-                          <button type="button" id="export" class="btn btn-secondary p-2 text-uppercase">
+                          <button onclick="exportAll('csv')" type="button" id="export" class="btn btn-secondary p-2 text-uppercase export">
                             <span class="fas fa-file-export" style="padding-right: 5px"></span>Export
                           </button>
                         </div>
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                         <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
-                        
+
                           <div class="" style=" margin-top: 1rem;">
                             <p class="card-title text-right date">Date:</p>
                             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
@@ -321,39 +321,33 @@
                             </div>
                             <table class="table">
                               <thead class="thead-dark" style="font-size: 14px;">
-                                <tr>        <tr>
-
-                                            <th>Name</th>
-                                            <th>Details</th>
-                                            <th>Serial No</th>
-                                            <th>OR No</th>
-                                            <th>Supplier</th>
-                                            <th>Date Added</th>
-                                            <th width="15%">Edited At</th>
-                                            <th>Date Added</th>
-                                            <th>Remarks</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($for_disposal as $for_disposal)
-                                        <tr>
-
-                                            <td> {{ $for_disposal->model }} {{ $for_disposal->brand }} </td>
-                                            <td width="30%"> {{ $for_disposal->details }} </td>
-                                            <td> {{ $for_disposal->serial_no }} </td>
-                                            <td> {{ $for_disposal->or_no }} </td>
-                                            <td> {{ $for_disposal->supplier }} </td>
-                                            <td> {{ $for_disposal->created_at }} </td>
-                                            <td> {{ $for_disposal->updated_at }} </td>
-                                            <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
-
-                                        </tr>
-
-                                        @endforeach
-                                    </tbody>
-
-                                </table>
+                                <tr>
+                                  <th>Details</th>
+                                  <th>Name</th>
+                                  <th>Serial No</th>
+                                  <th>OR No</th>
+                                  <th>Supplier</th>
+                                  <th>Date Added</th>
+                                  <th width="15%">Edited At</th>
+                                  <th>Date Added</th>
+                                  <th>Remarks</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                @foreach ($for_disposal as $for_disposal)
+                                <tr>
+                                  <td> {{ $for_disposal->model }} {{ $for_disposal->brand }} </td>
+                                  <td width="30%"> {{ $for_disposal->details }} </td>
+                                  <td> {{ $for_disposal->serial_no }} </td>
+                                  <td> {{ $for_disposal->or_no }} </td>
+                                  <td> {{ $for_disposal->supplier }} </td>
+                                  <td> {{ $for_disposal->created_at }} </td>
+                                  <td> {{ $for_disposal->updated_at }} </td>
+                                  <td> {{ $for_disposal->firstname}} {{ $for_disposal->lastname}}  </td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       </div>
@@ -1252,29 +1246,31 @@
 
 @section('script')
         <!-- JQuery Core -->
+        <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
 
+        <!-- graph -->
         <script src="{{ asset('js/highcharts/code/highcharts.js') }}"></script>
         <script src="{{ asset('js/highcharts/code/modules/exporting.js') }}"></script>
         <script src="{{ asset('js/highcharts/code/modules/export-data.js') }}"></script>
 
+        <!--table export-->
+        <script src="{{ asset('js/jQuery.tableExport/dist/tableExport.js') }}"></script>
+        <script src="{{ asset('js/jQuery.tableExport/dist/tableExport.min.js') }}"></script>
+
         <!--JQuery form validation plugin-->
         <script src="{{ asset('js/jqueryvalidation/dist/jquery.validate.min.js') }}"></script>
         <script src="{{ asset('js/jqueryvalidation/dist/additional-methods.min.js') }}"></script>
-
-        <!-- JQuery Core -->
-        <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('js/popper/popper.min.js') }}"></script>
 
         <!-- Bootstrap -->
         <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
 
-        <!-- DataTables -->
         <!-- Datatable -->
         <link rel="stylesheet" href="{{ asset('css/datatable/dataTables.bootstrap4.min.css') }}">
         <!-- Datatable -->
-       <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
-       <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
-       <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 
         <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
@@ -1290,11 +1286,10 @@
                         icon.removeClass('fas fa-chevron-right').addClass("fas fa-chevron-left");
                 });
             });
-
         </script>
         <!--user profile input validation-->
         <script>
-                    $(function() {
+            $(function() {
                 $('[data-toggle="tooltip"]').tooltip()
             });
         </script>
@@ -1333,7 +1328,6 @@
             });
           });
         </script>
-
         <!--filter select-->
         <script>
           $(document).ready(function(){
@@ -1584,7 +1578,7 @@
               }, {
                   name: 'Decommissioned',
                   y: {{$ThisMonthDecom->count()}}
-,              }, {
+              }, {
                   name: 'Pending',
                   y: {{$ThisMonthPending->count()}}
               }]
@@ -1594,30 +1588,36 @@
         <!--Table select-->
         <script>
           $(document).ready(function(){
-            $("#category-select5").on('change', function() {
-                var category = $("#category-select5").val();
-                switch (category) {
-                    case "For Repair":
-                        $("#inventoryTable").show();
-                        $("#inventoryTable2, #inventoryTable3, #inventoryTable4").hide();
-                        break;
-                    case "To Be Returned":
-                        $("#inventoryTable2").show();
-                        $("#inventoryTable, #inventoryTable3, #inventoryTable4").hide();
-                        break;
-                    case "Decommissioned":
-                        $("#inventoryTable3").show();
-                        $("#inventoryTable, #inventoryTable2, #inventoryTable4").hide();
-                        break;
-                    case "Pending":
-                        $("#inventoryTable4").show();
-                        $("#inventoryTable, #inventoryTable2, #inventoryTable3").hide();
-                        break;
-                    case "All":
-                        $("#inventoryTable, #inventoryTable2, #inventoryTable3, #inventoryTable4").show();
-                        break;
-                    default:
-                }
+            var tableID = "";
+            var all = "";
+            $('select').change(function() {
+              var category = $("#category-select5").val();
+              switch (category) {
+                  case "For Repair":
+                      $("#inventoryTable").show();
+                      $("#inventoryTable2, #inventoryTable3, #inventoryTable4").hide();
+                      tableID = "#forRepair"
+                      break;
+                  case "To Be Returned":
+                      $("#inventoryTable2").show();
+                      $("#inventoryTable, #inventoryTable3, #inventoryTable4").hide();
+                      tableID = "#toBeReturned";
+                      break;
+                  case "Decommissioned":
+                      $("#inventoryTable3").show();
+                      $("#inventoryTable, #inventoryTable2, #inventoryTable4").hide();
+                      tableID = "#decommissioned";
+                      break;
+                  case "Pending":
+                      $("#inventoryTable4").show();
+                      $("#inventoryTable, #inventoryTable2, #inventoryTable3").hide();
+                      tableID = "#pending";
+                      break;
+                  case "All":
+                      $("#inventoryTable, #inventoryTable2, #inventoryTable3, #inventoryTable4").show();
+                      all = ".all";
+                      break;
+              }
             });
             $("#category-select6").on('change', function() {
                 var category = $("#category-select6").val();
@@ -1709,6 +1709,133 @@
                     default:
                 }
             });
+            function exportAll(type) {
+              switch (tableID){
+                // inventory concerns
+                case "#forRepair":
+                  $(tableID).tableExport({
+                    filename: 'For Repair Items',
+                    format: type
+                  });
+                break;
+                case "#toBeReturned":
+                  $(tableID).tableExport({
+                    filename: 'To Be Returned Items',
+                    format: type
+                  });
+                break;
+                case "#pending":
+                  $(tableID).tableExport({
+                    filename: 'Pending Items',
+                    format: type
+                  });
+                break;
+                case "#decommissioned":
+                  $(tableID).tableExport({
+                    filename: 'Decommissioned Items',
+                    format: type
+                  });
+                break;
+                case ".all":
+                  $(all).tableExport({
+                    filename: 'InventoryConcernsReport',
+                    format: type
+                  });
+                break;
+
+                //Inventory operations
+                case "#added":
+                  $(tableID).tableExport({
+                    filename: 'Added Items',
+                    format: type
+                  });
+                break;
+                case "#edited":
+                  $(tableID).tableExport({
+                    filename: 'Edited Items',
+                    format: type
+                  });
+                break;
+                case "#deleted":
+                  $(tableID).tableExport({
+                    filename: 'Deleted Items',
+                    format: type
+                  });
+                break;
+                case ".all2":
+                  $(all).tableExport({
+                    filename: 'NMS-InventoryOperationReport',
+                    format: type
+                  });
+                break;
+
+                //Inventory Equipment type
+                case "#computerComponents":
+                  $(tableID).tableExport({
+                    filename: 'Computer Components',
+                    format: type
+                  });
+                break;
+                case "#computerPeripherals":
+                  $(tableID).tableExport({
+                    filename: 'Computer Periperals',
+                    format: type
+                  });
+                break;
+                case "#mobileDevices":
+                  $(tableID).tableExport({
+                    filename: 'Mobile Devices',
+                    format: type
+                  });
+                break;
+                case ".all3":
+                  $(all).tableExport({
+                    filename: 'NMS-InventoryEquipmentTypeReport',
+                    format: type
+                  });
+                break;
+
+                //Office equipment
+                case "#":
+                  $(tableID).tableExport({
+                    filename: 'Office Equipment',
+                    format: type
+                  });
+                break;
+
+                //Issuance
+                case "":
+                  $(tableID).tableExport({
+                    filename: 'Associate Issuance',
+                    format: type
+                  });
+                break;
+                case "":
+                  $(tableID).tableExport({
+                    filename: 'Admin Issuance',
+                    format: type
+                  });
+                break;
+                case "":
+                  $(tableID).tableExport({
+                    filename: 'Admin and Associate Issuance',
+                    format: type
+                  });
+                break;
+                case "":
+                  $(tableID).tableExport({
+                    filename: 'User Issuance',
+                    format: type
+                  });
+                break;
+                case "":
+                  $(all).tableExport({
+                    filename: 'New Media Services Report',
+                    format: type
+                  });
+                break;
+              }
+            }
           });
         </script>
         <!-- date -->
@@ -1771,21 +1898,22 @@
           });
         </script>
 
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#sidebarCollapse').on('click', function () {
-                        $('#sidebar').toggleClass('active');
-                    });
-                });
-            </script>
-            <script type="text/javascript">
-      function printContent(el){
-        var restorepage = $('body').html();
-        var printcontent = $('#' + el).clone();
-        $('body').empty().html(printcontent);
-        window.print();
-        $('body').html(restorepage);
-      }
-    </script>
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+              $('#sidebar').toggleClass('active');
+            });
+          });
+        </script>
+
+        <script type="text/javascript">
+          function printContent(el){
+            var restorepage = $('body').html();
+            var printcontent = $('#' + el).clone();
+            $('body').empty().html(printcontent);
+            window.print();
+            $('body').html(restorepage);
+          }
+        </script>
 
 @stop

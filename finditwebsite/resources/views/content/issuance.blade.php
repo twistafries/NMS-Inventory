@@ -30,13 +30,13 @@
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">ISSUED ITEMS</span>
-            <nav aria-label="breadcrumb">
+          <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issuance') !!}" class="text-dark active" aria-current="page">Issued Items</a>
+                        <a href="{!! url('/issuance') !!}" class="text-warning">Issued Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issue') !!}" class="text-warning">Employee Issuance</a>
+                        <a href="{!! url('/issue') !!}" class="text-dark active" aria-current="page">Employee Issuance</a>
                     </li>
                 </ol>
             </nav>
@@ -71,7 +71,7 @@
         <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Computer Peripheral
         </a>
       </li>
-    
+
       <li class="nav-item text-uppercase"  data-target="#" >
         <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Mobile Device
         </a>
@@ -101,92 +101,92 @@
         </li>
 
         <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> CPU 
-        </a>
-      </li>
-    
-      <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> GPU 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> CPU
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Software 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> GPU
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Heat Sink Fan 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Software
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Keyboard 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Heat Sink Fan
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Laptop 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Keyboard
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Licensed Software 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Laptop
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Mobile Phone 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Licensed Software
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Monitor 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Mobile Phone
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Motherboard 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Monitor
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Mouse 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Motherboard
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Operating System 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Mouse
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Power Supply 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Operating System
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> RAM 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Power Supply
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Software Suite 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> RAM
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Sound Card 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Software Suite
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Storage 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Sound Card
         </a>
       </li>
 
       <li class="nav-item text-uppercase"  data-target="#" >
-        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Tablet 
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Storage
+        </a>
+      </li>
+
+      <li class="nav-item text-uppercase"  data-target="#" >
+        <a class="nav-link" id="pills-5-tab" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false" data-toggle="pill"> Tablet
         </a>
       </li>
 

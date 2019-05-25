@@ -35,7 +35,7 @@
     </nav>
 
 <!--
-     Pills Tabs 
+     Pills Tabs
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
@@ -57,11 +57,11 @@
         </li>
         <li class="nav-item text-uppercase">
             <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li> 
+        </li>
     </ul>
 -->
 
-   
+
 <!--    PAGE CONTENT -->
       <div class="container p-lg-2 p-md-1 p-sm-0">
                         <div class="container">
@@ -70,19 +70,19 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link" href="{!! url('/inventory') !!}">Categories</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link active" href="{!! url('/inventoryAll') !!}">All Items</a>
                                 </li>
-                                
+
 
                               </ul>
                                     </div>
                             </div>
 
                         </div>
-                     
+
 
                     </div>
 <!--    PAGE CONTENT END -->
@@ -102,7 +102,7 @@
                 <!-- Multiple Select -->
                 <button type="button" class="btn" id="multiple-select" onclick="enable()">
                     <a href="#" data-toggle="tooltip" title="Multiple Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"> Multiple Select
                     </a>
                 </button>
 
@@ -119,7 +119,7 @@
                 <div class="dropdown">
                   <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
                       </a>
                   </button>
                     <ul class="dropdown-menu">
@@ -133,7 +133,7 @@
                 <div class="dropdown">
                   <button class="btn" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
               </div>
@@ -153,6 +153,63 @@
 
         </div>
     </div>
+@if(Session::has('warning'))
+<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Warning</h4>
+    {{ Session::get('warning') }}
+</div>
+@endif
+
+@if(Session::has('error'))
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Error</h4>
+  {{ Session::get('error') }}
+
+  @if(Session::has('error_info'))
+    <a class="btn btn-fail" data-toggle="collapse" href="#errorInfoCollapse" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"> <span>▶</span> </a>
+      <!-- <span class="glyphicon glyphicon-chevron-down"></span> -->
+
+
+    <div class="collapse multi-collapse" id="errorInfoCollapse">
+      <div class="container">
+          <small>{{ Session::get('error_info') }}</small>
+      </div>
+    </div>
+  @endif
+  @if(Session::has('target') !== null)
+    <a class="alert-link" data-toggle="modal" data-target="{!! Session::get('target') !!}" href="#">Please try again</a>
+  @endif
+</div>
+@endif
+
+@if(Session::has('message'))
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Success</h4>
+  {{ Session::get('message') }}
+
+  @if(Session::has('data'))
+  {{ Session::get('message') }}
+  @endif
+  @if(Session::has('eq_id'))
+  <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"> <span class="glyphicon glyphicon-chevron-down"></span></a>
+  <br>
+   <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="container">
+        ID: {{ Session::get('eq_id') }} <br>
+        Brand: {{ Session::get('brand') }} <br>
+        Model: {{ Session::get('model') }} <br>
+        Details: {{ Session::get('details') }} <br>
+        Serial Number: {{ Session::get('serial_no') }} <br>
+        IMEI or Physical Address: {{ Session::get('imei') }} <br>
+        OR: {{ Session::get('or_no') }} <br>
+        Warranty Start: {{ Session::get('warranty_start') }} <br>
+        Warranty End: {{ Session::get('warranty_end') }} <br>
+      </div>
+    </div>
+
+  @endif
+</div>
+@endif
 
 <table>
 <thead>
@@ -372,34 +429,14 @@
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Brand:</h6>
                                                         <input name="brand" value="{!! $equipment->brand !!}">
                                                     </li>
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Serial Number: </h6>
+                                                        <input name="serial_no" value="{!! $equipment->serial_no !!}">
+                                                    </li>
                                                 </ul>
                                             </div>
 
                                             <div class="col">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Serial Number:</h6>
-                                                        <input name="serial_no" value="{!! $equipment->serial_no !!}" >
-
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Official Receipt No</h6>
-                                                        <input name="or_no" value="{!! $equipment->or_no !!}">
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-
-                                            <div class="col-sm-12">
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase">Details:</h6>
-                                                        <textarea rows="4" cols="50" name="details">{{ $equipment->details }}</textarea>
-
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="col-sm-6">
                                                 <ul class="list-group">
                                                     @if( $equipment->type_id == 3)
                                                     @isset( $equipment->imei_or_macaddress )
@@ -428,9 +465,50 @@
                                                     </li>
                                                     @endempty
                                                     @endif
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Official Receipt No: </h6>
+                                                        <input name="or_no" value="{!! $equipment->or_no !!}">
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Supplier: </h6>
+                                                        <input name="supplier" value="{!! $equipment->supplier !!}">
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                            <div class="col-sm-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase">Details:</h6>
+                                                        <textarea rows="4" cols="50" name="details">{{ $equipment->details }}</textarea>
+
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
+
+                                        <div class="row">
+                                            <div class="col">                                                                                            <ul class="list-group">
+                                                <ul class="list-group"></ul>
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Warranty Start:</h6>
+                                                            <input type="date" name="warranty_start" value="{!! $equipment->warranty_start !!}">
+                                                        </h6>
+                                                    </li>
+                                                <ul>
+                                            </div>
+                                            <div class="col">                                                                                            <ul class="list-group">
+                                                <ul class="list-group"></ul>
+                                                    <li class="list-group-item">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Warranty Start:</h6>
+                                                            <input type="date" name="warranty_end" value="{!! $equipment->warranty_end !!}">
+                                                        </h6>
+                                                    </li>
+                                                <ul>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -1027,7 +1105,7 @@
             <div class="container">
                 <p class="card-title text-dark">Name:</p>
                     <div class="input-group">
-                        <input name="description" type="text" class="form-control" required>
+                        <input name="name" type="text" class="form-control" required>
                     </div>
             <div class="row">
                 @foreach ($subtypes as $subtypes)

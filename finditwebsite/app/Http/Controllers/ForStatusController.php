@@ -71,7 +71,7 @@ class ForStatusController extends BaseController
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
              return \Redirect::to('/loginpage');
        }
- 
+
       $data = [];
       return view ('content/purchaseHistory' , $data);
     }
@@ -98,7 +98,7 @@ class ForStatusController extends BaseController
      $data['decommissioned'] = TblEquipmentStatus::get_decommissioned();
      return view ('content/decommissioned' , $data);
    }
-   
+
    public function showIssuable(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
