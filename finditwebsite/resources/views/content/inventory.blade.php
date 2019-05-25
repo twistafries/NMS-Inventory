@@ -110,7 +110,7 @@
                                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
                                                 <div class="container">
-                                                <table class="table">
+                                                <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
@@ -127,7 +127,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="row">Motherboard</th>
+                                                            <th scope="row"><a href="#mo">Motherboard</a></th>
 
                                                             <td>{{$Motherboard['Available']}}</td>
                                                             <td>{{$Motherboard['Issued']}}</td>
