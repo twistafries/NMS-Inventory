@@ -70,10 +70,10 @@
                                 <div class="container">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
-                                  <a class="nav-link" href="{!! url('/inventory') !!}">Categories</a>
+                                  <a class="nav-link font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link active" href="{!! url('/inventoryAll') !!}">All Items</a>
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">ALL ITEMS</a>
                                 </li>
 
 
