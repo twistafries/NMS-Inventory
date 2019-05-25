@@ -16,7 +16,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
         <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
@@ -69,11 +69,11 @@
 
 
 <!--    PAGE CONTENT -->
-      <div class="container p-lg-2 p-md-1 p-sm-0">
-                        <div class="container">
+      <div class="container-fluid">
+                        <div class="container-fluid">
 
                             <div class="row">
-                                <div class="container">
+                                <div class="container-fluid">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
                                   <a class="nav-link active font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
@@ -88,11 +88,15 @@
                             </div>
 
                         </div>
+                        
+                        <hr>
+                        
+                        <br>
 
-                        <div class="container pt-4">
+                        <div class="container-fluid">
                             <div class="row">
                                 <h4>IT EQUIPMENT</h4>
-                                <div class="container">
+                                <div class="container-fluid">
                                     <!--
                                     <div class="collapse-group">
 
@@ -115,7 +119,7 @@
                                         </div>
                                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
-                                                <div class="container">
+                                                <div class="container-fluid">
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>

@@ -36,7 +36,7 @@
 
 
                 <!-- Page Content -->
-                <div class="container p-lg-0 p-md-1 p-sm-0">
+                <div class="container-fluid">
                     @yield('content')
                 </div>
             </div>

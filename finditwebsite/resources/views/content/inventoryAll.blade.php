@@ -16,7 +16,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
         <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
@@ -68,11 +68,11 @@
 
 
 <!--    PAGE CONTENT -->
-      <div class="container p-lg-2 p-md-1 p-sm-0">
-                        <div class="container">
+      <div class="container-fluid">
+                        <div class="container-fluid">
 
                             <div class="row">
-                                <div class="container">
+                                <div class="container-fluid">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
                                   <a class="nav-link font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
@@ -559,7 +559,6 @@
                                                 <option value="2">Issued</option>
                                                 <option value="3">For Repair</option>
                                                 <option value="4">For Return</option>
-                                                <option value="5">For Disposal</option>
                                                 <option value="6">Pending</option>
                                                 <option value="7">Decomissioned</option>
                                                 @if( $equipment->type_id == 1)
