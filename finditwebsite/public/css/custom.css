@@ -137,6 +137,7 @@ a[data-toggle="collapse"] {
     width: 100%;
     min-height: 100vh;
     transition: all 1.3s;
+    z-index: 9999;
 }
 
 ::-webkit-scrollbar,::-webkit-scrollbar-thumb {
