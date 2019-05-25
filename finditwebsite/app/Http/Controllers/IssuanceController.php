@@ -35,36 +35,43 @@ class IssuanceController extends BaseController {
 
 
 	public function addIssuance(Request $request){
-		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-            return \Redirect::to('/loginpage');
-      	}
-
-	 // dd("Inside");
-			 $data = $request->all();
-			 $data['user_id'] = 2;
-			 $data['status_id'] = 2;
-			 $pieces = explode("-", $data['items']);
-			 if($pieces[0] == "Mobile Device"){
-				 $data['equipment_id']=(int)$pieces[1];
-				TblItEquipment::update_equipment_status($data['equipment_id'],2);
-			 }else{
-				 $data['unit_id']=(int)$pieces[1] ;
-				TblSystemUnits::update_unit_status($data['unit_id'],2);
-			 }
-			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['user_id'])  && isset($data['status_id']) ){
-
-					$id = TblIssuances::add_issuance($data);
-
-					$data['issuance_id'] = $id;
-					$data['action'] = "issued";
-					TblActivityLogs::add_log($data);
-					return redirect()->back()->with('success', ['Issuance Success']);
-			}else{
-
-			 //    return redirect()->back()->with('error', 'Please fill out ALL fields');
-					return redirect()->intended('/content/issuance')->with('error', 'Please fill out ALL fields');
+	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+					return \Redirect::to('/loginpage');
 			}
-	}
+
+ // dd("Inside");
+		 $data = $request->all();
+
+		 $data['status_id'] = 2;
+		 $pieces = explode("-", $data['items']);
+		 if($pieces[0] == "Mobile Device"){
+			 $data['equipment_id']=(int)$pieces[1];
+			TblItEquipment::update_equipment_status($data['equipment_id'],2);
+			$log['data'] = $data['equipment_id'];
+
+		 }else{
+			$data['unit_id']=(int)$pieces[1] ;
+			TblSystemUnits::update_unit_status($data['unit_id'],2);
+			$log['system_unit'] = $data['unit_id'];
+		 }
+		 $issuance = explode(' (', $data['issued_to']);
+		 $data['issued_to'] = preg_replace('/\D/', '', $data['issued_to']);
+		 $data['issuedTo_name']=$issuance[0];
+		if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['status_id']) ){
+
+				TblIssuances::add_issuance($data);
+
+				$log['issued_to'] = $data['issuedTo_name'];
+
+				$log['activity'] = "issued";
+				TblActivityLogs::add_log($log);
+				return redirect()->back()->with('success', ['Issuance Success']);
+		}else{
+
+		 //    return redirect()->back()->with('error', 'Please fill out ALL fields');
+				return redirect()->intended('/content/issuance')->with('error', 'Please fill out ALL fields');
+		}
+}
 
 
 

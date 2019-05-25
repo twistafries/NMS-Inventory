@@ -348,7 +348,7 @@
                                                   <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
                                                   @endforeach
                                                   @foreach ($units as $units)
-                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
+                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
                                                   @endforeach
                                                 </select>
                                                 </datalist>
@@ -514,8 +514,6 @@ $(window).load(function(){
     function DoSubmit(){
       var item = $(equipment).val();
       document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
-      var employee = $(issued_to).val();
-      document.getElementById("issued_to").value = $('#employee [value="' + employee + '"]').data('customvalue');
       return true;
       }
   </script>
