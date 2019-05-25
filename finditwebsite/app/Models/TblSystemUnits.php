@@ -21,6 +21,17 @@ class TblSystemUnits extends Model
         return $query;
     }
 
+    public static function get_total_system_units($params = null){
+        $query = \DB::table('system_units')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
+        -> leftjoin('users' , 'users.id', '=', 'system_units.user_id')
+        -> select('system_units.status_id as status', DB::raw('count(*) as total'))
+        -> groupBy('system_units.status_id')
+        -> orderBy('system_units.status_id' , 'asc')
+        -> get();
+        return $query;
+    }
+
     public static function update_unit_status($id,$status){
       $system_units = TblSystemUnits::find($id);
       $unit_id = TblSystemUnits::find($id);
@@ -40,9 +51,10 @@ class TblSystemUnits extends Model
 
     public static function add_system_unit($params){
       $system_units = new TblSystemUnits;
-      $system_units->description = $params['description'];
+      // $system_units->description = $params['description'];
+      $system_units->name = $params['name'];
       $system_units->user_id = $params['user_id'];
-      
+
       $system_units->status_id = 1;
       try {
         $system_units->save();

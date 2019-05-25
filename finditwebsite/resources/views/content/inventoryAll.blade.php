@@ -35,7 +35,7 @@
     </nav>
 
 <!--
-     Pills Tabs 
+     Pills Tabs
     <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
             <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
@@ -57,11 +57,11 @@
         </li>
         <li class="nav-item text-uppercase">
             <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li> 
+        </li>
     </ul>
 -->
 
-   
+
 <!--    PAGE CONTENT -->
       <div class="container p-lg-2 p-md-1 p-sm-0">
                         <div class="container">
@@ -75,14 +75,14 @@
                                 <li class="nav-item">
                                   <a class="nav-link" href="{!! url('/inventoryAll') !!}">All Items</a>
                                 </li>
-                                
+
 
                               </ul>
                                     </div>
                             </div>
 
                         </div>
-                     
+
 
                     </div>
 <!--    PAGE CONTENT END -->
@@ -162,17 +162,17 @@
     </button>
 </div>
 @endif
-    
+
 @if(Session::has('error'))
 <div class="alert alert-danger" role="alert">
     <h4 class="alert-heading">Error</h4>
   {{ Session::get('error') }}
-  
+
   @if(Session::has('error_info'))
     <a class="btn btn-fail" data-toggle="collapse" href="#errorInfoCollapse" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"> <span>▶</span> </a>
       <!-- <span class="glyphicon glyphicon-chevron-down"></span> -->
-     
-    
+
+
     <div class="collapse multi-collapse" id="errorInfoCollapse">
       <div class="container">
           <small>{{ Session::get('error_info') }}</small>
@@ -192,7 +192,7 @@
 <div class="alert alert-success" role="alert">
     <h4 class="alert-heading">Success</h4>
   {{ Session::get('message') }}
-  
+
   @if(Session::has('data'))
   {{ Session::get('message') }}
   @endif
@@ -212,7 +212,7 @@
         Warranty End: {{ Session::get('warranty_end') }} <br>
       </div>
     </div>
- 
+
   @endif
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -1114,7 +1114,7 @@
             <div class="container">
                 <p class="card-title text-dark">Name:</p>
                     <div class="input-group">
-                        <input name="description" type="text" class="form-control" required>
+                        <input name="name" type="text" class="form-control" required>
                     </div>
             <div class="row">
                 @foreach ($subtypes as $subtypes)
