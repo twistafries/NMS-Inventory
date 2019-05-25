@@ -23,6 +23,19 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
+    public static function get_qty($subtype, $status = null){
+      	if($status!=null) {
+        $query = \DB::table('it_equipment')
+        -> where('it_equipment.subtype_id' , '=' , $subtype)
+        -> where('it_equipment.status_id' , '=' , $status)
+        -> get();
+      } else {
+        $query = \DB::table('it_equipment')
+        -> where('it_equipment.subtype_id' , '=' , $subtype)
+        -> get();
+      }
+        return $query;
+    }
 
     public static function get_all_hardware($params = null){
         $query = \DB::table('it_equipment')
@@ -30,11 +43,22 @@ class TblItEquipment extends Model
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '1')
-        -> orwhere('it_equipment_subtype.type_id' , '=' , '3')
         -> orwhere('it_equipment_subtype.type_id' , '=' , '2')
-        -> orderBy('type' , 'desc')
+        -> orwhere('it_equipment_subtype.type_id' , '=' , '3')
+        -> get();
+        return $query;
+    }
+
+    public static function get_all_software($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> where('it_equipment_subtype.type_id' , '=' , '4')
         -> get();
         return $query;
     }
