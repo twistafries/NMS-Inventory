@@ -125,7 +125,6 @@
                                                             <th scope="col">In-use</th>
                                                             <th scope="col">For Repair</th>
                                                             <th scope="col">For Return</th>
-                                                            <th scope="col">For Disposal</th>
                                                             <th scope="col">Pending</th>
                                                             <th scope="col">Decommissioned</th>
                                                             <th scope="col">Total</th>
@@ -140,7 +139,6 @@
                                                             <td>{{$Motherboard['In-use']}}</td>
                                                             <td>{{$Motherboard['For repair']}}</td>
                                                             <td>{{$Motherboard['For return']}}</td>
-                                                            <td>{{$Motherboard['For disposal']}}</td>
                                                             <td>{{$Motherboard['Pending']}}</td>
                                                             <td>{{$Motherboard['Decommissioned']}}</td>
                                                             <td>{{$total_Motherboard}}</td>
@@ -152,7 +150,6 @@
                                                             <td>{{$CPU['In-use']}}</td>
                                                             <td>{{$CPU['For repair']}}</td>
                                                             <td>{{$CPU['For return']}}</td>
-                                                            <td>{{$CPU['For disposal']}}</td>
                                                             <td>{{$CPU['Pending']}}</td>
                                                             <td>{{$CPU['Decommissioned']}}</td>
                                                             <td>{{$total_CPU}}</td>
@@ -164,7 +161,6 @@
                                                             <td>{{$Storage['In-use']}}</td>
                                                             <td>{{$Storage['For repair']}}</td>
                                                             <td>{{$Storage['For return']}}</td>
-                                                            <td>{{$Storage['For disposal']}}</td>
                                                             <td>{{$Storage['Pending']}}</td>
                                                             <td>{{$Storage['Decommissioned']}}</td>
                                                             <td>{{$total_Storage}}</td>
@@ -176,7 +172,6 @@
                                                             <td>{{$RAM['In-use']}}</td>
                                                             <td>{{$RAM['For repair']}}</td>
                                                             <td>{{$RAM['For return']}}</td>
-                                                            <td>{{$RAM['For disposal']}}</td>
                                                             <td>{{$RAM['Pending']}}</td>
                                                             <td>{{$RAM['Decommissioned']}}</td>
                                                             <td>{{$total_RAM}}</td>
@@ -188,7 +183,6 @@
                                                             <td>{{$GPU['In-use']}}</td>
                                                             <td>{{$GPU['For repair']}}</td>
                                                             <td>{{$GPU['For return']}}</td>
-                                                            <td>{{$GPU['For disposal']}}</td>
                                                             <td>{{$GPU['Pending']}}</td>
                                                             <td>{{$GPU['Decommissioned']}}</td>
                                                             <td>{{$total_GPU}}</td>
@@ -200,7 +194,6 @@
                                                             <td>{{$PowerSupply['In-use']}}</td>
                                                             <td>{{$PowerSupply['For repair']}}</td>
                                                             <td>{{$PowerSupply['For return']}}</td>
-                                                            <td>{{$PowerSupply['For disposal']}}</td>
                                                             <td>{{$PowerSupply['Pending']}}</td>
                                                             <td>{{$PowerSupply['Decommissioned']}}</td>
                                                             <td>{{$total_PowerSupply}}</td>
@@ -212,7 +205,6 @@
                                                             <td>{{$Case['In-use']}}</td>
                                                             <td>{{$Case['For repair']}}</td>
                                                             <td>{{$Case['For return']}}</td>
-                                                            <td>{{$Case['For disposal']}}</td>
                                                             <td>{{$Case['Pending']}}</td>
                                                             <td>{{$Case['Decommissioned']}}</td>
                                                             <td>{{$total_Case}}</td>
@@ -224,7 +216,6 @@
                                                             <td>{{$HeatSinkFan['In-use']}}</td>
                                                             <td>{{$HeatSinkFan['For repair']}}</td>
                                                             <td>{{$HeatSinkFan['For return']}}</td>
-                                                            <td>{{$HeatSinkFan['For disposal']}}</td>
                                                             <td>{{$HeatSinkFan['Pending']}}</td>
                                                             <td>{{$HeatSinkFan['Decommissioned']}}</td>
                                                             <td>{{$total_HeatSinkFan}}</td>
@@ -236,7 +227,6 @@
                                                             <td>{{$Mouse['In-use']}}</td>
                                                             <td>{{$Mouse['For repair']}}</td>
                                                             <td>{{$Mouse['For return']}}</td>
-                                                            <td>{{$Mouse['For disposal']}}</td>
                                                             <td>{{$Mouse['Pending']}}</td>
                                                             <td>{{$Mouse['Decommissioned']}}</td>
                                                             <td>{{$total_Mouse}}</td>
@@ -248,7 +238,6 @@
                                                             <td>{{$Keyboard['In-use']}}</td>
                                                             <td>{{$Keyboard['For repair']}}</td>
                                                             <td>{{$Keyboard['For return']}}</td>
-                                                            <td>{{$Keyboard['For disposal']}}</td>
                                                             <td>{{$Keyboard['Pending']}}</td>
                                                             <td>{{$Keyboard['Decommissioned']}}</td>
                                                             <td>{{$total_Keyboard}}</td>
@@ -260,7 +249,6 @@
                                                             <td>{{$Monitor['In-use']}}</td>
                                                             <td>{{$Monitor['For repair']}}</td>
                                                             <td>{{$Monitor['For return']}}</td>
-                                                            <td>{{$Monitor['For disposal']}}</td>
                                                             <td>{{$Monitor['Pending']}}</td>
                                                             <td>{{$Monitor['Decommissioned']}}</td>
                                                             <td>{{$total_Monitor}}</td>
@@ -272,7 +260,6 @@
                                                             <td>{{$Laptop['In-use']}}</td>
                                                             <td>{{$Laptop['For repair']}}</td>
                                                             <td>{{$Laptop['For return']}}</td>
-                                                            <td>{{$Laptop['For disposal']}}</td>
                                                             <td>{{$Laptop['Pending']}}</td>
                                                             <td>{{$Laptop['Decommissioned']}}</td>
                                                             <td>{{$total_Laptop}}</td>
@@ -284,7 +271,6 @@
                                                             <td>{{$Tablet['In-use']}}</td>
                                                             <td>{{$Tablet['For repair']}}</td>
                                                             <td>{{$Tablet['For return']}}</td>
-                                                            <td>{{$Tablet['For disposal']}}</td>
                                                             <td>{{$Tablet['Pending']}}</td>
                                                             <td>{{$Tablet['Decommissioned']}}</td>
                                                             <td>{{$total_Tablet}}</td>
@@ -296,7 +282,6 @@
                                                             <td>{{$MobilePhone['In-use']}}</td>
                                                             <td>{{$MobilePhone['For repair']}}</td>
                                                             <td>{{$MobilePhone['For return']}}</td>
-                                                            <td>{{$MobilePhone['For disposal']}}</td>
                                                             <td>{{$MobilePhone['Pending']}}</td>
                                                             <td>{{$MobilePhone['Decommissioned']}}</td>
                                                             <td>{{$total_MobilePhone}}</td>
