@@ -1519,46 +1519,47 @@ $('#subtypes').on('keyup change',  function() {
     } );
     $('#types').on('keyup change',  function() {
         table.draw();
-        } );
-        $('#supplier').on('keyup change',  function() {
-            table.draw();
-            } );
-            $('#brand').on('keyup change',  function() {
-                table.draw();
-                } );
-                $('#status').on('keyup change',  function() {
-                    table.draw();
-                    } );
-        } );
-        $(document).ready(function() {
-        var table = $('#myDataTable1').DataTable();
+    } );
+    $('#supplier').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#brand').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#status').on('keyup change',  function() {
+        table.draw();
+    } );
+} );
+
+$(document).ready(function() {
+    var table = $('#myDataTable1').DataTable();
+
+        // Event listener to the two range filtering inputs to redraw on input
+    $('#subtypes').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#types').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#supplier').on('keyup change',  function() {
+    table.draw();
+    } );
+    $('#brand').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#status').on('keyup change',  function() {
+        table.draw();
+    } );
+} );
+
+$(document).ready(function() {
+var table = $('#myDataTable2').DataTable();
 
         // Event listener to the two range filtering inputs to redraw on input
         $('#subtypes').on('keyup change',  function() {
             table.draw();
-            } );
-            $('#types').on('keyup change',  function() {
-                table.draw();
                 } );
-                $('#supplier').on('keyup change',  function() {
-                    table.draw();
-                    } );
-                    $('#brand').on('keyup change',  function() {
-                        table.draw();
-                        } );
-                        $('#status').on('keyup change',  function() {
-                            table.draw();
-                            } );
-                } );
-
-              $(document).ready(function() {
-                var table = $('#myDataTable2').DataTable();
-
-                // Event listener to the two range filtering inputs to redraw on input
-                $('#subtypes').on('keyup change',  function() {
-                    table.draw();
-                    } );
-                    $('#types').on('keyup change',  function() {
+                $('#types').on('keyup change',  function() {
                         table.draw();
                         } );
                         $('#supplier').on('keyup change',  function() {
