@@ -288,7 +288,8 @@
             <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
                 <thead class="thead-dark">
                     <tr>
-                      <th id="checkbox" hidden></th>
+                      
+                        <th> <input type="checkbox" onclick="toggle(this)"></th>
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Types</th>
@@ -306,7 +307,7 @@
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-                        <td hidden><input class="checkbox" type="checkbox"></td>
+                        <td ><input type="checkbox" name="ALL" onclick="ts(this)"> </td>
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -578,7 +579,7 @@
                     </div>
 
                 @endforeach
-</tbody>
+              </tbody>
 
             </table>
         </div>
@@ -1171,7 +1172,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
 
-                <div class="container">
+                <div class="modal-body">
                     <form id="addSystemUnitForm" action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
                         {!! csrf_field() !!}
 
@@ -1686,6 +1687,21 @@ var table = $('#myDataTable2').DataTable();
         });
 
     </script>
+
+    <script type="text/javascript">
+function toggle(source) {
+    checkboxes = document.getElementsByName('ALL');
+    for ( var i in checkboxes)
+        checkboxes[i].checked = source.checked;
+}
+
+function toggle2(source) {
+    checkboxes2 = document.getElementsByName('status');
+    for ( var i in checkboxes2)
+        checkboxes2[i].checked = source.checked;
+}
+
+</script>
 
 
 @stop

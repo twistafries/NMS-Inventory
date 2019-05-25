@@ -94,19 +94,7 @@
             </ul>
         </li> -->
 
-        <li id="associates">
-            <a href="{!! url('/associates') !!}">
-                <i class="fas fa-user-alt"></i>
-                <span class="hide-menu">Associates</span>
-            </a>
-        </li>
 
-        <li id="employees">
-            <a href="{!! url('/employees') !!}">
-                <i class="fas fa-users"></i>
-                <span class="hide-menu">Employees</span>
-            </a>
-        </li>
         @if ($user_type=="admin")
           <li id="associates">
               <a href="{!! url('/associates') !!}">
