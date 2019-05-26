@@ -32,6 +32,11 @@ class TblEmployees extends Model {
 			return $query;
 	}
 
+
+
+
+	
+
 	public static function add_employee($params) {
 		$empl = new TblEmployees;
 		$empl->id = $params['id'];

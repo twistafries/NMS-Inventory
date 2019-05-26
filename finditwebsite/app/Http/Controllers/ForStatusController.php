@@ -55,6 +55,18 @@ class ForStatusController extends BaseController
      return view ('content/repair' , $data);
    }
 
+   
+
+   public function showReturnItems(){
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+             return \Redirect::to('/loginpage');
+       }
+ 
+      $data = [];
+      $data['for_return'] = TblEquipmentStatus::get_for_return();
+      return view ('content/return' , $data);
+    }
+
 
     public function showPurchases(){
      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
@@ -109,7 +121,7 @@ class ForStatusController extends BaseController
      $data['all_mobile_device'] = TblEquipmentStatus::get_available();
      $data['units'] = TblEquipmentStatus::get_available_units();
      $data['all_units'] = TblEquipmentStatus::get_available_units();
-     return view ('content/issue' , $data);
+//      return view ('content/issue' , $data);
    }
 
    public function showEmployees(){

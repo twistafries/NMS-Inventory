@@ -30,13 +30,13 @@
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">ISSUED ITEMS</span>
-            <nav aria-label="breadcrumb">
+          <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issuance') !!}" class="text-dark active" aria-current="page">Issued Items</a>
+                        <a href="{!! url('/issuance') !!}" class="text-warning">Issued Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/issue') !!}" class="text-warning">Employee Issuance</a>
+                        <a href="{!! url('/issue') !!}" class="text-dark active" aria-current="page">Employee Issuance</a>
                     </li>
                 </ol>
             </nav>
@@ -348,7 +348,7 @@
                                                   <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
                                                   @endforeach
                                                   @foreach ($units as $units)
-                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->description}}-{{ $units->id}}">System Unit</option>
+                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
                                                   @endforeach
                                                 </select>
                                                 </datalist>
@@ -514,8 +514,6 @@ $(window).load(function(){
     function DoSubmit(){
       var item = $(equipment).val();
       document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
-      var employee = $(issued_to).val();
-      document.getElementById("issued_to").value = $('#employee [value="' + employee + '"]').data('customvalue');
       return true;
       }
   </script>

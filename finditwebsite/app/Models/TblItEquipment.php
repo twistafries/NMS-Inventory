@@ -159,6 +159,47 @@ class TblItEquipment extends Model
       ->get();
       return $query;
     }
+
+    public static function countByStatusHardware($status){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> where('equipment_status.name', '=', $status)
+        -> where('it_equipment_type.id', '!=', '4')
+        -> get();
+        return $query;
+    }
+
+    public static function countByStatusSoftware($status){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> where('equipment_status.name', '=', $status)
+        -> where('it_equipment_type.id', '=', '4')
+        -> get();
+        return $query;
+    }
+    public static function countByStatusSubtype($status , $subtype){
+        $query = \DB::table('it_equipment as i')
+        -> where('subtype_id', '=', $subtype)
+        -> where('status_id', '=', $status)
+        -> get();
+        return $query;
+
+    }
+    public static function countByStatusType($status , $type){
+        $query = \DB::table('it_equipment as i')
+        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+        ->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
+        -> where('type_id', '=', $subtype)
+        -> where('status_id', '=', $status)
+        -> get();
+        return $query;
+
+    }
+
     public static function add_equipment($params){
         $results = [];
         $results['error'] = 1;
@@ -249,6 +290,12 @@ class TblItEquipment extends Model
 
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
+        
+        if(isset($params['warranty_start']))
+        $it_equipment->warranty_start = $params['warranty_start'];
+        
+        if(isset($params['warranty_end']))
+        $it_equipment->warranty_end = $params['warranty_end'];
 
         $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
 

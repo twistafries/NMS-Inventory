@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"> @stop @section('title') Dashboard @stop @section('content')
 
     <!--  -->
-    <div class="container">
+    <div class="container-fluid">
       <div class="row card-row pl-0">
         <div class="col-4 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="far fa-check-circle"></i> Total Available Units </div>
                 <h4>
-                    <center>10</center>
+                    <center>{{ $totalAvailableUnits }}</center>
                 </h4>
                 <div class="card-body p-0">
 
@@ -35,21 +35,21 @@
                                     <td>
                                         <h6>Available System Units</h6>
                                     </td>
-                                    <td class="text-justify">5</td>
+                                    <td class="text-justify">{{ $available_sys_units }}</td>
                                     <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Available Mobile Phones</h6>
                                     </td>
-                                    <td class="text-justify">5</td>
+                                    <td class="text-justify">{{ $available_phone }}</td>
                                     <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Available Laptops</h6>
                                     </td>
-                                    <td class="text-justify">5</td>
+                                    <td class="text-justify">{{ $available_laptop }}</td>
                                     <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
 
@@ -66,9 +66,11 @@
 
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-tools"></i> Total Items in Repair</div>
+                <div class="card-header text-white mb-3" id="card-header">
+                <i class="fas fa-tools"></i> Total Items in Repair
+                </div>
                 <h4>
-                    <center>10</center>
+                    <center>{{ $totalRepairUnits }}</center>
                 </h4>
                 <div class="card-body p-0">
                     <div class="card p-3">
@@ -81,21 +83,21 @@
                                     <td>
                                         <h6>System Units</h6>
                                     </td>
-                                    <td class="text-justify">5</td>
+                                    <td class="text-justify">{{ $repair_sys_units }}</td>
                                     <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Mobile Phones</h6>
                                     </td>
-                                    <td class="text-justify">5</td>
+                                    <td class="text-justify">{{ $repair_phone }}</td>
                                     <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Laptops</h6>
                                     </td>
-                                    <td class="text-justify">5</td>
+                                    <td class="text-justify">{{ $repair_laptop }}</td>
                                     <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                             </tbody>
@@ -107,7 +109,7 @@
         </div>
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Total Purchases This Month</div>
+                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Purchases This Month</div>
                 <div class="card-body ">
                 </div>
             </div>

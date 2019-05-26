@@ -16,19 +16,25 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
-            <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark active">Items</a>
+                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}"  aria-current="page" class="text-warning">For Repair</a>
+                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
+                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
             </nav>
@@ -63,11 +69,11 @@
 
 
 <!--    PAGE CONTENT -->
-      <div class="container p-lg-2 p-md-1 p-sm-0">
-                        <div class="container">
+      <div class="container-fluid">
+                        <div class="container-fluid">
 
                             <div class="row">
-                                <div class="container">
+                                <div class="container-fluid">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item">
                                   <a class="nav-link active font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
@@ -82,11 +88,15 @@
                             </div>
 
                         </div>
+                        
+                        <hr>
+                        
+                        <br>
 
-                        <div class="container pt-4">
+                        <div class="container-fluid">
                             <div class="row">
-                                <h4>IT EQUIPMENT</h4>
-                                <div class="container">
+                                <h4>IT EQUIPMENT ({{ count($equipment) + count($system_units) }})</h4>
+                                <div class="container-fluid">
                                     <!--
                                     <div class="collapse-group">
 
@@ -104,25 +114,24 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-arrow-circle-down"></i> Hardware </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed "><i class="fas fa-arrow-circle-down"></i> Hardware ({{ count($hardware) }})</a>
                                             </h5>
                                         </div>
                                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                             <div class="panel-body">
-                                                <div class="container">
+                                                <div class="container-fluid">
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
-                                                            <th scope="col">Available</th>
-                                                            <th scope="col">Issued</th>
-                                                            <th scope="col">In-use</th>
-                                                            <th scope="col">For Repair</th>
-                                                            <th scope="col">For Return</th>
-                                                            <th scope="col">For Disposal</th>
-                                                            <th scope="col">Pending</th>
-                                                            <th scope="col">Decommissioned</th>
-                                                            <th scope="col">Total</th>
+                                                            <th scope="col">Available ({{ $countHardwareAvailableStatus  }})</th>
+                                                            <th scope="col">Issued ({{ $countHardwareIssuedStatus  }})</th>
+                                                            <th scope="col">In-use ({{ $countHardwareInUseStatus  }})</th>
+                                                            <th scope="col">For Repair ({{ $countHardwareForRepair  }})</th>
+                                                            <th scope="col">For Return ({{ $countHardwareForReturnStatus  }})</th>
+                                                            <th scope="col">Pending ({{ $countHardwarePendingStatus  }})</th>
+                                                            <th scope="col">Decommissioned ({{ $countHardwareDecommissionedStatus  }})</th>
+                                                            <th scope="col">Total ({{ count($hardware) }})</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -134,7 +143,6 @@
                                                             <td>{{$Motherboard['In-use']}}</td>
                                                             <td>{{$Motherboard['For repair']}}</td>
                                                             <td>{{$Motherboard['For return']}}</td>
-                                                            <td>{{$Motherboard['For disposal']}}</td>
                                                             <td>{{$Motherboard['Pending']}}</td>
                                                             <td>{{$Motherboard['Decommissioned']}}</td>
                                                             <td>{{$total_Motherboard}}</td>
@@ -146,7 +154,6 @@
                                                             <td>{{$CPU['In-use']}}</td>
                                                             <td>{{$CPU['For repair']}}</td>
                                                             <td>{{$CPU['For return']}}</td>
-                                                            <td>{{$CPU['For disposal']}}</td>
                                                             <td>{{$CPU['Pending']}}</td>
                                                             <td>{{$CPU['Decommissioned']}}</td>
                                                             <td>{{$total_CPU}}</td>
@@ -158,7 +165,6 @@
                                                             <td>{{$Storage['In-use']}}</td>
                                                             <td>{{$Storage['For repair']}}</td>
                                                             <td>{{$Storage['For return']}}</td>
-                                                            <td>{{$Storage['For disposal']}}</td>
                                                             <td>{{$Storage['Pending']}}</td>
                                                             <td>{{$Storage['Decommissioned']}}</td>
                                                             <td>{{$total_Storage}}</td>
@@ -170,7 +176,6 @@
                                                             <td>{{$RAM['In-use']}}</td>
                                                             <td>{{$RAM['For repair']}}</td>
                                                             <td>{{$RAM['For return']}}</td>
-                                                            <td>{{$RAM['For disposal']}}</td>
                                                             <td>{{$RAM['Pending']}}</td>
                                                             <td>{{$RAM['Decommissioned']}}</td>
                                                             <td>{{$total_RAM}}</td>
@@ -182,7 +187,6 @@
                                                             <td>{{$GPU['In-use']}}</td>
                                                             <td>{{$GPU['For repair']}}</td>
                                                             <td>{{$GPU['For return']}}</td>
-                                                            <td>{{$GPU['For disposal']}}</td>
                                                             <td>{{$GPU['Pending']}}</td>
                                                             <td>{{$GPU['Decommissioned']}}</td>
                                                             <td>{{$total_GPU}}</td>
@@ -194,7 +198,6 @@
                                                             <td>{{$PowerSupply['In-use']}}</td>
                                                             <td>{{$PowerSupply['For repair']}}</td>
                                                             <td>{{$PowerSupply['For return']}}</td>
-                                                            <td>{{$PowerSupply['For disposal']}}</td>
                                                             <td>{{$PowerSupply['Pending']}}</td>
                                                             <td>{{$PowerSupply['Decommissioned']}}</td>
                                                             <td>{{$total_PowerSupply}}</td>
@@ -206,7 +209,6 @@
                                                             <td>{{$Case['In-use']}}</td>
                                                             <td>{{$Case['For repair']}}</td>
                                                             <td>{{$Case['For return']}}</td>
-                                                            <td>{{$Case['For disposal']}}</td>
                                                             <td>{{$Case['Pending']}}</td>
                                                             <td>{{$Case['Decommissioned']}}</td>
                                                             <td>{{$total_Case}}</td>
@@ -218,7 +220,6 @@
                                                             <td>{{$HeatSinkFan['In-use']}}</td>
                                                             <td>{{$HeatSinkFan['For repair']}}</td>
                                                             <td>{{$HeatSinkFan['For return']}}</td>
-                                                            <td>{{$HeatSinkFan['For disposal']}}</td>
                                                             <td>{{$HeatSinkFan['Pending']}}</td>
                                                             <td>{{$HeatSinkFan['Decommissioned']}}</td>
                                                             <td>{{$total_HeatSinkFan}}</td>
@@ -230,7 +231,6 @@
                                                             <td>{{$Mouse['In-use']}}</td>
                                                             <td>{{$Mouse['For repair']}}</td>
                                                             <td>{{$Mouse['For return']}}</td>
-                                                            <td>{{$Mouse['For disposal']}}</td>
                                                             <td>{{$Mouse['Pending']}}</td>
                                                             <td>{{$Mouse['Decommissioned']}}</td>
                                                             <td>{{$total_Mouse}}</td>
@@ -242,7 +242,6 @@
                                                             <td>{{$Keyboard['In-use']}}</td>
                                                             <td>{{$Keyboard['For repair']}}</td>
                                                             <td>{{$Keyboard['For return']}}</td>
-                                                            <td>{{$Keyboard['For disposal']}}</td>
                                                             <td>{{$Keyboard['Pending']}}</td>
                                                             <td>{{$Keyboard['Decommissioned']}}</td>
                                                             <td>{{$total_Keyboard}}</td>
@@ -254,7 +253,6 @@
                                                             <td>{{$Monitor['In-use']}}</td>
                                                             <td>{{$Monitor['For repair']}}</td>
                                                             <td>{{$Monitor['For return']}}</td>
-                                                            <td>{{$Monitor['For disposal']}}</td>
                                                             <td>{{$Monitor['Pending']}}</td>
                                                             <td>{{$Monitor['Decommissioned']}}</td>
                                                             <td>{{$total_Monitor}}</td>
@@ -266,7 +264,6 @@
                                                             <td>{{$Laptop['In-use']}}</td>
                                                             <td>{{$Laptop['For repair']}}</td>
                                                             <td>{{$Laptop['For return']}}</td>
-                                                            <td>{{$Laptop['For disposal']}}</td>
                                                             <td>{{$Laptop['Pending']}}</td>
                                                             <td>{{$Laptop['Decommissioned']}}</td>
                                                             <td>{{$total_Laptop}}</td>
@@ -278,7 +275,6 @@
                                                             <td>{{$Tablet['In-use']}}</td>
                                                             <td>{{$Tablet['For repair']}}</td>
                                                             <td>{{$Tablet['For return']}}</td>
-                                                            <td>{{$Tablet['For disposal']}}</td>
                                                             <td>{{$Tablet['Pending']}}</td>
                                                             <td>{{$Tablet['Decommissioned']}}</td>
                                                             <td>{{$total_Tablet}}</td>
@@ -290,7 +286,6 @@
                                                             <td>{{$MobilePhone['In-use']}}</td>
                                                             <td>{{$MobilePhone['For repair']}}</td>
                                                             <td>{{$MobilePhone['For return']}}</td>
-                                                            <td>{{$MobilePhone['For disposal']}}</td>
                                                             <td>{{$MobilePhone['Pending']}}</td>
                                                             <td>{{$MobilePhone['Decommissioned']}}</td>
                                                             <td>{{$total_MobilePhone}}</td>
@@ -305,21 +300,19 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> Software </a>
+                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> Software ({{ count($software) }})</a>
                                             </h5>
                                         </div>
                                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                             <div class="panel-body">
-                                                <div class="container">
-                                                 <table class="table">
+                                                <div class="container-fluid">
+                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Type</th>
-                                                            <th scope="col">Available</th>
-                                                            <th scope="col">Installed</th>
-                                                            <th scope="col">Total</th>
-
-
+                                                            <th scope="col">Available ({{ $countSoftwareAvailableStatus }})</th>
+                                                            <th scope="col">Installed ({{ $countSoftwareIssuedStatus }})</th>
+                                                            <th scope="col">Total ({{ count($software) }})</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -351,17 +344,18 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingThree">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> System Units</a>
+                                                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed"><i class="fas fa-arrow-circle-down"></i> 
+                                                System Units ({{ count($system_units) }})</a>
                                             </h5>
                                         </div>
                                         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                             <div class="panel-body">
-                                             <div class="container">
-                                                 <table class="table">
+                                             <div class="container-fluid">
+                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Available</th>
-                                                            <th scope="col">Issued</th>
+                                                            <th scope="col">Available ({{ $available_units }})</th>
+                                                            <th scope="col">Issued ({{ $issued_units }})</th>
                                                             <th scope="col">For Repair</th>
                                                             <th scope="col">Total</th>
 

@@ -59,6 +59,21 @@ class InventoryController extends BaseController
       $data['motherboard'] = [];
       $data['hardware'] = TblItEquipment::get_all_hardware();
       $data['software'] = TblItEquipmentSubtype::get_software();
+      
+      $data['countSoftwareAvailableStatus'] = count(TblItEquipment::countByStatusSoftware('Available'));
+      $data['countSoftwareIssuedStatus'] = count(TblItEquipment::countByStatusSoftware('Issued'));
+
+      $data['countHardwareAvailableStatus'] = count(TblItEquipment::countByStatusHardware('Available'));
+      $data['countHardwareIssuedStatus'] = count(TblItEquipment::countByStatusHardware('Issued'));
+      $data['countHardwareForRepair'] = count(TblItEquipment::countByStatusHardware('For repair'));
+      $data['countHardwareInUseStatus'] = count(TblItEquipment::countByStatusHardware('In-use'));
+      $data['countHardwareForReturnStatus'] = count(TblItEquipment::countByStatusHardware('For return'));
+      $data['countHardwarePendingStatus'] = count(TblItEquipment::countByStatusHardware('Pending'));
+      $data['countHardwareDecommissionedStatus'] = count(TblItEquipment::countByStatusHardware('Decommissioned'));
+      $data['total_equipment'] = count(TblItEquipment::get_all_equipment());
+      // dd($data);
+
+      // dd($data['available_units']);s
       foreach ($data['hardware'] as $hardware) {
         foreach ($data['status'] as $status) {
           $data[str_replace(' ', '', $hardware->subtype_name)][$status->name]=count(TblItEquipment::get_qty($hardware->subtype_id,$status->id));
@@ -114,9 +129,6 @@ class InventoryController extends BaseController
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
-
-
-
 
       return view ('content/inventoryAll' , $data);
     }
@@ -309,9 +321,9 @@ class InventoryController extends BaseController
     }
 
     public function changeStatus(Request $request){
+      // dd($request);
       try{
-         $data = $request->all();
-
+        $data = $request->all();
         $act = [];
       //  $act['equipment_status']=$data['id'];
         TblItEquipment::edit_equipment($data);
