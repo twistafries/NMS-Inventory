@@ -17,13 +17,13 @@ use App\Models\TblActivityLogs;
 use App\Models\TblIssuances;
 
 
-class Reports extends BaseController
+class inventoryReports extends BaseController
 {
-    public function showAllStatus(){
+    public function showAvailable(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
       }
         $data = [];
-        return view ('content/generateReport' , $data);
+        return view ('content/itemAvailabilityReport' , $data);
     }
 }
