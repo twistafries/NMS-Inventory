@@ -18,7 +18,7 @@
       <div class="row card-row pl-0">
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="far fa-check-circle"></i> Total Available Units </div>
+                <div class="card-header text-white mb-3" id="card-header"><i class="far fa-check-circle"></i> Available Issuable Units </div>
                 <h4>
                     <center>{{ $totalAvailableUnits }}</center>
                 </h4>
@@ -70,7 +70,7 @@
                 <i class="fas fa-tools"></i> Total Items in Repair
                 </div>
                 <h4>
-                    <center>{{ $totalRepairUnits }}</center>
+                    <center>{{ $countHardwareForRepair + $repair_sys_units}}</center>
                 </h4>
                 <div class="card-body p-0">
                     <div class="card p-3">
@@ -111,20 +111,62 @@
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Purchases This Month</div>
                 <div class="card-body ">
+                    
                 </div>
+                <div class="card p-3">
+                        <table class="table table-borderless text-justify text-break">
+                            <tbody>
+                                <th>Purchase #</th>
+                                <th>Qty</th>
+                                <th></th>
+                                <tr>
+                                    <td>
+                                        <h6>System Units</h6>
+                                    </td>
+                                    <td class="text-justify">{{ $repair_sys_units }}</td>
+                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>Mobile Phones</h6>
+                                    </td>
+                                    <td class="text-justify">{{ $repair_phone }}</td>
+                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6>Laptops</h6>
+                                    </td>
+                                    <td class="text-justify">{{ $repair_laptop }}</td>
+                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-light btn-sm">View All</button>
+                    </div>
             </div>
         </div>
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-shopping-cart"></i> History of Purchases</div>
+                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-shopping-cart">
+                </i>Components in Stock</div>
                 <div class="card-body ">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Purchase #4</li>
-                        <li class="list-group-item">Purchase #3</li>
-                        <li class="list-group-item">Purchase #2</li>
-                        <li class="list-group-item">Purchase #1</li>
-                        <button type="button" class="btn btn-light btn-sm">View all</button>
-                    </ul>
+                    <h4>
+                        <center>{{ $available_component }}</center>
+                    </h4> 
+                </div>
+                <div class="card p-3">
+                    <table class="table table-borderless text-justify text-break">
+                        <tbody>
+                            @foreach( $available_component_qty as $component )
+                            <tr>
+                                <td>{{ $component->name }}</td>
+                                <td>{{ $component->qty }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-light btn-sm">View All</button>
                 </div>
             </div>
         </div>
@@ -146,6 +188,7 @@
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-exchange-alt"></i> Items Returned</div>
                 <div class="card-body ">
+                    
                 </div>
             </div>
         </div>
