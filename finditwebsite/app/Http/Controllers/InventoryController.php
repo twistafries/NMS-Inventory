@@ -157,6 +157,41 @@ class InventoryController extends BaseController
       return view ('content/inventoryAll' , $data);
     }
 
+    public function showSystemUnit(){
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+      $data = [];
+      $data['equipment'] = TblItEquipment::get_all_equipment();
+      $data['equipments'] = TblItEquipment::get_all_equipment();
+      $data['peripherals'] = TblItEquipment::get_computer_peripherals();
+      // dd($data);
+      $data['component'] = TblItEquipment::get_computer_component();
+      $data['mobile'] = TblItEquipment::get_mobile_devices();
+      $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
+      $data['software'] = TblItEquipment::get_software();
+      $data['system_units'] = TblSystemUnits::get_all_system_units();
+      $data['units'] = TblSystemUnits::get_all_system_units();
+      $data['systemunits'] = TblSystemUnits::get_all_system_units();
+      $data['units_system'] = TblSystemUnits::get_all_system_units();
+      $data['all_units'] = TblSystemUnits::get_all_system_units();
+      $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['parts'] = TblItEquipment::get_computer_component();
+      $data['status'] = TblEquipmentStatus::get_all_status();
+      $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['brands'] = TblItEquipment::get_brand();
+      $data['models'] = TblItEquipment::get_model();
+      $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['unit_parts'] = TblItEquipment::get_all_equipment();
+      $data['pc'] = TblSystemUnits::get_all_system_units();
+
+      return view ('content/systemUnit' , $data);
+    }
 
     public function showInputValues(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){

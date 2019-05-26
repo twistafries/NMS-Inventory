@@ -195,23 +195,47 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
+    
+    public static function countByStatusHardware($status){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> where('equipment_status.name', '=', $status)
+        -> where('it_equipment_type.id', '!=', '4')
+        -> get();
+        return $query;
+    }
     public static function countByStatusSubtype($status , $subtype){
         $query = \DB::table('it_equipment as i')
         -> where('subtype_id', '=', $subtype)
         -> where('status_id', '=', $status)
         -> get();
         return $query;
-
     }
+    
     public static function countByStatusType($status , $type){
         $query = \DB::table('it_equipment as i')
         ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
         ->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
-        -> where('type_id', '=', $subtype)
+        -> where('type_id', '=', $type)
         -> where('status_id', '=', $status)
         -> get();
         return $query;
+    }
 
+    public static function countByStatusTypeQuantity($status , $type){
+        $query = \DB::table('it_equipment as i')
+        -> leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+        -> leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
+        -> select( "i.subtype_id", DB::raw("COUNT(i.subtype_id) as qty") , 'it_equipment_subtype.name')
+        -> where('type_id', '=', $type)
+        -> where('status_id', '=', $status)
+        -> groupBy('i.subtype_id' , 'it_equipment_subtype.name')
+        -> orderBy('qty' , 'desc')
+        -> get();
+        // dd ($query);
+        return $query;
     }
 
     public static function add_equipment($params){

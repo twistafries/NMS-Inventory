@@ -26,140 +26,57 @@
     @stop
 @stop
 
-
 @section('content')
 <div class="container p-lg-3 p-md-1 p-sm-0">
-  <nav class="navbar navbar-light bg-light">
-      <span class="navbar-brand mb-0 h1" style="font-size: 20px;">REPORT SELECTION</span>
-  </nav>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1" style="font-size: 20px;">REPORT SELECTION</span>
+    </nav>
 
-  <div class="card" style="margin-top: 2rem; padding: 3rem;">
-    <div class="row" style="font-size: 16px;">
-      <div class="col-4">
-        <div class="card border-light">
-            <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-warehouse"></i> INVENTORY REPORTS</div>
-            <div class="card-body">
+    <div class="card" style="margin-top: 2rem; padding: 3rem;">
+      <div class="row" style="font-size: 16px;">
+        <div class="col-4">
+          <div class="card border-light">
+              <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-warehouse"></i> INVENTORY REPORTS</div>
+              <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><a href="{!! url('/itemAvailabilityReport') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</a></li>
+                      <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</button></li>
+                      <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</button></li>
+                      <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</button></li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-light">
+              <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-list-alt"></i> PURCHASES AND ORDERSS</div>
+              <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</button></li>
-                    <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</button></li>
-                    <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</button></li>
-                    <li class="list-group-item"><button type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</button></li>
+                  <li class="list-group-item" data-toggle="collapse" data-target="#purchases1" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Purchases</li>
+                    <button type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Completed Orders</button>
+                    <button type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-left: 4rem;">incomplete Orders</button>
+                  </li>
                 </ul>
-            </div>
+              </div>
+          </div>
         </div>
-      </div>
-      <div class="col-4">
-        <div class="card border-light">
-            <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-list-alt"></i> PURCHASES AND ORDERSS</div>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item" data-toggle="collapse" data-target="#purchases1" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Purchases</li>
-                  <button type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Completed Orders</button>
-                  <button type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-left: 4rem;">incomplete Orders</button>
-                </li>
-              </ul>
-            </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card border-light">
-            <div class="card-header text-white" id="card-header"><i class="fas fa-hand-holding"></i> ISSUANCE</div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" data-toggle="collapse" data-target="#latereturns" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Employee Isuuance</li>
-                      <button type="button" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Late Returns</button>
-                    </li>
-                    <li class="list-group-item" data-toggle="collapse" data-target="#itemIssuance" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Item Isuuance</li>
-                      <button type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Issuance per (SU, Mobile Device, Peripherals)</button>
-                      <button type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Most/Least Issued</button>
-                    </li>
-            </div>
+        <div class="col-4">
+          <div class="card border-light">
+              <div class="card-header text-white" id="card-header"><i class="fas fa-hand-holding"></i> ISSUANCE</div>
+              <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item" data-toggle="collapse" data-target="#latereturns" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Employee Isuuance</li>
+                        <button type="button" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Late Returns</button>
+                      </li>
+                      <li class="list-group-item" data-toggle="collapse" data-target="#itemIssuance" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Item Isuuance</li>
+                        <button type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Issuance per (SU, Mobile Device, Peripherals)</button>
+                        <button type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Most/Least Issued</button>
+                      </li>
+              </div>
+          </div>
         </div>
       </div>
     </div>
-
-      <!-- <div class="" style="font-weight: bold; font-size: 16px; margin-left: 1rem; margin-top: 3rem; background: #bdbdbd; padding: 2rem;">FILTER
-        <p style="font-size: 14px; font-weight: bold; color: black; margin-left: 2rem; margin-top: 1rem;">Filter by Date:</p>
-        <div class="row" style="margin-left: 0.1rem;">
-          <div class="col col-2 input-date2" id="month2-operations" style="padding-right: 0!important; padding-left: 2rem; margin-right: 1rem;">
-            <select id="" class="" style="width: 10rem; height: 1.9rem;">
-              <option disabled selected hidden>Month</option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-          </div>
-          <div class="col col-2 input-date2" id="day-operations" style="padding-right: 0!important; padding-left: 2rem; margin-right: 1rem;">
-            <select id="" class="" style="width: 10rem; height: 1.9rem;">
-              <option disabled selected hidden>Day</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="3">4</option>
-              <option value="3">5</option>
-              <option value="3">6</option>
-              <option value="3">7</option>
-              <option value="3">8</option>
-              <option value="3">9</option>
-              <option value="3">10</option>
-              <option value="3">11/option>
-              <option value="3">12</option>
-            </select>
-          </div>
-          <div class="col col-2 input-date2" id="year3-operations" style="padding-right: 0!important; padding-left: 2rem;">
-            <select id="" class="" style="width: 10rem; height: 1.9rem;">
-              <option disabled selected hidden> Year</option>
-              <option value="1">2019</option>
-              <option value="2">2018</option>
-              <option value="3">2017</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row" style="margin-top: 1rem; margin-left: 2rem;">
-            <div class="col-1.5">
-              <div class="checkbox-custom">
-                <label>
-                  <input type="checkbox" name="all" id="cb1" onclick="toggle(this)" style="height: 1rem; width: 1rem;">
-                  <b></b>
-                  <span class="all">Most</span>
-                </label>
-              </div>
-            </div>
-
-            <div class="col-2">
-              <div class="checkbox-custom">
-                <label>
-                  <input type="checkbox" name="all" id="cb1" onclick="toggle(this)" style="height: 1rem; width: 1rem;">
-                  <b></b>
-                  <span class="all">Least</span>
-                </label>
-              </div>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 1rem; margin-left: 2rem;">
-            <div class="col-1.5">
-              <div class="checkbox-custom">
-                <label>
-                  <input type="checkbox" name="all" id="cb1" onclick="toggle(this)" style="height: 1rem; width: 1rem;">
-                  <b></b>
-                  <span class="all">Alphabetical</span>
-                </label>
-              </div>
-            </div>
-        </div>
-      </div> -->
-  </div>
 </div>
 @stop
 
@@ -215,102 +132,103 @@
 
         <!--graph-->
         <script>
-          Highcharts.chart('container2', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'Inventory Concerns Report in January, 2019'
-          },
-          xAxis: {
-              categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-              crosshair: true
-          },
-          yAxis: {
-              min: 0,
-              title: {
-                  text: 'Quantity'
-              }
-          },
-          tooltip: {
-              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} items</b></td></tr>',
-              footerFormat: '</table>',
-              shared: true,
-              useHTML: true
-          },
-          plotOptions: {
-              column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-              }
-          },
-          series: [{
-              name: 'For Repair',
-              data: [{{$JanuaryRepair->count()}}, {{$FebruaryRepair->count()}}, {{$MarchRepair->count()}}, {{$AprilRepair->count()}}, {{$MayRepair->count()}}, {{$JuneRepair->count()}}, {{$JulyRepair->count()}}, {{$AugustRepair->count()}}, {{$SeptemberRepair->count()}}, {{$OctoberRepair->count()}}, {{$NovemberRepair->count()}}, {{$DecemberRepair->count()}}]
+        Highcharts.chart('container2', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Inventory Concerns Report in January, 2019'
+        },
+        xAxis: {
+            categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Quantity'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' + '<td style="padding:0"><b>{point.y:.1f} items</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'For Repair',
+            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
 
-          }, {
-              name: 'To be Returned',
-              data: [{{$JanuaryReturn->count()}}, {{$FebruaryReturn->count()}}, {{$MarchReturn->count()}}, {{$AprilReturn->count()}}, {{$MayReturn->count()}}, {{$JuneReturn->count()}}, {{$JulyReturn->count()}}, {{$AugustReturn->count()}}, {{$SeptemberReturn->count()}}, {{$OctoberReturn->count()}}, {{$NovemberReturn->count()}}, {{$DecemberReturn->count()}}]
+        }, {
+            name: 'To be Returned',
+            data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
 
-          }, {
-              name: 'Decommissioned',
-              data: [{{$JanuaryDecom->count()}}, {{$FebruaryDecom->count()}}, {{$MarchRDecom->count()}}, {{$AprilDecom->count()}}, {{$MayDecom->count()}}, {{$JuneDecom->count()}}, {{$JulyDecom->count()}}, {{$AugustDecom->count()}}, {{$SeptemberDecom->count()}}, {{$OctoberDecom->count()}}, {{$NovemberDecom->count()}}, {{$DecemberDecom->count()}}]
+        }, {
+            name: 'Decommissioned',
+            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
-          }, {
-              name: 'Pending',
-              data: [{{$JanuaryPending->count()}}, {{$FebruaryPending->count()}}, {{$MarchPending->count()}}, {{$AprilPending->count()}}, {{$MayPending->count()}}, {{$JunePending->count()}}, {{$JulyPending->count()}}, {{$AugustPending->count()}}, {{$SeptemberPending->count()}}, {{$OctoberPending->count()}}, {{$NovemberPending->count()}}, {{$DecemberPending->count()}}]
+        }, {
+            name: 'Pending',
+            data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
 
-             }]
-          });
-        </script>
-        <script>
-          Highcharts.chart('container3', {
-          chart: {
-              plotBackgroundColor: null,
-              plotBorderWidth: null,
-              plotShadow: false,
-              type: 'pie'
-          },
-          title: {
-              text: 'Inventory Concerns Report in January, 2019'
-          },
-          tooltip: {
-              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-          },
-          plotOptions: {
-              pie: {
-                  allowPointSelect: true,
-                  cursor: 'pointer',
-                  dataLabels: {
-                      enabled: true,
-                      format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                      style: {
-                          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                      }
-                  }
-              }
-          },
-          series: [{
-              name: 'Inventory Concerns',
-              colorByPoint: true,
-              data: [{
-                  name: 'For Repair',
-                  y: {{$ThisMonthRepair->count()}},
-                  sliced: true,
-                  selected: true
-              }, {
-                  name: 'To be Returned',
-                  y: {{$ThisMonthReturn->count()}}
-              }, {
-                  name: 'Decommissioned',
-                  y: {{$ThisMonthDecom->count()}}
-              }, {
-                  name: 'Pending',
-                  y: {{$ThisMonthPending->count()}}
-              }]
+           }]
+        });
+      </script>
+
+      <script>
+        Highcharts.chart('container3', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Inventory Concerns Report in January, 2019'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Inventory Concerns',
+            colorByPoint: true,
+            data: [{
+                name: 'For Repair',
+                y: 41.41,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'To be Returned',
+                y: 15.85
+            }, {
+                name: 'Decommissioned',
+                y: 21.84
+            }, {
+                name: 'Pending',
+                y: 9.67
             }]
-          });
+          }]
+        });
         </script>
         <!--Table select-->
         <script>

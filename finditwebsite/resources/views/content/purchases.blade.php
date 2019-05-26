@@ -108,10 +108,9 @@
       </button>
     </div>
 
-      <nav class="navbar navbar-light bg-light" style="margin-top: 1rem;">
-          <span class="navbar-brand mb-0 h1" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Purchase #1</span>
+      <nav class="navbar" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: rgba(0,0,0,0.3); color: white;">
+          <span class="navbar-brand mb-0 h1">Purchase #1</span>
       </nav>
-
 
       <!-- purchases modal -->
       <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
@@ -260,7 +259,7 @@
       </div>
 
 
-    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-content collapse" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
         <table class="table">
           <thead class="thead-dark">
