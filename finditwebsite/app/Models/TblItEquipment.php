@@ -23,6 +23,20 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
+
+    public static function get_IT_equipment($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> where('it_equipment_subtype.type_id' , '!=' , '4')
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
+
     public static function get_qty($subtype, $status = null){
       	if($status!=null) {
         $query = \DB::table('it_equipment')
@@ -68,7 +82,7 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '2')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -93,7 +107,7 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname')
         -> where('it_equipment_subtype.type_id' , '=' , '3')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -160,13 +174,13 @@ class TblItEquipment extends Model
       return $query;
     }
 
-    public static function countByStatusHardware($status){
+    public static function countByStatus($status,$id){
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> where('equipment_status.name', '=', $status)
-        -> where('it_equipment_type.id', '!=', '4')
+        -> where('it_equipment_type.id', '=', $id)
         -> get();
         return $query;
     }
@@ -290,10 +304,10 @@ class TblItEquipment extends Model
 
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
-        
+
         if(isset($params['warranty_start']))
         $it_equipment->warranty_start = $params['warranty_start'];
-        
+
         if(isset($params['warranty_end']))
         $it_equipment->warranty_end = $params['warranty_end'];
 

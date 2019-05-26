@@ -91,14 +91,14 @@
                             </div>
 
                         </div>
-                        
+
                         <hr>
-                        
+
                         <br>
 
                         <div class="container-fluid">
                             <div class="row">
-                                <h4>IT EQUIPMENT ({{ count($equipment) + count($system_units) }})</h4>
+                                <h4>IT EQUIPMENT ({{ $total_equipment + count($system_units) }})</h4>
                                 <div class="container-fluid">
                                     <!--
                                     <div class="collapse-group">
@@ -117,7 +117,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingOne">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> Computer Component ({{ count($hardware) }})</a>
+                                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> Computer Component ({{$total_component}})</a>
     </h5>
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -127,14 +127,14 @@
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
-                            <th scope="col">Available ({{ $countHardwareAvailableStatus }})</th>
-                            <th scope="col">Issued ({{ $countHardwareIssuedStatus }})</th>
-                            <th scope="col">In-use ({{ $countHardwareInUseStatus }})</th>
-                            <th scope="col">For Repair ({{ $countHardwareForRepair }})</th>
-                            <th scope="col">For Return ({{ $countHardwareForReturnStatus }})</th>
-                            <th scope="col">Pending ({{ $countHardwarePendingStatus }})</th>
-                            <th scope="col">Decommissioned ({{ $countHardwareDecommissionedStatus }})</th>
-                            <th scope="col">Total ({{ count($hardware) }})</th>
+                            <th scope="col">Available ({{ $countComponentAvailableStatus }})</th>
+                            <th scope="col">Issued ({{ $countComponentIssuedStatus }})</th>
+                            <th scope="col">In-use ({{ $countComponentInUseStatus }})</th>
+                            <th scope="col">For Repair ({{ $countComponentForRepair }})</th>
+                            <th scope="col">For Return ({{ $countComponentForReturnStatus }})</th>
+                            <th scope="col">Pending ({{ $countComponentPendingStatus }})</th>
+                            <th scope="col">Decommissioned ({{ $countComponentDecommissionedStatus }})</th>
+                            <th scope="col">Total ({{$total_component}})</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -245,14 +245,14 @@
         </div>
     </div>
     </div>
-                                    
-                                    
-                                    
-                                    
+
+
+
+
        <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h5 class="panel-title">
-                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2"><i class="fas fa-arrow-circle-down"></i> Computer Peripheral ({{ count($hardware) }})</a>
+                                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2"><i class="fas fa-arrow-circle-down"></i> Computer Peripheral ({{$total_peripherals}})</a>
     </h5>
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -262,18 +262,18 @@
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
-                            <th scope="col">Available ({{ $countHardwareAvailableStatus }})</th>
-                            <th scope="col">Issued ({{ $countHardwareIssuedStatus }})</th>
-                            <th scope="col">In-use ({{ $countHardwareInUseStatus }})</th>
-                            <th scope="col">For Repair ({{ $countHardwareForRepair }})</th>
-                            <th scope="col">For Return ({{ $countHardwareForReturnStatus }})</th>
-                            <th scope="col">Pending ({{ $countHardwarePendingStatus }})</th>
-                            <th scope="col">Decommissioned ({{ $countHardwareDecommissionedStatus }})</th>
-                            <th scope="col">Total ({{ count($hardware) }})</th>
+                            <th scope="col">Available ({{ $countPeripheralAvailableStatus }})</th>
+                            <th scope="col">Issued ({{ $countPeripheralIssuedStatus }})</th>
+                            <th scope="col">In-use ({{ $countPeripheralInUseStatus }})</th>
+                            <th scope="col">For Repair ({{ $countPeripheralForRepair }})</th>
+                            <th scope="col">For Return ({{ $countPeripheralForReturnStatus }})</th>
+                            <th scope="col">Pending ({{ $countPeripheralPendingStatus }})</th>
+                            <th scope="col">Decommissioned ({{ $countPeripheralDecommissionedStatus }})</th>
+                            <th scope="col">Total ({{$total_peripherals}})</th>
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                         <tr>
                             <th scope="row">Mouse</th>
                             <td>{{$Mouse['Available']}}</td>
@@ -314,12 +314,12 @@
         </div>
     </div>
     </div>
-               
-                                    
+
+
   <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingThree">
             <h5 class="panel-title">
-              <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed" id="collapsedown3"><i class="fas fa-arrow-circle-down"></i> Mobile Device ({{ count($hardware) }})</a>
+              <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed" id="collapsedown3"><i class="fas fa-arrow-circle-down"></i> Mobile Device ({{$total_mobile}})</a>
     </h5>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -329,19 +329,19 @@
                     <thead>
                         <tr>
                             <th scope="col">Type</th>
-                            <th scope="col">Available ({{ $countHardwareAvailableStatus }})</th>
-                            <th scope="col">Issued ({{ $countHardwareIssuedStatus }})</th>
-                            <th scope="col">In-use ({{ $countHardwareInUseStatus }})</th>
-                            <th scope="col">For Repair ({{ $countHardwareForRepair }})</th>
-                            <th scope="col">For Return ({{ $countHardwareForReturnStatus }})</th>
-                            <th scope="col">Pending ({{ $countHardwarePendingStatus }})</th>
-                            <th scope="col">Decommissioned ({{ $countHardwareDecommissionedStatus }})</th>
-                            <th scope="col">Total ({{ count($hardware) }})</th>
+                            <th scope="col">Available ({{ $countMobileAvailableStatus }})</th>
+                            <th scope="col">Issued ({{ $countMobileIssuedStatus }})</th>
+                            <th scope="col">In-use ({{ $countMobileInUseStatus }})</th>
+                            <th scope="col">For Repair ({{ $countMobileForRepair }})</th>
+                            <th scope="col">For Return ({{ $countMobileForReturnStatus }})</th>
+                            <th scope="col">Pending ({{ $countMobilePendingStatus }})</th>
+                            <th scope="col">Decommissioned ({{ $countMobileDecommissionedStatus }})</th>
+                            <th scope="col">Total ({{$total_mobile}})</th>
                         </tr>
                     </thead>
                     <tbody>
-                       
-                        
+
+
                         <tr>
                             <th scope="row">Laptop</th>
                             <td>{{$Laptop['Available']}}</td>
@@ -381,14 +381,14 @@
         </div>
     </div>
     </div>
-                                    
-                                    
-   
+
+
+
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingFour">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="trigger collapsed" id="collapsedown4"><i class="fas fa-arrow-circle-down"></i> 
-                                                System Units ({{ count($system_units) }})</a>
+                <a role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="trigger collapsed" id="collapsedown4"><i class="fas fa-arrow-circle-down"></i>
+                                                System Units ({{$total_pc}})</a>
             </h5>
         </div>
         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
@@ -397,9 +397,12 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Available ({{ $available_units }})</th>
-                                <th scope="col">Issued ({{ $issued_units }})</th>
+                                <th scope="col">Available</th>
+                                <th scope="col">Issued</th>
                                 <th scope="col">For Repair</th>
+                                <th scope="col">For Return</th>
+                                <th scope="col">Pending</th>
+                                <th scope="col">Decommissioned</th>
                                 <th scope="col">Total</th>
 
 
@@ -409,13 +412,11 @@
                             <tr>
 
                                 <td>{{$available_units}}</td>
-
-
                                 <td>{{$issued_units}}</td>
-
-
                                 <td>{{$forRepair_units}}</td>
-
+                                <td>{{$forReturn_units}}</td>
+                                <td>{{$pending_units}}</td>
+                                <td>{{$decommissioned_units}}</td>
                                 <td> {{$total_pc}}</td>
                             </tr>
 
@@ -796,7 +797,7 @@
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
-        
+
         $('#collapsedown4').click(function() {
             $('#collapseFour').toggle('1000');
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
