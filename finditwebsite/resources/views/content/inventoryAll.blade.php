@@ -125,7 +125,7 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
                       <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li>
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
                     </ul>
               </div>
@@ -286,12 +286,13 @@
                         <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($equipment as $equipment)
-                    <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
+                    <tr >
                         <td hidden><input class="checkbox" type="checkbox"></td>
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
@@ -304,6 +305,7 @@
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
+                        <td> <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">View Details</button> </td>
                     </tr>
 
                     <!-- View Details All Modal -->
@@ -394,9 +396,10 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>   
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Decommisioned</button>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -527,7 +530,7 @@
                             {!! csrf_field() !!}
                             <input type="hidden" name="id" value="{!! $equipment->id !!}">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+                                <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
                                     <h5 class="modal-title">Change Status</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -583,7 +586,7 @@
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
-                      <th>Added By</>
+                      <th>Added By</th>
                       <th>Date Added</th>
                       <th>Status</th>
                     </tr>
@@ -725,7 +728,7 @@
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
-                      <th>Added By</>
+                      <th>Added By</th>
                       <th>Date Added</th>
                       <th>Status</th>
                     </tr>
@@ -768,7 +771,7 @@
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
-                      <th>Added By</>
+                      <th>Added By</th>
                       <th>Date Added</th>
                       <th>Status</th>
                     </tr>
@@ -812,7 +815,7 @@
               <th>Details</th>
               <th>Serial No</th>
               <th>OR No</th>
-              <th>Added By</>
+              <th>Added By</th>
               <th>Date Added</th>
               <th>Status</th>
             </tr>
@@ -1656,6 +1659,24 @@ $('#subtypes').on('keyup change',  function() {
         });
 
     </script>
-
+<script>
+    $(document).ready(function()){
+                      var table = $('#myDataTable').DataTable({
+        'columnDefs':[
+            {
+                'targets':0,
+                'checkboxes':{
+                    'selectRow': true
+                }
+            }
+        ],
+        'select':{
+            'style': 'multi'
+        },
+        'order': [[1,'asc']]
+    });
+                      }
+        
+</script>
 
 @stop
