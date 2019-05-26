@@ -56,38 +56,60 @@ class InventoryController extends BaseController
       $data['available_units']  = count(TblSystemUnits::get_total_system_units(1));
       $data['issued_units']  = count(TblSystemUnits::get_total_system_units(2));
       $data['forRepair_units']  = count(TblSystemUnits::get_total_system_units(3));
-      $data['motherboard'] = [];
-      $data['hardware'] = TblItEquipment::get_all_hardware();
-      $data['software'] = TblItEquipmentSubtype::get_software();
-      
-      $data['countSoftwareAvailableStatus'] = count(TblItEquipment::countByStatusSoftware('Available'));
-      $data['countSoftwareIssuedStatus'] = count(TblItEquipment::countByStatusSoftware('Issued'));
+      $data['forReturn_units']  = count(TblSystemUnits::get_total_system_units(4));
+      $data['pending_units']  = count(TblSystemUnits::get_total_system_units(6));
+      $data['decommissioned_units']  = count(TblSystemUnits::get_total_system_units(7));
 
-      $data['countHardwareAvailableStatus'] = count(TblItEquipment::countByStatusHardware('Available'));
-      $data['countHardwareIssuedStatus'] = count(TblItEquipment::countByStatusHardware('Issued'));
-      $data['countHardwareForRepair'] = count(TblItEquipment::countByStatusHardware('For repair'));
-      $data['countHardwareInUseStatus'] = count(TblItEquipment::countByStatusHardware('In-use'));
-      $data['countHardwareForReturnStatus'] = count(TblItEquipment::countByStatusHardware('For return'));
-      $data['countHardwarePendingStatus'] = count(TblItEquipment::countByStatusHardware('Pending'));
-      $data['countHardwareDecommissionedStatus'] = count(TblItEquipment::countByStatusHardware('Decommissioned'));
-      $data['total_equipment'] = count(TblItEquipment::get_all_equipment());
+      $data['countComponentAvailableStatus'] = count(TblItEquipment::countByStatus('Available',1));
+      $data['countComponentIssuedStatus'] = count(TblItEquipment::countByStatus('Issued',1));
+      $data['countComponentForRepair'] = count(TblItEquipment::countByStatus('For repair',1));
+      $data['countComponentInUseStatus'] = count(TblItEquipment::countByStatus('In-use',1));
+      $data['countComponentForReturnStatus'] = count(TblItEquipment::countByStatus('For return',1));
+      $data['countComponentPendingStatus'] = count(TblItEquipment::countByStatus('Pending',1));
+      $data['countComponentDecommissionedStatus'] = count(TblItEquipment::countByStatus('Decommissioned',1));
+
+      $data['countPeripheralAvailableStatus'] = count(TblItEquipment::countByStatus('Available',2));
+      $data['countPeripheralIssuedStatus'] = count(TblItEquipment::countByStatus('Issued',2));
+      $data['countPeripheralForRepair'] = count(TblItEquipment::countByStatus('For repair',2));
+      $data['countPeripheralInUseStatus'] = count(TblItEquipment::countByStatus('In-use',2));
+      $data['countPeripheralForReturnStatus'] = count(TblItEquipment::countByStatus('For return',2));
+      $data['countPeripheralPendingStatus'] = count(TblItEquipment::countByStatus('Pending',2));
+      $data['countPeripheralDecommissionedStatus'] = count(TblItEquipment::countByStatus('Decommissioned',2));
+
+      $data['countMobileAvailableStatus'] = count(TblItEquipment::countByStatus('Available',3));
+      $data['countMobileIssuedStatus'] = count(TblItEquipment::countByStatus('Issued',3));
+      $data['countMobileForRepair'] = count(TblItEquipment::countByStatus('For repair',3));
+      $data['countMobileInUseStatus'] = count(TblItEquipment::countByStatus('In-use',3));
+      $data['countMobileForReturnStatus'] = count(TblItEquipment::countByStatus('For return',3));
+      $data['countMobilePendingStatus'] = count(TblItEquipment::countByStatus('Pending',3));
+      $data['countMobileDecommissionedStatus'] = count(TblItEquipment::countByStatus('Decommissioned',3));
+      $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
       // dd($data);
 
       // dd($data['available_units']);s
-      foreach ($data['hardware'] as $hardware) {
+      foreach ($data['component'] as $component) {
         foreach ($data['status'] as $status) {
-          $data[str_replace(' ', '', $hardware->subtype_name)][$status->name]=count(TblItEquipment::get_qty($hardware->subtype_id,$status->id));
+          $data[str_replace(' ', '', $component->subtype_name)][$status->name]=count(TblItEquipment::get_qty($component->subtype_id,$status->id));
         }
-        $data['total_'.str_replace(' ', '', $hardware->subtype_name)]=count(TblItEquipment::get_qty($hardware->subtype_id));
+        $data['total_'.str_replace(' ', '', $component->subtype_name)]=count(TblItEquipment::get_qty($component->subtype_id));
       }
-      foreach ($data['software'] as $software) {
+      foreach ($data['mobile'] as $mobile) {
         foreach ($data['status'] as $status) {
-          $data[str_replace(' ', '', $software->name)][$status->name]=count(TblItEquipment::get_qty($software->id,$status->id));
+          $data[str_replace(' ', '', $mobile->subtype_name)][$status->name]=count(TblItEquipment::get_qty($mobile->subtype_id,$status->id));
         }
-        $data['total_'.str_replace(' ', '', $software->name)]=count(TblItEquipment::get_qty($software->id));
+        $data['total_'.str_replace(' ', '', $mobile->subtype_name)]=count(TblItEquipment::get_qty($mobile->subtype_id));
+      }
+      foreach ($data['peripherals'] as $peripherals) {
+        foreach ($data['status'] as $status) {
+          $data[str_replace(' ', '', $peripherals->subtype_name)][$status->name]=count(TblItEquipment::get_qty($peripherals->subtype_id,$status->id));
+        }
+        $data['total_'.str_replace(' ', '', $peripherals->subtype_name)]=count(TblItEquipment::get_qty($peripherals->subtype_id));
       }
 
 
+      $data['total_component']=count($data['component']);
+      $data['total_mobile']=count($data['mobile']);
+      $data['total_peripherals']=count($data['peripherals']);
       $data['total_pc']=count($data['pc']);
       // $data['hardware'] = TblSystemUnits::get_all_hardware();
        // dd($data['software']);
@@ -133,6 +155,41 @@ class InventoryController extends BaseController
       return view ('content/inventoryAll' , $data);
     }
 
+    public function showSystemUnit(){
+      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+      $data = [];
+      $data['equipment'] = TblItEquipment::get_all_equipment();
+      $data['equipments'] = TblItEquipment::get_all_equipment();
+      $data['peripherals'] = TblItEquipment::get_computer_peripherals();
+      // dd($data);
+      $data['component'] = TblItEquipment::get_computer_component();
+      $data['mobile'] = TblItEquipment::get_mobile_devices();
+      $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
+      $data['software'] = TblItEquipment::get_software();
+      $data['system_units'] = TblSystemUnits::get_all_system_units();
+      $data['units'] = TblSystemUnits::get_all_system_units();
+      $data['systemunits'] = TblSystemUnits::get_all_system_units();
+      $data['units_system'] = TblSystemUnits::get_all_system_units();
+      $data['all_units'] = TblSystemUnits::get_all_system_units();
+      $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['parts'] = TblItEquipment::get_computer_component();
+      $data['status'] = TblEquipmentStatus::get_all_status();
+      $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['brands'] = TblItEquipment::get_brand();
+      $data['models'] = TblItEquipment::get_model();
+      $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
+      $data['unit_parts'] = TblItEquipment::get_all_equipment();
+      $data['pc'] = TblSystemUnits::get_all_system_units();
+
+      return view ('content/systemUnit' , $data);
+    }
 
     public function showInputValues(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
