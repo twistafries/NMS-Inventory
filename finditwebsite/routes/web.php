@@ -57,6 +57,8 @@ Route::get('/reportpage', 'Reports@showAllStatus');
 
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/inventoryAll', 'InventoryController@showAllItemsInventory');
+Route::get('/systemUnit', 'InventoryController@showSystemUnit');
+
 Route::get('/associates', 'AssociateController@showAllAssociate');
 Route::post('/deactivate', 'AssociateController@update_associate_status');
 Route::get('/issuableItems', 'ForStatusController@showIssuable');
