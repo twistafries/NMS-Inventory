@@ -80,6 +80,9 @@
                                 <li class="nav-item">
                                   <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">ALL ITEMS</a>
                                 </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
+                                </li>
 
 
                               </ul>
@@ -95,19 +98,17 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <div class="btn-group" role="group" aria-label="Basic example">
-<!--
-                 Hide/Unhide Column
-                <button type="button" class="btn hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
-                    aria-expanded="false">
+                
+                <button type="button" class="btn btn-primary rounded-pill hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
+                    aria-expanded="false" style="border-radius:25px;">
                     <a href="#" data-toggle="tooltip" title="Hide/Unhide">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/view.png') }}">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
                     </a>
                 </button>
--->
                 <!-- Multiple Select -->
                 <button type="button" class="btn" id="multiple-select" onclick="enable()">
                     <a href="#" data-toggle="tooltip" title="Multiple Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"> Multiple Select
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"> Bulk Add
                     </a>
                 </button>
 
@@ -124,7 +125,7 @@
                 <div class="dropdown">
                   <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
+                          <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
                       </a>
                   </button>
                     <ul class="dropdown-menu">
@@ -289,7 +290,7 @@
                 <thead class="thead-dark">
                     <tr>
 
-                        <th> <input type="checkbox" onclick="toggle(this)"></th>
+                       
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Types</th>
@@ -301,14 +302,15 @@
                         <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
-                        <th></th>
+                     
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-                        <td ><input type="checkbox" name="ALL" onclick="ts(this)"> </td>
+                 
+                        
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -320,7 +322,7 @@
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
-                        <td> <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">View Details</button> </td>
+                       
                     </tr>
 
                     <!-- View Details All Modal -->
