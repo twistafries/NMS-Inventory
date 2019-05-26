@@ -93,12 +93,14 @@ class InventoryController extends BaseController
         }
         $data['total_'.str_replace(' ', '', $component->subtype_name)]=count(TblItEquipment::get_qty($component->subtype_id));
       }
+
       foreach ($data['mobile'] as $mobile) {
         foreach ($data['status'] as $status) {
           $data[str_replace(' ', '', $mobile->subtype_name)][$status->name]=count(TblItEquipment::get_qty($mobile->subtype_id,$status->id));
         }
         $data['total_'.str_replace(' ', '', $mobile->subtype_name)]=count(TblItEquipment::get_qty($mobile->subtype_id));
       }
+
       foreach ($data['peripherals'] as $peripherals) {
         foreach ($data['status'] as $status) {
           $data[str_replace(' ', '', $peripherals->subtype_name)][$status->name]=count(TblItEquipment::get_qty($peripherals->subtype_id,$status->id));

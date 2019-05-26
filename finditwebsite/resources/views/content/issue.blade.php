@@ -23,7 +23,7 @@
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    <i class="fas fa-chart-line">Issue
+    <i class="fas fa-chart-line">Issuance
     @stop
 @stop
 
