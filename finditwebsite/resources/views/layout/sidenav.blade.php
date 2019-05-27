@@ -116,8 +116,8 @@
               </a>
           </li>
 
-          <li id="report">
-              <a href="{!! url('/reportpage') !!}">
+          <li id="generateReport">
+              <a href="{!! url('/generateReportPage') !!}">
                   <i class="fas fa-file-export"></i>
                   <span class="hide-menu">Generate Reports</span>
               </a>

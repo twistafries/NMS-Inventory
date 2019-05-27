@@ -29,8 +29,8 @@ Route::get('/dashboard', function () {
     return view('content/dashboard');
 });
 
-Route::get('/reportpage', function () {
-    return view('content/report');
+Route::get('/generateReportPage', function () {
+    return view('content/generateReport');
 });
 
 
@@ -52,8 +52,8 @@ Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::get('/purchases', 'Purchases@showAllStatus');
 
 Route::get('/viewPurchases', 'Purchases@viewPurchases');
-Route::get('/reportpage', 'Reports@showAllStatus');
-
+Route::get('/generateReportPage', 'Reports@showAllStatus');
+Route::get('/itemAvailabilityReport', 'inventoryReports@showAvailable');
 
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/inventoryAll', 'InventoryController@showAllItemsInventory');
