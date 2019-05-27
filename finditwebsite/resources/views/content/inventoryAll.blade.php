@@ -143,11 +143,13 @@
                  Delete 
 -->
                 <div class="dropdown">
+<!--
                   <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
+-->
               </div>
 
 
@@ -232,7 +234,8 @@
 </div>
 @endif
 
-<table>
+
+<table style="margin: auto;width: 100%; text-align: right; ">
 <thead>
   <tr>
     <th>
@@ -282,11 +285,13 @@
 </th>
 <th></th><th></th>
   <th>
-    <button class="btn btn-primary text-uppercase" type="button" onclick="reset()">Reset</button>
+    <button class="btn btn-secondary text-uppercase p-2" type="button" onclick="reset()">Reset</button>
 </th>
 </thead>
 <tr height="10px"></tr>
 </table>
+
+    
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
         <!-- All Items in the Inventory -->
@@ -420,7 +425,8 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
+                                     <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Issue</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Decommissioned</button>
                                     <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Delete</button>
                                 </div>
