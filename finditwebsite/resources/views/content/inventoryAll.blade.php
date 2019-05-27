@@ -96,32 +96,37 @@
 <!--    PAGE CONTENT END -->
      <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
-        <div class="p-2">
+        <div class="p-4">
             <div class="btn-group" role="group" aria-label="Basic example">
                 
-                <button type="button" class="btn btn-primary rounded-pill hide-column" id="hideColumn" data-toggle="hideColumn" aria-haspopup="true"
-                    aria-expanded="false" style="border-radius:25px;">
-                    <a href="#" data-toggle="tooltip" title="Hide/Unhide">
+                <button type="button" class="btn btn-outline-dark rounded-pill hide-column" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Single Add">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
                     </a>
                 </button>
-                <!-- Multiple Select -->
-                <button type="button" class="btn" id="multiple-select" onclick="enable()">
-                    <a href="#" data-toggle="tooltip" title="Multiple Select">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/checkbox-icon.png') }}"> Bulk Add
+                <!-- Bulk add  -->
+                <button type="button" class="btn btn-outline-dark rounded-pill" id="bulkAdd" onclick="enable()">
+                    <a  data-toggle="tooltip" title="Bulk Add">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/box.png') }}"> Bulk Add
                     </a>
                 </button>
 
-<!--
-                 Edit
-                <button type="button" class="btn disabled" id="edit">
-                    <a href="#" data-toggle="tooltip" title="Edit">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/edit-icon.png') }}">
+                <!-- Add System Unit  -->
+                <button type="button" class="btn btn-outline-dark rounded-pill" id="addSystemUnit" data-target="#systemUnit" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Add System Unit">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/system-unit.png') }}"> Add System Unit
                     </a>
                 </button>
--->
+                
+                <!-- Build A pc  -->
+                 <button type="button" class="btn btn-outline-dark rounded-pill" id="buildAPc" data-target="#build" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
+                    </a>
+                </button>
 
                 <!-- Add Option-->
+<!--
                 <div class="dropdown">
                   <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="Add">
@@ -135,9 +140,10 @@
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
                     </ul>
               </div>
-                <!-- Delete -->
+                 Delete 
+-->
                 <div class="dropdown">
-                  <button class="btn" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-outline-dark rounded-pill" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
@@ -415,8 +421,8 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
                                     <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Decommisioned</button>
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Decommissioned</button>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Delete</button>
                                 </div>
                             </div>
                         </div>
