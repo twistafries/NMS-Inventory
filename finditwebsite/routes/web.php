@@ -52,8 +52,17 @@ Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::get('/purchases', 'Purchases@showAllStatus');
 
 Route::get('/viewPurchases', 'Purchases@viewPurchases');
+//generate report
 Route::get('/generateReportPage', 'Reports@showAllStatus');
 Route::get('/itemAvailabilityReport', 'inventoryReports@showAvailable');
+Route::get('/itemRepairReport', 'inventoryReports@showRepair');
+Route::get('/itemReturnReport', 'inventoryReports@showReturn');
+Route::get('/itemDisposalReport', 'inventoryReports@showDisposal');
+Route::get('/completedOrdersReport', 'inventoryReports@showCompleteOrders');
+Route::get('/incompleteOrdersReport', 'inventoryReports@showIncompleteOrders');
+Route::get('/lateReturnsReport', 'inventoryReports@showLateReport');
+Route::get('/issuancePerComponent', 'inventoryReports@showIssuancePerComponent');
+Route::get('/mostLeastReport', 'inventoryReports@showmostLeastReport');
 
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/inventoryAll', 'InventoryController@showAllItemsInventory');
@@ -71,8 +80,10 @@ Route::get('/return', 'ForStatusController@showReturnItems');
 Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
 Route::get('/purchasenumber', 'ForStatusController@showPurchases');
 Route::get('/ornumber', 'ForStatusController@showOR');
-// Route::get('/issue', 'ForStatusController@showIssuable');
-Route::get('/issue', 'IssuanceController@showAllIssuance');
+
+Route::get('/issue', 'IssuanceController@employeeIssuance');
+Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
 Route::get('/purchaseHistory', 'ForStatusController@showPurchaseHistory');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
@@ -101,6 +112,6 @@ Route::post('/buildUnit', 'InventoryController@buildUnit');
 
 Route::post('/template', 'InventoryController@addEquipment');
 
-Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
