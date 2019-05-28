@@ -424,8 +424,9 @@
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
                                     <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
                                      <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Issue</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="decommissionedModal">Decommissioned</button>
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="deleteModal">Delete</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
+
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -433,7 +434,7 @@
 
 
 
-                     <div class="modal fade" id="#decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                     <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
                             
                             <div class="modal-dialog" role="document">
@@ -462,8 +463,7 @@
                     </div>
 
 
-                    <div class="modal fade" id="#deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
-                        aria-hidden="true">
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
                             
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
