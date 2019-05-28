@@ -80,8 +80,10 @@ Route::get('/return', 'ForStatusController@showReturnItems');
 Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
 Route::get('/purchasenumber', 'ForStatusController@showPurchases');
 Route::get('/ornumber', 'ForStatusController@showOR');
-Route::get('/issue', 'ForStatusController@showIssuable');
-Route::get('/issue', 'IssuanceController@showAllIssuance');
+
+Route::get('/issue', 'IssuanceController@employeeIssuance');
+Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
 Route::get('/purchaseHistory', 'ForStatusController@showPurchaseHistory');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
@@ -110,6 +112,6 @@ Route::post('/buildUnit', 'InventoryController@buildUnit');
 
 Route::post('/template', 'InventoryController@addEquipment');
 
-Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');

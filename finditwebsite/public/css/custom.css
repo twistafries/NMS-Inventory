@@ -318,8 +318,10 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
 }
 
 .breadcrumb-item a {
+    background-color: red;
     text-decoration: none;
     color: #23527C;
+
 }
 
 
@@ -1446,10 +1448,6 @@ select.inventory-filter, .input-date2 {
   margin-top: 1rem;
 }
 
-.breadcrumb-item{
-  color:whitesmoke;
-  background-color:white;
-}
 
 #details{
   border-width:1px;

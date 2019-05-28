@@ -93,12 +93,14 @@ class InventoryController extends BaseController
         }
         $data['total_'.str_replace(' ', '', $component->subtype_name)]=count(TblItEquipment::get_qty($component->subtype_id));
       }
+
       foreach ($data['mobile'] as $mobile) {
         foreach ($data['status'] as $status) {
           $data[str_replace(' ', '', $mobile->subtype_name)][$status->name]=count(TblItEquipment::get_qty($mobile->subtype_id,$status->id));
         }
         $data['total_'.str_replace(' ', '', $mobile->subtype_name)]=count(TblItEquipment::get_qty($mobile->subtype_id));
       }
+
       foreach ($data['peripherals'] as $peripherals) {
         foreach ($data['status'] as $status) {
           $data[str_replace(' ', '', $peripherals->subtype_name)][$status->name]=count(TblItEquipment::get_qty($peripherals->subtype_id,$status->id));
@@ -187,7 +189,7 @@ class InventoryController extends BaseController
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
-
+      $data['peec'] ['unitss'] = TblSystemUnits::get_all_system_units();
       return view ('content/systemUnit' , $data);
     }
 
@@ -234,9 +236,11 @@ class InventoryController extends BaseController
         && isset($data['serial_no'])
         && isset($data['or_no'])
         && isset($data['status_id']) ){
-            TblItEquipment::add_equipment($data);
+            $id=TblItEquipment::add_equipment($data);
             // Session::flash('message', 'Successfully added equipment to inventory');
-
+            $log['data'] = $id;
+            $log['activity'] = "added";
+            TblActivityLogs::add_log($log);
             // return \Redirect::to('/inventory');
             return redirect()->back()
               ->with('message' , 'Successfully added equipment to inventory');

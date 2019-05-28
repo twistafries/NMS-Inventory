@@ -98,8 +98,10 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-4">
             <div class="btn-group" role="group" aria-label="Basic example">
-                
-                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+
+
+                <button type="button" class="btn btn-outline-dark rounded-pill hide-column" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+
                     <a href="#" data-toggle="tooltip" title="Single Add">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
                     </a>
@@ -117,7 +119,7 @@
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/system-unit.png') }}"> Add System Unit
                     </a>
                 </button>
-                
+
                 <!-- Build A pc  -->
                  <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
                     <a href="#" data-toggle="tooltip" title="Build A Pc">
@@ -140,7 +142,7 @@
                       <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
                     </ul>
               </div>
-                 Delete 
+                 Delete
 -->
                 <div class="dropdown">
 <!--
@@ -291,7 +293,7 @@
 <tr height="10px"></tr>
 </table>
 
-    
+
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
         <!-- All Items in the Inventory -->
@@ -301,7 +303,7 @@
                 <thead class="thead-dark">
                     <tr>
 
-                       
+
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Types</th>
@@ -313,15 +315,15 @@
                         <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
-                     
+
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
-                 
-                        
+
+
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -333,7 +335,7 @@
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
-                       
+
                     </tr>
 
                     <!-- View Details All Modal -->
@@ -1521,11 +1523,11 @@ var subtype =  $('#subtypes').val();
 var supplier =  $('#supplier').val();
 var brand =  $('#brand').val();
 var status =  $('#status').val();
-var types = data[3]; // use data for the age column
-var subtypes = data[4];
-var suppliers = data[5];
-var brands = data[2];
-var statuses = data[11];
+var types = data[2]; // use data for the age column
+var subtypes = data[3];
+var suppliers = data[4];
+var brands = data[1];
+var statuses = data[10];
 if ( type == types || type == "any"){
   if (subtype == subtypes || subtype == "any"){
     if (supplier == suppliers || supplier == "any"){

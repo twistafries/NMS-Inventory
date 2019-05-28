@@ -87,15 +87,15 @@
 
 
                               </ul>
-                            
+
                                     </div>
                             </div>
 
                         </div>
-                        
+
                         <hr>
-                        
-                        
+
+
 
 
     </div>
@@ -417,7 +417,7 @@
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
-        
+
         $('#collapsedown4').click(function() {
             $('#collapseFour').toggle('1000');
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");

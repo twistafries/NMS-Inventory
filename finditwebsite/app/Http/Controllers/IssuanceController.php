@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblItEquipment;
 use App\Models\TblEquipmentStatus;
+use App\Models\TblItEquipmentSubtype;
 use App\Models\TblItEquipmentType;
 use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
@@ -30,9 +31,27 @@ class IssuanceController extends BaseController {
 		$data['equipment'] = TblEquipmentStatus::get_available();
 		$data['units'] = TblEquipmentStatus::get_available_units();
 		$data['employees'] = TblEmployees::get_employees('active');
-		return view('content/issue', $data);
+		$data['status'] = TblEquipmentStatus::get_all_status();
+		$data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+		$data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+		$data['suppliers'] = TblItEquipment::get_supplier();
+		$data['brands'] = TblItEquipment::get_brand();
+		$data['models'] = TblItEquipment::get_model();
+		return view('content/issuance', $data);
 	}
 
+	public function employeeIssuance() {
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      	}
+
+		$data = [];
+		$data['issuance'] = TblIssuances::getIssuance();
+		$data['equipment'] = TblEquipmentStatus::get_available();
+		$data['units'] = TblEquipmentStatus::get_available_units();
+		$data['employees'] = TblEmployees::get_employees('active');
+		return view('content/issue', $data);
+	}
 
 	public function addIssuance(Request $request){
 	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
