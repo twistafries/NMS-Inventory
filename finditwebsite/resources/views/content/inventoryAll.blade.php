@@ -100,7 +100,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
 
 
-                <button type="button" class="btn btn-outline-dark rounded-pill hide-column" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
 
                     <a href="#" data-toggle="tooltip" title="Single Add">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
