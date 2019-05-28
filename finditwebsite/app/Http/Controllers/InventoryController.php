@@ -189,7 +189,7 @@ class InventoryController extends BaseController
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
-
+      $data['peec'] ['unitss'] = TblSystemUnits::get_all_system_units();
       return view ('content/systemUnit' , $data);
     }
 
@@ -236,9 +236,11 @@ class InventoryController extends BaseController
         && isset($data['serial_no'])
         && isset($data['or_no'])
         && isset($data['status_id']) ){
-            TblItEquipment::add_equipment($data);
+            $id=TblItEquipment::add_equipment($data);
             // Session::flash('message', 'Successfully added equipment to inventory');
-
+            $log['data'] = $id;
+            $log['activity'] = "added";
+            TblActivityLogs::add_log($log);
             // return \Redirect::to('/inventory');
             return redirect()->back()
               ->with('message' , 'Successfully added equipment to inventory');
