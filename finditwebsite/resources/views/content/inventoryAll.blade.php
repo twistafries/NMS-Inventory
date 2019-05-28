@@ -308,10 +308,7 @@
                         <th>Brand</th>
                         <th>Types</th>
                         <th>Subtype</th>
-                        <th>Supplier</th>
-                        <th>Details</th>
                         <th>Serial No</th>
-                        <th>OR No</th>
                         <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
@@ -319,6 +316,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
@@ -328,10 +326,7 @@
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
                         <td> {{ $equipment->subtype_name }} </td>
-                        <td> {{ $equipment->supplier }} </td>
-                        <td width="30%"> {{ $equipment->details }} </td>
                         <td> {{ $equipment->serial_no }} </td>
-                        <td> {{ $equipment->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
@@ -429,12 +424,76 @@
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
                                     <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
                                      <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Issue</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Decommissioned</button>
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Delete</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="decommissionedModal">Decommissioned</button>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="deleteModal">Delete</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
+                     <div class="modal fade" id="#decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
+                            
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to change the status of this item to Decommissioned?</p>
+                                      </div>
+                                      
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+
+                    <div class="modal fade" id="#deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
+                        aria-hidden="true">
+                            
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to Delete this item?</p>
+                                      </div>
+                                      
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Delete</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+
+
+
+
 
                     <!-- Edit Details Modal -->
                     <div class="modal fade" id="edit-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"

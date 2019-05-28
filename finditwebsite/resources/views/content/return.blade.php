@@ -100,8 +100,8 @@
                             <th>Date Added</th>
                             <th width="15%">Date Edited</th>
                             <th>Added By</th>
-                            <th>Last User</th>
-                            <th>Warranty</th>
+                            <th>Warranty Start</th>
+                            <th>Warranty End</th>
 
                         </tr>
                     </thead>
@@ -116,8 +116,8 @@
                             <td> {{ $for_return->or_no }} </td>
                             <td> {{ $for_return->supplier }} </td>
                             <td> {{ $for_return->created_at }} </td>
-                            <td> {{ $for_return->firstname}} {{ $for_return->lastname}}  </td>
-                            <td></td>
+                            <td> </td>
+                            <td>{{ $for_return->firstname}} {{ $for_return->lastname}}</td>
                             <td></td>
                             <td></td>
                             

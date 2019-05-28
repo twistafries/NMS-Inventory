@@ -106,6 +106,7 @@
                               <tr>
 
                                   <th>ID</th>
+                                  <th>Name</th>
                                   <th>Details</th>
                                   <th>Serial No</th>
                                   <th>OR No</th>
@@ -121,6 +122,7 @@
                               <tr>
 
                                   <td> {{ $decommissioned->id }} </td>
+                                  <td> {{ $decommissioned->brand }} {{ $decommissioned->model }} </td>
                                   <td width="30%"> {{ $decommissioned->details }} </td>
                                   <td> {{ $decommissioned->serial_no }} </td>
                                   <td> {{ $decommissioned->or_no }} </td>
