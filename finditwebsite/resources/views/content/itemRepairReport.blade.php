@@ -125,12 +125,12 @@
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable">
+          <div class="table-responsive" id="inventoryTable">
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Repair Items</p>
             </div>
-            <table class="table all" id="forRepair">
-              <thead class="thead-dark" style="font-size: 14px;">
+            <table class="table all t" id="forRepair">
+              <thead class="thead-dark">
                 <tr>
                   <th scope="col">Item Name</th>
                   <th scope="col">Type</th>
@@ -146,40 +146,47 @@
               </thead>
               <tbody>
                 <tr>
+                  <td>MSI B450-A Pro</td>
+                  <td>Computer Component</td>
+                  <td>Motherboard</td>
+                  <td>"Socket: AM4
+                      Chipset: AMD B450
+                      Size: ATX
+                      RAM: 4 Slots DDR4
+                      PCIe: x16 PCIe 3.0
+                      Ports: USB 3.1 SATA 6Gb/s"</td>
+                  <td>601-7577-010B0903273465</td>
+                  <td>For Repair</td>
+                  <td>Jon Paulo</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>2019-01-18</td>
+                  <td>Aika Vien Dayrit</td>
                 </tr>
                 <tr>
+                  <td>R5 1500X</td>
+                  <td>Computer Component</td>
+                  <td>CPU</td>
+                  <td>"Socket: AM4
+                      4-core 8-thread 3.5GHz-3.7GHz
+                      TDP: 65W"</td>
+                  <td>YD170XBCM88AE</td>
+                  <td>For Repair</td>
+                  <td>Jon Paulo Faypon</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>2019-01-25</td>
+                  <td>Aika Vien Dayrit</td>
                 </tr>
                 <tr>
+                  <td>HDD 1TB</td>
+                  <td>Computer Component</td>
+                  <td>Storage</td>
+                  <td>Seagate 1TB Harddisk Drive</td>
+                  <td>YST-657A-DATSDC</td>
+                  <td>For Repair</td>
+                  <td>Lovelyn Paris</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>2019-02-12</td>
+                  <td>Jon Paulo Faypon</td>
                 </tr>
               </tbody>
             </table>
@@ -187,6 +194,14 @@
         </div>
       </div>
     </div>
+
+    <!--Graph-->
+    <div class="row" id="graph" style="margin-bottom: 2rem;">
+      <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
+    </div>
+
   </div>
 </div>
 @stop

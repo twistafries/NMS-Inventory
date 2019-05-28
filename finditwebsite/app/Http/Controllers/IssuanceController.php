@@ -41,17 +41,26 @@ class IssuanceController extends BaseController {
 	}
 
 	public function employeeIssuance() {
-		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-            return \Redirect::to('/loginpage');
-      	}
+	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+					return \Redirect::to('/loginpage');
+			}
 
-		$data = [];
-		$data['issuance'] = TblIssuances::getIssuance();
-		$data['equipment'] = TblEquipmentStatus::get_available();
-		$data['units'] = TblEquipmentStatus::get_available_units();
-		$data['employees'] = TblEmployees::get_employees('active');
-		return view('content/issue', $data);
+	$data = [];
+	$data['issuance'] = TblIssuances::getIssuance();
+	$data['equipment'] = TblEquipmentStatus::get_available();
+	$data['units'] = TblEquipmentStatus::get_available_units();
+	$data['employees'] = TblEmployees::get_employees('active');
+	$data['employee_with_issuance'] = TblIssuances::getEmployeeWithIssuance();
+	$data['itdd'] = TblIssuances::getIssuancePerEmployee(1);
+	$data['pdd'] = TblIssuances::getIssuancePerEmployee(2);
+	$data['fd'] = TblIssuances::getIssuancePerEmployee(3);
+	$data['hrd'] = TblIssuances::getIssuancePerEmployee(4);
+	foreach ($data['employee_with_issuance']  as $employee) {
+			$data['issued'][$employee->id] = TblIssuances::getIssuanceOfEmployee($employee->id);
 	}
+	// dd($data);
+	return view('content/issue', $data);
+}
 
 	public function addIssuance(Request $request){
 	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){

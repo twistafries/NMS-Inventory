@@ -1418,11 +1418,11 @@ div.column {
 /*table header size changed*/
 table > thead > tr > th {
     font-weight:600 !important;
-    font-size:17px !important;
+    font-size:15.5px !important;
 }
 
 table > tbody > tr > td {
-    font-size:16px !important;
+    font-size:15px !important;
 }
 
 div.details, p.text{
@@ -1450,8 +1450,8 @@ select.inventory-filter, .input-date2 {
 
 
 #details{
-  border-width:1px; 
-  border-color:#A9A9A9; 
+  border-width:1px;
+  border-color:#A9A9A9;
   padding: 0px 270px;
 }
 

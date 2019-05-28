@@ -86,7 +86,9 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <!-- Single Add Modal -->
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
+            @foreach ($employee_with_issuance as $employee)
+
+    <div class="modal fade" id="issuance{{$employee->id}}" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
 
     <div class="modal-dialog modal-lg" role="document">
 
@@ -113,17 +115,26 @@
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">Items Issued</th>
+                        <th scope="col">Subtype</th>
                         <th scope="col">Issuance Date</th>
                         <th scope="col">Issuance End</th>
-                        <th scope="col">Remove Issuance</th>
+                        <th scope="col">Actions</th>
 
                     </tr>
                     </thead>
                 <tbody>
+                  @foreach ($issued[$employee->id] as $item)
                     <tr>
-                        <td>Iphone 8</td>
-                        <td>01/25/2019</td>
-                        <td>5/26/2019</td>
+                        @if ($item->model !=null)
+                        <td>{{ $item->model}} {{ $item->brand}} {{ $item->unit_name }} {{ $item->pc_number }}</td>
+                        <td>{{ $item->subtype}}</td>
+                        @endif
+                        @if ($item->model ==null)
+                        <td>{{ $item->model}} {{ $item->brand}} {{ $item->unit_name }} {{ $item->pc_number }}</td>
+                        <td>System Unit</td>
+                        @endif
+                        <td>{{ $item->created_at}}</td>
+                        <td>{{ $item->issued_until}}</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-success" type="submit" value="" onclick="deleteRow(this)">Make Available</button>
@@ -132,6 +143,7 @@
                             </div>
                         </td>
                     </tr>
+                @endforeach
                 </tbody>
                 </table>
             </div>
@@ -157,6 +169,8 @@
     </div>
   </div>
 </div>
+
+@endforeach
         </div>
     </div>
 
@@ -171,28 +185,20 @@
                     <thead class="thead-dark">
                         <tr>
 
-                        <th scope="col">Name</th>
                         <th scope="col">ID</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Number Issued</th>
 
                     </tr>
                     </thead>
                 <tbody>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Justine Garcia</th>
-                        <td>1</td>
-                        <td>6</td>
+                  @foreach($itdd as $emp)
+                    <tr data-toggle="modal" data-target="#issuance{{$emp->id}}">
+                        <th>{{$emp->id}}</th>
+                        <td>{{$emp->fname}} {{$emp->lname}}</td>
+                        <td>{{$emp->totalIssued}}</td>
                     </tr>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Lovelyn Paris</th>
-                        <td>2</td>
-                        <td>5</td>
-                    </tr>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Aika Vien Dayrit</th>
-                        <td>3</td>
-                        <td>2</td>
-                    </tr>
+                  @endforeach
                 </tbody>
                 </table>
 
@@ -203,30 +209,20 @@
                 <h4>Production Development Department</h4>
                 <table class="table">
                     <thead class="thead-dark">
-                        <tr data-toggle="modal" data-target="#modal">
-
-                        <th scope="col">Name</th>
                         <th scope="col">ID</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Number Issued</th>
 
                     </tr>
                     </thead>
                 <tbody>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Jake Peralta</th>
-                        <td>1</td>
-                        <td>3</td>
+                  @foreach($pdd as $emp)
+                    <tr data-toggle="modal" data-target="#issuance{{$emp->id}}">
+                        <th>{{$emp->id}}</th>
+                        <td>{{$emp->fname}} {{$emp->lname}}</td>
+                        <td>{{$emp->totalIssued}}</td>
                     </tr>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Lovelyn Paris</th>
-                        <td>2</td>
-                        <td>4</td>
-                    </tr>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Aika Vien Dayrit</th>
-                        <td>3</td>
-                        <td>6</td>
-                    </tr>
+                  @endforeach
                 </tbody>
                 </table>
                 </div>
@@ -235,29 +231,20 @@
                 <h4>Financial Department Department</h4>
                 <table class="table">
                     <thead class="thead-dark">
-                        <tr data-toggle="modal" data-target="#modal">
-                        <th scope="col">Name</th>
                         <th scope="col">ID</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Number Issued</th>
 
                     </tr>
                     </thead>
                 <tbody>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Justine Garcia</th>
-                        <td>2</td>
-                        <td>6</td>
+                  @foreach($fd as $emp)
+                    <tr data-toggle="modal" data-target="#issuance{{$emp->id}}">
+                        <th>{{$emp->id}}</th>
+                        <td>{{$emp->fname}} {{$emp->lname}}</td>
+                        <td>{{$emp->totalIssued}}</td>
                     </tr>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Lovelyn Paris</th>
-                        <td>2</td>
-                        <td>6</td>
-                    </tr>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Aika Vien Dayrit</th>
-                        <td>3</td>
-                        <td>6</td>
-                    </tr>
+                  @endforeach
                 </tbody>
                 </table>
                 </div>
@@ -267,29 +254,20 @@
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-
-                        <th scope="col">Name</th>
                         <th scope="col">ID</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Number Issued</th>
 
                     </tr>
                     </thead>
                 <tbody>
-                    <tr data-toggle="modal" data-target="#modal">
-                        <th>Justine Garcia</th>
-                        <td>3</td>
-                        <td>6</td>
+                  @foreach($hrd as $emp)
+                    <tr data-toggle="modal" data-target="#issuance{{$emp->id}}">
+                        <th>{{$emp->id}}</th>
+                        <td>{{$emp->fname}} {{$emp->lname}}</td>
+                        <td>{{$emp->totalIssued}}</td>
                     </tr>
-                    <tr>
-                        <th>Lovelyn Paris</th>
-                        <td>2</td>
-                        <td>6</td>
-                    </tr>
-                    <tr>
-                        <th>Aika Vien Dayrit</th>
-                        <td>3</td>
-                        <td>6</td>
-                    </tr>
+                  @endforeach
                 </tbody>
                 </table>
                 </div>
