@@ -75,16 +75,75 @@
         </div>
     </div>
 
-    <!-- Tabs -->
+<!--Filter-->
+  <div class="card" style="margin-top: 1rem; margin-bottom: 1rem;">
+    <table style="margin: auto;width: 100%; text-align: right; ">
+      <thead>
+        <tr>
+          <th>
+            <label for="types" id="labelTypes">Types: </label>
+            <select id="types" name="types" style="width: 10rem;">
+              <option value="any">Any</option>
+              @foreach ($typesSel as $typesSel)
+              <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+              @endforeach
+            </select>
+          </th>
+          <th>
+            <label for="subtypes">Subtype: </label>
+            <select id="subtypes" name="subtypes">
+              <option value="any">Any</option>
+              @foreach ($subtypesSel as $subtypesSel)
+              <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+              @endforeach
+            </select>
+        </th>
+        <th>
+          <label for="supplier">Supplier: </label>
+          <select id="supplier" name="supplier">
+            <option value="any">Any</option>
+            @foreach ($suppliers as $suppliers)
+            <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
+            @endforeach
+          </select>
+      </th>
+      <th>
+        <label for="brand">Brand: </label>
+        <select id="brand" name="brand">
+          <option value="any">Any</option>
+          @foreach ($brands as $brands)
+          <option value="{{$brands->brand}}">{{$brands->brand}}</option>
+          @endforeach
+        </select>
+      </th>
+      <th>
+        <label for="status">Status: </label>
+        <select id="status" name="status">
+          <option value="any">Any</option>
+          @foreach ($status as $status)
+          <option value="{{$status->name}}">{{$status->name}}</option>
+          @endforeach
+        </select>
+      </th>
+      <th></th><th></th>
+        <th>
+          <button class="btn btn-secondary text-uppercase p-2" type="button" onclick="reset()">Reset</button>
+      </th>
+      </thead>
+      <tr height="10px"></tr>
+    </table>
+  </div>
 
-    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
+
+    <!-- Tabs -->
+    <!-- <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
         <li class="nav-item text-uppercase" >
           <a class="nav-link active" href="{!! url('/purchases') !!}">Completed Orders and Purchases</a>
         </li>
         <li class="nav-item text-uppercase">
           <a class="nav-link" href="{!! url('/viewPurchases') !!}">View Purchases</a>
         </li>
-    </ul>
+    </ul> -->
 
     <!-- <div class="container">
         <div class="row">
@@ -108,8 +167,8 @@
       </button>
     </div>
 
-      <nav class="navbar" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: rgba(0,0,0,0.3); color: white;">
-          <span class="navbar-brand mb-0 h1">Purchase #1</span>
+      <nav class="navbar" id="purchase" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: rgba(0,0,0,0.3); color: white;">
+          <span class="navbar-brand mb-0 fas fa-chevron-right" style="font-size: 18px;;">        PURCHASE #1</span>
       </nav>
 
       <!-- purchases modal -->
@@ -129,6 +188,9 @@
                     <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add More
                     </button>
+                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
+                      <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
+                    </button>
                       <div class="container-fluid" style="background: #d3d3d3; margin-bottom: 2rem;">
                           <div class="row">
                                 <div class="input-group col-4" style="margin-top: 1rem;">
@@ -142,7 +204,7 @@
 
                                 <div class="input-group col-4" style="margin-top: 1rem;">
                                   <div class="" style="margin-right: 2rem;">
-                                    <p class="card-title text-dark" style="font-size: 16px;">Name:</p>
+                                    <p class="card-title text-dark" style="font-size: 16px;">Model:</p>
                                   </div>
                                   <div class="">
                                     <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -151,7 +213,7 @@
 
                                 <div class="input-group col-4" style="margin-top: 1rem;">
                                   <div class="" style="margin-right: 2rem;">
-                                    <p class="card-title text-dark" style="font-size: 16px;">Category:</p>
+                                    <p class="card-title text-dark" style="font-size: 16px;">Details:</p>
                                   </div>
                                   <div class="">
                                     <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -161,7 +223,7 @@
                             <div class="row">
                                 <div class="input-group col-4" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="" style="margin-right: 2rem;">
-                                    <p class="card-title text-dark" style="font-size: 16px;">Type:</p>
+                                    <p class="card-title text-dark" style="font-size: 16px;">Subtype:</p>
                                   </div>
                                   <div class="">
                                     <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -170,7 +232,7 @@
 
                                 <div class="input-group col-4" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="" style="margin-right: 2rem;">
-                                    <p class="card-title text-dark" style="font-size: 16px;">Subtype:</p>
+                                    <p class="card-title text-dark" style="font-size: 16px;">Supplier:</p>
                                   </div>
                                   <div class="">
                                     <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -202,7 +264,7 @@
 
                             <div class="input-group col-4" style="margin-top: 1rem;">
                               <div class="" style="margin-right: 2rem;">
-                                <p class="card-title text-dark" style="font-size: 16px;">Name:</p>
+                                <p class="card-title text-dark" style="font-size: 16px;">Model:</p>
                               </div>
                               <div class="">
                                 <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -211,7 +273,7 @@
 
                             <div class="input-group col-4" style="margin-top: 1rem;">
                               <div class="" style="margin-right: 2rem;">
-                                <p class="card-title text-dark" style="font-size: 16px;">Category:</p>
+                                <p class="card-title text-dark" style="font-size: 16px;">Details:</p>
                               </div>
                               <div class="">
                                 <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -221,7 +283,7 @@
                         <div class="row">
                             <div class="input-group col-4" style="margin-top: 1rem; margin-bottom: 2rem;">
                               <div class="" style="margin-right: 2rem;">
-                                <p class="card-title text-dark" style="font-size: 16px;">Type:</p>
+                                <p class="card-title text-dark" style="font-size: 16px;">Subtype:</p>
                               </div>
                               <div class="">
                                 <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -239,7 +301,7 @@
 
                             <div class="input-group col-4" style="margin-top: 1rem; margin-bottom: 2rem;">
                               <div class="" style="margin-right: 2rem;">
-                                <p class="card-title text-dark" style="font-size: 16px;">Quantity:</p>
+                                <p class="card-title text-dark" style="font-size: 16px;">Supplier:</p>
                               </div>
                               <div class="">
                                 <input name="model" type="text" size="25" style="height: 2.2rem;">
@@ -259,16 +321,16 @@
       </div>
 
 
-    <div class="tab-content collapse" id="pills-tabContent">
+    <div class="tab-content collapse" id="purchaseTable">
       <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
         <table class="table">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Brand</th>
-              <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Type</th>
+              <th scope="col">Model</th>
+              <th scope="col">Details</th>
               <th scope="col">Subtype</th>
+              <th scope="col">Supplier</th>
               <th scope="col">Qty</th>
               <th scope="col"></th>
             </tr>
@@ -342,6 +404,13 @@
       $('#purchases').addClass('active');
       });
     </script>
+
+<script>
+    $('#purchase').click(function() {
+        $('#purchaseTable').toggle();
+        $("span", this).toggleClass("fas fa-chevron-right fas fa-chevron-down");
+    });
+</script>
 
     <!-- <script type="text/javascript">
     $(document).ready(function() {

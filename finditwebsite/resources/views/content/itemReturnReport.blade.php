@@ -132,49 +132,47 @@
             <table class="table all" id="forRepair">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col">Item Name</th>
+                  <th scope="col">Item</th>
                   <th scope="col">Type</th>
+                  <th scope="col">Subtype</th>
                   <th scope="col">Description</th>
-                  <th scope="col">Or No.</th>
+                  <th scope="col">Serial No.</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Last User</th>
                   <th scope="col">Remarks</th>
                   <th scope="col">Date</th>
-                  <th scope="col">Supplier</th>
                   <th scope="col">Added By</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td>HDD 1TB</td>
+                  <td>Computer Unit</td>
                   <td></td>
+                  <td>Seagate SV35 1000GB 1TB SATA</td>
                   <td></td>
+                  <td>56892</td>
+                  <td>For Return</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>2019-04-15</td>
+                  <td>Enigma</td>
                   <td></td>
                 </tr>
                 <tr>
+                  <td>iPad (3rd Generation)</td>
+                  <td>Mobile Device</td>
                   <td></td>
+                  <td>"Core Design: Apple Swift x 2
+                      CPU: S5L8945 ""A5X""
+                      CPU Speed: 1 GHz
+                      RAM: 1 GB
+                      Storage: 64 GB"</td>
                   <td></td>
+                  <td>78542</td>
+                  <td>Returned - Replaced</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>2019-05-07</td>
+                  <td>Laser</td>
                   <td></td>
                 </tr>
               </tbody>
@@ -183,6 +181,14 @@
         </div>
       </div>
     </div>
+
+    <!--Graph-->
+    <div class="row" id="graph" style="margin-bottom: 2rem;">
+      <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
+    </div>
+
   </div>
 </div>
 @stop

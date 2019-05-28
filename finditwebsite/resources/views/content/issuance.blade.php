@@ -27,7 +27,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">ISSUED ITEMS</span>
           <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">

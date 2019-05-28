@@ -83,7 +83,7 @@
     </div>
 
     <!-- Tabs -->
-    <div class="container">
+    <div class="container-fluid">
    
         <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
