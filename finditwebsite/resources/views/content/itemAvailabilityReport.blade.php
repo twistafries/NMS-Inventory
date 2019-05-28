@@ -127,7 +127,7 @@
           <!--table-->
           <div class="" id="inventoryTable">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Item Availability</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Available Items</p>
             </div>
             <table class="table all" id="forRepair">
               <thead class="thead-dark" style="font-size: 14px;">
