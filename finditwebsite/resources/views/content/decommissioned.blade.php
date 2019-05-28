@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
 @stop
 
 @section('title')
@@ -32,7 +33,7 @@
         <span class="navbar-brand mb-0 h1">DECOMMISSIONED</span>
         <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
+                    <li class="breadcrumb-item"   >
                         <a href="{!! url('/inventory') !!}" class="text-dark">Items</a>
                     </li>
                     <li class="breadcrumb-item ">
@@ -83,11 +84,16 @@
     </div>
 
     <!-- Tabs -->
-    <div class="container">
+    <div class="container-fluid">
         
         <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
             <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
+
+              <div class="dem">
+                
+                HAHAHAHAHAHAHAAHHA
+              </div>
 
            
                       <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
