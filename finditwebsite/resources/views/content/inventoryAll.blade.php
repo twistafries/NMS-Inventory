@@ -98,13 +98,10 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-4">
             <div class="btn-group" role="group" aria-label="Basic example">
-<<<<<<< HEAD
+
 
                 <button type="button" class="btn btn-outline-dark rounded-pill hide-column" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
-=======
-                
-                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
->>>>>>> 2f36f52f5046f0480d178fd104e3833b6d3ca216
+
                     <a href="#" data-toggle="tooltip" title="Single Add">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
                     </a>
@@ -296,7 +293,7 @@
 <tr height="10px"></tr>
 </table>
 
-    
+
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
         <!-- All Items in the Inventory -->
