@@ -143,30 +143,35 @@
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>Ballistix Sport Series DDR3</td>
+                  <td>Computer Unit</td>
+                  <td>8GB Ballistix Sport DDR3 1600 MHz UDIMM</td>
+                  <td>For Disposal</td>
+                  <td>Obsolete, for replacement</td>
+                  <td>2019-04-19</td>
                   <td></td>
                 </tr>
                 <tr>
+                  <td>Aerocool Strike</td>
+                  <td>Computer Unit</td>
+                  <td>"Motherboards: Micro ATX / Mini ITX
+Chassis Dimensions: 280 x 380x 350 mm"</td>
+                  <td>For Disposal</td>
+                  <td>Damaged beyond repair</td>
+                  <td>2019-10-18</td>
                   <td></td>
+                </tr>
+                <tr>
+                  <td>iPad Air</td>
+                  <td>Mobile Device</td>
+                  <td>"Core Design: Apple Cyclone x 2
+CPU: S5L8965 ""A7 Rev A""
+CPU Speed: 1.4 GHz
+RAM: 1 GB
+Storage: 128 GB"</td>
+                  <td>For Disposal</td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>2018-10-21</td>
                   <td></td>
                 </tr>
               </tbody>
@@ -175,6 +180,14 @@
         </div>
       </div>
     </div>
+
+    <!--Graph-->
+    <div class="row" id="graph" style="margin-bottom: 2rem;">
+      <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
+    </div>
+
   </div>
 </div>
 @stop

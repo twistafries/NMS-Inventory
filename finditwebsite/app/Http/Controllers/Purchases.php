@@ -15,6 +15,7 @@ use App\Models\TblIssuances;
 use App\Models\TblSystemUnits;
 use App\Models\TblActivityLogs;
 use App\Models\TblItEquipmentSubtype;
+use App\Models\TblItEquipmentType;
 
 
 class Purchases extends BaseController
@@ -25,6 +26,12 @@ class Purchases extends BaseController
       }
 
         $data = [];
+        $data['status'] = TblEquipmentStatus::get_all_status();
+        $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+        $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+        $data['suppliers'] = TblItEquipment::get_supplier();
+        $data['brands'] = TblItEquipment::get_brand();
+        $data['models'] = TblItEquipment::get_model();
         $data['for_repair'] = TblEquipmentStatus::get_for_repair();
         $data['for_return'] = TblEquipmentStatus::get_for_return();
         $data['decommissioned'] = TblEquipmentStatus::get_for_disposal();
