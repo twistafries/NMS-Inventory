@@ -10,10 +10,21 @@
 @extends('../template')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet"  href="{{ asset('css/all.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}">
+
+    <!-- Datatable -->
+    <link rel="stylesheet" href="{{ asset('css/datatable/dataTables.bootstrap4.min.css') }}">
+    <!-- Multiple Select -->
+    <link rel="stylesheet" href="{{ asset('css/multipleselect/multiple-select.css') }}">
+
+    <!-- Your custom css goes here -->
+    <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet"  href="{{ asset('css/custom-table.css') }}">
+    @yield('css')
 @stop
 
 @section('title')
@@ -51,6 +62,7 @@
                 </ol>
             </nav>
     </nav>
+
 
 
 <form action="" id="form1">
