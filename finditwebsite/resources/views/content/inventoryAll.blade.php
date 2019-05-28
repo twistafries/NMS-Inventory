@@ -78,7 +78,7 @@
                                   <a class="nav-link font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
                                 </li>
                                 <li class="nav-item">
-                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">ALL ITEMS</a>
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEM LIST</a>
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
@@ -98,28 +98,33 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-4">
             <div class="btn-group" role="group" aria-label="Basic example">
+<<<<<<< HEAD
 
                 <button type="button" class="btn btn-outline-dark rounded-pill hide-column" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+=======
+                
+                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+>>>>>>> 2f36f52f5046f0480d178fd104e3833b6d3ca216
                     <a href="#" data-toggle="tooltip" title="Single Add">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
                     </a>
                 </button>
                 <!-- Bulk add  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill" id="bulkAdd" onclick="enable()">
-                    <a  data-toggle="tooltip" title="Bulk Add">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="bulkAdd">
+                    <a  data-toggle="tooltip" title="Bulk Add" href="{!! url('/bulk-add') !!}">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/box.png') }}"> Bulk Add
                     </a>
                 </button>
 
                 <!-- Add System Unit  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill" id="addSystemUnit" data-target="#systemUnit" data-toggle="modal">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSystemUnit" data-target="#systemUnit" data-toggle="modal">
                     <a href="#" data-toggle="tooltip" title="Add System Unit">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/system-unit.png') }}"> Add System Unit
                     </a>
                 </button>
 
                 <!-- Build A pc  -->
-                 <button type="button" class="btn btn-outline-dark rounded-pill" id="buildAPc" data-target="#build" data-toggle="modal">
+                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
                     <a href="#" data-toggle="tooltip" title="Build A Pc">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
                     </a>
@@ -143,11 +148,13 @@
                  Delete
 -->
                 <div class="dropdown">
-                  <button class="btn btn-outline-dark rounded-pill" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
+<!--
+                  <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
+-->
               </div>
 
 
@@ -232,7 +239,8 @@
 </div>
 @endif
 
-<table>
+
+<table style="margin: auto;width: 100%; text-align: right; ">
 <thead>
   <tr>
     <th>
@@ -282,11 +290,13 @@
 </th>
 <th></th><th></th>
   <th>
-    <button class="btn btn-primary text-uppercase" type="button" onclick="reset()">Reset</button>
+    <button class="btn btn-secondary text-uppercase p-2" type="button" onclick="reset()">Reset</button>
 </th>
 </thead>
 <tr height="10px"></tr>
 </table>
+
+    
     <!-- Tab Content -->
     <div class="tab-content" id="pills-tabContent">
         <!-- All Items in the Inventory -->
@@ -420,7 +430,8 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
+                                     <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Issue</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Decommissioned</button>
                                     <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Delete</button>
                                 </div>
