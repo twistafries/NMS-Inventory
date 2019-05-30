@@ -70,7 +70,7 @@
 
 <!--    PAGE CONTENT -->
       <div class="container-fluid">
-                        <div class="container-fluid">
+                      
 
                             <div class="row">
                                 <div class="container-fluid">
@@ -90,13 +90,13 @@
                                     </div>
                             </div>
 
-                        </div>
+                  
 
                         <hr>
 
                         <br>
 
-                        <div class="container-fluid">
+                     
                             <div class="row">
                                 <h4>IT EQUIPMENT ({{ $total_equipment + count($system_units) }})</h4>
                                 <div class="container-fluid">
@@ -475,8 +475,7 @@
     </div>
 
 
-    </div>
-
+  
 
     </div>
     <!--    PAGE CONTENT END -->
