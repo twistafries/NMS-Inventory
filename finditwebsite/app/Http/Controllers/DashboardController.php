@@ -26,25 +26,48 @@ class DashboardController extends BaseController
             return \Redirect::to('/loginpage');
         }
 
-        $card1data = [];
-        $card1data['available_sys_units'] = count(TblSystemUnits::get_total_system_units(1));       
-        $card1data['available_phone'] = count(TblItEquipment::countByStatusSubtype(1 , 14));       
-        $card1data['available_laptop'] = count(TblItEquipment::countByStatusSubtype(1 , 12));       
-        $card1data['available_component'] = count(TblItEquipment::countByStatusType(1 , 1));       
-        $card1data['available_component_qty'] = TblItEquipment::countByStatusTypeQuantity(1 , 1);       
-        // dd( $card1data['available_component_qty']);
-        $card1data['totalAvailableUnits']  = $card1data['available_sys_units'] + $card1data['available_phone'] + $card1data['available_laptop'];
+        $data = [];
+        $data['available_sys_units'] = count(TblSystemUnits::get_total_system_units(1));       
+        $data['available_phone'] = count(TblItEquipment::countByStatusSubtype(1 , 14));       
+        $data['available_laptop'] = count(TblItEquipment::countByStatusSubtype(1 , 12));       
+        $data['available_component'] = count(TblItEquipment::countByStatusType(1 , 1));       
+        $data['available_component_qty'] = TblItEquipment::countByStatusTypeQuantity(1 , 1);       
+        // dd $card1data['available_component_qty']);
+        $data['totalAvailableUnits']  = $data['available_sys_units'] + $data['available_phone'] + $data['available_laptop'];
        
         
-        $card2data = [];
-        $card2data['countHardwareForRepair'] = count(TblItEquipment::countByStatusHardware('For repair'));
-        $card2data['repair_sys_units'] = count(TblSystemUnits::get_total_system_units(3));       
-        $card2data['repair_phone'] = count(TblItEquipment::countByStatusSubtype(3 , 14));       
-        $card2data['repair_laptop'] = count(TblItEquipment::countByStatusSubtype(3 , 12));       
-        // dd2$data);
-        $card2data['totalRepairUnits']  = $card2data['repair_sys_units'] + $card2data['repair_phone'] + $card2data['repair_laptop'];
+        $data['countHardwareForRepair'] = count(TblItEquipment::countByStatusHardware('For repair'));
+        $data['repair_sys_units'] = count(TblSystemUnits::get_total_system_units(3));       
+        $data['repair_phone'] = count(TblItEquipment::countByStatusSubtype(3 , 14));       
+        $data['repair_laptop'] = count(TblItEquipment::countByStatusSubtype(3 , 12));       
+        // $data['totalRepairUnits']  = $card2data['repair_sys_units'] + $card2data['repair_phone'] + $card2data['repair_laptop'];
         // dd($card2data);
+        $data['countHardwareIssued'] = count(TblItEquipment::countByStatusHardware('w'));
+        $data['issued_sys_units'] = count(TblSystemUnits::get_total_system_units(2));       
+        $data['issued_phone'] = count(TblItEquipment::countByStatusSubtype(2 , 14));       
+        $data['issued_laptop'] = count(TblItEquipment::countByStatusSubtype(2 , 12));       
+// dd($card3data);
+        return view ('content/dashboard' , $data);
+    }
 
-        return view ('content/dashboard' , $card1data , $card2data);
+    public function filter(Request $request){
+        // if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+        //     return \Redirect::to('/loginpage');
+        // }
+
+        $data = [];
+        $data = $request->all();
+        // dd($data['status_filter']);
+
+        if($data['type_filter'] == 'system_unit'){
+            return \Redirect::to('/systemUnit')
+            ->with($data);
+        }else{
+            return \Redirect::to('/inventoryAll')
+            ->with('type_filter' , $data['type_filter'])
+            ->with('subtype_filter' , $data['subtype_filter'])
+            ->with('status_filter' , $data['status_filter']);
+            
+        }
     }
 }
