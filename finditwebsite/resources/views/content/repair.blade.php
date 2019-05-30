@@ -104,7 +104,7 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
-                            <th>Supplier</th>
+                           
                             <th>Date Added</th>
                             <th width="15%">Date Edited</th>
                             <th>Added By</th>
@@ -122,7 +122,7 @@
                             <td> {{ $for_repair->details }} </td>
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
-                            <td> {{ $for_repair->supplier }} </td>
+                            
                             <td> {{ $for_repair->created_at }} </td>
                             <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
                             <td></td>

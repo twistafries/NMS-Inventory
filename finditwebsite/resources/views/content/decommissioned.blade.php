@@ -105,7 +105,7 @@
                                   <th>Details</th>
                                   <th>Serial No</th>
                                   <th>OR No</th>
-                                  <th>Supplier</th>
+                                 
                                   <th>Date Added</th>
                                   <th width="15%">Edited At</th>
                                   <th>Edited By</th>
@@ -121,7 +121,7 @@
                                   <td width="30%"> {{ $decommissioned->details }} </td>
                                   <td> {{ $decommissioned->serial_no }} </td>
                                   <td> {{ $decommissioned->or_no }} </td>
-                                  <td> {{ $decommissioned->supplier }} </td>
+                                  
                                   <td> {{ $decommissioned->created_at }} </td>
                                   <td> {{ $decommissioned->updated_at }} </td>
                                   <td> {{ $decommissioned->firstname}} {{ $decommissioned->lastname}}  </td>

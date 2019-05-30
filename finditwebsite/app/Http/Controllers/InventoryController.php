@@ -48,7 +48,7 @@ class InventoryController extends BaseController
       $data['status'] = TblEquipmentStatus::get_all_status();
       $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['suppliers'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
@@ -179,13 +179,13 @@ class InventoryController extends BaseController
       $data['systemunits'] = TblSystemUnits::get_all_system_units();
       $data['units_system'] = TblSystemUnits::get_all_system_units();
       $data['all_units'] = TblSystemUnits::get_all_system_units();
-      $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['subtype'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['parts'] = TblItEquipment::get_computer_component();
       $data['status'] = TblEquipmentStatus::get_all_status();
       $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['suppliers'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();

@@ -126,13 +126,6 @@ class TblItEquipment extends Model
         return $query;
     }
 
-    public static function get_supplier($params = null){
-        $query = \DB::table('it_equipment')
-        -> select('it_equipment.supplier as supplier')
-        -> groupBy('supplier')
-        -> get();
-        return $query;
-    }
 
     public static function get_brand($params = null){
         $query = \DB::table('it_equipment')

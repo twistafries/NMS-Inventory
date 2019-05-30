@@ -16,6 +16,7 @@ use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\TblIssuances;
 use App\Models\TblEmployees;
+use App\Models\Suppliers;
 use App\Models\TblActivityLogs;
 use Session, Auth;
 
@@ -34,7 +35,7 @@ class IssuanceController extends BaseController {
 		$data['status'] = TblEquipmentStatus::get_all_status();
 		$data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
 		$data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-		$data['suppliers'] = TblItEquipment::get_supplier();
+		$data['suppliers'] = Suppliers::get_suppliers();
 		$data['brands'] = TblItEquipment::get_brand();
 		$data['models'] = TblItEquipment::get_model();
 		return view('content/issuance', $data);

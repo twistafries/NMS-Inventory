@@ -357,9 +357,9 @@
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
                         <select name="subtype_id" class="custom-select">
-                        @foreach ($equipment_subtypes as $equipment_subtypes)
-                            <option  value="{!! $equipment_subtypes->id !!}">
-                                {{ $equipment_subtypes->name }}
+                        @foreach ($subtype as $subtype)
+                            <option  value="{!! $subtype->id !!}">
+                                {{ $subtype->name }}
                             </option>
                         @endforeach
                         </select>
