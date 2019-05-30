@@ -48,8 +48,8 @@
                                     <form action="{!! url('/reInventory'); !!}" method="post">
                                         {!! csrf_field() !!}
                                         <input name="status_filter" type="hidden" value="1">
-                                        <input name="subtype_filter" type="hidden" value="mobile_phone">
-                                        <input name="type_filter" type="hidden" value="mobile_devices">
+                                        <input name="subtype_filter" type="hidden" value="14">
+                                        <input name="type_filter" type="hidden" value="3">
                                         
                                         <td class="text-justify">{{ $available_phone }}</td>
                                         <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
