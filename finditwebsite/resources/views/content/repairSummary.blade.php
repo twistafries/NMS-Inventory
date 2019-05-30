@@ -105,8 +105,28 @@
                 <div class="row">
                 
 <div class="container-fluid">
-    <h4>Computer Components</h4>
-    <div class="panel panel-default">
+     <h4 class="font-weight-bold">System Units</h4>
+     <div class="panel panel-default p-2">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h5 class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> item1</a>
+            </h5>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <h5>content</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    <h4 class="font-weight-bold">Computer Components</h4>
+    <div class="panel panel-default p-2">
         <div class="panel-heading" role="tab" id="headingOne">
             <h5 class="panel-title">
                 <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> Motherboard</a>
@@ -211,6 +231,21 @@
         </div>
     </div>
     
+     <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingEleven">
+            <h5 class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven" class="trigger collapsed" id="collapsedown11"><i class="fas fa-arrow-circle-down"></i> Sound Card </a>
+            </h5>
+        </div>
+        <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+            <div class="panel-body">
+                <div class="container-fluid">
+                    <h5>content</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingEight">
@@ -227,7 +262,7 @@
         </div>
     </div>
     
-     <h4>Computer Peripheral</h4>
+     <h4 class="font-weight-bold">Computer Peripheral</h4>
     
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingNine">
@@ -360,6 +395,12 @@
              
           $('#collapsedown8').click(function() {
             $('#collapseEight').toggle('1000');
+            $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+
+        });
+             
+            $('#collapsedown11').click(function() {
+            $('#collapseEleven').toggle('1000');
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
