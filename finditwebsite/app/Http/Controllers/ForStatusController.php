@@ -54,6 +54,17 @@ class ForStatusController extends BaseController
      $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
      return view ('content/repair' , $data);
    }
+      
+      public function showRepairItemsSummary(){
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
+     $data = [];
+     $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     return view ('content/repairSummary' , $data);
+   }
 
    
 
