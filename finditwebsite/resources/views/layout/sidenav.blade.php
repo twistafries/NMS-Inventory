@@ -47,9 +47,7 @@
                 <li>
                     <a href="{!! url('/repair') !!}"><i class="fas fa-tools"></i><span class="hide-menu">For Repair</span></a>
                 </li>
-                <li>
-                    <a href="{!! url('/return') !!}"><i class="fas fa-undo-alt"></i><span class="hide-menu">For Return</span></a>
-                </li>
+                
                 <li>
                     <a href="{!! url('/decommissioned') !!}"><i class="fas fa-trash"></i><span class="hide-menu">Decommissioned</span></a>
                 </li>
