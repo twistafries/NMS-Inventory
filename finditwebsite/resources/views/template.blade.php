@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
+    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap-reboot.min.css') }}">
     <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
@@ -21,13 +22,20 @@
     <!-- Your custom css goes here -->
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet"  href="{{ asset('css/custom-table.css') }}">
+    <style>
+        /* Center the loader */
+        </style>
     @yield('css')
+    <link rel="stylesheet"  href="{{ asset('css/loader.css') }}">
 
     <title>@yield('title')</title>
 </head>
 
-<body onpageshow="ShowLocalDate()">
-    <div class="fluid-container bg-light">
+<body onload="myFunction()" >
+<div id="loader"></div>
+
+   
+    <div class="fluid-container bg-light" id="initial">
         <div class="wrapper">
             @include('layout/sidenav')
 
@@ -65,7 +73,18 @@
       });
     </script>
     @yield('script')
+    <script>
+        var myVar;
 
+        function myFunction() {
+            myVar = setTimeout(showPage, 3000);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("initial").style.display = "block";
+        }
+    </script>
 </body>
 
 </html>
