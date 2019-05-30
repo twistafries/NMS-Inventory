@@ -17,7 +17,9 @@ use App\Models\TblStatus;
 use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
 use App\Models\TblActivityLogs;
+use App\Models\Suppliers;
 use Session, Auth;
+use DB;
 
 class InventoryController extends BaseController
 {
@@ -146,7 +148,8 @@ class InventoryController extends BaseController
       $data['status'] = TblEquipmentStatus::get_all_status();
       $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['suppliers'] = Suppliers::get_suppliers();
+      $data['supplier'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
@@ -224,6 +227,19 @@ class InventoryController extends BaseController
         $data['user_id'] = $user_id;
         // $data['subtype_id'] = (int)$request->get('subtype_id');
         // dd($data);
+        $supplier = $request->input('supplier');
+  			$all_supplier = DB::table('supplier')->where('supplier_name',$supplier)->first();
+  			if(!$all_supplier){
+          $id=Suppliers::add_supplier($supplier);
+  			  $data['supplier_id']=$id;
+        }
+        if($all_supplier){
+          $supp=DB::table('supplier')->select('id')->where('supplier_name',$supplier)->get();
+          foreach ($supp as $supp) {
+            $data['supplier_id']=(int)$supp->id;
+          }
+
+        }
 
         if(isset($data['subtype_id'])
         && isset($data['brand'])
@@ -232,13 +248,15 @@ class InventoryController extends BaseController
         && isset($data['user_id'])
         && isset($data['warranty_start'])
         && isset($data['warranty_end'])
-        && isset($data['supplier'])
+        && isset($data['supplier_id'])
         && isset($data['serial_no'])
         && isset($data['or_no'])
         && isset($data['status_id']) ){
-            $id=TblItEquipment::add_equipment($data);
+
+            $log_id=TblItEquipment::add_equipment($data);
+
             // Session::flash('message', 'Successfully added equipment to inventory');
-            $log['data'] = $id;
+            $log['data'] = $log_id;
             $log['activity'] = "added";
             TblActivityLogs::add_log($log);
             // return \Redirect::to('/inventory');
