@@ -30,9 +30,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                   
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -144,15 +142,15 @@
               </div>
                  Delete
 -->
-                <div class="dropdown">
 <!--
+                <div class="dropdown">
                   <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
--->
               </div>
+-->
 
 
                 <!-- Sort -->
@@ -263,7 +261,7 @@
     <select id="supplier" name="supplier">
       <option value="any">Any</option>
       @foreach ($suppliers as $suppliers)
-      <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
+      <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
       @endforeach
     </select>
 </th>
@@ -308,6 +306,7 @@
                         <th>Brand</th>
                         <th>Types</th>
                         <th>Subtype</th>
+                        <th>Supplier</th>
                         <th>Serial No</th>
                         <th>Added by</th>
                         <th>Date Added</th>
@@ -316,7 +315,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
@@ -326,6 +325,7 @@
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
                         <td> {{ $equipment->subtype_name }} </td>
+                        <td>{{$equipment->supplier}}</td>
                         <td> {{ $equipment->serial_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
@@ -436,7 +436,7 @@
 
                      <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
@@ -451,7 +451,7 @@
                                           <p>Warning!</p>
                                           <p>Are you sure you want to change the status of this item to Decommissioned?</p>
                                       </div>
-                                      
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -464,7 +464,7 @@
 
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
@@ -479,7 +479,7 @@
                                           <p>Warning!</p>
                                           <p>Are you sure you want to Delete this item?</p>
                                       </div>
-                                      
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -890,48 +890,6 @@
         </div>
 
 <!-- Software -->
-<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
-    <table id="myDataTable4" class="table table-borderless table-hover" style="width:100%">
-        <thead class="thead-dark">
-            <tr>
-
-              <th id="checkbox" hidden></th>
-              <th>Model</th>
-              <th>Brand</th>
-              <th hidden>Subtype</th>
-              <th>Subtypes</th>
-              <th>Supplier</th>
-              <th>Details</th>
-              <th>Serial No</th>
-              <th>OR No</th>
-              <th>Added By</th>
-              <th>Date Added</th>
-              <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach ($software as $software)
-            <tr>
-            <td hidden><input class="checkbox" type="checkbox"></td>
-                <td> {{ $software->model }} </td>
-                <td> {{ $software->brand }} </td>
-                <td> {{ $software->subtype_name }} </td>
-                <td> {{ $software->supplier }} </td>
-                <td width="30%"> {{ $software->details }} </td>
-                <td hidden></td>
-                <td> {{ $software->serial_no }} </td>
-                <td> {{ $software->or_no }} </td>
-                <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                <td> {{ $software->created_at }} </td>
-                <td> {{ $software->status_name }} </td>
-            </tr>
-
-            @endforeach
-        </tbody>
-
-    </table>
-</div>
 
 <!-- System Units -->
 <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab">
@@ -1138,7 +1096,14 @@
                         <div class="col-6">
                             <label for="serial_no" class="card-title text-dark">Supplier:</label>
                             <div class="input-group mb-1">
-                                <input name="supplier" type="text" size="30">
+                                <input list="suppliers" name="supplier" id="supplier" onblur="CheckListedEmployee(this.value)" required>
+                                <datalist id="suppliers">
+                                    @foreach ($supplier as $supplier)
+                                    <option data-customvalue="{{ $supplier->id}}" value="{{ $supplier->supplier_name}}">
+
+                                    </option>
+                                    @endforeach
+                                  </datalist>
                             </div>
                         </div>
                     </div>
@@ -1161,9 +1126,7 @@
                             <p class="card-title text-dark">Status:</p>
                             <select class="custom-select" name="status_id" >
                                 <option value="1">Available</option>
-                                <option value="4">For return</option>
                                 <option value="6">Pending</option>
-                                <option value="8">In-use</option>
                             </select>
                         </div>
                     </div>
