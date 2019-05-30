@@ -19,7 +19,6 @@
     <!-- Sidebar User Info -->
 
     <div class="sidebar-user"></div>
-
     <!-- Menu List -->
     <ul class="list-unstyled components" id="pages">
         <li id="dashboard">

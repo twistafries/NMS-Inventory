@@ -81,10 +81,10 @@
             <div class="container">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
-                  <a class="nav-link active" href="{!! url('/purchases') !!}">Purchases</a>
+                  <a class="nav-link" href="{!! url('/purchases') !!}">Purchases</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
+                  <a class="nav-link active" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{!! url('/returns') !!}">Returns</a>
@@ -228,7 +228,7 @@
 
                                 <div class="input-group col-1" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Quantity:</p>
+                                    <p class="card-title text-dark" style="font-size: 14px;">SN:</p>
                                     <input name="model" type="text" size="25" style="height: 2rem; width:3rem;">
                                     <!-- <select class="custom-select" id="subtypes" name="subtypes" style="width: 9rem; height:2rem;">
                                       <option value="" size="25">1</option>
