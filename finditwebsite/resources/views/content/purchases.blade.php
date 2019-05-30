@@ -123,7 +123,7 @@
           <select id="supplier" name="supplier" style="height: 1.8rem;">
             <option value="any">Any</option>
             @foreach ($suppliers as $suppliers)
-            <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
+            <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
             @endforeach
           </select>
       </th>
