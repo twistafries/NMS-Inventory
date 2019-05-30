@@ -374,6 +374,50 @@
     </div>
 
 
+                    
+
+                <div class="tab-content" id="pills-tabContent">
+            <!-- All Items in the Inventory -->
+            <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
+                  <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
+                          <thead class="thead-dark">
+                              <tr>
+
+                                  <th>ID</th>
+                                  <th>Name</th>
+                                  <th>Details</th>
+                                  <th>Serial No</th>
+                                  <th>OR No</th>
+                                  <th>Supplier</th>
+                                  <th>Date Added</th>
+                                  <th width="15%">Edited At</th>
+                                  <th>Edited By</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+
+                              @foreach ($decommissioned as $decommissioned)
+                              <tr>
+
+                                  <td> {{ $decommissioned->id }} </td>
+                                  <td> {{ $decommissioned->brand }} {{ $decommissioned->model }} </td>
+                                  <td width="30%"> {{ $decommissioned->details }} </td>
+                                  <td> {{ $decommissioned->serial_no }} </td>
+                                  <td> {{ $decommissioned->or_no }} </td>
+                                  <td> {{ $decommissioned->supplier }} </td>
+                                  <td> {{ $decommissioned->created_at }} </td>
+                                  <td> {{ $decommissioned->updated_at }} </td>
+                                  <td> {{ $decommissioned->firstname}} {{ $decommissioned->lastname}}  </td>
+                                
+                              </tr>
+
+                              @endforeach
+                          </tbody>
+
+                      </table>
+                  </div>
+
+            </div>
 
 
     <!-- Add System Unit Modal-->
