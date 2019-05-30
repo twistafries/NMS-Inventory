@@ -19,84 +19,9 @@
 <div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
-        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
-<!--
-     Pills Tabs
-    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
-        <li class="nav-item text-uppercase" >
-            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-              IT Equipments
-            </a>
-        </li>
-        <li class="nav-item text-uppercase">
-        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
-        </a>
-      </li>
-
-         <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                Computer Peripherals</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
-                Mobile Devices</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li>
-    </ul>
--->
-
-
-<!--    PAGE CONTENT -->
-      <div class="container-fluid">
-                        <div class="container-fluid">
-
-                            <div class="row">
-                                <div class="container-fluid">
-                                <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item">
-                                  <a class="nav-link font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEM LIST</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
-                                </li>
-
-
-                              </ul>
-                                    </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-<!--    PAGE CONTENT END -->
      <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
-        <div class="p-4">
+        <div class="p-2">
             <div class="btn-group" role="group" aria-label="Basic example">
 
 
@@ -144,15 +69,15 @@
               </div>
                  Delete
 -->
-                <div class="dropdown">
 <!--
+                <div class="dropdown">
                   <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
--->
               </div>
+-->
 
 
                 <!-- Sort -->
@@ -169,6 +94,78 @@
 
         </div>
     </div>
+        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+                <ol class="breadcrumb arr-right">
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
+                    </li>
+                  
+                   
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
+                    </li>
+                </ol>
+            </nav>
+    </nav>
+<!--
+     Pills Tabs
+    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
+        <li class="nav-item text-uppercase" >
+            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
+              IT Equipments
+            </a>
+        </li>
+        <li class="nav-item text-uppercase">
+        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
+        </a>
+      </li>
+
+         <li class="nav-item text-uppercase">
+            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
+                Computer Peripherals</a>
+        </li>
+        <li class="nav-item text-uppercase">
+            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
+                Mobile Devices</a>
+        </li>
+        <li class="nav-item text-uppercase">
+            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
+        </li>
+    </ul>
+-->
+
+
+<!--    PAGE CONTENT -->
+      <div class="container-fluid">
+                        <div class="container-fluid pb-1">
+
+                            <div class="row pt-4">
+                                <div class="container-fluid">
+                                <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                  <a class="nav-link font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEM LIST</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
+                                </li>
+
+
+                              </ul>
+                                    </div>
+                            </div>
+
+                        </div>
+          <hr>
+
+
+                    </div>
+
 @if(Session::has('warning'))
 <div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">Warning</h4>
@@ -237,7 +234,7 @@
 @endif
 
 
-<table style="margin: auto;width: 100%; text-align: right; ">
+<table style="margin: auto;width: 100%; text-align: right; " class="">
 <thead>
   <tr>
     <th>
@@ -263,7 +260,7 @@
     <select id="supplier" name="supplier">
       <option value="any">Any</option>
       @foreach ($suppliers as $suppliers)
-      <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
+      <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
       @endforeach
     </select>
 </th>
@@ -308,6 +305,7 @@
                         <th>Brand</th>
                         <th>Types</th>
                         <th>Subtype</th>
+                        <th>Supplier</th>
                         <th>Serial No</th>
                         <th>Added by</th>
                         <th>Date Added</th>
@@ -316,7 +314,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
@@ -326,6 +324,7 @@
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
                         <td> {{ $equipment->subtype_name }} </td>
+                        <td>{{$equipment->supplier}}</td>
                         <td> {{ $equipment->serial_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->created_at }} </td>
@@ -416,17 +415,23 @@
                                             <div class="col col-4 detail-header text-uppercase">Warranty Period:</div>
                                             <div class="col col-7 details" id="fullname">{{ $equipment->warranty_start }} - {{ $equipment->warranty_end }}</div>
                                         </div>
+                                        <!--Mark As-->
+                                        <div class="row row-details">
+                                            <div class="col col-4 detail-header text-uppercase">Mark As:</div>
+                                            <div>
+                                                <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
+                                                <button type="button" class="btn btn-success text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Return</button>
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Decommission</button>
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
-                                     <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Issue</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
+                                    <button type="button" class="btn btn-primary text-uppercase pb-5" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
 
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                    <button type="button" class="btn btn-danger text-uppercase pb-5" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +441,7 @@
 
                      <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
@@ -451,7 +456,7 @@
                                           <p>Warning!</p>
                                           <p>Are you sure you want to change the status of this item to Decommissioned?</p>
                                       </div>
-                                      
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -464,7 +469,7 @@
 
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
@@ -479,7 +484,7 @@
                                           <p>Warning!</p>
                                           <p>Are you sure you want to Delete this item?</p>
                                       </div>
-                                      
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -890,48 +895,6 @@
         </div>
 
 <!-- Software -->
-<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
-    <table id="myDataTable4" class="table table-borderless table-hover" style="width:100%">
-        <thead class="thead-dark">
-            <tr>
-
-              <th id="checkbox" hidden></th>
-              <th>Model</th>
-              <th>Brand</th>
-              <th hidden>Subtype</th>
-              <th>Subtypes</th>
-              <th>Supplier</th>
-              <th>Details</th>
-              <th>Serial No</th>
-              <th>OR No</th>
-              <th>Added By</th>
-              <th>Date Added</th>
-              <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach ($software as $software)
-            <tr>
-            <td hidden><input class="checkbox" type="checkbox"></td>
-                <td> {{ $software->model }} </td>
-                <td> {{ $software->brand }} </td>
-                <td> {{ $software->subtype_name }} </td>
-                <td> {{ $software->supplier }} </td>
-                <td width="30%"> {{ $software->details }} </td>
-                <td hidden></td>
-                <td> {{ $software->serial_no }} </td>
-                <td> {{ $software->or_no }} </td>
-                <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                <td> {{ $software->created_at }} </td>
-                <td> {{ $software->status_name }} </td>
-            </tr>
-
-            @endforeach
-        </tbody>
-
-    </table>
-</div>
 
 <!-- System Units -->
 <div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab">
@@ -1138,7 +1101,14 @@
                         <div class="col-6">
                             <label for="serial_no" class="card-title text-dark">Supplier:</label>
                             <div class="input-group mb-1">
-                                <input name="supplier" type="text" size="30">
+                                <input list="suppliers" name="supplier" id="supplier" onblur="CheckListedEmployee(this.value)" required>
+                                <datalist id="suppliers">
+                                    @foreach ($supplier as $supplier)
+                                    <option data-customvalue="{{ $supplier->id}}" value="{{ $supplier->supplier_name}}">
+
+                                    </option>
+                                    @endforeach
+                                  </datalist>
                             </div>
                         </div>
                     </div>
@@ -1161,9 +1131,7 @@
                             <p class="card-title text-dark">Status:</p>
                             <select class="custom-select" name="status_id" >
                                 <option value="1">Available</option>
-                                <option value="4">For return</option>
                                 <option value="6">Pending</option>
-                                <option value="8">In-use</option>
                             </select>
                         </div>
                     </div>
@@ -1177,7 +1145,7 @@
                     </form>
             </div>
         </div>
-    </div>
+                </div>
 
 
     <!--Build From Parts Modal-->

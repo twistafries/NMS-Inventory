@@ -27,7 +27,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
@@ -52,7 +52,7 @@
                           @if($log->activity== "added")
                           <tr>
                               <td>
-                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} in the inventory.
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} into the inventory.
                               </td>
                               <td>{{$log->created_at}}</td>
                           </tr>

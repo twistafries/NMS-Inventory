@@ -32,48 +32,7 @@ class Purchases extends BaseController
         $data['suppliers'] = TblItEquipment::get_supplier();
         $data['brands'] = TblItEquipment::get_brand();
         $data['models'] = TblItEquipment::get_model();
-        $data['for_repair'] = TblEquipmentStatus::get_for_repair();
-        $data['for_return'] = TblEquipmentStatus::get_for_return();
-        $data['decommissioned'] = TblEquipmentStatus::get_for_disposal();
-        $data['employees'] = TblEmployees::get_employees();
-        $data['equipment'] = TblItEquipment::get_all_equipment();
-        $data['system_units'] = TblSystemUnits::get_all_system_units();
-        // $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
-        $data['issuance'] = TblIssuances::getIssuance();
-
-        // $data['most_issued'] = TblActivityLogs
-
-        $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
-        $data['onhand'] = TblItEquipment::countSubtypes();
-        $data['onhandAvailable'] = TblItEquipment::countSubtypes();
-
-        $ctr = 0;
-        $data['lowStack'] = collect([]);
-          foreach ($data['onhand'] as $onhand) {
-            foreach ($data['onhandAvailable'] as $avail) {
-              if($onhand->subtype_id==$avail->subtype_id){
-                foreach ($data['subtypesSel'] as $type) {
-                  if($onhand->subtype_id==$avail->subtype_id && $avail->subtype_id == $type->id)
-                  $data['lowStack'] ->push([
-                    'name'=> $type->name,
-                    'totalCount'=> $onhand->count,
-                    'available'=> $avail->count,
-                  ]);
-                }
-              }
-
-            }
-          }
-        $data['lowStackView'] = collect([]);
-        foreach ($data['lowStack']  as $lowStack) {
-            if($lowStack['totalCount']*.10 >= $lowStack['available']){
-              $data['lowStackView'] ->push([
-                'name'=> $lowStack['name'],
-                'available'=> $lowStack['available'],
-              ]);
-            }
-          }
-
+        
 
 
 
@@ -133,6 +92,118 @@ class Purchases extends BaseController
 
 
             return view ('content/viewPurchases' , $data);
+        }
+
+        public function returns(){
+          if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+                return \Redirect::to('/loginpage');
+          }
+          $data = [];
+          $data['status'] = TblEquipmentStatus::get_all_status();
+          $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+          $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+          $data['suppliers'] = TblItEquipment::get_supplier();
+          $data['brands'] = TblItEquipment::get_brand();
+          $data['models'] = TblItEquipment::get_model();
+          $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+          $data['for_return'] = TblEquipmentStatus::get_for_return();
+          $data['decommissioned'] = TblEquipmentStatus::get_for_disposal();
+          $data['employees'] = TblEmployees::get_employees();
+          $data['equipment'] = TblItEquipment::get_all_equipment();
+          $data['system_units'] = TblSystemUnits::get_all_system_units();
+          // $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
+          $data['issuance'] = TblIssuances::getIssuance();
+
+          // $data['most_issued'] = TblActivityLogs
+
+          $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+          $data['onhand'] = TblItEquipment::countSubtypes();
+          $data['onhandAvailable'] = TblItEquipment::countSubtypes();
+
+          $ctr = 0;
+          $data['lowStack'] = collect([]);
+            foreach ($data['onhand'] as $onhand) {
+              foreach ($data['onhandAvailable'] as $avail) {
+                if($onhand->subtype_id==$avail->subtype_id){
+                  foreach ($data['subtypesSel'] as $type) {
+                    if($onhand->subtype_id==$avail->subtype_id && $avail->subtype_id == $type->id)
+                    $data['lowStack'] ->push([
+                      'name'=> $type->name,
+                      'totalCount'=> $onhand->count,
+                      'available'=> $avail->count,
+                    ]);
+                  }
+                }
+
+              }
+            }
+          $data['lowStackView'] = collect([]);
+          foreach ($data['lowStack']  as $lowStack) {
+              if($lowStack['totalCount']*.10 >= $lowStack['available']){
+                $data['lowStackView'] ->push([
+                  'name'=> $lowStack['name'],
+                  'available'=> $lowStack['available'],
+                ]);
+              }
+            }
+
+            return view ('content/returns' , $data);
+        }
+
+        public function incompleteOrders(){
+          if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+                return \Redirect::to('/loginpage');
+          }
+          $data = [];
+          $data['status'] = TblEquipmentStatus::get_all_status();
+          $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+          $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+          $data['suppliers'] = TblItEquipment::get_supplier();
+          $data['brands'] = TblItEquipment::get_brand();
+          $data['models'] = TblItEquipment::get_model();
+          $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+          $data['for_return'] = TblEquipmentStatus::get_for_return();
+          $data['decommissioned'] = TblEquipmentStatus::get_for_disposal();
+          $data['employees'] = TblEmployees::get_employees();
+          $data['equipment'] = TblItEquipment::get_all_equipment();
+          $data['system_units'] = TblSystemUnits::get_all_system_units();
+          // $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
+          $data['issuance'] = TblIssuances::getIssuance();
+
+          // $data['most_issued'] = TblActivityLogs
+
+          $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+          $data['onhand'] = TblItEquipment::countSubtypes();
+          $data['onhandAvailable'] = TblItEquipment::countSubtypes();
+
+          $ctr = 0;
+          $data['lowStack'] = collect([]);
+            foreach ($data['onhand'] as $onhand) {
+              foreach ($data['onhandAvailable'] as $avail) {
+                if($onhand->subtype_id==$avail->subtype_id){
+                  foreach ($data['subtypesSel'] as $type) {
+                    if($onhand->subtype_id==$avail->subtype_id && $avail->subtype_id == $type->id)
+                    $data['lowStack'] ->push([
+                      'name'=> $type->name,
+                      'totalCount'=> $onhand->count,
+                      'available'=> $avail->count,
+                    ]);
+                  }
+                }
+
+              }
+            }
+          $data['lowStackView'] = collect([]);
+          foreach ($data['lowStack']  as $lowStack) {
+              if($lowStack['totalCount']*.10 >= $lowStack['available']){
+                $data['lowStackView'] ->push([
+                  'name'=> $lowStack['name'],
+                  'available'=> $lowStack['available'],
+                ]);
+              }
+            }
+
+            return view ('content/incompleteOrders' , $data);
         }
     //
     // public function getLowStack(){

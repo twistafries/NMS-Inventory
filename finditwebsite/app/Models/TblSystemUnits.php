@@ -15,7 +15,7 @@ class TblSystemUnits extends Model
         $query = \DB::table('system_units')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
         -> leftjoin('users' , 'users.id', '=', 'system_units.user_id')
-        -> select('system_units.*', 'system_units.id as id', 'users.lname as lname', 'users.fname as fname', 'equipment_status.name as stat')
+        -> select('system_units.*', 'system_units.id as id', 'users.lname as lname', 'users.fname as fname', 'equipment_status.name as status')
         -> orderBy('system_units.id' , 'ASC')
         -> get();
         return $query;

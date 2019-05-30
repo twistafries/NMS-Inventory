@@ -50,12 +50,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark">For Repair</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                   
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-warning" aria-current="page">Decommissioned</a>
                     </li>

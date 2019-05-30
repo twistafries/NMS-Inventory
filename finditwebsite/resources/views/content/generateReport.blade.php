@@ -77,6 +77,13 @@
         </div>
       </div>
     </div>
+
+    <!--Graph-->
+    <div class="row" id="graph" style="margin-bottom: 2rem;">
+      <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
+      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
+    </div>
 </div>
 @stop
 

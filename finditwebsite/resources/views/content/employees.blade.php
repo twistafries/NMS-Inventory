@@ -20,7 +20,7 @@
 @stop
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
       <div style="height:10px"></div>
       <div class="d-flex flex-row-reverse">
                                 <div class="p-2">

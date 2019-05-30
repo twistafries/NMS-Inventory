@@ -19,6 +19,81 @@
 <div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
+       <!-- Toolbox -->
+    <div class="d-flex flex-row-reverse">
+        <div class="p-2">
+            <div class="btn-group" role="group" aria-label="Basic example">
+
+
+                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
+
+                    <a href="#" data-toggle="tooltip" title="Single Add">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
+                    </a>
+                </button>
+                <!-- Bulk add  -->
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="bulkAdd">
+                    <a  data-toggle="tooltip" title="Bulk Add" href="{!! url('/bulk-add') !!}">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/box.png') }}"> Bulk Add
+                    </a>
+                </button>
+
+                <!-- Add System Unit  -->
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSystemUnit" data-target="#systemUnit" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Add System Unit">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/system-unit.png') }}"> Add System Unit
+                    </a>
+                </button>
+
+                <!-- Build A pc  -->
+                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
+                    </a>
+                </button>
+
+                <!-- Add Option-->
+<!--
+                <div class="dropdown">
+                  <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a href="#" data-toggle="tooltip" title="Add">
+                          <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
+                      </a>
+                  </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
+                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li>
+                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
+                    </ul>
+              </div>
+                 Delete
+-->
+<!--
+                <div class="dropdown">
+                  <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
+                      <a href="#" data-toggle="tooltip" title="delete">
+                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
+                      </a>
+                      </button>
+              </div>
+-->
+
+
+                <!-- Sort -->
+                <!-- <button type="button" class="btn">
+                    <a href="#" data-toggle="tooltip" title="sort">
+                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
+                    </a>
+                </button> -->
+
+
+
+            </div>
+
+
+        </div>
+    </div>
         <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
@@ -30,9 +105,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                    
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -94,13 +167,640 @@
                         </div>
 
                         <hr>
+          
+                      
+                        
+
+
+                         <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Issued To</th>
+                            <th>Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach ($system_units as $system_units)
+                        <tr data-toggle="modal" data-target="#viewItemModal">
+                            <td> {{ $system_units->id }}</td>
+                            <td>{{ $system_units->name }} </td>
+                            <td> {{ $system_units->status }}</td>
+                            <td> {{ $system_units->fname }} {{ $system_units->lname }} </td>
+                            <td> </td>
+
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+
+                </table>
+
+                <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
+                            
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:600px; width: 600px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">ID:</div></div>
+                                          
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Name:</div></div>
+                                          
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Added By:</div></div>
+                                      </div>
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-4">1</div>
+                                          
+                                          <div class="col-sm-4">ITPC</div>
+                                          
+                                          <div class="col-sm-4">Justine Garcia</div>
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Added At:</div></div>
+                                          
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Last updated At:</div></div>
+                                          
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Status:</div></div>
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-4">01/22/19</div>
+                                          
+                                          <div class="col-sm-4">01/22/19</div>
+                                          
+                                          <div class="col-sm-4">Available</div>
+                                      </div>
+
+                                      <div class="row">
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Department:</div></div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Information Technology Development Department</div></div>
+                                      </div>
+
+                                      <div class="row">
+                                          <hr>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="col-sm-4"><div class="detail-header text-uppercase">Components:</div></div>
+                                      </div>
+                                      
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Motherboard:</div></div>
+                                          
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">CPU:</div></div>
+                                          
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Storage:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">RAM:</div></div>
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          s<div class="col-sm-3">Samp</div>
+                                          
+                                          <div class="col-sm-3">Samp</div>
+                                          
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp<</div>
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">GPU:</div></div>
+                                          
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Power Supply:</div></div>
+                                          
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Case:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-3">Samp</div>
+                                          
+                                          <div class="col-sm-3">Samp</div>
+                                          
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp<</div>
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          <div class="col-sm"><div class="detail-header text-uppercase">Soundcard:</div></div>
+                                          
+                                      </div>
+
+                                      <div class="row">
+                                          
+                                          <div class="col-sm">Sample</div>
+                                          
+                                      </div>
+
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
 
 
 
 
     </div>
-    <!--    PAGE CONTENT END -->
 
+   <!-- Single Add Modal -->
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle">Single Add</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Add Equipment Form -->
+                <div class="modal-body">
+                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
+                    {!! csrf_field() !!}
+                    <div class="row pb-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Subtype:</p>
+                        <select name="subtype_id" class="custom-select">
+                        @foreach ($equipment_subtypes as $equipment_subtypes)
+                            <option  value="{!! $equipment_subtypes->id !!}">
+                                {{ $equipment_subtypes->name }}
+                            </option>
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
+
+                    <!-- Model & Brand -->
+                    <div class="row">
+                        <div class="col-5">
+                            <p class="card-title text-dark">Model:</p>
+                            <div class="input-group">
+                                <input name="model" type="text" size="30">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <p class="card-title text-dark">Brand:</p>
+                            <div class="input-group">
+                                <input name="brand" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="row">
+                        <div class="col-9">
+                            <label for="details" class="card-title text-dark">Details:</label>
+                            <div class="input-group">
+                                <textarea name="details" rows="3" id="details"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- Warranty -->
+                    <div class="row pb-2">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="details" class="card-title text-dark">Warranty Start:</label>
+                                    <input type="date" id="start" name="warranty_start">
+                                </div>
+
+                                <div class="col">
+                                    <label for="details" class="card-title text-dark">Warranty End:</label>
+                                    <input type="date" id="start" name="warranty_end">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- Serial and IMEI/MAC -->
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">Serial Number:</label>
+                            <div class="input-group mb-1">
+                                <input name="serial_no" type="text" size="30" >
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
+                            <div class="input-group mb-1">
+                                <input name="imei_or_macaddress" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- OR & Supplier -->
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-title text-dark">Official Receipt Numbers:</p>
+                            <div class="input-group mb-1">
+                                <input name="or_no" type="text" size="30">
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="serial_no" class="card-title text-dark">Supplier:</label>
+                            <div class="input-group mb-1">
+                                <input name="supplier" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Unit & Status -->
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="card-title text-dark">System Unit Assigned To:</p>
+                            <select name="unit_id" class="custom-select">
+                                <option value="NULL">Not Assigned</option>
+                                @foreach ($units as $units)
+                                <option value="{!! $units->id !!}">
+                                    {{ $units->description }}-{{ $units->id }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-6">
+                            <p class="card-title text-dark">Status:</p>
+                            <select class="custom-select" name="status_id" >
+                                <option value="1">Available</option>
+                                <option value="4">For return</option>
+                                <option value="6">Pending</option>
+                                <option value="8">In-use</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer text-uppercase">
+                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Build From Parts Modal-->
+      
+        <div class="p-2">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="buildFromPartsHeader" class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                <div class="container" style="padding:5rem">
+
+
+                <form action="{!! url('/buildUnit'); !!}" method="post">
+                      {!! csrf_field() !!}
+
+                  <p class="card-title text-dark">Name:</p>
+                    <div class="input-group">
+                        <input name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="row">
+                      @foreach ($subtypes as $subtypes)
+                    <div class="col col-6 mb-2">
+                      <p class="card-title">{{$subtypes->name}}: </p>
+                      <select name="items[]" class="custom-select">
+                        @foreach ($parts as $part)
+                        @if ($part->subtype_id==$subtypes->id)
+                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
+                        @endif
+                        @endforeach
+                      </select>
+                    </div>
+                @endforeach
+                    </div>
+                    </form>
+
+                </div>
+              </div>
+
+
+        <div class="modal-footer">
+
+            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
+            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+        </div>
+
+
+
+    </div>
+    </div>
+    </div>
+
+
+            
+
+
+    <!-- Add System Unit Modal-->
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="systemUnit">
+        <div class="modal-dialog modal-xxl">
+            <div class="modal-content">
+
+                <div id="addSystemUnit" class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Add System Unit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="addSystemUnitForm" action="{!! url('/addSystemUnit'); !!}" enctype="multipart/form-data" method="post" role="form">
+                        {!! csrf_field() !!}
+
+                        <div class="row">
+                            <div class="col-sm">
+
+                                <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
+                                    <thead>
+                                        <tr>
+                                            <th>PC Description</th>
+                                            <th>Supplier</th>
+                                            <th>OR No.</th>
+                                            <th>Warranty</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td> <input type="text" name="unit[mac_address]"></td>
+                                            <td>
+                                                <input type="text" name="unit[supplier]"><br>
+
+                                            </td>
+                                            <td> <input type="text" name="unit[or_no]"></td>
+                                            <td>
+                                                <label for="start">Start date:</label>
+                                                <input type="date" id="start" name="unit[warranty_start]">
+                                                <br>
+                                                <label for="start">End date:</label>
+                                                <input type="date" id="start" name="unit[warranty_end]">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <div class="col-sm">
+                                <table class="table table-borderless table-striped table-hover table-responsive" style="width:100%">
+                                    <thead class="">
+                                        <tr>
+                                            <th>Component</th>
+                                            <th>Brand</th>
+                                            <th>Model</th>
+                                            <th>Serial no.</th>
+                                            <th>Details</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Motherboard <input type="text" name="equipment[subtype_id][]" value="1" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>CPU<input type="text" name="equipment[subtype_id][]" value="2" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Storage<input type="text" name="equipment[subtype_id][]" value="3" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
+
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+
+                                        <tr>
+                                            <td>RAM<input type="text" name="equipment[subtype_id][]" value="4" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>GPU<input type="text" name="equipment[subtype_id][]" value="5" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required> </td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Case<input type="text" name="equipment[subtype_id][]" value="7" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]" required></td>
+                                            <td> <input type="text" name="equipment[model][]" required></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" required></td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Heat Sink Fan<input type="text" name="equipment[subtype_id][]" value="8" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]"> </td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Sound Card<input type="text" name="equipment[subtype_id][]" value="18" hidden></td>
+                                            <td> <input type="text" name="equipment[brand][]"></td>
+                                            <td> <input type="text" name="equipment[model][]"></td>
+                                            <td> <input type="text" name="equipment[serial_no][]" ></td>
+                                            <td><textarea name="equipment[details][]" rows="2" cols="22"></textarea></td>
+                                        </tr>
+                                    </tbody>
+                                  </table>
+                               </div>
+                              </div>
+
+                            </form>
+                            </div>
+
+                        <div class="modal-footer">
+                            <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                        </div>
+
+
+
+            </div>
+        </div>
+    </div>
+            
+                <!-- Soft Delete-->
+    <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle">Soft Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- Add system unit Form -->
+                <div class="modal-body">
+                  <form action="{!! url('/softDeleteEquipment'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()"  method="post" role="form">
+                      {!! csrf_field() !!}
+                      <div class="row">
+                        <div class="col-md-5">
+                            <p class="card-title">Delete Item:</p>
+                            <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
+                              <datalist id="items">
+                                <select>
+                                @foreach ($equipments as $equipment)
+                                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}}">{{ $equipment->subtype_name}}</option>
+                                @endforeach
+                                @foreach ($systemunits as $systemunits)
+                                <option data-customvalue="System Unit-{{ $systemunits->id}}" value="{{ $systemunits->description}}-{{ $systemunits->id}}">System Unit</option>
+                                @endforeach
+                              </select>
+                              </datalist>
+
+                        </div>
+                      </div>
+
+                  <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                  </div>
+
+                  <div class="modal-footer text-uppercase">
+                  <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
+
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+                  </div>
+                  </form>
+</div>
+</div>
+</div>
+
+<!-- Hard Delete-->
+<div class="modal fade bd-example-modal-sm" id="hardDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">Hard Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Add system unit Form -->
+            <div class="modal-body">
+              <form action="{!! url('/hardDeleteEquipment'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()"  method="post" role="form">
+                  {!! csrf_field() !!}
+                  <div class="row">
+                    <div class="col-md-5">
+                        <p class="card-title">Delete Item:</p>
+                        <input  list="item" name="item" id="hequipment" onblur="CheckListed(this.value);" required>
+                          <datalist id="item">
+                            <select>
+                            @foreach ($equipments as $equipment)
+                            <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}}">{{ $equipment->subtype_name}}</option>
+                            @endforeach
+                            @foreach ($units_system as $units_system)
+                            <option data-customvalue="System Unit-{{ $units_system->id}}" value="{{ $units_system->description}}-{{ $units_system->id}}">System Unit</option>
+                            @endforeach
+                          </select>
+                          </datalist>
+
+                    </div>
+                  </div>
+
+              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+              </div>
+
+              <div class="modal-footer text-uppercase">
+              <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
+
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+              </div>
+              </form>
+</div>
+</div>
+</div>
+
+
+
+                     
+                            <div class="row">
+                                <h4>System Units</h4>
+                                <div class="container-fluid">
+                                    <!--
+                                    <div class="collapse-group">
+
+                                        <div class="controls">
+                                            <button class="btn btn-primary open-button" type="button">
+      Open all
+    </button>
+                                            <button class="btn btn-primary close-button" type="button">
+      Close all
+    </button>
+
+                                    </div>
+-->
 
 
     @stop @section('script')
