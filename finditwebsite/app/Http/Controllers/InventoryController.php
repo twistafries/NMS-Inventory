@@ -193,6 +193,7 @@ class InventoryController extends BaseController
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
       $data['peec'] ['unitss'] = TblSystemUnits::get_all_system_units();
+        $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
       return view ('content/systemUnit' , $data);
     }
 
