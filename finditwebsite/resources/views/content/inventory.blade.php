@@ -19,80 +19,7 @@
 <div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
-        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
-                    </li>
-                    
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
-
-<!--
-     Pills Tabs
-    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
-        <li class="nav-item text-uppercase" >
-            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-              IT Equipments
-            </a>
-        </li>
-        <li class="nav-item text-uppercase">
-        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
-        </a>
-      </li>
-
-         <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                Computer Peripherals</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
-                Mobile Devices</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li>
-    </ul>
--->
-
-
-<!--    PAGE CONTENT -->
-      <div class="container-fluid">
-                      
-
-                            <div class="row">
-                                <div class="container-fluid">
-                                <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item">
-                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEMS LIST</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
-                                </li>
-
-
-                              </ul>
-                                    </div>
-                            </div>
-
-                        <hr>
-
-                   
-          <!--    PAGE CONTENT END -->
-     <!-- Toolbox -->
+      <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -167,6 +94,78 @@
 
         </div>
     </div>
+        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+                <ol class="breadcrumb arr-right">
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
+                    </li>
+                    
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
+                    </li>
+                </ol>
+            </nav>
+            
+    </nav>
+
+<!--
+     Pills Tabs
+    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
+        <li class="nav-item text-uppercase" >
+            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
+              IT Equipments
+            </a>
+        </li>
+        <li class="nav-item text-uppercase">
+        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
+        </a>
+      </li>
+
+         <li class="nav-item text-uppercase">
+            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
+                Computer Peripherals</a>
+        </li>
+        <li class="nav-item text-uppercase">
+            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
+                Mobile Devices</a>
+        </li>
+        <li class="nav-item text-uppercase">
+            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
+        </li>
+    </ul>
+-->
+
+
+<!--    PAGE CONTENT -->
+      <div class="container-fluid">
+                      
+
+                            <div class="row pt-4">
+                                <div class="container-fluid">
+                                <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEMS LIST</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
+                                </li>
+
+
+                              </ul>
+                                    </div>
+                            </div>
+
+                        <hr>
+
+                   
+          <!--    PAGE CONTENT END -->
+   
           
           <!-- Single Add Modal -->
 
