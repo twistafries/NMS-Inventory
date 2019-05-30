@@ -30,9 +30,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                   
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -144,15 +142,15 @@
               </div>
                  Delete
 -->
-                <div class="dropdown">
 <!--
+                <div class="dropdown">
                   <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
                       <a href="#" data-toggle="tooltip" title="delete">
                           <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
                       </a>
                       </button>
--->
               </div>
+-->
 
 
                 <!-- Sort -->
