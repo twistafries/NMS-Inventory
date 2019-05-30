@@ -261,7 +261,7 @@ class InventoryController extends BaseController
             TblActivityLogs::add_log($log);
             // return \Redirect::to('/inventory');
             return redirect()->back()
-              ->with('message' , 'Successfully added equipment to inventory');
+              ->with('message' , $data['brand'].' '.$data['model'].' was successfully added into the inventory');
         }else{
             // Session::flash('error', 'Failed to add equipment to inventory, please fill out all the fields');
             // if(Session::has('error'))
