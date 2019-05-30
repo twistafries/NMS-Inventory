@@ -41,9 +41,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-warning" aria-current="page">For Return</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                   
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
