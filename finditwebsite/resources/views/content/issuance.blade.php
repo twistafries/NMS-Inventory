@@ -63,15 +63,6 @@
           @endforeach
         </select>
     </th>
-    <th>
-      <label for="supplier">Supplier: </label>
-      <select id="supplier" name="supplier">
-        <option value="any">Any</option>
-        @foreach ($suppliers as $suppliers)
-        <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
-        @endforeach
-      </select>
-  </th>
   <th>
     <label for="brand">Brand: </label>
     <select id="brand" name="brand">

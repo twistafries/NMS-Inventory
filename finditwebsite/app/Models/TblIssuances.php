@@ -38,7 +38,7 @@ class TblIssuances extends Model {
 		->groupBy('employees.fname')
 		->groupBy('employees.lname')
 		->where('employees.dept_id', '=', $id)
-		->orderBy('i.issued_to', 'desc')
+		->orderBy('i.issued_to', 'asc')
 		->get();
 
 			if(isset($params['id'])) {

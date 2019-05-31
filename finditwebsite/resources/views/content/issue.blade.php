@@ -103,14 +103,14 @@
       <div class="modal-body">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">Issued Items</a>
+                <a class="nav-link active" data-toggle="tab" href="#home{{$employee->id}}">Issued Items</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#issueItems">Issue Items</a>
+                <a class="nav-link" data-toggle="tab" href="#issueItems{{$employee->id}}">Issue Items</a>
             </li>
         </ul>
         <div class="tab-content">
-        <div id="home" class="container tab-pane active"><br>
+        <div id="home{{$employee->id}}" class="container tab-pane active"><br>
             <table class="table" id="myTable">
                     <thead class="thead-dark">
                         <tr>
@@ -149,11 +149,21 @@
             </div>
 
 
-    <div id="issueItems" class="container tab-pane fade"><br>
+    <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
 
       <h4><button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>     ADD ITEMS</button></h4>
 
             <table class="table" id="addMoreList">
+              <datalist id="items">
+                <select>
+                @foreach ($eqp as $equipment)
+                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
+                @endforeach
+                @foreach ($pc as $units)
+                <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
+                @endforeach
+              </select>
+              </datalist>
                         <tbody>
                         </tbody>
             </table>
