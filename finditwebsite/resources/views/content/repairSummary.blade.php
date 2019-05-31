@@ -148,8 +148,11 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
+                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                          </td>
                         </tr>
                        
                     </tbody>
@@ -185,8 +188,12 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
+                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                            </td>
+                            
                         </tr>
                        
                     </tbody>
@@ -221,8 +228,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
+                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                            
                         </tr>
                        
                     </tbody>
@@ -262,8 +271,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
+                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                           
                         </tr>
                        
                     </tbody>
@@ -299,8 +310,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
+                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                            
                         </tr>
                        
                     </tbody>
@@ -336,8 +349,10 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
+                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                            
                         </tr>
                        
                     </tbody>
