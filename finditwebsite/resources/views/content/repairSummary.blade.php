@@ -101,20 +101,249 @@
                 
 <div class="container-fluid">
      <h4 class="font-weight-bold">System Units</h4>
-     <div class="panel panel-default pl-2">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> item1</a>
-            </h5>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
+     
+        
+      
+                <!--            Departments collapse-->
+                    <div class="panel panel-default pl-2">
+                        <div class="panel-heading" role="tab" id="">
+                            <h5 class="panel-title">
+                                <a role="button" data-toggle="collapse" href="#collapseIT" aria-expanded="true" aria-controls="collapseIT" class="trigger collapsed" id="collapsedownIT"><i class="fas fa-arrow-circle-down"></i></i> Information Technology Development Department</a>
+                            </h5>
+                        </div>
+                        <div id="collapseIT" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingIT">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                        <ul class="list-unstyled">
+<!--IT PC items list -->
+                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1">IT PC1 </button>
+
+                                                <div class="collapse" id="item1">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Component</th>
+                                                                <th scope="col">Brand/Name</th>
+                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Serial No.</th>
+                                                                <th scope="col">Warranty</th>
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Motherboard</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Storage</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RAM</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Power Supply</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Heat Sink Fan</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sound Card</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </li>
+         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item2">IT PC2 </button>
+                                  
+                                    <div class="collapse" id="item2">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Component</th>
+                                                        <th scope="col">Brand/Name</th>
+                                                        <th scope="col">Details</th>
+                                                        <th scope="col">Serial No.</th>
+                                                        <th scope="col">Warranty</th>
+                                                      
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Motherboard</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Storage</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>RAM</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>GPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Power Supply</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Heat Sink Fan</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Sound Card</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                    </div>
+    </ul>
+
+<!--IT system units items -->
+                                   
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                <div class="panel panel-default pl-2">
+                        <div class="panel-heading" role="tab" id="">
+                            <h5 class="panel-title">
+                                <a role="button" data-toggle="collapse" href="#collapsePD" aria-expanded="true" aria-controls="collapsePD" class="trigger collapsed" id="collapsedownPD"><i class="fas fa-arrow-circle-down"></i> Production Development Department</a>
+                            </h5>
+                        </div>
+                        <div id="collapsePD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPD">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <h5>content</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default pl-2">
+                        <div class="panel-heading" role="tab" id="">
+                            <h5 class="panel-title">
+                                <a role="button" data-toggle="collapse" href="#collapseFD" aria-expanded="true" aria-controls="collapseFD" class="trigger collapsed" id="collapsedownFD"><i class="fas fa-arrow-circle-down"></i> Financial Department</a>
+                            </h5>
+                        </div>
+                        <div id="collapseFD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFD">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <h5>content</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default pl-2">
+                        <div class="panel-heading" role="tab" id="">
+                            <h5 class="panel-title">
+                                <a role="button" data-toggle="collapse" href="#collapseHR" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  Human Resources Department</a>
+                            </h5>
+                        </div>
+                        <div id="collapseHR" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
+                            <div class="panel-body">
+                                <div class="container-fluid">
+                                    <h5>content</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                
                 </div>
             </div>
         </div>
-    </div>
+   
+   
     
     
     
@@ -149,8 +378,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            <button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
-                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                           </td>
                         </tr>
@@ -189,8 +417,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            <button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
-                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                             </td>
                             
@@ -228,9 +455,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
-                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                            <td>
+                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                             
                         </tr>
                        
@@ -271,9 +498,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
-                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                            <td>
+                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                            
                         </tr>
                        
@@ -310,9 +537,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
-                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                             
                         </tr>
                        
@@ -349,8 +576,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><button type="button" class="btn btn-success rounded"><i class="fas fa-undo-alt"></i> Return</button>
-                            <button type="button" class="btn btn-warning rounded"><i class="fas fa-tools"></i> Repair</button>
+                            <td> <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
                             
                         </tr>
@@ -460,31 +686,48 @@
 
         });
              
-         $('#collapsedown6').click(function() {
+        $('#collapsedown6').click(function() {
             $('#collapseSix').toggle('1000');
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
              
-          $('#collapsedown8').click(function() {
-            $('#collapseEight').toggle('1000');
-            $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+        $('#collapsedown8').click(function() {
+         $('#collapseEight').toggle('1000');
+         $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
              
-            $('#collapsedown11').click(function() {
-            $('#collapseEleven').toggle('1000');
-            $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+        $('#collapsedown11').click(function() {
+        $('#collapseEleven').toggle('1000');
+        $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
 
     </script>
         <script>
-         $('#collapsedown1').click(function() {
-            $('#collapse1').toggle('1000');
-            $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+        $('#collapsedownIT').click(function() {
+        $('#collapseIT').toggle('1000');
+        $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
+        $('#collapsedownPD').click(function() {
+        $('#collapsePD').toggle('1000');
+        $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+
+        });
+        $('#collapsedownFD').click(function() {
+        $('#collapseFD').toggle('1000');
+        $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+
+        });
+        $('#collapsedownHR').click(function() {
+        $('#collapseHR').toggle('1000');
+        $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+
+        });
+            
+         
         
         </script>
 
