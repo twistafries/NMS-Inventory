@@ -27,7 +27,77 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">ISSUED ITEMS</span>
+          <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+                <ol class="breadcrumb arr-right">
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/issuance') !!}" class="text-warning">Issued Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/issue') !!}" class="text-dark active" aria-current="page">Employee Issuance</a>
+                    </li>
+                </ol>
+            </nav>
+    </nav>
+  <h5 style="padding:1rem;">Filter:</h5>
+  <table>
+  <thead>
+    <tr>
+      <th>
+        <label for="types" id="labelTypes">Types: </label>
+        <select id="types" name="types">
+          <option value="any">Any</option>
+          @foreach ($typesSel as $typesSel)
+          <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+          @endforeach
+        </select>
+      </th>
+      <th>
+        <label for="subtypes">Subtype: </label>
+        <select id="subtypes" name="subtypes">
+          <option value="any">Any</option>
+          @foreach ($subtypesSel as $subtypesSel)
+          <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+          @endforeach
+        </select>
+    </th>
+    <th>
+      <label for="supplier">Supplier: </label>
+      <select id="supplier" name="supplier">
+        <option value="any">Any</option>
+        @foreach ($suppliers as $suppliers)
+        <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
+        @endforeach
+      </select>
+  </th>
+  <th>
+    <label for="brand">Brand: </label>
+    <select id="brand" name="brand">
+      <option value="any">Any</option>
+      @foreach ($brands as $brands)
+      <option value="{{$brands->brand}}">{{$brands->brand}}</option>
+      @endforeach
+    </select>
+  </th>
+  <th>
+    <label for="status">Status: </label>
+    <select id="status" name="status">
+      <option value="any">Any</option>
+      @foreach ($status as $status)
+      <option value="{{$status->name}}">{{$status->name}}</option>
+      @endforeach
+    </select>
+  </th>
+  <th></th><th></th>
+    <th>
+      <button class="btn btn-primary text-uppercase" type="button" onclick="reset()">Reset</button>
+  </th>
+  </thead>
+  <tr height="10px"></tr>
+  </table>
+
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
@@ -346,8 +416,11 @@ $(window).load(function(){
     function DoSubmit(){
       var item = $(equipment).val();
       document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
+<<<<<<< HEAD
       // var employee = $(issued_to).val();
       // document.getElementById("issued_to").value = $('#employee [value="' + employee + '"]').data('customvalue');
+=======
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
       return true;
       }
   </script>
@@ -381,6 +454,8 @@ $(window).load(function(){
         return false ; // text does not matched ;
     }
   </script>
+
+
   <script>function rm() {
   $(event.target).closest("tr").remove();
 }

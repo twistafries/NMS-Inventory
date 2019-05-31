@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use View, Validator, Session, Auth;
+use DB;
 use Illuminate\Http\Request;
 use App\Models\TblUsers;
 use Illuminate\Support\Facade\Hash;
@@ -33,7 +34,23 @@ class LoginController extends Controller {
 				'password' => $request->input('password')
 			);
 			$user = TblUsers::get_users($userdata);
-
+			$email = $request->input('email');
+			$active_user = DB::table('users')->where('email',$email)->first();
+			if(!$active_user){
+				Session::flash('errorLogin', 'Invalid Email');
+				return \Redirect::to('/loginpage');
+      }
+      if($active_user){
+				$logged = array(
+					'id' => $user->id,
+					'dept_id' => $user->department,
+					'email' => $user->email,
+					'user_type' => $user->user_type,
+					'fname' => $user->fname,
+					'lname' => $user->lname,
+					'status' =>  $user->status,
+				);
+      }
 			if(!isset($userdata['email'])) {
 				Session::flash('errorLogin', 'Invalid Email');
 				return \Redirect::to('/loginpage');
@@ -44,15 +61,7 @@ class LoginController extends Controller {
 				return \Redirect::to('/loginpage');
 			}
 
-			$logged = array(
-				'id' => $user->id,
-				'dept_id' => $user->department,
-				'email' => $user->email,
-				'user_type' => $user->user_type,
-				'fname' => $user->fname,
-				'lname' => $user->lname,
-				'status' =>  $user->status,
-			);
+
 			if($logged['status']!="active"){
 				Session::flash('errorLogin', 'Please refer to the admin with regards the details of your account.');
 				return \Redirect::to('/loginpage');

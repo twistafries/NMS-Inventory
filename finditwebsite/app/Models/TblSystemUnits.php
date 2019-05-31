@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\QueryException;
 use DB;
+use Session;
 class TblSystemUnits extends Model
 {
   protected $table = 'system_units';
@@ -13,8 +15,15 @@ class TblSystemUnits extends Model
         $query = \DB::table('system_units')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
         -> leftjoin('users' , 'users.id', '=', 'system_units.user_id')
-        -> select('system_units.*', 'system_units.id as id', 'users.lname as lname', 'users.fname as fname', 'equipment_status.name as stat')
+        -> select('system_units.*', 'system_units.id as id', 'users.lname as lname', 'users.fname as fname', 'equipment_status.name as status')
         -> orderBy('system_units.id' , 'ASC')
+        -> get();
+        return $query;
+    }
+
+    public static function get_total_system_units($status){
+        $query = \DB::table('system_units')
+        -> where('system_units.status_id', '=', $status)
         -> get();
         return $query;
     }
@@ -38,16 +47,19 @@ class TblSystemUnits extends Model
 
     public static function add_system_unit($params){
       $system_units = new TblSystemUnits;
-      $system_units->description = $params['description'];
+      // $system_units->description = $params['description'];
+      $system_units->name = $params['name'];
       $system_units->user_id = $params['user_id'];
-      
+
       $system_units->status_id = 1;
       try {
         $system_units->save();
         $id = DB::getPdo()->lastInsertId();
         return $id;
-      }catch(QueryException $e) {
-        die($e);
+      }catch(QueryException $qa) {
+        // dd($qa::getErrorInfo());
+        // Session::flash('error', 'Input cannot be read by the Database');
+        return \Redirect::to('/inventoryAll')->with('error' , 'Database error(s)');
       }
     }
 }

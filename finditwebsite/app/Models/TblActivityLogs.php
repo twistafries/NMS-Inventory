@@ -24,8 +24,13 @@ class TblActivityLogs extends Model {
       if(isset($params['data']))
         $log->data = $params['data'];
 
+<<<<<<< HEAD
       if(isset($params['data']))
         $log->data = $params['data'];
+=======
+      if(isset($params['system_unit']))
+        $log->system_unit = $params['system_unit'];
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
 
       if(isset($params['done_by']))
     	  $log->done_by = $params['done_by'];
@@ -36,8 +41,16 @@ class TblActivityLogs extends Model {
       if(isset($params['to_status']))
     	 $log->to_status = $params['to_status'];
 
+<<<<<<< HEAD
       if(isset($params['issued_to']))
     	  $log->issued_to = $params['issued_to'];
+=======
+			if(isset($params['field']))
+     	 $log->to_status = $params['to_status'];
+
+      if(isset($params['issued_to']))
+    	  $log->field = $params['field'];
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
 
     	try {
     		$log->save();
@@ -55,7 +68,12 @@ class TblActivityLogs extends Model {
         $query = DB::table('activity_logs as a')
         ->leftjoin('users', 'users.id', '=', 'a.done_by')
         ->leftjoin('it_equipment', 'it_equipment.id', '=', 'a.data')
+<<<<<<< HEAD
         ->select('a.*', 'it_equipment.brand as brand', 'it_equipment.model as model')
+=======
+        ->leftjoin('system_units', 'system_units.id', '=', 'a.system_unit')
+        ->select('a.*', 'it_equipment.brand as brand', 'it_equipment.model as model', 'system_units.id as pc_id', 'system_units.name as pc_name')
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
         ->orderBy('a.created_at' , 'desc')
         ->get();
 

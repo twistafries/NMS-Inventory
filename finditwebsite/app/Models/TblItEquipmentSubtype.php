@@ -13,7 +13,7 @@ class TblItEquipmentSubtype extends Model
         // dd($query);
         return $query;
     }
-    
+
     public static function get_component_subtype($params = null){
         $query = \DB::table('it_equipment_subtype')
         -> where('type_id' , '=' , '1')
@@ -22,7 +22,7 @@ class TblItEquipmentSubtype extends Model
         // dd($query);
         return $query;
     }
-    
+
     public static function get_peripheral_subtype($params = null){
         $query = \DB::table('it_equipment_subtype')
         -> where('type_id' , '=' , '2')
@@ -31,7 +31,7 @@ class TblItEquipmentSubtype extends Model
         // dd($query);
         return $query;
     }
-    
+
     public static function get_mobile_subtype($params = null){
         $query = \DB::table('it_equipment_subtype')
         -> where('type_id' , '=' , '3')
@@ -40,5 +40,13 @@ class TblItEquipmentSubtype extends Model
         // dd($query);
         return $query;
     }
-    
+
+    public static function get_software($params = null){
+        $query = \DB::table('it_equipment_subtype')
+        -> where('type_id' , '=' , '4')
+        -> orderBy('id' , 'asc')
+        -> get();
+        // dd($query);
+        return $query;
+    }
 }

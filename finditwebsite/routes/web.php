@@ -29,8 +29,8 @@ Route::get('/dashboard', function () {
     return view('content/dashboard');
 });
 
-Route::get('/reportpage', function () {
-    return view('content/report');
+Route::get('/generateReportPage', function () {
+    return view('content/generateReport');
 });
 
 
@@ -44,19 +44,50 @@ Route::group(['middleware' => 'preventBackHistory'],function(){
 
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
-
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
-Route::get('/dashboard', 'Dashboard@showAllStatus');
-Route::get('/reportpage', 'Reports@showAllStatus');
+// Route::get('/dashboard', 'DashboardController@showAllStatus');
+Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
+Route::post('/reInventory', 'DashboardController@filter');
+Route::get('/purchases', 'Purchases@showAllStatus');
+Route::get('/receivedPurchases', 'Purchases@received');
+Route::get('/returns', 'Purchases@returns');
+Route::get('/incompleteOrders', 'Purchases@incompleteOrders');
+
+Route::get('/viewPurchases', 'Purchases@viewPurchases');
+//generate report
+Route::get('/generateReportPage', 'Reports@showAllStatus');
+Route::get('/itemAvailabilityReport', 'inventoryReports@showAvailable');
+Route::get('/itemRepairReport', 'inventoryReports@showRepair');
+Route::get('/itemReturnReport', 'inventoryReports@showReturn');
+Route::get('/itemDisposalReport', 'inventoryReports@showDisposal');
+Route::get('/completedOrdersReport', 'inventoryReports@showCompleteOrders');
+Route::get('/incompleteOrdersReport', 'inventoryReports@showIncompleteOrders');
+Route::get('/lateReturnsReport', 'inventoryReports@showLateReport');
+Route::get('/issuancePerComponent', 'inventoryReports@showIssuancePerComponent');
+Route::get('/mostLeastReport', 'inventoryReports@showmostLeastReport');
 
 Route::get('/inventory', 'InventoryController@showAllInventory');
+Route::get('/inventoryAll', 'InventoryController@showAllItemsInventory');
+Route::get('/systemUnit', 'InventoryController@showSystemUnit');
+
 Route::get('/associates', 'AssociateController@showAllAssociate');
 Route::post('/deactivate', 'AssociateController@update_associate_status');
 Route::get('/issuableItems', 'ForStatusController@showIssuable');
 Route::get('/employees', 'ForStatusController@showEmployees');
 Route::post('/editEmployee', 'ForStatusController@editEmployee');
 Route::post('/changeStatus', 'ForStatusController@editEmployee');
+
+Route::get('/repair', 'ForStatusController@showRepairItems');
+Route::get('/repairSummary', 'ForStatusController@showRepairItemsSummary');
+Route::get('/return', 'ForStatusController@showReturnItems');
+Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
+// Route::get('/purchasenumber', 'ForStatusController@showPurchases');
+// Route::get('/ornumber', 'ForStatusController@showOR');
+// Route::get('/purchaseHistory', 'ForStatusController@showPurchaseHistory');
+
+Route::get('/issue', 'IssuanceController@employeeIssuance');
+Route::get('/issuance', 'IssuanceController@showAllIssuance');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
@@ -84,6 +115,6 @@ Route::post('/buildUnit', 'InventoryController@buildUnit');
 
 Route::post('/template', 'InventoryController@addEquipment');
 
-Route::get('/issuance', 'IssuanceController@showAllIssuance');
+
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');

@@ -27,7 +27,7 @@
 @stop
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
@@ -52,7 +52,11 @@
                           @if($log->activity== "added")
                           <tr>
                               <td>
+<<<<<<< HEAD
                                 {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} in the inventory.
+=======
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} into the inventory.
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
                               </td>
                               <td>{{$log->created_at}}</td>
                           </tr>
@@ -60,7 +64,11 @@
                           @if($log->activity == "issued")
                           <tr>
                               <td>
+<<<<<<< HEAD
                                 {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} to {{$log->issued_to}}
+=======
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} {{$log->pc_name}} {{$log->pc_id}} to {{$log->issued_to}}.
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
                               </td>
                               <td>{{$log->created_at}}</td>
                           </tr>

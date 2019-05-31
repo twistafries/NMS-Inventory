@@ -32,6 +32,11 @@ class TblEmployees extends Model {
 			return $query;
 	}
 
+
+
+
+
+
 	public static function add_employee($params) {
 		$empl = new TblEmployees;
 		$empl->id = $params['id'];
@@ -50,6 +55,7 @@ class TblEmployees extends Model {
 		}
 
 	}
+	
 	public static function remove_employee($params){
 	$employees = TblEmployees::find($params['id']);
 	$id = TblEmployees::find($params['id']);
