@@ -2,7 +2,8 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use DB, Session;
+use Carbon\Carbon;
 
 class TblIssuances extends Model {
 
@@ -29,6 +30,23 @@ class TblIssuances extends Model {
 
 		return $query;
 	}
+
+	public static function getIssuancePerEmployee($id) {
+		$query = \DB::table('issuance as i')
+		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
+		->select('i.*', 'employees.dept_id as dept.id', DB::raw('count(*) as totalIssued'))
+		->groupBy('employees.dept_id')
+		->where('employees.dept_id', '=', $id)
+		->orderBy('i.issued_to', 'desc')
+		->get();
+
+			if(isset($params['id'])) {
+				$query->where('i.id', '=', $params['id']);
+			}
+
+		return $query;
+	}
+
 
 	public static function most_issued(){
 		$query = \DB::table('it_equipment as i')
@@ -65,7 +83,7 @@ class TblIssuances extends Model {
 		$issuance = new TblIssuances;
 
 		$issuance->issued_to = $params['issued_to'];
-		$issuance->user_id = $params['user_id'];
+		$issuance->user_id = Session::get('loggedIn')['id'];
 		// $issuance->status_id = $params['status_id'];
 
 		if(isset($params['equipment_id']))

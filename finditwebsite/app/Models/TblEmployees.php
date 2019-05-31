@@ -60,7 +60,7 @@ class TblEmployees extends Model {
 	public static function edit_employee( $params ){
 		$employees = TblEmployees::find($params['id']);
         $id = TblEmployees::find($params['id']);
-        
+
 		if(isset($params['fname']))
 		$employees->fname = $params['fname'];
 

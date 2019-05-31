@@ -48,23 +48,32 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($logs as $log)
+                      @foreach($logs as $log)
+                          @if($log->activity== "added")
                           <tr>
-                              <td>{{$log->firstname}} {{$log->lastname}} {{$log->action}} {{$log->efname}} {{$log->elname}} {{$log->model}} {{$log->brand}}
-                                {{$log->unit_description}} {{$log->unit}} {{$log->userfname}} {{$log->userlname}} {{$log->dept_name}} {{$log->status_name}} {{$log->subtype_name}} {{$log->type_name}}
-                              @if($log->action == "issued")
-                                @foreach($issuance as $issuance)
-                                  @if($log->issuance_id == $issuance->id)
-                                    {{$issuance->brand}} {{$issuance->model}} {{$issuance->unit_name}} to {{$issuance->givenname}} {{$issuance->surname}}
-                                  @endif
-                                @endforeach
-                              @endif
-                              </td>
                               <td>
-                                {{$log->date}}
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} in the inventory.
                               </td>
+                              <td>{{$log->created_at}}</td>
                           </tr>
-                          @endforeach
+                          @endif
+                          @if($log->activity == "issued")
+                          <tr>
+                              <td>
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} to {{$log->issued_to}}
+                              </td>
+                              <td>{{$log->created_at}}</td>
+                          </tr>
+                          @endif
+                          @if($log->activity == "change the status of")
+                          <tr>
+                              <td>
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} from {{$log->from_status}} to {{$log->to_status}}.
+                              </td>
+                              <td>{{$log->created_at}}</td>
+                          </tr>
+                          @endif
+                       @endforeach
 
                     </tbody>
 

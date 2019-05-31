@@ -102,7 +102,11 @@ class InventoryController extends BaseController
       && isset($data['serial_no'])
       && isset($data['or_no'])
       && isset($data['status_id']) ){
-          TblItEquipment::add_equipment($data);
+          $id=TblItEquipment::add_equipment($data);
+          $log['data'] = $id;
+          // $log['unit'] = $data['unit_id'];
+          $log['activity'] = "added";
+          TblActivityLogs::add_log($log);
           return \Redirect::to('/inventory')->with('equipment has been added');
       }else{
            return redirect()->back()->with('error', 'Please fill out ALL fields');
@@ -133,7 +137,6 @@ class InventoryController extends BaseController
       $data['equipments'] = collect([]);
       $brands = $request->get('equipment')['brand'];
       $model = $request->get('equipment')['model'];
-      // $names = $request->get('equipment')['name'];
       $subtype_id = $request->get('equipment')['subtype_id'];
       $details = $request->get('equipment')['details'];
       $serial_no = $request->get('equipment')['serial_no'];
@@ -200,12 +203,22 @@ class InventoryController extends BaseController
     }
 
 
-    public function softDeleteEquipment(Request $request){
+    public function hardDeleteEquipment(Request $request){
       $data = $request->all();
-      $pieces = explode("-", $data['items']);
+      $pieces = explode("-", $data['item']);
       if($pieces[0] == "Mobile Device"){
         $data['equipment_id']=(int)$pieces[1];
+        $from_status = TblItEquipment::get_status($data['equipment_id']);
         TblItEquipment::update_equipment_status($data['equipment_id'],7);
+        $log['data'] = $data['equipment_id'];
+        // $log['unit'] = $data['unit_id'];
+        foreach ($from_status as $status) {
+          $log['from_status'] = $status->status;
+        }
+
+        $log['to_status'] = "decommissioned";
+        $log['activity'] = "change the status of";
+        TblActivityLogs::add_log($log);
       }else{
         $data['unit_id']=(int)$pieces[1] ;
         TblSystemUnits::update_unit_status($data['unit_id'],7);
@@ -214,27 +227,27 @@ class InventoryController extends BaseController
         return \Redirect::to('/inventory')->with('equipment has been deleted');
     }
 
-    public function hardDeleteEquipment(Request $request){
-      $data = $request->all();
-        $pieces = explode("-", $data['item']);
-        $act=[];
-        if($pieces[0] == "Mobile Device"){
-          $data['equipment_id']=(int)$pieces[1];
-            //$act['it_equipment']=$data['equipment_id'];
-        TblItEquipment::delete_equipment($data['equipment_id']);
+    // public function hardDeleteEquipment(Request $request){
+    //   $data = $request->all();
+    //     $pieces = explode("-", $data['item']);
+    //     $act=[];
+    //     if($pieces[0] == "Mobile Device"){
+    //       $data['equipment_id']=(int)$pieces[1];
+    //         //$act['it_equipment']=$data['equipment_id'];
+    //     TblItEquipment::delete_equipment($data['equipment_id']);
+    //
+    //     }else{
+    //       $data['unit_id']=(int)$pieces[1] ;
+    //       //act['system_units']=$data['unit_id'];
+    //       TblSystemUnits::delete_unit($data['unit_id']);
+    //
+    //     }
 
-        }else{
-          $data['unit_id']=(int)$pieces[1] ;
-          //act['system_units']=$data['unit_id'];
-          TblSystemUnits::delete_unit($data['unit_id']);
-
-        }
-
-
-        //$act['action'] = "deleted";
-        //TblActivityLogs::add_log($act);
-        return \Redirect::to('/inventory')->with('equipment has been deleted');
-      }
+      //
+      //   //$act['action'] = "deleted";
+      //   //TblActivityLogs::add_log($act);
+      //   return \Redirect::to('/inventory')->with('equipment has been deleted');
+      // }
 
     public function buildUnit(Request $request){
       $data = $request->all();
@@ -257,6 +270,10 @@ class InventoryController extends BaseController
         // TblItEquipment::
       }
 
+      $log['system_unit'] = $unit_id;
+      // $log['unit'] = $data['unit_id'];
+      $log['activity'] = "added";
+      TblActivityLogs::add_log($log);
       return \Redirect::to('/inventory')->with('equipment has been added');
 
       // dd($data);

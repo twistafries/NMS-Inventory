@@ -31,7 +31,7 @@ class Dashboard extends BaseController
         $data['employees'] = TblEmployees::get_employees();
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
-        // $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
+        $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
         $data['issuance'] = TblIssuances::getIssuance();
 
         // $data['most_issued'] = TblActivityLogs

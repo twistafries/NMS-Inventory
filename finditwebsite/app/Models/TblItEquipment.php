@@ -94,6 +94,15 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_status($id){
+      $query = \DB::table('it_equipment')
+      -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+      ->select('equipment_status.name as status')
+      ->where('it_equipment.id', '=', $id)
+      ->get();
+      return $query;
+    }
+
     public static function countSubtypes(){
       $query = \DB::table('it_equipment as i')
       ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
@@ -148,9 +157,10 @@ class TblItEquipment extends Model
         try{
           $it_equipment->save();
           $id = DB::getPdo()->lastInsertId();
-          return $id;
+
           $results['error'] = 0;
           $results['message'] = 'equipment has been added';
+          return $id;
 
 
         }catch ( QueryException $e){
@@ -178,7 +188,7 @@ class TblItEquipment extends Model
 
     public static function edit_equipment( $params ){
         // dd($params);
-        
+
         $it_equipment = TblItEquipment::find($params['id']);
         $id = TblItEquipment::find($params['id']);
 
@@ -205,7 +215,7 @@ class TblItEquipment extends Model
 
         if(isset($params['supplier']))
         $it_equipment->supplier = $params['supplier'];
-        
+
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
 

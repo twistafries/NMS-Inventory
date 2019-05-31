@@ -33,6 +33,24 @@ class IssuanceController extends BaseController {
 		return view('content/issuance', $data);
 	}
 
+	public function showEmployeeIssuance() {
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+						return \Redirect::to('/loginpage');
+				}
+
+		$data = [];
+		$data['issuance'] = TblIssuances::getIssuance();
+		$data['equipment'] = TblEquipmentStatus::get_available();
+		$data['units'] = TblEquipmentStatus::get_available_units();
+		$data['employees'] = TblEmployees::get_employees('active');
+		$data['itdd'] = TblEmployees::getIssuancePerEmployee(1);
+		$data['pdd'] = TblEmployees::getIssuancePerEmployee(2);
+		$data['fd'] = TblEmployees::getIssuancePerEmployee(3);
+		$data['hrd'] = TblEmployees::getIssuancePerEmployee(4);
+		dd($data);
+		return view('content/issue', $data);
+	}
+
 
 	public function addIssuance(Request $request){
 		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
@@ -41,7 +59,7 @@ class IssuanceController extends BaseController {
 
 	 // dd("Inside");
 			 $data = $request->all();
-			 $data['user_id'] = 2;
+
 			 $data['status_id'] = 2;
 			 $pieces = explode("-", $data['items']);
 			 if($pieces[0] == "Mobile Device"){
@@ -51,13 +69,18 @@ class IssuanceController extends BaseController {
 				 $data['unit_id']=(int)$pieces[1] ;
 				TblSystemUnits::update_unit_status($data['unit_id'],2);
 			 }
-			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['user_id'])  && isset($data['status_id']) ){
+			 $issuance = explode(' (', $data['issued_to']);
+			 $data['issued_to'] = preg_replace('/\D/', '', $data['issued_to']);
+			 $data['issuedTo_name']=$issuance[0];
+			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['status_id']) ){
 
-					$id = TblIssuances::add_issuance($data);
+					TblIssuances::add_issuance($data);
 
-					$data['issuance_id'] = $id;
-					$data['action'] = "issued";
-					TblActivityLogs::add_log($data);
+					$log['issued_to'] = $data['issuedTo_name'];
+					$log['data'] = $data['equipment_id'];
+					// $log['unit'] = $data['unit_id'];
+					$log['activity'] = "issued";
+					TblActivityLogs::add_log($log);
 					return redirect()->back()->with('success', ['Issuance Success']);
 			}else{
 
