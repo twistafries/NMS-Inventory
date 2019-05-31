@@ -119,7 +119,7 @@
                         <th scope="col">Items Issued</th>
                         <th scope="col">Subtype</th>
                         <th scope="col">Issuance Date</th>
-                        <th scope="col">Issuance End</th>
+                        <th scope="col">Issued Until</th>
                         <th scope="col">Actions</th>
 
                     </tr>
@@ -199,9 +199,9 @@
                     <thead class="thead-dark">
                         <tr>
 
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>
@@ -225,9 +225,9 @@
 
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>
@@ -248,9 +248,9 @@
                 <table class="table table-hover" id="myDataTable2" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>
@@ -271,9 +271,9 @@
                 <table class="table table-hover" id="myDataTable" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                         <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>

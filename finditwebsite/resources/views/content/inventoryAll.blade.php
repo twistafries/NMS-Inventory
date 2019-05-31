@@ -102,8 +102,8 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
-                   
-                    
+
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -165,7 +165,7 @@
 
                     </div>
 <!--    PAGE CONTENT END -->
- 
+
 @if(Session::has('warning'))
 <div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">Warning</h4>
@@ -427,7 +427,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                   
+
                                     <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
                                 </div>
                             </div>
@@ -673,7 +673,7 @@
                       <th>Brand</th>
                       <th hidden>Subtypes</th>
                       <th>Subtype</th>
-                     
+
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
@@ -692,7 +692,7 @@
                         <td hidden></td>
                         <td> {{ $components->subtype_name }} </td>
 
-                        
+
                         <td width="30%"> {{ $components->details }} </td>
                         <td> {{ $components->serial_no }} </td>
                         <td> {{ $components->or_no }} </td>
@@ -815,7 +815,7 @@
                       <th>Brand</th>
                       <th hidden>Subtype</th>
                       <th>Subtypes</th>
-                      
+
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
@@ -833,7 +833,7 @@
                         <td> {{ $peripherals->brand }} </td>
                         <td hidden></td>
                         <td> {{ $peripherals->subtype_name }} </td>
-                        
+
                         <td width="30%"> {{ $peripherals->details }} </td>
                         <td> {{ $peripherals->serial_no }} </td>
                         <td> {{ $peripherals->or_no }} </td>
@@ -858,7 +858,7 @@
                       <th>Brand</th>
                       <th hidden>Subtype</th>
                       <th>Subtypes</th>
-                      
+
                       <th>Details</th>
                       <th>Serial No</th>
                       <th>OR No</th>
@@ -876,7 +876,7 @@
                         <td> {{ $mobile->brand }} </td>
                         <td hidden></td>
                         <td> {{ $mobile->subtype_name }} </td>
-                        
+
                         <td width="30%"> {{ $mobile->details }} </td>
                         <td> {{ $mobile->serial_no }} </td>
                         <td> {{ $mobile->or_no }} </td>
@@ -902,7 +902,7 @@
               <th>Brand</th>
               <th hidden>Subtype</th>
               <th>Subtypes</th>
-              
+
               <th>Details</th>
               <th>Serial No</th>
               <th>OR No</th>
@@ -919,7 +919,7 @@
                 <td> {{ $software->model }} </td>
                 <td> {{ $software->brand }} </td>
                 <td> {{ $software->subtype_name }} </td>
-                
+
                 <td width="30%"> {{ $software->details }} </td>
                 <td hidden></td>
                 <td> {{ $software->serial_no }} </td>
@@ -940,7 +940,7 @@
     <table id="myDataTable5" class="table table-borderless table-hover" style="width:100%">
         <thead class="thead-dark">
             <tr>
-              
+
               <th>Name</th>
               <th>Details</th>
               <th>Date Added</th>
@@ -1587,7 +1587,7 @@ var types = data[2]; // use data for the age column
 var subtypes = data[3];
 var suppliers = data[4];
 var brands = data[1];
-var statuses = data[10];
+var statuses = data[7];
 if ( type == types || type == "any"){
   if (subtype == subtypes || subtype == "any"){
     if (supplier == suppliers || supplier == "any"){
@@ -1625,107 +1625,6 @@ $('#subtypes').on('keyup change',  function() {
     } );
 } );
 
-$(document).ready(function() {
-    var table = $('#myDataTable1').DataTable();
-
-        // Event listener to the two range filtering inputs to redraw on input
-    $('#subtypes').on('keyup change',  function() {
-        table.draw();
-    } );
-    $('#types').on('keyup change',  function() {
-        table.draw();
-    } );
-    $('#supplier').on('keyup change',  function() {
-    table.draw();
-    } );
-    $('#brand').on('keyup change',  function() {
-        table.draw();
-    } );
-    $('#status').on('keyup change',  function() {
-        table.draw();
-    } );
-} );
-
-$(document).ready(function() {
-var table = $('#myDataTable2').DataTable();
-
-        // Event listener to the two range filtering inputs to redraw on input
-        $('#subtypes').on('keyup change',  function() {
-            table.draw();
-                } );
-                $('#types').on('keyup change',  function() {
-                        table.draw();
-                        } );
-                        $('#supplier').on('keyup change',  function() {
-                            table.draw();
-                            } );
-                            $('#brand').on('keyup change',  function() {
-                                table.draw();
-                                } );
-                                $('#status').on('keyup change',  function() {
-                                    table.draw();
-                                    } );
-                        } );
-                        $(document).ready(function() {
-                          var table = $('#myDataTable3').DataTable();
-
-                          // Event listener to the two range filtering inputs to redraw on input
-                          $('#subtypes').on('keyup change',  function() {
-                              table.draw();
-                              } );
-                              $('#types').on('keyup change',  function() {
-                                  table.draw();
-                                  } );
-                                  $('#supplier').on('keyup change',  function() {
-                                      table.draw();
-                                      } );
-                                      $('#brand').on('keyup change',  function() {
-                                          table.draw();
-                                          } );
-                                          $('#status').on('keyup change',  function() {
-                                              table.draw();
-                                              } );
-                                  } );
-                                  $(document).ready(function() {
-                                    var table = $('#myDataTable4').DataTable();
-
-                                    // Event listener to the two range filtering inputs to redraw on input
-                                    $('#subtypes').on('keyup change',  function() {
-                                        table.draw();
-                                        } );
-                                        $('#types').on('keyup change',  function() {
-                                            table.draw();
-                                            } );
-                                            $('#supplier').on('keyup change',  function() {
-                                                table.draw();
-                                                } );
-                                                $('#brand').on('keyup change',  function() {
-                                                    table.draw();
-                                                    } );
-                                                    $('#status').on('keyup change',  function() {
-                                                        table.draw();
-                                                        } );
-                                            } );
-                                            // $(document).ready(function() {
-                                            //   var table = $('#myDataTable5').DataTable();
-                                            //
-                                            //   // Event listener to the two range filtering inputs to redraw on input
-                                            //   $('#subtypes').on('keyup change',  function() {
-                                            //       table.draw();
-                                            //       } );
-                                            //       $('#types').on('keyup change',  function() {
-                                            //           table.draw();
-                                            //           } );
-                                            //           $('#supplier').on('keyup change',  function() {
-                                            //               table.draw();
-                                            //               } );
-                                            //               $('#brand').on('keyup change',  function() {
-                                            //                   table.draw();
-                                            //                   } );
-                                            //                   $('#status').on('keyup change',  function() {
-                                            //                       table.draw();
-                                            //                       } );
-                                            //           } );
         function reset(){
           document.getElementById("subtypes").selectedIndex = "0";
           document.getElementById("types").selectedIndex = "0";
