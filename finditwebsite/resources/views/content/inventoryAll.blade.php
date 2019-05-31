@@ -52,42 +52,6 @@
                     </a>
                 </button>
 
-                <!-- Add Option-->
-<!--
-                <div class="dropdown">
-                  <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
-                      </a>
-                  </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
-                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
-                    </ul>
-              </div>
-                 Delete
--->
-<!--
-                <div class="dropdown">
-                  <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
-                      </a>
-                      </button>
-              </div>
--->
-
-
-                <!-- Sort -->
-                <!-- <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="sort">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
-                    </a>
-                </button> -->
-
-
 
             </div>
 
@@ -1565,7 +1529,59 @@ var types = data[2]; // use data for the age column
 var subtypes = data[3];
 var suppliers = data[4];
 var brands = data[1];
-var statuses = data[10];
+
+var statuses = data[data.length];
+// console.log(data.length);
+
+
+
+function subtypeUnblock(element) {
+    $("#subtypes option:nth-child("+element+")").show();
+    console.log($("#subtype option:nth-child("+element+")").text());
+}
+
+function subtypeBlockAll(){
+    $("#subtypes > option").hide();
+}
+
+function subtypeUnBlockAll(){
+    $("#subtypes > option").show();
+}
+
+if( type == "Computer Component" ){
+    subtypeBlockAll();
+
+    for (var i = 1; i <= 9; i++) {
+        subtypeUnblock(i);
+    } 
+}
+else if ( type == "Computer Peripheral"){
+    subtypeBlockAll();
+    subtypeUnblock(1);
+
+    for(var i=10; i<=12; i++){
+        subtypeUnblock(i);
+    }    
+}
+else if( type == "Mobile Device" ){
+    subtypeBlockAll();
+    subtypeUnblock(1);
+
+    for (var i = 13; i <= 15; i++) {
+        subtypeUnblock(i);
+    } 
+}
+else if (type == "Software License") {
+    subtypeBlockAll();
+    subtypeUnblock(1);
+
+    for (var i = 16; i <= 18; i++) {
+        subtypeUnblock(i);
+    } 
+}else{
+    subtypeUnBlockAll();
+}
+    
 if ( type == types || type == "any"){
   if (subtype == subtypes || subtype == "any"){
     if (supplier == suppliers || supplier == "any"){

@@ -59,8 +59,8 @@
                                     <form action="{!! url('/reInventory'); !!}" method="post">
                                         {!! csrf_field() !!}
                                         <input name="status_filter" type="hidden" value="1">
-                                        <input name="subtype_filter" type="hidden" value="laptop">
-                                        <input name="type_filter" type="hidden" value="mobile_devices">
+                                        <input name="subtype_filter" type="hidden" value="12">
+                                        <input name="type_filter" type="hidden" value="3">
                                     <td>
                                         <h6>Available Laptops</h6>
                                     </td>
@@ -95,25 +95,31 @@
                                         <h6>System Units</h6>
                                     </td>
                                     <td class="text-justify">{{ $repair_sys_units }}</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Mobile Phones</h6>
                                     </td>
                                     <td class="text-justify">{{ $repair_phone }}</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
+                                        {!! csrf_field() !!}
+                                        <input name="status_filter" type="hidden" value="3">
+                                        <input name="subtype_filter" type="hidden" value="12">
+                                        <input name="type_filter" type="hidden" value="3">
                                     <td>
                                         <h6>Laptops</h6>
                                     </td>
                                     <td class="text-justify">{{ $repair_laptop }}</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+                                    </form>
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-light btn-sm">View All</button>
+                        <button type="submit" class="btn btn-light btn-sm">View All</button>
                     </div>
                 </div>
             </div>
@@ -136,21 +142,27 @@
                                         <h6>System Units</h6>
                                     </td>
                                     <td class="text-justify">{{ $issued_sys_units }}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                <td><button type="submit" class="btn btn-primary btn-sm">View</button></td>
                                 </tr>
                                 <tr>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
+                                        {!! csrf_field() !!}
+                                        <input name="status_filter" type="hidden" value="2">
+                                        <input name="subtype_filter" type="hidden" value="14">
+                                        <input name="type_filter" type="hidden" value="3">
                                     <td>
                                         <h6>Mobile Phones</h6>
                                     </td>
                                     <td class="text-justify">{{ $issued_phone }}</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td><button type="submit" class="btn btn-primary btn-sm">View</button></td>
+                                    </form>
                                 </tr>
                                 <tr>
                                     <td>
                                         <h6>Laptops</h6>
                                     </td>
                                     <td class="text-justify">{{ $issued_laptop }}</td>
-                                    <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -179,21 +191,21 @@
                                     <h6>System Units</h6>
                                 </td>
                                 <td class="text-justify">{{ $repair_sys_units }}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                             </tr>
                             <tr>
                                 <td>
                                     <h6>Mobile Phones</h6>
                                 </td>
                                 <td class="text-justify">{{ $repair_phone }}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                             </tr>
                             <tr>
                                 <td>
                                     <h6>Laptops</h6>
                                 </td>
                                 <td class="text-justify">{{ $repair_laptop }}</td>
-                                <td><button type="button" class="btn btn-primary btn-sm">View more</button></td>
+                                <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -221,7 +233,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-light btn-sm">View All</button>
+                    <button type="submit" class="btn btn-light btn-sm">View All</button>
                 </div>
             </div>
         </div>
@@ -234,7 +246,7 @@
                         <li class="list-group-item">Order #2</li>
                         <li class="list-group-item">Order #3</li>
                         <li class="list-group-item">Order #4</li>
-                        <button type="button" class="btn btn-light btn-sm">View all</button>
+                        <button type="submit" class="btn btn-light btn-sm">View all</button>
                     </ul>
                 </div>
             </div>
