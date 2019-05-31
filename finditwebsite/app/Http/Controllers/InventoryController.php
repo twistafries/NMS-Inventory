@@ -17,7 +17,9 @@ use App\Models\TblStatus;
 use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
 use App\Models\TblActivityLogs;
+use App\Models\Suppliers;
 use Session, Auth;
+use DB;
 
 class InventoryController extends BaseController
 {
@@ -46,7 +48,7 @@ class InventoryController extends BaseController
       $data['status'] = TblEquipmentStatus::get_all_status();
       $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['suppliers'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
@@ -146,7 +148,8 @@ class InventoryController extends BaseController
       $data['status'] = TblEquipmentStatus::get_all_status();
       $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['suppliers'] = Suppliers::get_suppliers();
+      $data['supplier'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
@@ -176,13 +179,13 @@ class InventoryController extends BaseController
       $data['systemunits'] = TblSystemUnits::get_all_system_units();
       $data['units_system'] = TblSystemUnits::get_all_system_units();
       $data['all_units'] = TblSystemUnits::get_all_system_units();
-      $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $data['subtype'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['parts'] = TblItEquipment::get_computer_component();
       $data['status'] = TblEquipmentStatus::get_all_status();
       $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-      $data['suppliers'] = TblItEquipment::get_supplier();
+      $data['suppliers'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
@@ -190,6 +193,7 @@ class InventoryController extends BaseController
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['pc'] = TblSystemUnits::get_all_system_units();
       $data['peec'] ['unitss'] = TblSystemUnits::get_all_system_units();
+        $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
       return view ('content/systemUnit' , $data);
     }
 
@@ -224,6 +228,19 @@ class InventoryController extends BaseController
         $data['user_id'] = $user_id;
         // $data['subtype_id'] = (int)$request->get('subtype_id');
         // dd($data);
+        $supplier = $request->input('supplier');
+  			$all_supplier = DB::table('supplier')->where('supplier_name',$supplier)->first();
+  			if(!$all_supplier){
+          $id=Suppliers::add_supplier($supplier);
+  			  $data['supplier_id']=$id;
+        }
+        if($all_supplier){
+          $supp=DB::table('supplier')->select('id')->where('supplier_name',$supplier)->get();
+          foreach ($supp as $supp) {
+            $data['supplier_id']=(int)$supp->id;
+          }
+
+        }
 
         if(isset($data['subtype_id'])
         && isset($data['brand'])
@@ -232,18 +249,20 @@ class InventoryController extends BaseController
         && isset($data['user_id'])
         && isset($data['warranty_start'])
         && isset($data['warranty_end'])
-        && isset($data['supplier'])
+        && isset($data['supplier_id'])
         && isset($data['serial_no'])
         && isset($data['or_no'])
         && isset($data['status_id']) ){
-            $id=TblItEquipment::add_equipment($data);
+
+            $log_id=TblItEquipment::add_equipment($data);
+
             // Session::flash('message', 'Successfully added equipment to inventory');
-            $log['data'] = $id;
+            $log['data'] = $log_id;
             $log['activity'] = "added";
             TblActivityLogs::add_log($log);
             // return \Redirect::to('/inventory');
             return redirect()->back()
-              ->with('message' , 'Successfully added equipment to inventory');
+              ->with('message' , $data['brand'].' '.$data['model'].' was successfully added into the inventory');
         }else{
             // Session::flash('error', 'Failed to add equipment to inventory, please fill out all the fields');
             // if(Session::has('error'))

@@ -48,6 +48,7 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
 // Route::get('/dashboard', 'DashboardController@showAllStatus');
 Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
+Route::post('/reInventory', 'DashboardController@filter');
 Route::get('/purchases', 'Purchases@showAllStatus');
 Route::get('/receivedPurchases', 'Purchases@received');
 Route::get('/returns', 'Purchases@returns');
@@ -78,6 +79,7 @@ Route::post('/editEmployee', 'ForStatusController@editEmployee');
 Route::post('/changeStatus', 'ForStatusController@editEmployee');
 
 Route::get('/repair', 'ForStatusController@showRepairItems');
+Route::get('/repairSummary', 'ForStatusController@showRepairItemsSummary');
 Route::get('/return', 'ForStatusController@showReturnItems');
 Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
 // Route::get('/purchasenumber', 'ForStatusController@showPurchases');

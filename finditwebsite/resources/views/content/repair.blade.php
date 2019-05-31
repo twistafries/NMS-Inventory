@@ -7,28 +7,19 @@
   // $img_path = $session['img_path'];
 ?>
 
-@extends('../template')
-
-@section('css')
+    @extends('../template') @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-@stop
-
-@section('title')
-    Repair
-@stop
-
-@section('../layout/breadcrumbs')
-    @section('breadcrumbs-title')
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}"> @stop @section('title') Repair @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
     <i class="fas fa-chart-line">REPAIR
     @stop
 @stop
 
 @section('content')
 
-
+<div class="container-fluid">
+<!--breadcrumbs navigation-->
 <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
             <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
@@ -39,12 +30,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-warning" aria-current="page">For Repair</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                  
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -82,7 +68,28 @@
             </div>
         </div>
     </div>
+    
+     <div class="container-fluid">
 
+                            <div class="row">
+                                <div class="container-fluid">
+                                <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/repairSummary') !!}">SUMMARY</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>
+                                </li>
+                              
+
+
+                              </ul>
+                                    </div>
+                            </div>
+
+                        </div>  
+                        <hr>
+    
     <!-- Tabs -->
     <div class="container-fluid">
    
@@ -97,7 +104,7 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
-                            <th>Supplier</th>
+                           
                             <th>Date Added</th>
                             <th width="15%">Date Edited</th>
                             <th>Added By</th>
@@ -115,7 +122,7 @@
                             <td> {{ $for_repair->details }} </td>
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
-                            <td> {{ $for_repair->supplier }} </td>
+                            
                             <td> {{ $for_repair->created_at }} </td>
                             <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
                             <td></td>
@@ -154,6 +161,7 @@
 
 
 </form>
+    </div>
 @stop
 
 @section('script')

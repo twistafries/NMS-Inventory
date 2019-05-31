@@ -18,7 +18,8 @@ class TblItEquipment extends Model
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
@@ -125,13 +126,6 @@ class TblItEquipment extends Model
         return $query;
     }
 
-    public static function get_supplier($params = null){
-        $query = \DB::table('it_equipment')
-        -> select('it_equipment.supplier as supplier')
-        -> groupBy('supplier')
-        -> get();
-        return $query;
-    }
 
     public static function get_brand($params = null){
         $query = \DB::table('it_equipment')
@@ -195,7 +189,7 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
-    
+
     public static function countByStatusHardware($status){
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
@@ -213,7 +207,7 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
-    
+
     public static function countByStatusType($status , $type){
         $query = \DB::table('it_equipment as i')
         ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
@@ -255,7 +249,7 @@ class TblItEquipment extends Model
         $it_equipment->status_id = $params['status_id'];
         $it_equipment->warranty_start = $params['warranty_start'];
         $it_equipment->warranty_end = $params['warranty_end'];
-        $it_equipment->supplier = $params['supplier'];
+        $it_equipment->supplier_id = $params['supplier_id'];
         if($params['unit_id'] == "NULL"){
             $it_equipment->unit_id = null;
         }else{
