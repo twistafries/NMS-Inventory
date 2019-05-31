@@ -30,12 +30,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-warning" aria-current="page">For Repair</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/return') !!}" class="text-dark">Pending</a>
-                    </li>
+                   
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -106,7 +101,7 @@
                 
 <div class="container-fluid">
      <h4 class="font-weight-bold">System Units</h4>
-     <div class="panel panel-default p-2">
+     <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingOne">
             <h5 class="panel-title">
                 <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> item1</a>
@@ -125,174 +120,237 @@
     
     
     
-    <h4 class="font-weight-bold">Computer Components</h4>
-    <div class="panel panel-default p-2">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="trigger collapsed" id="collapsedown1"><i class="fas fa-arrow-circle-down"></i> Motherboard</a>
-            </h5>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-     <div class="panel panel-default">
+    <h4 class="font-weight-bold">Computer Peripheral</h4>
+     <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingTwo">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2"><i class="fas fa-arrow-circle-down"></i> CPU</a>
+                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2"><i class="fas fa-arrow-circle-down"></i> Mouse</a>
             </h5>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
                 <div class="container-fluid">
-                    <h5>content</h5>
+                    
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand/Name</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Warranty</th>
+                            <th scope="col">Mark Item As</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
     </div>
     
-     <div class="panel panel-default">
+     <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingThree">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed" id="collapsedown3"><i class="fas fa-arrow-circle-down"></i> Storage</a>
+                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed" id="collapsedown3"><i class="fas fa-arrow-circle-down"></i> Keyboard</a>
             </h5>
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel-body">
                 <div class="container-fluid">
-                    <h5>content</h5>
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand/Name</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Warranty</th>
+                            <th scope="col">Mark Item As</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
     </div>
-    
-     <div class="panel panel-default">
+     <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingFour">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="trigger collapsed" id="collapsedown4"><i class="fas fa-arrow-circle-down"></i> RAM</a>
+                <a role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="trigger collapsed" id="collapsedown4"><i class="fas fa-arrow-circle-down"></i> Monitor</a>
             </h5>
         </div>
         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
                 <div class="container-fluid">
-                    <h5>content</h5>
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand/Name</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Warranty</th>
+                            <th scope="col">Mark Item As</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
     </div>
+   
     
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingFive">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" class="trigger collapsed" id="collapsedown5"><i class="fas fa-arrow-circle-down"></i> GPU</a>
-            </h5>
-        </div>
-        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
+    
+     
+     <h4 class="font-weight-bold">Mobile Device</h4>
+       <div class="panel panel-default pl-2">
+            <div class="panel-heading" role="tab" id="headingFive">
+                <h5 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" class="trigger collapsed" id="collapsedown5"><i class="fas fa-arrow-circle-down"></i> Laptop</a>
+                </h5>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                <div class="panel-body">
+                    <div class="container-fluid">
+                     <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand/Name</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Warranty</th>
+                            <th scope="col">Mark Item As</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingSix">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix" class="trigger collapsed" id="collapsedown6"><i class="fas fa-arrow-circle-down"></i> Power Supply </a>
-            </h5>
-        </div>
-        <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
+     
+         <div class="panel panel-default pl-2">
+            <div class="panel-heading" role="tab" id="headingSix">
+                <h5 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix" class="trigger collapsed" id="collapsedown6"><i class="fas fa-arrow-circle-down"></i> Tablet</a>
+                </h5>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand/Name</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Warranty</th>
+                            <th scope="col">Mark Item As</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     
-     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingSeven">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven" class="trigger collapsed" id="collapsedown7"><i class="fas fa-arrow-circle-down"></i> Case </a>
-            </h5>
-        </div>
-        <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
+             <div class="panel panel-default pl-2">
+            <div class="panel-heading" role="tab" id="headingSeven">
+                <h5 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven" class="trigger collapsed" id="collapsedown7"><i class="fas fa-arrow-circle-down"></i> Mobile Phone</a>
+                </h5>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                <div class="panel-body">
+                    <div class="container-fluid">
+                       <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Brand/Name</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Serial No.</th>
+                            <th scope="col">Warranty</th>
+                            <th scope="col">Mark Item As</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingEleven">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseEleven" aria-expanded="true" aria-controls="collapseEleven" class="trigger collapsed" id="collapsedown11"><i class="fas fa-arrow-circle-down"></i> Sound Card </a>
-            </h5>
-        </div>
-        <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
-                </div>
-            </div>
-        </div>
-    </div>
     
     
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingEight">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseEight" aria-expanded="true" aria-controls="collapseEight" class="trigger collapsed" id="collapsedown8"><i class="fas fa-arrow-circle-down"></i> Heat Sink Fan </a>
-            </h5>
-        </div>
-        <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
-                </div>
-            </div>
-        </div>
-    </div>
     
-     <h4 class="font-weight-bold">Computer Peripheral</h4>
-    
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingNine">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine" class="trigger collapsed" id="collapsedown9"><i class="fas fa-arrow-circle-down"></i> Mouse </a>
-            </h5>
-        </div>
-        <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTen">
-            <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseTen" aria-expanded="true" aria-controls="collapseTen" class="trigger collapsed" id="collapsedown10"><i class="fas fa-arrow-circle-down"></i> Keyboard </a>
-            </h5>
-        </div>
-        <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <h5>content</h5>
-                </div>
-            </div>
-        </div>
-    </div>
+   
+     
     
 
 </div>
@@ -358,7 +416,7 @@
         
          <script>
         $('#collapsedown1').click(function() {
-            $('#collapseOne').toggle('1000');
+            $('#collapse1').toggle('1000');
             $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
 
         });
@@ -406,5 +464,13 @@
         });
 
     </script>
+        <script>
+         $('#collapsedown1').click(function() {
+            $('#collapse1').toggle('1000');
+            $("i", this).toggleClass("fas fa-arrow-circle-down fas fa-arrow-circle-up");
+
+        });
+        
+        </script>
 
 @stop
