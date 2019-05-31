@@ -142,7 +142,12 @@
                     <tbody>
 
                         @foreach ($issuance as $issuance)
-                        <tr data-toggle="modal" data-target="#viewItemModal">
+                        @if($issuance->issued_until < Carbon::today() && $issuance->issued_until != null )
+                              <tr bgcolor="red" data-toggle="modal" data-target="#viewItemModal">
+                        @else
+                              <tr data-toggle="modal" data-target="#viewItemModal">
+                        @endif
+
                             @if( $issuance->model != null)
                             <td> {{ $issuance->model}} {{ $issuance->brand}} </td>
                             <td> {{ $issuance->subtype}} </td>

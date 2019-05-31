@@ -1,10 +1,10 @@
 <?php
-//   use Carbon\Carbon;
-//   $session=Session::get('loggedIn');
-//   $user_id = $session['id'];
-//   $fname = $session['fname'];
-//   $lname = $session['lname'];
-//   // $img_path = $session['img_path'];
+  use Carbon\Carbon;
+  $session=Session::get('loggedIn');
+  $user_id = $session['id'];
+  $fname = $session['fname'];
+  $lname = $session['lname'];
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
@@ -126,7 +126,11 @@
                     </thead>
                 <tbody>
                   @foreach ($issued[$employee->id] as $item)
-                    <tr>
+                  @if($item->issued_until < Carbon::today() && $item->issued_until != null )
+                        <tr bgcolor="red">
+                  @else
+                        <tr>
+                  @endif
                         @if ($item->model !=null)
                         <td>{{ $item->model}} {{ $item->brand}} {{ $item->unit_name }} {{ $item->pc_number }}</td>
                         <td>{{ $item->subtype}}</td>
