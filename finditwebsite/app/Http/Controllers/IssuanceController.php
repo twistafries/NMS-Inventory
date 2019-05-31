@@ -35,21 +35,45 @@ class IssuanceController extends BaseController {
 		$data['status'] = TblEquipmentStatus::get_all_status();
 		$data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
 		$data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
+<<<<<<< HEAD
+=======
 		$data['suppliers'] = Suppliers::get_suppliers();
+>>>>>>> 6ea3c7a7f13cdee097dfa5009e86e7fd9d296929
 		$data['brands'] = TblItEquipment::get_brand();
 		$data['models'] = TblItEquipment::get_model();
 		return view('content/issuance', $data);
 	}
 
+<<<<<<< HEAD
+	public function showEmployeeIssuance() {
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+						return \Redirect::to('/loginpage');
+				}
+
+		$data = [];
+		$data['issuance'] = TblIssuances::getIssuance();
+		$data['equipment'] = TblEquipmentStatus::get_available();
+		$data['units'] = TblEquipmentStatus::get_available_units();
+		$data['employees'] = TblEmployees::get_employees('active');
+		$data['itdd'] = TblEmployees::getIssuancePerEmployee(1);
+		$data['pdd'] = TblEmployees::getIssuancePerEmployee(2);
+		$data['fd'] = TblEmployees::getIssuancePerEmployee(3);
+		$data['hrd'] = TblEmployees::getIssuancePerEmployee(4);
+		dd($data);
+		return view('content/issue', $data);
+	}
+
+=======
 	public function employeeIssuance() {
 	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
 					return \Redirect::to('/loginpage');
 			}
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
 
 	$data = [];
 	$data['issuance'] = TblIssuances::getIssuance();
-	$data['equipment'] = TblEquipmentStatus::get_available();
-	$data['units'] = TblEquipmentStatus::get_available_units();
+	$data['eqp'] = TblEquipmentStatus::get_available();
+	$data['pc'] = TblEquipmentStatus::get_available_units();
 	$data['employees'] = TblEmployees::get_employees('active');
 	$data['employee_with_issuance'] = TblIssuances::getEmployeeWithIssuance();
 	$data['itdd'] = TblIssuances::getIssuancePerEmployee(1);
@@ -63,9 +87,41 @@ class IssuanceController extends BaseController {
 	return view('content/issue', $data);
 }
 
+<<<<<<< HEAD
+	 // dd("Inside");
+			 $data = $request->all();
+
+			 $data['status_id'] = 2;
+			 $pieces = explode("-", $data['items']);
+			 if($pieces[0] == "Mobile Device"){
+				 $data['equipment_id']=(int)$pieces[1];
+				TblItEquipment::update_equipment_status($data['equipment_id'],2);
+			 }else{
+				 $data['unit_id']=(int)$pieces[1] ;
+				TblSystemUnits::update_unit_status($data['unit_id'],2);
+			 }
+			 $issuance = explode(' (', $data['issued_to']);
+			 $data['issued_to'] = preg_replace('/\D/', '', $data['issued_to']);
+			 $data['issuedTo_name']=$issuance[0];
+			if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['status_id']) ){
+
+					TblIssuances::add_issuance($data);
+
+					$log['issued_to'] = $data['issuedTo_name'];
+					$log['data'] = $data['equipment_id'];
+					// $log['unit'] = $data['unit_id'];
+					$log['activity'] = "issued";
+					TblActivityLogs::add_log($log);
+					return redirect()->back()->with('success', ['Issuance Success']);
+			}else{
+
+			 //    return redirect()->back()->with('error', 'Please fill out ALL fields');
+					return redirect()->intended('/content/issuance')->with('error', 'Please fill out ALL fields');
+=======
 	public function addIssuance(Request $request){
 	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
 					return \Redirect::to('/loginpage');
+>>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
 			}
 
  // dd("Inside");

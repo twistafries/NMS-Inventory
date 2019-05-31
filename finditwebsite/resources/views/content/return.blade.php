@@ -112,7 +112,7 @@
                             <td> {{ $for_return->details }} </td>
                             <td> {{ $for_return->serial_no }} </td>
                             <td> {{ $for_return->or_no }} </td>
-                            <td> {{ $for_return->supplier }} </td>
+                            <td> {{ $for_return->supplier_name }} </td>
                             <td> {{ $for_return->created_at }} </td>
                             <td> </td>
                             <td>{{ $for_return->firstname}} {{ $for_return->lastname}}</td>
