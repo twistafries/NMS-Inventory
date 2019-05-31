@@ -19,7 +19,7 @@
         <div class="col-3 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="far fa-check-circle"></i> Available
-                    Issuable Units 
+                    Issuable Units
                 </div>
                 <h4>
                     <center>{{ $available_sys_units + $available_phone + $available_laptop}}</center>
@@ -36,7 +36,7 @@
                                         {!! csrf_field() !!}
                                         <input name="status_filter" type="hidden" value="available">
                                         <input name="type_filter" type="hidden" value="system_unit">
-                                        
+
                                         <td class="text-justify">{{ $available_sys_units }}</td>
                                         <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                                     </form>
@@ -50,7 +50,7 @@
                                         <input name="status_filter" type="hidden" value="1">
                                         <input name="subtype_filter" type="hidden" value="14">
                                         <input name="type_filter" type="hidden" value="3">
-                                        
+
                                         <td class="text-justify">{{ $available_phone }}</td>
                                         <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                                     </form>
@@ -159,7 +159,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="col-3 p-1">
             <div class="card">
@@ -263,48 +263,12 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-                <div class="card">
-                    <!--Third card-->
-                    <div class="card-header text-white mb-3" id="card-header">Recent Associate Activity
-                    </div>
-                    <div class="card-body height">
-                        <table class="table table-borderless table-responsive">
-                            <tbody>
-                            </tbody>
-                            <tfoot>
-                              @foreach($recent_activities as $recent_activity)
-                                  @if($recent_activity->activity== "added")
-                                  <tr>
-                                      <td>
-                                        {{$recent_activity->done_by}} {{$recent_activity->activity}} {{$recent_activity->brand}} {{$recent_activity->model}} in the inventory.
-                                      </td>
-
-                                  </tr>
-                                  @endif
-                                  @if($recent_activity->activity == "issued")
-                                  <tr>
-                                      <td>
-                                        {{$recent_activity->done_by}} {{$recent_activity->activity}} {{$recent_activity->brand}} {{$recent_activity->model}} to {{$recent_activity->issued_to}}.
-                                      </td>
-                                  </tr>
-                                  @endif
-                               @endforeach
-                                <tr>
-                                    <td><button class="row view2 justify-content-center center-block btn btn-light">View All</button></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-=======
         <div class="col-6 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"> Low Availability Items </div>
                 <h4>
                     <center>10</center>
                 </h4>
->>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
             </div>
         </div>
     </div>

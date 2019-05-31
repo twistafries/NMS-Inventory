@@ -63,8 +63,6 @@
           @endforeach
         </select>
     </th>
-<<<<<<< HEAD
-=======
     <th>
       <label for="supplier">Supplier: </label>
       <select id="supplier" name="supplier">
@@ -74,7 +72,6 @@
         @endforeach
       </select>
   </th>
->>>>>>> 6ea3c7a7f13cdee097dfa5009e86e7fd9d296929
   <th>
     <label for="brand">Brand: </label>
     <select id="brand" name="brand">
@@ -419,11 +416,6 @@ $(window).load(function(){
     function DoSubmit(){
       var item = $(equipment).val();
       document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
-<<<<<<< HEAD
-      // var employee = $(issued_to).val();
-      // document.getElementById("issued_to").value = $('#employee [value="' + employee + '"]').data('customvalue');
-=======
->>>>>>> 09c8fdffe8561b53e710fdda8ecb2eb0e7637469
       return true;
       }
   </script>

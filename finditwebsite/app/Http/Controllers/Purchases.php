@@ -253,7 +253,7 @@ class Purchases extends BaseController
           $data['status'] = TblEquipmentStatus::get_all_status();
           $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
           $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-          $data['suppliers'] = TblItEquipment::get_supplier();
+          $data['suppliers'] = Suppliers::get_suppliers();
           $data['brands'] = TblItEquipment::get_brand();
           $data['models'] = TblItEquipment::get_model();
           $data['for_repair'] = TblEquipmentStatus::get_for_repair();

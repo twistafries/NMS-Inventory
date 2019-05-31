@@ -80,7 +80,7 @@
           <select id="supplier" name="supplier" style="height: 1.8rem;">
             <option value="any">Any</option>
             @foreach ($suppliers as $suppliers)
-            <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
+            <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
             @endforeach
           </select>
       </th>
@@ -142,7 +142,7 @@
                     <td> {{ $for_return->details }} </td>
                     <td> {{ $for_return->serial_no }} </td>
                     <td> {{ $for_return->or_no }} </td>
-                    <td> {{ $for_return->supplier }} </td>
+                    <td> {{ $for_return->supplier}} </td>
                     <td> {{ $for_return->created_at }} </td>
                     <td> </td>
                     <td>{{ $for_return->firstname}} {{ $for_return->lastname}}</td>

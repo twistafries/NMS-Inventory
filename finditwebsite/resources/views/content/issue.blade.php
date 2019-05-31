@@ -112,11 +112,7 @@
         </ul>
 
         <div class="tab-content">
-<<<<<<< HEAD
         <div id="home{{$employee->id}}" class="container tab-pane active"><br>
-=======
-            <div id="home" class="container tab-pane active"><br>
->>>>>>> 6ea3c7a7f13cdee097dfa5009e86e7fd9d296929
             <table class="table" id="myTable">
                     <thead class="thead-dark">
                         <tr>
@@ -153,7 +149,7 @@
                 </tbody>
                 </table>
             </div>
-        
+
 
 
     <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>

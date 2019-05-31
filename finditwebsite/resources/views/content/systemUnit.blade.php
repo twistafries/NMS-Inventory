@@ -52,41 +52,6 @@
                     </a>
                 </button>
 
-                <!-- Add Option-->
-<!--
-                <div class="dropdown">
-                  <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
-                      </a>
-                  </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
-                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
-                    </ul>
-              </div>
-                 Delete
--->
-<!--
-                <div class="dropdown">
-                  <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
-                      </a>
-                      </button>
-              </div>
--->
-
-
-                <!-- Sort -->
-                <!-- <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="sort">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
-                    </a>
-                </button> -->
-
 
 
             </div>
@@ -105,7 +70,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
                     </li>
-                    
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -113,35 +78,6 @@
             </nav>
     </nav>
 
-<!--
-     Pills Tabs
-    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
-        <li class="nav-item text-uppercase" >
-            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-              IT Equipments
-            </a>
-        </li>
-        <li class="nav-item text-uppercase">
-        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
-        </a>
-      </li>
-
-         <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                Computer Peripherals</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
-                Mobile Devices</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li>
-    </ul>
--->
-
-
-<!--    PAGE CONTENT -->
       <div class="container-fluid">
                         <div class="container-fluid">
 
@@ -167,10 +103,8 @@
                         </div>
 
                         <hr>
-          
-<<<<<<< HEAD
-                      
-                        
+
+
 
 
                          <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
@@ -203,7 +137,7 @@
 
                 <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:600px; width: 600px;">
                                     <div class="modal-header">
@@ -215,37 +149,37 @@
 
                                     <div class="modal-body">
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">ID:</div></div>
-                                          
+
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Name:</div></div>
-                                          
+
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Added By:</div></div>
                                       </div>
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-4">1</div>
-                                          
+
                                           <div class="col-sm-4">ITPC</div>
-                                          
+
                                           <div class="col-sm-4">Justine Garcia</div>
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Added At:</div></div>
-                                          
+
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Last updated At:</div></div>
-                                          
+
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Status:</div></div>
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-4">01/22/19</div>
-                                          
+
                                           <div class="col-sm-4">01/22/19</div>
-                                          
+
                                           <div class="col-sm-4">Available</div>
                                       </div>
 
@@ -263,61 +197,61 @@
                                       <div class="row">
                                         <div class="col-sm-4"><div class="detail-header text-uppercase">Components:</div></div>
                                       </div>
-                                      
+
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">Motherboard:</div></div>
-                                          
+
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">CPU:</div></div>
-                                          
+
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">Storage:</div></div>
 
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">RAM:</div></div>
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           s<div class="col-sm-3">Samp</div>
-                                          
+
                                           <div class="col-sm-3">Samp</div>
-                                          
+
                                           <div class="col-sm-3">Samp</div>
 
                                           <div class="col-sm-3">Samp<</div>
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">GPU:</div></div>
-                                          
+
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">Power Supply:</div></div>
-                                          
+
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">Case:</div></div>
 
                                           <div class="col-sm-3"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           <div class="col-sm-3">Samp</div>
-                                          
+
                                           <div class="col-sm-3">Samp</div>
-                                          
+
                                           <div class="col-sm-3">Samp</div>
 
                                           <div class="col-sm-3">Samp<</div>
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           <div class="col-sm"><div class="detail-header text-uppercase">Soundcard:</div></div>
-                                          
+
                                       </div>
 
                                       <div class="row">
-                                          
+
                                           <div class="col-sm">Sample</div>
-                                          
+
                                       </div>
 
 
@@ -329,12 +263,65 @@
                                     </div>
                                 </div>
                             </div>
+                    </di
+
+    </div>
+
+
+
+    <!--Build From Parts Modal-->
+
+        <div class="p-2">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="buildFromPartsHeader" class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                <div class="container" style="padding:5rem">
+
+
+                <form action="{!! url('/buildUnit'); !!}" method="post">
+                      {!! csrf_field() !!}
+
+                  <p class="card-title text-dark">Name:</p>
+                    <div class="input-group">
+                        <input name="name" type="text" class="form-control" required>
                     </div>
+                    <div class="row">
+                      @foreach ($subtypes as $subtypes)
+                    <div class="col col-6 mb-2">
+                      <p class="card-title">{{$subtypes->name}}: </p>
+                      <select name="items[]" class="custom-select">
+                        @foreach ($parts as $part)
+                        @if ($part->subtype_id==$subtypes->id)
+                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
+                        @endif
+                        @endforeach
+                      </select>
+                    </div>
+                @endforeach
+                    </div>
+                    </form>
 
-=======
-     
->>>>>>> 433db5a5b46bf209a11680f278f6127321c5130a
+                </div>
+              </div>
 
+
+        <div class="modal-footer">
+
+            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
+            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+        </div>
+
+
+
+    </div>
+    </div>
     </div>
 
    <!-- Single Add Modal -->
@@ -357,9 +344,9 @@
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
                         <select name="subtype_id" class="custom-select">
-                        @foreach ($subtype as $subtype)
-                            <option  value="{!! $subtype->id !!}">
-                                {{ $subtype->name }}
+                        @foreach ($equipment_subtypes as $equipment_subtype)
+                            <option  value="{!! $equipment_subtype->id !!}">
+                                {{ $equipment_subtype->name }}
                             </option>
                         @endforeach
                         </select>
@@ -452,9 +439,9 @@
                             <p class="card-title text-dark">System Unit Assigned To:</p>
                             <select name="unit_id" class="custom-select">
                                 <option value="NULL">Not Assigned</option>
-                                @foreach ($units as $units)
-                                <option value="{!! $units->id !!}">
-                                    {{ $units->description }}-{{ $units->id }}
+                                @foreach ($computers as $unit)
+                                <option value="{!! $unit->id !!}">
+                                    {{ $unit->name }}-{{ $unit->id }}
                                 </option>
                                 @endforeach
                             </select>
@@ -484,7 +471,7 @@
 
 
     <!--Build From Parts Modal-->
-      
+
         <div class="p-2">
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
 
@@ -507,213 +494,12 @@
                         <input name="name" type="text" class="form-control" required>
                     </div>
                     <div class="row">
-                      @foreach ($subtypes as $subtypes)
+                      @foreach ($subtypes as $subtype)
                     <div class="col col-6 mb-2">
-                      <p class="card-title">{{$subtypes->name}}: </p>
+                      <p class="card-title">{{$subtype->name}}: </p>
                       <select name="items[]" class="custom-select">
                         @foreach ($parts as $part)
-                        @if ($part->subtype_id==$subtypes->id)
-                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
-                        @endif
-                        @endforeach
-                      </select>
-                    </div>
-                @endforeach
-                    </div>
-                    </form>
-
-                </div>
-              </div>
-
-
-        <div class="modal-footer">
-
-            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
-            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-        </div>
-
-
-
-    </div>
-    </div>
-    </div>
-
-   <!-- Single Add Modal -->
-
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle">Single Add</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <!-- Add Equipment Form -->
-                <div class="modal-body">
-                    <form action="{!! url('/addEquipment'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
-                    {!! csrf_field() !!}
-                    <div class="row pb-2">
-                        <div class="col">
-                        <p class="card-title text-dark">Equipment Subtype:</p>
-                        <select name="subtype_id" class="custom-select">
-                        @foreach ($equipment_subtypes as $equipment_subtypes)
-                            <option  value="{!! $equipment_subtypes->id !!}">
-                                {{ $equipment_subtypes->name }}
-                            </option>
-                        @endforeach
-                        </select>
-                        </div>
-                    </div>
-
-                    <!-- Model & Brand -->
-                    <div class="row">
-                        <div class="col-5">
-                            <p class="card-title text-dark">Model:</p>
-                            <div class="input-group">
-                                <input name="model" type="text" size="30">
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <p class="card-title text-dark">Brand:</p>
-                            <div class="input-group">
-                                <input name="brand" type="text" size="30">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Details -->
-                    <div class="row">
-                        <div class="col-9">
-                            <label for="details" class="card-title text-dark">Details:</label>
-                            <div class="input-group">
-                                <textarea name="details" rows="3" id="details"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br>
-                    <!-- Warranty -->
-                    <div class="row pb-2">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="details" class="card-title text-dark">Warranty Start:</label>
-                                    <input type="date" id="start" name="warranty_start">
-                                </div>
-
-                                <div class="col">
-                                    <label for="details" class="card-title text-dark">Warranty End:</label>
-                                    <input type="date" id="start" name="warranty_end">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br>
-
-                    <!-- Serial and IMEI/MAC -->
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="serial_no" class="card-title text-dark">Serial Number:</label>
-                            <div class="input-group mb-1">
-                                <input name="serial_no" type="text" size="30" >
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <label for="serial_no" class="card-title text-dark">IMEI/MAC address:</label>
-                            <div class="input-group mb-1">
-                                <input name="imei_or_macaddress" type="text" size="30">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- OR & Supplier -->
-                    <div class="row">
-                        <div class="col-6">
-                            <p class="card-title text-dark">Official Receipt Numbers:</p>
-                            <div class="input-group mb-1">
-                                <input name="or_no" type="text" size="30">
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <label for="serial_no" class="card-title text-dark">Supplier:</label>
-                            <div class="input-group mb-1">
-                                <input name="supplier" type="text" size="30">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- System Unit & Status -->
-                    <div class="row">
-                        <div class="col-6">
-                            <p class="card-title text-dark">System Unit Assigned To:</p>
-                            <select name="unit_id" class="custom-select">
-                                <option value="NULL">Not Assigned</option>
-                                @foreach ($units as $units)
-                                <option value="{!! $units->id !!}">
-                                    {{ $units->description }}-{{ $units->id }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-6">
-                            <p class="card-title text-dark">Status:</p>
-                            <select class="custom-select" name="status_id" >
-                                <option value="1">Available</option>
-                                <option value="4">For return</option>
-                                <option value="6">Pending</option>
-                                <option value="8">In-use</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer text-uppercase">
-                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                </div>
-                    </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!--Build From Parts Modal-->
-      
-        <div class="p-2">
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
-
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div id="buildFromPartsHeader" class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-
-                <div class="modal-body">
-                <div class="container" style="padding:5rem">
-
-
-                <form action="{!! url('/buildUnit'); !!}" method="post">
-                      {!! csrf_field() !!}
-
-                  <p class="card-title text-dark">Name:</p>
-                    <div class="input-group">
-                        <input name="name" type="text" class="form-control" required>
-                    </div>
-                    <div class="row">
-                      @foreach ($subtypes as $subtypes)
-                    <div class="col col-6 mb-2">
-                      <p class="card-title">{{$subtypes->name}}: </p>
-                      <select name="items[]" class="custom-select">
-                        @foreach ($parts as $part)
-                        @if ($part->subtype_id==$subtypes->id)
+                        @if ($part->subtype_id==$subtype->id)
                         <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
                         @endif
                         @endforeach
@@ -740,7 +526,7 @@
     </div>
 
 
-            
+
 
 
     <!-- Add System Unit Modal-->
@@ -889,7 +675,7 @@
             </div>
         </div>
     </div>
-            
+
                 <!-- Soft Delete-->
     <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -986,7 +772,7 @@
 
 
 
-                     
+
                             <div class="row">
                                 <h4>System Units</h4>
                                 <div class="container-fluid">
@@ -1004,7 +790,7 @@
                                     </div>
 -->
 
-            
+
 
 
     <!-- Add System Unit Modal-->
@@ -1153,7 +939,7 @@
             </div>
         </div>
     </div>
-            
+
                 <!-- Soft Delete-->
     <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -1250,7 +1036,7 @@
 
 
 
-                     
+
                             <div class="row">
                                 <h4>System Units</h4>
                                 <div class="container-fluid">
