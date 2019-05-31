@@ -84,7 +84,7 @@
 
     <!-- Tabs -->
     <div class="container-fluid">
-   
+
         <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
             <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
@@ -120,7 +120,7 @@
                             <td>{{ $for_return->firstname}} {{ $for_return->lastname}}</td>
                             <td></td>
                             <td></td>
-                            
+
                         </tr>
 
                         @endforeach
@@ -128,7 +128,7 @@
                     </tbody>
 
                 </table>
-            
+
 
         </div>
     </div>

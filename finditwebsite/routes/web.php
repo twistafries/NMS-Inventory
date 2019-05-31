@@ -49,6 +49,7 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 // Route::get('/dashboard', 'DashboardController@showAllStatus');
 Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::get('/purchases', 'Purchases@showAllStatus');
+Route::get('/receivedPurchases', 'Purchases@received');
 Route::get('/returns', 'Purchases@returns');
 Route::get('/incompleteOrders', 'Purchases@incompleteOrders');
 

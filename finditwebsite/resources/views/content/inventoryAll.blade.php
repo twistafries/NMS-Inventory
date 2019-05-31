@@ -316,7 +316,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                
+
 
                     @foreach ($equipment as $equipment)
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
@@ -436,7 +436,7 @@
 
                      <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
@@ -451,7 +451,7 @@
                                           <p>Warning!</p>
                                           <p>Are you sure you want to change the status of this item to Decommissioned?</p>
                                       </div>
-                                      
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -464,7 +464,7 @@
 
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
-                            
+
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
@@ -479,7 +479,7 @@
                                           <p>Warning!</p>
                                           <p>Are you sure you want to Delete this item?</p>
                                       </div>
-                                      
+
                                     </div>
 
                                     <div class="modal-footer">
