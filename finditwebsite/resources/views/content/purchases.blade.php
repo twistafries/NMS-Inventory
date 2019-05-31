@@ -18,7 +18,7 @@
 @stop
 
 @section('title')
-    received purchases
+   purchases
 @stop
 
 @section('../layout/breadcrumbs')
@@ -28,47 +28,7 @@
 @stop
 
 @section('content')
-<<<<<<< HEAD
-<div class="container">
-  <!-- <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">PURCHASES</span>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb arr-right">
-                <li class="breadcrumb-item ">
-                        <a href="{!! url('/purchaseHistory') !!}"  class="text-dark active" aria-current="page">History</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/purchasenumber') !!}" class="text-warning">Purchase Number</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/ornumber') !!}" class="text-warning">OR Number</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav> -->
 
-<form action="" id="form1">
-    <!-- Toolbox -->
-    <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <!-- Single Add Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
-                        </div>
-                    </div>
-                </div>
-=======
 <div class="container-fluid">
     <!-- tabs -->
     <div class="container" style="margin-bottom: 3rem; margin-top: 2rem;">
@@ -88,7 +48,6 @@
                   <a class="nav-link" href="{!! url('/returns') !!}">Returns</a>
                 </li>
               </ul>
->>>>>>> 6ea3c7a7f13cdee097dfa5009e86e7fd9d296929
             </div>
         </div>
     </div>
@@ -122,11 +81,7 @@
           <select id="supplier" name="supplier" style="height: 1.8rem;">
             <option value="any">Any</option>
             @foreach ($suppliers as $suppliers)
-<<<<<<< HEAD
             <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
-=======
-            <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
->>>>>>> 6ea3c7a7f13cdee097dfa5009e86e7fd9d296929
             @endforeach
           </select>
       </th>
