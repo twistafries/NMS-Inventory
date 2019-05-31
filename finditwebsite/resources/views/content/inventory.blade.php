@@ -18,7 +18,7 @@
 @section('content')
 <div class="container-fluid">
 <nav class="navbar navbar-light">
-        <span class="navbar-brand mb-0 h1">INVENTORY</span>
+        <span class="navbar-brand mb-0 ">INVENTORY</span>
       <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
@@ -614,9 +614,9 @@
 
 
 
-                     
+                     <h4>IT EQUIPMENT ({{ $total_equipment + count($system_units) }})</h4>
                             <div class="row">
-                                <h4>IT EQUIPMENT ({{ $total_equipment + count($system_units) }})</h4>
+                                
                                 <div class="container-fluid">
                                     <!--
                                     <div class="collapse-group">
