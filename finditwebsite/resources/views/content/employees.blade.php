@@ -27,13 +27,8 @@
 
       <div class="btn-group" role="group" aria-label="Basic example">
 
-                                    <button class="btn btn-primary rounded mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addEmployee" daria-haspopup="true" aria-expanded="false">
-                                           <i class="fas fa-user-plus"></i> Add Employee
-                                    </button>
-          
-                                     <button class="btn btn-danger rounded" type="button" id="deleteOption" data-toggle="modal" data-target="#removeEmployee"   aria-haspopup="true" aria-expanded="false">
-                                             <i class="fas fa-user-minus"></i> Remove Employee
-                                            </button>
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#addAssociate" style="padding-left: 15px;"><span class="fas fa-user-plus" data-toggle="tooltip" title="Add Associate" ></span>Add </button>
+                                    <button type="button" class="btn " data-toggle="modal" data-target="#removeEmployee"><span class="fas fa-user-minus" data-toggle="tooltip" title="Remove Associate"></span>Remove</button>
 
                                 </div>
                               </div>
@@ -198,10 +193,10 @@
         </table>
 
                                             <!-- Add Employee Modal -->
-                                            <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="addEmployeeTitle" aria-hidden="true">
+                                            <div class="modal fade" id="addAssociate" tabindex="-1" role="dialog" aria-labelledby="addAssociateTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
-                                                        <div id="addEmployeeHeader" class="modal-header">
+                                                        <div id="addAssociateHeader" class="modal-header">
                                                             <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Add Employee</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
@@ -281,10 +276,10 @@
 
 
     <!-- Remove Employee Modal -->
-    <div class="modal fade" id="removeEmployee" tabindex="-1" role="dialog" aria-labelledby="addRemoveTitle" aria-hidden="true">
+    <div class="modal fade" id="removeEmployee" tabindex="-1" role="dialog" aria-labelledby="addAssociateTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div id="removeEmployeeHeader" class="modal-header">
+                <div id="addAssociateHeader" class="modal-header">
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Remove Employee</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
