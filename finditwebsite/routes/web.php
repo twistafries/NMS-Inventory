@@ -44,12 +44,15 @@ Route::group(['middleware' => 'preventBackHistory'],function(){
 
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
-
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
 // Route::get('/dashboard', 'DashboardController@showAllStatus');
 Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
+Route::post('/reInventory', 'DashboardController@filter');
 Route::get('/purchases', 'Purchases@showAllStatus');
+Route::get('/receivedPurchases', 'Purchases@received');
+Route::get('/returns', 'Purchases@returns');
+Route::get('/incompleteOrders', 'Purchases@incompleteOrders');
 
 Route::get('/viewPurchases', 'Purchases@viewPurchases');
 //generate report
@@ -76,15 +79,15 @@ Route::post('/editEmployee', 'ForStatusController@editEmployee');
 Route::post('/changeStatus', 'ForStatusController@editEmployee');
 
 Route::get('/repair', 'ForStatusController@showRepairItems');
+Route::get('/repairSummary', 'ForStatusController@showRepairItemsSummary');
 Route::get('/return', 'ForStatusController@showReturnItems');
 Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
-Route::get('/purchasenumber', 'ForStatusController@showPurchases');
-Route::get('/ornumber', 'ForStatusController@showOR');
+// Route::get('/purchasenumber', 'ForStatusController@showPurchases');
+// Route::get('/ornumber', 'ForStatusController@showOR');
+// Route::get('/purchaseHistory', 'ForStatusController@showPurchaseHistory');
 
 Route::get('/issue', 'IssuanceController@employeeIssuance');
 Route::get('/issuance', 'IssuanceController@showAllIssuance');
-
-Route::get('/purchaseHistory', 'ForStatusController@showPurchaseHistory');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');

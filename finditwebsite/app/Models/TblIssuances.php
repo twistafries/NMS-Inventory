@@ -48,6 +48,7 @@ class TblIssuances extends Model {
 		return $query;
 	}
 
+
 	public static function getEmployeeWithIssuance($params = null) {
 		$query = \DB::table('issuance as i')
 		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')

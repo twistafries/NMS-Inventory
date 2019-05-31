@@ -53,6 +53,7 @@
 
     </ul>
 
+
 <div id="departments" class="">
  <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" role="tablist" style="background-color:white;">
 
@@ -86,19 +87,19 @@
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
             <!-- Single Add Modal -->
-            @foreach ($employee_with_issuance as $employee)
+        @foreach ($employee_with_issuance as $employee)
 
-    <div class="modal fade" id="issuance{{$employee->id}}" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
+        <div class="modal fade" id="issuance{{$employee->id}}" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
 
-    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document">
 
-    <div class="modal-content">
-       <div id ="viewItem" class="modal-header">
-        <h5 class="modal-title" id="ModalTitle">Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+        <div class="modal-content">
+            <div id ="viewItem" class="modal-header">
+            <h5 class="modal-title" id="ModalTitle">Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
 
       <div class="modal-body">
         <ul class="nav nav-tabs" role="tablist">
@@ -109,8 +110,13 @@
                 <a class="nav-link" data-toggle="tab" href="#issueItems{{$employee->id}}">Issue Items</a>
             </li>
         </ul>
+
         <div class="tab-content">
+<<<<<<< HEAD
         <div id="home{{$employee->id}}" class="container tab-pane active"><br>
+=======
+            <div id="home" class="container tab-pane active"><br>
+>>>>>>> 6ea3c7a7f13cdee097dfa5009e86e7fd9d296929
             <table class="table" id="myTable">
                     <thead class="thead-dark">
                         <tr>
@@ -147,6 +153,7 @@
                 </tbody>
                 </table>
             </div>
+        
 
 
     <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
@@ -170,6 +177,10 @@
             <br>
         </div>
         </div>
+
+
+
+        </div>
       </div>
 
       <div class="modal-footer">
@@ -178,20 +189,17 @@
       </div>
     </div>
   </div>
-</div>
-
-@endforeach
+    @endforeach
         </div>
     </div>
 
     <!-- Tabs -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="tab-content" id="pills-tabContent">
 
-
-            <div class="container tab-pane active" id="ITDD" role="tabpanel" aria-labelledby="pills-0-tab">
+            <div class="tab-pane active" id="ITDD" role="tabpanel" aria-labelledby="pills-0-tab">
                 <h4>Information Technology Development Department</h4>
-                <table class="table" >
+                <table class="table table-hover" id="myDataTable" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                         <tr>
 
@@ -212,13 +220,15 @@
                 </tbody>
                 </table>
 
-                </div>
+            </div>
 
 
-                <div id="PDD" class="container tab-pane fade">
+            <div id="PDD" class="tab-pane fade">
                 <h4>Production Development Department</h4>
-                <table class="table">
+                <table class="table table-hover" id="myDataTable1" style="width:100%;cursor:pointer;">
+
                     <thead class="thead-dark">
+                    <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Number Issued</th>
@@ -235,12 +245,13 @@
                   @endforeach
                 </tbody>
                 </table>
-                </div>
+            </div>
 
-                 <div id="FD" class="container tab-pane fade">
+            <div id="FD" class="tab-pane fade">
                 <h4>Financial Department Department</h4>
-                <table class="table">
+                <table class="table table-hover" id="myDataTable2" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
+                    <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Number Issued</th>
@@ -259,9 +270,9 @@
                 </table>
                 </div>
 
-                 <div id="HRD" class="container tab-pane fade">
+                <div id="HRD" class="tab-pane fade">
                 <h4>Human Resources Department</h4>
-                <table class="table">
+                <table class="table table-hover" id="myDataTable" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">ID</th>
@@ -285,10 +296,9 @@
 
                 </div>
             </div>
-
-
-
 </form>
+
+
 @stop
 
 @section('script')
@@ -331,6 +341,12 @@
         $('#myDataTable2').DataTable();
     } );
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#myDataTable3').DataTable();
+    } );
+    </script>
+
 
 <script>
 function deleteRow(r) {
