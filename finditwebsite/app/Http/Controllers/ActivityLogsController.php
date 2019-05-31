@@ -24,7 +24,7 @@ class ActivityLogsController extends BaseController {
         $data = [];
         $data['logs'] = TblActivityLogs::get_logs();
         $data['issuance'] = TblIssuances::getIssuance();
-        
+
         // dd($data);
         return view ('content/activitylogs' , $data);
 	}
