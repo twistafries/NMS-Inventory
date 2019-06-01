@@ -127,7 +127,7 @@
                 <tbody>
                   @foreach ($issued[$employee->id] as $item)
                   @if($item->issued_until < Carbon::today() && $item->issued_until != null )
-                        <tr bgcolor="red">
+                        <tr class="table-danger">
                   @else
                         <tr>
                   @endif
@@ -143,7 +143,12 @@
                         <td>{{ $item->issued_until}}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button class="btn btn-success" type="submit" value="" onclick="deleteRow(this)">Make Available</button>
+                                <form action="{!! url('/change-status'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="id" value="{!! $item->id !!}">
+                                <input type="hidden" name="status_id">
+                                <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button>
+                                </form>
                                 <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)">Repair</button>
                                 <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button>
                             </div>
