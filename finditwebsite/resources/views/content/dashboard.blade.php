@@ -43,10 +43,10 @@
                             <tbody>
                                 <tr>
                                     <form action="{!! url('/reInventory'); !!}" method="post">
+                                    {!! csrf_field() !!}
                                     <td>
                                         <h6>Available System Units</h6>
                                     </td>
-                                        {!! csrf_field() !!}
                                         <input name="status_filter" type="hidden" value="1">
                                         <input name="type_filter" type="hidden" value="system_unit">
 
@@ -169,12 +169,19 @@
                         <table class="table table-borderless text-justify text-break">
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <h6>System Units</h6>
-                                    </td>
-                                    <td class="text-justify">{{ $issued_sys_units }}</td>
-                                <td><button type="submit" class="btn btn-primary btn-sm">View</button></td>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
+                                        <input name="type_filter" type="hidden" value="system_unit">
+                                        <input name="status_filter" type="hidden" value="2">
+                                        {!! csrf_field() !!}
+                                        <td>
+                                            <h6>System Units</h6>
+                                        </td>
+
+                                        <td>
+                                            <button type="submit" href="" class="btn btn-link">{{ $issued_sys_units }}</button>
+                                        </td>
                                 </tr>
+
                                 <tr>
                                     <form action="{!! url('/reInventory'); !!}" method="post">
                                         {!! csrf_field() !!}
@@ -184,16 +191,25 @@
                                     <td>
                                         <h6>Mobile Phones</h6>
                                     </td>
-                                    <td class="text-justify">{{ $issued_phone }}</td>
-                                    <td><button type="submit" class="btn btn-primary btn-sm">View</button></td>
+                                    <td class="text-justify">
+                                        <button type="submit" href="" class="btn btn-link">{{ $issued_phone }}</button>
+                                    </td>
                                     </form>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <h6>Laptops</h6>
-                                    </td>
-                                    <td class="text-justify">{{ $issued_laptop }}</td>
-                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
+                                    {!! csrf_field() !!}
+                                        <input name="status_filter" type="hidden" value="2">
+                                        <input name="subtype_filter" type="hidden" value="12">
+                                        <input name="type_filter" type="hidden" value="3">
+                                        <td>
+                                            <h6>Laptops</h6>
+                                        </td>
+                                        
+                                        <td class="text-justify">
+                                            <button type="submit" href="" class="btn btn-link">{{ $issued_laptop }}</button>
+                                        </td>
+                                    </form>
                                 </tr>
                             </tbody>
                         </table>

@@ -1449,6 +1449,16 @@
         $('input').attr('autocomplete','off');
       });
     </script>
+
+    @if(Session::has('type_filter'))
+    <script>
+        $(document).ready(function () {
+            document.getElementById("types").selectedIndex = "{!! Session::get('type_filter'); !!}";
+            document.getElementById("subtypes").selectedIndex = "{!! Session::get('subtype_filter'); !!}";
+            document.getElementById("status").selectedIndex = "{!! Session::get('status_filter'); !!}";
+        })
+    </script>
+    @endif
     <script>
     $(document).ready(function() {
         $('#myDataTable').DataTable({
