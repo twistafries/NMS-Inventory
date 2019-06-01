@@ -92,7 +92,7 @@
                             {!! csrf_field() !!}
                             <input name="type_filter" type="hidden" value="all">                            
                             <input name="status_filter" type="hidden" value="1">
-                            <button type="submit" class="btn btn-light btn-sm">View all</button>
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                         </form>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                             {!! csrf_field() !!}
                             <input name="type_filter" type="hidden" value="all">
                             <input name="status_filter" type="hidden" value="3">
-                            <button type="submit" class="btn btn-light btn-sm">View all</button>
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                         </form>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                             {!! csrf_field() !!}
                             <input name="type_filter" type="hidden" value="all">
                             <input name="status_filter" type="hidden" value="2">
-                            <button type="submit" class="btn btn-light btn-sm">View all</button>
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                         </form>
                     </div>
                 </div>
