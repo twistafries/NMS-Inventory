@@ -213,159 +213,112 @@
         <form action="{!! url('/editIssuance'); !!}" enctype="multipart/form-data" method="post" role="form">
             {!! csrf_field() !!}
           <div class="row">
-            <div class="col"><p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued" disabled></div>
-            <div class="col"><p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype" disabled></div>
-               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued" disabled></div>
+            <div class="col"><p class="card-title text-dark">Item Name:</p> {{ $issuance->model}}</div>
+            <div class="col"><p class="card-title text-dark">Item Subtype:</p>Sample</div>
+               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p>Sample</div>
           </div>
 
            <div class="row pt-4">
-               <div class="col"><p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25" disabled></div>
-                <div class="col"><p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25" disabled></div>
+               <div class="col"><p class="card-title text-dark">Issued To:</p>Sample</div>
+                <div class="col"><p class="card-title text-dark">Issued By:</p>Sample</div>
           </div>
 
           <div class="row pt-4">
                <div class="col"><p class="card-title text-dark">Date Issued:</p>
-                   <input type="text" name="dateIssued" id="dateIssued" disabled>
+                   Sample
               </div>
-                <div class="col"><p class="card-title text-dark">Date Updated:</p><input type="date" name="dateUpdated" id="dateUpdated" disabled></div>
+                <div class="col"><p class="card-title text-dark">Date Updated:</p>Sample</div>
 
           </div>
           <div class="row pt-4">
 
-              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil" disabled></div>
-              <div class="col"><p class="card-title text-dark">Date Returned:</p><input type="date" name="dateReturned" id="dateReturned" disabled></div>
+              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil"></div>
+              <div class="col"><p class="card-title text-dark">Date Returned:</p>Sample</div>
           </div>
            <div class="row pt-4">
 
-              <div class="col"><p class="card-title text-dark">Remarks:</p> <textarea name="remarks" id="remarks" rows="2" cols="22" disabled></textarea></div>
+              <div class="col"><p class="card-title text-dark">Remarks:</p>Sample</div>
 
           </div>
 
 
 
+                <div class="row row-details">
+                      <div class="col col-4 detail-header text-uppercase">Mark As: </div>
+                        <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">Make Available</button>
+                        <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Repair</button>
+                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommission</button>
+                </div>
 
     </form>
       </div>
 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton" onclick="editValues()">Edit Values</button>
-        <button class="btn btn-danger" type="submit">Delete</button>
+        <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton">Save Changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-            <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Issue Item</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
 
-                        <!-- Issue Form -->
-                        <div class="modal-body">
-                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
-                                {!! csrf_field() !!}
-                                <div class="row">
+                <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
 
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issue Item:</p>
-                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
-                                                <datalist id="items">
-                                                  <select>
-                                                  @foreach ($equipment as $equipment)
-                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
-                                                  @endforeach
-                                                  @foreach ($units as $units)
-                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
-                                                  @endforeach
-                                                </select>
-                                                </datalist>
-
-                                          </div>
-                                          <div class="col-md-2">
-                                          </div>
-
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issued_until</p>
-                                                  <div class="input-group mb-3">
-                                                  <input  name="issued_until" type="date" class="form-control" required>
-                                                  </div>
-                                          </div>
-                                      </div>
-
-                                      <table id="addMoreList">
-                                                 <tbody>
-                                                 </tbody>
-                                             </table>
-
-
-                                     <br>
-
-                                      <br>
-                                      <div class="row">
-
-                                              <div class="col-md-4">
-                                                  <button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>ADD MORE</button>
-                                              </div>
-                                      </div>
-
-                                      <br>
-
-                                     <div class="row">
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issue to:</p>
-                                              <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
-                                              <datalist id="employee">
-                                                  @foreach ($employees as $employees)
-                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
-                                                    @switch($employees->dept_id)
-                                                      @case(1)
-                                                          ITDD
-                                                          @break
-                                                      @case(2)
-                                                          PDD
-                                                          @break
-                                                      @case(3)
-                                                          FD
-                                                          @break
-                                                      @case(4)
-                                                          HRD
-                                                          @break
-
-                                                  @endswitch
-                                                  </option>
-                                                  @endforeach
-                                                </datalist>
-                                          </div>
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
 
-                                      <div class="row">
-
-                                          <div class="col">
-                                              <label for="details">Remarks</p>
-                                              <div class="input-group mb-1">
-                                                  <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea"></textarea>
-                                              </div>
-                                          </div>
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to change the status of this item to Decommissioned?</p>
                                       </div>
 
-                              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-                          </div>
+                                    </div>
 
-                          <div class="modal-footer text-uppercase">
-                              <button class="btn btn-info">Add</button>
-                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
-                          </div>
-                        </form>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                </div>
-            </div>
+
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to Delete this item?</p>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Delete</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
 </div>
 
 @stop

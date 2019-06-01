@@ -217,7 +217,7 @@
                 <tbody>
                   @foreach($itdd as $emp)
                     <tr data-toggle="modal" data-target="#issuance{{$emp->id}}">
-                        <th>{{$emp->id}}</th>
+                        <td>{{$emp->id}}</td>
                         <td>{{$emp->fname}} {{$emp->lname}}</td>
                         <td>{{$emp->totalIssued}}</td>
                     </tr>

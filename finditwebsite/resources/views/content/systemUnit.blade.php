@@ -184,10 +184,10 @@
                                       </div>
 
                                       <div class="row">
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Department:</div></div>
+                                          <div class="col-sm-12"><div class="detail-header text-uppercase">Department:</div></div>
                                       </div>
                                       <div class="row">
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Information Technology Development Department</div></div>
+                                          <div class="col-sm-12">Information Technology Development Department</div>
                                       </div>
 
                                       <div class="row">
@@ -195,65 +195,156 @@
                                       </div>
 
                                       <div class="row">
-                                        <div class="col-sm-4"><div class="detail-header text-uppercase">Components:</div></div>
+                                          <hr>
                                       </div>
+
 
                                       <div class="row">
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Components</div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Motherboard:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">CPU:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Storage:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">RAM:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">GPU:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Power Supply:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Case:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Soundcard:</div></div>
+                                            </div>
+                                          </div>
 
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Motherboard:</div></div>
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Name</div>
+                                             <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                          </div>
 
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">CPU:</div></div>
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Serial Number</div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
+                                            </div>
+                                        </div>
 
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Storage:</div></div>
-
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">RAM:</div></div>
                                       </div>
+                                       
+                                        <div class="row row-details">
+                                           <div class="col col-3 detail-header text-uppercase">Mark As: </div>
+                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
+                                             <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Return</button>
+                                            <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
+                                        </div>
+                                  
+                                    </div>
 
-                                      <div class="row">
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
 
-                                          s<div class="col-sm-3">Samp</div>
 
-                                          <div class="col-sm-3">Samp</div>
+                    <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
 
-                                          <div class="col-sm-3">Samp</div>
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
 
-                                          <div class="col-sm-3">Samp<</div>
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to change the status of this item to Decommissioned?</p>
                                       </div>
-
-                                      <div class="row">
-
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">GPU:</div></div>
-
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Power Supply:</div></div>
-
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Case:</div></div>
-
-                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
-                                      </div>
-
-                                      <div class="row">
-
-                                          <div class="col-sm-3">Samp</div>
-
-                                          <div class="col-sm-3">Samp</div>
-
-                                          <div class="col-sm-3">Samp</div>
-
-                                          <div class="col-sm-3">Samp<</div>
-                                      </div>
-
-                                      <div class="row">
-
-                                          <div class="col-sm"><div class="detail-header text-uppercase">Soundcard:</div></div>
-
-                                      </div>
-
-                                      <div class="row">
-
-                                          <div class="col-sm">Sample</div>
-
-                                      </div>
-
 
                                     </div>
 
@@ -263,9 +354,35 @@
                                     </div>
                                 </div>
                             </div>
-                    </di
+                    </div>
 
-    </div>
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to Delete this item?</p>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Delete</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
 
 
 

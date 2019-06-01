@@ -240,7 +240,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content" style="height:450px;">
                     <div id="addAssociateHeader" class="modal-header">
-                        <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Add Associate</h5>
+                        <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Add User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <form action="{!! url('/addUsers'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post" role="form">
@@ -340,7 +340,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content" style="height:450px;">
                 <div id="addAssociateHeader" class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Remove Associate</h5>
+                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Remove User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <form action="{!! url('/removeUser'); !!}" enctype="multipart/form-data" method="post" onSubmit="DoSubmit()" role="form">
