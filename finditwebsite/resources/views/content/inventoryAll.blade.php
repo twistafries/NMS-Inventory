@@ -354,7 +354,7 @@
                                         <div class="row row-details">
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
                                             <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
-                                             <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Issue</button>
+                                             <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Return</button>
                                             <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
 
                                         </div>
