@@ -50,12 +50,12 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::post('/reInventory', 'DashboardController@filter');
 Route::post('/reInventorySummary', 'DashboardController@filter');
-Route::get('/purchases', 'Purchases@showAllStatus');
-Route::get('/receivedPurchases', 'Purchases@received');
+Route::get('/purchases', 'PurchasesController@showAllStatus');
+Route::get('/receivedPurchases', 'PurchasesController@received');
 Route::get('/returns', 'Purchases@returns');
-Route::get('/incompleteOrders', 'Purchases@incompleteOrders');
+Route::get('/incompleteOrders', 'PurchasesController@incompleteOrders');
 
-Route::get('/viewPurchases', 'Purchases@viewPurchases');
+Route::get('/viewPurchases', 'PurchasesController@viewPurchases');
 //generate report
 Route::get('/generateReportPage', 'Reports@showAllStatus');
 Route::get('/itemAvailabilityReport', 'inventoryReports@showAvailable');

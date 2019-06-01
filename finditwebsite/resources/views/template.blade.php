@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap-reboot.min.css') }}">
     <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
@@ -34,7 +34,7 @@
 <body onload="myFunction()" >
 <div id="loader"></div>
 
-   
+
     <div class="fluid-container bg-light" id="initial">
         <div class="wrapper">
             @include('layout/sidenav')
@@ -77,7 +77,7 @@
         var myVar;
 
         function myFunction() {
-            myVar = setTimeout(showPage, 3000);
+            myVar = setTimeout(showPage, 1500);
         }
 
         function showPage() {
