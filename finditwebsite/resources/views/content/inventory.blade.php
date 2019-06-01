@@ -657,7 +657,51 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a href="#mo">Motherboard</a></th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#motherboard">Case</a></th>
+                            <td>{{$Case['Available']}}</td>
+                            <td>{{$Case['Issued']}}</td>
+                            <td>{{$Case['In-use']}}</td>
+                            <td>{{$Case['For repair']}}</td>
+                            <td>{{$Case['For return']}}</td>
+                            <td>{{$Case['Pending']}}</td>
+                            <td>{{$Case['Decommissioned']}}</td>
+                            <td>{{$total_Case}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#CPU">CPU</a></th>
+                            <td>{{$CPU['Available']}}</td>
+                            <td>{{$CPU['Issued']}}</td>
+                            <td>{{$CPU['In-use']}}</td>
+                            <td>{{$CPU['For repair']}}</td>
+                            <td>{{$CPU['For return']}}</td>
+                            <td>{{$CPU['Pending']}}</td>
+                            <td>{{$CPU['Decommissioned']}}</td>
+                            <td>{{$total_CPU}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#GPU">GPU</a></th>
+                            <td>{{$GPU['Available']}}</td>
+                            <td>{{$GPU['Issued']}}</td>
+                            <td>{{$GPU['In-use']}}</td>
+                            <td>{{$GPU['For repair']}}</td>
+                            <td>{{$GPU['For return']}}</td>
+                            <td>{{$GPU['Pending']}}</td>
+                            <td>{{$GPU['Decommissioned']}}</td>
+                            <td>{{$total_GPU}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Heat Sink Fan">Heat Sink Fan</a></th>
+                            <td>{{$HeatSinkFan['Available']}}</td>
+                            <td>{{$HeatSinkFan['Issued']}}</td>
+                            <td>{{$HeatSinkFan['In-use']}}</td>
+                            <td>{{$HeatSinkFan['For repair']}}</td>
+                            <td>{{$HeatSinkFan['For return']}}</td>
+                            <td>{{$HeatSinkFan['Pending']}}</td>
+                            <td>{{$HeatSinkFan['Decommissioned']}}</td>
+                            <td>{{$total_HeatSinkFan}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Motherboard">Motherboard</a></th>
 
                             <td>{{$Motherboard['Available']}}</td>
                             <td>{{$Motherboard['Issued']}}</td>
@@ -669,51 +713,7 @@
                             <td>{{$total_Motherboard}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">CPU</th>
-                            <td>{{$CPU['Available']}}</td>
-                            <td>{{$CPU['Issued']}}</td>
-                            <td>{{$CPU['In-use']}}</td>
-                            <td>{{$CPU['For repair']}}</td>
-                            <td>{{$CPU['For return']}}</td>
-                            <td>{{$CPU['Pending']}}</td>
-                            <td>{{$CPU['Decommissioned']}}</td>
-                            <td>{{$total_CPU}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Storage</th>
-                            <td>{{$Storage['Available']}}</td>
-                            <td>{{$Storage['Issued']}}</td>
-                            <td>{{$Storage['In-use']}}</td>
-                            <td>{{$Storage['For repair']}}</td>
-                            <td>{{$Storage['For return']}}</td>
-                            <td>{{$Storage['Pending']}}</td>
-                            <td>{{$Storage['Decommissioned']}}</td>
-                            <td>{{$total_Storage}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">RAM</th>
-                            <td>{{$RAM['Available']}}</td>
-                            <td>{{$RAM['Issued']}}</td>
-                            <td>{{$RAM['In-use']}}</td>
-                            <td>{{$RAM['For repair']}}</td>
-                            <td>{{$RAM['For return']}}</td>
-                            <td>{{$RAM['Pending']}}</td>
-                            <td>{{$RAM['Decommissioned']}}</td>
-                            <td>{{$total_RAM}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">GPU</th>
-                            <td>{{$GPU['Available']}}</td>
-                            <td>{{$GPU['Issued']}}</td>
-                            <td>{{$GPU['In-use']}}</td>
-                            <td>{{$GPU['For repair']}}</td>
-                            <td>{{$GPU['For return']}}</td>
-                            <td>{{$GPU['Pending']}}</td>
-                            <td>{{$GPU['Decommissioned']}}</td>
-                            <td>{{$total_GPU}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Power Supply</th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#PowerSupply">Power Supply</a></th>
                             <td>{{$PowerSupply['Available']}}</td>
                             <td>{{$PowerSupply['Issued']}}</td>
                             <td>{{$PowerSupply['In-use']}}</td>
@@ -724,29 +724,18 @@
                             <td>{{$total_PowerSupply}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Case</th>
-                            <td>{{$Case['Available']}}</td>
-                            <td>{{$Case['Issued']}}</td>
-                            <td>{{$Case['In-use']}}</td>
-                            <td>{{$Case['For repair']}}</td>
-                            <td>{{$Case['For return']}}</td>
-                            <td>{{$Case['Pending']}}</td>
-                            <td>{{$Case['Decommissioned']}}</td>
-                            <td>{{$total_Case}}</td>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#RAM">RAM</a></th>
+                            <td>{{$RAM['Available']}}</td>
+                            <td>{{$RAM['Issued']}}</td>
+                            <td>{{$RAM['In-use']}}</td>
+                            <td>{{$RAM['For repair']}}</td>
+                            <td>{{$RAM['For return']}}</td>
+                            <td>{{$RAM['Pending']}}</td>
+                            <td>{{$RAM['Decommissioned']}}</td>
+                            <td>{{$total_RAM}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Heat Sink Fan</th>
-                            <td>{{$HeatSinkFan['Available']}}</td>
-                            <td>{{$HeatSinkFan['Issued']}}</td>
-                            <td>{{$HeatSinkFan['In-use']}}</td>
-                            <td>{{$HeatSinkFan['For repair']}}</td>
-                            <td>{{$HeatSinkFan['For return']}}</td>
-                            <td>{{$HeatSinkFan['Pending']}}</td>
-                            <td>{{$HeatSinkFan['Decommissioned']}}</td>
-                            <td>{{$total_HeatSinkFan}}</td>
-                        </tr>
-                         <tr>
-                            <th scope="row">Sound Card</th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#SoundCard">Sound Card</a></th>
                             <td>{{$HeatSinkFan['Available']}}</td>
                             <td>{{$HeatSinkFan['Issued']}}</td>
                             <td>{{$HeatSinkFan['In-use']}}</td>
@@ -756,7 +745,18 @@
                             <td>{{$HeatSinkFan['Decommissioned']}}</td>
                             <td></td>
                         </tr>
-
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Storage">Storage</a></th>
+                            <td>{{$Storage['Available']}}</td>
+                            <td>{{$Storage['Issued']}}</td>
+                            <td>{{$Storage['In-use']}}</td>
+                            <td>{{$Storage['For repair']}}</td>
+                            <td>{{$Storage['For return']}}</td>
+                            <td>{{$Storage['Pending']}}</td>
+                            <td>{{$Storage['Decommissioned']}}</td>
+                            <td>{{$total_Storage}}</td>
+                        </tr>
+                     
                     </tbody>
                 </table>
             </div>
@@ -765,9 +765,7 @@
     </div>
 
 
-
-
-       <div class="panel panel-default">
+    <div class="panel panel-default">
                                         <div class="panel-heading" role="tab" id="headingTwo">
                                             <h5 class="panel-title">
                                                 <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2"><i class="fas fa-arrow-circle-down"></i> Computer Peripheral ({{$total_peripherals}})</a>
@@ -791,20 +789,8 @@
                         </tr>
                     </thead>
                     <tbody>
-
                         <tr>
-                            <th scope="row">Mouse</th>
-                            <td>{{$Mouse['Available']}}</td>
-                            <td>{{$Mouse['Issued']}}</td>
-                            <td>{{$Mouse['In-use']}}</td>
-                            <td>{{$Mouse['For repair']}}</td>
-                            <td>{{$Mouse['For return']}}</td>
-                            <td>{{$Mouse['Pending']}}</td>
-                            <td>{{$Mouse['Decommissioned']}}</td>
-                            <td>{{$total_Mouse}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Keyboard</th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Keyboard">Keyboard</a></th>
                             <td>{{$Keyboard['Available']}}</td>
                             <td>{{$Keyboard['Issued']}}</td>
                             <td>{{$Keyboard['In-use']}}</td>
@@ -815,7 +801,7 @@
                             <td>{{$total_Keyboard}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Monitor</th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Monitor">Monitor</a></th>
                             <td>{{$Monitor['Available']}}</td>
                             <td>{{$Monitor['Issued']}}</td>
                             <td>{{$Monitor['In-use']}}</td>
@@ -825,6 +811,19 @@
                             <td>{{$Monitor['Decommissioned']}}</td>
                             <td>{{$total_Monitor}}</td>
                         </tr>
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Mouse">Mouse</a></th>
+                            <td>{{$Mouse['Available']}}</td>
+                            <td>{{$Mouse['Issued']}}</td>
+                            <td>{{$Mouse['In-use']}}</td>
+                            <td>{{$Mouse['For repair']}}</td>
+                            <td>{{$Mouse['For return']}}</td>
+                            <td>{{$Mouse['Pending']}}</td>
+                            <td>{{$Mouse['Decommissioned']}}</td>
+                            <td>{{$total_Mouse}}</td>
+                        </tr>
+                        
+                        
 
                     </tbody>
                 </table>
@@ -861,7 +860,7 @@
 
 
                         <tr>
-                            <th scope="row">Laptop</th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Laptop">Laptop</a></th>
                             <td>{{$Laptop['Available']}}</td>
                             <td>{{$Laptop['Issued']}}</td>
                             <td>{{$Laptop['In-use']}}</td>
@@ -872,18 +871,7 @@
                             <td>{{$total_Laptop}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">Tablet</th>
-                            <td>{{$Tablet['Available']}}</td>
-                            <td>{{$Tablet['Issued']}}</td>
-                            <td>{{$Tablet['In-use']}}</td>
-                            <td>{{$Tablet['For repair']}}</td>
-                            <td>{{$Tablet['For return']}}</td>
-                            <td>{{$Tablet['Pending']}}</td>
-                            <td>{{$Tablet['Decommissioned']}}</td>
-                            <td>{{$total_Tablet}}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Mobile Phone</th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Mobile Phone">Mobile Phone</a></th>
                             <td>{{$MobilePhone['Available']}}</td>
                             <td>{{$MobilePhone['Issued']}}</td>
                             <td>{{$MobilePhone['In-use']}}</td>
@@ -893,6 +881,18 @@
                             <td>{{$MobilePhone['Decommissioned']}}</td>
                             <td>{{$total_MobilePhone}}</td>
                         </tr>
+                        <tr>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Tablet">Tablet</a></th>
+                            <td>{{$Tablet['Available']}}</td>
+                            <td>{{$Tablet['Issued']}}</td>
+                            <td>{{$Tablet['In-use']}}</td>
+                            <td>{{$Tablet['For repair']}}</td>
+                            <td>{{$Tablet['For return']}}</td>
+                            <td>{{$Tablet['Pending']}}</td>
+                            <td>{{$Tablet['Decommissioned']}}</td>
+                            <td>{{$total_Tablet}}</td>
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
