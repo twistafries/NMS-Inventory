@@ -46,11 +46,7 @@ class TblActivityLogs extends Model {
     	  $log->issued_to = $params['issued_to'];
 
 			if(isset($params['field']))
-     	 $log->to_status = $params['to_status'];
-
-      if(isset($params['issued_to']))
-    	  $log->field = $params['field'];
-
+     	 $log->field = $params['field'];
 
     	try {
     		$log->save();
