@@ -27,6 +27,7 @@
         </style>
     @yield('css')
     <link rel="stylesheet"  href="{{ asset('css/loader.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo/logoicon1.png') }}" />
 
     <title>@yield('title')</title>
 </head>
