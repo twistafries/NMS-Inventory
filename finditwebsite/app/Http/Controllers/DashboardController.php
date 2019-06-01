@@ -32,7 +32,6 @@ class DashboardController extends BaseController
         $data['available_laptop'] = count(TblItEquipment::countByStatusSubtype(1 , 12));       
         $data['available_component'] = count(TblItEquipment::countByStatusType(1 , 1));       
         $data['available_component_qty'] = TblItEquipment::countByStatusTypeQuantity(1 , 1);       
-        // dd $card1data['available_component_qty']);
         $data['totalAvailableUnits']  = $data['available_sys_units'] + $data['available_phone'] + $data['available_laptop'];
        
         
@@ -40,13 +39,12 @@ class DashboardController extends BaseController
         $data['repair_sys_units'] = count(TblSystemUnits::get_total_system_units(3));       
         $data['repair_phone'] = count(TblItEquipment::countByStatusSubtype(3 , 14));       
         $data['repair_laptop'] = count(TblItEquipment::countByStatusSubtype(3 , 12));       
-        // $data['totalRepairUnits']  = $card2data['repair_sys_units'] + $card2data['repair_phone'] + $card2data['repair_laptop'];
-        // dd($card2data);
-        $data['countHardwareIssued'] = count(TblItEquipment::countByStatusHardware('w'));
+        $data['countHardwareIssued'] = count(TblItEquipment::countByStatusHardware(2));
         $data['issued_sys_units'] = count(TblSystemUnits::get_total_system_units(2));       
         $data['issued_phone'] = count(TblItEquipment::countByStatusSubtype(2 , 14));       
-        $data['issued_laptop'] = count(TblItEquipment::countByStatusSubtype(2 , 12));       
-// dd($card3data);
+        $data['issued_laptop'] = count(TblItEquipment::countByStatusSubtype(2 , 12));
+        
+        $data['purchases'];
         return view ('content/dashboard' , $data);
     }
 
@@ -58,7 +56,11 @@ class DashboardController extends BaseController
         $data = [];
         $data = $request->all();
         // dd($data['status_filter']);
-
+        if($data['type_filter'] == 'all'){
+            return \Redirect::to('/inventoryAll')
+            ->with('type_filter' , $data['type_filter'])
+            ->with('status_filter' , $data['status_filter']);
+        }
         if($data['type_filter'] == 'system_unit'){
             return \Redirect::to('/systemUnit')
             ->with($data);
