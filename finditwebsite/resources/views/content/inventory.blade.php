@@ -657,7 +657,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#motherboard">Case</a></th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Case">Case</a></th>
                             <td>{{$Case['Available']}}</td>
                             <td>{{$Case['Issued']}}</td>
                             <td>{{$Case['In-use']}}</td>
@@ -690,7 +690,7 @@
                             <td>{{$total_GPU}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Heat Sink Fan">Heat Sink Fan</a></th>
+                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#HeatSinkFan">Heat Sink Fan</a></th>
                             <td>{{$HeatSinkFan['Available']}}</td>
                             <td>{{$HeatSinkFan['Issued']}}</td>
                             <td>{{$HeatSinkFan['In-use']}}</td>
