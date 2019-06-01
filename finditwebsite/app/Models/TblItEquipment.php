@@ -126,13 +126,6 @@ class TblItEquipment extends Model
         return $query;
     }
 
-    public static function get_supplier($params = null){
-        $query = \DB::table('it_equipment')
-        -> select('it_equipment.supplier as supplier')
-        -> groupBy('supplier')
-        -> get();
-        return $query;
-    }
 
     public static function get_brand($params = null){
         $query = \DB::table('it_equipment')
@@ -148,6 +141,15 @@ class TblItEquipment extends Model
         -> groupBy('model')
         -> get();
         return $query;
+    }
+
+    public static function get_status($id){
+      $query = \DB::table('it_equipment')
+      -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+      ->select('equipment_status.name as status')
+      ->where('it_equipment.id', '=', $id)
+      ->get();
+      return $query;
     }
 
     public static function countSubtypes(){
@@ -269,9 +271,10 @@ class TblItEquipment extends Model
         try{
           $it_equipment->save();
           $id = DB::getPdo()->lastInsertId();
-          return $id;
+
           $results['error'] = 0;
           $results['message'] = 'equipment has been added';
+          return $id;
 
 
         }catch ( QueryException $e){

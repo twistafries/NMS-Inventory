@@ -18,41 +18,56 @@
     <div class="row card-row pl-0">
         <div class="col-3 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="far fa-check-circle"></i> Available
-                    Issuable Units 
+                <div class="card-header text-white mb-3" id="card-header">
+                    <i class="far fa-check-circle"></i> Available Issuable Units
                 </div>
-                <h4>
-                    <center>{{ $available_sys_units + $available_phone + $available_laptop}}</center>
-                </h4>
+                <center>
+                <form action="{!! url('/reInventory'); !!}" method="post">
+                    {!! csrf_field() !!}
+                    <input name="has_system_unit" type="hidden" value="1">
+                    <input name="has_mobile_phones" type="hidden" value="1">
+                    <input name="has_laptops" type="hidden" value="1">
+                    <input name="status_filter" type="hidden" value="1">
+
+                    <button type="submit" href="{!! url('/reInventorySummary') !!}" class="btn btn-link">
+                        <h4> 
+                            {{ $available_sys_units + $available_phone + $available_laptop}}
+                        </h4>
+                    </button>
+                </form>
+                </center>
+
                 <div class="card-body p-0">
                     <div class="card p-3">
-                        <table class="table table-borderless text-justify text-break">
+                        <table class="table table-borderless text-left text-break">
                             <tbody>
                                 <tr>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
                                     <td>
                                         <h6>Available System Units</h6>
                                     </td>
-                                    <form action="{!! url('/reInventory'); !!}" method="post">
                                         {!! csrf_field() !!}
-                                        <input name="status_filter" type="hidden" value="available">
+                                        <input name="status_filter" type="hidden" value="1">
                                         <input name="type_filter" type="hidden" value="system_unit">
-                                        
-                                        <td class="text-justify">{{ $available_sys_units }}</td>
-                                        <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+
+                                        <td>
+                                            <button type="submit" href="" class="btn btn-link">{{ $available_sys_units }}</button>
+                                        </td>
                                     </form>
                                 </tr>
                                 <tr>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
                                     <td>
                                         <h6>Available Mobile Phones</h6>
                                     </td>
-                                    <form action="{!! url('/reInventory'); !!}" method="post">
                                         {!! csrf_field() !!}
                                         <input name="status_filter" type="hidden" value="1">
                                         <input name="subtype_filter" type="hidden" value="14">
                                         <input name="type_filter" type="hidden" value="3">
-                                        
-                                        <td class="text-justify">{{ $available_phone }}</td>
-                                        <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+
+                                        <td>
+                                            <button type="submit" href="" class="btn btn-link">{{ $available_phone }}</button>
+                                        </td>
                                     </form>
                                 </tr>
                                 <tr>
@@ -64,8 +79,9 @@
                                     <td>
                                         <h6>Available Laptops</h6>
                                     </td>
-                                    <td class="text-justify">{{ $available_laptop }}</td>
-                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td>
+                                        <button type="submit" href="" class="btn btn-link">{{ $available_laptop }}</button>
+                                    </td>
                                     </form>
                                 </tr>
 
@@ -83,9 +99,17 @@
                 <div class="card-header text-white mb-3" id="card-header">
                     <i class="fas fa-tools"></i> Total Items in Repair
                 </div>
-                <h4>
-                    <center>{{ $countHardwareForRepair + $repair_sys_units}}</center>
-                </h4>
+                <center>
+                <form action="{!! url('/reInventory'); !!}" method="post">
+                    {!! csrf_field() !!}
+                    <button type="submit" href="" class="btn btn-link">
+                        <h4> 
+                            {{ $countHardwareForRepair + $repair_sys_units }}
+                        </h4>
+                    </button>
+                </form>
+                </center>
+
                 <div class="card-body p-0">
                     <div class="card p-3">
                         <table class="table table-borderless text-justify text-break">
@@ -98,11 +122,18 @@
                                     <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <h6>Mobile Phones</h6>
-                                    </td>
-                                    <td class="text-justify">{{ $repair_phone }}</td>
-                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
+                                        {!! csrf_field() !!}
+                                        <input name="status_filter" type="hidden" value="3">
+                                        <input name="subtype_filter" type="hidden" value="12">
+                                        <input name="type_filter" type="hidden" value="3">
+                                        <td>
+                                            <h6>Mobile Phones</h6>
+                                        </td>
+                                        <td class="text-justify">
+                                            <button type="submit" href="" class="btn btn-link">{{ $repair_phone }}</button>
+                                        </td>
+                                    </form>
                                 </tr>
                                 <tr>
                                     <form action="{!! url('/reInventory'); !!}" method="post">
@@ -113,8 +144,8 @@
                                     <td>
                                         <h6>Laptops</h6>
                                     </td>
-                                    <td class="text-justify">{{ $repair_laptop }}</td>
-                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td class="text-justify">
+                                        <button type="submit" href="" class="btn btn-link">{{ $repair_laptop }}</button>
                                     </form>
                                 </tr>
                             </tbody>
@@ -171,7 +202,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="col-3 p-1">
             <div class="card">

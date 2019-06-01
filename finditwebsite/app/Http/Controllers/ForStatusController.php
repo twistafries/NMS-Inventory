@@ -66,16 +66,16 @@ class ForStatusController extends BaseController
      return view ('content/repairSummary' , $data);
    }
 
-   
+
 
    public function showReturnItems(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
              return \Redirect::to('/loginpage');
        }
- 
+
       $data = [];
       $data['for_return'] = TblEquipmentStatus::get_for_return();
-      return view ('content/return' , $data);
+      return view ('content/returns' , $data);
     }
 
 

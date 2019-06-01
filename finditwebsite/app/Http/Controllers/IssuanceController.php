@@ -16,6 +16,7 @@ use App\Models\TblSystemUnits;
 use App\Models\TblStatus;
 use App\Models\TblIssuances;
 use App\Models\TblEmployees;
+use App\Models\Suppliers;
 use App\Models\TblActivityLogs;
 use Session, Auth;
 
@@ -34,11 +35,30 @@ class IssuanceController extends BaseController {
 		$data['status'] = TblEquipmentStatus::get_all_status();
 		$data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
 		$data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
-		$data['suppliers'] = TblItEquipment::get_supplier();
+		$data['suppliers'] = Suppliers::get_suppliers();
 		$data['brands'] = TblItEquipment::get_brand();
 		$data['models'] = TblItEquipment::get_model();
 		return view('content/issuance', $data);
 	}
+
+	public function showEmployeeIssuance() {
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+						return \Redirect::to('/loginpage');
+				}
+
+		$data = [];
+		$data['issuance'] = TblIssuances::getIssuance();
+		$data['equipment'] = TblEquipmentStatus::get_available();
+		$data['units'] = TblEquipmentStatus::get_available_units();
+		$data['employees'] = TblEmployees::get_employees('active');
+		$data['itdd'] = TblEmployees::getIssuancePerEmployee(1);
+		$data['pdd'] = TblEmployees::getIssuancePerEmployee(2);
+		$data['fd'] = TblEmployees::getIssuancePerEmployee(3);
+		$data['hrd'] = TblEmployees::getIssuancePerEmployee(4);
+		dd($data);
+		return view('content/issue', $data);
+	}
+
 
 	public function employeeIssuance() {
 	if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
@@ -47,8 +67,8 @@ class IssuanceController extends BaseController {
 
 	$data = [];
 	$data['issuance'] = TblIssuances::getIssuance();
-	$data['equipment'] = TblEquipmentStatus::get_available();
-	$data['units'] = TblEquipmentStatus::get_available_units();
+	$data['eqp'] = TblEquipmentStatus::get_available();
+	$data['pc'] = TblEquipmentStatus::get_available_units();
 	$data['employees'] = TblEmployees::get_employees('active');
 	$data['employee_with_issuance'] = TblIssuances::getEmployeeWithIssuance();
 	$data['itdd'] = TblIssuances::getIssuancePerEmployee(1);

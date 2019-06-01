@@ -68,7 +68,7 @@
       <select id="supplier" name="supplier">
         <option value="any">Any</option>
         @foreach ($suppliers as $suppliers)
-        <option value="{{$suppliers->supplier}}">{{$suppliers->supplier}}</option>
+        <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
         @endforeach
       </select>
   </th>
@@ -126,13 +126,13 @@
                     <thead class="thead-dark">
                         <tr>
 
-                            <th>Equipment Issued</th>
-                            <th>Equipment Subtype</th>
-                            <th>System Unit Issued</th>
+                            <th>Item Name</th>
+                            <th>Item Subtype</th>
+                            <th>Serial Number</th>
                             <th>Issued To</th>
                             <th>Issued By</th>
                             <th>Date Issued</th>
-                            <th width="15%">Date Updated</th>
+                            <th>Date Updated</th>
                             <th>Issued Until</th>
                             <th>Date Returned</th>
                             <th>Remarks</th>
@@ -142,18 +142,49 @@
                     <tbody>
 
                         @foreach ($issuance as $issuance)
-                        <tr data-toggle="modal" data-target="#viewItemModal">
+                        @if($issuance->issued_until < Carbon::today() && $issuance->issued_until != null )
+                              <tr bgcolor="red" data-toggle="modal" data-target="#viewItemModal">
+                        @else
+                              <tr data-toggle="modal" data-target="#viewItemModal">
+                        @endif
 
+                            @if( $issuance->model != null)
                             <td> {{ $issuance->model}} {{ $issuance->brand}} </td>
                             <td> {{ $issuance->subtype}} </td>
-                            <td width="30%"> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
+                            <td> {{ $issuance->serial_no}} </td>
+                            @endif
+                            @if($issuance->model == null)
+                            <td> {{ $issuance->unit_name }} {{ $issuance->pc_number }} </td>
+                            <td> System Unit</td>
+                            <td> Not Applicable </td>
+                            @endif
                             <td> {{ $issuance->givenname }} {{ $issuance->surname }} </td>
                             <td> {{ $issuance->userfname }} {{ $issuance->userlname }}  </td>
                             <td>{{ $issuance->created_at }}</td>
+                            @if($issuance->updated_at != null)
                             <td>{{ $issuance->updated_at }}</td>
-                            <td>{{ $issuance->issued_until }}</td>
-                            <td> {{ $issuance->returned_at }} </td>
+                            @endif
+                            @if($issuance->updated_at == null)
+                            <td> Not yet updated</td>
+                            @endif
+                            @if($issuance->issued_until != null)
+                            <td>{{ $issuance->issued_until }} </td>
+                            @endif
+                            @if($issuance->issued_until == null)
+                            <td>Not Applicable</td>
+                            @endif
+                            @if($issuance->updated_at != null)
+                            <td>{{ $issuance->returned_at }} </td>
+                            @endif
+                            @if($issuance->updated_at == null)
+                            <td> Not yet returned</td>
+                            @endif
+                            @if($issuance->remarks != null)
                             <td> {{ $issuance->remarks }} </td>
+                            @endif
+                            @if($issuance->remarks == null)
+                            <td> None</td>
+                            @endif
                             <td hidden> {{ $issuance->id }} </td>
 
                         </tr>
@@ -237,7 +268,7 @@
 
                         <!-- Issue Form -->
                         <div class="modal-body">
-                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" method="post"  onsubmit="DoSubmit()" role="form">
+                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
                                 {!! csrf_field() !!}
                                 <div class="row">
 

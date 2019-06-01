@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <!-- Bootstrap CSS -->
 
-    <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}"> @stop @section('title') Employees @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
+    <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}"> @stop @section('title') Users @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
     <i class="fas fa-chart-line">Inventory
     @stop
 @stop
@@ -27,17 +27,17 @@
                                   <div class="btn-group" role="group" aria-label="Basic example">
 
                                       <!-- Add Option-->
-                                      
+
                                         <button class="btn btn-primary rounded mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addUser" daria-haspopup="true" aria-expanded="false">
-                                           <i class="fas fa-user-plus"></i> Add Associate
+                                           <i class="fas fa-user-plus"></i> Add User
                                         </button>
-                                    
+
                                       <!-- Delete -->
-                                      
+
                                         <button class="btn btn-danger rounded" type="button" id="deleteOption" data-toggle="modal" data-target="#removeUser"   aria-haspopup="true" aria-expanded="false">
-                                             <i class="fas fa-user-minus"></i> Remove Associate
+                                             <i class="fas fa-user-minus"></i> Remove User
                                             </button>
-                                 
+
 
 
                                       <!-- Sort -->

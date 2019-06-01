@@ -1,10 +1,10 @@
 <?php
-//   use Carbon\Carbon;
-//   $session=Session::get('loggedIn');
-//   $user_id = $session['id'];
-//   $fname = $session['fname'];
-//   $lname = $session['lname'];
-//   // $img_path = $session['img_path'];
+  use Carbon\Carbon;
+  $session=Session::get('loggedIn');
+  $user_id = $session['id'];
+  $fname = $session['fname'];
+  $lname = $session['lname'];
+  // $img_path = $session['img_path'];
 ?>
 
 @extends('../template')
@@ -104,29 +104,33 @@
       <div class="modal-body">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">Issued Items</a>
+                <a class="nav-link active" data-toggle="tab" href="#home{{$employee->id}}">Issued Items</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#issueItems">Issue Items</a>
+                <a class="nav-link" data-toggle="tab" href="#issueItems{{$employee->id}}">Issue Items</a>
             </li>
         </ul>
 
         <div class="tab-content">
-            <div id="home" class="container tab-pane active"><br>
+        <div id="home{{$employee->id}}" class="container tab-pane active"><br>
             <table class="table" id="myTable">
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">Items Issued</th>
                         <th scope="col">Subtype</th>
                         <th scope="col">Issuance Date</th>
-                        <th scope="col">Issuance End</th>
+                        <th scope="col">Issued Until</th>
                         <th scope="col">Actions</th>
 
                     </tr>
                     </thead>
                 <tbody>
                   @foreach ($issued[$employee->id] as $item)
-                    <tr>
+                  @if($item->issued_until < Carbon::today() && $item->issued_until != null )
+                        <tr bgcolor="red">
+                  @else
+                        <tr>
+                  @endif
                         @if ($item->model !=null)
                         <td>{{ $item->model}} {{ $item->brand}} {{ $item->unit_name }} {{ $item->pc_number }}</td>
                         <td>{{ $item->subtype}}</td>
@@ -149,14 +153,24 @@
                 </tbody>
                 </table>
             </div>
-        
 
 
-    <div id="issueItems" class="container tab-pane fade"><br>
+
+    <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
 
       <h4><button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>     ADD ITEMS</button></h4>
 
             <table class="table" id="addMoreList">
+              <datalist id="items">
+                <select>
+                @foreach ($eqp as $equipment)
+                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
+                @endforeach
+                @foreach ($pc as $units)
+                <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
+                @endforeach
+              </select>
+              </datalist>
                         <tbody>
                         </tbody>
             </table>
@@ -189,9 +203,9 @@
                     <thead class="thead-dark">
                         <tr>
 
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>
@@ -215,9 +229,9 @@
 
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>
@@ -238,9 +252,9 @@
                 <table class="table table-hover" id="myDataTable2" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>
@@ -261,9 +275,9 @@
                 <table class="table table-hover" id="myDataTable" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                         <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Number Issued</th>
+                        <th scope="col">Number of Items Issued</th>
 
                     </tr>
                     </thead>

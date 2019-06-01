@@ -52,41 +52,6 @@
                     </a>
                 </button>
 
-                <!-- Add Option-->
-<!--
-                <div class="dropdown">
-                  <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
-                      </a>
-                  </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
-                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
-                    </ul>
-              </div>
-                 Delete
--->
-<!--
-                <div class="dropdown">
-                  <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
-                      </a>
-                      </button>
-              </div>
--->
-
-
-                <!-- Sort -->
-                <!-- <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="sort">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
-                    </a>
-                </button> -->
-
 
 
             </div>
@@ -105,7 +70,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
                     </li>
-                    
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -113,35 +78,6 @@
             </nav>
     </nav>
 
-<!--
-     Pills Tabs
-    <ul class="nav nav-pills p-3 nav-justified nav-fill font-weight-bold" id="pills-tab" role="tablist" style="background-color:white;">
-        <li class="nav-item text-uppercase" >
-            <a class="nav-link active" id="pills-0-tab" onclick="restore(true)" data-toggle="pill" href="#pills-0" role="tab" aria-controls="pills-0" aria-selected="true">
-              IT Equipments
-            </a>
-        </li>
-        <li class="nav-item text-uppercase">
-        <a class="nav-link" id="pills-5-tab" data-toggle="pill" href="#pills-5" role="tab" onclick="changeFilter()" aria-controls="pills-6" aria-selected="false"> System Unit
-        </a>
-      </li>
-
-         <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-2-tab" data-toggle="pill" href="#pills-2" role="tab" aria-controls="pills-2" aria-selected="false">
-                Computer Peripherals</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-3-tab" data-toggle="pill" href="#pills-3" role="tab" aria-controls="pills-3" aria-selected="false">
-                Mobile Devices</a>
-        </li>
-        <li class="nav-item text-uppercase">
-            <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">tab 4</a>
-        </li>
-    </ul>
--->
-
-
-<!--    PAGE CONTENT -->
       <div class="container-fluid">
                         <div class="container-fluid">
 
@@ -167,9 +103,225 @@
                         </div>
 
                         <hr>
-          
-     
 
+
+
+
+                         <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+                    <thead class="thead-dark">
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Issued To</th>
+                            <th>Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach ($system_units as $system_units)
+                        <tr data-toggle="modal" data-target="#viewItemModal">
+                            <td> {{ $system_units->id }}</td>
+                            <td>{{ $system_units->name }} </td>
+                            <td> {{ $system_units->status }}</td>
+                            <td> {{ $system_units->fname }} {{ $system_units->lname }} </td>
+                            <td> </td>
+
+                        </tr>
+                        @endforeach
+                    </tbody>
+
+
+                </table>
+
+                <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:600px; width: 600px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="row">
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">ID:</div></div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Name:</div></div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Added By:</div></div>
+                                      </div>
+                                      <div class="row">
+
+                                          <div class="col-sm-4">1</div>
+
+                                          <div class="col-sm-4">ITPC</div>
+
+                                          <div class="col-sm-4">Justine Garcia</div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Added At:</div></div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Last updated At:</div></div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Status:</div></div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm-4">01/22/19</div>
+
+                                          <div class="col-sm-4">01/22/19</div>
+
+                                          <div class="col-sm-4">Available</div>
+                                      </div>
+
+                                      <div class="row">
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Department:</div></div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Information Technology Development Department</div></div>
+                                      </div>
+
+                                      <div class="row">
+                                          <hr>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="col-sm-4"><div class="detail-header text-uppercase">Components:</div></div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Motherboard:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">CPU:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Storage:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">RAM:</div></div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          s<div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp<</div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">GPU:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Power Supply:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Case:</div></div>
+
+                                          <div class="col-sm-3"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp</div>
+
+                                          <div class="col-sm-3">Samp<</div>
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm"><div class="detail-header text-uppercase">Soundcard:</div></div>
+
+                                      </div>
+
+                                      <div class="row">
+
+                                          <div class="col-sm">Sample</div>
+
+                                      </div>
+
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </di
+
+    </div>
+
+
+
+    <!--Build From Parts Modal-->
+
+        <div class="p-2">
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
+
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="buildFromPartsHeader" class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                <div class="container" style="padding:5rem">
+
+
+                <form action="{!! url('/buildUnit'); !!}" method="post">
+                      {!! csrf_field() !!}
+
+                  <p class="card-title text-dark">Name:</p>
+                    <div class="input-group">
+                        <input name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="row">
+                      @foreach ($subtypes as $subtypes)
+                    <div class="col col-6 mb-2">
+                      <p class="card-title">{{$subtypes->name}}: </p>
+                      <select name="items[]" class="custom-select">
+                        @foreach ($parts as $part)
+                        @if ($part->subtype_id==$subtypes->id)
+                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
+                        @endif
+                        @endforeach
+                      </select>
+                    </div>
+                @endforeach
+                    </div>
+                    </form>
+
+                </div>
+              </div>
+
+
+        <div class="modal-footer">
+
+            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
+            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+        </div>
+
+
+
+    </div>
+    </div>
     </div>
 
    <!-- Single Add Modal -->
@@ -192,9 +344,9 @@
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
                         <select name="subtype_id" class="custom-select">
-                        @foreach ($equipment_subtypes as $equipment_subtypes)
-                            <option  value="{!! $equipment_subtypes->id !!}">
-                                {{ $equipment_subtypes->name }}
+                        @foreach ($equipment_subtypes as $equipment_subtype)
+                            <option  value="{!! $equipment_subtype->id !!}">
+                                {{ $equipment_subtype->name }}
                             </option>
                         @endforeach
                         </select>
@@ -287,9 +439,9 @@
                             <p class="card-title text-dark">System Unit Assigned To:</p>
                             <select name="unit_id" class="custom-select">
                                 <option value="NULL">Not Assigned</option>
-                                @foreach ($units as $units)
-                                <option value="{!! $units->id !!}">
-                                    {{ $units->description }}-{{ $units->id }}
+                                @foreach ($computers as $unit)
+                                <option value="{!! $unit->id !!}">
+                                    {{ $unit->name }}-{{ $unit->id }}
                                 </option>
                                 @endforeach
                             </select>
@@ -317,64 +469,12 @@
         </div>
     </div>
 
-
-    <!--Build From Parts Modal-->
-      
-        <div class="p-2">
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
-
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div id="buildFromPartsHeader" class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-
-                <div class="modal-body">
-                <div class="container" style="padding:5rem">
-
-
-                <form action="{!! url('/buildUnit'); !!}" method="post">
-                      {!! csrf_field() !!}
-
-                  <p class="card-title text-dark">Name:</p>
-                    <div class="input-group">
-                        <input name="name" type="text" class="form-control" required>
-                    </div>
-                    <div class="row">
-                      @foreach ($subtypes as $subtypes)
-                    <div class="col col-6 mb-2">
-                      <p class="card-title">{{$subtypes->name}}: </p>
-                      <select name="items[]" class="custom-select">
-                        @foreach ($parts as $part)
-                        @if ($part->subtype_id==$subtypes->id)
-                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
-                        @endif
-                        @endforeach
-                      </select>
-                    </div>
-                @endforeach
-                    </div>
-                    </form>
-
-                </div>
-              </div>
-
-
-        <div class="modal-footer">
-
-            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
-            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-        </div>
-
-
-
     </div>
     </div>
     </div>
 
 
-            
+
 
 
     <!-- Add System Unit Modal-->
@@ -523,7 +623,7 @@
             </div>
         </div>
     </div>
-            
+
                 <!-- Soft Delete-->
     <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -620,26 +720,13 @@
 
 
 
-                     
+
                             <div class="row">
                                 <h4>System Units</h4>
                                 <div class="container-fluid">
-                                    <!--
-                                    <div class="collapse-group">
 
-                                        <div class="controls">
-                                            <button class="btn btn-primary open-button" type="button">
-      Open all
-    </button>
-                                            <button class="btn btn-primary close-button" type="button">
-      Close all
-    </button>
-
-                                    </div>
--->
-
-
-    @stop @section('script')
+    @stop
+    @section('script')
     <!-- Datatable -->
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
@@ -674,49 +761,6 @@
         });
 
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myDataTable1').DataTable({
-                "pagingType": "full_numbers",
-                "order": []
-            });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myDataTable2').DataTable({
-                "pagingType": "full_numbers",
-                "order": []
-            });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myDataTable3').DataTable({
-                "pagingType": "full_numbers",
-                "order": []
-            });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myDataTable4').DataTable({
-                "pagingType": "full_numbers",
-                "order": []
-            });
-        });
-
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myDataTable5').DataTable({
-                "pagingType": "full_numbers",
-                "order": []
-            });
-        });
 
     </script>
     <!-- <script>
@@ -744,7 +788,7 @@
         };
 
     </script>
-    <script>
+    <!-- <script>
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
                 var type = $('#types').val();
@@ -793,107 +837,6 @@
                 table.draw();
             });
         });
-        $(document).ready(function() {
-            var table = $('#myDataTable1').DataTable();
-
-            // Event listener to the two range filtering inputs to redraw on input
-            $('#subtypes').on('keyup change', function() {
-                table.draw();
-            });
-            $('#types').on('keyup change', function() {
-                table.draw();
-            });
-            $('#supplier').on('keyup change', function() {
-                table.draw();
-            });
-            $('#brand').on('keyup change', function() {
-                table.draw();
-            });
-            $('#status').on('keyup change', function() {
-                table.draw();
-            });
-        });
-
-        $(document).ready(function() {
-            var table = $('#myDataTable2').DataTable();
-
-            // Event listener to the two range filtering inputs to redraw on input
-            $('#subtypes').on('keyup change', function() {
-                table.draw();
-            });
-            $('#types').on('keyup change', function() {
-                table.draw();
-            });
-            $('#supplier').on('keyup change', function() {
-                table.draw();
-            });
-            $('#brand').on('keyup change', function() {
-                table.draw();
-            });
-            $('#status').on('keyup change', function() {
-                table.draw();
-            });
-        });
-        $(document).ready(function() {
-            var table = $('#myDataTable3').DataTable();
-
-            // Event listener to the two range filtering inputs to redraw on input
-            $('#subtypes').on('keyup change', function() {
-                table.draw();
-            });
-            $('#types').on('keyup change', function() {
-                table.draw();
-            });
-            $('#supplier').on('keyup change', function() {
-                table.draw();
-            });
-            $('#brand').on('keyup change', function() {
-                table.draw();
-            });
-            $('#status').on('keyup change', function() {
-                table.draw();
-            });
-        });
-        $(document).ready(function() {
-            var table = $('#myDataTable4').DataTable();
-
-            // Event listener to the two range filtering inputs to redraw on input
-            $('#subtypes').on('keyup change', function() {
-                table.draw();
-            });
-            $('#types').on('keyup change', function() {
-                table.draw();
-            });
-            $('#supplier').on('keyup change', function() {
-                table.draw();
-            });
-            $('#brand').on('keyup change', function() {
-                table.draw();
-            });
-            $('#status').on('keyup change', function() {
-                table.draw();
-            });
-        });
-        // $(document).ready(function() {
-        //   var table = $('#myDataTable5').DataTable();
-        //
-        //   // Event listener to the two range filtering inputs to redraw on input
-        //   $('#subtypes').on('keyup change',  function() {
-        //       table.draw();
-        //       } );
-        //       $('#types').on('keyup change',  function() {
-        //           table.draw();
-        //           } );
-        //           $('#supplier').on('keyup change',  function() {
-        //               table.draw();
-        //               } );
-        //               $('#brand').on('keyup change',  function() {
-        //                   table.draw();
-        //                   } );
-        //                   $('#status').on('keyup change',  function() {
-        //                       table.draw();
-        //                       } );
-        //           } );
         function reset() {
             document.getElementById("subtypes").selectedIndex = "0";
             document.getElementById("types").selectedIndex = "0";
@@ -922,19 +865,7 @@
             }
         };
 
-    </script>
-    <!--
-  <script>
-        $(".open-button").on("click", function() {
-            $(this).closest('.collapse-group').find('.collapse').collapse('show');
-        });
-
-        $(".close-button").on("click", function() {
-            $(this).closest('.collapse-group').find('.collapse').collapse('hide');
-        });
-
-</script>
--->
+    </script> -->
     <script>
         $('#collapsedown1').click(function() {
             $('#collapseOne').toggle('1000');

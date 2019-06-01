@@ -61,6 +61,7 @@
                           <tr>
                               <td>
                                 {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} {{$log->pc_name}} {{$log->pc_id}} to {{$log->issued_to}}.
+
                               </td>
                               <td>{{$log->created_at}}</td>
                           </tr>

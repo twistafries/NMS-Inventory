@@ -47,7 +47,7 @@
                 <li>
                     <a href="{!! url('/repair') !!}"><i class="fas fa-tools"></i><span class="hide-menu">For Repair</span></a>
                 </li>
-                
+
                 <li>
                     <a href="{!! url('/decommissioned') !!}"><i class="fas fa-trash"></i><span class="hide-menu">Decommissioned</span></a>
                 </li>
@@ -96,7 +96,7 @@
           <li id="associates">
               <a href="{!! url('/associates') !!}">
                   <i class="fas fa-users"></i>
-                  <span class="hide-menu">Associates</span>
+                  <span class="hide-menu">Users</span>
               </a>
           </li>
 
