@@ -44,7 +44,7 @@ class DashboardController extends BaseController
         $data['issued_phone'] = count(TblItEquipment::countByStatusSubtype(2 , 14));       
         $data['issued_laptop'] = count(TblItEquipment::countByStatusSubtype(2 , 12));
         
-        $data['purchases'];
+        // $data['purchases'];
         return view ('content/dashboard' , $data);
     }
 
