@@ -27,6 +27,7 @@
 @stop
 
 @section('content')
+<body onpageshow="ShowLocalDate()">
 <div class="container p-lg-3 p-md-1 p-sm-0">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1" style="font-size: 20px;">REPORT SELECTION</span>
@@ -52,9 +53,9 @@
               <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-list-alt"></i> PURCHASES AND ORDERS</div>
               <div class="card-body">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item" data-toggle="collapse" data-target="#purchases1" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Purchases</li>
-                    <a href="{!! url('/completedOrdersReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Completed Orders</a>
-                    <a href="{!! url('/incompleteOrdersReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-left: 4rem;">incomplete Orders</a>
+                  <li class="list-group-item" id="purchasesreport" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Purchases</li>
+                    <a href="{!! url('/completedOrdersReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Completed Orders</a>
+                    <a href="{!! url('/incompleteOrdersReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">incomplete Orders</a>
                   </li>
                 </ul>
               </div>
@@ -65,13 +66,14 @@
               <div class="card-header text-white" id="card-header"><i class="fas fa-hand-holding"></i> ISSUANCE</div>
               <div class="card-body">
                   <ul class="list-group list-group-flush">
-                      <li class="list-group-item" data-toggle="collapse" data-target="#latereturns" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Employee Issuance</li>
-                        <a href="{!! url('/lateReturnsReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Late Returns</a>
+                      <li class="list-group-item" id="late" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Employee Issuance</li>
+                        <a href="{!! url('/lateReturnsReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem; margin-bottom: 5px;">Late Returns</a>
                       </li>
-                      <li class="list-group-item" data-toggle="collapse" data-target="#itemIssuance" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-down" style="margin-right: 1rem;"></span>Item Issuance</li>
-                        <a href="{!! url('/issuancePerComponent') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Issuance per (SU, Mobile Device, Peripherals)</a>
-                        <a href="{!! url('/mostLeastReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-left: 4rem;">Most/Least Issued</a>
+                      <li class="list-group-item" id="item" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Item Issuance</li>
+                        <a href="{!! url('/issuancePerComponent') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Issuance per (SU, Mobile Device, Peripherals)</a>
+                        <a href="{!! url('/mostLeastReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Most/Least Issued</a>
                       </li>
+                  </ul>
               </div>
           </div>
         </div>
@@ -85,6 +87,7 @@
       <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
     </div>
 </div>
+</body>
 @stop
 
 @section('script')
@@ -566,6 +569,25 @@
             window.print();
             $('body').html(restorepage);
           }
+        </script>
+
+        <script>
+            $('#late').click(function() {
+                $('#latereturns').toggle();
+                $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
+            });
+
+            $('#item').click(function() {
+                $('#itemIssuance').toggle();
+                $('#itemIssuance2').toggle();
+                $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
+            });
+
+            $('#purchasesreport').click(function() {
+                $('#purchases1').toggle();
+                $('#purchases2').toggle();
+                $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
+            });
         </script>
 
 @stop
