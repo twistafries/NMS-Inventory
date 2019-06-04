@@ -46,9 +46,15 @@
                 </button>
 
                 <!-- Build A pc  -->
-                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
                     <a href="#" data-toggle="tooltip" title="Build A Pc">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
+                    </a>
+                </button>
+                <!--  Add Subtype  -->
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#addSubtype" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/subtype.png') }}"> Add Subtype
                     </a>
                 </button>
 
@@ -518,6 +524,51 @@
         </div>
     </div>
             
+<!-- Add Subtype-->
+
+<div class="modal fade" id="addSubtype" tabindex="-1" role="dialog" aria-labelledby="addSubtypeTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="height:450px;">
+            <div id="addSubtypeHeader" class="modal-header">
+                <h5 class="modal-title" id="ModalTitle"><i class="far fa-plus-square"></i>&nbsp;Add Subtype</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+            <div class="container pb-2">
+             <div class="row pt-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Type:</p>
+                        <select name="subtype_id" class="custom-select">
+                        @foreach ($equipment_types as $equipment_types)
+                            <option  value="{!! $equipment_subtypes->id !!}">
+                                {{ $equipment_types->name }}
+                            </option>
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
+                <div class="row pt-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Subtype:</p>
+                        
+                            <div class="input-group">
+                                <input name="subtype" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>    
+             <div class="modal-footer">
+                            <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                        </div>
+
+            
+        </div>
+        
+       
+    </div>
+</div>
                 <!-- Soft Delete-->
     <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
