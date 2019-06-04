@@ -10,7 +10,6 @@ use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblUsers;
-use App\Models\TblAssociate;
 use App\Models\TblEmployees;
 use App\Models\TblActivityLogs;
 
@@ -22,9 +21,9 @@ class AssociateController extends BaseController
         }
 
         $data = [];
-        $data['associates'] = TblAssociate::get_all_users();
-        $data['associatesRem'] = TblAssociate::get_all_users();
-        $data['users'] = TblAssociate::get_all_users();
+        $data['associates'] = TblUsers::get_all_associates();
+        $data['associatesRem'] = TblUsers::get_all_associates();
+        $data['users'] = TblUsers::get_all_associates();
         $user = [];
         $user['emails'] = array();
         foreach ($data['users'] as $users) {
@@ -145,7 +144,7 @@ class AssociateController extends BaseController
     public function editAssociates(Request $request)
     {
        $data = $request->all();
-    
+
       if(Session::get('loggedIn')['id']==$data['id']&&$data['status']=="inactive"){
         Session::flash('errorLogin', 'You can not deactivate yourself.');
         return \Redirect::to('/associates');
