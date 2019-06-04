@@ -326,7 +326,7 @@
           <td>
       <div class="navbar" id="purchase{{$purchase->purchase_no}}" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: #585858; color: white; cursor: pointer; height: 45px;">
           <a class="fas fa-angle-right" style="font-size: 16px;"><span style="margin-left: 1rem; font-family: sans-serif; font-weight: lighter;">PURCHASE {{$purchase->purchase_no}}</span></a>
-          <div class="" style="font-size: 16px;">Date: 5/29/2019</div>
+          <div class="" style="font-size: 16px;">Date: {{$purchase->added_at}}</div>
       </div>
 
     <div class="tab-content collapse" id="purchaseTable{{$purchase->purchase_no}}">
@@ -347,11 +347,11 @@
             @foreach($purchases[$purchase->purchase_no] as $item)
             <tr>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->brand}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->brand}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->model}}</td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->details}}</td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->subtype}}</td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->supplier}}</td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->qty}}</td>
               <td class="text-right">
                 <button type="button" id="" class="btn btn-info p-2">
                   <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
