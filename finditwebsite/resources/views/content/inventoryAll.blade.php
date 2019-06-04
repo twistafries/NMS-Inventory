@@ -262,7 +262,7 @@
                         <td> {{ $equipment->subtype_name }} </td>
                         <td> {{ $equipment->serial_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $equipment->created_at }} </td>
+                        <td> {{ $equipment->added_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
 
                     </tr>
@@ -329,7 +329,7 @@
 
                                         <div class="row row-details">
                                             <div class="col col-2 detail-header text-uppercase">Added At</div>
-                                            <div class="col col-4 details" id="fullname">{{ $equipment->created_at }}</div>
+                                            <div class="col col-4 details" id="fullname">{{ $equipment->added_at }}</div>
 
                                             @isset( $equipment->updated_at)
                                             <div class="col col-2 detail-header text-uppercase">Last Edit by</div>
@@ -634,7 +634,7 @@
                         <td> {{ $components->serial_no }} </td>
                         <td> {{ $components->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $components->created_at }} </td>
+                        <td> {{ $components->added_at }} </td>
                         <td> {{ $components->status_name }} </td>
                     </tr>
 
@@ -775,7 +775,7 @@
                         <td> {{ $peripherals->serial_no }} </td>
                         <td> {{ $peripherals->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $peripherals->created_at }} </td>
+                        <td> {{ $peripherals->added_at }} </td>
                         <td> {{ $peripherals->status_name }} </td>
                     </tr>
 
@@ -818,7 +818,7 @@
                         <td> {{ $mobile->serial_no }} </td>
                         <td> {{ $mobile->or_no }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $mobile->created_at }} </td>
+                        <td> {{ $mobile->added_at }} </td>
                         <td> {{ $mobile->status_name }} </td>
                     </tr>
 
@@ -862,7 +862,7 @@
                 <td> {{ $software->serial_no }} </td>
                 <td> {{ $software->or_no }} </td>
                 <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                <td> {{ $software->created_at }} </td>
+                <td> {{ $software->added_at }} </td>
                 <td> {{ $software->status_name }} </td>
             </tr>
 
@@ -892,7 +892,7 @@
           <tr data-toggle="modal" data-target="#pc-component-{!! $system_units->id !!}">
               <td> {{ $system_units->description }}</td>
               <td width="30%"> NONE </td>
-              <td> {{ $system_units->created_at }} </td>
+              <td> {{ $system_units->added_at }} </td>
               <td > {{ $system_units->updated_at }} </td>
               <td> {{ $system_units->fname }} {{ $system_units->lname }}</td>
               <td> </td>
@@ -1554,7 +1554,7 @@ if( type == "Computer Component" ){
 
     for (var i = 1; i <= 9; i++) {
         subtypeUnblock(i);
-    } 
+    }
 }
 else if ( type == "Computer Peripheral"){
     subtypeBlockAll();
@@ -1562,7 +1562,7 @@ else if ( type == "Computer Peripheral"){
 
     for(var i=10; i<=12; i++){
         subtypeUnblock(i);
-    }    
+    }
 }
 else if( type == "Mobile Device" ){
     subtypeBlockAll();
@@ -1570,7 +1570,7 @@ else if( type == "Mobile Device" ){
 
     for (var i = 13; i <= 15; i++) {
         subtypeUnblock(i);
-    } 
+    }
 }
 else if (type == "Software License") {
     subtypeBlockAll();
@@ -1578,11 +1578,11 @@ else if (type == "Software License") {
 
     for (var i = 16; i <= 18; i++) {
         subtypeUnblock(i);
-    } 
+    }
 }else{
     subtypeUnBlockAll();
 }
-    
+
 if ( type == types || type == "any"){
   if (subtype == subtypes || subtype == "any"){
     if (supplier == suppliers || supplier == "any"){

@@ -12,6 +12,7 @@ class Purchases extends Model
 
     public static function get_purchases($params = null){
         $query = \DB::table('purchases')
+        -> select('purchases.*', DB::raw("DATE_FORMAT(purchases.date_of_purchase, '%m-%d-%Y') as added_at"))
         -> orderBy('date_of_purchase' , 'desc')
         -> get();
         return $query;

@@ -16,7 +16,7 @@
                         <li class="nav-item">
                             <div class="navbar-header">
                                 <!-- Needs logo -->
-                                <a class="navbar-brand"><img src="../assets/images/logo/logo3.png" class="img-avatar" alt="avatar" srcset="" style="height:85px; width:110px;"></a>
+                                <a class="navbar-brand"><img src="../assets/images/logo/logo3.png" class="img-avatar" alt="avatar" srcset="" style="height:85px; width:130px;"></a>
                             </div>
                         </li>
                     </ul>
