@@ -1022,7 +1022,10 @@
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
                             <div class="input-group">
-                                <textarea name="details" rows="3" id="details"></textarea>
+                                <textarea name="details" rows="3" id="details">Socket:
+ Chipset:
+ Size:
+ RAM:                           </textarea>
                             </div>
                         </div>
                     </div>

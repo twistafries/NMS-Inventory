@@ -135,10 +135,11 @@
                   </div>
 
                   <div class="modal-body">
-                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
+                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add More
                     </button>
-                    <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
+
+                    <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
                     </button>
                       <div class="container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
@@ -187,6 +188,11 @@
                                   </div>
                                 </div>
                             </div>
+
+                            <table id="addMoreList">
+                                  <tbody>
+                                  </tbody>
+                            </table>
                       </div>
                   </div>
 
@@ -474,5 +480,14 @@
             });
         });
 
+    </script>
+
+  <script>function rm() {
+  $(event.target).closest("tr").remove();
+}
+
+function add() {
+                $('#addMoreList > tbody:last-child').append("<tr><td><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"model\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"input-group col-2\" style=\"width: 10rem; height:2rem;\"><select id=\"subtype\" name=\"subtype\" ><option value=\"\">Hardware</option><option value=\"\">Software</option></select></div></td><td><div class=\"input-group col-2\"><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></td><td><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><div class=\"input-group col-2\"></div></td><td><button onclick='rm()'>remove</button></td></tr>");
+            }
     </script>
 @stop
