@@ -323,10 +323,10 @@
 
       @foreach($purchase as $purchase)
         <tr>
-          <td>
+          <td> <p hidden>{{$purchase->date_of_purchase}}</p>
       <div class="navbar" id="purchase{{$purchase->purchase_no}}" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: #585858; color: white; cursor: pointer; height: 45px;">
           <a class="fas fa-angle-right" style="font-size: 16px;"><span style="margin-left: 1rem; font-family: sans-serif; font-weight: lighter;">PURCHASE {{$purchase->purchase_no}}</span></a>
-          <div class="" style="font-size: 16px;">Date: {{$purchase->added_at}}</div>
+          <div class="" style="font-size: 16px;">Date: {{$purchase->date_of_purchase}}</div>
       </div>
 
     <div class="tab-content collapse" id="purchaseTable{{$purchase->purchase_no}}">
@@ -470,7 +470,7 @@
         $(document).ready(function() {
             $('#purchasesTable').DataTable({
                 "pagingType": "full_numbers",
-                "order": []
+                  "order": []
             });
         });
 
