@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css"/>
 @stop
 
 @section('title')
@@ -62,54 +64,54 @@
             <table class="table all" id="forRepair">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
               </tbody>
             </table>
@@ -157,7 +159,16 @@
         <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
-
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
         <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
         <!--dashboard icon sidenav collapse-->
@@ -316,4 +327,16 @@
           }
         </script>
 
+      <script>
+      $(document).ready(function() {
+          $('#forRepair').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              "searching": false,
+              "ordering": false
+          } );
+      } );
+    </script>
 @stop
