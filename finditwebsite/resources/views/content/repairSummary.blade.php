@@ -18,6 +18,7 @@
 
 @section('content')
 
+
 <div class="container-fluid">
 <!--breadcrumbs navigation-->
 <nav class="navbar navbar-light bg-light">
@@ -116,8 +117,10 @@
                                 <div class="container-fluid">
                                         <ul class="list-unstyled">
 <!--IT PC items list -->
-                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1">IT PC1 </button>
-
+                                            <!--List item-->
+                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> IT PC1</a> <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+<!--Accordion Content-->
                                                 <div class="collapse" id="item1">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -127,6 +130,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
+                                                                <th scope="col">Mark As</th>
 
 
                                                             </tr>
@@ -138,6 +142,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -145,6 +156,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -152,6 +170,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -159,6 +184,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -166,6 +198,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -173,6 +212,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -180,6 +226,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -187,6 +240,13 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -194,6 +254,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    
+                                                                </td>
+                                                               
                                                             </tr>
 
 
@@ -201,7 +269,9 @@
                                                     </table>
                                                 </div>
                                             </li>
-         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item2">IT PC2 </button>
+         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> IT PC2</a>
+            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
                                   
                                     <div class="collapse" id="item2">
                                             <table class="table table-striped">
@@ -212,6 +282,7 @@
                                                         <th scope="col">Details</th>
                                                         <th scope="col">Serial No.</th>
                                                         <th scope="col">Warranty</th>
+                                                        <th scope="col">Mark As</th>
                                                       
 
                                                     </tr>
@@ -223,6 +294,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>CPU</td>
@@ -230,6 +307,13 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                         <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                        
                                                     </tr>
                                                     <tr>
                                                         <td>Storage</td>
@@ -237,6 +321,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>RAM</td>
@@ -244,6 +334,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                         <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>GPU</td>
@@ -251,6 +347,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                         <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Power Supply</td>
@@ -258,6 +360,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                         <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Case</td>
@@ -265,6 +373,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                         <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                      <tr>
                                                         <td>Heat Sink Fan</td>
@@ -272,6 +386,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
                                                      <tr>
                                                         <td>Sound Card</td>
@@ -279,6 +399,12 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
                                                     </tr>
 
 
@@ -287,7 +413,7 @@
                                     </div>
     </ul>
 
-<!--IT system units items -->
+
                                    
                                     
                                 </div>
@@ -304,7 +430,293 @@
                         <div id="collapsePD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPD">
                             <div class="panel-body">
                                 <div class="container-fluid">
-                                    <h5>content</h5>
+                            
+                                     <ul class="list-unstyled">
+<!--PD PC items list -->
+                                            <!--List item-->
+                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#pd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> PD PC1</a>
+                                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+<!--Accordion Content-->
+                                                <div class="collapse" id="pd1">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Component</th>
+                                                                <th scope="col">Brand/Name</th>
+                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Serial No.</th>
+                                                                <th scope="col">Warranty</th>
+                                                                <th scope="col">Mark As</th>
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Motherboard</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Storage</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RAM</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Power Supply</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Heat Sink Fan</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sound Card</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </li>
+         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#pd2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> PD PC2</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+                                  
+                                    <div class="collapse" id="pd2">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Component</th>
+                                                        <th scope="col">Brand/Name</th>
+                                                        <th scope="col">Details</th>
+                                                        <th scope="col">Serial No.</th>
+                                                        <th scope="col">Warranty</th>
+                                                        <th scope="col">Mark As</th>
+                                                      
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Motherboard</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Storage</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>RAM</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>GPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Power Supply</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Heat Sink Fan</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Sound Card</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                    </div>
+    </ul>
                                 </div>
                             </div>
                         </div>
@@ -318,7 +730,291 @@
                         <div id="collapseFD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFD">
                             <div class="panel-body">
                                 <div class="container-fluid">
-                                    <h5>content</h5>
+                                     <ul class="list-unstyled">
+<!--FD PC items list -->
+                                            <!--List item-->
+                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#fd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> FD PC1</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+<!--Accordion Content-->
+                                                <div class="collapse" id="fd1">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Component</th>
+                                                                <th scope="col">Brand/Name</th>
+                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Serial No.</th>
+                                                                <th scope="col">Warranty</th>
+                                                                <th scope="col">Mark As</th>
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Motherboard</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Storage</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RAM</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Power Supply</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Heat Sink Fan</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sound Card</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </li>
+         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#fd2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> FD PC2</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+                                  
+                                    <div class="collapse" id="fd2">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Component</th>
+                                                        <th scope="col">Brand/Name</th>
+                                                        <th scope="col">Details</th>
+                                                        <th scope="col">Serial No.</th>
+                                                        <th scope="col">Warranty</th>
+                                                        <th scope="col">Mark As</th>
+                                                      
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Motherboard</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Storage</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>RAM</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>GPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Power Supply</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                         <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Heat Sink Fan</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Sound Card</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                    </div>
+    </ul>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +1028,294 @@
                         <div id="collapseHR" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
                             <div class="panel-body">
                                 <div class="container-fluid">
-                                    <h5>content</h5>
+                                  
+                                    <ul class="list-unstyled">
+<!--HR PC items list -->
+                                            <!--List item-->
+                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#hr1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC1</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+<!--Accordion Content-->
+                                                <div class="collapse" id="hr1">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Component</th>
+                                                                <th scope="col">Brand/Name</th>
+                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Serial No.</th>
+                                                                <th scope="col">Warranty</th>
+                                                                <th scope="col">Mark As</th>
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Motherboard</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                 <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Storage</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RAM</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Power Supply</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Heat Sink Fan</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sound Card</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                  <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                </td>
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </li>
+         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#hr2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC2</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button></button>
+                                  
+                                    <div class="collapse" id="hr2">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Component</th>
+                                                        <th scope="col">Brand/Name</th>
+                                                        <th scope="col">Details</th>
+                                                        <th scope="col">Serial No.</th>
+                                                        <th scope="col">Warranty</th>
+                                                        <th scope="col">Mark As</th>
+                                                      
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Motherboard</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Storage</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>RAM</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>GPU</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Power Supply</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Case</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                          <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Heat Sink Fan</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                           <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+                                                     <tr>
+                                                        <td>Sound Card</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                           <td>
+                                                            <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                                            <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                                            <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                    </div>
+    </ul>
                                 </div>
                             </div>
                         </div>

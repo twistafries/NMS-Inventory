@@ -41,62 +41,68 @@
                 </ol>
             </nav>
     </nav>
-  <h5 style="padding:1rem;">Filter:</h5>
-  <table>
-  <thead>
-    <tr>
+
+
+    <div class="card 12" style="margin-top: 1rem;  margin-bottom: 1rem; padding-top: 1.5rem; padding-bottom: 10px;">
+    <table style="margin: auto;width: 100%; text-align: right; ">
+      <thead>
+        <tr>
+          <th>
+            <label for="types" id="labelTypes">Types: </label>
+            <select id="types" name="types" style="width: 10rem; height: 1.8rem;">
+              <option value="any">Any</option>
+              @foreach ($typesSel as $typesSel)
+              <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+              @endforeach
+            </select>
+          </th>
+          <th>
+            <label for="subtype">Subtype: </label>
+            <select id="subtypes" name="subtypes" style="height: 1.8rem;">
+              <option value="any">Any</option>
+              @foreach ($subtypesSel as $subtypesSel)
+              <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+              @endforeach
+            </select>
+        </th>
+        <th>
+          <label for="supplier">Supplier: </label>
+          <select id="supplier" name="supplier" style="height: 1.8rem;">
+            <option value="any">Any</option>
+            @foreach ($suppliers as $suppliers)
+            <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
+            @endforeach
+          </select>
+      </th>
       <th>
-        <label for="types" id="labelTypes">Types: </label>
-        <select id="types" name="types">
+        <label for="brand">Brand: </label>
+        <select id="brand" name="brand" style="height: 1.8rem;">
           <option value="any">Any</option>
-          @foreach ($typesSel as $typesSel)
-          <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+          @foreach ($brands as $brands)
+          <option value="{{$brands->brand}}">{{$brands->brand}}</option>
           @endforeach
         </select>
       </th>
       <th>
-        <label for="subtypes">Subtype: </label>
-        <select id="subtypes" name="subtypes">
+        <label for="status">Status: </label>
+        <select id="status" name="status" style="height: 1.8rem;">
           <option value="any">Any</option>
-          @foreach ($subtypesSel as $subtypesSel)
-          <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+          @foreach ($status as $status)
+          <option value="{{$status->name}}">{{$status->name}}</option>
           @endforeach
         </select>
-    </th>
-    <th>
-      <label for="supplier">Supplier: </label>
-      <select id="supplier" name="supplier">
-        <option value="any">Any</option>
-        @foreach ($suppliers as $suppliers)
-        <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
-        @endforeach
-      </select>
-  </th>
-  <th>
-    <label for="brand">Brand: </label>
-    <select id="brand" name="brand">
-      <option value="any">Any</option>
-      @foreach ($brands as $brands)
-      <option value="{{$brands->brand}}">{{$brands->brand}}</option>
-      @endforeach
-    </select>
-  </th>
-  <th>
-    <label for="status">Status: </label>
-    <select id="status" name="status">
-      <option value="any">Any</option>
-      @foreach ($status as $status)
-      <option value="{{$status->name}}">{{$status->name}}</option>
-      @endforeach
-    </select>
-  </th>
-  <th></th><th></th>
-    <th>
-      <button class="btn btn-primary text-uppercase" type="button" onclick="reset()">Reset</button>
-  </th>
-  </thead>
-  <tr height="10px"></tr>
-  </table>
+      </th>
+      <th></th><th></th>
+        <th>
+          <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
+      </th>
+    </tr>
+      </thead>
+      <tr height="10px"></tr>
+    </table>
+  </div>
+
+
 
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
@@ -107,14 +113,9 @@
 
                 <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
                 </button>
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="delete">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
-                </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
-                    <a class="dropdown-item" href="#">Issue Multiple Items</a>
                 </div>
             </div>
         </div>
@@ -195,68 +196,9 @@
                 </table>
             </div>
           </div>
-        </div>
+        
 
-  <div class="modal fade bd-example-modal-xl" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-
-    <div class="modal-content">
-       <div id ="viewItem" class="modal-header">
-        <h5 class="modal-title" id="ModalTitle">Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-
-        <form action="{!! url('/editIssuance'); !!}" enctype="multipart/form-data" method="post" role="form">
-            {!! csrf_field() !!}
-          <div class="row">
-            <div class="col"><p class="card-title text-dark">Equipment Issued:</p><input type="text" name="equipmentIssued" id="equipmentIssued" disabled></div>
-            <div class="col"><p class="card-title text-dark">Equipment Subtype:</p><input type="text" name="equipmentSubtype" id="equipmentSubtype" disabled></div>
-               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p><input type="text" name="unitIssued" id="unitIssued" disabled></div>
-          </div>
-
-           <div class="row pt-4">
-               <div class="col"><p class="card-title text-dark">Issued To:</p><input type="text" name="issuedTo" id="issuedTo" size="25" disabled></div>
-                <div class="col"><p class="card-title text-dark">Issued By:</p><input type="text" name="issuedBy" id="issuedBy" size="25" disabled></div>
-          </div>
-
-          <div class="row pt-4">
-               <div class="col"><p class="card-title text-dark">Date Issued:</p>
-                   <input type="text" name="dateIssued" id="dateIssued" disabled>
-              </div>
-                <div class="col"><p class="card-title text-dark">Date Updated:</p><input type="date" name="dateUpdated" id="dateUpdated" disabled></div>
-
-          </div>
-          <div class="row pt-4">
-
-              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil" disabled></div>
-              <div class="col"><p class="card-title text-dark">Date Returned:</p><input type="date" name="dateReturned" id="dateReturned" disabled></div>
-          </div>
-           <div class="row pt-4">
-
-              <div class="col"><p class="card-title text-dark">Remarks:</p> <textarea name="remarks" id="remarks" rows="2" cols="22" disabled></textarea></div>
-
-          </div>
-
-
-
-
-    </form>
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton" onclick="editValues()">Edit Values</button>
-        <button class="btn btn-danger" type="submit">Delete</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-            <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -296,12 +238,12 @@
                                                   <input  name="issued_until" type="date" class="form-control" required>
                                                   </div>
                                           </div>
-                                      </div>
+                                  </div>
 
                                       <table id="addMoreList">
                                                  <tbody>
                                                  </tbody>
-                                             </table>
+                                      </table>
 
 
                                      <br>
@@ -347,7 +289,7 @@
                                       <div class="row">
 
                                           <div class="col">
-                                              <label for="details">Remarks</p>
+                                              <label for="details">Remarks</label>
                                               <div class="input-group mb-1">
                                                   <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea"></textarea>
                                               </div>
@@ -355,6 +297,7 @@
                                       </div>
 
                               <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                          </form>
                           </div>
 
                           <div class="modal-footer text-uppercase">
@@ -362,10 +305,106 @@
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
                           </div>
-                        </form>
+
+                        
                     </div>
                 </div>
             </div>
+
+
+  <div class="modal fade bd-example-modal-xl" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+
+    <div class="modal-content">
+       <div id ="viewItem" class="modal-header">
+        <h5 class="modal-title" id="ModalTitle">Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form action="{!! url('/editIssuance'); !!}" enctype="multipart/form-data" method="post" role="form">
+            {!! csrf_field() !!}
+          <div class="row">
+            <div class="col"><p class="card-title text-dark">Item Name:</p> {{ $issuance->model}}</div>
+            <div class="col"><p class="card-title text-dark">Item Subtype:</p>Sample</div>
+               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p>Sample</div>
+          </div>
+
+           <div class="row pt-4">
+               <div class="col"><p class="card-title text-dark">Issued To:</p>Sample</div>
+                <div class="col"><p class="card-title text-dark">Issued By:</p>Sample</div>
+          </div>
+
+          <div class="row pt-4">
+               <div class="col"><p class="card-title text-dark">Date Issued:</p>
+                   Sample
+              </div>
+                <div class="col"><p class="card-title text-dark">Date Updated:</p>Sample</div>
+
+          </div>
+          <div class="row pt-4">
+
+              <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil"></div>
+              <div class="col"><p class="card-title text-dark">Date Returned:</p>Sample</div>
+          </div>
+           <div class="row pt-4">
+
+              <div class="col"><p class="card-title text-dark">Remarks:</p>Sample</div>
+
+          </div>
+
+
+
+                <div class="row row-details">
+                      <div class="col col-4 detail-header text-uppercase">Mark As: </div>
+                        <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">Make Available</button>
+                        <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Repair</button>
+                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommission</button>
+                </div>
+
+    </form>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton">Save Changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+                <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to change the status of this item to Decommissioned?</p>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
 </div>
 
 @stop

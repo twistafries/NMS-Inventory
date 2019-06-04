@@ -31,9 +31,9 @@
 
 <div class="container-fluid">
     <!-- tabs -->
-    <div class="container" style="margin-bottom: 3rem; margin-top: 2rem;">
+    <div class="container-fluid card" style="margin-top: 2rem; padding: 2rem;">
         <div class="row">
-            <div class="container">
+            <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
                   <a class="nav-link active" href="{!! url('/purchases') !!}">Purchases</a>
@@ -54,7 +54,8 @@
 
 
 <!--Filter-->
-  <div class="card" style="margin-top: 1rem; margin-bottom: 1rem; padding-top: 1.5rem; padding-bottom: 10px;">
+<div class="container-fluid row">
+  <div class="card col-10" style="margin-top: 1rem;  margin-bottom: 1rem; padding-top: 1.5rem; padding-bottom: 10px;">
     <table style="margin: auto;width: 100%; text-align: right; ">
       <thead>
         <tr>
@@ -111,18 +112,14 @@
       <tr height="10px"></tr>
     </table>
   </div>
-
+  <div class="col-2" style="margin-top: 1.5rem;">
+    <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
+      <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
+    </button>
+  </div>
+</div>
     <!--Tab Content-->
-    <div class="text-right">
-      <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
-        <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
-      </button>
-    </div>
 
-      <div class="navbar" id="purchase" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: #585858; color: white; cursor: pointer; height: 45px;">
-          <a class="fas fa-angle-right" style="font-size: 16px;"><span style="margin-left: 1rem; font-family: sans-serif; font-weight: lighter;">PURCHASE 1</span></a>
-          <div class="" style="font-size: 16px;">Date: 5/29/2019</div>
-      </div>
 
       <!-- purchases modal -->
       <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" style="">
@@ -314,8 +311,25 @@
               </div>
           </div>
       </div>
+<div class="" style="margin-top: 2rem;">
+          <table class="table table-hover" id="purchasesTable">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Purchases</th>
+              </tr>
+            </thead>
+            <tbody>
 
-    <div class="tab-content collapse" id="purchaseTable">
+
+      @foreach($purchase as $purchase)
+        <tr>
+          <td>
+      <div class="navbar" id="purchase{{$purchase->purchase_no}}" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: #585858; color: white; cursor: pointer; height: 45px;">
+          <a class="fas fa-angle-right" style="font-size: 16px;"><span style="margin-left: 1rem; font-family: sans-serif; font-weight: lighter;">PURCHASE {{$purchase->purchase_no}}</span></a>
+          <div class="" style="font-size: 16px;">Date: 5/29/2019</div>
+      </div>
+
+    <div class="tab-content collapse" id="purchaseTable{{$purchase->purchase_no}}">
       <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
         <table class="table table-hover" id="dataTable">
           <thead class="thead-dark">
@@ -330,9 +344,10 @@
             </tr>
           </thead>
           <tbody>
+            @foreach($purchases[$purchase->purchase_no] as $item)
             <tr>
-              <th data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></th>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->brand}}</td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->brand}}</td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
@@ -343,44 +358,22 @@
                 </button>
               </td>
             </tr>
-            <tr>
-              <th data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></th>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td class="text-right">
-                <button type="button" id="" class="btn btn-info p-2">
-                  <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></th>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;"></td>
-              <td class="text-right">
-                <button type="button" id="" class="btn btn-info p-2">
-                  <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
-                </button>
-              </td>
-            </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
     </div>
-
-
-    <!-- View Details All Modal -->
+  </td>
+</tr>
+@endforeach
+</tbody>
+</table
+</div>
     <div class="modal fade" id="purchasedetail" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document" style=" width: 1000px;">
             <div class="modal-content" style="height: 35rem;">
                 <div class="modal-header">
-                    <div class="">PURCHASE 1</div>
+                    <div class="">PURCHASE </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -432,8 +425,6 @@
     </div>
 </div>
 
-
-</form>
 @stop
 
 @section('script')
@@ -457,10 +448,12 @@
     </script>
 
     <script>
-        $('#purchase').click(function() {
-            $('#purchaseTable').toggle();
+      @foreach($purchasescript as $purchase)
+        $('#purchase{{$purchase->purchase_no}}').click(function() {
+            $('#purchaseTable{{$purchase->purchase_no}}').toggle();
             $("a", this).toggleClass("fas fa-angle-right fas fa-angle-down");
         });
+        @endforeach
     </script>
 
     <script type="text/javascript">

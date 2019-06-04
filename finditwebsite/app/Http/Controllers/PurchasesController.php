@@ -17,9 +17,11 @@ use App\Models\TblActivityLogs;
 use App\Models\TblItEquipmentSubtype;
 use App\Models\TblItEquipmentType;
 use App\Models\Suppliers;
+use App\Models\Purchases;
+use App\Models\PurchasedItems;
 
 
-class Purchases extends BaseController
+class PurchasesController extends BaseController
 {
     public function showAllStatus(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
@@ -39,41 +41,17 @@ class Purchases extends BaseController
         $data['employees'] = TblEmployees::get_employees();
         $data['equipment'] = TblItEquipment::get_all_equipment();
         $data['system_units'] = TblSystemUnits::get_all_system_units();
-        // $data['recent_activities'] = TblActivityLogs::get_activities_dashboard();
         $data['issuance'] = TblIssuances::getIssuance();
 
-        // $data['most_issued'] = TblActivityLogs
 
         $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
-        $data['onhand'] = TblItEquipment::countSubtypes();
-        $data['onhandAvailable'] = TblItEquipment::countSubtypes();
+        $data['purchases'] = Purchases::get_purchases();
+        $data['purchase'] = Purchases::get_purchases();
+        $data['purchasescript'] = Purchases::get_purchases();
+        foreach ($data['purchases'] as $purchases) {
+          $data['purchases'] [$purchases->purchase_no] = PurchasedItems::get_purchased_Item($purchases->purchase_no);
+        }
 
-        $ctr = 0;
-        $data['lowStack'] = collect([]);
-          foreach ($data['onhand'] as $onhand) {
-            foreach ($data['onhandAvailable'] as $avail) {
-              if($onhand->subtype_id==$avail->subtype_id){
-                foreach ($data['subtypesSel'] as $type) {
-                  if($onhand->subtype_id==$avail->subtype_id && $avail->subtype_id == $type->id)
-                  $data['lowStack'] ->push([
-                    'name'=> $type->name,
-                    'totalCount'=> $onhand->count,
-                    'available'=> $avail->count,
-                  ]);
-                }
-              }
-
-            }
-          }
-        $data['lowStackView'] = collect([]);
-        foreach ($data['lowStack']  as $lowStack) {
-            if($lowStack['totalCount']*.10 >= $lowStack['available']){
-              $data['lowStackView'] ->push([
-                'name'=> $lowStack['name'],
-                'available'=> $lowStack['available'],
-              ]);
-            }
-          }
         return view ('content/purchases' , $data);
     }
 
@@ -98,35 +76,6 @@ class Purchases extends BaseController
             $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
             $data['onhand'] = TblItEquipment::countSubtypes();
             $data['onhandAvailable'] = TblItEquipment::countSubtypes();
-
-            $ctr = 0;
-            $data['lowStack'] = collect([]);
-              foreach ($data['onhand'] as $onhand) {
-                foreach ($data['onhandAvailable'] as $avail) {
-                  if($onhand->subtype_id==$avail->subtype_id){
-                    foreach ($data['subtypesSel'] as $type) {
-                      if($onhand->subtype_id==$avail->subtype_id && $avail->subtype_id == $type->id)
-                      $data['lowStack'] ->push([
-                        'name'=> $type->name,
-                        'totalCount'=> $onhand->count,
-                        'available'=> $avail->count,
-                      ]);
-                    }
-                  }
-
-                }
-              }
-            $data['lowStackView'] = collect([]);
-            foreach ($data['lowStack']  as $lowStack) {
-                if($lowStack['totalCount']*.10 >= $lowStack['available']){
-                  $data['lowStackView'] ->push([
-                    'name'=> $lowStack['name'],
-                    'available'=> $lowStack['available'],
-                  ]);
-                }
-              }
-
-
 
 
             return view ('content/viewPurchases' , $data);

@@ -122,7 +122,6 @@
                             <td> {{ $for_repair->details }} </td>
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
-                            
                             <td> {{ $for_repair->created_at }} </td>
                             <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
                             <td></td>
@@ -144,7 +143,6 @@
                             <td> {{ $for_repair_units->created_at }} </td>
                             <td> {{ $for_repair_units->updated_at }} </td>
                             <td> {{ $for_repair_units->firstname}} {{ $for_repair_units->lastname}}  </td>
-                            <td></td>
                             <td> None </td>
                         </tr>
 

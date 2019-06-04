@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/datatable/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/Buttons/css/buttons.dataTables.min.css')}}">
 @stop
 
 @section('title')
@@ -108,8 +110,6 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>
 
     <!--Graph-->
     <div class="row" id="graph" style="margin-bottom: 2rem;">
@@ -150,6 +150,13 @@
         <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/dataTables.buttons.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.flash.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.html5.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.print.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
 
         <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
@@ -308,5 +315,18 @@
             $('body').html(restorepage);
           }
         </script>
+
+        <script>
+        $(document).ready(function() {
+            $('#forRepair').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "searching": false,
+                "ordering": false
+            } );
+        } );
+      </script>
 
 @stop

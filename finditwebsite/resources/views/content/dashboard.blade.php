@@ -44,7 +44,7 @@
                                 <tr>
                                     <form action="{!! url('/reInventory'); !!}" method="post">
                                     {!! csrf_field() !!}
-                                    <td>
+                                    <td class="align-bottom">
                                         <h6>Available System Units</h6>
                                     </td>
                                         <input name="status_filter" type="hidden" value="1">
@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <form action="{!! url('/reInventory'); !!}" method="post">
-                                    <td>
+                                    <td class="align-bottom">
                                         <h6>Available Mobile Phones</h6>
                                     </td>
                                         {!! csrf_field() !!}
@@ -76,7 +76,7 @@
                                         <input name="status_filter" type="hidden" value="1">
                                         <input name="subtype_filter" type="hidden" value="12">
                                         <input name="type_filter" type="hidden" value="3">
-                                    <td>
+                                    <td class="align-bottom">
                                         <h6>Available Laptops</h6>
                                     </td>
                                     <td>
@@ -88,7 +88,12 @@
                             </tbody>
 
                         </table>
-                        <button type="button" class="btn btn-light btn-sm">View all</button>
+                        <form action="{!! url('/reInventory'); !!}" method="post">
+                            {!! csrf_field() !!}
+                            <input name="type_filter" type="hidden" value="all">                            
+                            <input name="status_filter" type="hidden" value="1">
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -115,11 +120,17 @@
                         <table class="table table-borderless text-justify text-break">
                             <tbody>
                                 <tr>
-                                    <td>
+                                    <form action="{!! url('/reInventory'); !!}" method="post">
+                                    {!! csrf_field() !!}
+                                    <input name="status_filter" type="hidden" value="3">
+                                    <input name="type_filter" type="hidden" value="system_unit">
+                                    <td class="align-bottom">
                                         <h6>System Units</h6>
                                     </td>
-                                    <td class="text-justify">{{ $repair_sys_units }}</td>
-                                    <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
+                                    <td class="text-justify">
+                                        <button type="submit" href="" class="btn btn-link">{{ $repair_sys_units }}</button></td>
+                                    </form>
+
                                 </tr>
                                 <tr>
                                     <form action="{!! url('/reInventory'); !!}" method="post">
@@ -127,7 +138,7 @@
                                         <input name="status_filter" type="hidden" value="3">
                                         <input name="subtype_filter" type="hidden" value="12">
                                         <input name="type_filter" type="hidden" value="3">
-                                        <td>
+                                    <td class="align-bottom">
                                             <h6>Mobile Phones</h6>
                                         </td>
                                         <td class="text-justify">
@@ -141,7 +152,7 @@
                                         <input name="status_filter" type="hidden" value="3">
                                         <input name="subtype_filter" type="hidden" value="12">
                                         <input name="type_filter" type="hidden" value="3">
-                                    <td>
+                                    <td class="align-bottom">
                                         <h6>Laptops</h6>
                                     </td>
                                     <td class="text-justify">
@@ -150,7 +161,13 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="submit" class="btn btn-light btn-sm">View All</button>
+
+                        <form action="{!! url('/reInventory'); !!}" method="post">
+                            {!! csrf_field() !!}
+                            <input name="type_filter" type="hidden" value="all">
+                            <input name="status_filter" type="hidden" value="3">
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -161,9 +178,16 @@
                 <div class="card-header text-white mb-3" id="card-header">
                     <i class="fas fa-tools"></i> Total Issued Units
                 </div>
-                <h4>
-                    <center>{{ $countHardwareIssued + $issued_sys_units}}</center>
-                </h4>
+                <center>
+                    <form action="{!! url('/reInventory'); !!}" method="post">
+                        {!! csrf_field() !!}
+                        <button type="submit" href="" class="btn btn-link">
+                            <h4>
+                                {{ $countHardwareIssued + $issued_sys_units}}
+                            </h4>
+                        </button>
+                    </form>
+                </center>
                 <div class="card-body p-0">
                     <div class="card p-3">
                         <table class="table table-borderless text-justify text-break">
@@ -173,7 +197,7 @@
                                         <input name="type_filter" type="hidden" value="system_unit">
                                         <input name="status_filter" type="hidden" value="2">
                                         {!! csrf_field() !!}
-                                        <td>
+                                        <td class="align-bottom">
                                             <h6>System Units</h6>
                                         </td>
 
@@ -188,7 +212,7 @@
                                         <input name="status_filter" type="hidden" value="2">
                                         <input name="subtype_filter" type="hidden" value="14">
                                         <input name="type_filter" type="hidden" value="3">
-                                    <td>
+                                    <td class="align-bottom">
                                         <h6>Mobile Phones</h6>
                                     </td>
                                     <td class="text-justify">
@@ -202,7 +226,7 @@
                                         <input name="status_filter" type="hidden" value="2">
                                         <input name="subtype_filter" type="hidden" value="12">
                                         <input name="type_filter" type="hidden" value="3">
-                                        <td>
+                                    <td class="align-bottom">
                                             <h6>Laptops</h6>
                                         </td>
                                         
@@ -213,7 +237,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-light btn-sm">View All</button>
+                        <form action="{!! url('/reInventory'); !!}" method="post">
+                            {!! csrf_field() !!}
+                            <input name="type_filter" type="hidden" value="all">
+                            <input name="status_filter" type="hidden" value="2">
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -222,8 +251,7 @@
 
         <div class="col-3 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Purchases
-                    This Month</div>
+                <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Recent Purchases </div>
                 <div class="card-body ">
 
                 </div>
@@ -232,28 +260,6 @@
                         <tbody>
                             <th>Purchase #</th>
                             <th>Qty</th>
-                            <th></th>
-                            <tr>
-                                <td>
-                                    <h6>System Units</h6>
-                                </td>
-                                <td class="text-justify">{{ $repair_sys_units }}</td>
-                                <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h6>Mobile Phones</h6>
-                                </td>
-                                <td class="text-justify">{{ $repair_phone }}</td>
-                                <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h6>Laptops</h6>
-                                </td>
-                                <td class="text-justify">{{ $repair_laptop }}</td>
-                                <td><button type="submit" class="btn btn-primary btn-sm">View more</button></td>
-                            </tr>
                         </tbody>
                     </table>
                     <button type="button" class="btn btn-light btn-sm">View All</button>
@@ -275,7 +281,18 @@
                             @foreach( $available_component_qty as $component )
                             <tr>
                                 <td>{{ $component->name }}</td>
-                                <td>{{ $component->qty }}</td>
+
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input name="subtype_filter" type="hidden" value="1">
+                                <input name="type_filter" type="hidden" value="{!! $component->subtype_id !!}">
+                                <input name="status_filter" type="hidden" value="1">
+
+                                <td>
+                                    <button type="submit" href="" class="btn btn-link">{{ $component->qty }}</button>
+
+                                </td>
+                                </form>
                             </tr>
                             @endforeach
                         </tbody>

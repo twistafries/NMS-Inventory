@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css"/>
+    <link rel="stylesheet" href="{{ asset('js/datatable/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/Buttons/css/buttons.dataTables.min.css')}}">
 @stop
 
 @section('title')
@@ -117,14 +117,12 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>
+
 
     <!--Graph-->
     <div class="row" id="graph" style="margin-bottom: 2rem;">
       <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
       <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
-      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
     </div>
 
   </div>
@@ -166,17 +164,6 @@
         <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
-
-        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script> -->
-        <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">
