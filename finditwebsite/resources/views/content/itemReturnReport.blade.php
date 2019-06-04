@@ -19,7 +19,7 @@
 @stop
 
 @section('title')
-    Item Return Report
+    Item Repair Report
 @stop
 
 @section('../layout/breadcrumbs')
@@ -56,54 +56,56 @@
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable">
+          <div class="table-responsive" id="inventoryTable">
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Return Items</p>
             </div>
-            <table class="table all" id="forRepair">
-              <thead class="thead-dark" style="font-size: 14px;">
+            <table class="table all t" id="forRepair">
+              <thead class="thead-dark">
                 <tr>
-                  <th scope="col">Item</th>
+                  <th scope="col">Item Name</th>
                   <th scope="col">Type</th>
-                  <th scope="col">Subtype</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Serial No.</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">OR No.</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Last User</th>
                   <th scope="col">Remarks</th>
                   <th scope="col">Date</th>
+                  <th scope="col">Supplier</th>
                   <th scope="col">Added By</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>HDD 1TB</td>
-                  <td>Computer Unit</td>
                   <td></td>
-                  <td>Seagate SV35 1000GB 1TB SATA</td>
                   <td></td>
-                  <td>56892</td>
-                  <td>For Return</td>
                   <td></td>
-                  <td>2019-04-15</td>
-                  <td>Enigma</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                 </tr>
                 <tr>
-                  <td>iPad (3rd Generation)</td>
-                  <td>Mobile Device</td>
                   <td></td>
-                  <td>"Core Design: Apple Swift x 2
-                      CPU: S5L8945 ""A5X""
-                      CPU Speed: 1 GHz
-                      RAM: 1 GB
-                      Storage: 64 GB"</td>
                   <td></td>
-                  <td>78542</td>
-                  <td>Returned - Replaced</td>
                   <td></td>
-                  <td>2019-05-07</td>
-                  <td>Laser</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                 </tr>
               </tbody>
