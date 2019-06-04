@@ -472,12 +472,9 @@
             $('#purchasesTable').DataTable({
                 "pagingType": "full_numbers",
                   "order": []
-
-            $("#addMorePurchase").click(function () {
-                $(this).append('<div class="adds"></div>' );
-
             });
-        });
+          }
+        )
     </script>
 
     <script>
