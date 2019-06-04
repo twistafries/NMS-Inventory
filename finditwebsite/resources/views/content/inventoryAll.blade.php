@@ -243,6 +243,7 @@
                         <th>Types</th>
                         <th>Subtype</th>
                         <th>Serial No</th>
+                        <th>Supplier</th>
                         <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
@@ -261,6 +262,7 @@
                         <td> {{ $equipment->type_name }} </td>
                         <td> {{ $equipment->subtype_name }} </td>
                         <td> {{ $equipment->serial_no }} </td>
+                        <td> {{ $equipment->supplier }} </td>
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->added_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
@@ -1535,7 +1537,7 @@ var brand =  $('#brand').val();
 var status =  $('#status').val();
 var types = data[2]; // use data for the age column
 var subtypes = data[3];
-var suppliers = data[4];
+var suppliers = data[5];
 var brands = data[1];
 var statuses = data[7];
 
