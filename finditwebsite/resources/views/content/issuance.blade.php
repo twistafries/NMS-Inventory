@@ -111,12 +111,10 @@
 
             <div class="btn-group" role="group" aria-label="Basic example">
 
-                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
+                <button class="btn" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
                 </button>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -212,11 +210,24 @@
                         <div class="modal-body">
                             <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
                                 {!! csrf_field() !!}
-                                <div class="row">
+                                
+                                          <table>
+                                            <div class="row">
+                                            <tr>
+                                            <div class="col-md-8">
+                                            <td><p class="card-title">Issue Item:</p></td>
+                                            </div>
+                                            
+                                           <div class="col-md-4">
+                                            <td><p class="card-title">Issued Until:</p></td>
+                                          </div>
+                                          </tr>
 
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issue Item:</p>
-                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
+                                          <tr>
+                                            
+                                            <td>
+                                              <div class="col-md-4" style="padding: 30px 15px;">
+                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
                                                 <datalist id="items">
                                                   <select>
                                                   @foreach ($equipment as $equipment)
@@ -227,26 +238,26 @@
                                                   @endforeach
                                                 </select>
                                                 </datalist>
-
-                                          </div>
-                                          <div class="col-md-2">
-                                          </div>
-
-                                          <div class="col-md-5">
-                                              <p class="card-title">Issued_until</p>
+                                              </div>
+                                            </td>
+                                          
+                                              <td>
+                                                <div class="col-md-10" style="padding: 30px 15px;">
                                                   <div class="input-group mb-3">
                                                   <input  name="issued_until" type="date" class="form-control" required>
                                                   </div>
-                                          </div>
-                                  </div>
+                                                </div>
+                                              </td>
+                                          </tr>
+                                           </div>
+                                          </table>
+                                 
 
                                       <table id="addMoreList">
                                                  <tbody>
                                                  </tbody>
                                       </table>
 
-
-                                     <br>
 
                                       <br>
                                       <div class="row">
@@ -285,13 +296,13 @@
                                                 </datalist>
                                           </div>
                                     </div>
-
+                                    <br>
                                       <div class="row">
 
                                           <div class="col">
-                                              <label for="details">Remarks</label>
+                                              <label for="details">Remarks:</label>
                                               <div class="input-group mb-1">
-                                                  <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea"></textarea>
+                                                  <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea" style="border-style: solid; border-width: 1px;"></textarea>
                                               </div>
                                           </div>
                                       </div>
@@ -526,7 +537,7 @@ $(window).load(function(){
 }
 
 function add() {
-                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td>  <div class=\"col-md-5\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-11\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br>");
+                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-2\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
             }
     </script>
 
