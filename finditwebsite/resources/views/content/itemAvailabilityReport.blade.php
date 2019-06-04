@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/datatable/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/Buttons/css/buttons.dataTables.min.css')}}">
 @stop
 
 @section('title')
@@ -62,54 +64,54 @@
             <table class="table all" id="forRepair">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
               </tbody>
             </table>
@@ -122,7 +124,9 @@
       <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
       <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
     </div>
-    </div>
+
+  </div>
+</div>
 </body>
 @stop
 
@@ -153,8 +157,13 @@
         <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
-
-        <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/dataTables.buttons.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.flash.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.html5.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.print.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">
@@ -312,4 +321,16 @@
           }
         </script>
 
+      <script>
+      $(document).ready(function() {
+          $('#forRepair').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              "searching": false,
+              "ordering": false
+          } );
+      } );
+    </script>
 @stop

@@ -135,14 +135,14 @@
                   </div>
 
                   <div class="modal-body">
-                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
+                    <button class="btn1 btn btn-info p-2 text-uppercase" type="button" id="addMorePurchase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add More
                     </button>
                     <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
                     </button>
-                      <div class="container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
-                          <div class="row">
+                      <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
+                          <div class="adds row">
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
@@ -466,13 +466,31 @@
         });
     </script>
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
+
             $('#purchasesTable').DataTable({
                 "pagingType": "full_numbers",
                   "order": []
+
+            $("#addMorePurchase").click(function () {
+                $(this).append('<div class="adds"></div>' );
+
             });
         });
+    </script>
 
+    <script>
+        // function rm() {
+        //   $(event.target).closest("tr").remove();
+        // }
+        //
+        // function add() {
+        //   $('#addMorePurchase').append("<div class=\"adds\"></div>");
+        // }
+
+        $("#addMorePurchase").click(function(){
+          $(".addss").append("<div class=\"adds row\"><div class=\"input-group col-2\" style=\"margin-top: 1rem;\"><div class=\"\"><p class=\"card-title text-dark\" style=\"font-size: 14px;\">Brand:</p><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></div><div class=\"input-group col-2\" style=\"margin-top: 1rem;\"><div class=\"\"><p class=\"card-title text-dark\" style=\"font-size: 14px;\">Model:</p><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></div><div class=\"input-group col-3\" style=\"margin-top: 1rem;\"><div class=\"\">");
+        });
     </script>
 @stop
