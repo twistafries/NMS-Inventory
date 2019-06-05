@@ -371,8 +371,8 @@
 
                 <div class="row row-details">
                       <div class="col col-4 detail-header text-uppercase">Mark As: </div>
-                        <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">Make Available</button>
-                        <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Repair</button>
+                        <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#makeAvailable">Make Available</button>
+                        <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#forRepair">Repair</button>
                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommission</button>
                 </div>
 
@@ -404,6 +404,62 @@
                                       <div class="warning-content">
                                           <p>Warning!</p>
                                           <p>Are you sure you want to change the status of this item to Decommissioned?</p>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="modal fade" id="makeAvailable" tabindex="-1" role="dialog" aria-labelledby="availableModalTitle"
+                        aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to change the status to Available?</p>
+                                      </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="modal fade" id="forRepair" tabindex="-1" role="dialog" aria-labelledby="repairModalTitle"
+                        aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="warning-content">
+                                          <p>Warning!</p>
+                                          <p>Are you sure you want to repair this item?</p>
                                       </div>
 
                                     </div>
