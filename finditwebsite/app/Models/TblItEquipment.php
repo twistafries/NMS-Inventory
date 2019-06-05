@@ -353,7 +353,19 @@ class TblItEquipment extends Model
         }
     }
 
-
+    public static function get_received_purchases($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('purchases', 'purchases.or_no', '=', 'it_equipment.or_no')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> select('it_equipment.*', 'purchases.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
 
 
 

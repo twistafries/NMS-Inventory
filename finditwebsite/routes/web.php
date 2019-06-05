@@ -52,7 +52,7 @@ Route::post('/reInventory', 'DashboardController@filter');
 Route::post('/reInventorySummary', 'DashboardController@filter');
 Route::get('/purchases', 'PurchasesController@showAllStatus');
 Route::get('/receivedPurchases', 'PurchasesController@received');
-Route::get('/returns', 'Purchases@returns');
+Route::get('/returns', 'PurchasesController@returns');
 Route::get('/incompleteOrders', 'PurchasesController@incompleteOrders');
 
 Route::get('/viewPurchases', 'PurchasesController@viewPurchases');
