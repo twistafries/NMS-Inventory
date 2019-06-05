@@ -1429,6 +1429,7 @@ div.details, p.text{
     font-size:16px !important;
     font-weight: normal;
     color: #696969;
+    white-space: pre-line;
 }
 
 div.component-details {
