@@ -18,6 +18,7 @@ use App\Models\TblStatus;
 use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
 use App\Models\TblActivityLogs;
+use App\Models\TblIssuances;
 use App\Models\Suppliers;
 use Session, Auth;
 use DB;
@@ -25,7 +26,7 @@ use DB;
 class InventoryConcernsController extends BaseController
 {
 
-    public function markForConcerns(Request $request){
+    public function markForConcernsEquipment(Request $request){
         if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
         }
@@ -36,10 +37,20 @@ class InventoryConcernsController extends BaseController
         try{
             $data = $request->all();
             $data['added_by'] = $user_id;
+            $data['issued_to'] = TblIssuances::getIssuedTo($data['id']);
+            $data['name_component'] = $data['id'];
+            $data['system_unit_id'] = 'NULL';
+            $equipment_info = TblItEquipment::get_equipment_info($data['id'])[0];
+            // dd($equipment_info);
+            // $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id']);
+            $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id'])[0]->name;
+            $new_status_name = TblEquipmentStatus::get_status_name($data['status_id'])[0]->name;
             if(isset($data['status_id'])){
-                TblItEquipment::update_equipment_status($data['id'],$data['status']);
-                InventoryConcens::addConcern($data);
-            } 
+                TblItEquipment::update_equipment_status($data['id'],$data['status_id']);
+                InventoryConcerns::addConcern($data);
+            }
+            return \Redirect::back()
+            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name). '".'; 
         }catch(Exception $e){
             
         }catch(QueryException $qe){

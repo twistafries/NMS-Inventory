@@ -88,6 +88,20 @@ class TblIssuances extends Model {
 		return $query;
 	}
 
+	public static function getIssuedTo($params){
+		$query =\DB::table('issuance as is')
+		->leftjoin('employees' , 'employees.id', 'is.issued_to')
+		->where('equipment_id', '=', $params)
+		->get();
+		;
+		// dd($query->count());
+		if ($query->count() == 0) {
+			return "NULL";
+		}else{
+			return $query;
+		}
+	}
+
 
 	public static function most_issued(){
 		$query = \DB::table('it_equipment as i')

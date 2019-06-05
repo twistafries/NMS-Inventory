@@ -12,7 +12,7 @@ class InventoryConcerns extends Model
     protected $table = 'inventory_concerns';
     public $timestamps = false;
 
-    public function addConcern( $params ){
+    public static function addConcern( $params ){
         $result = [];
 
         $inventory_concerns = new InventoryConcerns;

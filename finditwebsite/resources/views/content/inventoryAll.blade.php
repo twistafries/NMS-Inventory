@@ -378,10 +378,7 @@
 
 
                     <!-- Return to supplier warning modal -->
-                    <form action="{!! url('/add-to-concerns'); !!}" method="post">
-                        {!! csrf_field() !!}
-
-                        <div class="modal fade" id="return-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
+                    <div class="modal fade" id="return-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
                         aria-hidden="true">
 
                         <div class="modal-dialog" role="document">
@@ -392,11 +389,12 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                
+                                <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                    {!! csrf_field() !!}
                                 <div class="modal-body">
                                     <div class="warning-content">
                                         <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
-                                        <small class="text-center">Are you sure you want return equipment,
+                                        <small class="text-center">Are you sure you want to return equipment,
                                             <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
                                             back to
                                             <b>{{ $equipment->supplier }}</b>
@@ -405,7 +403,7 @@
                                     </div>
                                     <div class="btn-group" role="group">
                                         <button class="btn btn-warning text-uppercase" data-toggle="collapse"
-                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample">
+                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
                                         </button>
                                         <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
@@ -416,17 +414,18 @@
                                     
                                     <input type="hidden" name="id" value="{!! $equipment->id !!}">
                                     <input type="hidden" name="status_id" value="4">
+                                    <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
                                 </div>
                                 
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
+                                </form>
                                     <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
 
                     <!-- Decomissioned -->
                     <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
@@ -463,7 +462,7 @@
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
+                                <div class="modal-content" style="height:500px;">
                                     <div class="modal-header">
                                     <h5 class="modal-title"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

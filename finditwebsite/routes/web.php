@@ -99,8 +99,9 @@ Route::post('/addUsers', 'AssociateController@addUsers');
 Route::post('/removeUser', 'AssociateController@removeUser');
 
 Route::post('/editEquipment', 'InventoryController@editEquipment');
-Route::post('/editStatus', 'InventoryController@changeStatus');
-Route::post('/change-status', 'InventoryController@changeStatus');
+Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForConcernsEquipment');
+// Route::post('/editStatus', 'InventoryController@changeStatus');
+// Route::post('/change-status', 'InventoryController@changeStatus');
 Route::post('/editIssuance', 'InventoryController@editEquipment');
 Route::post('/editAssociates', 'AssociateController@editAssociates');
 
