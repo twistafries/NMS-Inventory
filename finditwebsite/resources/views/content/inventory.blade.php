@@ -46,8 +46,8 @@
                 </button>
 
                 <!-- Build A pc  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc">
+                    <a href="{!! url('/buildpc') !!}" data-toggle="tooltip" title="Build A Pc">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
                     </a>
                 </button>
