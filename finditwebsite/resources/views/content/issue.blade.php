@@ -203,10 +203,43 @@
                                 <input type="hidden" name="status_id" value="1">
                                 <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button>
                                 </form>
-                                <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)">Repair</button>
+
+                                <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" 
+                                data-target="#repair-{!! $item->id !!}">
+                                    Repair
+                                </button>
                                 <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button>
                             </div>
                         </td>
+
+                        <div class="modal fade" id="repair-{!! $item->id !!}" tabindex="-1" role="dialog"
+                            aria-labelledby="edit-{!! $item->model !!}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                        
+                                    <div class="modal-body">
+                                        <form action="{!! url('/editStatus'); !!}" method="post">
+                                            {!! csrf_field() !!}
+                                            <input type="hidden" name="id" value="{!! $item->id !!}">
+                                            <input type="hidden" name="status_id" value="1">
+                                            <textarea name="remarks"></textarea>
+                                            <button class="btn btn-primary">Issue Replacement</button>
+                                        </form>
+                                    </div>
+                        
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                 @endforeach
                 </tbody>
