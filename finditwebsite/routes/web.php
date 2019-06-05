@@ -121,3 +121,4 @@ Route::post('/template', 'InventoryController@addEquipment');
 
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
+Route::get('/buildpc', 'PCBuildController@buildPC');
