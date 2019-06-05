@@ -29,13 +29,13 @@
 
 
                                        <!-- Add -->
-                                        <button class="btn btn-primary rounded mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addEmployee" daria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addEmployee" daria-haspopup="true" aria-expanded="false">
                                            <i class="fas fa-user-plus"></i> Add Employee
                                         </button>
 
                                       <!-- Delete -->
 
-                                        <button class="btn btn-danger rounded" type="button" id="deleteOption" data-toggle="modal" data-target="#removeEmployee"   aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-outline-dark rounded-pill" type="button" id="deleteOption" data-toggle="modal" data-target="#removeEmployee"   aria-haspopup="true" aria-expanded="false">
                                              <i class="fas fa-user-minus"></i> Remove Employee
                                             </button>
 
