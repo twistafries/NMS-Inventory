@@ -53,8 +53,34 @@
             }            
         }
 
+        /*
+            same script as above, just inverted for CPU/Mboard
+        */
         function selectCPU(){
+            var cpu = document.getElementById("idMotherboard");
+            var mb = document.getElementById("idCPU");
+            var cpSelect;
+            var descCPArr;
+            var descCP;
 
+            var option = mb.options[mb.selectedIndex].value;
+            var pattern = /Socket:(.*)/;
+            var descMBArr = pattern.exec(option);
+            var descMB = descMBArr[1].replace(/[\W]/g,"");
+            console.log("Option socket is "+descMB);
+            for (var i=0; i<cpu.length; i++){
+                cpSelect = cpu.options[i].value;
+                descCPArr = pattern.exec(cpSelect);
+                if(descCPArr != undefined){
+                    descCP = descCPArr[1].replace(/[\W]/g,"");
+                    console.log(descCP);
+                    if(descCP == descMB){
+                        cpu.options[i].disabled = false;
+                    } else {
+                        cpu.options[i].disabled = true;
+                    }
+                }
+            }            
         }
 
         function changeGPU(){
