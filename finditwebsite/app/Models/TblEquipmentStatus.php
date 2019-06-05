@@ -15,6 +15,14 @@ class TblEquipmentStatus extends Model
         -> get();
         return $query;
     }
+    
+    public static function get_status_name($status_id){
+        $query = \DB::table('equipment_status')
+        -> select('name')
+        -> where('id' , '=' , $status_id)
+        -> get();
+        return $query;
+    }
 
     public static function get_for_repair($params = null){
         $query = \DB::table('it_equipment')

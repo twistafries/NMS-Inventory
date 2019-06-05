@@ -30,7 +30,7 @@
 @section('content')
 <div class="container-fluid">
     <!-- tabs -->
-    <div class="container" style="margin-bottom: 3rem; margin-top: 2rem;">
+    <div class="container-fluid card" style="margin-top: 2rem; padding: 2rem;">
         <div class="row">
             <div class="container">
               <ul class="nav nav-pills nav-justified">

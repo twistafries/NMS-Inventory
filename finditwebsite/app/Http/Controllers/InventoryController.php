@@ -448,18 +448,20 @@ class InventoryController extends BaseController
     public function changeStatus(Request $request){
       // dd($request);
       try{
+
         $data = $request->all();
-        $act = [];
+        // dd($data);
+        // $act = [];
       //  $act['equipment_status']=$data['id'];
         TblItEquipment::edit_equipment($data);
         $act['status_id']=$data['status_id'];
-        $act['action']="changed the status of";
+        // $act['action']="changed the status of";
         $act['it_equipment']=$data['id'];
         // dd($act);
-        TblActivityLogs::add_log($act);
+        // TblActivityLogs::add_log($act);
         return redirect()->back()
-        ->with('message', 'Changed status of ')
-        ->with('data', $data);
+        ->with('message', 'Changed status of Equipment ID: '. $data['id']);
+        // ->with('data', $data);
       }catch(Exception $e){
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')

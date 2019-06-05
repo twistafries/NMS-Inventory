@@ -30,9 +30,9 @@
 @section('content')
 <div class="container-fluid">
     <!-- tabs -->
-    <div class="container" style="margin-bottom: 3rem; margin-top: 2rem;">
+    <div class="container-fluid card" style="margin-top: 2rem; padding: 2rem;">
         <div class="row">
-            <div class="container">
+            <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
                   <a class="nav-link" href="{!! url('/purchases') !!}">Purchases</a>

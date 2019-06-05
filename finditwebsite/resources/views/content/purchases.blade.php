@@ -122,9 +122,9 @@
 
 
       <!-- purchases modal -->
-      <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" style="">
-          <div class="modal-dialog modal-xxl" role="document" style=" width: 1000px;">
-              <div class="modal-content">
+      <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="">
+          <div class="modal-dialog modal-xxl">
+              <div class="modal-content" style="width: 1100px;">
                   <div class="modal-header">
                       <div class="container">
                           <h5>Add Purchase</h5>
@@ -135,14 +135,15 @@
                   </div>
 
                   <div class="modal-body">
-                    <button class="btn1 btn btn-info p-2 text-uppercase" type="button" id="addMorePurchase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
+                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add More
                     </button>
+
                     <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
                     </button>
                       <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
-                          <div class="adds row">
+                          <div class="adds row" style="margin-right: 5rem;">
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
@@ -187,6 +188,12 @@
                                   </div>
                                 </div>
                             </div>
+
+                                <table id="addMoreList">
+                                      <tbody>
+                                      </tbody>
+                                </table>
+
                       </div>
                   </div>
 
@@ -367,7 +374,7 @@
 </tr>
 @endforeach
 </tbody>
-</table
+</table>
 </div>
     <div class="modal fade" id="purchasedetail" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document" style=" width: 1000px;">
@@ -478,16 +485,12 @@
     </script>
 
     <script>
-        // function rm() {
-        //   $(event.target).closest("tr").remove();
-        // }
-        //
-        // function add() {
-        //   $('#addMorePurchase').append("<div class=\"adds\"></div>");
-        // }
+      function rm() {
+        $(event.target).closest("tr").remove();
+      }
 
-        $("#addMorePurchase").click(function(){
-          $(".addss").append("<div class=\"adds row\"><div class=\"input-group col-2\" style=\"margin-top: 1rem;\"><div class=\"\"><p class=\"card-title text-dark\" style=\"font-size: 14px;\">Brand:</p><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></div><div class=\"input-group col-2\" style=\"margin-top: 1rem;\"><div class=\"\"><p class=\"card-title text-dark\" style=\"font-size: 14px;\">Model:</p><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></div><div class=\"input-group col-3\" style=\"margin-top: 1rem;\"><div class=\"\">");
-        });
+      function add() {
+        $('#addMoreList > tbody:last-child').append("<tr><td><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"model\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><select id=\"subtype\" name=\"subtype\" style=\"height: 2rem; width: 9rem;!important\"><option value=\"\">Hardware</option><option value=\"\">Software</option></select></div></td><td><div class=\"input-group col-2\" style=\"padding-left: 0;!important\"><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></td><td><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><div class=\"input-group col-2\"></div></td><td><button onclick='rm()'>remove</button></td></tr>");
+      }
     </script>
 @stop

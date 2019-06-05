@@ -226,7 +226,7 @@
                                           <tr>
                                             
                                             <td>
-                                              <div class="col-md-4" style="padding: 30px 15px;">
+                                              <div class="col-md-4" style="padding: 25px 15px;">
                                               <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
                                                 <datalist id="items">
                                                   <select>

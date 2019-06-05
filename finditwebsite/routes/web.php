@@ -99,7 +99,9 @@ Route::post('/addUsers', 'AssociateController@addUsers');
 Route::post('/removeUser', 'AssociateController@removeUser');
 
 Route::post('/editEquipment', 'InventoryController@editEquipment');
-Route::post('/editStatus', 'InventoryController@changeStatus');
+Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForConcernsEquipment');
+// Route::post('/editStatus', 'InventoryController@changeStatus');
+// Route::post('/change-status', 'InventoryController@changeStatus');
 Route::post('/editIssuance', 'InventoryController@editEquipment');
 Route::post('/editAssociates', 'AssociateController@editAssociates');
 
@@ -119,3 +121,4 @@ Route::post('/template', 'InventoryController@addEquipment');
 
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
+Route::get('/buildpc', 'PCBuildController@buildPC');
