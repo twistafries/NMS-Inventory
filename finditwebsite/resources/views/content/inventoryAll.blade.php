@@ -355,13 +355,33 @@
                                         <!-- MArk As -->
                                         <div class="row row-details">
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
-                                           @if($equipment->warranty_end < Carbon::today())
-                                           <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
-                                           @else
-                                           <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#return-{!! $equipment->id !!}">For Return</button>
-                                            @endif
-                                           <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
-
+                                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                            @if($equipment->warranty_end < Carbon::today()) 
+                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">
+                                                For Repair
+                                            </button>
+                                                @else
+                                                @if($equipment->status_id == 4)
+                                                <div class="btn-group" role="group">
+                                                    <button class="btn btn-primary dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        For Return
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" data-dismiss="modal" data-toggle="modal"
+                                                            data-target="#replacement-received-{!! $equipment->id !!}">Replacement Received</a>
+                                                        <a class="dropdown-item warranty-not" href="#">Warranty Not Covered</a>
+                                                    </div>
+                                                </div>
+                                                @else
+                                                <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                    data-target="#return-{!! $equipment->id !!}">For Return</button>
+                                                @endif
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                    data-target="#decommissionedModal">Decommissioned</button>
+                                                @endif
+                                        </div>
+                                            
                                         </div>
 
                                     </div>
@@ -382,7 +402,7 @@
                         aria-hidden="true">
 
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="height:450px;">
+                            <div class="modal-content" style="height:380px; width:620px;">
                                 <div class="modal-header">
                                 <h5 class="modal-title">For Return</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -427,6 +447,56 @@
                         </div>
                     </div>
 
+                    <!-- Return to supplier warning modal -->
+                    <div class="modal fade" id="re-return-{!! $equipment->id !!}" tabindex="-1" role="dialog"
+                        aria-labelledby="toBeReturnedModalTitle" aria-hidden="true">
+                    
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="height:380px; width:620px;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Return Info</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                    {!! csrf_field() !!}
+                                    <div class="modal-body">
+                                        <div class="warning-content">
+                                            <p class="text-uppercase font-weight-bold text-warning">Equipment is already for return</p>
+                                            <small class="text-center">Are you sure you want to return equipment,
+                                                <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                                back to
+                                                <b>{{ $equipment->supplier }}</b>
+                                                ?
+                                            </small>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false"
+                                                aria-controls="collapseExample" type="button">
+                                                Add Remarks
+                                            </button>
+                                            <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                                <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                            </div>
+                    
+                                        </div>
+                    
+                                        <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                        <input type="hidden" name="status_id" value="4">
+                                        <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                    </div>
+                    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
+                                </form>
+                                <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
+                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                     <!-- Decomissioned -->
                     <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
@@ -1732,6 +1802,14 @@ function toggle2(source) {
     for ( var i in checkboxes2)
         checkboxes2[i].checked = source.checked;
 }
+
+$('a.warranty-not').click(function(){
+    console.log("Warranty not Covered");
+    
+    $('<button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="mod           al" data-toggle="modal" data-target="#">For Repair</button>').appendTo($(this).parent().parent());
+    
+})
+
 
 </script>
 
