@@ -46,14 +46,14 @@
                 </button>
 
                 <!-- Build A pc  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc">
+                    <a href="{!! url('/buildpc') !!}" data-toggle="tooltip" title="Build A Pc">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
                     </a>
                 </button>
                 <!--  Add Subtype  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#addSubtype" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSub" data-target="#addSubtype" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Add Subtype">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/subtype.png') }}"> Add Subtype
                     </a>
                 </button>
@@ -223,7 +223,10 @@
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
                             <div class="input-group">
-                                <textarea name="details" rows="3" id="details"></textarea>
+                                <textarea name="details" rows="3" id="details">Socket:
+Chipset:
+Size:
+RAM:</textarea>
                             </div>
                         </div>
                     </div>

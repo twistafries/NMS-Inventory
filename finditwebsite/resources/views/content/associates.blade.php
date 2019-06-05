@@ -28,13 +28,13 @@
 
                                       <!-- Add Option-->
 
-                                        <button class="btn btn-primary rounded mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addUser" daria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addUser" daria-haspopup="true" aria-expanded="false">
                                            <i class="fas fa-user-plus"></i> Add User
                                         </button>
 
                                       <!-- Delete -->
 
-                                        <button class="btn btn-danger rounded" type="button" id="deleteOption" data-toggle="modal" data-target="#removeUser"   aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-outline-dark rounded-pill" type="button" id="deleteOption" data-toggle="modal" data-target="#removeUser"   aria-haspopup="true" aria-expanded="false">
                                              <i class="fas fa-user-minus"></i> Remove User
                                             </button>
 
