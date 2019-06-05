@@ -46,6 +46,16 @@ Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
+// Trial Ajax
+// Route::get('/ajax', function(){
+
+//     return view('content/trial-ajax');
+// });
+
+Route::get('/getInfo/{id}', 'InventoryController@showEquipmentInfo');
+Route::get('/ajax', 'InventoryController@showAllEquipment');
+// Route::get('/getInfo/{1}', 'InventoryController@showEquipmentInfo');
+
 // Route::get('/dashboard', 'DashboardController@showAllStatus');
 Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::post('/reInventory', 'DashboardController@filter');

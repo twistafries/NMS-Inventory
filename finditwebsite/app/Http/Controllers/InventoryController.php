@@ -198,6 +198,17 @@ class InventoryController extends BaseController
       return view ('content/systemUnit' , $data);
     }
 
+    public static function showAllEquipment(){
+      $data['equipment'] = TblItEquipment::get_all_equipment();
+      return view ('content/trial-ajax' , $data);
+    }
+
+    public static function showEquipmentInfo($id = 0){
+      $equipment['data'] = TblItEquipment::get_equipment_info($id);
+      echo json_encode($equipment);
+      exit;
+    }
+
     public function showInputValues(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
