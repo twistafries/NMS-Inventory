@@ -15,6 +15,14 @@ class TblEquipmentStatus extends Model
         -> get();
         return $query;
     }
+
+    public static function get_all_status_name(){
+        $query = \DB::table('equipment_status')
+        -> select('name' , 'id')
+        -> orderBy('id' , 'asc')
+        -> get();
+        return $query;
+    }
     
     public static function get_status_name($status_id){
         $query = \DB::table('equipment_status')

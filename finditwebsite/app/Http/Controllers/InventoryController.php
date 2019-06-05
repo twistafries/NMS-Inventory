@@ -200,7 +200,16 @@ class InventoryController extends BaseController
 
     public static function showAllEquipment(){
       $data['equipment'] = TblItEquipment::get_all_equipment();
-      return view ('content/trial-ajax' , $data);
+      return view('content/trial-ajax' , $data);
+    }
+    
+    public static function showFilterOptions(){
+      $filter['subtype'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $filter['type'] = TblItEquipmentType::get_all_equipment_type();
+      $filter['supplier'] = Suppliers::get_suppliers();
+      $filter['brand'] = TblItEquipment::get_all_brands();
+      $filter['status'] = TblEquipmentStatus::get_all_status_name();
+      echo json_encode($filter);
     }
 
     public static function showEquipmentInfo($id = 0){

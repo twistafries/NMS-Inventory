@@ -10,10 +10,46 @@
 <br />
 <input type='button' value='Fetch all records' id='but_fetchall'>
 
-<div class="container display-data" id="display">
+<!-- DataTable Filter -->
+<table style="margin: auto;width: 100%; text-align: right; " id="filter">
+    <thead>
+        <tr>
+            <th>
+                <label for="types">Types: </label>
+                <select id="types" name="types">
+                    <option value="any">Any</option>
+                </select>
+            </th>
+            <th>
+                <label for="subtypes">Subtypes: </label>
+                <select id="subtypes" name="subtypes">
+                    <option value="any">Any</option>
+                </select>
+            </th>
+            <th>
+                <label for="supplier">Supplier: </label>
+                <select id="supplier" name="supplier">
+                    <option value="any">Any</option>
 
+                </select>
+            </th>
+            <th>
+                <label for="brand">Brand: </label>
+                <select id="brand" name="brand">
+                    <option value="any">Any</option>
 
-</div>
+                </select>
+            </th>
+            <th>
+                <label for="status">Status: </label>
+                <select id="status" name="status">
+                    <option value="any">Any</option>
+                    
+                </select>
+            </th>
+        </tr>
+    </thead>
+
 <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
     <thead class="thead-dark">
         <tr>
@@ -91,6 +127,8 @@
 @section('script')
 <script>
     $(document).ready(function () {
+        
+        fetchFilterOptions();
         $('tr').click(function(){
             var rowId = $(this).find("input:hidden").val();
             fetchRecords(rowId);
@@ -111,9 +149,88 @@
             }//end if
 
         });//end search function    
+    });
 
+    function fetchFilterOptions(){
+        $.ajax({
+            url: '/getFilterOption',
+            type: 'get',
+            dataType: 'json',
+            success: function (response) {
+                if(response['type'] != null) {
+                   typeLength = response['type'].length;                     
+                }//end if
+                if(typeLength > 0){
+                    for (var i = 0; i < typeLength; i++) {
+                        var typeID = response['type'][i].id;
+                        var typeName = response['type'][i].name;
 
-    })
+                        var typeOptions = 
+                            '<option value="'+typeName+'">'+ typeName +'</option>'; 
+                        $('select#types').append(typeOptions);
+                    }
+                }
+
+                if(response['subtype'] != null) {
+                   subtypeLength = response['subtype'].length;                     
+                }//end if
+                if(subtypeLength > 0){
+                    for (var i = 0; i < subtypeLength; i++) {
+                        var subtypeID = response['subtype'][i].id;
+                        var subtypeName = response['subtype'][i].name;
+
+                        var subtypeOptions = 
+                            '<option value="'+subtypeName+'">'+ subtypeName +'</option>'; 
+                        $('select#subtypes').append(subtypeOptions);
+                    }
+                }
+
+                if(response['status'] != null) {
+                   statusLength = response['status'].length;                     
+                }//end if
+                if(statusLength > 0){
+                    for (var i = 0; i < statusLength; i++) {
+                        var statusID = response['status'][i].id;
+                        var statusName = response['status'][i].name;
+
+                        var statusOptions = 
+                            '<option value="'+statusName+'">'+ statusName +'</option>'; 
+                        $('select#status').append(statusOptions);
+                    }
+                }
+
+                if(response['supplier'] != null) {
+                   supplierLength = response['supplier'].length;                     
+                }//end if
+                if(supplierLength > 0){
+                    for (var i = 0; i < supplierLength; i++) {
+                        var supplierID = response['supplier'][i].id;
+                        var supplierName = response['supplier'][i].supplier_name;
+
+                        var supplierOptions = 
+                            '<option value="'+supplierName+'">'+ supplierName +'</option>'; 
+                        $('select#supplier').append(supplierOptions);
+                    }
+                }
+
+                if(response['brand'] != null) {
+                   brandLength = response['brand'].length;                     
+                }//end if
+                if(brandLength > 0){
+                    for (var i = 0; i < brandLength; i++) {
+                        var brandID = response['brand'][i].id;
+                        var brandName = response['brand'][i].brand;
+
+                        var brandOptions = 
+                            '<option value="'+brandName+'">'+ brandName +'</option>'; 
+                        $('select#brand').append(brandOptions);
+                    }
+                }
+                
+            }//end success
+        })//end ajax
+    }//end function fetchFilterOptions
+                
     function checkNull(params){
         if(params === null){
             params = "None";

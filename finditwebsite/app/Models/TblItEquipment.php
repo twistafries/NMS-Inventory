@@ -51,6 +51,15 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_all_brands(){
+        $query = \DB::table('it_equipment')
+        -> select('brand')
+        -> groupBy('brand')
+        -> orderBy('id')
+        -> get();
+        return $query;
+    }
+
     public static function get_qty($subtype, $status = null){
       	if($status!=null) {
         $query = \DB::table('it_equipment')

@@ -53,6 +53,7 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 // });
 
 Route::get('/getInfo/{id}', 'InventoryController@showEquipmentInfo');
+Route::get('/getFilterOption', 'InventoryController@showFilterOptions');
 Route::get('/ajax', 'InventoryController@showAllEquipment');
 // Route::get('/getInfo/{1}', 'InventoryController@showEquipmentInfo');
 
