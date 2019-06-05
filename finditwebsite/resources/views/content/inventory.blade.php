@@ -52,8 +52,8 @@
                     </a>
                 </button>
                 <!--  Add Subtype  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#addSubtype" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSub" data-target="#addSubtype" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Add Subtype">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/subtype.png') }}"> Add Subtype
                     </a>
                 </button>
