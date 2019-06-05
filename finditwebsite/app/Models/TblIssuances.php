@@ -19,7 +19,7 @@ class TblIssuances extends Model {
 		->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
 		->leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
 		->select('i.*', 'it_equipment.serial_no as serial_no', 'it_equipment.or_no as or_no', 'it_equipment_type.name as type', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.name as unit_name',
-		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
+		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number',  DB::raw("DATE_FORMAT(i.created_at, '%m-%d-%Y') as created_at"),  DB::raw("DATE_FORMAT(i.issued_until, '%m-%d-%Y') as issued_until"))
 		->orderBy('i.created_at', 'desc')
 		->get();
 

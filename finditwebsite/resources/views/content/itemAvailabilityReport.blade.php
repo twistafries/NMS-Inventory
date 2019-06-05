@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/datatable/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/Buttons/css/buttons.dataTables.min.css')}}">
 @stop
 
 @section('title')
@@ -28,96 +30,26 @@
 
 
 @section('content')
+<body onpageshow="ShowLocalDate()">
+<a class="btn btn-dark" href="{!! url('/generateReportPage') !!}" role="button" style="margin-top: 1rem; padding: 10px;"><span class="fas fa-arrow-left" style="margin-right: 10px;"></span>Select Another Report</a>
 <div id="content">
-    <!-- Page Content -->
-    <div class="container p-lg-3 p-md-1 p-sm-0">
-      <div class="container row build">
-        <div class="selectpicker" id="editor" style="margin-left: 2.3rem;">
-          <button onclick="exportAll('csv')" type="button" id="export" class="btn btn-secondary p-2 text-uppercase export">Export CSV
-          </button>
+  <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem; padding-left: 2rem;">
+    <div class="sample" style=" margin-top: 1rem;">
+      <div class="row">
+        <div class="col-3">
+          <label class="font-weight-bolder text-uppercase text-left">From:</label>
+          <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
-        <div class="selectpicker">
-          <button type="button" id="print" onclick="printContent('sample');" class="btn btn-info p-2 text-uppercase">
-            <span class="fas fa-print" style="padding-right: 5px"></span>Print
-          </button>
+
+        <div class="col-3">
+          <label class="font-weight-bolder text-uppercase text-left">To:</label>
+          <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
       </div>
-      <!--inventory concerns-->
-      <div class="card add" id="inventoryConcernsFilter" style="padding-top: 3rem; padding-bottom: 2rem;">
-        <!--Filter-->
-        <div class="row" id="">
-          <div class="col col-lg-4 input-date2" style="margin-left: 2rem;">
-            <label class="label-date" style="margin-right: 1rem;">Components Added</label>
-            <select class="category-select4" id="category-select4" class="" style="width: 10rem; height: 1.9rem;">
-              <option id="initial-category-value"></option>
-              <option value="Time Unit">For the (time unit) of</option>
-              <option value="Month">For the Month of</option>
-              <option value="Year">For the Year of</option>
-              <option value="Day">For the Day of</option>
-            </select>
-          </div>
-          <!--For the Time Value Collapse-->
-            <div class="col col-lg-3 input-date2 collapse" id="timeValue1" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <input type="text" class="form-control" placeholder="Input time value" style="width: 10rem; height: 1.9rem; font-size: 12px;">
-            </div>
-            <p class="collapse" id="to">To</p>
-            <div class="col col-lg-3 input-date2 collapse" id="timeValue2" style="padding-right: 0!important; padding-left: 1.5rem;">
-              <input type="text" class="form-control" placeholder="Input time value" style="width: 10rem; height: 1.9rem; font-size: 12px;">
-            </div>
-          <!--For the mmonth of-->
-            <div class="col col-lg-2 input-date2 collapse" id="selectMonth" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <select id="" class="" style="width: 10rem; height: 1.9rem;">
-                <option disabled selected hidden>Month</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-              </select>
-            </div>
-            <div class="col col-lg-2 input-date2 collapse" id="selectYear" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <select id="" class="" style="width: 10rem; height: 1.9rem;">
-                <option disabled selected hidden>Year</option>
-                <option value="1">2017</option>
-                <option value="2">2018</option>
-                <option value="3">2019</option>
-              </select>
-            </div>
-          <!--For the year of-->
-            <div class="col col-lg-2 input-date2 collapse" id="selectYear2" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <select id="" class="" style="width: 10rem; height: 1.9rem;">
-                <option disabled selected hidden>Year</option>
-                <option value="1">2017</option>
-                <option value="2">2018</option>
-                <option value="3">2019</option>
-              </select>
-            </div>
-          <!--For the day of-->
-            <div class="col col-lg-2 input-date2 collapse" id="selectMonth2" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <select id="" class="" style="width: 10rem; height: 1.9rem;">
-                <option disabled selected hidden>Month</option>
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-              </select>
-            </div>
-            <div class="col col-lg-2 input-date2 collapse" id="selectDay" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <select id="" class="" style="width: 10rem; height: 1.9rem;">
-                <option disabled selected hidden>Day</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div class="col col-lg-2 input-date2 collapse" id="selectYear3" style="padding-right: 0!important; padding-left: 3.5rem;">
-              <select id="" class="" style="width: 10rem; height: 1.9rem;">
-                <option disabled selected hidden> Year</option>
-                <option value="1">2017</option>
-                <option value="2">2018</option>
-                <option value="3">2019</option>
-              </select>
-            </div>
-        </div>
-        <div>
-        <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
+    </div>
+</div>
+
+      <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
@@ -132,71 +64,70 @@
             <table class="table all" id="forRepair">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
-    </div>
+
 
     <!--Graph-->
     <div class="row" id="graph" style="margin-bottom: 2rem;">
       <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
       <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
-      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
     </div>
 
   </div>
 </div>
+</body>
 @stop
 
 @section('script')
@@ -226,8 +157,13 @@
         <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
-
-        <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/dataTables.buttons.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.flash.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.html5.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/Buttons/js/buttons.print.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">
@@ -385,4 +321,16 @@
           }
         </script>
 
+      <script>
+      $(document).ready(function() {
+          $('#forRepair').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              "searching": false,
+              "ordering": false
+          } );
+      } );
+    </script>
 @stop

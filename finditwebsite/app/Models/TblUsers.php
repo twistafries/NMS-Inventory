@@ -14,11 +14,9 @@ class TblUsers extends Authenticatable {
 
 	public static function get_all_associates($params = null){
         $query = \DB::table('users')
-				-> leftjoin('employees' , 'employees.id', '=', 'users.employee_id')
-        -> leftjoin('departments' , 'departments.id', '=', 'employees.dept_id')
-        -> select('users.*', 'employees.*','departments.name', 'users.status as stat')
-        -> where('users.user_type' , '=' , 'associate')
-        -> orderBy('employees.email' , 'asc')
+        -> leftjoin('departments' , 'departments.id', '=', 'users.dept_id')
+        -> select('users.*','departments.name', 'departments.name as department', 'users.status as stat')
+        -> orderBy('users.email' , 'asc')
         -> get();
         return $query;
     }

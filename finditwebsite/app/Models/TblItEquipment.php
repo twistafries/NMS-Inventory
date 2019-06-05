@@ -19,7 +19,7 @@ class TblItEquipment extends Model
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
         -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
@@ -31,7 +31,7 @@ class TblItEquipment extends Model
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '!=' , '4')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -58,7 +58,7 @@ class TblItEquipment extends Model
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '=' , '1')
         -> orwhere('it_equipment_subtype.type_id' , '=' , '2')
         -> orwhere('it_equipment_subtype.type_id' , '=' , '3')
@@ -72,7 +72,7 @@ class TblItEquipment extends Model
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_subtype.id as subtype_id','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '=' , '4')
         -> get();
         return $query;
@@ -83,7 +83,7 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '=' , '2')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -95,7 +95,7 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '=' , '1')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -108,7 +108,7 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '=' , '3')
         -> orderBy('created_at' , 'desc')
         -> get();
@@ -119,7 +119,7 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '=' , '4')
         -> orderBy('created_at' , 'desc')
         -> get();

@@ -41,62 +41,68 @@
                 </ol>
             </nav>
     </nav>
-  <h5 style="padding:1rem;">Filter:</h5>
-  <table>
-  <thead>
-    <tr>
+
+
+    <div class="card 12" style="margin-top: 1rem;  margin-bottom: 1rem; padding-top: 1.5rem; padding-bottom: 10px;">
+    <table style="margin: auto;width: 100%; text-align: right; ">
+      <thead>
+        <tr>
+          <th>
+            <label for="types" id="labelTypes">Types: </label>
+            <select id="types" name="types" style="width: 10rem; height: 1.8rem;">
+              <option value="any">Any</option>
+              @foreach ($typesSel as $typesSel)
+              <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+              @endforeach
+            </select>
+          </th>
+          <th>
+            <label for="subtype">Subtype: </label>
+            <select id="subtypes" name="subtypes" style="height: 1.8rem;">
+              <option value="any">Any</option>
+              @foreach ($subtypesSel as $subtypesSel)
+              <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+              @endforeach
+            </select>
+        </th>
+        <th>
+          <label for="supplier">Supplier: </label>
+          <select id="supplier" name="supplier" style="height: 1.8rem;">
+            <option value="any">Any</option>
+            @foreach ($suppliers as $suppliers)
+            <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
+            @endforeach
+          </select>
+      </th>
       <th>
-        <label for="types" id="labelTypes">Types: </label>
-        <select id="types" name="types">
+        <label for="brand">Brand: </label>
+        <select id="brand" name="brand" style="height: 1.8rem;">
           <option value="any">Any</option>
-          @foreach ($typesSel as $typesSel)
-          <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
+          @foreach ($brands as $brands)
+          <option value="{{$brands->brand}}">{{$brands->brand}}</option>
           @endforeach
         </select>
       </th>
       <th>
-        <label for="subtypes">Subtype: </label>
-        <select id="subtypes" name="subtypes">
+        <label for="status">Status: </label>
+        <select id="status" name="status" style="height: 1.8rem;">
           <option value="any">Any</option>
-          @foreach ($subtypesSel as $subtypesSel)
-          <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+          @foreach ($status as $status)
+          <option value="{{$status->name}}">{{$status->name}}</option>
           @endforeach
         </select>
-    </th>
-    <th>
-      <label for="supplier">Supplier: </label>
-      <select id="supplier" name="supplier">
-        <option value="any">Any</option>
-        @foreach ($suppliers as $suppliers)
-        <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
-        @endforeach
-      </select>
-  </th>
-  <th>
-    <label for="brand">Brand: </label>
-    <select id="brand" name="brand">
-      <option value="any">Any</option>
-      @foreach ($brands as $brands)
-      <option value="{{$brands->brand}}">{{$brands->brand}}</option>
-      @endforeach
-    </select>
-  </th>
-  <th>
-    <label for="status">Status: </label>
-    <select id="status" name="status">
-      <option value="any">Any</option>
-      @foreach ($status as $status)
-      <option value="{{$status->name}}">{{$status->name}}</option>
-      @endforeach
-    </select>
-  </th>
-  <th></th><th></th>
-    <th>
-      <button class="btn btn-primary text-uppercase" type="button" onclick="reset()">Reset</button>
-  </th>
-  </thead>
-  <tr height="10px"></tr>
-  </table>
+      </th>
+      <th></th><th></th>
+        <th>
+          <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
+      </th>
+    </tr>
+      </thead>
+      <tr height="10px"></tr>
+    </table>
+  </div>
+
+
 
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
@@ -105,17 +111,10 @@
 
             <div class="btn-group" role="group" aria-label="Basic example">
 
-                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
-                </button>
-                <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="delete">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"></a>
+                <button class="btn" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png"></a>
                 </button>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#singleIssue" href="#">Issue Item</a>
-                    <a class="dropdown-item" href="#">Issue Multiple Items</a>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -195,7 +194,134 @@
                 </table>
             </div>
           </div>
-        </div>
+        
+
+              <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalTitle">Issue Item</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <!-- Issue Form -->
+                        <div class="modal-body">
+                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
+                                {!! csrf_field() !!}
+                                
+                                          <table>
+                                            <div class="row">
+                                            <tr>
+                                            <div class="col-md-8">
+                                            <td><p class="card-title">Issue Item:</p></td>
+                                            </div>
+                                            
+                                           <div class="col-md-4">
+                                            <td><p class="card-title">Issued Until:</p></td>
+                                          </div>
+                                          </tr>
+
+                                          <tr>
+                                            
+                                            <td>
+                                              <div class="col-md-4" style="padding: 25px 15px;">
+                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
+                                                <datalist id="items">
+                                                  <select>
+                                                  @foreach ($equipment as $equipment)
+                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
+                                                  @endforeach
+                                                  @foreach ($units as $units)
+                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
+                                                  @endforeach
+                                                </select>
+                                                </datalist>
+                                              </div>
+                                            </td>
+                                          
+                                              <td>
+                                                <div class="col-md-10" style="padding: 30px 15px;">
+                                                  <div class="input-group mb-3">
+                                                  <input  name="issued_until" type="date" class="form-control" required>
+                                                  </div>
+                                                </div>
+                                              </td>
+                                          </tr>
+                                           </div>
+                                          </table>
+                                 
+
+                                      <table id="addMoreList">
+                                                 <tbody>
+                                                 </tbody>
+                                      </table>
+
+
+                                      <br>
+                                      <div class="row">
+
+                                              <div class="col-md-4">
+                                                  <button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>ADD MORE</button>
+                                              </div>
+                                      </div>
+
+                                      <br>
+
+                                     <div class="row">
+                                          <div class="col-md-5">
+                                              <p class="card-title">Issue to:</p>
+                                              <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
+                                              <datalist id="employee">
+                                                  @foreach ($employees as $employees)
+                                                  <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
+                                                    @switch($employees->dept_id)
+                                                      @case(1)
+                                                          ITDD
+                                                          @break
+                                                      @case(2)
+                                                          PDD
+                                                          @break
+                                                      @case(3)
+                                                          FD
+                                                          @break
+                                                      @case(4)
+                                                          HRD
+                                                          @break
+
+                                                  @endswitch
+                                                  </option>
+                                                  @endforeach
+                                                </datalist>
+                                          </div>
+                                    </div>
+                                    <br>
+                                      <div class="row">
+
+                                          <div class="col">
+                                              <label for="details">Remarks:</label>
+                                              <div class="input-group mb-1">
+                                                  <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea" style="border-style: solid; border-width: 1px;"></textarea>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
+                          </form>
+                          </div>
+
+                          <div class="modal-footer text-uppercase">
+                              <button class="btn btn-info">Add</button>
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+
+                          </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+
 
   <div class="modal fade bd-example-modal-xl" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="viewItemModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-xl">
@@ -256,7 +382,6 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" class="btn btn-success" id="editButton">Save Changes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -285,34 +410,6 @@
 
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
-
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
-
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                      <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to Delete this item?</p>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Delete</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
@@ -440,7 +537,7 @@ $(window).load(function(){
 }
 
 function add() {
-                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td>  <div class=\"col-md-5\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-11\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br>");
+                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-2\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
             }
     </script>
 
