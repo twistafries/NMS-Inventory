@@ -36,14 +36,14 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-outline-primary btn" onclick="clear{{$subtype->name}}">Clear</button>
+                                <button type="button" class="btn btn-outline-primary btn" onclick="clearOption('id{{$subtype->name}}')">Clear</button>
                             </div>
                     </div>
                 @endif
                 </p>
             @endforeach    
+            <input class="btn btn-primary" type="submit" value="Build">
         </div>
-
     </form>
     <script>
         var it_eq = @json($it_equipment->toArray());
@@ -64,13 +64,11 @@
             var pattern = /Socket:(.*)/;
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
-            console.log("Option socket is "+descMB);
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].value;
                 descCPArr = pattern.exec(cpSelect);
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
-                    console.log(descCP);
                     if(descCP == descMB){
                         cpu.options[i].disabled = false;
                     } else {
@@ -94,13 +92,11 @@
             var pattern = /Socket:(.*)/;
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
-            console.log("Option socket is "+descMB);
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].value;
                 descCPArr = pattern.exec(cpSelect);
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
-                    console.log(descCP);
                     if(descCP == descMB){
                         cpu.options[i].disabled = false;
                     } else {
@@ -110,12 +106,13 @@
             }            
         }
 
-        function clearMotherboard(){
-
-        }
-
         function changeRAM(){
 
         }
+
+        function clearOption(selectID){
+            document.getElementById(selectID).selectedIndex = 0;
+        }
+
     </script>
 @endsection
