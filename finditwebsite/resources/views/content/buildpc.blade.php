@@ -8,7 +8,7 @@
 ?>
 
 @extends('../template')
-
+@section('title') Build PC @stop
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
@@ -21,20 +21,29 @@
     <form>
         <div class="form-group">
             @foreach($eq_subtype as $subtype)
+                <p>
                 @if($subtype->type_id == 1)
-                    <p>
-                        {{$subtype->name}}<select id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
-                            <option value="" selected disabled hidden> -- select an option -- </option>
-                            @foreach($it_equipment as $item)
-                                @if($item->subtype_id == $subtype->id)
-                                    <option value="{{$item->model}} {{$item->details}}">{{$item->model}}</option>
-                                @endif
-                            @endforeach 
-                        </select>
-                    </p>
+                    <div class="form-row align-items-center">
+                        <label for="{{$subtype->name}}" class="col-md-1 col-form-label">{{$subtype->name}}</label>
+                            <div class="col-md-8">
+                                <select id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
+                                    <option value="" selected disabled hidden> -- select an option -- </option>
+                                    @foreach($it_equipment as $item)
+                                        @if($item->subtype_id == $subtype->id)
+                                            <option value="{{$item->model}} {{$item->details}}">{{$item->model}}</option>
+                                        @endif
+                                    @endforeach 
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-outline-primary btn" onclick="clear{{$subtype->name}}">Clear</button>
+                            </div>
+                    </div>
                 @endif
+                </p>
             @endforeach    
         </div>
+
     </form>
     <script>
         var it_eq = @json($it_equipment->toArray());
@@ -101,7 +110,7 @@
             }            
         }
 
-        function changeGPU(){
+        function clearMotherboard(){
 
         }
 
