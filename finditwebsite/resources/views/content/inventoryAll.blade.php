@@ -1,5 +1,5 @@
 <?php
-//   use Carbon\Carbon;
+  use Carbon\Carbon;
 //   $session=Session::get('loggedIn');
 //   $user_id = $session['id'];
 //   $fname = $session['fname'];
@@ -355,9 +355,12 @@
                                         <!-- MArk As -->
                                         <div class="row row-details">
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
-                                             <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Return</button>
-                                            <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
+                                           @if($equipment->warranty_end < Carbon::today())
+                                           <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
+                                           @else
+                                           <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#return-{!! $equipment->id !!}">For Return</button>
+                                            @endif
+                                           <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
 
                                         </div>
 
@@ -374,8 +377,59 @@
                     </div>
 
 
+                    <!-- Return to supplier warning modal -->
+                    <form action="{!! url('/add-to-concerns'); !!}" method="post">
+                        {!! csrf_field() !!}
 
-                     <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        <div class="modal fade" id="return-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
+                        aria-hidden="true">
+
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="height:450px;">
+                                <div class="modal-header">
+                                <h5 class="modal-title">For Return</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <div class="warning-content">
+                                        <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
+                                        <small class="text-center">Are you sure you want return equipment,
+                                            <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                            back to
+                                            <b>{{ $equipment->supplier }}</b>
+                                            ?
+                                        </small>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                    <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                    <input type="hidden" name="status_id" value="4">
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                    <!-- Decomissioned -->
+                    <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -402,6 +456,8 @@
                                 </div>
                             </div>
                     </div>
+                    
+                    
 
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
