@@ -305,7 +305,7 @@ class TblItEquipment extends Model
 
         $it_equipment = TblItEquipment::find($params['id']);
         $id = TblItEquipment::find($params['id']);
-
+        // dd($params);
         if(isset($params['subtype_id']))
         $it_equipment->subtype_id = $params['subtype_id'];
 
