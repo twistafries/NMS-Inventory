@@ -167,10 +167,11 @@
                                     <textarea name="purchase['details']" type="text" size="25" style="height: 4rem; width: 14rem;"></textarea>
                                   </div>
                                 </div>
+
                                 <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
-                                    <input  list="subtypes" name="purchase['subtypes']" required style=" text-indent: 50px;">
+                                    <input  list="subtypes" name="purchase['subtypes']" required style="width: 9rem;">
                                       <datalist id="subtypes">
                                         <select>
                                         @foreach ($subtypes as $subtypes)
@@ -184,7 +185,7 @@
                                 <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Supplier:</p>
-                                    <input  list="suppliers" name="purchase['suppliers']" required style=" text-indent: 50px;">
+                                    <input  list="suppliers" name="purchase['suppliers']" required style="width: 9rem;">
                                       <datalist id="suppliers">
                                         <select>
                                         @foreach ($supplier as $supplier)
@@ -404,34 +405,27 @@
                 <div class="modal-body" >
                   <div class="container-fluid" style="">
                     <div class="row" style="margin-top: 1rem;">
-                      <div class="col-6">
+                      <div class="col-2">
                         <label>Brand:</label>
                         <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                       </div>
-                      <div class="col-6">
+                      <div class="col-2">
                         <label>Model:</label>
                         <input type="text" name="" value="" style="padding-left: 5px;">
                       </div>
+                    <div class="col-2">
+                      <label>Subtype:</label>
+                      <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                     </div>
-                    <div class="row" style="margin-top: 2rem;">
-                      <div class="col-6">
-                        <label>Subtype:</label>
-                        <select style="width: 12.5rem; height: 1.8rem;">
-                          <option>Hardware</option>
-                          <option>Software</option>
-                        </select>
-                      </div>
-                      <div class="col-6">
-                        <label>Supplier:</label>
-                        <input type="text" name="" value="" style="padding-left: 5px;">
-                      </div>
+                    <div class="col-2">
+                      <label>Supplier:</label>
+                      <input type="text" name="" value="" style="padding-left: 5px;">
                     </div>
-                    <div class="row" style="margin-top: 2rem;">
-                      <div class="col-9">
+                      <div class="col-3">
                         <label>Details:</label>
                         <textarea name="model" type="text" size="25" style="height: 6rem; width: 20rem;"></textarea>
                       </div>
-                      <div class="col-2" style="margin-right: 1rem;">
+                      <div class="col-1" style="margin-right: 1rem;">
                         <label>Quantity:</label>
                         <input type="text" name="" style="width: 4rem;">
                       </div>
