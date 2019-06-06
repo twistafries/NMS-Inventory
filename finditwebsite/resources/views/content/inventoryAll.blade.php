@@ -1723,7 +1723,6 @@ var statuses = data[7];
 
 function subtypeUnblock(element) {
     $("#subtypes option:nth-child("+element+")").show();
-    console.log($("#subtype option:nth-child("+element+")").text());
 }
 
 function subtypeBlockAll(){
