@@ -53,6 +53,7 @@
 <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%;cursor:pointer;">
     <thead class="thead-dark">
         <tr>
+            <th>ID</th>
             <th>Model</th>
             <th>Brand</th>
             <th>Types</th>
@@ -69,8 +70,8 @@
 
 
         @foreach ($equipment as $equipment)
-        <tr id="row-{!! $equipment->id !!}" data-toggle="modal" data-target="#view-modal">
-            <input type="hidden" name="id" value="{!! $equipment->id !!}">
+        <tr class="equipment-table-row" id="{!! $equipment->id !!}" data-toggle="modal" data-target="#view-modal">
+            <td class="id"> {{ $equipment->id }}<input type="hidden" name="id" value="{!! $equipment->id !!}"></td>
             <td> {{ $equipment->model }} </td>
             <td> {{ $equipment->brand }} </td>
             <td> {{ $equipment->type_name }} </td>
@@ -125,14 +126,52 @@
 @stop
 
 @section('script')
+ <!-- Datatable -->
+<script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+<!-- Validation -->
+<script src="{{ asset('js/jqueryvalidation/dist/jquery.validate.js') }}"></script>
+<script src="{{ asset('js/jqueryvalidation/dist/additional-methods.min.js') }}"></script>
+<!-- Custom Validation Script -->
+<script src="{{ asset('js/validation-inventory.js') }}"></script>
+<!-- Additional Scripts   -->
+<script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
+
 <script>
+    
     $(document).ready(function () {
-        
+        $('#inventory').addClass('active');
+         $('input').attr('autocomplete','off');
         fetchFilterOptions();
+        // Dropdown Filter Settings for DataTable
+        $('#myDataTable').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []}
+        );
+        
+        
+        // $('tr.equipment-table-row').click(function(){
+        //     var rowId = $(this).find("td.id").text();
+        //     fetchRecords(rowId);
+        // })
         $('tr').click(function(){
-            var rowId = $(this).find("input:hidden").val();
-            fetchRecords(rowId);
-            console.log('Clicked row equipment ' + $(this).find("input:hidden").val());
+            if($(this).has("td.equipment-table-row.even")){
+                var rowIdEven = $(this).find("input:hidden").val();
+                fetchRecords(rowIdEven);
+                console.log('Clicked row equipment even ' + $(this).find("input:hidden").val());
+            }else if(this.has("td.equipment-table-row.odd")){
+                var rowIdOdd = $(this).find("input:hidden").val()
+                fetchRecords(rowIdOdd);
+                console.log('Clicked row equipment ' + $(this).find("input:hidden").val());
+            }else if(this.has("td.equipment-table-row")){
+                var rowId = $(this).find("input:hidden").val()
+                fetchRecords(rowId);
+                console.log('Clicked row equipment ' + $(this).find("input:hidden").val());
+            }
+            
         })
 
         // Fetch all records
@@ -237,7 +276,7 @@
         }
         return params;
     }
-
+    // Fetch Data for View Modal
     function fetchRecords(id) {
         // id=1;
         $.ajax({
@@ -336,8 +375,9 @@
 
             }//end success
         })//end ajax
-    }//end function
-
+    }//end function   
 </script>
+
+ 
 
 @stop
