@@ -8,7 +8,7 @@
 ?>
 
 @extends('../template')
-
+@section('title') Build PC @stop
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
@@ -21,19 +21,28 @@
     <form>
         <div class="form-group">
             @foreach($eq_subtype as $subtype)
+                <p>
                 @if($subtype->type_id == 1)
-                    <p>
-                        {{$subtype->name}}<select id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
-                            <option value="" selected disabled hidden> -- select an option -- </option>
-                            @foreach($it_equipment as $item)
-                                @if($item->subtype_id == $subtype->id)
-                                    <option value="{{$item->model}} {{$item->details}}">{{$item->model}}</option>
-                                @endif
-                            @endforeach 
-                        </select>
-                    </p>
+                    <div class="form-row align-items-center">
+                        <label for="{{$subtype->name}}" class="col-md-1 col-form-label">{{$subtype->name}}</label>
+                            <div class="col-md-8">
+                                <select id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
+                                    <option value="" selected disabled hidden> -- select an option -- </option>
+                                    @foreach($it_equipment as $item)
+                                        @if($item->subtype_id == $subtype->id)
+                                            <option value="{{$item->model}} {{$item->details}}">{{$item->model}}</option>
+                                        @endif
+                                    @endforeach 
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-outline-primary btn" onclick="clearOption('id{{$subtype->name}}')">Clear</button>
+                            </div>
+                    </div>
                 @endif
+                </p>
             @endforeach    
+            <input class="btn btn-primary" type="submit" value="Build">
         </div>
     </form>
     <script>
@@ -55,13 +64,11 @@
             var pattern = /Socket:(.*)/;
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
-            console.log("Option socket is "+descMB);
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].value;
                 descCPArr = pattern.exec(cpSelect);
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
-                    console.log(descCP);
                     if(descCP == descMB){
                         cpu.options[i].disabled = false;
                     } else {
@@ -85,13 +92,11 @@
             var pattern = /Socket:(.*)/;
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
-            console.log("Option socket is "+descMB);
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].value;
                 descCPArr = pattern.exec(cpSelect);
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
-                    console.log(descCP);
                     if(descCP == descMB){
                         cpu.options[i].disabled = false;
                     } else {
@@ -101,12 +106,13 @@
             }            
         }
 
-        function changeGPU(){
-
-        }
-
         function changeRAM(){
 
         }
+
+        function clearOption(selectID){
+            document.getElementById(selectID).selectedIndex = 0;
+        }
+
     </script>
 @endsection
