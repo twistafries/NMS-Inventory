@@ -23,15 +23,21 @@
 <!--breadcrumbs navigation-->
 <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
-            <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+              <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark">Items</a>
+                        <a href="{!! url('/inventory') !!}" class="text-dark" aria-current="page">Items</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-warning" aria-current="page">For Repair</a>
+                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
                     </li>
-                   
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/repair') !!}" class="text-warning" >For Repair</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/return') !!}" class="text-dark">For Return</a>
+                    </li>
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>

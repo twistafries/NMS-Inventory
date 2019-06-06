@@ -59,10 +59,13 @@
 
         </div>
     </div>
-        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+        <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
+                        <a href="{!! url('/inventory') !!}" class="text-dark" aria-current="page">Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/systemUnit') !!}" class="text-warning" aria-current="page">System Unit</a>
                     </li>
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
@@ -120,8 +123,12 @@
                         </tr>
 -->
                          <tr>
+                            <th>ID</th>
                             <th>Department</th>
+                            <th>Issued To</th>
                             <th>Mark As</th>
+                            
+                             
                           
                           
                         </tr>
@@ -146,6 +153,7 @@
 
                        
                         <tr>
+                            <td>ID</td>
                             <td>      
                                 
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> IT PC1</a> </button>
@@ -243,6 +251,7 @@
                                                     </table>
                                                 </div> 
                             </td>
+                            <td>Issued to</td>
                             <td>
                                 <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                 <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
@@ -254,6 +263,7 @@
                         
                         
                         <tr>
+                            <td>ID</td>
                             <td>      
                                 
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> PD PC2</a> </button>
@@ -351,6 +361,7 @@
                                                     </table>
                                                 </div> 
                             </td>
+                            <td>Issued to</td>
                             <td>
                                 <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                 <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
@@ -363,6 +374,7 @@
                         </tr>
                         
                         <tr>
+                            <td>ID</td>
                             <td>      
                                 
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item3" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> FD PC2</a> </button>
@@ -460,6 +472,7 @@
                                                     </table>
                                                 </div> 
                             </td>
+                            <td>Issued to</td>
                             <td>
                                 <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                 <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
@@ -471,6 +484,7 @@
 
                         </tr>
                         <tr>
+                            <td>ID</td>
                             <td>      
                                 
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item4" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC2</a> </button>
@@ -568,6 +582,7 @@
                                                     </table>
                                                 </div> 
                             </td>
+                            <td>Issued to</td>
                             <td>
                                 <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                 <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>

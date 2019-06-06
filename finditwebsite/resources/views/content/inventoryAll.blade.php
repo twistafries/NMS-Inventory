@@ -65,10 +65,13 @@
 
         </div>
     </div>
-        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+        <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
+                    </li>
+                    <li class="breadcrumb-item ">
+                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
                     </li>
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
