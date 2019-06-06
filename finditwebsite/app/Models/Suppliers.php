@@ -12,12 +12,9 @@ class Suppliers extends Model
 
     public static function get_suppliers($params = null){
         $query = \DB::table('supplier as s')
-        -> select('supplier_name')
-        -> groupBy('supplier_name')
-        -> orderBy('id' , 'asc')
+        -> orderBy('supplier_name' , 'asc')
         -> get();
         return $query;
-        dd($query);
     }
 
     public static function add_supplier($params){

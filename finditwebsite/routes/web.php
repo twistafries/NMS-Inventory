@@ -102,6 +102,7 @@ Route::get('/issue', 'IssuanceController@employeeIssuance');
 Route::get('/issuance', 'IssuanceController@showAllIssuance');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
+Route::post('/addpurchase', 'PurchasesController@addpurchase');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
 Route::post('/addEmployee', 'ForStatusController@addEmployee');
