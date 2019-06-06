@@ -30,7 +30,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-warning" aria-current="page">For Repair</a>
                     </li>
-                  
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
@@ -52,7 +52,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                        </div> 
+                        </div>
 
                         <div class="modal-body">
                             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-    
+
      <div class="container-fluid">
 
                             <div class="row">
@@ -80,19 +80,19 @@
                                 <li class="nav-item">
                                   <a class="nav-link active font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>
                                 </li>
-                              
+
 
 
                               </ul>
                                     </div>
                             </div>
 
-                        </div>  
+                        </div>
                         <hr>
-    
+
     <!-- Tabs -->
     <div class="container-fluid">
-   
+
         <div class="tab-content" id="pills-tabContent">
             <!-- All Items in the Inventory -->
             <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
@@ -104,7 +104,7 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
-                           
+
                             <th>Date Added</th>
                             <th width="15%">Date Edited</th>
                             <th>Added By</th>
@@ -127,7 +127,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            
+
                         </tr>
 
                         @endforeach
@@ -150,7 +150,7 @@
                     </tbody>
 
                 </table>
-            
+
 
         </div>
     </div>
