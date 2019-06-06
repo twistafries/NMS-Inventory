@@ -16,6 +16,22 @@ class TblEquipmentStatus extends Model
         return $query;
     }
 
+    public static function get_all_status_name(){
+        $query = \DB::table('equipment_status')
+        -> select('name' , 'id')
+        -> orderBy('id' , 'asc')
+        -> get();
+        return $query;
+    }
+    
+    public static function get_status_name($status_id){
+        $query = \DB::table('equipment_status')
+        -> select('name')
+        -> where('id' , '=' , $status_id)
+        -> get();
+        return $query;
+    }
+
     public static function get_for_repair($params = null){
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')

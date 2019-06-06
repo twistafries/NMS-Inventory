@@ -46,13 +46,24 @@ Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 
+// Trial Ajax
+// Route::get('/ajax', function(){
+
+//     return view('content/trial-ajax');
+// });
+
+Route::get('/getInfo/{id}', 'InventoryController@showEquipmentInfo');
+Route::get('/getFilterOption', 'InventoryController@showFilterOptions');
+Route::get('/ajax', 'InventoryController@showAllEquipment');
+// Route::get('/getInfo/{1}', 'InventoryController@showEquipmentInfo');
+
 // Route::get('/dashboard', 'DashboardController@showAllStatus');
 Route::get('/dashboard', 'DashboardController@showDahsboardDetails');
 Route::post('/reInventory', 'DashboardController@filter');
 Route::post('/reInventorySummary', 'DashboardController@filter');
 Route::get('/purchases', 'PurchasesController@showAllStatus');
 Route::get('/receivedPurchases', 'PurchasesController@received');
-Route::get('/returns', 'Purchases@returns');
+Route::get('/returns', 'PurchasesController@returns');
 Route::get('/incompleteOrders', 'PurchasesController@incompleteOrders');
 
 Route::get('/viewPurchases', 'PurchasesController@viewPurchases');
@@ -99,7 +110,9 @@ Route::post('/addUsers', 'AssociateController@addUsers');
 Route::post('/removeUser', 'AssociateController@removeUser');
 
 Route::post('/editEquipment', 'InventoryController@editEquipment');
-Route::post('/editStatus', 'InventoryController@changeStatus');
+Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForConcernsEquipment');
+// Route::post('/editStatus', 'InventoryController@changeStatus');
+// Route::post('/change-status', 'InventoryController@changeStatus');
 Route::post('/editIssuance', 'InventoryController@editEquipment');
 Route::post('/editAssociates', 'AssociateController@editAssociates');
 
@@ -119,3 +132,4 @@ Route::post('/template', 'InventoryController@addEquipment');
 
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
+Route::get('/buildpc', 'PCBuildController@buildPC');

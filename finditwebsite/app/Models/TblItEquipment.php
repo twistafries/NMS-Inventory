@@ -24,6 +24,19 @@ class TblItEquipment extends Model
         -> get();
         return $query;
     }
+    public static function get_equipment_info($id){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> where('it_equipment.id', '=' , $id)
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
 
     public static function get_IT_equipment($params = null){
         $query = \DB::table('it_equipment')
@@ -34,6 +47,15 @@ class TblItEquipment extends Model
         -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment_subtype.type_id' , '!=' , '4')
         -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
+
+    public static function get_all_brands(){
+        $query = \DB::table('it_equipment')
+        -> select('brand')
+        -> groupBy('brand')
+        -> orderBy('id')
         -> get();
         return $query;
     }
@@ -285,11 +307,13 @@ class TblItEquipment extends Model
     }
 
     public static function update_equipment_status($id,$status){
-      $it_equipment = TblItEquipment::find($id);
-      $it_equipment->status_id = $status;
-      $it_equipment->save();
-      $id = DB::getPdo()->lastInsertId();
-      return $id;
+        $it_equipment = TblItEquipment::find($id);
+        $it_equipment->status_id = $status;
+        $it_equipment->updated_at = gmdate('Y-m-d H:i:s');
+
+        $it_equipment->save();
+        $id = DB::getPdo()->lastInsertId();
+        return $id;
     }
 
     public static function delete_equipment($params){
@@ -305,7 +329,7 @@ class TblItEquipment extends Model
 
         $it_equipment = TblItEquipment::find($params['id']);
         $id = TblItEquipment::find($params['id']);
-
+        // dd($params);
         if(isset($params['subtype_id']))
         $it_equipment->subtype_id = $params['subtype_id'];
 
@@ -353,7 +377,19 @@ class TblItEquipment extends Model
         }
     }
 
-
+    public static function get_received_purchases($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('purchases', 'purchases.or_no', '=', 'it_equipment.or_no')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> select('it_equipment.*', 'purchases.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> orderBy('created_at' , 'desc')
+        -> get();
+        return $query;
+    }
 
 
 

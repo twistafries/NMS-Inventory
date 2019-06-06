@@ -1,5 +1,5 @@
 <?php
-//   use Carbon\Carbon;
+  use Carbon\Carbon;
 //   $session=Session::get('loggedIn');
 //   $user_id = $session['id'];
 //   $fname = $session['fname'];
@@ -46,11 +46,18 @@
                 </button>
 
                 <!-- Build A pc  -->
-                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Build A Pc">
+                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc">
+                    <a href="{!! url('/buildpc') !!}" data-toggle="tooltip" title="Build A Pc">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
                     </a>
                 </button>
+                
+                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSub" data-target="#addSubtype" data-toggle="modal">
+                    <a href="#" data-toggle="tooltip" title="Add Subtype">
+                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/subtype.png') }}"> Add Subtype
+                    </a>
+                </button>
+
 
 
             </div>
@@ -355,10 +362,33 @@
                                         <!-- MArk As -->
                                         <div class="row row-details">
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">For Repair</button>
-                                             <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">For Return</button>
-                                            <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
-
+                                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                            @if($equipment->warranty_end < Carbon::today()) 
+                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">
+                                                For Repair
+                                            </button>
+                                                @else
+                                                @if($equipment->status_id == 4)
+                                                <div class="btn-group" role="group">
+                                                    <button class="btn btn-primary dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        For Return
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <a class="dropdown-item" data-dismiss="modal" data-toggle="modal"
+                                                            data-target="#replacement-received-{!! $equipment->id !!}">Replacement Received</a>
+                                                        <a class="dropdown-item warranty-not" href="#">Warranty Not Covered</a>
+                                                    </div>
+                                                </div>
+                                                @else
+                                                <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                    data-target="#return-{!! $equipment->id !!}">For Return</button>
+                                                @endif
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                    data-target="#decommissionedModal">Decommissioned</button>
+                                                @endif
+                                        </div>
+                                            
                                         </div>
 
                                     </div>
@@ -374,8 +404,108 @@
                     </div>
 
 
+                    <!-- Return to supplier warning modal -->
+                    <div class="modal fade" id="return-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
+                        aria-hidden="true">
 
-                     <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="height:380px; width:620px;">
+                                <div class="modal-header">
+                                <h5 class="modal-title">For Return</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                    {!! csrf_field() !!}
+                                <div class="modal-body">
+                                    <div class="warning-content">
+                                        <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
+                                        <small class="text-center">Are you sure you want to return equipment,
+                                            <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                            back to
+                                            <b>{{ $equipment->supplier }}</b>
+                                            ?
+                                        </small>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                    <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                    <input type="hidden" name="status_id" value="4">
+                                    <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
+                                </form>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Return to supplier warning modal -->
+                    <div class="modal fade" id="re-return-{!! $equipment->id !!}" tabindex="-1" role="dialog"
+                        aria-labelledby="toBeReturnedModalTitle" aria-hidden="true">
+                    
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="height:380px; width:620px;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Return Info</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                    {!! csrf_field() !!}
+                                    <div class="modal-body">
+                                        <div class="warning-content">
+                                            <p class="text-uppercase font-weight-bold text-warning">Equipment is already for return</p>
+                                            <small class="text-center">Are you sure you want to return equipment,
+                                                <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                                back to
+                                                <b>{{ $equipment->supplier }}</b>
+                                                ?
+                                            </small>
+                                        </div>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false"
+                                                aria-controls="collapseExample" type="button">
+                                                Add Remarks
+                                            </button>
+                                            <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                                <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                            </div>
+                    
+                                        </div>
+                    
+                                        <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                        <input type="hidden" name="status_id" value="4">
+                                        <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                    </div>
+                    
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
+                                </form>
+                                <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
+                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Decomissioned -->
+                    <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -402,12 +532,14 @@
                                 </div>
                             </div>
                     </div>
+                    
+                    
 
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
+                                <div class="modal-content" style="height:500px;">
                                     <div class="modal-header">
                                     <h5 class="modal-title"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1025,9 +1157,9 @@
                             <label for="details" class="card-title text-dark">Details:</label>
                             <div class="input-group">
                                 <textarea name="details" rows="3" id="details">Socket:
- Chipset:
- Size:
- RAM:                           </textarea>
+Chipset:
+Size:
+RAM:                           </textarea>
                             </div>
                         </div>
                     </div>
@@ -1327,8 +1459,53 @@
             </div>
         </div>
     </div>
+        
+   <!-- Add Subtype-->
 
+<div class="modal fade" id="addSubtype" tabindex="-1" role="dialog" aria-labelledby="addSubtypeTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="height:450px;">
+            <div id="addSubtypeHeader" class="modal-header">
+                <h5 class="modal-title" id="ModalTitle"><i class="far fa-plus-square"></i>&nbsp;Add Subtype</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+            <div class="container pb-2">
+             <div class="row pt-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Type:</p>
+                        <select name="subtype_id" class="custom-select">
+                        @foreach ($equipment_types as $equipment_types)
+                            <option  value="{!! $equipment_subtypes->id !!}">
+                                {{ $equipment_types->name }}
+                            </option>
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
+                <div class="row pt-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Equipment Subtype:</p>
+                        
+                            <div class="input-group">
+                                <input name="subtype" type="text" size="30">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>    
+             <div class="modal-footer">
+                            <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                        </div>
 
+            
+        </div>
+        
+       
+    </div>
+</div>         
+            
     <!-- Soft Delete-->
     <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -1677,6 +1854,14 @@ function toggle2(source) {
     for ( var i in checkboxes2)
         checkboxes2[i].checked = source.checked;
 }
+
+$('a.warranty-not').click(function(){
+    console.log("Warranty not Covered");
+    
+    $('<button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="mod           al" data-toggle="modal" data-target="#">For Repair</button>').appendTo($(this).parent().parent());
+    
+})
+
 
 </script>
 

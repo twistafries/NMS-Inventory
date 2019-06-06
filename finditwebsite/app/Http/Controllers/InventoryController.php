@@ -198,6 +198,26 @@ class InventoryController extends BaseController
       return view ('content/systemUnit' , $data);
     }
 
+    public static function showAllEquipment(){
+      $data['equipment'] = TblItEquipment::get_all_equipment();
+      return view('content/trial-ajax' , $data);
+    }
+    
+    public static function showFilterOptions(){
+      $filter['subtype'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+      $filter['type'] = TblItEquipmentType::get_all_equipment_type();
+      $filter['supplier'] = Suppliers::get_suppliers();
+      $filter['brand'] = TblItEquipment::get_all_brands();
+      $filter['status'] = TblEquipmentStatus::get_all_status_name();
+      echo json_encode($filter);
+    }
+
+    public static function showEquipmentInfo($id = 0){
+      $equipment['data'] = TblItEquipment::get_equipment_info($id);
+      echo json_encode($equipment);
+      exit;
+    }
+
     public function showInputValues(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
@@ -448,18 +468,20 @@ class InventoryController extends BaseController
     public function changeStatus(Request $request){
       // dd($request);
       try{
+
         $data = $request->all();
-        $act = [];
+        // dd($data);
+        // $act = [];
       //  $act['equipment_status']=$data['id'];
         TblItEquipment::edit_equipment($data);
         $act['status_id']=$data['status_id'];
-        $act['action']="changed the status of";
+        // $act['action']="changed the status of";
         $act['it_equipment']=$data['id'];
         // dd($act);
-        TblActivityLogs::add_log($act);
+        // TblActivityLogs::add_log($act);
         return redirect()->back()
-        ->with('message', 'Changed status of ')
-        ->with('data', $data);
+        ->with('message', 'Changed status of Equipment ID: '. $data['id']);
+        // ->with('data', $data);
       }catch(Exception $e){
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')

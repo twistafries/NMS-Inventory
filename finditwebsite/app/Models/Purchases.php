@@ -17,6 +17,7 @@ class Purchases extends Model
         -> get();
         return $query;
     }
+    
 
     public static function add_purchases($params){
       $purchases = new Purchases;

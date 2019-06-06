@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TblItEquipmentSubtype extends Model
 {
+    protected $table = 'it_equipment_subtype';
     public static function get_all_equipment_subtype($params = null){
         $query = \DB::table('it_equipment_subtype')
         -> orderBy('id' , 'asc')
