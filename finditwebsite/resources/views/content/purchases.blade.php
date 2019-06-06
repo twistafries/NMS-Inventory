@@ -127,7 +127,7 @@
               <div class="modal-content" style="width: 1100px;">
                   <div class="modal-header">
                       <div class="container">
-                          <h5>Add Purchase</h5>
+                          <h5>New Purchase: Purchase Number {{$purchase->count()+1}}</h5>
                       </div>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
@@ -142,49 +142,64 @@
                     <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
                     </button>
+                    <form action="{!! url('/addpurchase'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
+                    {!! csrf_field() !!}
                       <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
+
                           <div class="adds row" style="margin-right: 5rem;">
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
-                                    <input name="model" type="text" size="25" style="height: 2rem; width:9rem;">
+                                    <input name="purchase['brand']" type="text" size="25" style="height: 2rem; width:9rem;">
                                   </div>
                                 </div>
 
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Model:</p>
-                                    <input name="model" type="text" size="25" style="height: 2rem; width:9rem;">
+                                    <input name="purchase['model']" type="text" size="25" style="height: 2rem; width:9rem;">
                                   </div>
                                 </div>
 
                                 <div class="input-group col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="model" type="text" size="25" style="height: 4rem; width: 14rem;"></textarea>
+                                    <textarea name="purchase['details']" type="text" size="25" style="height: 4rem; width: 14rem;"></textarea>
                                   </div>
                                 </div>
+
                                 <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
-                                    <select id="subtypes" name="subtypes" style="width: 9rem; height:2rem;">
-                                      <option value="">Hardware</option>
-                                      <option value="">Software</option>
-                                    </select>
+                                    <input  list="subtypes" name="purchase['subtypes']" required style="width: 9rem;">
+                                      <datalist id="subtypes">
+                                        <select>
+                                        @foreach ($subtypes as $subtypes)
+                                        <option value="{{ $subtypes->id}}-{{ $subtypes->name}}">
+                                        @endforeach
+                                      </select>
+                                      </datalist>
                                   </div>
                                 </div>
 
                                 <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Supplier:</p>
-                                    <input name="model" type="text" size="25" style="height: 2rem; width:9rem;">
+                                    <input  list="suppliers" name="purchase['suppliers']" required style="width: 9rem;">
+                                      <datalist id="suppliers">
+                                        <select>
+                                        @foreach ($supplier as $supplier)
+                                        <option value="{{ $supplier->id}}-{{ $supplier->supplier_name}}">
+                                        @endforeach
+                                      </select>
+                                      </datalist>
                                   </div>
                                 </div>
 
                                 <div class="input-group col-1" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Quantity:</p>
-                                    <input name="model" type="text" size="25" style="height: 2rem; width:3rem;">
+                                    <input name="purchase['quantity']" type="number" size="25" style="height: 2rem; width:3rem;">
                                   </div>
                                 </div>
                             </div>
@@ -201,6 +216,7 @@
                     <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                   </div>
+                </form>
               </div>
           </div>
       </div>
@@ -389,34 +405,27 @@
                 <div class="modal-body" >
                   <div class="container-fluid" style="">
                     <div class="row" style="margin-top: 1rem;">
-                      <div class="col-6">
+                      <div class="col-2">
                         <label>Brand:</label>
                         <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                       </div>
-                      <div class="col-6">
+                      <div class="col-2">
                         <label>Model:</label>
                         <input type="text" name="" value="" style="padding-left: 5px;">
                       </div>
+                    <div class="col-2">
+                      <label>Subtype:</label>
+                      <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                     </div>
-                    <div class="row" style="margin-top: 2rem;">
-                      <div class="col-6">
-                        <label>Subtype:</label>
-                        <select style="width: 12.5rem; height: 1.8rem;">
-                          <option>Hardware</option>
-                          <option>Software</option>
-                        </select>
-                      </div>
-                      <div class="col-6">
-                        <label>Supplier:</label>
-                        <input type="text" name="" value="" style="padding-left: 5px;">
-                      </div>
+                    <div class="col-2">
+                      <label>Supplier:</label>
+                      <input type="text" name="" value="" style="padding-left: 5px;">
                     </div>
-                    <div class="row" style="margin-top: 2rem;">
-                      <div class="col-9">
+                      <div class="col-3">
                         <label>Details:</label>
                         <textarea name="model" type="text" size="25" style="height: 6rem; width: 20rem;"></textarea>
                       </div>
-                      <div class="col-2" style="margin-right: 1rem;">
+                      <div class="col-1" style="margin-right: 1rem;">
                         <label>Quantity:</label>
                         <input type="text" name="" style="width: 4rem;">
                       </div>
