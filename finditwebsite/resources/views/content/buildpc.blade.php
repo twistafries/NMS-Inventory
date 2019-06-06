@@ -50,20 +50,25 @@
         
         /*
             get DOM elements: motherboard select, then once an option is chosen
-            check the socket desc of selected option. Disable CPU select options 
-            not matching that socket
+            check the socket desc of selected option. Disable CPU and RAM select options 
+            not matching that socket or config
         */
         function selectMotherboard(){
             var mb = document.getElementById("idMotherboard");
             var cpu = document.getElementById("idCPU");
+            var ram = document.getElementById("idRAM");
             var cpSelect;
             var descCPArr;
             var descCP;
 
             var option = mb.options[mb.selectedIndex].value;
             var pattern = /Socket:(.*)/;
+            var ramPat = /DDR[0-9]/;
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
+            var descRAMArr = ramPat.exec(option);
+            var descRAM = descRAMArr[0];
+            console.log(descRAM.replace(/[\W]/,""));
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].value;
                 descCPArr = pattern.exec(cpSelect);
@@ -107,11 +112,12 @@
                         cpu.options[i].style.display = "none";
                     }
                 }
-            }            
+            }           
         }
 
         function changeRAM(){
-
+            var ram = document.getElementById("idRAM");
+            var pattern;
         }
 
         function clearOption(selectID){
