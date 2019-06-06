@@ -70,9 +70,11 @@
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
                     if(descCP == descMB){
-                        cpu.options[i].disabled = false;
+                        //cpu.options[i].disabled = false;
+                        cpu.options[i].style.display = "block";
                     } else {
-                        cpu.options[i].disabled = true;
+                        //cpu.options[i].disabled = true;
+                        cpu.options[i].style.display = "none";
                     }
                 }
             }            
@@ -98,9 +100,11 @@
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
                     if(descCP == descMB){
-                        cpu.options[i].disabled = false;
+                        //cpu.options[i].disabled = false;
+                        cpu.options[i].style.display = "block";
                     } else {
-                        cpu.options[i].disabled = true;
+                        //cpu.options[i].disabled = true;
+                        cpu.options[i].style.display = "none";
                     }
                 }
             }            
@@ -112,6 +116,24 @@
 
         function clearOption(selectID){
             document.getElementById(selectID).selectedIndex = 0;
+
+            var cpu = document.getElementById("idMotherboard");
+            var mb = document.getElementById("idCPU");
+            var subtypes = document.getElementsByTagName('select');
+
+            /*
+            for(var i=0; i<cpu.length;i++){
+                cpu.options[i].style.display = "block";
+            }
+            */
+
+            Array.prototype.forEach.call(subtypes, subtype => {
+                if(subtype.id !== selectID){
+                    for(var i = 0; i<subtype.length; i++){
+                        subtype.options[i].style.display = "block";
+                    }
+                }
+            });
         }
 
     </script>
