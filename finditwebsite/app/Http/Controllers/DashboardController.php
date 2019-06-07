@@ -50,8 +50,12 @@ class DashboardController extends BaseController
         $data['recent_purchases'] = PurchasedItems::orderBy('id', 'desc')
         ->take(5)
         ->get(); 
-        // $data['purchases'];
+
+        $data['inc_orders'] = TblItEquipment::get_equipment_by_status(6);
+
         return view ('content/dashboard' , $data);
+
+        
     }
 
     public function filter(Request $request){

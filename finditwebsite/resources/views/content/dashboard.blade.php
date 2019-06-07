@@ -311,10 +311,9 @@
                 <div class="card-header text-white mb-3" id="card-header"> Incomplete Orders</div>
                 <div class="card-body ">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Order #1</li>
-                        <li class="list-group-item">Order #2</li>
-                        <li class="list-group-item">Order #3</li>
-                        <li class="list-group-item">Order #4</li>
+                        @foreach($inc_orders as $order)
+                            <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier_name}}</li>
+                        @endforeach
                         <button type="submit" class="btn btn-light btn-sm">View all</button>
                     </ul>
                 </div>
@@ -325,7 +324,7 @@
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-exchange-alt"></i> Items
                     Returned</div>
                 <div class="card-body ">
-
+                    Hello?
                 </div>
             </div>
         </div>
