@@ -1993,6 +1993,268 @@
 
                 </table>
           <br>
+          
+           <!--No Department Table-->
+          <h5 class="font-weight-bold">No Department</h5>
+          <table id="myDataTableHR" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+                    <thead class="thead-dark">
+<!--
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Issued To</th>
+                            <th>Department</th>
+                        </tr>
+-->
+                         <tr>
+                            <th>ID</th>
+                            <th>Department</th>
+                            <th>Issued To</th>
+                            <th>Mark As</th>
+                            
+                             
+                          
+                          
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                       
+                        <tr>
+                            <td>ID</td>
+                            <td>      
+                                
+                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemND1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> Null </a> </button>
+                                
+                                
+                                <div class="collapse" id="itemND1">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Component</th>
+                                                                <th scope="col">Brand/Name</th>
+                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Serial No.</th>
+                                                                <th scope="col">Warranty</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Motherboard</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Storage</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RAM</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Power Supply</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Heat Sink Fan</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sound Card</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                               
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div> 
+                            </td>
+                            <td>Issued to</td>
+                            <td>
+                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-dark rounded btn-sm"><i class="fas fa-building"></i> Assign Department</button>
+                            </td>   
+                        </tr>
+                        
+                        
+                        <tr>
+                            <td>ID</td>
+                            <td>      
+                                
+                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemND2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> Null </a> </button>
+                                
+                                
+                                <div class="collapse" id="itemND2">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Component</th>
+                                                                <th scope="col">Brand/Name</th>
+                                                                <th scope="col">Details</th>
+                                                                <th scope="col">Serial No.</th>
+                                                                <th scope="col">Warranty</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Motherboard</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>CPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Storage</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>RAM</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GPU</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Power Supply</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Case</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Heat Sink Fan</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                               
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Sound Card</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                              
+                                                               
+                                                            </tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div> 
+                            </td>
+                            <td>Issued to</td>
+                            <td>
+                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-dark rounded btn-sm"><i class="fas fa-building"></i> Assign Department</button>
+                            </td>   
+                           
+
+                        </tr>
+                        
+                        
+                        
+                     
+                    </tbody>
+
+
+                </table>
+          <br>
 
 
 

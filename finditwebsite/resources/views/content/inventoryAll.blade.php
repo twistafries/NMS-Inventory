@@ -20,7 +20,7 @@
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
         <!-- Toolbox -->
-        @insert('content.toolbar')
+        @include('content.toolbar')
         <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
