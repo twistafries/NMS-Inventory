@@ -166,10 +166,16 @@ class InventoryController extends BaseController
       }
 
       $data = [];
-      $data['equipment'] = TblItEquipment::get_all_equipment();
+      $data['it_dep'] = TblSystemUnits::unitByDep(1);
+      $data['prod_dep'] = TblSystemUnits::unitByDep(2);
+      $data['fin_dep'] = TblSystemUnits::unitByDep(3);
+      $data['hr_dep'] = TblSystemUnits::unitByDep(4);
+      $data['components'] = TblItEquipment::getByType(1);
+
+
       $data['equipments'] = TblItEquipment::get_all_equipment();
+      $data['equipment'] = TblItEquipment::get_all_equipment();
       $data['peripherals'] = TblItEquipment::get_computer_peripherals();
-      // dd($data);
       $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['component'] = TblItEquipment::get_computer_component();
       $data['mobile'] = TblItEquipment::get_mobile_devices();
@@ -561,10 +567,7 @@ class InventoryController extends BaseController
 
         //return \Redirect::to('/inventoryAll')->with('equipment has been added');
 
-      }catch(QueryException $qe){
-        // $info = Self::getErrorInfo();
-        // dd($qe);
-        // dd($info);
+      }catch(QueryException $qe){;
         return \Redirect::to('/inventoryAll')
         ->with('error' , 'Database cannot read input value.')
         ->with('error_info' , $qe->getMessage())
@@ -577,9 +580,5 @@ class InventoryController extends BaseController
       $log['activity'] = "added";
       TblActivityLogs::add_log($log);
       return \Redirect::to('/inventory')->with('equipment has been added');
-      // dd($data);
-
-
-
     }
 }

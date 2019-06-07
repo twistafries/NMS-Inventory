@@ -1,9 +1,9 @@
 <?php
-//   use Carbon\Carbon;
-//   $session=Session::get('loggedIn');
-//   $user_id = $session['id'];
-//   $fname = $session['fname'];
-//   $lname = $session['lname'];
+    use Carbon\Carbon;
+    $session=Session::get('loggedIn');
+    $user_id = $session['id'];
+    $fname = $session['fname'];
+    $lname = $session['lname'];
   // $img_path = $session['img_path'];
 ?>
 
@@ -37,8 +37,8 @@
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
-            </nav>
-    </nav>
+        </nav>
+</nav>
 
       <div class="container-fluid">
                         <div class="container-fluid">
@@ -70,53 +70,60 @@
           <h5 class="font-weight-bold">Information Technology Development Department</h5>
                 <table id="myDataTable" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
-<!--
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Issued To</th>
-                            <th>Department</th>
-                        </tr>
--->
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
                             <th>Issued To</th>
                             <th>Mark As</th>
-                            
-                             
-                          
-                          
+
                         </tr>
                     </thead>
-<!--
                     <tbody>
-
-                        @foreach ($system_units as $system_units)
-                        <tr data-toggle="modal" data-target="#viewItemModal">
-                            <td> {{ $system_units->id }}</td>
-                            <td>{{ $system_units->name }} </td>
-                            <td> {{ $system_units->status }}</td>
-                            <td> {{ $system_units->fname }} {{ $system_units->lname }} </td>
-                            <td> </td>
-
-                        </tr>
+                        @foreach($it_dep as $unit)
+                            <tr>
+                                <td>ID: {{$unit->id}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                            <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                <i class="fas fa-angle-down">
+                                                </i> {{$unit->name}} {{$unit->id}}
+                                            </a>
+                                    </button>
+                                    <div class="collapse" id="itDepartment{{$unit->id}}">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Component</th>
+                                                        <th scope="col">Brand/Name</th>
+                                                        <th scope="col">Details</th>
+                                                        <th scope="col">Serial No.</th>
+                                                        <th scope="col">Warranty</th> 
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        @foreach()
+                                                            <td>{{$}}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        @endforeach
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div> 
+                                </td>
+                            </tr>
                         @endforeach
-                    </tbody>
--->
-
-                    <tbody>
-
-                       
                         <tr>
                             <td>ID</td>
                             <td>      
-                                
-                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemIT1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> IT PC1</a> </button>
-                                
-                                
+                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemIT1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                    <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down">
+                                        </i> IT PC1
+                                    </a>
+                                </button>
                                 <div class="collapse" id="itemIT1">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -125,8 +132,7 @@
                                                                 <th scope="col">Brand/Name</th>
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
-                                                                <th scope="col">Warranty</th>
-                                                                
+                                                                <th scope="col">Warranty</th> 
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -203,8 +209,6 @@
                                                               
                                                                
                                                             </tr>
-
-
                                                         </tbody>
                                                     </table>
                                                 </div> 

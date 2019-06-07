@@ -401,7 +401,14 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function getByType($category){
+        $query = TblItEquipment::leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> where('it_equipment_subtype.type_id', '=', $category)
+        -> select('it_equipment.id')
+        -> get();
 
+        return $query;
+    }
 
 
 }
