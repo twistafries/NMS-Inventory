@@ -362,7 +362,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
 
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal-{!! $equipment->id !!}">Delete Entry</button>
                                 </div>
                             </div>
                         </div>
@@ -573,7 +573,7 @@
                     
 
 
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:500px;">
@@ -586,14 +586,18 @@
 
                                     <div class="modal-body">
                                       <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to Delete this item?</p>
+                                          <p class="text-danger text-uppercase font-weight-bold">Warning!</p>
+                                          <p>Are you sure you want to permanently delete {{ $equipment->brand }} {{ $equipment->model }} from the inventory?</p>
                                       </div>
 
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Delete</button>
+                                        <form action="{!! url('/hardDeleteEquipment'); !!}" method="post">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                        <button type="submit" class="btn btn-danger text-uppercase">Delete</button>
+                                        </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>

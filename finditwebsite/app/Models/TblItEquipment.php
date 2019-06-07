@@ -20,6 +20,7 @@ class TblItEquipment extends Model
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
         -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
         -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> where('subtype_id' , '!=' , '7')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
