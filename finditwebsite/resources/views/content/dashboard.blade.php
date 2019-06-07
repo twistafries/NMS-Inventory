@@ -308,7 +308,7 @@
         </div>
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> Incomplete Orders</div>
+                <div class="card-header text-white mb-3" id="card-header"> Incomplete | Pending Orders</div>
                 <div class="card-body ">
                     <ul class="list-group list-group-flush">
                         @foreach($inc_orders as $order)
@@ -322,9 +322,14 @@
         <div class="col-4 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-exchange-alt"></i> Items
-                    Returned</div>
+                    Returned | For Return</div>
                 <div class="card-body ">
-                    Hello?
+                    <ul class="list-group list-group-flush">
+                        @foreach($returned_items as $returns)
+                            <li class="list-group-item">{{$returns->brand}} {{$returns->model}} | OR No.:{{$returns->or_no}} | Supplier: {{$returns->supplier_name}}</li>
+                        @endforeach
+                        <button type="submit" class="btn btn-light btn-sm">View all</button>
+                    </ul>
                 </div>
             </div>
         </div>
