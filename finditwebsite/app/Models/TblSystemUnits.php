@@ -75,9 +75,8 @@ class TblSystemUnits extends Model
 
     public static function unitByDep($department){
       $query = \DB::table('system_units')
-      -> leftjoin('it_equipment', 'it_equipment.unit_id', '=', 'system_units.id')
       -> select('*')
-      -> where('system_units.id', '=', $department)
+      -> where('system_units.dept_id', '=', $department)
       ->get();
 
       return $query;

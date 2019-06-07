@@ -172,7 +172,7 @@ class InventoryController extends BaseController
       $data['hr_dep'] = TblSystemUnits::unitByDep(4);
       $data['components'] = TblItEquipment::getByType(1);
 
-
+      $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['equipments'] = TblItEquipment::get_all_equipment();
       $data['equipment'] = TblItEquipment::get_all_equipment();
       $data['peripherals'] = TblItEquipment::get_computer_peripherals();

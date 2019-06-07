@@ -101,15 +101,17 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        @foreach()
-                                                            <td>{{$}}</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        @endforeach
-                                                    </tr>
+                                                    @foreach($components as $component)
+                                                            @if($component->unit_id == $unit->id)
+                                                            <tr>
+                                                                <td>{{$component->name}}</td>
+                                                                        <td>{{$component->brand}} {{$component->name}}</td>
+                                                                        <td>{{$component->details}}</td>
+                                                                        <td>{{$component->serial_no}}</td>
+                                                                        <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                            </tr>
+                                                             @endif
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div> 
