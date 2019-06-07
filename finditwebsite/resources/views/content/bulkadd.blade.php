@@ -164,7 +164,7 @@ body{
 
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
-                                    <p class="card-title">Warrant Start</p>
+                                    <p class="card-title">Warranty Start</p>
                                     <input type="date" name="warranty_start" id="warranty_start" class="form-control" required/>
                                     <span id="error_warranty_start" class="text-danger"></span>
                                 </div>
@@ -172,7 +172,7 @@ body{
 
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
-                                    <p class="card-title">Warrant End</p>
+                                    <p class="card-title">Warranty End</p>
                                     <input type="date" name="warranty_end" id="warranty_end" class="form-control" required/>
                                     <span id="error_warranty_end" class="text-danger"></span>
                                 </div>

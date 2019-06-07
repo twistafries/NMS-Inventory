@@ -124,6 +124,7 @@ Route::post('/editAssociates', 'AssociateController@editAssociates');
 
 // Route::get('/bulk-add', 'BulkController@showFields');
 Route::get('/bulkadd', 'BulkController@showFields');
+// Route::get('/bulkadd/{id}', 'BulkController@showFields');
 // Route::get('/temp-bulk-add', 'BulkController@showFields');
 Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 

@@ -385,9 +385,11 @@ RAM:
               </td>
               @else
               <td class="text-right">
-                <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#add{{$item->id}}">
+                <!-- <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#add{{$item->id}}">
                   <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
-                </button>
+                </button> -->
+                <p>{{ $item->id }}</p>
+                <a href="{!! url('/getPurchases/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
               </td>
               @endif
             </tr>

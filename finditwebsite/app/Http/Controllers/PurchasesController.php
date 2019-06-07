@@ -66,7 +66,7 @@ class PurchasesController extends BaseController
     }
 
     public function fetchBulkPurchases($id = 0){
-      $data['purchases'] = PurchasedItems::get_bulk_purchased_items($id);
+      $data['purchases'] = PurchasedItems::get_bulk_purchased_items(97);
       echo json_encode($data);
       exit;
     }
