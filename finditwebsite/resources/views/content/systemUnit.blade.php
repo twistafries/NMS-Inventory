@@ -31,12 +31,16 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
-                   
+
 
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
+<<<<<<< HEAD
+            </nav>
+    </nav>
+=======
         </nav>
 </nav>
 
@@ -1402,126 +1406,33 @@
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
+>>>>>>> 329a42bffed5ee909c780f0f93fe4f07c86edc8b
 
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>      
-                                
-                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemFD4" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> FD PC4</a> </button>
-                                
-                                
-                                <div class="collapse" id="itemFD4">
-                                                    <table class="table table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">Component</th>
-                                                                <th scope="col">Brand/Name</th>
-                                                                <th scope="col">Details</th>
-                                                                <th scope="col">Serial No.</th>
-                                                                <th scope="col">Warranty</th>
-                                                                
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Motherboard</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                               
-                                                            </tr>
-                                                            <tr>
-                                                                <td>CPU</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                              
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Storage</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                               
-                                                            </tr>
-                                                            <tr>
-                                                                <td>RAM</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                              
-                                                            </tr>
-                                                            <tr>
-                                                                <td>GPU</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                              
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Power Supply</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                               
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Case</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                              
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Heat Sink Fan</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                               
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sound Card</td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                              
-                                                               
-                                                            </tr>
+      <div class="container-fluid">
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="container-fluid">
+                                <ul class="nav nav-pills nav-justified">
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/inventory') !!}">SUMMARY</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEMS LIST</a>
+                                </li>
 
 
-                                                        </tbody>
-                                                    </table>
-                                                </div> 
-                            </td>
-                            <td>Issued to</td>
-                            <td>
-                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
-                            </td>   
-                           
 
-                        </tr>
-                        
-                     
-                    </tbody>
+                              </ul>
 
+                                    </div>
+                            </div>
 
-                </table>
-                <br>
+                        </div>
+
+                        <hr>
           <!--Human Resources Table-->
+          
           <h5 class="font-weight-bold">Human Resources Department</h5>
           <table id="myDataTableHR" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
@@ -1540,24 +1451,24 @@
                             <th>Department</th>
                             <th>Issued To</th>
                             <th>Mark As</th>
-                            
-                             
-                          
-                          
+
+
+
+
                         </tr>
                     </thead>
 
 
                     <tbody>
 
-                       
+
                         <tr>
                             <td>ID</td>
-                            <td>      
-                                
+                            <td>
+
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemHR1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC1</a> </button>
-                                
-                                
+
+
                                 <div class="collapse" id="itemHR1">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -1567,7 +1478,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1577,7 +1488,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -1585,7 +1496,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -1593,7 +1504,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -1601,7 +1512,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -1609,7 +1520,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -1617,7 +1528,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -1625,7 +1536,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -1633,7 +1544,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -1641,14 +1552,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
-                                                               
+
+
                                                             </tr>
 
 
                                                         </tbody>
                                                     </table>
-                                                </div> 
+                                                </div>
                             </td>
                             <td>Issued to</td>
                             <td>
@@ -1657,17 +1568,17 @@
                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
-                            </td>   
+                            </td>
                         </tr>
-                        
-                        
+
+
                         <tr>
                             <td>ID</td>
-                            <td>      
-                                
+                            <td>
+
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemHR2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC2</a> </button>
-                                
-                                
+
+
                                 <div class="collapse" id="itemHR2">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -1677,7 +1588,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1687,7 +1598,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -1695,7 +1606,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -1703,7 +1614,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -1711,7 +1622,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -1719,7 +1630,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -1727,7 +1638,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -1735,7 +1646,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -1743,7 +1654,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -1751,14 +1662,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
-                                                               
+
+
                                                             </tr>
 
 
                                                         </tbody>
                                                     </table>
-                                                </div> 
+                                                </div>
                             </td>
                             <td>Issued to</td>
                             <td>
@@ -1767,18 +1678,18 @@
                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
-                            </td>   
-                           
+                            </td>
+
 
                         </tr>
-                        
+
                         <tr>
                             <td>ID</td>
-                            <td>      
-                                
+                            <td>
+
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemHR3" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC3</a> </button>
-                                
-                                
+
+
                                 <div class="collapse" id="itemHR3">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -1788,7 +1699,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1798,7 +1709,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -1806,7 +1717,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -1814,7 +1725,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -1822,7 +1733,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -1830,7 +1741,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -1838,7 +1749,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -1846,7 +1757,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -1854,7 +1765,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -1862,14 +1773,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
-                                                               
+
+
                                                             </tr>
 
 
                                                         </tbody>
                                                     </table>
-                                                </div> 
+                                                </div>
                             </td>
                             <td>Issued to</td>
                             <td>
@@ -1878,17 +1789,17 @@
                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
-                            </td>   
-                           
+                            </td>
+
 
                         </tr>
                         <tr>
                             <td>ID</td>
-                            <td>      
-                                
+                            <td>
+
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemHR4" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC4</a> </button>
-                                
-                                
+
+
                                 <div class="collapse" id="itemHR4">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -1898,7 +1809,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -1908,7 +1819,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -1916,7 +1827,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -1924,7 +1835,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -1932,7 +1843,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -1940,7 +1851,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -1948,7 +1859,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -1956,7 +1867,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -1964,7 +1875,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -1972,14 +1883,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
-                                                               
+
+
                                                             </tr>
 
 
                                                         </tbody>
                                                     </table>
-                                                </div> 
+                                                </div>
                             </td>
                             <td>Issued to</td>
                             <td>
@@ -1988,18 +1899,18 @@
                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
-                            </td>   
-                           
+                            </td>
+
 
                         </tr>
-                        
-                     
+
+
                     </tbody>
 
 
                 </table>
           <br>
-          
+
            <!--No Department Table-->
           <h5 class="font-weight-bold">No Department</h5>
           <table id="myDataTableND" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
@@ -2019,24 +1930,24 @@
                             <th>Department</th>
                             <th>Issued To</th>
                             <th>Mark As</th>
-                            
-                             
-                          
-                          
+
+
+
+
                         </tr>
                     </thead>
 
 
                     <tbody>
 
-                       
+
                         <tr>
                             <td>ID</td>
-                            <td>      
-                                
+                            <td>
+
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemND1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> Null </a> </button>
-                                
-                                
+
+
                                 <div class="collapse" id="itemND1">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -2046,7 +1957,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -2056,7 +1967,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -2064,7 +1975,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -2072,7 +1983,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -2080,7 +1991,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -2088,7 +1999,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -2096,7 +2007,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -2104,7 +2015,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -2112,7 +2023,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -2120,14 +2031,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
-                                                               
+
+
                                                             </tr>
 
 
                                                         </tbody>
                                                     </table>
-                                                </div> 
+                                                </div>
                             </td>
                             <td>Issued to</td>
                             <td>
@@ -2137,17 +2048,17 @@
                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                                 <button type="button" class="btn btn-dark rounded btn-sm" data-toggle="modal" data-target="#assignDepartmentModal"><i class="fas fa-building"></i> Assign Department</button>
-                            </td>   
+                            </td>
                         </tr>
-                        
-                        
+
+
                         <tr>
                             <td>ID</td>
-                            <td>      
-                                
+                            <td>
+
                                 <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itemND2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> Null </a> </button>
-                                
-                                
+
+
                                 <div class="collapse" id="itemND2">
                                                     <table class="table table-striped">
                                                         <thead>
@@ -2157,7 +2068,7 @@
                                                                 <th scope="col">Details</th>
                                                                 <th scope="col">Serial No.</th>
                                                                 <th scope="col">Warranty</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody>
@@ -2167,7 +2078,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>CPU</td>
@@ -2175,7 +2086,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Storage</td>
@@ -2183,7 +2094,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>RAM</td>
@@ -2191,7 +2102,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>GPU</td>
@@ -2199,7 +2110,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Power Supply</td>
@@ -2207,7 +2118,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Case</td>
@@ -2215,7 +2126,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Heat Sink Fan</td>
@@ -2223,7 +2134,7 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                               
+
                                                             </tr>
                                                             <tr>
                                                                 <td>Sound Card</td>
@@ -2231,14 +2142,14 @@
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                              
-                                                               
+
+
                                                             </tr>
 
 
                                                         </tbody>
                                                     </table>
-                                                </div> 
+                                                </div>
                             </td>
                             <td>Issued to</td>
                             <td>
@@ -2248,22 +2159,22 @@
                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                                 <button type="button" class="btn btn-dark rounded btn-sm" data-toggle="modal" data-target="#assignDepartmentModal"><i class="fas fa-building"></i> Assign Department</button>
-                            </td>   
-                           
+                            </td>
+
 
                         </tr>
-                        
-                        
-                        
-                     
+
+
+
+
                     </tbody>
 
 
                 </table>
           <br>
 <!--Button Prompts Modals-->
-          
-          
+
+
           <!-- Make Available prompt-->
 <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog" aria-labelledby="makeAvailableModalTitle"
     aria-hidden="true">
@@ -2290,9 +2201,9 @@
                                         <div class="collapse" id="remarksRepair">
                                             <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
                                         </div>
-                                    
+
                     </div>
-                   
+
                 </div>
 
                 <div class="modal-footer">
@@ -2330,12 +2241,12 @@
                                         <div class="collapse" id="remarksRepair">
                                             <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
                                         </div>
-                                    
+
                     </div>
 
 
                 </div>
-                  
+
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
@@ -2363,7 +2274,7 @@
                       <p class="text-uppercase font-weight-bold text-warning"><i class="fas fa-exclamation-circle"></i> Warning!</p>
                       <h5 class="text-center">Are you sure you want to mark the item as <b>"For Repair"</b> ? </h5>
                       <br>
-                      
+
                   </div>
                      <div class="btn-group" role="group">
                                         <button class="btn btn-secondary text-uppercase" data-toggle="collapse"
@@ -2373,7 +2284,7 @@
                                         <div class="collapse" id="remarksRepair">
                                             <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
                                         </div>
-                                    
+
                     </div>
                 </div>
 
@@ -2414,7 +2325,7 @@
                                         <div class="collapse" id="remarksRepair">
                                             <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
                                         </div>
-                                    
+
                     </div>
 
                 </div>
@@ -2451,9 +2362,9 @@
                         </select>
                         </div>
                     </div>
-               
+
                 </div>
-              </div>    
+              </div>
              <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> Assign Department </button>
                             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
@@ -2462,7 +2373,7 @@
             </div>
         </div>
 </div>
-          
+
 
 
                 <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
@@ -2639,14 +2550,14 @@
                                         </div>
 
                                       </div>
-                                       
+
                                         <div class="row row-details">
                                            <div class="col col-3 detail-header text-uppercase">Mark As: </div>
                                             <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#forRepair">For Repair</button>
                                              <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#forReturn">For Return</button>
                                             <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
                                         </div>
-                                  
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -2714,7 +2625,7 @@
                             </div>
                     </div>
 
-                
+
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -2741,8 +2652,8 @@
                                 </div>
                             </div>
                     </div>
-    
-    
+
+
 <!-- Issue modal -->
 <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -3288,7 +3199,7 @@
 
 
                             <div class="row">
-                       
+
                                 <div class="container-fluid">
 
     @stop
@@ -3487,7 +3398,7 @@
         });
 
     </script>
-                                
+
                                  <script>
       function CheckListed( txtSearch  ) {
        var objList = document.getElementById("items")  ;

@@ -56,8 +56,11 @@ class PurchasesController extends BaseController
           $data['purchases'] [$purchases->purchase_no] = PurchasedItems::get_purchased_Item($purchases->purchase_no);
         }
         $data['items'] = PurchasedItems::get_all_items();
+        $data['items'] = PurchasedItems::get_all_items();
         $data['unit_number'] = PurchasedItems::get_unit_number();
-        $data['pc_component'] = PurchasedItems::get_unit_number();
+        $data['pc'] = PurchasedItems::get_unit_number();
+        $data['pc_component'] = PurchasedItems::get_component();
+
         // dd($data['purchase']);
         return view ('content/purchases' , $data);
     }
@@ -301,5 +304,52 @@ class PurchasesController extends BaseController
 
           }
         }
+        public function addToInventory(Request $request){
+          if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+          }
+
+            $session=Session::get('loggedIn');
+            // dd($request->all());
+            $user_id = $session['id'];
+
+            try{
+              $data = $request->all();
+              Purchases::edit_purchase($data['p_id'],$data['or_no']);
+              if(isset($data['subtype_id'])
+              && isset($data['brand'])
+              && isset($data['model'])
+              && isset($data['details'])
+              && isset($data['user_id'])
+              && isset($data['warranty_start'])
+              && isset($data['warranty_end'])
+              && isset($data['supplier_id'])
+              && isset($data['serial_no'])
+              && isset($data['or_no'])
+              && isset($data['status_id']) ){
+                  $id=TblItEquipment::add_equipment($data);
+                  $log['data'] = $id;
+                  // $log['unit'] = $data['unit_id'];
+                  $log['activity'] = "added";
+                  TblActivityLogs::add_log($log);
+                  return \Redirect::to('/inventory')->with('equipment has been added');
+                }
+
+              return \Redirect::to('/purchases')->with('item has been added into the inventory');
+
+              }catch(Exception $e){
+                return redirect()->back()
+                      ->with('error' , 'Please fill out ALL the fields')
+                      ->with('error_info' , $e->getMessage())
+                      ->with('target' , '#singleAdd');
+
+              }catch(QueryException $qe){
+                return redirect()->back()
+                      ->with('error' , 'Database cannot read input value.')
+                      ->with('error_info' , $qe->getMessage())
+                      ->with('target' , '#singleAdd');
+
+              }
+            }
 
 }

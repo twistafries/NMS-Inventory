@@ -208,7 +208,7 @@ class InventoryController extends BaseController
       $data['equipment'] = TblItEquipment::get_all_equipment();
       return view('content/trial-ajax' , $data);
     }
-    
+
     public static function showFilterOptions(){
       $filter['subtype'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $filter['type'] = TblItEquipmentType::get_all_equipment_type();
@@ -276,7 +276,7 @@ class InventoryController extends BaseController
       && isset($data['user_id'])
       && isset($data['warranty_start'])
       && isset($data['warranty_end'])
-      && isset($data['supplier'])
+      && isset($data['supplier_id'])
       && isset($data['serial_no'])
       && isset($data['or_no'])
       && isset($data['status_id']) ){

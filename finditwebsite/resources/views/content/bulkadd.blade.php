@@ -1,16 +1,16 @@
 @extends('../template') @section('css')
 <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
 <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}"> 
+<link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
 <style>
 body{
     overflow-x: hidden;
 }
 </style>
-@stop 
+@stop
 
-@section('title') Bulk Add 
-@stop 
+@section('title') Bulk Add
+@stop
 
 @section('content')
 <div class="container-fluid m-0">
@@ -22,7 +22,7 @@ body{
     <input name="bulk[details][]" type="text" class="form-control" id="item1_details">
     <input name="bulk[serial_no][]" type="text" class="form-control" id="item1_serial_no">
     <input name="bulk[or_no][]" type="text" class="form-control" id="item1_no">
-    
+
     item2
         <input name="bulk[brand][]" type="text" class="form-control" id="item2_brand">
         <input name="bulk[model][]" type="text" class="form-control" id="item2_model">
@@ -56,13 +56,13 @@ body{
 <!-- subtype_id`, `brand`, `model`, `details`, `serial_no`, `or_no`, `supplier`, `warranty_start`, `warranty_end`, `user_id`,
 `status_id` -->
             <tbody id="equipment_data">
-                
+
             </tbody>
 
         </table>
 
         <div align="center" id="submit_div">
-            
+
         </div>
     </form>
 
@@ -82,9 +82,9 @@ body{
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
                                 <p class="card-title">Quantity</p>
-                                <input type="number" class="form-control" name="quantity" id="quantity" min="1" max="250">
+                                <input type="number" class="form-control" name="quantity" id="quantity" min="1" max="250" style="padding: 0;">
                             </div>
-                    
+
                             <!-- Subtype -->
                             <div class="col col-lg-5 col-md col-sm col-xs">
                                 <div class="form-group">
@@ -97,7 +97,7 @@ body{
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col col-lg-5 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Status</p>
@@ -109,7 +109,7 @@ body{
                                     </select>
                                 </div>
                             </div>
-                    
+
                             <!-- Brand -->
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
@@ -118,7 +118,7 @@ body{
                                     <span id="error_brand" class="text-danger"></span>
                                 </div>
                             </div>
-                            
+
                             <!-- Model -->
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
@@ -127,7 +127,7 @@ body{
                                     <span id="error_model" class="text-danger"></span>
                                 </div>
                             </div>
-                    
+
                             <!-- Details -->
                             <div class="col col-lg-12 col-md col-sm col-xs">
                                 <div class="form-group">
@@ -137,7 +137,7 @@ body{
                                     <span id="error_details" class="text-danger"></span>
                                 </div>
                             </div>
-                    
+
                             <!-- <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Serial Number</p>
@@ -145,7 +145,7 @@ body{
                                     <span id="error_serial_no" class="text-danger"></span>
                                 </div>
                             </div> -->
-                    
+
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">OR Number</p>
@@ -153,7 +153,7 @@ body{
                                     <span id="error_or" class="text-danger"></span>
                                 </div>
                             </div>
-                    
+
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Supplier</p>
@@ -161,7 +161,7 @@ body{
                                     <span id="error_supplier" class="text-danger"></span>
                                 </div>
                             </div>
-                           
+
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Warrant Start</p>
@@ -169,7 +169,7 @@ body{
                                     <span id="error_warranty_start" class="text-danger"></span>
                                 </div>
                             </div>
-                           
+
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Warrant End</p>
@@ -178,7 +178,7 @@ body{
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                 </div>
 
@@ -192,7 +192,7 @@ body{
             </div>
         </div>
     </div>
-    
+
 </div>
 
 
@@ -204,29 +204,6 @@ body{
     $(document).ready(function () {
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
-        
-        function fetchPurchases(id){
-            $.ajax({
-                url: 'getPurchase/' + id,
-                type: 'get',
-                dataType: 'json',
-                success: function(response){
-                    console.log(response['data']);
-                    var len = 0;
-
-                    if(response['data'] != null){
-                        len = response['purchases'].length;
-                    }
-
-                    if(len > 0){
-                        for(var i=0; i < len; i++){
-                            
-                        }
-                    }
-                }
-            })
-        }
-
 
         $('#save').click(function () {
             var count = 1;
@@ -240,7 +217,7 @@ body{
             var error_warranty_start = '';
             var error_warranty_end = '';
             var buttonCount = $('#submit_div').children().length;
-    
+
                 // if($('#name').val() == ''){
                 //     error_name = 'Name is required';
                 //     $('#error_name').text(error_name);
@@ -252,12 +229,12 @@ body{
                 //     $('#first_name').css('border-color', '');
                 //     first_name = $('#first_name').val();
                 // }
-    
+
                 if($('#save').text() == 'Save') {
                     var subtype_id = $('#subtype').val();
                     var status_id = $('#status').val();
                     // console.log(subtype_name);
-    
+
                     var subtype_name = $("select#subtype").change().children("option:selected").text();
                     var status_name = $("select#status").change().children("option:selected").text();
                     var brand = $('#brand').val();
@@ -283,15 +260,15 @@ body{
                         output += '<td>' + supplier + ' <input type="hidden" name="bulk[supplier][]" id="supplier' + count + '" class="supplier" value="' + supplier + '" /></td>';
                         output += '<td>' + warranty_start + ' <input type="hidden" name="bulk[warranty_start][]" id="warranty_start' + count + '" class="warranty_start" value="' + warranty_start + '" /></td>';
                         output += '<td>' + warranty_end + ' <input type="hidden" name="bulk[warranty_end][]" id="warranty_end' + count + '" class="warranty_end" value="' + warranty_end + '" /></td>';
-    
+
                         // output += '<td><button type="button" name="view_details" class="btn btn-warning btn-xs view_details" id="' + count + '">View</button>';
                         // output += '<button type="button" name="remove_details" class="btn btn-danger btn-xs remove_details" id="' + count + '">Remove</button></td>';
                         output += '</tr>';
                         $('#equipment_data').append(output);
-                        
+
                     }
-                    
-    
+
+
                 }
 
                 if (buttonCount == 0) {
@@ -302,8 +279,8 @@ body{
             });
 
 
-    });    
-    
+    });
+
 
 </script>
 
