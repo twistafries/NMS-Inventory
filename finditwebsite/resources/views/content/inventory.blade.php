@@ -308,7 +308,7 @@ RAM:</textarea>
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="systemUnit">
         <div class="modal-dialog modal-xxl">
-            <div class="modal-content">
+            <div class="modal-content" style="height: 75%;">
 
                 <div id="addSystemUnit" class="modal-header">
                     <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Add System Unit</h5>
