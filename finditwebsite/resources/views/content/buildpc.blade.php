@@ -18,23 +18,26 @@
 
 @section('content')
 <h1>Build A PC</h1>
-    <form action="{!! url('/buildUnit'); !!}" method="post">
+    <form action="{!! url('/buildFromParts'); !!}" method="post">
         {!! csrf_field() !!}
-        <div class="input-group">
-            <input name="name" type="text" class="form-control" required>
-        </div>
+            
+
         <div class="form-group">
+            <div class="form-row">
+                <label for="name" class="col-md-1 col-form-label">Unit Label and Number</label>
+                <input name="name" type="text"  placeholder="Department Unit #" class="form-control col-sm-4" required>
+            </div>
             @foreach($eq_subtype as $subtype)
                 <p>
                 @if($subtype->type_id == 1)
                     <div class="form-row align-items-center">
                         <label for="{{$subtype->name}}" class="col-md-1 col-form-label">{{$subtype->name}}</label>
                             <div class="col-md-8">
-                                <select id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
+                                <select name="components[]" id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
                                     <option value="" selected disabled hidden> -- select an option -- </option>
                                     @foreach($it_equipment as $item)
                                         @if($item->subtype_id == $subtype->id)
-                                            <option value="{{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
+                                            <option value = "{{$item->id}}" id="{{$item->brand}} {{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
                                         @endif
                                     @endforeach 
                                 </select>
@@ -65,7 +68,7 @@
             var descCPArr;
             var descCP;
 
-            var option = mb.options[mb.selectedIndex].value;
+            var option = mb.options[mb.selectedIndex].id;
             var pattern = /Socket:(.*)/;
             var ramPat = /DDR[0-9]/;
             var descMBArr = pattern.exec(option);
@@ -74,7 +77,7 @@
             var descRAM = descRAMArr[0].replace(/[\W]/,"");
             
             for (var i=0; i<cpu.length; i++){
-                cpSelect = cpu.options[i].value;
+                cpSelect = cpu.options[i].id;
                 descCPArr = pattern.exec(cpSelect);
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
@@ -99,12 +102,12 @@
             var descCPArr;
             var descCP;
 
-            var option = mb.options[mb.selectedIndex].value;
+            var option = mb.options[mb.selectedIndex].id;
             var pattern = /Socket:(.*)/;
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
             for (var i=0; i<cpu.length; i++){
-                cpSelect = cpu.options[i].value;
+                cpSelect = cpu.options[i].id;
                 descCPArr = pattern.exec(cpSelect);
                 if(descCPArr != undefined){
                     descCP = descCPArr[1].replace(/[\W]/g,"");
