@@ -204,7 +204,7 @@ body{
     $(document).ready(function () {
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
-
+        
         $('#save').click(function () {
             var count = 1;
             var quantity = $('#quantity').val();
@@ -240,7 +240,6 @@ body{
                     var brand = $('#brand').val();
                     var model = $('#model').val();
                     var details = $('#details').val();
-                    // var serial_no = $('#serial_no').val();
                     var or_no = $('#or_no').val();
                     var supplier = $('#supplier').val();
                     var warranty_start = $('#warranty_start').val();
@@ -277,6 +276,58 @@ body{
                     $('#submit_div').append(output_submit);
                 }
             });
+
+            fetchRecords(1);
+
+        // Fetch Data for View Modal
+        function fetchRecords(id) {
+            // id=1;
+            $.ajax({
+                url: 'getPurchases/' + id,
+                type: 'get',
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response['purchases']);
+                    var len = 0;
+                    // console.log("display data div null");
+
+                    if (response['purchases'] != null) {
+                        len = response['purchases'].length;
+                        console.log("response[] not null");
+                        console.log("len: " + len);
+                    }
+
+                    if (len > 0){
+                        console.log("len > 0");
+                        for(var i = 0; i < len; i++){
+                            var id = response['purchases'][i].id;
+                            var p_id = response['purchases'][i].p_id;
+                            var subtype_id = response['purchases'][i].subtype_id;
+                            var brand = response['purchases'][i].brand;
+                            var model = response['purchases'][i].model;
+                            var details = response['purchases'][i].details;
+                            var qty = response['purchases'][i].qty;
+                            var is_part = response['purchases'][i].is_part;
+                            var unit_number = response['purchases'][i].unit_number;
+                            var supplier = response['purchases'][i].supplier;
+                            var subtype = response['purchases'][i].unit_number;
+                            console.log(qty)
+                            $('#quantity').val(qty);
+                            $('#subtype').val(subtype_id);
+                            $('#brand').val(brand);
+                            $('#model').val(model);
+                            $('#details').val(details);
+                            $('#supplier').val(supplier);
+                        }
+
+
+                    }
+                }
+            })
+        }    
+                
+
+
 
 
     });

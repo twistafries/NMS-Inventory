@@ -65,6 +65,12 @@ class PurchasesController extends BaseController
         return view ('content/purchases' , $data);
     }
 
+    public function fetchBulkPurchases($id = 0){
+      $data['purchases'] = PurchasedItems::get_bulk_purchased_items($id);
+      echo json_encode($data);
+      exit;
+    }
+
 
         public function viewPurchases(){
           if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){

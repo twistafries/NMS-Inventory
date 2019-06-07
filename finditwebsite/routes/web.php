@@ -52,6 +52,9 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 //     return view('content/trial-ajax');
 // });
 
+Route::get('/getPurchases/{id}', 'PurchasesController@fetchBulkPurchases');
+
+
 Route::get('/getInfo/{id}', 'InventoryController@showEquipmentInfo');
 Route::get('/getFilterOption', 'InventoryController@showFilterOptions');
 Route::get('/ajax', 'InventoryController@showAllEquipment');
@@ -119,9 +122,9 @@ Route::post('/editIssuance', 'InventoryController@editEquipment');
 Route::post('/editAssociates', 'AssociateController@editAssociates');
 
 
-Route::get('/bulk-add', 'BulkController@showFields');
+// Route::get('/bulk-add', 'BulkController@showFields');
 Route::get('/bulkadd', 'BulkController@showFields');
-Route::get('/temp-bulk-add', 'BulkController@showFields');
+// Route::get('/temp-bulk-add', 'BulkController@showFields');
 Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 
 Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');

@@ -22,6 +22,18 @@ class PurchasedItems extends Model
         return $query;
     }
 
+    public static function get_bulk_purchased_items($params){
+        $query = \DB::table('purchased_items')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'purchased_items.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('supplier', 'supplier.id', '=', 'purchased_items.supplier_id')
+        -> select('purchased_items.*','supplier.supplier_name as supplier', 'it_equipment_subtype.name as subtype')
+        -> where('p_id', '=', $params)
+        -> orderBy('subtype_id' , 'asc')
+        -> get();
+        return $query;
+    }
+
     public static function get_all_items($params=null){
         $query = \DB::table('purchased_items')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'purchased_items.subtype_id')
