@@ -204,6 +204,7 @@
                     <tr>
 
 
+                        <th>ID</th>
                         <th>Model</th>
                         <th>Brand</th>
                         <th>Types</th>
@@ -223,6 +224,7 @@
                     <tr data-toggle="modal" data-target="#modal-{!! $equipment->id !!}">
 
 
+                        <td> {{ $equipment->id }} </td>
                         <td> {{ $equipment->model }} </td>
                         <td> {{ $equipment->brand }} </td>
                         <td> {{ $equipment->type_name }} </td>
@@ -323,9 +325,11 @@
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                             @if($equipment->warranty_end < Carbon::today()) 
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#">
+                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#for-repair-{!! $equipment->id !!}">
                                                 For Repair
                                             </button>
+                                            <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                data-target="#decommissionedModal-{!! $equipment->id !!}">Decommission</button>
                                                 @else
                                                 @if($equipment->status_id == 4)
                                                 <div class="btn-group" role="group">
@@ -336,7 +340,8 @@
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a class="dropdown-item" data-dismiss="modal" data-toggle="modal"
                                                             data-target="#replacement-received-{!! $equipment->id !!}">Replacement Received</a>
-                                                        <a class="dropdown-item warranty-not" href="#">Warranty Not Covered</a>
+                                                        <a class="dropdown-item warranty-not" href="#">Mark For Repair (Warranty Not Covered)</a>
+                                                        <a class="dropdown-item warranty-not" href="#">Purchase Replacement (Warranty Not Covered)</a>
                                                     </div>
                                                 </div>
                                                 @else
@@ -344,7 +349,7 @@
                                                     data-target="#return-{!! $equipment->id !!}">For Return</button>
                                                 @endif
                                                 <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#decommissionedModal">Decommissioned</button>
+                                                    data-target="#decommissionedModal-{!! $equipment->id !!}">Decommissioned</button>
                                                 @endif
                                         </div>
                                             
@@ -406,7 +411,7 @@
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
                                 </form>
-                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#for-repair-{!! $equipment->id !!}">Mark for repair</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
@@ -463,30 +468,100 @@
                         </div>
                     </div>
                     </div>
+                        
+                    <!-- For Repair to supplier warning modal -->
+                    <div class="modal fade" id="for-repair-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
+                        aria-hidden="true">
+
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="height:380px; width:620px;">
+                                <div class="modal-header">
+                                <h5 class="modal-title">For Repair Equipment Warning</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                    {!! csrf_field() !!}
+                                <div class="modal-body">
+                                    <div class="warning-content">
+                                        <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
+                                        <small class="text-center">Are you sure you want to mark equipment,
+                                            <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                            for repair?
+                                        </small>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-secondary text-uppercase">Purchase Replacement</button>
+                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                    <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                    <input type="hidden" name="status_id" value="3">
+                                    <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary text-uppercase">For Repair</button>
+                                </form>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                     <!-- Decomissioned -->
-                    <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                    <div class="modal fade" id="decommissionedModal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
                                     <h5 class="modal-title"></h5>
+                                        Decommission Equipment Warning
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
 
-                                    <div class="modal-body">
-                                      <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to change the status of this item to Decommissioned?</p>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                        {!! csrf_field() !!}
+                                        <div class="modal-body">
+                                            <div class="warning-content">
+                                                <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
+                                                <small class="text-center">Are you sure you want to mark equipment,
+                                                    <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                                    for decommission?
+                                                </small>
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-secondary text-uppercase">Purchase Replacement</button>
+                                                <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                    data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample"
+                                                    type="button">
+                                                    Add Remarks
+                                                </button>
+                                                <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                                    <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                </div>
+                                    
+                                            </div>
+                                    
+                                            <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                            <input type="hidden" name="status_id" value="7">
+                                            <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                        </div>
+                                    
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary text-uppercase">Decommission</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>

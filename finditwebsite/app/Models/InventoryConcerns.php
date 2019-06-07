@@ -44,6 +44,7 @@ class InventoryConcerns extends Model
         $inventory_concerns->status_id = $params['status_id'];	
 
         try{
+            // dd($inventory_concerns);
           $inventory_concerns->save();
           $id = DB::getPdo()->lastInsertId();
 

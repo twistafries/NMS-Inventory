@@ -352,7 +352,7 @@ class TblItEquipment extends Model
         $it_equipment->status_id = $params['status_id'];
 
         if(isset($params['supplier']))
-        $it_equipment->supplier = $params['supplier'];
+        $it_equipment->supplier_id = $params['supplier'];
 
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
