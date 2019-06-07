@@ -18,7 +18,11 @@
 
 @section('content')
 <h1>Build A PC</h1>
-    <form>
+    <form action="{!! url('/buildUnit'); !!}" method="post">
+        {!! csrf_field() !!}
+        <div class="input-group">
+            <input name="name" type="text" class="form-control" required>
+        </div>
         <div class="form-group">
             @foreach($eq_subtype as $subtype)
                 <p>
@@ -30,7 +34,7 @@
                                     <option value="" selected disabled hidden> -- select an option -- </option>
                                     @foreach($it_equipment as $item)
                                         @if($item->subtype_id == $subtype->id)
-                                            <option value="{{$item->model}} {{$item->details}}">{{$item->model}}</option>
+                                            <option value="{{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
                                         @endif
                                     @endforeach 
                                 </select>
@@ -42,7 +46,7 @@
                 @endif
                 </p>
             @endforeach    
-            <input class="btn btn-primary" type="submit" value="Build">
+            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> Build Unit</button>
         </div>
     </form>
     <script>
@@ -67,8 +71,8 @@
             var descMBArr = pattern.exec(option);
             var descMB = descMBArr[1].replace(/[\W]/g,"");
             var descRAMArr = ramPat.exec(option);
-            var descRAM = descRAMArr[0];
-            console.log(descRAM.replace(/[\W]/,""));
+            var descRAM = descRAMArr[0].replace(/[\W]/,"");
+            
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].value;
                 descCPArr = pattern.exec(cpSelect);
