@@ -331,28 +331,6 @@
         </div>
     </div>
 
-
-
-    <div class="row card-row pl-0">
-        <div class="col-6 p-1">
-            <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> Zero Availability Items </div>
-                <h4>
-                    <center>10</center>
-                </h4>
-
-            </div>
-        </div>
-
-        <div class="col-6 p-1">
-            <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> Low Availability Items </div>
-                <h4>
-                    <center>10</center>
-                </h4>
-            </div>
-        </div>
-    </div>
 </div>
 
 <br>

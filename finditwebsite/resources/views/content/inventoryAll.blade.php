@@ -69,6 +69,9 @@
                     </div>
 <!--    PAGE CONTENT END -->
 
+@section('')
+
+@stop
 @if(Session::has('warning'))
 <div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">Warning</h4>
@@ -1677,7 +1680,7 @@ var types = data[2]; // use data for the age column
 var subtypes = data[3];
 var suppliers = data[5];
 var brands = data[1];
-var statuses = data[7];
+var statuses = data[8];
 
 function subtypeUnblock(element) {
     $("#subtypes option:nth-child("+element+")").show();
