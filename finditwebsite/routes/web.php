@@ -126,11 +126,21 @@ Route::post('/temp-bulk-add-post', 'BulkController@bulkAddInventory');
 Route::post('/hardDeleteEquipment', 'InventoryController@hardDeleteEquipment');
 Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
 
+/*
+|--------------------------------------------------------------------------
+| Build A PC (from parts) Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+// deprecated, from modal
 Route::post('/buildUnit', 'InventoryController@buildUnit');
+
+// newer, from page
+Route::get('/buildpc', 'PCBuildController@buildPC');
+Route::post('/buildFromParts', 'PCBuildController@buildFromParts');
+
 
 Route::post('/template', 'InventoryController@addEquipment');
 
-
-
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
-Route::get('/buildpc', 'PCBuildController@buildPC');

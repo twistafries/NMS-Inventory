@@ -45,12 +45,17 @@
                     <a href="{!! url('/inventory') !!}"><i class="fas fa-laptop"></i><span class="hide-menu">Items</span></a>
                 </li>
                 <li>
+                    <a href="{!! url('/systemUnit') !!}">   <i class="fas fa-microchip"></i><span class="hide-menu">System Unit</span></a>
+                </li>
+                <li>
                     <a href="{!! url('/repair') !!}"><i class="fas fa-tools"></i><span class="hide-menu">For Repair</span></a>
                 </li>
 
                 <li>
                     <a href="{!! url('/decommissioned') !!}"><i class="fas fa-trash"></i><span class="hide-menu">Decommissioned</span></a>
                 </li>
+                
+                
             </ul>
         </li>
 

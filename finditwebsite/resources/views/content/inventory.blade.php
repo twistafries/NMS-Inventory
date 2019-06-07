@@ -19,91 +19,15 @@
 <div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 ">INVENTORY</span>
-      <!-- Toolbox -->
-    <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <div class="btn-group" role="group" aria-label="Basic example">
-
-
-                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
-
-                    <a href="#" data-toggle="tooltip" title="Single Add">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
-                    </a>
-                </button>
-                <!-- Bulk add  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="bulkAdd">
-                    <a  data-toggle="tooltip" title="Bulk Add" href="{!! url('/bulk-add') !!}">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/box.png') }}"> Bulk Add
-                    </a>
-                </button>
-
-                <!-- Add System Unit  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSystemUnit" data-target="#systemUnit" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Add System Unit">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/system-unit.png') }}"> Add System Unit
-                    </a>
-                </button>
-
-                <!-- Build A pc  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc">
-                    <a href="{!! url('/buildpc') !!}" data-toggle="tooltip" title="Build A Pc">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
-                    </a>
-                </button>
-                <!--  Add Subtype  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSub" data-target="#addSubtype" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Add Subtype">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/subtype.png') }}"> Add Subtype
-                    </a>
-                </button>
-
-                <!-- Add Option-->
-<!--
-                <div class="dropdown">
-                  <button class="btn" type="button" id="addOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="Add">
-                          <img class="tool-item" src="../../assets/icons/table-toolbar-icons/add-icon.png"> Add
-                      </a>
-                  </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#singleAdd" href="#">Single Add</a></li>
-                      <li><a class="dropdown-item" href="{!! url('/bulk-add') !!}">Bulk Add</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#systemUnit" href="#">Add System Unit</a></li>
-                      <li><a class="dropdown-item" data-toggle="modal" data-target="#build" href="#">Build a PC</a></li>
-                    </ul>
-              </div>
-                 Delete
--->
-<!--
-                <div class="dropdown">
-                  <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="deleteOption" data-toggle="modal" data-target="#hardDelete"  aria-haspopup="true" aria-expanded="false">
-                      <a href="#" data-toggle="tooltip" title="delete">
-                          <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/delete-icon.png"> Delete
-                      </a>
-                      </button>
-              </div>
--->
-
-
-                <!-- Sort -->
-                <!-- <button type="button" class="btn">
-                    <a href="#" data-toggle="tooltip" title="sort">
-                        <img class="tool-item"  src="../../assets/icons/table-toolbar-icons/sort-icon.png">
-                    </a>
-                </button> -->
-
-
-
-            </div>
-
-
-        </div>
-    </div>
-        <nav aria-label="breadcrumb" style="font-size:23px; font-weight:bold;">
+     <!-- Toolbox -->
+        @include('content.toolbar')
+        <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
+                    </li>
+                     <li class="breadcrumb-item ">
+                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
                     </li>
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
