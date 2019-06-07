@@ -111,7 +111,7 @@
 
             <div class="btn-group" role="group" aria-label="Basic example">
 
-                <button class="btn btn-outline-dark rounded-pill" type="button " id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">Single Issue</a>
+                <button class="btn btn-outline-dark rounded-pill" type="button " id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">Issue An Item</a>
                 </button>
 
                
