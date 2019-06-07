@@ -33,14 +33,25 @@
                     <div class="form-row align-items-center">
                         <label for="{{$subtype->name}}" class="col-md-1 col-form-label">{{$subtype->name}}</label>
                             <div class="col-md-8">
-                                <select name="components[]" id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
-                                    <option value="" selected disabled hidden> -- select an option -- </option>
-                                    @foreach($it_equipment as $item)
-                                        @if($item->subtype_id == $subtype->id)
-                                            <option value = "{{$item->id}}" id="{{$item->brand}} {{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
-                                        @endif
-                                    @endforeach 
-                                </select>
+                                @if($subtype->name == 'Sound Card' || $subtype->name == 'Heat Sink Fan' || $subtype->name == 'GPU')
+                                    <select name="components[]" id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()">
+                                        <option value="" selected disabled hidden> -- select an option -- </option>
+                                        @foreach($it_equipment as $item)
+                                            @if($item->subtype_id == $subtype->id)
+                                                <option value = "{{$item->id}}" id="{{$item->brand}} {{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
+                                            @endif
+                                        @endforeach 
+                                    </select>
+                                @else
+                                    <select name="components[]" id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()" required>
+                                        <option value="" selected disabled hidden> -- select an option -- </option>
+                                        @foreach($it_equipment as $item)
+                                            @if($item->subtype_id == $subtype->id)
+                                                <option value = "{{$item->id}}" id="{{$item->brand}} {{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
+                                            @endif
+                                        @endforeach 
+                                    </select>
+                                @endif
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-outline-primary btn" onclick="clearOption('id{{$subtype->name}}')">Clear</button>
