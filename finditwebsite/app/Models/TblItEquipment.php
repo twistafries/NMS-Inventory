@@ -20,6 +20,7 @@ class TblItEquipment extends Model
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
         -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
         -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> where('subtype_id' , '!=' , '7')
         -> orderBy('created_at' , 'desc')
         -> get();
         return $query;
@@ -352,7 +353,7 @@ class TblItEquipment extends Model
         $it_equipment->status_id = $params['status_id'];
 
         if(isset($params['supplier']))
-        $it_equipment->supplier = $params['supplier'];
+        $it_equipment->supplier_id = $params['supplier'];
 
         if(isset($params['unit_id']))
         $it_equipment->unit_id = $params['unit_id'];
@@ -401,7 +402,14 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function getByType($category){
+        $query = TblItEquipment::leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'subtype_id')
+        -> select('*')
+        -> where('it_equipment_subtype.type_id', '=', $category)
+        -> get();
 
+        return $query;
+    }
 
 
 }

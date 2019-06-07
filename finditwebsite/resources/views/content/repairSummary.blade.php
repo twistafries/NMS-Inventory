@@ -46,8 +46,6 @@
             </nav>
     </nav>
 
-
-<form action="" id="form1">
     <!-- Toolbox -->
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
@@ -63,7 +61,6 @@
                         </div>
 
                         <div class="modal-body">
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         </div>
 
                         <div class="modal-footer">
@@ -1384,9 +1381,57 @@
                             <td>{{$for_repair_mouse->serial_no}}</td>
                             <td>{{$for_repair_mouse->warranty_start}}-{{$for_repair_mouse->warranty_end}}</td>
                             <td>
-                            <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-{!! $for_repair_mouse->id !!}">
+                                 <i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                           </td>
+                           <!-- Make Available prompt-->
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_mouse->id !!}" tabindex="-1" role="dialog" 
+                                aria-hidden="true">
+
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="height:450px;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                                {!! csrf_field() !!}
+                                                <div class="modal-body">
+                                                    <div class="warning-content">
+                                                        <p>Are you sure you want to make equipment,
+                                                            <b>{{ $for_repair_mouse->model }} {{ $for_repair_mouse->brand }} available in the inventory?</b>
+                                                        </p>
+                                                    </div>
+                                                    <div class="btn-group" role="group">
+                                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                            data-target="#remarks-4-{!! $for_repair_mouse->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                                            Add Remarks
+                                                        </button>
+                                                        <div class="collapse" id="remarks-4-{!! $for_repair_mouse->id !!}">
+                                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <input type="hidden" name="id" value="{!! $for_repair_mouse->id !!}">
+                                                    <input type="hidden" name="status_id" value="1">
+                                                    <input type="hidden" name="orig_status_id" value="{!! $for_repair_mouse->status_id !!}">
+                                                </div>
+                                                
+                                                
+                                                <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success text-uppercase">Yes</button>
+                                            </form>
+
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </tr>
                         @endforeach
                         @endif
@@ -1435,9 +1480,56 @@
                             <td>{{$for_repair_keyboard->serial_no}}</td>
                             <td>{{$for_repair_keyboard->warranty_start}}-{{$for_repair_keyboard->warranty_end}}</td>
                             <td>
-                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-{!! $for_repair_keyboard->id !!}"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                             </td>
+                            <!-- Make Available prompt-->
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_keyboard->id !!}" tabindex="-1" role="dialog" 
+                                aria-hidden="true">
+
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="height:450px;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                                {!! csrf_field() !!}
+                                                <div class="modal-body">
+                                                    <div class="warning-content">
+                                                        <p>Are you sure you want to make equipment,
+                                                            <b>{{ $for_repair_keyboard->model }} {{ $for_repair_keyboard->brand }} available in the inventory?</b>
+                                                        </p>
+                                                    </div>
+                                                    <div class="btn-group" role="group">
+                                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                            data-target="#remarks-4-{!! $for_repair_keyboard->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                                            Add Remarks
+                                                        </button>
+                                                        <div class="collapse" id="remarks-4-{!! $for_repair_keyboard->id !!}">
+                                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <input type="hidden" name="id" value="{!! $for_repair_keyboard->id !!}">
+                                                    <input type="hidden" name="status_id" value="1">
+                                                    <input type="hidden" name="orig_status_id" value="{!! $for_repair_keyboard->status_id !!}">
+                                                </div>
+                                                
+                                                
+                                                <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success text-uppercase">Yes</button>
+                                            </form>
+
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
 
                         </tr>
                         @endforeach
@@ -1485,9 +1577,55 @@
                             <td>{{$for_repair_monitor->serial_no}}</td>
                             <td>{{$for_repair_monitor->warranty_start}}-{{$for_repair_monitor->warranty_end}}</td>
                             <td>
-                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-{!! $for_repair_monitor->id !!}"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            <!-- Make Available prompt-->
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_monitor->id !!}" tabindex="-1" role="dialog" 
+                                aria-hidden="true">
 
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="height:450px;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                                {!! csrf_field() !!}
+                                                <div class="modal-body">
+                                                    <div class="warning-content">
+                                                        <p>Are you sure you want to make equipment,
+                                                            <b>{{ $for_repair_monitor->model }} {{ $for_repair_monitor->brand }} available in the inventory?</b>
+                                                        </p>
+                                                    </div>
+                                                    <div class="btn-group" role="group">
+                                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                            data-target="#remarks-4-{!! $for_repair_monitor->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                                            Add Remarks
+                                                        </button>
+                                                        <div class="collapse" id="remarks-4-{!! $for_repair_monitor->id !!}">
+                                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <input type="hidden" name="id" value="{!! $for_repair_monitor->id !!}">
+                                                    <input type="hidden" name="status_id" value="1">
+                                                    <input type="hidden" name="orig_status_id" value="{!! $for_repair_monitor->status_id !!}">
+                                                </div>
+                                                
+                                                
+                                                <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success text-uppercase">Yes</button>
+                                            </form>
+
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </tr>
                         @endforeach
                         @endif    
@@ -1528,19 +1666,66 @@
                         @if(count($for_repair_laptops) == 0)
                         <tr class="text-center">
                             <td colspan="6">No Laptops for Repair</td>
-
                         </tr>
                         @else
-                        @foreach($for_repair_mice as $for_repair_mouse)
+                        @foreach($for_repair_laptops as $for_repair_laptop)
                         <tr>
-                            <td>{{$for_repair_mouse->id}}</td>
-                            <td>{{$for_repair_mouse->brand}}</td>
-                            <td>{{$for_repair_mouse->details}}</td>
-                            <td>{{$for_repair_mouse->serial_no}}</td>
-                            <td>{{$for_repair_mouse->warranty_start}}-{{$for_repair_mouse->warranty_end}}</td>
+                            <td>{{$for_repair_laptop->id}}</td>
+                            <td>{{$for_repair_laptop->brand}}</td>
+                            <td>{{$for_repair_laptop->details}}</td>
+                            <td>{{$for_repair_laptop->serial_no}}</td>
+                            <td>{{$for_repair_laptop->warranty_start}}-{{$for_repair_laptop->warranty_end}}</td>
                             <td>
-                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-{!! $for_repair_laptop->id !!}">
+                                 <i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            <!-- Make Available prompt-->
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_laptop->id !!}" tabindex="-1" role="dialog" 
+                                aria-hidden="true">
+
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="height:450px;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                                {!! csrf_field() !!}
+                                                <div class="modal-body">
+                                                    <div class="warning-content">
+                                                        <p>Are you sure you want to make equipment,
+                                                            <b>{{ $for_repair_laptop->model }} {{ $for_repair_laptop->brand }} available in the inventory?</b>
+                                                        </p>
+                                                    </div>
+                                                    <div class="btn-group" role="group">
+                                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                            data-target="#remarks-4-{!! $for_repair_laptop->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                                            Add Remarks
+                                                        </button>
+                                                        <div class="collapse" id="remarks-4-{!! $for_repair_laptop->id !!}">
+                                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <input type="hidden" name="id" value="{!! $for_repair_laptop->id !!}">
+                                                    <input type="hidden" name="status_id" value="1">
+                                                    <input type="hidden" name="orig_status_id" value="{!! $for_repair_laptop->status_id !!}">
+                                                </div>
+                                                
+                                                
+                                                <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary text-uppercase">Yes</button>
+                                            </form>
+
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
 
                         </tr>
                         @endforeach
@@ -1589,10 +1774,58 @@
                             <td>{{$for_repair_tablet->serial_no}}</td>
                             <td>{{$for_repair_tablet->warranty_start}}-{{$for_repair_tablet->warranty_end}}</td>
                             <td>
-                            <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-$for_repair_tablet"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            <!-- Make Available prompt-->
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_tablet->id !!}" tabindex="-1" role="dialog" 
+                                aria-hidden="true">
 
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="height:450px;">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                                {!! csrf_field() !!}
+                                                <div class="modal-body">
+                                                    <div class="warning-content">
+                                                        <p>Are you sure you want to make equipment,
+                                                            <b>{{ $for_repair_tablet->model }} {{ $for_repair_tablet->brand }} available in the inventory?</b>
+                                                        </p>
+                                                    </div>
+                                                    <div class="btn-group" role="group">
+                                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                            data-target="#remarks-4-{!! $for_repair_tablet->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                                            Add Remarks
+                                                        </button>
+                                                        <div class="collapse" id="remarks-4-{!! $for_repair_tablet->id !!}">
+                                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <input type="hidden" name="id" value="{!! $for_repair_tablet->id !!}">
+                                                    <input type="hidden" name="status_id" value="1">
+                                                    <input type="hidden" name="orig_status_id" value="{!! $for_repair_tablet->status_id !!}">
+                                                </div>
+                                                
+                                                
+                                                <div class="modal-footer">
+                                                <button type="submit" class="btn btn-success text-uppercase">Yes</button>
+                                            </form>
+
+                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
                         </tr>
+
+                        
                         @endforeach
                         @endif
                     </tbody>
@@ -1627,7 +1860,7 @@
                     <tbody>
                         @if(count($for_repair_phones) == 0)
                         <tr class="text-center">
-                            <td colspan="6">No Laptops for Repair</td>
+                            <td colspan="6">No Mobile Phones for Repair</td>
 
                         </tr>
                         @else
@@ -1685,40 +1918,7 @@
     </div>
 
 
-    <!-- Make Available prompt-->
-    <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog" aria-labelledby="DecommissionModalTitle"
-        aria-hidden="true">
-
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="height:450px;">
-                    <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="warning-content">
-                            <p>Warning!</p>
-                            <p>Are you sure you want to change the status of this item to Available?</p>
-                        </div>
-                        <div class="">
-                          <label for="exampleFormControlTextarea1">Remarks</label>
-                        </div>
-                        <div class="">
-                          <textarea class="" id="exampleFormControlTextarea1" rows="3" style="width: 100%;"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
-    </div>
-
+    
 
     <!-- For Repair prompt-->
     <div class="modal fade" id="forRepairModal" tabindex="-1" role="dialog" aria-labelledby="DecommissionModalTitle"

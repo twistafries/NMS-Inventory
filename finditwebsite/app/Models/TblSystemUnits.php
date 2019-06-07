@@ -72,4 +72,14 @@ class TblSystemUnits extends Model
         return \Redirect::to('/inventoryAll')->with('error' , 'Database error(s)');
       }
     }
+
+    public static function unitByDep($department){
+      $query = \DB::table('system_units')
+      -> select('*')
+      -> where('system_units.dept_id', '=', $department)
+      ->get();
+
+      return $query;
+
+    }
 }
