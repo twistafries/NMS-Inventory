@@ -70,7 +70,7 @@
           </th>
           <th>
             <label for="subtype">Subtype: </label>
-            <select id="subtypes" name="subtypes" style="height: 1.8rem;">
+            <select id="subtypes" name="subtypes" style="height: 1.8rem; margin-right: 1rem;">
               <option value="any">Any</option>
               @foreach ($subtypesSel as $subtypesSel)
               <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
@@ -124,7 +124,7 @@
       <!-- purchases modal -->
       <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="">
           <div class="modal-dialog modal-xxl">
-              <div class="modal-content" style="width: 1100px;">
+              <div class="modal-content" style="width: 1000px;">
                   <div class="modal-header">
                       <div class="container">
                           <h5>New Purchase: Purchase Number {{$purchase->count()+1}}</h5>
@@ -161,13 +161,17 @@
                     <input name="purchase_no" value="{{$purchase->count()+1}}" hidden>
                       <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
 
-                          <div class="adds row" style="margin-right: 5rem;">
-                                <div class="input-group col-2" style="margin-top: 1rem;">
-                                  <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
-                                    <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;">
-                                  </div>
+                          <div class="adds row" style="">
+                              <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
+                                <div class="">
+                                  <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
+                                  <select id="subtypes" name="purchase[subtype_id][]" style="height: 1.8rem; width: 9rem;">
+                                    @foreach ($subtypes as $subtypes)
+                                    <option value="{{$subtypes->id}}">{{$subtypes->name}}</option>
+                                    @endforeach
+                                  </select>
                                 </div>
+                              </div>
 
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
@@ -176,21 +180,21 @@
                                   </div>
                                 </div>
 
-                                <div class="input-group col-3" style="margin-top: 1rem;">
+                                <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;"></textarea>
+                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">Socket:
+Chipset:
+Size:
+RAM:
+                                    </textarea>
                                   </div>
                                 </div>
 
-                                <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
+                                <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
-                                    <select id="subtypes" name="purchase[subtype_id][]" style="height: 1.8rem;">
-                                      @foreach ($subtypes as $subtypes)
-                                      <option value="{{$subtypes->id}}">{{$subtypes->name}}</option>
-                                      @endforeach
-                                    </select>
+                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
+                                    <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;">
                                   </div>
                                 </div>
 
@@ -499,7 +503,7 @@
 
 
       function add() {
-        $('#addMoreList > tbody:last-child').append("<tr><td><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><select id='subtypes' name='purchase[subtype_id][]' style='height: 1.8rem;'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"input-group col-2\" style=\"padding-left: 0;!important\"><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><div class=\"input-group col-2\"></div></td><td><button onclick='rm()'>remove</button></td></tr>");
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><button onclick='rm()' style=\"margin-left:2rem;\">remove</button></td></tr>");
       }
     </script>
 @stop
