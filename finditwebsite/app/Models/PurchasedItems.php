@@ -22,6 +22,27 @@ class PurchasedItems extends Model
         return $query;
     }
 
+    public static function get_all_items($params=null){
+        $query = \DB::table('purchased_items')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'purchased_items.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('supplier', 'supplier.id', '=', 'purchased_items.supplier_id')
+        -> select('purchased_items.*','supplier.supplier_name as supplier', 'it_equipment_subtype.name as subtype')
+        -> orderBy('subtype_id' , 'asc')
+        -> get();
+        return $query;
+    }
+
+    public static function get_unit_number($params=null){
+        $query = \DB::table('purchased_items')
+        -> leftjoin('supplier', 'supplier.id', '=', 'purchased_items.supplier_id')
+        -> groupBy('unit_number')
+        -> where('unit_number', '!=', null)
+        -> orderBy('p_id' , 'asc')
+        -> get();
+        return $query;
+    }
+
     public static function add_purchased_Item($params){
       $purchased_items = new PurchasedItems;
       $purchased_items->p_id = $params['purchase_no'];

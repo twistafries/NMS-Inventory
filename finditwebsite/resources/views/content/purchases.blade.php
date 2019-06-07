@@ -359,7 +359,7 @@ RAM:
           <thead class="thead-dark">
             <tr>
               <th scope="col">Brand</th>
-              <th scope="col">Model</th>
+              <th scope="col">Model/Label</th>
               <th scope="col">Details</th>
               <th scope="col">Subtype</th>
               <th scope="col">Supplier</th>
@@ -369,19 +369,36 @@ RAM:
           </thead>
           <tbody>
             @foreach($purchases[$purchase->purchase_no] as $item)
+            @if ($item->unit_number==null)
             <tr>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->brand}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->model}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->details}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->subtype}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->supplier}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->qty}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->brand}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->model}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->details}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->subtype}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
               <td class="text-right">
                 <button type="button" id="" class="btn btn-info p-2">
                   <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
                 </button>
               </td>
             </tr>
+            @endif
+            @endforeach
+            @foreach($unit_number as $unit)
+            @if ($unit->p_id==$purchase->purchase_no)
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">PC</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$unit->qty}}</td>
+            <td class="text-right">
+              <button type="button" id="" class="btn btn-info p-2">
+                <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
+              </button>
+            </td>
+            @endif
             @endforeach
           </tbody>
         </table>
@@ -393,7 +410,8 @@ RAM:
 </tbody>
 </table>
 </div>
-    <div class="modal fade" id="purchasedetail" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+@foreach($items as $item)
+    <div class="modal fade" id="item{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document" style=" width: 1000px;">
             <div class="modal-content" style="height: 35rem;">
                 <div class="modal-header">
@@ -408,31 +426,31 @@ RAM:
                     <div class="row" style="margin-top: 1rem;">
                       <div class="col-6">
                         <label>Brand:</label>
-                        <input type="text" name="" value="ASUS" style="padding-left: 5px;">
+                        <input type="text" name="brand" value="{{$item->brand}}" style="padding-left: 5px;">
                       </div>
                       <div class="col-6">
                         <label>Model:</label>
-                        <input type="text" name="" value="" style="padding-left: 5px;">
+                        <input type="text" name="model" value="{{$item->model}}" style="padding-left: 5px;">
                       </div>
                     </div>
                     <div class="row" style="margin-top: 1rem;">
                       <div class="col-6">
                         <label>Subtype:</label>
-                        <input type="text" name="" value="ASUS" style="padding-left: 5px;">
+                        <input type="text" name="subtype_id" value="{{$item->subtype}}" style="padding-left: 5px;">
                       </div>
                       <div class="col-6">
                         <label>Supplier:</label>
-                        <input type="text" name="" value="" style="padding-left: 5px;">
+                        <input type="text" name="supplier" value="{{$item->supplier}}" style="padding-left: 5px;">
                       </div>
                     </div>
                     <div class="row" style="margin-top: 1rem;">
                       <div class="col-8">
                         <label>Details:</label>
-                        <textarea name="model" type="text" size="25" style="height: 6rem; width: 18rem;"></textarea>
+                        <textarea name="details" type="text" size="25" style="height: 6rem; width: 18rem;">{{$item->details}}</textarea>
                       </div>
                       <div class="col-3" style="margin-right: 1rem; margin-left: 1rem;">
                         <label>Quantity:</label>
-                        <input type="number" name="" style="width: 3rem;">
+                        <input type="number" name="qty" value="{{$item->qty}}" style="width: 3rem;">
                       </div>
                     </div>
                 </div>
@@ -452,6 +470,7 @@ RAM:
         </div>
     </div>
 </div>
+@endforeach
 
 @stop
 
