@@ -512,24 +512,13 @@ class InventoryController extends BaseController
       }
       try{
          $data = $request->all();
-        $pieces = explode("-", $data['item']);
-        $act=[];
-        if($pieces[0] == "Mobile Device"){
-          $data['equipment_id']=(int)$pieces[1];
-            //$act['it_equipment']=$data['equipment_id'];
         TblItEquipment::delete_equipment($data['equipment_id']);
 
-        }else{
-          $data['unit_id']=(int)$pieces[1] ;
-          //act['system_units']=$data['unit_id'];
-          TblSystemUnits::delete_unit($data['unit_id']);
 
-        }
-
-
-        //$act['action'] = "deleted";
-        //TblActivityLogs::add_log($act);
-        return \Redirect::to('/inventoryAll')->with('message' , 'Equipment has been removed from the Database');
+        $act['activity'] = "deleted";
+        $act['deleted_item'] = $data['deleted_item'];
+        TblActivityLogs::add_log($act);
+        return \Redirect::to('/inventoryAll')->with('message' , $data['deleted_item'].' has been removed from the Database');
 
       }catch(Exception $e){
         return \Redirect::to('/inventoryAll')

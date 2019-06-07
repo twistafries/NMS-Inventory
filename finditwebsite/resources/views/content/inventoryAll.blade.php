@@ -524,9 +524,9 @@
 
                                             </div>
 
-                                            <input type="hidden" name="id" id="id" value="">
+                                            <input type="hidden" name="id" id="decommission_id" value="">
                                             <input type="hidden" name="status_id" value="7">
-                                            <input type="hidden" name="orig_status_id" id="orig_status_id" value="">
+                                            <input type="hidden" name="orig_status_id" id="orig_status_id_decommissioned" value="">
                                         </div>
 
                                         <div class="modal-footer">
@@ -566,7 +566,8 @@
                                     <div class="modal-footer">
                                         <form action="{!! url('/hardDeleteEquipment'); !!}" method="post">
                                         {!! csrf_field() !!}
-                                        <input  name="id" id="id" value="" hidden>
+                                        <input  name="equipment_id" id="delete_id" value="" hidden>
+                                        <input  name="deleted_item" id="deleted_item" value="" hidden>
                                         <button type="submit" class="btn btn-danger text-uppercase">Delete</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
@@ -1188,6 +1189,7 @@ $('a.warranty-not').click(function(){
         {
              //rIndex = this.rowIndex;
              document.getElementById("id").value = this.cells[0].innerHTML;
+             document.getElementById("delete_id").value = this.cells[0].innerHTML;
              document.getElementById("model").value = this.cells[1].innerHTML;
              document.getElementById("brand_eqp").value = this.cells[2].innerHTML;
              document.getElementById("serial_no").value = this.cells[5].innerHTML;
@@ -1201,8 +1203,10 @@ $('a.warranty-not').click(function(){
              document.getElementById("deleteitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("repairitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("returnitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("deleted_item").value = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("decommission_id").value = this.cells[0].innerHTML;
              document.getElementById("returnSupplier").innerHTML = this.cells[6].innerHTML + "?";
-             document.getElementById("orig_status_id").value = this.cells[15].innerHTML;
+             document.getElementById("orig_status_id_decommissioned").value = this.cells[15].innerHTML;
         };
     }
 
