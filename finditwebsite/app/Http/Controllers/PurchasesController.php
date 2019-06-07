@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use View, Validator, Session, Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -47,6 +48,7 @@ class PurchasesController extends BaseController
 
         $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
+        $data['sub'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['purchases'] = Purchases::get_purchases();
         $data['purchase'] = Purchases::get_purchases();
         $data['purchasescript'] = Purchases::get_purchases();
@@ -237,12 +239,13 @@ class PurchasesController extends BaseController
 
           try{
             $data = $request->all();
-            dd($data);
 
             $data['user_id'] = $user_id;
             // $data['subtype_id'] = (int)$request->get('subtype_id');
             // dd($data);
-            $supplier = $request->input('supplier');
+            Purchases::add_purchase($data);
+            $data['purchase']["brand"];
+            $supplier = $data['supplier'];
       			$all_supplier = DB::table('supplier')->where('supplier_name',$supplier)->first();
       			if(!$all_supplier){
               $id=Suppliers::add_supplier($supplier);
@@ -256,24 +259,31 @@ class PurchasesController extends BaseController
 
             }
 
-          if(isset($data['subtype_id'])
-          && isset($data['brand'])
-          && isset($data['model'])
-          && isset($data['details'])
-          && isset($data['user_id'])
-          && isset($data['warranty_start'])
-          && isset($data['warranty_end'])
-          && isset($data['supplier'])
-          && isset($data['serial_no'])
-          && isset($data['or_no'])
-          && isset($data['status_id']) ){
-              $id=TblItEquipment::add_equipment($data);
-              $log['data'] = $id;
-              // $log['unit'] = $data['unit_id'];
-              $log['activity'] = "added";
-              TblActivityLogs::add_log($log);
-              return \Redirect::to('/inventory')->with('equipment has been added');
-          }
+            $ctr = 0;
+            foreach ($data['purchase']["brand"] as $brand) {
+              $data['brand'] = $brand;
+              $data['model'] = $data['purchase']["model"][$ctr];
+              $data['details'] = $data['purchase']["details"][$ctr];
+              $data['subtype_id'] = $data['purchase']["subtype_id"][$ctr];
+              $data['qty'] = $data['purchase']["qty"][$ctr];
+              if(isset($data['purchase_no'])
+              && isset($data['brand'])
+              && isset($data['model'])
+              && isset($data['details'])
+              && isset($data['subtype_id'])
+              && isset($data['supplier_id'])
+              && isset($data['qty'])){
+                  PurchasedItems::add_purchased_Item($data);
+              }
+              $ctr++;
+            }
+
+              // $log['data'] = $id;
+              // // $log['unit'] = $data['unit_id'];
+              // $log['activity'] = "added";
+              // TblActivityLogs::add_log($log);
+              return \Redirect::to('/purchases')->with('new purchase has been added');
+
           }catch(Exception $e){
             return redirect()->back()
                   ->with('error' , 'Please fill out ALL the fields')
