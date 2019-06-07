@@ -75,11 +75,32 @@ class TblSystemUnits extends Model
 
     public static function unitByDep($department){
       $query = \DB::table('system_units')
-      -> select('*')
+      -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
+      -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
+      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*')
       -> where('system_units.dept_id', '=', $department)
       ->get();
 
       return $query;
+    }
 
+    public static function unitDepStatus($department,$status){
+      $query = \DB::table('system_units')
+      -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
+      -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
+      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*')
+      -> where([['system_units.dept_id', '=', $department],['system_units.status_id', '=', $status]])
+      ->get();
+
+      return $query;
+    }
+
+    public static function getLatestUser($unit_id){
+      $query = \DB::table('issuance')
+      -> select('*')
+      -> where('unit_id', '=', $unit_id)
+      -> get();
+
+      return $query;
     }
 }

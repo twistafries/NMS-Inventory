@@ -13,6 +13,7 @@ use App\Models\TblEmployees;
 use App\Models\TblSystemUnits;
 use App\Models\TblDepartments;
 use App\Models\TblActivityLogs;
+use App\Models\TblItEquipment;
 
 class ForStatusController extends BaseController
 {
@@ -71,6 +72,9 @@ class ForStatusController extends BaseController
      $data['for_repair_tablets'] = TblEquipmentStatus::get_for_repair_by_subtype(13);
      $data['for_repair_phones'] = TblEquipmentStatus::get_for_repair_by_subtype(14);
      $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     $data['it_dep'] = TblSystemUnits::unitDepStatus(1, 3);
+     $data['components'] = TblItEquipment::getByType(1);
+     dd($data['components']);
      foreach($data['for_repair_units'] as $repair_unit){
            $data['unit_component'] = TblSystemUnits::get_unit_component($repair_unit->id);
       }

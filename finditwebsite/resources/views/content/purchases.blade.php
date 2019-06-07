@@ -225,7 +225,7 @@ RAM:
       <!-- Add System Unit Modal-->
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="systemUnit">
           <div class="modal-dialog modal-xxl">
-              <div class="modal-content">
+              <div class="modal-content" style="height:75%;">
 
                   <div id="addSystemUnit" class="modal-header">
                       <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Add System Unit</h5>
@@ -240,15 +240,16 @@ RAM:
                                   <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
                                       <thead>
                                           <tr>
-                                              <th>PC Description</th>
-                                              <th>Supplier</th>
+                                              <th>Quantity:</th>
+                                              <th>Supplier:</th>
                                           </tr>
                                       </thead>
 
                                       <tbody>
                                           <tr>
-                                              <td> <input type="text" name=""></td>
-                                              <td><input type="text" name=""><br></td>
+                                             
+                                              <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
+                                               <td> <input type="text" name=""></td>
                                           </tr>
                                       </tbody>
                                   </table>
