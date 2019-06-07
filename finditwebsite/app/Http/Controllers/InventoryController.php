@@ -542,7 +542,7 @@ class InventoryController extends BaseController
       try{
         $data = $request->all();
 
-        // dd($request->all());
+        dd($request->all());
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
         $data['user_id'] = $user_id;
@@ -559,7 +559,7 @@ class InventoryController extends BaseController
           TblItEquipment::edit_equipment($data);
         }
 
-        return \Redirect::to('/inventoryAll')->with('equipment has been added');
+        //return \Redirect::to('/inventoryAll')->with('equipment has been added');
 
       }catch(QueryException $qe){
         // $info = Self::getErrorInfo();

@@ -23,13 +23,22 @@ class PurchasedItems extends Model
     }
 
     public static function add_purchased_Item($params){
-      $purchases = new Purchases;
-  		$purchases->supplier_name = $params;
-
+      $purchased_items = new PurchasedItems;
+      $purchased_items->p_id = $params['purchase_no'];
+      $purchased_items->subtype_id = $params["subtype_id"];
+      $purchased_items->brand = $params["brand"];
+      $purchased_items->model = $params["model"];
+      $purchased_items->details = $params["details"];
+      $purchased_items->supplier_id = $params['supplier_id'];
+      $purchased_items->qty = $params["qty"];
+      if(isset($params['is_part'])){
+        $purchased_items->is_part = $params["is_part"];;
+      } else {
+        $purchased_items->is_part = 0;
+      }
   		try {
-  			$supplier->save();
-  			$id = DB::getPdo()->lastInsertId();
-  			return $id;
+  			$purchased_items->save();
+
   		}catch(QueryException $e) {
   			die($e);
   		}

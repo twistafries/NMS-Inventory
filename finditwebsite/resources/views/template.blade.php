@@ -60,6 +60,12 @@
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
 
+    <script>
+        $('#sidebarCollapse').click(function() {
+            $("i", this).toggleClass("fas fa-chevron-left fas fa-chevron-right");
+        });
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {

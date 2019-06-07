@@ -17,16 +17,27 @@ class Purchases extends Model
         -> get();
         return $query;
     }
-    
 
-    public static function add_purchases($params){
+
+    public static function add_purchase($params){
       $purchases = new Purchases;
-  		$purchases->supplier_name = $params;
+  		$purchases->purchase_no = $params['purchase_no'];
+      $purchases->user_id = $params['user_id'];
 
   		try {
-  			$supplier->save();
-  			$id = DB::getPdo()->lastInsertId();
-  			return $id;
+  			$purchases->save();
+  		}catch(QueryException $e) {
+  			die($e);
+  		}
+
+  	}
+
+    public static function edit_purchases($params){
+      $purchases = new Purchases;
+  		$purchases->purchase_no = $params;
+
+  		try {
+  			$purchases->save();
   		}catch(QueryException $e) {
   			die($e);
   		}
