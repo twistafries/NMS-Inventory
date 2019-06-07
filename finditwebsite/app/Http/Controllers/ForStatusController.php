@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblEquipmentStatus;
 use App\Models\TblEmployees;
+use App\Models\TblSystemUnits;
 use App\Models\TblDepartments;
 use App\Models\TblActivityLogs;
 
@@ -62,7 +63,17 @@ class ForStatusController extends BaseController
 
      $data = [];
      $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair'] = TblEquipmentStatus::get_for_repair();
+     $data['for_repair_mice'] = TblEquipmentStatus::get_for_repair_by_subtype(9);
+     $data['for_repair_keyboards'] = TblEquipmentStatus::get_for_repair_by_subtype(10);
+     $data['for_repair_monitors'] = TblEquipmentStatus::get_for_repair_by_subtype(11);
+     $data['for_repair_laptops'] = TblEquipmentStatus::get_for_repair_by_subtype(12);
+     $data['for_repair_tablets'] = TblEquipmentStatus::get_for_repair_by_subtype(13);
+     $data['for_repair_phones'] = TblEquipmentStatus::get_for_repair_by_subtype(14);
      $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
+     foreach($data['for_repair_units'] as $repair_unit){
+           $data['unit_component'] = TblSystemUnits::get_unit_component($repair_unit->id);
+      }
      return view ('content/repairSummary' , $data);
    }
 

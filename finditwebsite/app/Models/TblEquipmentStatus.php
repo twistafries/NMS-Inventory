@@ -45,6 +45,21 @@ class TblEquipmentStatus extends Model
 
         return $query;
     }
+    
+    public static function get_for_repair_by_subtype($params){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('users' , 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> select('it_equipment.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat', 'supplier.supplier_name as supplier')
+        -> where('subtype_id' , '=' , $params)
+        -> where('status_id' , '=' , '3')
+        -> orderBy('created_at' , 'desc')
+        -> get();
+
+        return $query;
+    }
 
     public static function get_for_return($params = null){
         $query = \DB::table('it_equipment')

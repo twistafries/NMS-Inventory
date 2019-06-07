@@ -33,7 +33,7 @@
                     </li>
                    
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
+                        <a href="{!! url('/Decommission') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
             </nav>
@@ -119,7 +119,7 @@
 <!--IT PC items list -->
                                             <!--List item-->
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> IT PC1</a> <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="item1">
                                                     <table class="table table-striped">
@@ -146,7 +146,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -160,7 +160,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -174,7 +174,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -188,7 +188,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -202,7 +202,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -216,7 +216,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -230,7 +230,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -244,7 +244,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                             </tr>
@@ -258,7 +258,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     
                                                                 </td>
                                                                
@@ -271,7 +271,7 @@
                                             </li>
          <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> IT PC2</a>
             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
                                   
                                     <div class="collapse" id="item2">
                                             <table class="table table-striped">
@@ -298,7 +298,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -311,7 +311,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                         
                                                     </tr>
@@ -325,7 +325,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -338,7 +338,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -351,7 +351,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -364,7 +364,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -377,7 +377,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -390,7 +390,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -403,7 +403,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
 
@@ -436,7 +436,7 @@
                                             <!--List item-->
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#pd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> PD PC1</a>
                                                 <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="pd1">
                                                     <table class="table table-striped">
@@ -463,7 +463,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -476,7 +476,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -489,7 +489,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -502,7 +502,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -515,7 +515,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -528,7 +528,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -541,7 +541,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -554,7 +554,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -567,7 +567,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
 
@@ -577,7 +577,7 @@
                                                 </div>
                                             </li>
          <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#pd2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> PD PC2</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
                                   
                                     <div class="collapse" id="pd2">
                                             <table class="table table-striped">
@@ -604,7 +604,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -617,7 +617,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -630,7 +630,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -643,7 +643,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -656,7 +656,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -669,7 +669,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -682,7 +682,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -695,7 +695,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -708,7 +708,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
 
@@ -734,7 +734,7 @@
 <!--FD PC items list -->
                                             <!--List item-->
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#fd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> FD PC1</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="fd1">
                                                     <table class="table table-striped">
@@ -761,7 +761,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -774,7 +774,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -787,7 +787,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -800,7 +800,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -813,7 +813,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -826,7 +826,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -839,7 +839,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -852,7 +852,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -865,7 +865,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
 
@@ -875,7 +875,7 @@
                                                 </div>
                                             </li>
          <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#fd2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> FD PC2</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
                                   
                                     <div class="collapse" id="fd2">
                                             <table class="table table-striped">
@@ -902,7 +902,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -915,7 +915,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -928,7 +928,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -941,7 +941,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -954,7 +954,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -967,7 +967,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -980,7 +980,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -993,7 +993,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -1006,7 +1006,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
 
@@ -1033,7 +1033,7 @@
 <!--HR PC items list -->
                                             <!--List item-->
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#hr1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC1</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button> </button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="hr1">
                                                     <table class="table table-striped">
@@ -1060,7 +1060,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1073,7 +1073,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1086,7 +1086,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1099,7 +1099,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1112,7 +1112,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1125,7 +1125,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1138,7 +1138,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1151,7 +1151,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -1164,7 +1164,7 @@
                                                                     <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                                     <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                                     <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
 
@@ -1174,7 +1174,7 @@
                                                 </div>
                                             </li>
          <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#hr2" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> HR PC2</a><button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button></button>
+            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button></button>
                                   
                                     <div class="collapse" id="hr2">
                                             <table class="table table-striped">
@@ -1201,7 +1201,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                         
                                                     </tr>
@@ -1215,7 +1215,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                         
                                                     </tr>
@@ -1229,7 +1229,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1242,7 +1242,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1255,7 +1255,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1268,7 +1268,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -1281,7 +1281,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -1294,7 +1294,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
                                                      <tr>
@@ -1307,7 +1307,7 @@
                                                             <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
                                                             <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
                                                             <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                            <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                         </td>
                                                     </tr>
 
@@ -1331,12 +1331,13 @@
     
     
     
-    
-    <h4 class="font-weight-bold">Computer Peripheral</h4>
+    <hr>
+    <h4 class="font-weight-bold">Computer Peripheral ({{ count($for_repair_mice) + count($for_repair_keyboards) + count($for_repair_monitors)}})</h4>
      <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingTwo">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2"><i class="fas fa-arrow-circle-down"></i> Mouse</a>
+                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="trigger collapsed" id="collapsedown2">
+                    <i class="fas fa-arrow-circle-down"></i> Mouse({{count($for_repair_mice)}})</a>
             </h5>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -1346,6 +1347,7 @@
                     <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Brand/Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Serial No.</th>
@@ -1355,16 +1357,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($for_repair_mice as $for_repair_mouse)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$for_repair_mouse->id}}</td>
+                            <td>{{$for_repair_mouse->brand}}</td>
+                            <td>{{$for_repair_mouse->details}}</td>
+                            <td>{{$for_repair_mouse->serial_no}}</td>
+                            <td>{{$for_repair_mouse->warranty_start}}-{{$for_repair_mouse->warranty_end}}</td>
                             <td>
                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                          </td>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            </td>
                         </tr>
+                        @endforeach
                        
                     </tbody>
                 </table>
@@ -1376,7 +1381,8 @@
      <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingThree">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed" id="collapsedown3"><i class="fas fa-arrow-circle-down"></i> Keyboard</a>
+                <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="trigger collapsed" id="collapsedown3">
+                    <i class="fas fa-arrow-circle-down"></i> Keyboard({{count($for_repair_keyboards)}}) </a>
             </h5>
         </div>
         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -1385,6 +1391,7 @@
                     <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Brand/Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Serial No.</th>
@@ -1394,18 +1401,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                            </td>
-                            
+                        @if(count($for_repair_keyboards) == 0)
+                        <tr class="text-center">
+                            <td colspan="6">No Keyboards for Repair</td>
+
                         </tr>
-                       
+                        @else
+                        @foreach($for_repair_keyboards as $for_repair_keyboard)
+                        <tr>
+                            <td>{{$for_repair_keyboard->id}}</td>
+                            <td>{{$for_repair_keyboard->brand}}</td>
+                            <td>{{$for_repair_keyboard->brand}}</td>
+                            <td>{{$for_repair_keyboard->details}}</td>
+                            <td>{{$for_repair_keyboard->serial_no}}</td>
+                            <td>{{$for_repair_keyboard->warranty_start}}-{{$for_repair_keyboard->warranty_end}}</td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif                                               
                     </tbody>
                 </table>
                 </div>
@@ -1415,7 +1431,8 @@
      <div class="panel panel-default pl-2">
         <div class="panel-heading" role="tab" id="headingFour">
             <h5 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="trigger collapsed" id="collapsedown4"><i class="fas fa-arrow-circle-down"></i> Monitor</a>
+                <a role="button" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" class="trigger collapsed" id="collapsedown4">
+                    <i class="fas fa-arrow-circle-down"></i> Monitor({{count($for_repair_monitors)}})</a>
             </h5>
         </div>
         <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
@@ -1424,6 +1441,7 @@
                     <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Brand/Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Serial No.</th>
@@ -1433,17 +1451,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                            
+                        @if(count($for_repair_monitors) == 0)
+                        <tr class="text-center">
+                            <td colspan="6">No Monitors for Repair</td>
+
                         </tr>
-                       
+                        @else
+                        @foreach($for_repair_monitors as $for_repair_monitor)
+                        <tr>
+                            <td>{{$for_repair_monitor->id}}</td>
+                            <td>{{$for_repair_monitor->brand}}</td>
+                            <td>{{$for_repair_monitor->details}}</td>
+                            <td>{{$for_repair_monitor->serial_no}}</td>
+                            <td>{{$for_repair_monitor->warranty_start}}-{{$for_repair_monitor->warranty_end}}</td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                       @endif
                     </tbody>
                 </table>
                 </div>
@@ -1454,11 +1481,12 @@
     
     
      
-     <h4 class="font-weight-bold">Mobile Device</h4>
+     <h4 class="font-weight-bold">Mobile Device ({{ count($for_repair_laptops) + count($for_repair_phones) + count($for_repair_phones) }})</h4>
        <div class="panel panel-default pl-2">
             <div class="panel-heading" role="tab" id="headingFive">
                 <h5 class="panel-title">
-                    <a role="button" data-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" class="trigger collapsed" id="collapsedown5"><i class="fas fa-arrow-circle-down"></i> Laptop</a>
+                    <a role="button" data-toggle="collapse" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" class="trigger collapsed" id="collapsedown5">
+                        <i class="fas fa-arrow-circle-down"></i> Laptop({{count($for_repair_laptops)}})</a>
                 </h5>
             </div>
             <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
@@ -1467,6 +1495,7 @@
                      <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Brand/Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Serial No.</th>
@@ -1476,17 +1505,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                           
+                        @if(count($for_repair_laptops) == 0)
+                        <tr class="text-center">
+                            <td colspan="6">No Laptops for Repair</td>
+
                         </tr>
-                       
+                        @else
+                        @foreach($for_repair_mice as $for_repair_mouse)
+                        <tr>
+                            <td>{{$for_repair_mouse->id}}</td>
+                            <td>{{$for_repair_mouse->brand}}</td>
+                            <td>{{$for_repair_mouse->details}}</td>
+                            <td>{{$for_repair_mouse->serial_no}}</td>
+                            <td>{{$for_repair_mouse->warranty_start}}-{{$for_repair_mouse->warranty_end}}</td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
                     </div>
@@ -1497,7 +1535,8 @@
          <div class="panel panel-default pl-2">
             <div class="panel-heading" role="tab" id="headingSix">
                 <h5 class="panel-title">
-                    <a role="button" data-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix" class="trigger collapsed" id="collapsedown6"><i class="fas fa-arrow-circle-down"></i> Tablet</a>
+                    <a role="button" data-toggle="collapse" href="#collapseSix" aria-expanded="true" aria-controls="collapseSix" class="trigger collapsed" id="collapsedown6">
+                        <i class="fas fa-arrow-circle-down"></i> Tablet({{ count($for_repair_tablets) }})</a>
                 </h5>
             </div>
             <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
@@ -1506,6 +1545,7 @@
                         <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Brand/Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Serial No.</th>
@@ -1515,17 +1555,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if(count($for_repair_tablets) == 0)
+                        <tr class="text-center">
+                            <td colspan="6">No Tablets for Repair</td>
+
+                        </tr>
+                        @else
+                        @foreach($for_repair_tablets as $for_repair_tablet)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{$for_repair_tablet->id}}</td>
+                            <td>{{$for_repair_tablet->brand}}</td>
+                            <td>{{$for_repair_tablet->details}}</td>
+                            <td>{{$for_repair_tablet->serial_no}}</td>
+                            <td>{{$for_repair_tablet->warranty_start}}-{{$for_repair_tablet->warranty_end}}</td>
                             <td>
                             <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                            
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            </td>
                         </tr>
-                       
+                        @endforeach
+                       @endif
                     </tbody>
                 </table>
                     </div>
@@ -1536,7 +1585,8 @@
              <div class="panel panel-default pl-2">
             <div class="panel-heading" role="tab" id="headingSeven">
                 <h5 class="panel-title">
-                    <a role="button" data-toggle="collapse" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven" class="trigger collapsed" id="collapsedown7"><i class="fas fa-arrow-circle-down"></i> Mobile Phone</a>
+                    <a role="button" data-toggle="collapse" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven" class="trigger collapsed" id="collapsedown7">
+                        <i class="fas fa-arrow-circle-down"></i> Mobile Phone({{ count($for_repair_phones) }})</a>
                 </h5>
             </div>
             <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
@@ -1545,6 +1595,7 @@
                        <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Brand/Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Serial No.</th>
@@ -1554,16 +1605,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td> <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
-                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommissioned</button></td>
-                            
+                        @if(count($for_repair_phones) == 0)
+                        <tr class="text-center">
+                            <td colspan="6">No Laptops for Repair</td>
+
                         </tr>
-                       
+                        @else
+                        @foreach($for_repair_phones as $for_repair_phone)
+                        <tr>
+                            <td>{{$for_repair_phone->id}}</td>
+                            <td>{{$for_repair_phone->brand}} {{$for_repair_phone->model}}</td>
+                            <td>{{$for_repair_phone->details}}</td>
+                            <td>{{$for_repair_phone->serial_no}}</td>
+                            <td>{{$for_repair_phone->warranty_start}}-{{$for_repair_phone->warranty_end}}</td>
+                            <td>
+                            <button type="button" class="btn btn-success rounded"><i class="fas fa-check"></i> Make Available</button>
+                            <button type="button" class="btn btn-secondary rounded"><i class="fas fa-trash-alt"></i> Decommission</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
                     </div>

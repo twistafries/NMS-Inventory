@@ -20,6 +20,16 @@ class TblSystemUnits extends Model
         -> get();
         return $query;
     }
+    
+    public static function get_unit_component($params){
+        $query = \DB::table('system_units')
+        -> leftjoin('it_equipment' , 'it_equipment.unit_id', '=', 'system_units.id')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
+        -> where('system_units.id' , '=' , $params)
+        -> orderBy('system_units.id' , 'ASC')
+        -> get();
+        return $query;
+    }
 
     public static function get_total_system_units($status){
         $query = \DB::table('system_units')
