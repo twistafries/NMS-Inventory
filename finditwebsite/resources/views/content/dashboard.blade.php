@@ -255,15 +255,20 @@
                 <div class="card-body ">
 
                 </div>
-                <div class="card p-3">
-                    <table class="table table-borderless text-justify text-break">
-                        <tbody>
-                            <th>Purchase #</th>
-                            <th>Qty</th>
-                        </tbody>
-                    </table>
-                    <button type="button" class="btn btn-light btn-sm">View All</button>
-                </div>
+               
+                    <div class="card p-3">
+                        <table class="table table-borderless text-justify text-break">
+                            <tbody>
+                                @foreach($recent_purchases as $purchase)
+                                    <tr>
+                                        <td>{{$purchase->brand}} {{$purchase->model}}</td>
+                                        <td>{{$purchase->qty}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                         
+                    </div>  
             </div>
         </div>
         <div class="col-4 p-1">

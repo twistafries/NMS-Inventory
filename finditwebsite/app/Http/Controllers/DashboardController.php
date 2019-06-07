@@ -9,6 +9,7 @@ use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Database\QueryException;
+
 use App\Models\TblItEquipment;
 use App\Models\TblItEquipmentType;
 use App\Models\TblItEquipmentSubtype;
@@ -17,6 +18,8 @@ use App\Models\TblStatus;
 use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
 use App\Models\TblActivityLogs;
+use App\Models\PurchasedItems;
+
 use Session, Auth;
 
 class DashboardController extends BaseController
@@ -44,6 +47,9 @@ class DashboardController extends BaseController
         $data['issued_phone'] = count(TblItEquipment::countByStatusSubtype(2 , 14));       
         $data['issued_laptop'] = count(TblItEquipment::countByStatusSubtype(2 , 12));
         
+        $data['recent_purchases'] = PurchasedItems::orderBy('id', 'desc')
+        ->take(5)
+        ->get(); 
         // $data['purchases'];
         return view ('content/dashboard' , $data);
     }
