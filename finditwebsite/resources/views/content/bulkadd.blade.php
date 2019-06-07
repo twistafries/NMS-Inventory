@@ -205,6 +205,23 @@ body{
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
+        function fetchPurchases(id){
+            $.ajax({
+                url: 'getPurchase/' + id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    console.log(response['data']);
+                    var len = 0;
+
+                    if(response['data'] != null){
+                        len = response['purchases'].length;
+                    }
+                }
+            })
+        }
+
+
         $('#save').click(function () {
             var count = 1;
             var quantity = $('#quantity').val();
