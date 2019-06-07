@@ -26,9 +26,7 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
                     </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
-                    </li>
+                    
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>

@@ -82,9 +82,7 @@
                                 <li class="nav-item">
                                   <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEMS LIST</a>
                                 </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
-                                </li>
+                                
 
 
                               </ul>
