@@ -160,7 +160,6 @@
 
                     <input name="purchase_no" value="{{$purchase->count()+1}}" hidden>
                       <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
-
                           <div class="adds row" style="">
                               <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                                 <div class="">
@@ -337,7 +336,7 @@ RAM:
           </div>
       </div>
 <div class="" style="margin-top: 2rem;">
-          <table class="table table-hover" id="purchasesTable">
+          <table class="table" id="purchasesTable">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Purchases</th>
@@ -407,32 +406,43 @@ RAM:
                 <div class="modal-body" >
                   <div class="container-fluid" style="">
                     <div class="row" style="margin-top: 1rem;">
-                      <div class="col-2">
+                      <div class="col-6">
                         <label>Brand:</label>
                         <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                       </div>
-                      <div class="col-2">
+                      <div class="col-6">
                         <label>Model:</label>
                         <input type="text" name="" value="" style="padding-left: 5px;">
                       </div>
-                    <div class="col-2">
-                      <label>Subtype:</label>
-                      <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                     </div>
-                    <div class="col-2">
-                      <label>Supplier:</label>
-                      <input type="text" name="" value="" style="padding-left: 5px;">
-                    </div>
-                      <div class="col-3">
-                        <label>Details:</label>
-                        <textarea name="model" type="text" size="25" style="height: 6rem; width: 20rem;"></textarea>
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-6">
+                        <label>Subtype:</label>
+                        <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                       </div>
-                      <div class="col-1" style="margin-right: 1rem;">
+                      <div class="col-6">
+                        <label>Supplier:</label>
+                        <input type="text" name="" value="" style="padding-left: 5px;">
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-8">
+                        <label>Details:</label>
+                        <textarea name="model" type="text" size="25" style="height: 6rem; width: 18rem;"></textarea>
+                      </div>
+                      <div class="col-3" style="margin-right: 1rem; margin-left: 1rem;">
                         <label>Quantity:</label>
-                        <input type="text" name="" style="width: 4rem;">
+                        <input type="number" name="" style="width: 3rem;">
                       </div>
                     </div>
                 </div>
+
+                <div class="text-center mt-2">
+                  <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
+                    <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
+                  </button>
+                </div>
+
               </div>
 
               <div class="modal-footer">
