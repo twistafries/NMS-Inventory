@@ -64,7 +64,7 @@ class BulkController extends BaseController
         $warranty_start = $request->get('bulk')['warranty_start'];
         $warranty_end = $request->get('bulk')['warranty_end'];
         // dd($brands);
-        
+
         $count = 0;
         foreach($brands as $brand){
             $data['inventory'] -> push([
@@ -105,7 +105,7 @@ class BulkController extends BaseController
               ->with('target' , '#singleAdd');
     }
 
-        
-        
+
+
     }
 }

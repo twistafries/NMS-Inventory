@@ -377,25 +377,33 @@ RAM:
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->subtype}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
+              @if($purchase->or_no!=null)
               <td class="text-right">
-                <button type="button" id="" class="btn btn-info p-2">
+                <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#add{{$item->id}}">
+                  <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Already added
+                </button>
+              </td>
+              @else
+              <td class="text-right">
+                <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#add{{$item->id}}">
                   <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
                 </button>
               </td>
+              @endif
             </tr>
             @endif
             @endforeach
             @foreach($unit_number as $unit)
             @if ($unit->p_id==$purchase->purchase_no)
             <tr>
-            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
-            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
-            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
-            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">PC</td>
-            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$unit->supplier_name}}</td>
-            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$unit->qty}}</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
             <td class="text-right">
-              <button type="button" id="" class="btn btn-info p-2">
+              <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#purchasesmodal">
                 <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
               </button>
             </td>
@@ -459,7 +467,7 @@ RAM:
 
                 <div class="text-center mt-2">
                   <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
-                    <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
+                    <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to Inventory
                   </button>
                 </div>
 
@@ -472,8 +480,120 @@ RAM:
         </div>
     </div>
 </div>
-<!-- purchasedetail-->
-                  <div class="modal fade" id="purchasedetail" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+@endforeach
+
+
+@foreach ($items as $item)
+    <div class="modal fade" id="add{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered lg" role="document" style=" width: 1000px;">
+            <div class="modal-content" style="height: 45rem; width: 60rem; ">
+                <div class="modal-header">
+                    <div class="">ADD TO INVENTORY </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="{!! url('/addToInventory'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
+                {!! csrf_field() !!}
+                <div class="modal-body" >
+                  <div class="container-fluid" style="">
+                    <div class="row" style="margin-top: 1rem;">
+
+                      <div class="col-6">
+                      <input type="number" name="p_id" value="{{$item->p_id}}" style="width: 3rem;" hidden>
+                      <label>Quantity:</label>
+                      <input type="number" name="qty" id="itemQuantity" value="{{$item->qty}}" style="width: 3rem;">
+                      </div>
+                      <div class="col-6">
+                        <label>Serial Number:</label>
+                        <br>
+                        <input type="text" name="serial_no" value="" >
+                      </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <label for="details" class="card-title text-dark">Warranty Start:</label>
+                            <input type="date" id="start" name="warranty_start">
+                        </div>
+
+                        <div class="col">
+                            <label for="details" class="card-title text-dark">Warranty End:</label>
+                            <input type="date" id="start" name="warranty_end">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-6">
+                        <label>Official Receipt Numbers:</label>
+                        <input type="text" name="or_no" value="" >
+                      </div>
+                      <div class="col-6">
+                        <label>IMEI/MAC Address:</label>
+                        <br>
+                        <input type="text" name="model" value="" >
+                      </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-6">
+                        <label>Brand:</label>
+                        <br>
+                        <input type="text" name="brand" value="{{$item->brand}}" style="padding-left: 5px;">
+                      </div>
+                      <div class="col-6">
+                        <label>Model:</label>
+                        <br>
+                        <input type="text" name="model" value="{{$item->model}}" style="padding-left: 5px;">
+                      </div>
+                    </div>
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-6">
+                        <label>Subtype:</label>
+                        <br>
+                        <input type="text" name="subtype" value="{{$item->subtype}}" style="padding-left: 5px;">
+                        <input type="text" name="subtype_id" value="{{$item->subtype_id}}" style="padding-left: 5px;" hidden>
+                      </div>
+                      <div class="col-6">
+                        <label>Supplier:</label>
+                        <br>
+                        <input type="text" name="supplier" value="{{$item->supplier}}" style="padding-left: 5px;">
+                        <input type="text" name="supplier_id" value="{{$item->supplier_id}}" style="padding-left: 5px;" hidden>
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-8">
+                        <label>Details:</label>
+                        <br>
+                        <textarea name="details" type="text" size="25" style="height: 8rem; width: 45rem;" rows="5" cols="50">{{$item->details}}</textarea>
+                      </div>
+                      <div class="col-3" style="margin-right: 1rem; margin-left: 1rem;">
+
+                      </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-2">
+
+                </div>
+
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary text-uppercase" >Add to Inventory</button>
+                  <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
+                  @foreach($pc as $pc)
+                  <div class="modal fade" id="pc{{$pc->p_id}}" tabindex="-1" role="dialog" aria-labelledby=""
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -492,148 +612,52 @@ RAM:
 
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Quantity:</div></div>
 
-                                          
+
+                                         <div class="col-sm-4"><div class="detail-header text-uppercase">  <button type="button" id="" class="btn btn-info p-2">
+                                             <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
+                                           </button></div></div>
+
+
                                       </div>
                                       <div class="row">
 
-                                          <div class="col-sm-4">---</div>
+                                          <div class="col-sm-4">{{$pc->supplier_name}}</div>
 
-                                          <div class="col-sm-4">0</div>
+                                          <div class="col-sm-4">{{$pc->qty}}</div>
 
-                                          
+
                                       </div>
 
 
-                                     
-                                    
+
+
                                       <div class="row">
                                           <hr>
                                       </div>
 
-                                      <div class="row">
-                                          <hr>
-                                      </div>
+                                      <div class="row p-2">
+                                        <table class="table">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">Component</th>
+                                          <th scope="col">Brand</th>
+                                          <th scope="col">Model</th>
 
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        @foreach ($pc_component as $component)
+                                        @if($component->p_id == $pc->p_id)
+                                        <tr>
+                                          <td>{{$component->subtype}}</td>
+                                          <td>{{$component->brand}}</td>
+                                          <td>{{$component->model}}</td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                      </tbody>
+                                      </table>
 
-                                      <div class="row">
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Components</div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Motherboard:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">CPU:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Storage:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">RAM:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">GPU:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Power Supply:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Case:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Soundcard:</div></div>
-                                            </div>
-                                          </div>
-
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Brand</div>
-                                             <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                          </div>
-
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Model</div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header"></div></div>
-                                            </div>
-                                        </div>
-
-                                      </div>
-                                       
-                                        <div class="row row-details">
-                                          <div class="col"> <button type="button" id="" class="btn btn-info p-2">
-                                           <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
-                                            </button></div>
-                                           
-                                          
-                                        </div>
-                                  
                                     </div>
 
                                     <div class="modal-footer">
@@ -643,6 +667,7 @@ RAM:
                                 </div>
                             </div>
                     </div>
+                  </div>
 @endforeach
 
 @stop

@@ -32,9 +32,9 @@ class Purchases extends Model
 
   	}
 
-    public static function edit_purchases($params){
-      $purchases = new Purchases;
-  		$purchases->purchase_no = $params;
+    public static function edit_purchase($id, $or_no){
+      $purchases = Purchases::find($id);
+  		$purchases->or_no = $or_no;
 
   		try {
   			$purchases->save();
