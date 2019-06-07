@@ -19,46 +19,7 @@
 <div class="container-fluid">
 <nav class="navbar navbar-light">
         <span class="navbar-brand mb-0 h1">INVENTORY</span>
-       <!-- Toolbox -->
-    <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <div class="btn-group" role="group" aria-label="Basic example">
-
-
-                <button type="button" class="btn btn-outline-dark rounded-pill hide-column mr-2" id="hideColumn"  aria-haspopup="true" aria-expanded="false" style="border-radius:25px;" data-target="#singleAdd" data-toggle="modal">
-
-                    <a href="#" data-toggle="tooltip" title="Single Add">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/add-icon.png') }}"> Single Add
-                    </a>
-                </button>
-                <!-- Bulk add  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="bulkAdd">
-                    <a  data-toggle="tooltip" title="Bulk Add" href="{!! url('/bulk-add') !!}">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/box.png') }}"> Bulk Add
-                    </a>
-                </button>
-
-                <!-- Add System Unit  -->
-                <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="addSystemUnit" data-target="#systemUnit" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Add System Unit">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/system-unit.png') }}"> Add System Unit
-                    </a>
-                </button>
-
-                <!-- Build A pc  -->
-                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="buildAPc" data-target="#build" data-toggle="modal">
-                    <a href="#" data-toggle="tooltip" title="Build A Pc">
-                        <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/build.png') }}"> Build A Pc
-                    </a>
-                </button>
-
-
-
-            </div>
-
-
-        </div>
-    </div>
+@include('content.toolbar')
         <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
                 <ol class="breadcrumb arr-right">
                     <li class="breadcrumb-item ">
