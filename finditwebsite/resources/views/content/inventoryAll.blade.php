@@ -380,20 +380,22 @@
                                 <div class="modal-body">
                                     <div class="warning-content">
                                         <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
-                                        <small class="text-center">Are you sure you want to return equipment,
+                                        <h5 class="text-center">Are you sure you want to return equipment,
                                             <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
                                             back to
                                             <b>{{ $equipment->supplier }}</b>
                                             ?
-                                        </small>
+                                        </h5>
+                                        
                                     </div>
+                                    <br>
                                     <div class="btn-group" role="group">
                                         <button class="btn btn-warning text-uppercase" data-toggle="collapse"
                                             data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
                                         </button>
                                         <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
-                                            <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50"></textarea>
                                         </div>
                                     
                                     </div>
@@ -404,7 +406,7 @@
                                 </div>
                                 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
+                                    <button type="submit" class="btn btn-primary text-uppercase p-2">Return to supplier</button>
                                 </form>
                                     <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
