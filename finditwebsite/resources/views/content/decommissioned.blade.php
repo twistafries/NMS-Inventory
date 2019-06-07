@@ -51,10 +51,10 @@
                         <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-warning" >For Repair</a>
+                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
                     <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
+                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
                     </li>
                 </ol>
             </nav>
