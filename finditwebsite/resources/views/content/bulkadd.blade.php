@@ -217,6 +217,12 @@ body{
                     if(response['data'] != null){
                         len = response['purchases'].length;
                     }
+
+                    if(len > 0){
+                        for(var i=0; i < len; i++){
+                            
+                        }
+                    }
                 }
             })
         }
