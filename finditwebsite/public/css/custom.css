@@ -233,7 +233,7 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
 .modal-footer > button {
   border: none; /* Remove borders */
   color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
+/*  padding: 12px 16px;  Some padding */
   font-family: sans-serif;
   font-size: 15px; /* Set a font size */
   cursor: pointer; /* Mouse pointer on hover */
@@ -288,11 +288,13 @@ box-shadow: 0 5px 18px rgba(0,0,0,0.10);
    max-width:1400px;
   }
 
+/*
 .modal-body{
     height: 332px;
     overflow-y: auto;
     text-align: justify;
 }
+*/
 
 .modal-content, .modal-length{
     height: 750px;

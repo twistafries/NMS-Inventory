@@ -255,15 +255,20 @@
                 <div class="card-body ">
 
                 </div>
-                <div class="card p-3">
-                    <table class="table table-borderless text-justify text-break">
-                        <tbody>
-                            <th>Purchase #</th>
-                            <th>Qty</th>
-                        </tbody>
-                    </table>
-                    <button type="button" class="btn btn-light btn-sm">View All</button>
-                </div>
+               
+                    <div class="card p-3">
+                        <table class="table table-borderless text-justify text-break">
+                            <tbody>
+                                @foreach($recent_purchases as $purchase)
+                                    <tr>
+                                        <td>{{$purchase->brand}} {{$purchase->model}}</td>
+                                        <td>{{$purchase->qty}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                         
+                    </div>  
             </div>
         </div>
         <div class="col-4 p-1">
@@ -303,13 +308,12 @@
         </div>
         <div class="col-4 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> Incomplete Orders</div>
+                <div class="card-header text-white mb-3" id="card-header"> Incomplete | Pending Orders</div>
                 <div class="card-body ">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Order #1</li>
-                        <li class="list-group-item">Order #2</li>
-                        <li class="list-group-item">Order #3</li>
-                        <li class="list-group-item">Order #4</li>
+                        @foreach($inc_orders as $order)
+                            <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier_name}}</li>
+                        @endforeach
                         <button type="submit" class="btn btn-light btn-sm">View all</button>
                     </ul>
                 </div>
@@ -318,36 +322,19 @@
         <div class="col-4 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-exchange-alt"></i> Items
-                    Returned</div>
+                    Returned | For Return</div>
                 <div class="card-body ">
-
+                    <ul class="list-group list-group-flush">
+                        @foreach($returned_items as $returns)
+                            <li class="list-group-item">{{$returns->brand}} {{$returns->model}} | OR No.:{{$returns->or_no}} | Supplier: {{$returns->supplier_name}}</li>
+                        @endforeach
+                        <button type="submit" class="btn btn-light btn-sm">View all</button>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <div class="row card-row pl-0">
-        <div class="col-6 p-1">
-            <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> Zero Availability Items </div>
-                <h4>
-                    <center>10</center>
-                </h4>
-
-            </div>
-        </div>
-
-        <div class="col-6 p-1">
-            <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> Low Availability Items </div>
-                <h4>
-                    <center>10</center>
-                </h4>
-            </div>
-        </div>
-    </div>
 </div>
 
 <br>

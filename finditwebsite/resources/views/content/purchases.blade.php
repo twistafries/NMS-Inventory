@@ -70,7 +70,7 @@
           </th>
           <th>
             <label for="subtype">Subtype: </label>
-            <select id="subtypes" name="subtypes" style="height: 1.8rem;">
+            <select id="subtypes" name="subtypes" style="height: 1.8rem; margin-right: 1rem;">
               <option value="any">Any</option>
               @foreach ($subtypesSel as $subtypesSel)
               <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
@@ -124,7 +124,7 @@
       <!-- purchases modal -->
       <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="">
           <div class="modal-dialog modal-xxl">
-              <div class="modal-content" style="width: 1100px;">
+              <div class="modal-content" style="width: 1000px;">
                   <div class="modal-header">
                       <div class="container">
                           <h5>New Purchase: Purchase Number {{$purchase->count()+1}}</h5>
@@ -160,14 +160,17 @@
 
                     <input name="purchase_no" value="{{$purchase->count()+1}}" hidden>
                       <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
-
-                          <div class="adds row" style="margin-right: 5rem;">
-                                <div class="input-group col-2" style="margin-top: 1rem;">
-                                  <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
-                                    <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;">
-                                  </div>
+                          <div class="adds row" style="">
+                              <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
+                                <div class="">
+                                  <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
+                                  <select id="subtypes" name="purchase[subtype_id][]" style="height: 1.8rem; width: 9rem;">
+                                    @foreach ($subtypes as $subtypes)
+                                    <option value="{{$subtypes->id}}">{{$subtypes->name}}</option>
+                                    @endforeach
+                                  </select>
                                 </div>
+                              </div>
 
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
@@ -176,21 +179,21 @@
                                   </div>
                                 </div>
 
-                                <div class="input-group col-3" style="margin-top: 1rem;">
+                                <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;"></textarea>
+                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">Socket:
+Chipset:
+Size:
+RAM:
+                                    </textarea>
                                   </div>
                                 </div>
 
-                                <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
+                                <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
-                                    <select id="subtypes" name="purchase[subtype_id][]" style="height: 1.8rem;">
-                                      @foreach ($subtypes as $subtypes)
-                                      <option value="{{$subtypes->id}}">{{$subtypes->name}}</option>
-                                      @endforeach
-                                    </select>
+                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
+                                    <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;">
                                   </div>
                                 </div>
 
@@ -333,7 +336,7 @@
           </div>
       </div>
 <div class="" style="margin-top: 2rem;">
-          <table class="table table-hover" id="purchasesTable">
+          <table class="table" id="purchasesTable">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Purchases</th>
@@ -356,7 +359,7 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">Brand</th>
-              <th scope="col">Model</th>
+              <th scope="col">Model/Label</th>
               <th scope="col">Details</th>
               <th scope="col">Subtype</th>
               <th scope="col">Supplier</th>
@@ -366,19 +369,38 @@
           </thead>
           <tbody>
             @foreach($purchases[$purchase->purchase_no] as $item)
+            @if ($item->unit_number==null)
             <tr>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->brand}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->model}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->details}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->subtype}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->supplier}}</td>
-              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$item->qty}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->brand}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->model}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->details}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->subtype}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
+              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
               <td class="text-right">
                 <button type="button" id="" class="btn btn-info p-2">
                   <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
                 </button>
               </td>
             </tr>
+            @endif
+            @endforeach
+            @foreach($unit_number as $unit)
+            @if ($unit->p_id==$purchase->purchase_no)
+            <tr>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">PC</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+            <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$unit->qty}}</td>
+            <td class="text-right">
+              <button type="button" id="" class="btn btn-info p-2">
+                <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
+              </button>
+            </td>
+            </tr>
+            @endif
             @endforeach
           </tbody>
         </table>
@@ -390,7 +412,8 @@
 </tbody>
 </table>
 </div>
-    <div class="modal fade" id="purchasedetail" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+@foreach($items as $item)
+    <div class="modal fade" id="item{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document" style=" width: 1000px;">
             <div class="modal-content" style="height: 35rem;">
                 <div class="modal-header">
@@ -403,32 +426,43 @@
                 <div class="modal-body" >
                   <div class="container-fluid" style="">
                     <div class="row" style="margin-top: 1rem;">
-                      <div class="col-2">
+                      <div class="col-6">
                         <label>Brand:</label>
-                        <input type="text" name="" value="ASUS" style="padding-left: 5px;">
+                        <input type="text" name="brand" value="{{$item->brand}}" style="padding-left: 5px;">
                       </div>
-                      <div class="col-2">
+                      <div class="col-6">
                         <label>Model:</label>
-                        <input type="text" name="" value="" style="padding-left: 5px;">
+                        <input type="text" name="model" value="{{$item->model}}" style="padding-left: 5px;">
                       </div>
-                    <div class="col-2">
-                      <label>Subtype:</label>
-                      <input type="text" name="" value="ASUS" style="padding-left: 5px;">
                     </div>
-                    <div class="col-2">
-                      <label>Supplier:</label>
-                      <input type="text" name="" value="" style="padding-left: 5px;">
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-6">
+                        <label>Subtype:</label>
+                        <input type="text" name="subtype_id" value="{{$item->subtype}}" style="padding-left: 5px;">
+                      </div>
+                      <div class="col-6">
+                        <label>Supplier:</label>
+                        <input type="text" name="supplier" value="{{$item->supplier}}" style="padding-left: 5px;">
+                      </div>
                     </div>
-                      <div class="col-3">
+                    <div class="row" style="margin-top: 1rem;">
+                      <div class="col-8">
                         <label>Details:</label>
-                        <textarea name="model" type="text" size="25" style="height: 6rem; width: 20rem;"></textarea>
+                        <textarea name="details" type="text" size="25" style="height: 6rem; width: 18rem;">{{$item->details}}</textarea>
                       </div>
-                      <div class="col-1" style="margin-right: 1rem;">
+                      <div class="col-3" style="margin-right: 1rem; margin-left: 1rem;">
                         <label>Quantity:</label>
-                        <input type="text" name="" style="width: 4rem;">
+                        <input type="number" name="qty" value="{{$item->qty}}" style="width: 3rem;">
                       </div>
                     </div>
                 </div>
+
+                <div class="text-center mt-2">
+                  <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
+                    <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
+                  </button>
+                </div>
+
               </div>
 
               <div class="modal-footer">
@@ -438,6 +472,178 @@
         </div>
     </div>
 </div>
+<!-- purchasedetail-->
+                  <div class="modal fade" id="purchasedetail" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                        aria-hidden="true">
+
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:750px; width: 600px;">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <div class="row">
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Supplier:</div></div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Quantity:</div></div>
+
+                                          
+                                      </div>
+                                      <div class="row">
+
+                                          <div class="col-sm-4">---</div>
+
+                                          <div class="col-sm-4">0</div>
+
+                                          
+                                      </div>
+
+
+                                     
+                                    
+                                      <div class="row">
+                                          <hr>
+                                      </div>
+
+                                      <div class="row">
+                                          <hr>
+                                      </div>
+
+
+                                      <div class="row">
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Components</div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Motherboard:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">CPU:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Storage:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">RAM:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">GPU:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Power Supply:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Case:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Soundcard:</div></div>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Brand</div>
+                                             <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
+                                            </div>
+                                          </div>
+
+                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Model</div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-4"><div class="detail-header"></div></div>
+                                            </div>
+                                        </div>
+
+                                      </div>
+                                       
+                                        <div class="row row-details">
+                                          <div class="col"> <button type="button" id="" class="btn btn-info p-2">
+                                           <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
+                                            </button></div>
+                                           
+                                          
+                                        </div>
+                                  
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+@endforeach
 
 @stop
 
@@ -499,7 +705,7 @@
 
 
       function add() {
-        $('#addMoreList > tbody:last-child').append("<tr><td><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><select id='subtypes' name='purchase[subtype_id][]' style='height: 1.8rem;'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"input-group col-2\" style=\"padding-left: 0;!important\"><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><div class=\"input-group col-2\"></div></td><td><button onclick='rm()'>remove</button></td></tr>");
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><button onclick='rm()' style=\"margin-left:2rem;\">remove</button></td></tr>");
       }
     </script>
 @stop

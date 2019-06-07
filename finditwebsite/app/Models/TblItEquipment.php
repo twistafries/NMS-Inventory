@@ -391,6 +391,15 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_equipment_by_status($status){
+        $query = TblItEquipment::leftjoin('equipment_status', 'equipment_status.id', '=', 'status_id')
+        ->leftjoin('supplier', 'supplier.id', '=', 'supplier_id')
+        ->select('equipment_status.name', 'it_equipment.id', 'brand', 'model', 'it_equipment.created_at', 'or_no', 'supplier.supplier_name')
+        ->where('status_id', '=', $status)
+        ->take(5)
+        ->get();
+        return $query;
+    }
 
 
 

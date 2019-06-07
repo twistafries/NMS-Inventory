@@ -211,11 +211,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                         </tr>
                         
@@ -321,11 +321,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -432,11 +432,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -542,11 +542,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -689,11 +689,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                         </tr>
                         
@@ -799,11 +799,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -910,11 +910,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1020,11 +1020,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1168,11 +1168,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                         </tr>
                         
@@ -1278,11 +1278,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1389,11 +1389,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1499,11 +1499,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1646,11 +1646,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                         </tr>
                         
@@ -1756,11 +1756,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1867,11 +1867,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1977,11 +1977,11 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
                             </td>   
                            
 
@@ -1996,7 +1996,7 @@
           
            <!--No Department Table-->
           <h5 class="font-weight-bold">No Department</h5>
-          <table id="myDataTableHR" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+          <table id="myDataTableND" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
 <!--
                         <tr>
@@ -2125,12 +2125,12 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
-                                <button type="button" class="btn btn-dark rounded btn-sm"><i class="fas fa-building"></i> Assign Department</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-dark rounded btn-sm" data-toggle="modal" data-target="#assignDepartmentModal"><i class="fas fa-building"></i> Assign Department</button>
                             </td>   
                         </tr>
                         
@@ -2236,12 +2236,12 @@
                             </td>
                             <td>Issued to</td>
                             <td>
-                                <button type="button" class="btn btn-success rounded btn-sm"><i class="fas fa-check"></i> Make Available</button>
-                                <button type="button" class="btn btn-warning rounded btn-sm"><i class="fas fa-tools"></i> For Repair</button>
-                                <button type="button" class="btn btn-primary rounded btn-sm"><i class="fas fa-undo-alt"></i> For Return</button>
-                                <button type="button" class="btn btn-secondary rounded btn-sm"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                <button type="button" class="btn btn-info rounded btn-sm"><i class="fas fa-hand-holding"></i> Issue</button>
-                                <button type="button" class="btn btn-dark rounded btn-sm"><i class="fas fa-building"></i> Assign Department</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                <button type="button" class="btn btn-dark rounded btn-sm" data-toggle="modal" data-target="#assignDepartmentModal"><i class="fas fa-building"></i> Assign Department</button>
                             </td>   
                            
 
@@ -2255,7 +2255,208 @@
 
                 </table>
           <br>
+<!--Button Prompts Modals-->
+          
+          
+          <!-- Make Available prompt-->
+<div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog" aria-labelledby="makeAvailableModalTitle"
+    aria-hidden="true">
 
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="warning-content">
+                       <p class="text-uppercase font-weight-bold text-warning"><i class="fas fa-exclamation-circle"></i> Warning!</p>
+                      <h5 class="text-center">Are you sure you want the item to be <b>Available</b> ? </h5>
+                    </div>
+                      <div class="btn-group" role="group">
+                                        <button class="btn btn-secondary text-uppercase" data-toggle="collapse"
+                                            data-target="#remarksRepair" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarksRepair">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
+                                        </div>
+                                    
+                    </div>
+                   
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- For Return prompt-->
+<div class="modal fade" id="forReturnModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+    aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="warning-content">
+                    <p class="text-uppercase font-weight-bold text-warning"><i class="fas fa-exclamation-circle"></i> Warning!</p>
+                    <h5 class="text-center">Are you sure you want to mark the item as <b>"For Return"</b> ? </h5>
+                  </div>
+                    <div class="btn-group" role="group">
+                                        <button class="btn btn-secondary text-uppercase" data-toggle="collapse"
+                                            data-target="#remarksRepair" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarksRepair">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
+                                        </div>
+                                    
+                    </div>
+
+
+                </div>
+                  
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- For Repair prompt-->
+<div class="modal fade" id="forRepairModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+    aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="warning-content">
+                      <p class="text-uppercase font-weight-bold text-warning"><i class="fas fa-exclamation-circle"></i> Warning!</p>
+                      <h5 class="text-center">Are you sure you want to mark the item as <b>"For Repair"</b> ? </h5>
+                      <br>
+                      
+                  </div>
+                     <div class="btn-group" role="group">
+                                        <button class="btn btn-secondary text-uppercase" data-toggle="collapse"
+                                            data-target="#remarksRepair" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarksRepair">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
+                                        </div>
+                                    
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary text-uppercase p-2">Return to supplier</button>
+                                </form>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- Decommissioned prompt-->
+<div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+    aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="warning-content">
+                    <p class="text-uppercase font-weight-bold text-warning"><i class="fas fa-exclamation-circle"></i> Warning!</p>
+                    <h5 class="text-center">Are you sure you want to mark the item as <b>"Decommissioned"</b> ? </h5>
+                  </div>
+                    <div class="btn-group" role="group">
+                                        <button class="btn btn-secondary text-uppercase" data-toggle="collapse"
+                                            data-target="#remarksRepair" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            Add Remarks
+                                        </button>
+                                        <div class="collapse" id="remarksRepair">
+                                            <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
+                                        </div>
+                                    
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- Assign Department modal-->
+<div class="modal fade" id="assignDepartmentModal" tabindex="-1" role="dialog" aria-labelledby="assignDepartementModalTitle"
+    aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+            <div class="container pb-2">
+             <div class="row pt-2">
+                        <div class="col">
+                        <p class="card-title text-dark">Department:</p>
+                        <select class="exampleFormControlSelect1" name="dept_id" style="width:380px;">
+                            <option value="1">Information Technology Development Department</option>
+                            <option value="2">Production Development Department</option>
+                            <option value="3">Financial Department</option>
+                            <option value="4">Human Resources Department</option>
+                        </select>
+                        </div>
+                    </div>
+               
+                </div>
+              </div>    
+             <div class="modal-footer">
+                            <button id="save" class="btn btn-success" type="submit"> Assign Department </button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                        </div>
+
+            </div>
+        </div>
+</div>
+          
 
 
                 <div class="modal fade" id="viewItemModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
@@ -2507,34 +2708,7 @@
                             </div>
                     </div>
 
-                    <div class="modal fade" id="forRepair" tabindex="-1" role="dialog" aria-labelledby="repairModalTitle"
-                        aria-hidden="true">
-
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                      <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to change the status of this item to "For Repair"?</p>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
+                
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -2561,6 +2735,97 @@
                                 </div>
                             </div>
                     </div>
+    
+    
+<!-- Issue modal -->
+<div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="ModalTitle">Issue Item</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      <div class="modal-body">
+          <form action="{!! url('/issuanceSystemUnit'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
+              <table>
+                  <div class="row">
+                      <tr>
+                          <div class="col-md-8">
+                              <td><p class="card-title">Issue Item:</p></td>
+                          </div>
+                          <div class="col-md-4">
+                              <td><p class="card-title">Issued Until:</p></td>
+                          </div>
+                      </tr>
+
+                      <tr>
+                          <td>
+                            <div class="col-md-4" style="padding: 25px 15px;">
+                                <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
+                                <datalist id="items">
+                                    <select>
+                                        <option data-customvalue="" value=""></option>
+                                        <option data-customvalue="" value="">System Unit</option>
+                                    </select>
+                                </datalist>
+                            </div>
+                          </td>
+
+                          <td>
+                              <div class="col-md-10" style="padding: 30px 15px;">
+                                  <div class="input-group mb-3">
+                                      <input  name="issued_until" type="date" class="form-control" required>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  </div>
+              </table>
+
+
+              <table id="addMoreList">
+                  <tbody>
+                  </tbody>
+              </table>
+
+              <br>
+              <div class="row">
+                  <div class="col-md-4">
+                      <button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>ADD MORE</button>
+                  </div>
+              </div>
+
+              <br>
+              <div class="row">
+                  <div class="col-md-5">
+                      <p class="card-title">Issue to:</p>
+                      <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
+                      <datalist id="employee">
+                          <option data-customvalue="" value="">
+                          </option>
+                      </datalist>
+                  </div>
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col">
+                      <label for="details">Remarks:</label>
+                      <div class="input-group mb-1">
+                          <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea" style="border-style: solid; border-width: 1px;"></textarea>
+                      </div>
+                  </div>
+              </div>
+        </form>
+      </div>
+      <div class="modal-footer text-uppercase">
+          <button class="btn btn-info">Add</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+</div>
+</div>
 
 
 
@@ -3075,6 +3340,13 @@
                 "order": []
             });
         });
+        $(document).ready(function() {
+            $('#myDataTableND').DataTable({
+                "pagingType": "full_numbers",
+                responsive: true,
+                "order": []
+            });
+        });
 
 
     </script>
@@ -3208,6 +3480,32 @@
 
         });
 
+    </script>
+                                
+                                 <script>
+      function CheckListed( txtSearch  ) {
+       var objList = document.getElementById("items")  ;
+       for (var i = 0; i < objList.options.length; i++) {
+        if ( objList.options[i].value.trim().toUpperCase() == txtSearch.trim().toUpperCase() ) {
+           return true }
+        }
+        if(txtSearch==""){
+          return true
+        }
+          alert( 'Input data is not available.') ;
+          document.getElementById("equipment").value="";
+          return false ; // text does not matched ;
+      }
+    </script>
+
+    <script>
+        function rm() {
+            $(event.target).closest("tr").remove();
+        }
+
+        function add() {
+            $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-2\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+        }
     </script>
 
 
