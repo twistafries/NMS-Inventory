@@ -240,15 +240,16 @@ RAM:
                                   <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
                                       <thead>
                                           <tr>
-                                              <th>PC Description</th>
-                                              <th>Supplier</th>
+                                              <th>Quantity:</th>
+                                              <th>Supplier:</th>
                                           </tr>
                                       </thead>
 
                                       <tbody>
                                           <tr>
-                                              <td> <input type="text" name=""></td>
-                                              <td><input type="text" name=""><br></td>
+                                             
+                                              <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
+                                               <td> <input type="text" name=""></td>
                                           </tr>
                                       </tbody>
                                   </table>
