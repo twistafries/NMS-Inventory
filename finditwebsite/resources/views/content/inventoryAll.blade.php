@@ -710,7 +710,7 @@
                     <div class="row pb-2">
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
-                        <select name="subtype_id" class="custom-select">
+                        <select name="subtype_id" id="selectComp" class="custom-select" onchange="subtypeTextArea()">
                         @foreach ($equipment_subtypes as $equipment_subtypes)
                             <option  value="{!! $equipment_subtypes->id !!}">
                                 {{ $equipment_subtypes->name }}
@@ -740,11 +740,9 @@
                     <div class="row">
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
-                            <div class="input-group">
-                                <textarea name="details" rows="3" id="details">Socket:
-Chipset:
-Size:
-RAM:                           </textarea>
+                            <div  class="input-group">
+                                <textarea id="detailsArea" name="details" rows="3" id="details">
+                       </textarea>
                             </div>
                         </div>
                     </div>
@@ -1178,7 +1176,7 @@ $('a.warranty-not').click(function(){
 
 </script>
 
-
+@include('partials._singleadd')
 <script>
 
     var table = document.getElementById('myDataTable');

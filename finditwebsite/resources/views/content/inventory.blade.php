@@ -114,7 +114,7 @@
                     <div class="row pb-2">
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
-                        <select name="subtype_id" class="custom-select">
+                        <select id="selectComp" name="subtype_id" class="custom-select" onchange="subtypeTextArea()">
                         @foreach ($equipment_subtypes as $equipment_subtypes)
                             <option  value="{!! $equipment_subtypes->id !!}">
                                 {{ $equipment_subtypes->name }}
@@ -145,10 +145,7 @@
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
                             <div class="input-group">
-                                <textarea name="details" rows="3" id="details">Socket:
-Chipset:
-Size:
-RAM:</textarea>
+                                <textarea id="detailsArea" name="details" rows="3" id="details"></textarea>
                             </div>
                         </div>
                     </div>
@@ -845,6 +842,9 @@ RAM:</textarea>
     <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
+    
+    <!-- Scripts for dynamic textarea for single add -->
+    @include('partials._singleadd')
 
     <script>
         $(document).ready(function() {
