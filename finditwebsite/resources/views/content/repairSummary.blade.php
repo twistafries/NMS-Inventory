@@ -80,7 +80,7 @@
                                 <div class="container-fluid">
                                 <ul class="nav nav-pills nav-justified">
                                 <li class="nav-item" style="border-top-left-radius:25px;">
-                                  <a class="nav-link active font-weight-bolder" href="{!! url('/repairSummary') !!}">SUMMARY</a>
+                                  <a class="nav-link active font-weight-bolder" href="{!! url('/repairSummary') !!}">FROM ISSUANCE</a>
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link  font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>

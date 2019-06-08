@@ -27,6 +27,7 @@
                 <label for="name" class="col-md-1 col-form-label">Unit Label and Number</label>
                 <input name="name" type="text"  placeholder="Department Unit #" class="form-control col-sm-4" required>
             </div>
+
             @foreach($eq_subtype as $subtype)
                 <p>
                 @if($subtype->type_id == 1)
@@ -59,7 +60,19 @@
                     </div>
                 @endif
                 </p>
-            @endforeach    
+            @endforeach 
+            <div class="form-row">
+                    <label for="Department" class="col-md-1 col-form-label">Department</label>
+                    <select name="dept_id" class="col-md-3 col-form-sm">
+
+                    <option value="" selected disabled hidden> -- select department -- </option>
+                    @foreach($departments as $department)
+                        <option value = "{{$department->id}}"> {{$department->name}} </option>
+                    @endforeach
+                    <option value = "null"> No Department </option>
+
+                    </select>
+            </div>
             <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> Build Unit</button>
         </div>
     </form>

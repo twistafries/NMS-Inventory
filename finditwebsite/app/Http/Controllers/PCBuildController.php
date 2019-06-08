@@ -10,6 +10,7 @@ use App\Models\TblItEquipmentSubtype;
 use App\Models\TblStatus;
 use App\Models\TblSystemUnits;
 use App\Models\TblItEquipment;
+use App\Models\TblDepartments;
 
 class PCBuildController extends Controller
 {
@@ -18,7 +19,8 @@ class PCBuildController extends Controller
         $it_equipment = PCBuildEq::where('status_id', '=', 1)->get();
         $equipment_status = TblStatus::all();
         $eq_subtype = TblItEquipmentSubtype::all();
-        return view('content.buildpc', compact('it_equipment', 'equipment_status', 'eq_subtype'));
+        $departments = TblDepartments::all();
+        return view('content.buildpc', compact('it_equipment', 'equipment_status', 'eq_subtype', 'departments'));
     }
 
     public function buildFromParts(Request $request){   
