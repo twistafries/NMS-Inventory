@@ -26,7 +26,10 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
                     </li>
-
+                    <li class="breadcrumb-item ">
+                            <a href="{!! url('/systemUnit') !!}" class="text-dark">System Unit</a>
+                    </li>
+                    
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
@@ -51,9 +54,6 @@
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEM LIST</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
                                 </li>
 
 
