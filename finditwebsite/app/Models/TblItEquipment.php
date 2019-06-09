@@ -395,10 +395,13 @@ class TblItEquipment extends Model
     public static function get_equipment_by_status($status){
         $query = TblItEquipment::leftjoin('equipment_status', 'equipment_status.id', '=', 'status_id')
         ->leftjoin('supplier', 'supplier.id', '=', 'supplier_id')
-        ->select('equipment_status.name', 'it_equipment.id', 'brand', 'model', 'it_equipment.created_at', 'or_no', 'supplier.supplier_name')
+        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        ->select('it_equipment_type.name as type', 'it_equipment_subtype.name as subtype', 'it_equipment.id as eqId', 'brand', 'model', 'it_equipment.created_at', 'or_no', 'supplier.supplier_name as supplier')
         ->where('status_id', '=', $status)
-        ->take(5)
+        ->orderBy('subtype_id', 'asc')
         ->get();
+        
         return $query;
     }
 
@@ -410,5 +413,37 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function getEqPerStatusSubtype($status, $subtype){
+        $query = TblItEquipment::leftjoin('equipment_status', 'equipment_status.id', '=', 'status_id')
+        ->leftjoin('supplier', 'supplier.id', '=', 'supplier_id')
+        ->select('equipment_status.name', 'it_equipment.id', 'brand', 'model', 'it_equipment.created_at', 'it_equipment.created_at', 'or_no', 'supplier.supplier_name')
+        ->where('status_id', '=', $status)
+        ->where('subtype_id', '=', $subtype)
+        ->get();
+        return $query;
+    }
+
+    public static function getCountsByStatus($status){
+        $query = TblItEquipment::selectRaw('subtype_id, it_equipment_type.name as type, it_equipment_subtype.name as subname, count(*) as qty, it_equipment.created_at as date_added')
+        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        ->where('status_id', '=', $status)
+        ->groupBy('subtype_id')
+        ->get();
+
+        return $query;
+    }
+
+    public static function getEquipment($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype','it_equipment_type.name as type', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> get();
+        return $query;
+    }
 
 }

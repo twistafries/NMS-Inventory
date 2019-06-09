@@ -60,6 +60,46 @@
           </div>
 
           <!--table-->
+
+          <!-- additions -->
+          <div class="" id="inventoryTable" style="margin-top:4rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Inventory Additions</p>
+            </div>
+            <table class="table all" id="available">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <!-- if individual items are needed 
+                  <th scope="col">Item ID</th>
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Subtype</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">O/R</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Added</th>
+                  -->
+
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Subtype</th>
+                  <th scope="col">Month Added</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                @foreach($items as $item)
+                <tr id={{$item->created_at}}>
+                  <td>{{$item->type}}</td>
+                  <td>{{$item->subtype}}</td>
+                  <td>{{$item->created_at}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+
+          <!-- available -->
+
           <div class="" id="inventoryTable" style="margin-top:4rem;">
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Available Items</p>
@@ -67,55 +107,26 @@
             <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
-                  <th scope="col">sample</th>
+                  <th scope="col">Item ID</th>
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Subtype</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
+
+                @foreach($availeq as $equipment)
+                <tr id={{$equipment->created_at}}>
+                  <td>{{$equipment->eqId}}</td>
+                  <td>{{$equipment->type}}</td>
+                  <td>{{$equipment->subtype}}</td>
+                  <td>{{$equipment->brand}}</td>
+                  <td>{{$equipment->model}}</td>
+                  <td style="display: none">{{$equipment->created_at}}</td>
+                  
                 </tr>
-                <tr>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                </tr>
-                <tr>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -127,63 +138,27 @@
             <table class="table all t" id="repair">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">Item Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Subtype</th>
-                  <th scope="col">Description/Details</th>
-                  <th scope="col">Serial No.</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Last User</th>
-                  <th scope="col">Remarks</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Added By</th>
+                    <tr>
+                        <th scope="col">Item ID</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Item Subtype</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                      </tr>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>MSI B450-A Pro</td>
-                  <td>Computer Component</td>
-                  <td>Motherboard</td>
-                  <td>"Socket: AM4
-                      Chipset: AMD B450
-                      Size: ATX
-                      RAM: 4 Slots DDR4
-                      PCIe: x16 PCIe 3.0
-                      Ports: USB 3.1 SATA 6Gb/s"</td>
-                  <td>601-7577-010B0903273465</td>
-                  <td>For Repair</td>
-                  <td>Jon Paulo</td>
-                  <td></td>
-                  <td>2019-01-18</td>
-                  <td>Aika Vien Dayrit</td>
-                </tr>
-                <tr>
-                  <td>R5 1500X</td>
-                  <td>Computer Component</td>
-                  <td>CPU</td>
-                  <td>"Socket: AM4
-                      4-core 8-thread 3.5GHz-3.7GHz
-                      TDP: 65W"</td>
-                  <td>YD170XBCM88AE</td>
-                  <td>For Repair</td>
-                  <td>Jon Paulo Faypon</td>
-                  <td></td>
-                  <td>2019-01-25</td>
-                  <td>Aika Vien Dayrit</td>
-                </tr>
-                <tr>
-                  <td>HDD 1TB</td>
-                  <td>Computer Component</td>
-                  <td>Storage</td>
-                  <td>Seagate 1TB Harddisk Drive</td>
-                  <td>YST-657A-DATSDC</td>
-                  <td>For Repair</td>
-                  <td>Lovelyn Paris</td>
-                  <td></td>
-                  <td>2019-02-12</td>
-                  <td>Jon Paulo Faypon</td>
-                </tr>
-              </tbody>
+                  @foreach($repEq as $equipment)
+                  <tr id={{$equipment->created_at}}>
+                    <td>{{$equipment->eqId}}</td>
+                    <td>{{$equipment->type}}</td>
+                    <td>{{$equipment->subtype}}</td>
+                    <td>{{$equipment->brand}}</td>
+                    <td>{{$equipment->model}}</td>
+                    <td style="display: none">{{$equipment->created_at}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
             </table>
           </div>
 

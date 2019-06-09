@@ -51,7 +51,7 @@ class DashboardController extends BaseController
         ->take(5)
         ->get(); 
 
-        $data['inc_orders'] = TblItEquipment::get_equipment_by_status(6);
+        $data['inc_orders'] = TblItEquipment::get_equipment_by_status(6)->take(5);
         $data['returned_items'] = TblItEquipment::get_equipment_by_status(4);
 
         return view ('content/dashboard' , $data);

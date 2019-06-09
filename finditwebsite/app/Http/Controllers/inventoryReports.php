@@ -24,6 +24,24 @@ class inventoryReports extends BaseController
           return \Redirect::to('/loginpage');
     }
       $data = [];
+      $data['counts'] = TblItEquipment::getCountsByStatus(1);
+      $data['availeq'] = TblItEquipment::get_equipment_by_status(1);
+      $data['repEq'] = TblItEquipment::get_equipment_by_status(3);
+      $data['items'] = TblItEquipment::getEquipment();
+      /* might need these later
+      $data['availmb'] = TblItEquipment::getEqPerStatusSubtype(1,1);
+      $data['availcpu'] = TblItEquipment::getEqPerStatusSubtype(1,2);
+      $data['availstr'] = TblItEquipment::getEqPerStatusSubtype(1,3);
+      $data['availram'] = TblItEquipment::getEqPerStatusSubtype(1,4);
+      $data['availgpu'] = TblItEquipment::getEqPerStatusSubtype(1,5);
+      $data['availpsu'] = TblItEquipment::getEqPerStatusSubtype(1,6);
+      $data['availcase'] = TblItEquipment::getEqPerStatusSubtype(1,7);
+      $data['availhsf'] = TblItEquipment::getEqPerStatusSubtype(1,8);
+      $data['availmouse'] = TblItEquipment::getEqPerStatusSubtype(1,9);
+      $data['availkb'] = TblItEquipment::getEqPerStatusSubtype(1,10);
+      */
+      //dd($data['items']);
+ 
       return view ('content/inventoryReports' , $data);
   }
 
