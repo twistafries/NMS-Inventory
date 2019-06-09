@@ -407,7 +407,6 @@ class TblItEquipment extends Model
         -> select('*')
         -> where('it_equipment_subtype.type_id', '=', $category)
         -> get();
-
         return $query;
     }
 

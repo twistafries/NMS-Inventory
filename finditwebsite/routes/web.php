@@ -52,7 +52,8 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 //     return view('content/trial-ajax');
 // });
 
-Route::get('/getPurchases/{id}', 'PurchasesController@fetchBulkPurchases');
+Route::get('/fetchID/getPurchases/{id}', 'BulkController@fetchBulkPurchases');
+Route::get('/fetchID/{id}', 'BulkController@showFields');
 
 
 Route::get('/getInfo/{id}', 'InventoryController@showEquipmentInfo');

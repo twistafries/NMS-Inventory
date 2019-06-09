@@ -166,11 +166,16 @@ class InventoryController extends BaseController
       }
 
       $data = [];
+      //system units by dep
       $data['it_dep'] = TblSystemUnits::unitByDep(1);
       $data['prod_dep'] = TblSystemUnits::unitByDep(2);
       $data['fin_dep'] = TblSystemUnits::unitByDep(3);
       $data['hr_dep'] = TblSystemUnits::unitByDep(4);
+      $data['no_dep'] = TblSystemUnits::unitByDep(null);
+
       $data['components'] = TblItEquipment::getByType(1);
+
+      //$data['latestUser'] = TblSystemUnits::getLatestUser();
 
       $data['subtypes'] = TblItEquipmentSubtype::get_component_subtype();
       $data['equipments'] = TblItEquipment::get_all_equipment();

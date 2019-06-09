@@ -13,11 +13,13 @@ use App\Models\TblSystemUnits;
 use App\Models\TblItEquipmentSubtype;
 use App\Models\TblItEquipmentType;
 use App\Models\TblEquipmentStatus;
+use App\Models\PurchasedItems;
+use App\Models\Purchases;
 use Session, Auth;
 
 class BulkController extends BaseController
 {
-    public function showFields(){
+    public function showFields($id = 0){
         if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
       }
@@ -36,6 +38,12 @@ class BulkController extends BaseController
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['component_subtypes'] = TblItEquipmentSubtype::get_component_subtype();
         $data['equipment_status'] = TblEquipmentStatus::get_all_status();
+        if($id != 0){
+            $data['item_id'] = $id;
+        }else{
+            $data['item_id'] = 0;
+        }
+        // dd($data['item_id']);
         return view ('content/bulkadd' , $data);
     }
 
@@ -103,9 +111,13 @@ class BulkController extends BaseController
               ->with('error' , 'Database cannot read input value.')
               ->with('error_info' , $qe->getMessage())
               ->with('target' , '#singleAdd');
+        }   
     }
 
-
-
+    
+    public function fetchBulkPurchases($id = 0){
+        $data['purchases'] = PurchasedItems::get_bulk_purchased_items($id);
+        echo json_encode($data);
+        exit;
     }
 }

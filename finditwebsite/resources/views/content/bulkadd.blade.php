@@ -75,7 +75,6 @@ body{
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
                 <div class="modal-body">
                     <div id="user_dialog" title="Add Data">
                         <div class="row">
@@ -192,7 +191,6 @@ body{
             </div>
         </div>
     </div>
-
 </div>
 
 
@@ -202,6 +200,10 @@ body{
 
 <script>
     $(document).ready(function () {
+        @if( $item_id != 0)
+            fetchRecords({{ $item_id }})
+        @endif
+            // fetchRecords(97)
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
@@ -276,8 +278,7 @@ body{
                     $('#submit_div').append(output_submit);
                 }
             });
-
-            fetchRecords(1);
+            
 
         // Fetch Data for View Modal
         function fetchRecords(id) {

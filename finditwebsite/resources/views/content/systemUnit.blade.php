@@ -85,15 +85,15 @@
                     <tbody>
                         @foreach($it_dep as $unit)
                             <tr>
-                                <td>ID: {{$unit->id}}</td>
+                                <td>ID: {{$unit->su_id}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                    <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
                                             <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
                                                 <i class="fas fa-angle-down">
-                                                </i> {{$unit->name}} {{$unit->id}}
+                                                </i> {{$unit->name}} {{$unit->su_id}}
                                             </a>
                                     </button>
-                                    <div class="collapse" id="itDepartment{{$unit->id}}">
+                                    <div class="collapse" id="itDepartment{{$unit->su_id}}">
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
@@ -106,7 +106,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach($components as $component)
-                                                            @if($component->unit_id == $unit->id)
+                                                            @if($component->unit_id == $unit->su_id)
                                                             <tr>
                                                                 <td>{{$component->name}}</td>
                                                                         <td>{{$component->brand}} {{$component->name}}</td>
@@ -118,6 +118,7 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
+<<<<<<< Updated upstream
                                         </div> 
                                 </td>
                             </tr>
@@ -1420,32 +1421,235 @@
                                 <li class="nav-item">
                                   <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEMS LIST</a>
                                 </li>
+=======
+                                    </div> 
+                                    
+                                    </td>
+                                        @if($unit->issued_to != null)
+                                            <td>{{$unit->fname}} {{$unit->lname}}</td>
+                                        @else 
+                                            <td> None </td>
+                                        @endif
+                                    <td>
+                                        @if($unit->status_id == 1)
+                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                        @elseif($unit->status_id == 2)
+                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                        @elseif($unit->status_id == 3)
+                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                        @elseif($unit->status_id == 4)
+                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                        @endif
+                                    </td> 
+                            </tr>
+                        @endforeach
+>>>>>>> Stashed changes
+
+                    </tbody>
 
 
-
+<<<<<<< Updated upstream
                               </ul>
+=======
+                </table>
+        <br>
+<!--Production Development Table-->
+          <h5 class="font-weight-bold">Production Development</h5>
+          <table id="myDataTablePD" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+                    <thead class="thead-dark">
+                         <tr>
+                            <th>ID</th>
+                            <th>Department</th>
+                            <th>Issued To</th>
+                            <th>Mark As</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach($prod_dep as $unit)
+                                <tr>
+                                    <td>ID: {{$unit->su_id}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                    <i class="fas fa-angle-down">
+                                                    </i> {{$unit->name}} {{$unit->su_id}}
+                                                </a>
+                                        </button>
+                                        <div class="collapse" id="itDepartment{{$unit->su_id}}">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Component</th>
+                                                            <th scope="col">Brand/Name</th>
+                                                            <th scope="col">Details</th>
+                                                            <th scope="col">Serial No.</th>
+                                                            <th scope="col">Warranty</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($components as $component)
+                                                                @if($component->unit_id == $unit->su_id)
+                                                                <tr>
+                                                                    <td>{{$component->name}}</td>
+                                                                            <td>{{$component->brand}} {{$component->name}}</td>
+                                                                            <td>{{$component->details}}</td>
+                                                                            <td>{{$component->serial_no}}</td>
+                                                                            <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                                </tr>
+                                                                 @endif
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                        </div> 
+                                        
+                                        </td>
+                                            @if($unit->issued_to != null)
+                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
+                                            @else 
+                                                <td> None </td>
+                                            @endif
+                                        <td>
+                                            @if($unit->status_id == 1)
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 2)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            @elseif($unit->status_id == 3)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 4)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @endif
+                                        </td> 
+                                </tr>
+                            @endforeach
+    
+                        </tbody>
+>>>>>>> Stashed changes
 
                                     </div>
                             </div>
 
+<<<<<<< Updated upstream
                         </div>
 
                         <hr>
+=======
+            </table>
+          <br>
+          
+<!--Financial Department Table-->
+          <h5 class="font-weight-bold">Financial Department</h5>
+          <table id="myDataTableFD" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+                    <thead class="thead-dark">
+                         <tr>
+                            <th>ID</th>
+                            <th>Department</th>
+                            <th>Issued To</th>
+                            <th>Mark As</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach($fin_dep as $unit)
+                                <tr>
+                                    <td>ID: {{$unit->su_id}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                    <i class="fas fa-angle-down">
+                                                    </i> {{$unit->name}} {{$unit->su_id}}
+                                                </a>
+                                        </button>
+                                        <div class="collapse" id="itDepartment{{$unit->su_id}}">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Component</th>
+                                                            <th scope="col">Brand/Name</th>
+                                                            <th scope="col">Details</th>
+                                                            <th scope="col">Serial No.</th>
+                                                            <th scope="col">Warranty</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($components as $component)
+                                                                @if($component->unit_id == $unit->su_id)
+                                                                <tr>
+                                                                    <td>{{$component->name}}</td>
+                                                                            <td>{{$component->brand}} {{$component->name}}</td>
+                                                                            <td>{{$component->details}}</td>
+                                                                            <td>{{$component->serial_no}}</td>
+                                                                            <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                                </tr>
+                                                                 @endif
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                        </div> 
+                                        
+                                        </td>
+                                            @if($unit->issued_to != null)
+                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
+                                            @else 
+                                                <td> None </td>
+                                            @endif
+                                        <td>
+                                            @if($unit->status_id == 1)
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 2)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            @elseif($unit->status_id == 3)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 4)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @endif
+                                        </td> 
+                                </tr>
+                            @endforeach
+    
+                        </tbody>
+                </table>
+                <br>
+>>>>>>> Stashed changes
           <!--Human Resources Table-->
           
           <h5 class="font-weight-bold">Human Resources Department</h5>
           <table id="myDataTableHR" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
-<!--
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Issued To</th>
-                            <th>Department</th>
-                        </tr>
--->
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
@@ -1458,8 +1662,8 @@
                         </tr>
                     </thead>
 
-
                     <tbody>
+<<<<<<< Updated upstream
 
 
                         <tr>
@@ -1908,6 +2112,78 @@
                     </tbody>
 
 
+=======
+                            @foreach($hr_dep as $unit)
+                                <tr>
+                                    <td>ID: {{$unit->su_id}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                    <i class="fas fa-angle-down">
+                                                    </i> {{$unit->name}} {{$unit->su_id}}
+                                                </a>
+                                        </button>
+                                        <div class="collapse" id="itDepartment{{$unit->su_id}}">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Component</th>
+                                                            <th scope="col">Brand/Name</th>
+                                                            <th scope="col">Details</th>
+                                                            <th scope="col">Serial No.</th>
+                                                            <th scope="col">Warranty</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($components as $component)
+                                                                @if($component->unit_id == $unit->su_id)
+                                                                <tr>
+                                                                    <td>{{$component->name}}</td>
+                                                                            <td>{{$component->brand}} {{$component->name}}</td>
+                                                                            <td>{{$component->details}}</td>
+                                                                            <td>{{$component->serial_no}}</td>
+                                                                            <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                                </tr>
+                                                                 @endif
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                        </div> 
+                                        
+                                        </td>
+                                            @if($unit->issued_to != null)
+                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
+                                            @else 
+                                                <td> None </td>
+                                            @endif
+                                        <td>
+                                            @if($unit->status_id == 1)
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 2)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            @elseif($unit->status_id == 3)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 4)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @endif
+                                        </td> 
+                                </tr>
+                            @endforeach
+    
+                        </tbody>
+>>>>>>> Stashed changes
                 </table>
           <br>
 
@@ -1915,16 +2191,6 @@
           <h5 class="font-weight-bold">No Department</h5>
           <table id="myDataTableND" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
-<!--
-                        <tr>
-
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Issued To</th>
-                            <th>Department</th>
-                        </tr>
--->
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
@@ -1936,9 +2202,8 @@
 
                         </tr>
                     </thead>
-
-
                     <tbody>
+<<<<<<< Updated upstream
 
 
                         <tr>
@@ -2169,6 +2434,78 @@
 
                     </tbody>
 
+=======
+                            @foreach($no_dep as $unit)
+                                <tr>
+                                    <td>ID: {{$unit->su_id}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                    <i class="fas fa-angle-down">
+                                                    </i> {{$unit->name}} {{$unit->su_id}}
+                                                </a>
+                                        </button>
+                                        <div class="collapse" id="itDepartment{{$unit->su_id}}">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Component</th>
+                                                            <th scope="col">Brand/Name</th>
+                                                            <th scope="col">Details</th>
+                                                            <th scope="col">Serial No.</th>
+                                                            <th scope="col">Warranty</th> 
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($components as $component)
+                                                                @if($component->unit_id == $unit->su_id)
+                                                                <tr>
+                                                                    <td>{{$component->name}}</td>
+                                                                            <td>{{$component->brand}} {{$component->name}}</td>
+                                                                            <td>{{$component->details}}</td>
+                                                                            <td>{{$component->serial_no}}</td>
+                                                                            <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                                </tr>
+                                                                 @endif
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                        </div> 
+                                        
+                                        </td>
+                                            @if($unit->issued_to != null)
+                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
+                                            @else 
+                                                <td> None </td>
+                                            @endif
+                                        <td>
+                                            @if($unit->status_id == 1)
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 2)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            @elseif($unit->status_id == 3)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @elseif($unit->status_id == 4)
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            @endif
+                                        </td> 
+                                </tr>
+                            @endforeach
+    
+                        </tbody>
+>>>>>>> Stashed changes
 
                 </table>
           <br>
@@ -3268,22 +3605,6 @@
 
     </script>
 
-    </script>
-    <!-- <script>
-      $(document).ready(function() {
-            $('table.display').DataTable({
-              pagingType: "full_numbers",
-              scrollY:        "300px",
-              scrollX:        true,
-              scrollCollapse: true,
-              paging:         false,
-              fixedColumns:   {
-                  leftColumns: 1,
-                  rightColumns: 1
-              }
-            });
-        } );
-      </script> -->
     <script>
         function DoSubmit() {
             var item = $(equipment).val();
@@ -3294,84 +3615,7 @@
         };
 
     </script>
-    <!-- <script>
-        $.fn.dataTable.ext.search.push(
-            function(settings, data, dataIndex) {
-                var type = $('#types').val();
-                var subtype = $('#subtypes').val();
-                var supplier = $('#supplier').val();
-                var brand = $('#brand').val();
-                var status = $('#status').val();
-                var types = data[3]; // use data for the age column
-                var subtypes = data[4];
-                var suppliers = data[5];
-                var brands = data[2];
-                var statuses = data[11];
-                if (type == types || type == "any") {
-                    if (subtype == subtypes || subtype == "any") {
-                        if (supplier == suppliers || supplier == "any") {
-                            if (brand == brands || brand == "any") {
-                                if (status == statuses || status == "any") {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
 
-                }
-                return false;
-            }
-        );
-
-        $(document).ready(function() {
-            var table = $('#myDataTable').DataTable();
-
-            // Event listener to the two range filtering inputs to redraw on input
-            $('#subtypes').on('keyup change', function() {
-                table.draw();
-            });
-            $('#types').on('keyup change', function() {
-                table.draw();
-            });
-            $('#supplier').on('keyup change', function() {
-                table.draw();
-            });
-            $('#brand').on('keyup change', function() {
-                table.draw();
-            });
-            $('#status').on('keyup change', function() {
-                table.draw();
-            });
-        });
-        function reset() {
-            document.getElementById("subtypes").selectedIndex = "0";
-            document.getElementById("types").selectedIndex = "0";
-            document.getElementById("supplier").selectedIndex = "0";
-            document.getElementById("brand").selectedIndex = "0";
-            document.getElementById("status").selectedIndex = "0";
-            $('#myDataTable').DataTable().search('').draw();
-            $('#myDataTable1').DataTable().search('').draw();
-            $('#myDataTable2').DataTable().search('').draw();
-            $('#myDataTable3').DataTable().search('').draw();
-            $('#myDataTable4').DataTable().search('').draw();
-            // $('#myDataTable5').DataTable().search('').draw();
-
-        }
-
-        function restore(option) {
-            if (option == false) {
-                $("#types").hide();
-                $("#labelTypes").hide();
-                reset()
-            } else {
-                $("#types").show();
-                $("#labelTypes").show();
-                reset()
-
-            }
-        };
-
-    </script> -->
     <script>
         $('#collapsedown1').click(function() {
             $('#collapseOne').toggle('1000');
