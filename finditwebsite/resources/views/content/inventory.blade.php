@@ -32,13 +32,13 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
-                    
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
                     </li>
                 </ol>
             </nav>
-            
+
     </nav>
 
 <!--
@@ -71,7 +71,7 @@
 
 <!--    PAGE CONTENT -->
       <div class="container-fluid">
-                      
+
 
                             <div class="row pt-4">
                                 <div class="container-fluid">
@@ -82,7 +82,7 @@
                                 <li class="nav-item">
                                   <a class="nav-link  font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEMS LIST</a>
                                 </li>
-                                
+
 
 
                               </ul>
@@ -91,10 +91,10 @@
 
                         <hr>
 
-                   
+
           <!--    PAGE CONTENT END -->
-   
-          
+
+
           <!-- Single Add Modal -->
 
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="singleAdd">
@@ -242,7 +242,7 @@
 
 
     <!--Build From Parts Modal-->
-      
+
         <div class="p-2">
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
 
@@ -302,7 +302,7 @@
     <!-- Add System Unit Modal-->
 
     @include('content.addunit')
-            
+
 <!-- Add Subtype-->
 
 <div class="modal fade" id="addSubtype" tabindex="-1" role="dialog" aria-labelledby="addSubtypeTitle" aria-hidden="true">
@@ -329,23 +329,23 @@
                 <div class="row pt-2">
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
-                        
+
                             <div class="input-group">
                                 <input name="subtype" type="text" size="30">
                             </div>
                         </div>
                     </div>
                 </div>
-              </div>    
+              </div>
              <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
                             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                         </div>
 
-            
+
         </div>
-        
-       
+
+
     </div>
 </div>
                 <!-- Soft Delete-->
@@ -446,7 +446,7 @@
 
                      <h4>IT EQUIPMENT ({{ $total_equipment + count($system_units) }})</h4>
                             <div class="row">
-                                
+
                                 <div class="container-fluid">
                                     <!--
                                     <div class="collapse-group">
@@ -586,7 +586,7 @@
                             <td>{{$Storage['Decommissioned']}}</td>
                             <td>{{$total_Storage}}</td>
                         </tr>
-                     
+
                     </tbody>
                 </table>
             </div>
@@ -652,8 +652,8 @@
                             <td>{{$Mouse['Decommissioned']}}</td>
                             <td>{{$total_Mouse}}</td>
                         </tr>
-                        
-                        
+
+
 
                     </tbody>
                 </table>
@@ -722,7 +722,7 @@
                             <td>{{$Tablet['Decommissioned']}}</td>
                             <td>{{$total_Tablet}}</td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -823,7 +823,7 @@
     </div>
 
 
-  
+
 
     </div>
     <!--    PAGE CONTENT END -->
@@ -842,7 +842,7 @@
     <!-- Additional Scripts   -->
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
-    
+
     <!-- Scripts for dynamic textarea for single add -->
     @include('partials._singleadd')
 

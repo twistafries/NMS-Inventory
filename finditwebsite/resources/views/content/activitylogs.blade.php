@@ -69,12 +69,21 @@
                           @if($log->activity == "change the status of")
                           <tr>
                               <td>
-                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} from {{$log->from_status}} to {{$log->to_status}}.
+                                {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} {{$log->issued_to}} from {{$log->from_status}} to {{$log->to_status}}.
                               </td>
                               <td>{{$log->created_at}}</td>
                           </tr>
                           @endif
                           @if($log->activity == "deleted")
+                          <tr>
+                              <td>
+                                {{$log->done_by}} {{$log->activity}} {{$log->deleted_item}} from the inventory.
+
+                              </td>
+                              <td>{{$log->created_at}}</td>
+                          </tr>
+                          @endif
+                          @if($log->activity == "built")
                           <tr>
                               <td>
                                 {{$log->done_by}} {{$log->activity}} {{$log->deleted_item}} from the inventory.

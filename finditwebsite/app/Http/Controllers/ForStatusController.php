@@ -56,7 +56,7 @@ class ForStatusController extends BaseController
      $data['for_repair_units'] = TblEquipmentStatus::get_for_repair_units();
      return view ('content/repair' , $data);
    }
-      
+
       public function showRepairItemsSummary(){
      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
@@ -213,11 +213,32 @@ class ForStatusController extends BaseController
    public function editEmployee(Request $request)
    {
       $data = $request->all();
-
+      dd($data);
       TblEmployees::edit_employee($data);
 
       $act['employees'] = $data['id'];
-      $act['action'] = "updated";
+      $act['activity'] = "updated";
+      TblActivityLogs::add_log($act);
+
+      return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
+
+   }
+
+   public function changeStatus(Request $request)
+   {
+      $data = $request->all();
+
+      TblEmployees::edit_employee($data);
+      if($data['status']=="active"){
+        $act['to_status'] = "active";
+        $act['from_status'] = "inactive";
+      } else {
+        $act['to_status'] = "inactive";
+        $act['from_status'] = "active";
+      }
+
+      $act['issued_to'] = $data['name'];
+      $act['activity'] = "change the status of";
       TblActivityLogs::add_log($act);
 
       return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');

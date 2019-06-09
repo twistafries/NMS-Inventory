@@ -17,7 +17,7 @@
                             <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
                                 <thead>
                                     <tr>
-                                        <th>PC Description</th>
+                                        <th>Department</th>
                                         <th>Supplier</th>
                                         <th>OR No.</th>
                                         <th>Warranty</th>
@@ -37,7 +37,7 @@
                                             <input type="date" id="start" name="unit[warranty_start]">
                                             <br>
                                             <label for="start">End date:</label>
-                                            <input type="date" id="start" name="unit[warranty_end]">
+                                            <input type="date" id="end" name="unit[warranty_end]">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -63,9 +63,9 @@
                                         <td> <input type="text" name="equipment[brand][]" required></td>
                                         <td> <input type="text" name="equipment[model][]" required></td>
                                         <td> <input type="text" name="equipment[serial_no][]" required></td>
-                                        <td><textarea name="equipment[details][]" rows="2" cols="22">Socket: 
-Chipset: 
-Size: 
+                                        <td><textarea name="equipment[details][]" rows="2" cols="22">Socket:
+Chipset:
+Size:
 RAM: </textarea></td>
                                     </tr>
 
@@ -75,7 +75,7 @@ RAM: </textarea></td>
                                         <td> <input type="text" name="equipment[brand][]" required></td>
                                         <td> <input type="text" name="equipment[model][]" required></td>
                                         <td> <input type="text" name="equipment[serial_no][]" required></td>
-                                        <td><textarea name="equipment[details][]" rows="2" cols="22" value="Socket: ">Socket: 
+                                        <td><textarea name="equipment[details][]" rows="2" cols="22" value="Socket: ">Socket:
 </textarea></td>
                                     </tr>
 
@@ -133,14 +133,14 @@ RAM: </textarea></td>
                             </div>
                             </div>
 
-                        </form>
+
                         </div>
 
                     <div class="modal-footer">
                         <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
                         <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                     </div>
-
+                      </form>
 
 
         </div>

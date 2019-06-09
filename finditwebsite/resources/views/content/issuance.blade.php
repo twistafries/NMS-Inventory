@@ -114,7 +114,7 @@
                 <button class="btn btn-outline-dark rounded-pill" type="button " id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#"><a href="#" data-toggle="tooltip" title="Add"><img class="tool-item"  src="../../assets/icons/table-toolbar-icons/add-icon.png">Issue An Item</a>
                 </button>
 
-               
+
             </div>
         </div>
     </div>
@@ -167,7 +167,7 @@
                             <td> Not yet updated</td>
                             @endif
                             @if($issuance->issued_until != null)
-                            <td>{{ $issuance->issued_until }} </td>
+                            <td>{{ $issuance->issued_until }}</td>
                             @endif
                             @if($issuance->issued_until == null)
                             <td>Not Applicable</td>
@@ -194,7 +194,7 @@
                 </table>
             </div>
           </div>
-        
+
 
               <div class="modal fade bd-example-modal-lg" id="singleIssue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -210,21 +210,21 @@
                         <div class="modal-body">
                             <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
                                 {!! csrf_field() !!}
-                                
+
                                           <table>
                                             <div class="row">
                                             <tr>
                                             <div class="col-md-8">
                                             <td><p class="card-title">Issue Item:</p></td>
                                             </div>
-                                            
+
                                            <div class="col-md-4">
                                             <td><p class="card-title">Issued Until:</p></td>
                                           </div>
                                           </tr>
 
                                           <tr>
-                                            
+
                                             <td>
                                               <div class="col-md-4" style="padding: 25px 15px;">
                                               <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
@@ -240,7 +240,7 @@
                                                 </datalist>
                                               </div>
                                             </td>
-                                          
+
                                               <td>
                                                 <div class="col-md-10" style="padding: 30px 15px;">
                                                   <div class="input-group mb-3">
@@ -251,7 +251,7 @@
                                           </tr>
                                            </div>
                                           </table>
-                                 
+
 
                                       <table id="addMoreList">
                                                  <tbody>
@@ -317,7 +317,7 @@
 
                           </div>
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -338,32 +338,32 @@
 
         <form action="{!! url('/editIssuance'); !!}" enctype="multipart/form-data" method="post" role="form">
             {!! csrf_field() !!}
-          <div class="row">
-            <div class="col"><p class="card-title text-dark">Item Name:</p> {{ $issuance->model}}</div>
-            <div class="col"><p class="card-title text-dark">Item Subtype:</p>Sample</div>
-               <div class="col"><p class="card-title text-dark"> System Unit Issued:</p>Sample</div>
+          <div  class="row">
+            <div class="col"><p class="card-title text-dark">Item Name:</p> <h5 id="issuedModel"></h5></div>
+            <div class="col"><p class="card-title text-dark">Item Subtype:</p> <h5 id="issuedSub"></h5></div>
+            <div class="col"><p class="card-title text-dark">Item Subtype:</p> <h5 id="issuedSN"></h5></div>
           </div>
 
            <div class="row pt-4">
-               <div class="col"><p class="card-title text-dark">Issued To:</p>Sample</div>
-                <div class="col"><p class="card-title text-dark">Issued By:</p>Sample</div>
+               <div class="col"><p class="card-title text-dark">Issued To:</p><h5 id="issuedTo"></h5></div>
+                <div class="col"><p class="card-title text-dark">Issued By:</p><h5 id="issuedBy"></h5></div>
           </div>
 
           <div class="row pt-4">
                <div class="col"><p class="card-title text-dark">Date Issued:</p>
-                   Sample
+                   <h5 id="dateIssued"></h5>
               </div>
-                <div class="col"><p class="card-title text-dark">Date Updated:</p>Sample</div>
+                <div class="col"><p class="card-title text-dark">Date Updated:</p><h5 id="dateUpdated"></h5></div>
 
           </div>
           <div class="row pt-4">
 
               <div class="col"><p class="card-title text-dark">Issued Until:</p><input type="date" value="" name="issueUntil" id="issueUntil"></div>
-              <div class="col"><p class="card-title text-dark">Date Returned:</p>Sample</div>
+              <div class="col"><p class="card-title text-dark">Date Returned:</p><h5 id="dateReturn"></h5></div>
           </div>
            <div class="row pt-4">
 
-              <div class="col"><p class="card-title text-dark">Remarks:</p>Sample</div>
+              <div class="col"><p class="card-title text-dark">Remarks:</p><h5 id="issuedRemarks"></h5></div>
 
           </div>
 
@@ -498,28 +498,28 @@ $(window).load(function(){
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
     <script>
 
-    var table = document.getElementById('myDataTable');
+        var table = document.getElementById('myDataTable');
 
-    for(var i = 1; i < table.rows.length; i++)
-    {
-        table.rows[i].onclick = function()
+        for(var i = 1; i < table.rows.length; i++)
         {
-             //rIndex = this.rowIndex;
-             document.getElementById("equipmentIssued").setAttribute('value', this.cells[0].innerHTML);
-             document.getElementById("equipmentSubtype").setAttribute('value', this.cells[1].innerHTML);
-             document.getElementById("unitIssued").setAttribute('value', this.cells[2].innerHTML);
-             document.getElementById("issuedTo").setAttribute('value', this.cells[3].innerHTML);
-             document.getElementById("issuedBy").setAttribute('value', this.cells[4].innerHTML);
-             document.getElementById("dateIssued").setAttribute('value', this.cells[5].innerHTML);
-             document.getElementById("dateUpdated").setAttribute('value', this.cells[6].innerHTML);
-             document.getElementById("issueUntil").setAttribute('value', this.cells[7].innerHTML);
-             document.getElementById("dateReturned").setAttribute('value', this.cells[8].innerHTML);
-             document.getElementById("remarks").innerHTML=this.cells[9].innerHTML;
+            table.rows[i].onclick = function()
+            {
+                 // //rIndex = this.rowIndex;
+                 // document.getElementById("id").value = this.cells[10].innerHTML;
+                 document.getElementById("issuedModel").innerHTML = this.cells[0].innerHTML;
+                 document.getElementById("issuedSub").innerHTML = this.cells[1].innerHTML;
+                 document.getElementById("issuedTo").innerHTML = this.cells[3].innerHTML;
+                 document.getElementById("issuedBy").innerHTML = this.cells[4].innerHTML;
+                 document.getElementById("issuedSN").innerHTML = this.cells[2].innerHTML;
+                 document.getElementById("dateIssued").innerHTML = this.cells[5].innerHTML;
+                 document.getElementById("dateUpdated").innerHTML = this.cells[6].innerHTML;
+                 document.getElementById("issueUntil").value = this.cells[7].innerHTML;
+                 document.getElementById("dateReturn").innerHTML = this.cells[8].innerHTML;
+                 document.getElementById("issuedRemarks").innerHTML = this.cells[9].innerHTML;
+            };
+        }
 
-        };
-    }
-
-</script>
+    </script>
 
     <script>
       $(document).ready(function(){

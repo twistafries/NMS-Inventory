@@ -321,7 +321,7 @@
                 <div class="card-body ">
                     <ul class="list-group list-group-flush">
                         @foreach($inc_orders as $order)
-                            <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier_name}}</li>
+                            <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier}}</li>
                         @endforeach
                     </ul>
                     <form action="{!! url('/incompleteOrders'); !!}" method="get">
@@ -338,7 +338,7 @@
                 <div class="card-body ">
                     <ul class="list-group list-group-flush">
                         @foreach($returned_items as $returns)
-                            <li class="list-group-item">{{$returns->brand}} {{$returns->model}} | OR No.:{{$returns->or_no}} | Supplier: {{$returns->supplier_name}}</li>
+                            <li class="list-group-item">{{$returns->brand}} {{$returns->model}} | OR No.:{{$returns->or_no}} | Supplier: {{$returns->supplier}}</li>
                         @endforeach
                     </ul>
                     <form action="{!! url('/returns'); !!}" method="get">

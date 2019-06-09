@@ -60,20 +60,12 @@
       <thead>
         <tr>
           <th>
-            <label for="types" id="labelTypes">Types: </label>
-            <select id="types" name="types" style="width: 10rem; height: 1.8rem;">
-              <option value="any">Any</option>
-              @foreach ($typesSel as $typesSel)
-              <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
-              @endforeach
-            </select>
-          </th>
-          <th>
             <label for="subtype">Subtype: </label>
             <select id="subtypes" name="subtypes" style="height: 1.8rem; margin-right: 1rem;">
               <option value="any">Any</option>
+              <option value="PC_SystemUnit">System Unit</option>
               @foreach ($subtypesSel as $subtypesSel)
-              <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+              <option value="{{$subtypesSel->name}}{{$subtypesSel->id}}">{{$subtypesSel->name}}</option>
               @endforeach
             </select>
         </th>
@@ -82,7 +74,7 @@
           <select id="supplier" name="supplier" style="height: 1.8rem;">
             <option value="any">Any</option>
             @foreach ($suppliers as $suppliers)
-            <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
+            <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
             @endforeach
           </select>
       </th>
@@ -95,14 +87,6 @@
           @endforeach
         </select>
       </th>
-      <th>
-        <label for="status">Status: </label>
-        <select id="status" name="status" style="height: 1.8rem;">
-          <option value="any">Any</option>
-          @foreach ($status as $status)
-          <option value="{{$status->name}}">{{$status->name}}</option>
-          @endforeach
-        </select>
       </th>
       <th></th><th></th>
         <th>
@@ -247,7 +231,7 @@ RAM:
 
                                       <tbody>
                                           <tr>
-                                             
+
                                               <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
                                                <td> <input type="text" name=""></td>
                                           </tr>
@@ -345,7 +329,6 @@ RAM:
             </thead>
             <tbody>
 
-
       @foreach($purchase as $purchase)
         <tr>
           <td> <p hidden>{{$purchase->date_of_purchase}}</p>
@@ -363,9 +346,11 @@ RAM:
               <th scope="col">Model/Label</th>
               <th scope="col">Details</th>
               <th scope="col">Subtype</th>
+              <th scope="col" hidden></th>
               <th scope="col">Supplier</th>
               <th scope="col">Qty</th>
               <th scope="col"></th>
+              <th hidden></th>
             </tr>
           </thead>
           <tbody>
@@ -376,13 +361,12 @@ RAM:
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->model}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->details}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->subtype}}</td>
+              <td hidden>{{$item->subtype}}{{$item->subtype_id}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
               @if($purchase->or_no!=null)
               <td class="text-right">
-                <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#add{{$item->id}}">
-                  <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Already added
-                </button>
+                Already Received
               </td>
               @else
               <td class="text-right">
@@ -401,6 +385,7 @@ RAM:
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
+            <td hidden>PC_SystemUnit</td>
             <td class="text-right">
               <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#purchasesmodal">
                 <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
@@ -732,4 +717,55 @@ RAM:
         $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><button onclick='rm()' style=\"margin-left:2rem;\">remove</button></td></tr>");
       }
     </script>
+
+    <script>
+    $.fn.dataTable.ext.search.push(
+      function( settings, data, dataIndex ) {
+      var subtype =  $('#subtypes').val()
+      var supplier =  $('#supplier').val();
+      var brand =  $('#brand').val();
+      var subtypes = data[0];
+      var suppliers = data[0];
+      var brands = data[0];
+
+        if (subtypes.includes(subtype) || subtype == "any"){
+          if (suppliers.includes(supplier)  || supplier == "any"){
+            if (brands.includes(brand)  || brand == "any"){
+              return true;
+            }
+          }
+        }
+
+
+      return false;
+      }
+      );
+
+      $(document).ready(function() {
+      var table = $('#purchasesTable').DataTable();
+
+      // Event listener to the two range filtering inputs to redraw on input
+      $('#subtypes').on('keyup change',  function() {
+          table.draw();
+          } );
+          $('#supplier').on('keyup change',  function() {
+              table.draw();
+          } );
+          $('#brand').on('keyup change',  function() {
+              table.draw();
+          } );
+      } );
+
+              function reset(){
+                document.getElementById("subtypes").selectedIndex = "0";
+                document.getElementById("supplier").selectedIndex = "0";
+                document.getElementById("brand").selectedIndex = "0";
+                $('#purchasesTable').DataTable().search('').draw();
+
+                // $('#myDataTable5').DataTable().search('').draw();
+
+              }
+
+
+          </script>
 @stop
