@@ -48,6 +48,9 @@ class TblActivityLogs extends Model {
 			if(isset($params['field']))
      	 $log->field = $params['field'];
 
+			 if(isset($params['deleted_item']))
+      	 $log->deleted_item = $params['deleted_item'];
+
     	try {
     		$log->save();
     		$results['error'] = 0;

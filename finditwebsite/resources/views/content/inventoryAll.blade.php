@@ -26,6 +26,9 @@
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
                     </li>
+                    <li class="breadcrumb-item ">
+                            <a href="{!! url('/systemUnit') !!}" class="text-dark">System Unit</a>
+                    </li>
                     
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
@@ -51,9 +54,6 @@
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link active font-weight-bolder" href="{!! url('/inventoryAll') !!}">INVENTORY ITEM LIST</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/systemUnit') !!}">SYSTEM UNITS</a>
                                 </li>
 
 
@@ -215,7 +215,12 @@
                         <th>Added by</th>
                         <th>Date Added</th>
                         <th>Status</th>
-
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
+                        <th hidden></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -235,10 +240,18 @@
                         <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
                         <td> {{ $equipment->added_at }} </td>
                         <td> {{ $equipment->status_name }} </td>
+                        <td hidden> {{ $equipment->details }} </td>
+                        <td hidden>{{ $equipment->warranty_start }}</td>
+                        <td hidden>{{ $equipment->warranty_end }}</td>
+                        <td hidden> {{ $equipment->imei_or_macaddress }} </td>
+                        <td hidden> {{ $equipment->or_no }} </td>
+                        <td hidden> {{ $equipment->status_id }} </td>
 
                     </tr>
+                    @endforeach
 
                     <!-- View Details All Modal -->
+                    @foreach ($eqp as $equipment)
                     <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
@@ -325,12 +338,12 @@
                                         <div class="row row-details">
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                            @if($equipment->warranty_end < Carbon::today()) 
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#for-repair-{!! $equipment->id !!}">
+                                            @if($equipment->warranty_end < Carbon::today())
+                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">
                                                 For Repair
                                             </button>
                                             <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                data-target="#decommissionedModal-{!! $equipment->id !!}">Decommission</button>
+                                                data-target="#decommissionedModal">Decommission</button>
                                                 @else
                                                 @if($equipment->status_id == 4)
                                                 <div class="btn-group" role="group">
@@ -347,30 +360,33 @@
                                                 </div>
                                                 @else
                                                 <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#return-{!! $equipment->id !!}">For Return</button>
+                                                    data-target="#return">For Return</button>
                                                 @endif
                                                 <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#decommissionedModal-{!! $equipment->id !!}">Decommissioned</button>
+                                                    data-target="#decommissionedModal">Decommissioned</button>
                                                 @endif
                                         </div>
-                                            
+
                                         </div>
 
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
+                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit">Edit Values</button>
 
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal-{!! $equipment->id !!}">Delete Entry</button>
+                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    @endforeach
+
+                    <!-- View Details All Modal -->
 
                     <!-- Return to supplier warning modal -->
-                    <div class="modal fade" id="return-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
+                    <div class="modal fade" id="return" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
                         aria-hidden="true">
 
                         <div class="modal-dialog" role="document">
@@ -384,96 +400,49 @@
                                 <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
                                     {!! csrf_field() !!}
                                 <div class="modal-body">
-                                    <div class="warning-content">
+                                    <div class="warning-content" style="text-align: center;">
                                         <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
                                         <h5 class="text-center">Are you sure you want to return equipment,
-                                            <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
+                                            <b><h4 id="returnitemNAme"></h4></b>
                                             back to
-                                            <b>{{ $equipment->supplier }}</b>
-                                            ?
+                                            <b><h4 id="returnSupplier"></h4></b>
+
                                         </h5>
-                                        
+
                                     </div>
                                     <br>
                                     <div class="btn-group" role="group">
                                         <button class="btn btn-warning text-uppercase" data-toggle="collapse"
-                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
                                         </button>
-                                        <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                        <div class="collapse" id="remarks">
                                             <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50"></textarea>
                                         </div>
-                                    
+
                                     </div>
-                                    
-                                    <input type="hidden" name="id" value="{!! $equipment->id !!}">
+
+                                    <input type="hidden" name="id" id="id" value="">
                                     <input type="hidden" name="status_id" value="4">
-                                    <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                    <input type="hidden" name="orig_status_id" id="orig_status_id" value="">
                                 </div>
-                                
+
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary text-uppercase p-2">Return to supplier</button>
                                 </form>
-                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#for-repair-{!! $equipment->id !!}">Mark for repair</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">Mark for repair</button>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Return to supplier warning modal -->
-                    <div class="modal fade" id="re-return-{!! $equipment->id !!}" tabindex="-1" role="dialog"
-                        aria-labelledby="toBeReturnedModalTitle" aria-hidden="true">
-                    
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="height:380px; width:620px;">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Return Info</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
-                                    {!! csrf_field() !!}
-                                    <div class="modal-body">
-                                        <div class="warning-content">
-                                            <p class="text-uppercase font-weight-bold text-warning">Equipment is already for return</p>
-                                            <small class="text-center">Are you sure you want to return equipment,
-                                                <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
-                                                back to
-                                                <b>{{ $equipment->supplier }}</b>
-                                                ?
-                                            </small>
-                                        </div>
-                                        <div class="btn-group" role="group">
-                                            <button class="btn btn-warning text-uppercase" data-toggle="collapse"
-                                                data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false"
-                                                aria-controls="collapseExample" type="button">
-                                                Add Remarks
-                                            </button>
-                                            <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
-                                                <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
-                                            </div>
-                    
-                                        </div>
-                    
-                                        <input type="hidden" name="id" value="{!! $equipment->id !!}">
-                                        <input type="hidden" name="status_id" value="4">
-                                        <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
-                                    </div>
-                    
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Return to supplier</button>
-                                </form>
-                                <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal">Mark for repair</button>
-                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                        
+
+
+                    <!-- View Details All Modal -->
+
                     <!-- For Repair to supplier warning modal -->
-                    <div class="modal fade" id="for-repair-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
+                    <div class="modal fade" id="for-repair" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
                         aria-hidden="true">
 
                         <div class="modal-dialog" role="document">
@@ -487,30 +456,27 @@
                                 <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
                                     {!! csrf_field() !!}
                                 <div class="modal-body">
-                                    <div class="warning-content">
+                                    <div class="warning-content" style="text-align: center;">
                                         <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
-                                        <small class="text-center">Are you sure you want to mark equipment,
-                                            <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
-                                            for repair?
-                                        </small>
+                                          <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="repairitemNAme"></h4>  for repair?</span></pre>
                                     </div>
                                     <div class="btn-group" role="group">
                                         <button class="btn btn-secondary text-uppercase">Purchase Replacement</button>
                                         <button class="btn btn-warning text-uppercase" data-toggle="collapse"
-                                            data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample" type="button">
+                                            data-target="#remarks-4" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
                                         </button>
-                                        <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                        <div class="collapse" id="remarks-4">
                                             <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                         </div>
-                                    
+
                                     </div>
-                                    
-                                    <input type="hidden" name="id" value="{!! $equipment->id !!}">
+
+                                    <input type="hidden" name="id" id="id" value="">
                                     <input type="hidden" name="status_id" value="3">
-                                    <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                    <input type="hidden" name="orig_status_id" id="orig_status_id" value="">
                                 </div>
-                                
+
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary text-uppercase">For Repair</button>
                                 </form>
@@ -518,9 +484,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>
+
+
+
+                    <!-- View Details All Modal -->
+
                     <!-- Decomissioned -->
-                    <div class="modal fade" id="decommissionedModal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                    <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -536,31 +507,28 @@
                                     <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
                                         {!! csrf_field() !!}
                                         <div class="modal-body">
-                                            <div class="warning-content">
+                                            <div class="warning-content" style="text-align: center;">
                                                 <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
-                                                <small class="text-center">Are you sure you want to mark equipment,
-                                                    <b>{{ $equipment->model }} {{ $equipment->brand }}</b>
-                                                    for decommission?
-                                                </small>
+                                                <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="itemNAme"></h4>  for decommission?</span></pre>
                                             </div>
                                             <div class="btn-group" role="group">
                                                 <button class="btn btn-secondary text-uppercase">Purchase Replacement</button>
                                                 <button class="btn btn-warning text-uppercase" data-toggle="collapse"
-                                                    data-target="#remarks-4-{!! $equipment->id !!}" aria-expanded="false" aria-controls="collapseExample"
+                                                    data-target="#remarks" aria-expanded="false" aria-controls="collapseExample"
                                                     type="button">
                                                     Add Remarks
                                                 </button>
-                                                <div class="collapse" id="remarks-4-{!! $equipment->id !!}">
+                                                <div class="collapse" id="remarks">
                                                     <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                                 </div>
-                                    
+
                                             </div>
-                                    
-                                            <input type="hidden" name="id" value="{!! $equipment->id !!}">
+
+                                            <input type="hidden" name="id" id="decommission_id" value="">
                                             <input type="hidden" name="status_id" value="7">
-                                            <input type="hidden" name="orig_status_id" value="{!! $equipment->status_id !!}">
+                                            <input type="hidden" name="orig_status_id" id="orig_status_id_decommissioned" value="">
                                         </div>
-                                    
+
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-primary text-uppercase">Decommission</button>
                                     </form>
@@ -569,11 +537,14 @@
                                 </div>
                             </div>
                     </div>
-                    
-                    
 
 
-                    <div class="modal fade" id="deleteModal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+
+
+
+                    <!-- View Details All Modal -->
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:500px;">
@@ -584,10 +555,10 @@
                                         </button>
                                     </div>
 
-                                    <div class="modal-body">
+                                    <div class="modal-body" style="text-align: center;">
                                       <div class="warning-content">
                                           <p class="text-danger text-uppercase font-weight-bold">Warning!</p>
-                                          <p>Are you sure you want to permanently delete {{ $equipment->brand }} {{ $equipment->model }} from the inventory?</p>
+                                          <pre><span class="inner-pre" style="font-size: 15px">Are you sure you want to permanently delete<h4 id="deleteitemNAme"></h4>   from the inventory?</span></pre>
                                       </div>
 
                                     </div>
@@ -595,7 +566,8 @@
                                     <div class="modal-footer">
                                         <form action="{!! url('/hardDeleteEquipment'); !!}" method="post">
                                         {!! csrf_field() !!}
-                                        <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                                        <input  name="equipment_id" id="delete_id" value="" hidden>
+                                        <input  name="deleted_item" id="deleted_item" value="" hidden>
                                         <button type="submit" class="btn btn-danger text-uppercase">Delete</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
@@ -609,12 +581,15 @@
 
 
 
+
+                    <!-- View Details All Modal -->
+
                     <!-- Edit Details Modal -->
-                    <div class="modal fade" id="edit-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
+                    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit"
                         aria-hidden="true">
                         <form action="{!! url('/editEquipment'); !!}" method="post">
                             {!! csrf_field() !!}
-                            <input type="hidden" name="id" value="{!! $equipment->id !!}">
+                            <input type="hidden" name="id" id="id" value="">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -630,55 +605,34 @@
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Model:</h6>
-                                                        <input name="model" value="{!! $equipment->model !!}">
+                                                        <input name="model" id="model" value="">
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Brand:</h6>
-                                                        <input name="brand" value="{!! $equipment->brand !!}">
+                                                        <input name="brand" id="brand_eqp" value="">
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Serial Number: </h6>
-                                                        <input name="serial_no" value="{!! $equipment->serial_no !!}">
+                                                        <input name="serial_no" id="serial_no" value="">
                                                     </li>
                                                 </ul>
                                             </div>
 
                                             <div class="col">
                                                 <ul class="list-group">
-                                                    @if( $equipment->type_id == 3)
-                                                    @isset( $equipment->imei_or_macaddress )
+
                                                     <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
-                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">IMEI/MAC Address:</h6>
+                                                        <input name="imei_or_macaddress" id="imei_or_macaddress" value="">
                                                     </li>
-                                                    @endisset
-                                                    @empty( $equipment->imei_or_macaddress )
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">IMEI:</h6>
-                                                        <input name="imei_or_macaddress" value="None">
-                                                    </li>
-                                                    @endempty
-                                                    @elseif( $equipment->type_id != 3)
-                                                    @isset( $equipment->imei_or_macaddress )
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
-                                                        <input name="imei_or_macaddress" value="{!! $equipment->imei_or_macaddress !!}">
-                                                    </li>
-                                                    @endisset
-                                                    @empty( $equipment->imei_or_macaddress )
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">MAC Address:</h6>
-                                                        <input name="imei_or_macaddress" value="None">
-                                                    </li>
-                                                    @endempty
-                                                    @endif
+
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Official Receipt No: </h6>
-                                                        <input name="or_no" value="{!! $equipment->or_no !!}">
+                                                        <input name="or_no" id="or_no" value="">
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Supplier: </h6>
-                                                        <input name="supplier" value="{!! $suppliers->supplier_name !!}">
+                                                        <input name="supplier" id="supplier_eqp" value="">
                                                     </li>
                                                 </ul>
                                             </div>
@@ -688,7 +642,7 @@
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase">Details:</h6>
-                                                        <textarea rows="4" cols="50" name="details">{{ $equipment->details }}</textarea>
+                                                        <textarea rows="4" cols="50" name="details" id="details"></textarea>
 
                                                     </li>
                                                 </ul>
@@ -700,7 +654,7 @@
                                                 <ul class="list-group"></ul>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Warranty Start:</h6>
-                                                            <input type="date" name="warranty_start" value="{!! $equipment->warranty_start !!}">
+                                                            <input type="date" name="warranty_start" id="warranty_start_eqp" value="">
                                                         </h6>
                                                     </li>
                                                 <ul>
@@ -708,8 +662,8 @@
                                             <div class="col">                                                                                            <ul class="list-group">
                                                 <ul class="list-group"></ul>
                                                     <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Warranty Start:</h6>
-                                                            <input type="date" name="warranty_end" value="{!! $equipment->warranty_end !!}">
+                                                        <h6 class="font-weight-bolder text-uppercase text-left">Warranty End:</h6>
+                                                            <input type="date" name="warranty_end" id="warranty_end_eqp" value="">
                                                         </h6>
                                                     </li>
                                                 <ul>
@@ -727,425 +681,15 @@
                         </form>
                     </div>
 
-                    <!-- Change Status -->
 
-                    <div class="modal fade" id="change-status-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="edit-{!! $equipment->model !!}"
-                        aria-hidden="true">
-                            <input type="hidden" name="id" value="{!! $equipment->id !!}">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title">Change Status</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
 
-                                    <div class="modal-body">
-                                      <form action="{!! url('/editStatus'); !!}" method="post">
-                                      {!! csrf_field() !!}
-                                        <div class="form-group">
-                                            <p class="card-title">Status</p>
-                                            <select name="status_id" class="custom-select">
-                                                <option value="1">Available</option>
-                                                <option value="2">Issued</option>
-                                                <option value="3">For Repair</option>
-                                                <option value="4">For Return</option>
-                                                <option value="6">Pending</option>
-                                                <option value="7">Decomissioned</option>
-                                                @if( $equipment->type_id == 1)
-                                                <option value="8">In Use</option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                      </form>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
-                @endforeach
+                    <!-- View Details All Modal -->
               </tbody>
 
             </table>
         </div>
 
-        <!-- Computer Peripherals -->
-        <div class="tab-pane fade" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
-            <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
-                <thead class="thead-dark">
-                    <tr>
-                      <th id="checkbox" hidden></th>
-                      <th>Model</th>
-                      <th>Brand</th>
-                      <th hidden>Subtypes</th>
-                      <th>Subtype</th>
 
-                      <th>Details</th>
-                      <th>Serial No</th>
-                      <th>OR No</th>
-                      <th>Added By</th>
-                      <th>Date Added</th>
-                      <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($component as $components)
-                    <tr>
-                        <td hidden><input class="checkbox" type="checkbox"></td>
-                        <td> {{ $components->model }} </td>
-                        <td> {{ $components->brand }} </td>
-                        <td hidden></td>
-                        <td> {{ $components->subtype_name }} </td>
-
-
-                        <td width="30%"> {{ $components->details }} </td>
-                        <td> {{ $components->serial_no }} </td>
-                        <td> {{ $components->or_no }} </td>
-                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $components->added_at }} </td>
-                        <td> {{ $components->status_name }} </td>
-                    </tr>
-
-                    <!-- View Details Modal -->
-                    <div class="modal fade" id="modal-{!! $equipment->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <p>Official Receipt No: {{ $equipment->or_no }}</p>
-                                    <h5 class="modal-title">{{ $equipment->model }} {{ $equipment->brand }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <ul class="list-group">
-                                                <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">ID:</h5> {{ $equipment->id }}</li>
-                                                <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">Serial Number:</h5> {{ $equipment->serial_no }}</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">Type:</h5>
-                                                    {{ $equipment->type_name }}
-                                                </li>
-                                                <li class="list-group-item"><h5 class="font-weight-bolder text-uppercase text-left">Subtype:</h5> {{ $equipment->subtype_name }}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-12 m-1">
-                                            <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase">Details:</h5>
-                                                    {{ $equipment->details }}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="list-group">
-                                                @isset( $equipment->unit_id )
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
-                                                    {{ $equipment->unit_id }}
-                                                </li>
-                                                @endisset
-                                                @empty( $equipment->unit_id )
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">PC Number:</h5>
-                                                    Not Assigned to A Unit
-                                                </li>
-                                                @endempty
-                                            </ul>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <ul class="list-group">
-                                                @if( $equipment->type_id == 3)
-                                                @isset( $equipment->imei_or_macaddress )
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
-                                                    {{ $equipment->imei_or_macaddress }}
-                                                </li>
-                                                @endisset
-                                                @empty( $equipment->imei_or_macaddress )
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">IMEI:</h5>
-                                                    None
-                                                </li>
-                                                @endempty
-                                                @elseif( $equipment->type_id != 3)
-                                                @isset( $equipment->imei_or_macaddress )
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
-                                                    {{ $equipment->imei_or_macaddress }}
-                                                </li>
-                                                @endisset
-                                                @empty( $equipment->imei_or_macaddress )
-                                                <li class="list-group-item">
-                                                    <h5 class="font-weight-bolder text-uppercase text-left">MAC Address:</h5>
-                                                    None
-                                                </li>
-                                                @endempty
-                                                @endif
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase">Edit Values</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </tbody>
-
-            </table>
-        </div>
-
-        <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
-            <table id="myDataTable2" class="table table-borderless table-hover" style="width:100%">
-                <thead class="thead-dark">
-                    <tr>
-                      <th id="checkbox" hidden></th>
-                      <th>Model</th>
-                      <th>Brand</th>
-                      <th hidden>Subtype</th>
-                      <th>Subtypes</th>
-
-                      <th>Details</th>
-                      <th>Serial No</th>
-                      <th>OR No</th>
-                      <th>Added By</th>
-                      <th>Date Added</th>
-                      <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($peripherals as $peripherals)
-                    <tr >
-                        <td hidden><input class="checkbox" type="checkbox"></td>
-                        <td> {{ $peripherals->model }} </td>
-                        <td> {{ $peripherals->brand }} </td>
-                        <td hidden></td>
-                        <td> {{ $peripherals->subtype_name }} </td>
-
-                        <td width="30%"> {{ $peripherals->details }} </td>
-                        <td> {{ $peripherals->serial_no }} </td>
-                        <td> {{ $peripherals->or_no }} </td>
-                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $peripherals->added_at }} </td>
-                        <td> {{ $peripherals->status_name }} </td>
-                    </tr>
-
-                    @endforeach
-                </tbody>
-
-            </table>
-        </div>
-
-        <!-- Mobile Devices -->
-        <div class="tab-pane fade" id="pills-3" role="tabpanel" aria-labelledby="pills-3-tab">
-            <table id="myDataTable3" class="table table-borderless table-hover" style="width:100%">
-                <thead class="thead-dark">
-                    <tr>
-                      <th id="checkbox" onclick="selectAll()" hidden></th>
-                      <th>Model</th>
-                      <th>Brand</th>
-                      <th hidden>Subtype</th>
-                      <th>Subtypes</th>
-
-                      <th>Details</th>
-                      <th>Serial No</th>
-                      <th>OR No</th>
-                      <th>Added By</th>
-                      <th>Date Added</th>
-                      <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($mobile as $mobile)
-                    <tr>
-                      <td hidden><input class="checkbox" type="checkbox"></td>
-                        <td> {{ $mobile->model }} </td>
-                        <td> {{ $mobile->brand }} </td>
-                        <td hidden></td>
-                        <td> {{ $mobile->subtype_name }} </td>
-
-                        <td width="30%"> {{ $mobile->details }} </td>
-                        <td> {{ $mobile->serial_no }} </td>
-                        <td> {{ $mobile->or_no }} </td>
-                        <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                        <td> {{ $mobile->added_at }} </td>
-                        <td> {{ $mobile->status_name }} </td>
-                    </tr>
-
-                    @endforeach
-                </tbody>
-
-            </table>
-        </div>
-
-<!-- Software -->
-<div class="tab-pane fade" id="pills-4" role="tabpanel" aria-labelledby="pills-4-tab">
-    <table id="myDataTable4" class="table table-borderless table-hover" style="width:100%">
-        <thead class="thead-dark">
-            <tr>
-
-              <th id="checkbox" hidden></th>
-              <th>Model</th>
-              <th>Brand</th>
-              <th hidden>Subtype</th>
-              <th>Subtypes</th>
-
-              <th>Details</th>
-              <th>Serial No</th>
-              <th>OR No</th>
-              <th>Added By</th>
-              <th>Date Added</th>
-              <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach ($software as $software)
-            <tr>
-            <td hidden><input class="checkbox" type="checkbox"></td>
-                <td> {{ $software->model }} </td>
-                <td> {{ $software->brand }} </td>
-                <td> {{ $software->subtype_name }} </td>
-
-                <td width="30%"> {{ $software->details }} </td>
-                <td hidden></td>
-                <td> {{ $software->serial_no }} </td>
-                <td> {{ $software->or_no }} </td>
-                <td> {{ $equipment->firstname }} {{ $equipment->lastname }} </td>
-                <td> {{ $software->added_at }} </td>
-                <td> {{ $software->status_name }} </td>
-            </tr>
-
-            @endforeach
-        </tbody>
-
-    </table>
-</div>
-
-<!-- System Units -->
-<div class="tab-pane fade" id="pills-5" role="tabpanel" aria-labelledby="pills-5-tab">
-    <table id="myDataTable5" class="table table-borderless table-hover" style="width:100%">
-        <thead class="thead-dark">
-            <tr>
-
-              <th>Name</th>
-              <th>Details</th>
-              <th>Date Added</th>
-              <th width="15%">Date Edited</th>
-              <th>Added by</th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-
-          @foreach ($system_units as $system_units)
-          <tr data-toggle="modal" data-target="#pc-component-{!! $system_units->id !!}">
-              <td> {{ $system_units->description }}</td>
-              <td width="30%"> NONE </td>
-              <td> {{ $system_units->added_at }} </td>
-              <td > {{ $system_units->updated_at }} </td>
-              <td> {{ $system_units->fname }} {{ $system_units->lname }}</td>
-              <td> </td>
-          </tr>
-
-             <div class="modal fade" id="pc-component-{!! $system_units->id !!}" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $system_units->id!!}"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <div class="container">
-                                        <div class="col-12">
-                                        </div>
-
-                                        <div class="col col-8">
-                                            <h5 class="modal-title">{{ $system_units->description }}</h5>
-                                        </div>
-
-                                        <div class="col col-4">
-                                            <p class="text-light">ID: PC-{{ $system_units->id }}</p>
-                                        </div>
-                                    </div>
-
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-
-                                        <!--Component Details -->
-                                        <div class="row">
-
-                                            @foreach( $unit_parts as $unit_part)
-                                            @if($system_units->id==$unit_part->unit_id)
-
-
-
-
-
-                                            <div class="col col-12 details">
-                                                <strong>{{ $unit_part->subtype_name }}</strong>
-                                                <p class="text">ID: {{ $unit_part->id }} </p>
-                                                <p class="text">Serial Number: {{ $unit_part->serial_no }}</p>
-                                                <p class="text">{{ $unit_part->brand }} {{ $unit_part->model }}</p>
-                                                <p class="text">{{ $unit_part->details }}</p>
-                                            </div>
-                                            <hr>
-
-
-                                            @endif
-
-                                        @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit-{!! $equipment->id !!}">Edit Values</button>
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#change-status-{!! $equipment->id !!}">Change Status</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-          @endforeach
-        </tbody>
-
-    </table>
-
-</div>
-</div>
-</div>
 
     <!-- Single Add Modal -->
 
@@ -1166,7 +710,7 @@
                     <div class="row pb-2">
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
-                        <select name="subtype_id" class="custom-select">
+                        <select name="subtype_id" id="selectComp" class="custom-select" onchange="subtypeTextArea()">
                         @foreach ($equipment_subtypes as $equipment_subtypes)
                             <option  value="{!! $equipment_subtypes->id !!}">
                                 {{ $equipment_subtypes->name }}
@@ -1196,11 +740,9 @@
                     <div class="row">
                         <div class="col-9">
                             <label for="details" class="card-title text-dark">Details:</label>
-                            <div class="input-group">
-                                <textarea name="details" rows="3" id="details">Socket:
-Chipset:
-Size:
-RAM:                           </textarea>
+                            <div  class="input-group">
+                                <textarea id="detailsArea" name="details" rows="3" id="details">
+                       </textarea>
                             </div>
                         </div>
                     </div>
@@ -1266,7 +808,7 @@ RAM:                           </textarea>
                             <select name="unit_id" class="custom-select">
                                 <option value="NULL">Not Assigned</option>
                                 @foreach ($units as $units)
-                                <option value="{!! $system_units->id !!}">
+                                <option value="{!! $units->id !!}">
                                     {{ $units->description }}-{{ $units->id }}
                                 </option>
                                 @endforeach
@@ -1357,7 +899,7 @@ RAM:                           </textarea>
     <!-- Add System Unit Modal -->
 
     @include('content.addunit')
-        
+
 <div class="modal fade" id="addSubtype" tabindex="-1" role="dialog" aria-labelledby="addSubtypeTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="height:450px;">
@@ -1382,119 +924,26 @@ RAM:                           </textarea>
                 <div class="row pt-2">
                         <div class="col">
                         <p class="card-title text-dark">Equipment Subtype:</p>
-                        
+
                             <div class="input-group">
                                 <input name="subtype" type="text" size="30">
                             </div>
                         </div>
                     </div>
                 </div>
-              </div>    
+              </div>
              <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
                             <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                         </div>
 
-            
+
         </div>
-        
-       
+
+
     </div>
-</div>         
-            
-    <!-- Soft Delete-->
-    <div class="modal fade bd-example-modal-sm" id="softDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle">Soft Delete</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <!-- Add system unit Form -->
-                <div class="modal-body">
-                  <form action="{!! url('/softDeleteEquipment'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()"  method="post" role="form">
-                      {!! csrf_field() !!}
-                      <div class="row">
-                        <div class="col-md-5">
-                            <p class="card-title">Delete Item:</p>
-                            <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
-                              <datalist id="items">
-                                <select>
-                                @foreach ($equipments as $equipment)
-                                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}}">{{ $equipment->subtype_name}}</option>
-                                @endforeach
-                                @foreach ($systemunits as $systemunits)
-                                <option data-customvalue="System Unit-{{ $systemunits->id}}" value="{{ $systemunits->description}}-{{ $systemunits->id}}">System Unit</option>
-                                @endforeach
-                              </select>
-                              </datalist>
-
-                        </div>
-                      </div>
-
-                  <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-                  </div>
-
-                  <div class="modal-footer text-uppercase">
-                  <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
-
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
-                  </div>
-                  </form>
-</div>
-</div>
 </div>
 
-<!-- Hard Delete-->
-<div class="modal fade bd-example-modal-sm" id="hardDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">Hard Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <!-- Add system unit Form -->
-            <div class="modal-body">
-              <form action="{!! url('/hardDeleteEquipment'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()"  method="post" role="form">
-                  {!! csrf_field() !!}
-                  <div class="row">
-                    <div class="col-md-5">
-                        <p class="card-title">Delete Item:</p>
-                        <input  list="item" name="item" id="hequipment" onblur="CheckListed(this.value);" required>
-                          <datalist id="item">
-                            <select>
-                            @foreach ($equipments as $equipment)
-                            <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}}">{{ $equipment->subtype_name}}</option>
-                            @endforeach
-                            @foreach ($units_system as $units_system)
-                            <option data-customvalue="System Unit-{{ $units_system->id}}" value="{{ $units_system->description}}-{{ $units_system->id}}">System Unit</option>
-                            @endforeach
-                          </select>
-                          </datalist>
-
-                    </div>
-                  </div>
-
-              <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-              </div>
-
-              <div class="modal-footer text-uppercase">
-              <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
-
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
-              </div>
-              </form>
-</div>
-</div>
-</div>
 
 @stop
 
@@ -1545,37 +994,7 @@ RAM:                           </textarea>
            "order": []});
     } );
     </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable1').DataTable({
-           "pagingType": "full_numbers",
-           "order": []});
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable2').DataTable({ "pagingType": "full_numbers",
-        "order": []});
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable3').DataTable({ "pagingType": "full_numbers",
-        "order": []});
-    } );
-  </script>
-  <script type="text/javascript">
-  $(document).ready(function() {
-      $('#myDataTable4').DataTable({ "pagingType": "full_numbers",
-      "order": []});
-  } );
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#myDataTable5').DataTable({ "pagingType": "full_numbers",
-    "order": []});
-} );
-</script>
+
     <!-- <script>
       $(document).ready(function() {
             $('table.display').DataTable({
@@ -1608,11 +1027,11 @@ var subtype =  $('#subtypes').val();
 var supplier =  $('#supplier').val();
 var brand =  $('#brand').val();
 var status =  $('#status').val();
-var types = data[2]; // use data for the age column
-var subtypes = data[3];
-var suppliers = data[5];
-var brands = data[1];
-var statuses = data[8];
+var types = data[3]; // use data for the age column
+var subtypes = data[4];
+var suppliers = data[6];
+var brands = data[2];
+var statuses = data[9];
 
 function subtypeUnblock(element) {
     $("#subtypes option:nth-child("+element+")").show();
@@ -1704,10 +1123,7 @@ $('#subtypes').on('keyup change',  function() {
           document.getElementById("brand").selectedIndex = "0";
           document.getElementById("status").selectedIndex = "0";
           $('#myDataTable').DataTable().search('').draw();
-          $('#myDataTable1').DataTable().search('').draw();
-          $('#myDataTable2').DataTable().search('').draw();
-          $('#myDataTable3').DataTable().search('').draw();
-          $('#myDataTable4').DataTable().search('').draw();
+
           // $('#myDataTable5').DataTable().search('').draw();
 
         }
@@ -1752,11 +1168,45 @@ function toggle2(source) {
 
 $('a.warranty-not').click(function(){
     console.log("Warranty not Covered");
-    
-    $('<button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="mod           al" data-toggle="modal" data-target="#">For Repair</button>').appendTo($(this).parent().parent());
-    
+
+    $('<button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="mod           al" data-toggle="modal" data-target="#for-repair">For Repair</button>').appendTo($(this).parent().parent());
+
 })
 
+
+</script>
+
+@include('partials._singleadd')
+<script>
+
+    var table = document.getElementById('myDataTable');
+
+    for(var i = 1; i < table.rows.length; i++)
+    {
+        table.rows[i].onclick = function()
+        {
+             //rIndex = this.rowIndex;
+             document.getElementById("id").value = this.cells[0].innerHTML;
+             document.getElementById("delete_id").value = this.cells[0].innerHTML;
+             document.getElementById("model").value = this.cells[1].innerHTML;
+             document.getElementById("brand_eqp").value = this.cells[2].innerHTML;
+             document.getElementById("serial_no").value = this.cells[5].innerHTML;
+             document.getElementById("imei_or_macaddress").value = this.cells[13].innerHTML;
+             document.getElementById("or_no").value = this.cells[14].innerHTML;
+             document.getElementById("supplier_eqp").value = this.cells[6].innerHTML;
+             document.getElementById("details").value = this.cells[10].innerHTML;
+             document.getElementById("warranty_start_eqp").value = this.cells[11].innerHTML;
+             document.getElementById("warranty_end_eqp").value = this.cells[12].innerHTML;
+             document.getElementById("itemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("deleteitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("repairitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("returnitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("deleted_item").value = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("decommission_id").value = this.cells[0].innerHTML;
+             document.getElementById("returnSupplier").innerHTML = this.cells[6].innerHTML + "?";
+             document.getElementById("orig_status_id_decommissioned").value = this.cells[15].innerHTML;
+        };
+    }
 
 </script>
 

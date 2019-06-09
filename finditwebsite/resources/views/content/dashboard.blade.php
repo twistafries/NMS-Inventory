@@ -267,7 +267,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                         
+                        <form action="{!! url('/purchases'); !!}" method="get">
+                            {!! csrf_field() !!}
+                            <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                        </form>
                     </div>  
             </div>
         </div>
@@ -302,7 +305,13 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <button type="submit" class="btn btn-light btn-sm">View All</button>
+                    <form action="{!! url('/reInventory'); !!}" method="post">
+                        {!! csrf_field() !!}
+                        <input name="type_filter" type="hidden" value="1">
+                        <input name="subtype_filter" type="hidden" value="">                     
+                        <input name="status_filter" type="hidden" value="1">
+                        <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -314,8 +323,11 @@
                         @foreach($inc_orders as $order)
                             <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier_name}}</li>
                         @endforeach
-                        <button type="submit" class="btn btn-light btn-sm">View all</button>
                     </ul>
+                    <form action="{!! url('/incompleteOrders'); !!}" method="get">
+                        {!! csrf_field() !!}
+                        <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -328,8 +340,11 @@
                         @foreach($returned_items as $returns)
                             <li class="list-group-item">{{$returns->brand}} {{$returns->model}} | OR No.:{{$returns->or_no}} | Supplier: {{$returns->supplier_name}}</li>
                         @endforeach
-                        <button type="submit" class="btn btn-light btn-sm">View all</button>
                     </ul>
+                    <form action="{!! url('/returns'); !!}" method="get">
+                        {!! csrf_field() !!}
+                        <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
+                    </form>
                 </div>
             </div>
         </div>

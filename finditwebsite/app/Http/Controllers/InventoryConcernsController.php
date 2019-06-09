@@ -45,14 +45,19 @@ class InventoryConcernsController extends BaseController
             // $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id']);
             $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id'])[0]->name;
             $new_status_name = TblEquipmentStatus::get_status_name($data['status_id'])[0]->name;
+            $act['activity'] = "change the status of";
+            $act['from_status'] = $orig_status_name;
+            $act['to_status'] = $new_status_name;
+            $act['data'] = $data['id'];
             if(isset($data['status_id'])){
                 TblItEquipment::update_equipment_status($data['id'],$data['status_id']);
                 InventoryConcerns::addConcern($data);
+                TblActivityLogs::add_log($act);
             }
             return \Redirect::back()
-            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name). '".'; 
+            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name). '".';
         }catch(Exception $e){
-            
+
         }catch(QueryException $qe){
             return \Redirect::back()
             ->with('error' , 'Database cannot read input value.')

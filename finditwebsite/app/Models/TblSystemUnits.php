@@ -60,7 +60,7 @@ class TblSystemUnits extends Model
       // $system_units->description = $params['description'];
       $system_units->name = $params['name'];
       $system_units->user_id = $params['user_id'];
-
+      $system_units->dept_id = $params['dept_id'];
       $system_units->status_id = 1;
       try {
         $system_units->save();
@@ -79,6 +79,17 @@ class TblSystemUnits extends Model
       -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
       -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*')
       -> where('system_units.dept_id', '=', $department)
+      ->get();
+
+      return $query;
+    }
+
+    public static function unitDepStatus($department,$status){
+      $query = \DB::table('system_units')
+      -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
+      -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
+      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*')
+      -> where([['system_units.dept_id', '=', $department],['system_units.status_id', '=', $status]])
       ->get();
 
       return $query;
