@@ -108,11 +108,9 @@
                             <th>Details</th>
                             <th>Serial No</th>
                             <th>OR No</th>
-
                             <th>Date Added</th>
                             <th width="15%">Date Edited</th>
                             <th>Added By</th>
-                            <th>Last User</th>
                             <th>Warranty</th>
 
                         </tr>
@@ -122,15 +120,14 @@
                         @foreach ($for_repair as $for_repair)
                         <tr>
 
-                            <td> {{ $for_repair->id }} </td>
+                            <td> Item#{{ $for_repair->id }} </td>
                             <td> {{ $for_repair->details }} </td>
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
                             <td> {{ $for_repair->created_at }} </td>
+                            <td></td>
                             <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $for_repair->warranty_start}} - {{ $for_repair->warranty_end}}</td>
 
                         </tr>
 
@@ -139,8 +136,8 @@
                         @foreach ($for_repair_units as $for_repair_units)
                         <tr>
 
-                            <td> {{ $for_repair_units->description }}  {{ $for_repair_units->id }} </td>
-                            <td> No Details </td>
+                            <td> Unit# {{ $for_repair_units->id }} </td>
+                            <td> {{ $for_repair_units->name }} {{ $for_repair_units->id }}</td>
                             <td> None </td>
                             <td> None </td>
                             <td> None </td>
