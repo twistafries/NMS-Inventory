@@ -63,10 +63,10 @@
                                         <td> <input type="text" name="equipment[brand][]" required></td>
                                         <td> <input type="text" name="equipment[model][]" required></td>
                                         <td> <input type="text" name="equipment[serial_no][]" required></td>
-                                        <td><textarea name="equipment[details][]" rows="2" cols="22" placeholder="Socket: 
-                                            Chipset: 
-                                            Size: 
-                                            RAM:"> </textarea></td>
+                                        <td><textarea name="equipment[details][]" rows="2" cols="22">Socket: 
+Chipset: 
+Size: 
+RAM: </textarea></td>
                                     </tr>
 
 
@@ -75,7 +75,8 @@
                                         <td> <input type="text" name="equipment[brand][]" required></td>
                                         <td> <input type="text" name="equipment[model][]" required></td>
                                         <td> <input type="text" name="equipment[serial_no][]" required></td>
-                                        <td><textarea name="equipment[details][]" rows="2" cols="22" value="Socket: "></textarea></td>
+                                        <td><textarea name="equipment[details][]" rows="2" cols="22" value="Socket: ">Socket: 
+</textarea></td>
                                     </tr>
 
                                     <tr>
