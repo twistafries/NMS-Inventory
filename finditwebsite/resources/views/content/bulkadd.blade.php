@@ -16,20 +16,6 @@ body{
 <div class="container-fluid m-0">
     <form method="post" id="bulk_form" action="{!! url('/temp-bulk-add-post'); !!}">
     {!! csrf_field() !!}
-    <!-- item1
-    <input name="bulk[brand][]" type="text" class="form-control" id="item1_brand">
-    <input name="bulk[model][]" type="text" class="form-control" id="item1_model">
-    <input name="bulk[details][]" type="text" class="form-control" id="item1_details">
-    <input name="bulk[serial_no][]" type="text" class="form-control" id="item1_serial_no">
-    <input name="bulk[or_no][]" type="text" class="form-control" id="item1_no">
-
-    item2
-        <input name="bulk[brand][]" type="text" class="form-control" id="item2_brand">
-        <input name="bulk[model][]" type="text" class="form-control" id="item2_model">
-        <input name="bulk[details][]" type="text" class="form-control" id="item2_details">
-        <input name="bulk[serial_no][]" type="text" class="form-control" id="item2_serial_no">
-        <input name="bulk[or_no][]" type="text" class="form-control" id="item2_no"> -->
-
         <div align="right" style="margin-bottom:5px;">
             <button type="button" name="add" id="add" data-toggle="modal" data-target="#bulkAddModal"
                 class="btn btn-success btn-xs">Add</button>
@@ -156,7 +142,12 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Supplier</p>
-                                    <input type="text" name="supplier" id="supplier" class="form-control" required/>
+                                    <select id="supplier" class="custom-select">
+                                        @foreach ($suppliers as $supplier)
+                                        <option class="option" value="{!! $supplier->id !!}">{{ $supplier->supplier_name }}
+                                        </option>
+                                        @endforeach
+                                    </select>
                                     <span id="error_supplier" class="text-danger"></span>
                                 </div>
                             </div>
@@ -202,6 +193,7 @@ body{
     $(document).ready(function () {
         @if( $item_id != 0)
             fetchRecords({{ $item_id }})
+            console.log( {{ $item_id }})
         @endif
             // fetchRecords(97)
         $('#bulkAddModal').modal('show')
@@ -243,7 +235,8 @@ body{
                     var model = $('#model').val();
                     var details = $('#details').val();
                     var or_no = $('#or_no').val();
-                    var supplier = $('#supplier').val();
+                    var supplier_id = $('#supplier').val();
+                    var supplier_name =  $("select#supplier").change().children("option:selected").text();
                     var warranty_start = $('#warranty_start').val();
                     var warranty_end = $('#warranty_end').val();
                     for (count = 1; count <= quantity; count++) {
@@ -258,7 +251,7 @@ body{
                         output += '<td>' + details + ' <input type="hidden" name="bulk[details][]" id="details' + count + '" class="details" value="' + details + '" /></td>';
                         output += '<td>'  + ' <input type="text" name="bulk[imei_or_macaddress][]" id="imei_or_macaddress' + count + '" class="imei_or_macaddress"/></td>';
                         output += '<td>' + or_no + ' <input type="hidden" name="bulk[or_no][]" id="or_no' + count + '" class="or_no" value="' + or_no + '" /></td>';
-                        output += '<td>' + supplier + ' <input type="hidden" name="bulk[supplier][]" id="supplier' + count + '" class="supplier" value="' + supplier + '" /></td>';
+                        output += '<td>' + supplier_name + ' <input type="hidden" name="bulk[supplier_id][]" id="supplier' + count + '" class="supplier" value="' + supplier_id + '" /></td>';
                         output += '<td>' + warranty_start + ' <input type="hidden" name="bulk[warranty_start][]" id="warranty_start' + count + '" class="warranty_start" value="' + warranty_start + '" /></td>';
                         output += '<td>' + warranty_end + ' <input type="hidden" name="bulk[warranty_end][]" id="warranty_end' + count + '" class="warranty_end" value="' + warranty_end + '" /></td>';
 
@@ -310,7 +303,7 @@ body{
                             var qty = response['purchases'][i].qty;
                             var is_part = response['purchases'][i].is_part;
                             var unit_number = response['purchases'][i].unit_number;
-                            var supplier = response['purchases'][i].supplier;
+                            var supplier_id = response['purchases'][i].supplier_id;
                             var subtype = response['purchases'][i].unit_number;
                             console.log(qty)
                             $('#quantity').val(qty);
@@ -318,7 +311,7 @@ body{
                             $('#brand').val(brand);
                             $('#model').val(model);
                             $('#details').val(details);
-                            $('#supplier').val(supplier);
+                            $('#supplier').val(supplier_id);
                         }
 
 

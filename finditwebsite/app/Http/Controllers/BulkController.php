@@ -15,6 +15,7 @@ use App\Models\TblItEquipmentType;
 use App\Models\TblEquipmentStatus;
 use App\Models\PurchasedItems;
 use App\Models\Purchases;
+use App\Models\Suppliers;
 use Session, Auth;
 
 class BulkController extends BaseController
@@ -38,6 +39,7 @@ class BulkController extends BaseController
         $data['equipment_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['component_subtypes'] = TblItEquipmentSubtype::get_component_subtype();
         $data['equipment_status'] = TblEquipmentStatus::get_all_status();
+        $data['suppliers'] = Suppliers::get_suppliers();
         if($id != 0){
             $data['item_id'] = $id;
         }else{
@@ -68,7 +70,7 @@ class BulkController extends BaseController
         $details = $request->get('bulk')['details'];
         $imei_or_macaddress = $request->get('bulk')['imei_or_macaddress'];
         $or_no = $request->get('bulk')['or_no'];
-        $supplier = $request->get('bulk')['supplier'];
+        $supplier_id = $request->get('bulk')['supplier_id'];
         $warranty_start = $request->get('bulk')['warranty_start'];
         $warranty_end = $request->get('bulk')['warranty_end'];
         // dd($brands);
@@ -85,7 +87,7 @@ class BulkController extends BaseController
                 'details' => $details[$count],
                 'imei_or_macaddress' => $imei_or_macaddress[$count],
                 'or_no' => $or_no[$count],
-                'supplier' => $supplier[$count],
+                'supplier_id' => $supplier_id[$count],
                 'warranty_start' => $warranty_start[$count],
                 'warranty_end' => $warranty_end[$count],
                 'user_id' => $user_id
