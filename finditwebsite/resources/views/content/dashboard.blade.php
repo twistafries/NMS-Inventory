@@ -16,7 +16,7 @@
 <!--  -->
 <div class="container-fluid">
     <div class="row card-row pl-0">
-        <div class="col-3 p-1">
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header">
                     <i class="far fa-check-circle"></i> Available Issuable Units
@@ -30,7 +30,7 @@
                     <input name="status_filter" type="hidden" value="1">
 
                     <button type="submit" href="{!! url('/reInventorySummary') !!}" class="btn btn-link">
-                        <h4> 
+                        <h4>
                             {{ $available_sys_units + $available_phone + $available_laptop}}
                         </h4>
                     </button>
@@ -90,7 +90,7 @@
                         </table>
                         <form action="{!! url('/reInventory'); !!}" method="post">
                             {!! csrf_field() !!}
-                            <input name="type_filter" type="hidden" value="all">                            
+                            <input name="type_filter" type="hidden" value="all">
                             <input name="status_filter" type="hidden" value="1">
                             <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                         </form>
@@ -99,7 +99,7 @@
             </div>
         </div>
 
-        <div class="col-3 p-1">
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header">
                     <i class="fas fa-tools"></i> Total Items in Repair
@@ -108,7 +108,7 @@
                 <form action="{!! url('/reInventory'); !!}" method="post">
                     {!! csrf_field() !!}
                     <button type="submit" href="" class="btn btn-link">
-                        <h4> 
+                        <h4>
                             {{ $countHardwareForRepair + $repair_sys_units }}
                         </h4>
                     </button>
@@ -173,7 +173,7 @@
             </div>
         </div>
 
-        <div class="col-3 p-1">
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header">
                     <i class="fas fa-tools"></i> Total Issued Units
@@ -229,7 +229,7 @@
                                     <td class="align-bottom">
                                             <h6>Laptops</h6>
                                         </td>
-                                        
+
                                         <td class="text-justify">
                                             <button type="submit" href="" class="btn btn-link">{{ $issued_laptop }}</button>
                                         </td>
@@ -249,13 +249,13 @@
         </div>
 
 
-        <div class="col-3 p-1">
+        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Recent Purchases </div>
                 <div class="card-body ">
 
                 </div>
-               
+
                     <div class="card p-3">
                         <table class="table table-borderless text-justify text-break">
                             <tbody>
@@ -271,10 +271,10 @@
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                         </form>
-                    </div>  
+                    </div>
             </div>
         </div>
-        <div class="col-4 p-1">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-shopping-cart">
                     </i>Components in Stock</div>
@@ -308,14 +308,14 @@
                     <form action="{!! url('/reInventory'); !!}" method="post">
                         {!! csrf_field() !!}
                         <input name="type_filter" type="hidden" value="1">
-                        <input name="subtype_filter" type="hidden" value="">                     
+                        <input name="subtype_filter" type="hidden" value="">
                         <input name="status_filter" type="hidden" value="1">
                         <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-4 p-1">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"> Incomplete | Pending Orders</div>
                 <div class="card-body ">
@@ -331,7 +331,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 p-1">
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-exchange-alt"></i> Items
                     Returned | For Return</div>

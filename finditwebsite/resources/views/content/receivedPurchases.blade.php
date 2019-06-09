@@ -33,7 +33,7 @@
     <!-- tabs -->
     <div class="container-fluid card" style="margin-top: 2rem; padding: 2rem;">
         <div class="row">
-            <div class="container">
+            <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
                   <a class="nav-link" href="{!! url('/purchases') !!}">Purchases</a>
@@ -311,7 +311,7 @@
           </div>
       </div>
 <div class="" style="margin-top: 2rem;">
-          <table class="table table-hover" id="purchasesTable">
+          <table class="table" id="purchasesTable">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Purchases</th>

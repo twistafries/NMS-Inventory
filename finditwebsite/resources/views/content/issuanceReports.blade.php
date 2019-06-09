@@ -19,7 +19,7 @@
 @stop
 
 @section('title')
-    Item Repair Report
+    Issuance Reports
 @stop
 
 @section('../layout/breadcrumbs')
@@ -37,11 +37,14 @@
     <div class="sample" style=" margin-top: 1rem;">
       <div class="row">
         <div class="col-3">
+          <div class="mb-2"><i class="fas fa-hand-holding" style="margin-right: 1rem;"></i> ISSUANCE REPORTS</div>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">From:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
-
-        <div class="col-3">
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">To:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
@@ -52,76 +55,190 @@
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Inventory Concerns Report as of January 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Issuance Report as of January 2019</p>
           </div>
 
           <!--table-->
-          <div class="table-responsive" id="inventoryTable">
+          <div class="" id="inventoryTable">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Repair Items</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Late Returns</p>
             </div>
-            <table class="table all t" id="forRepair">
-              <thead class="thead-dark">
+            <table class="table all" id="lateReturns">
+              <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col">Item Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Subtype</th>
-                  <th scope="col">Description/Details</th>
-                  <th scope="col">Serial No.</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Last User</th>
-                  <th scope="col">Remarks</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Added By</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>MSI B450-A Pro</td>
-                  <td>Computer Component</td>
-                  <td>Motherboard</td>
-                  <td>"Socket: AM4
-                      Chipset: AMD B450
-                      Size: ATX
-                      RAM: 4 Slots DDR4
-                      PCIe: x16 PCIe 3.0
-                      Ports: USB 3.1 SATA 6Gb/s"</td>
-                  <td>601-7577-010B0903273465</td>
-                  <td>For Repair</td>
-                  <td>Jon Paulo</td>
                   <td></td>
-                  <td>2019-01-18</td>
-                  <td>Aika Vien Dayrit</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td>R5 1500X</td>
-                  <td>Computer Component</td>
-                  <td>CPU</td>
-                  <td>"Socket: AM4
-                      4-core 8-thread 3.5GHz-3.7GHz
-                      TDP: 65W"</td>
-                  <td>YD170XBCM88AE</td>
-                  <td>For Repair</td>
-                  <td>Jon Paulo Faypon</td>
                   <td></td>
-                  <td>2019-01-25</td>
-                  <td>Aika Vien Dayrit</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
-                  <td>HDD 1TB</td>
-                  <td>Computer Component</td>
-                  <td>Storage</td>
-                  <td>Seagate 1TB Harddisk Drive</td>
-                  <td>YST-657A-DATSDC</td>
-                  <td>For Repair</td>
-                  <td>Lovelyn Paris</td>
                   <td></td>
-                  <td>2019-02-12</td>
-                  <td>Jon Paulo Faypon</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
           </div>
+
+          <div class="" id="inventoryTable">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Issuance per (SU, Mobile Device, Peripherals)</p>
+            </div>
+            <table class="table all" id="issuancePerComponent">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="" id="inventoryTable">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Most/Least issued items</p>
+            </div>
+            <table class="table all" id="mostLeast">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>etfghj</td>
+                  <td>dfghj</td>
+                  <td>sdfcgvhb</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
 
     <!--Graph-->
@@ -331,7 +448,7 @@
 
         <script>
         $(document).ready(function() {
-            $('#forRepair').DataTable( {
+            $('#lateReturns, #issuancePerComponent, #mostLeast').DataTable( {
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -341,5 +458,4 @@
             } );
         } );
       </script>
-
 @stop

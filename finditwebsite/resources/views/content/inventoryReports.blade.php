@@ -19,7 +19,7 @@
 @stop
 
 @section('title')
-    Item Availability Report
+    Inventory Reports
 @stop
 
 @section('../layout/breadcrumbs')
@@ -37,71 +37,198 @@
     <div class="sample" style=" margin-top: 1rem;">
       <div class="row">
         <div class="col-3">
+          <div class="mb-2"><i class="fas fa-warehouse" style="margin-right: 1rem;"></i> INVENTORY REPORTS</div>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">From:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
-
-        <div class="col-3">
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">To:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
       </div>
     </div>
 </div>
-        <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
+
+      <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Issuance Report as of January 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Inventory Report as of June 2019</p>
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable">
+          <div class="" id="inventoryTable" style="margin-top:4rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Issuance per (SU, Mobile Device, Peripherals)</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Available Items</p>
             </div>
-            <table class="table all" id="forRepair">
+            <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
+                  <th scope="col">sample</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-responsive" id="inventoryTable" style="margin-top:4rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Repair Items</p>
+            </div>
+            <table class="table all t" id="repair">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Subtype</th>
+                  <th scope="col">Description/Details</th>
+                  <th scope="col">Serial No.</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Last User</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Added By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MSI B450-A Pro</td>
+                  <td>Computer Component</td>
+                  <td>Motherboard</td>
+                  <td>"Socket: AM4
+                      Chipset: AMD B450
+                      Size: ATX
+                      RAM: 4 Slots DDR4
+                      PCIe: x16 PCIe 3.0
+                      Ports: USB 3.1 SATA 6Gb/s"</td>
+                  <td>601-7577-010B0903273465</td>
+                  <td>For Repair</td>
+                  <td>Jon Paulo</td>
                   <td></td>
+                  <td>2019-01-18</td>
+                  <td>Aika Vien Dayrit</td>
+                </tr>
+                <tr>
+                  <td>R5 1500X</td>
+                  <td>Computer Component</td>
+                  <td>CPU</td>
+                  <td>"Socket: AM4
+                      4-core 8-thread 3.5GHz-3.7GHz
+                      TDP: 65W"</td>
+                  <td>YD170XBCM88AE</td>
+                  <td>For Repair</td>
+                  <td>Jon Paulo Faypon</td>
+                  <td></td>
+                  <td>2019-01-25</td>
+                  <td>Aika Vien Dayrit</td>
+                </tr>
+                <tr>
+                  <td>HDD 1TB</td>
+                  <td>Computer Component</td>
+                  <td>Storage</td>
+                  <td>Seagate 1TB Harddisk Drive</td>
+                  <td>YST-657A-DATSDC</td>
+                  <td>For Repair</td>
+                  <td>Lovelyn Paris</td>
+                  <td></td>
+                  <td>2019-02-12</td>
+                  <td>Jon Paulo Faypon</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-responsive" id="inventoryTable" style="margin-top:4rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Return Items</p>
+            </div>
+            <table class="table all t" id="return">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">OR No.</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Supplier</th>
+                  <th scope="col">Added By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                </tr>
+                <tr>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                </tr>
+                <tr>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -115,13 +242,70 @@
               </tbody>
             </table>
           </div>
+
+          <div class="" id="inventoryTable" style="margin-top:4rem; margin-bottom: 2rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Disposal Items</p>
+            </div>
+            <table class="table all" id="disposal">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Added By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ballistix Sport Series DDR3</td>
+                  <td>Computer Unit</td>
+                  <td>8GB Ballistix Sport DDR3 1600 MHz UDIMM</td>
+                  <td>For Disposal</td>
+                  <td>Obsolete, for replacement</td>
+                  <td>2019-04-19</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Aerocool Strike</td>
+                  <td>Computer Unit</td>
+                  <td>"Motherboards: Micro ATX / Mini ITX
+Chassis Dimensions: 280 x 380x 350 mm"</td>
+                  <td>For Disposal</td>
+                  <td>Damaged beyond repair</td>
+                  <td>2019-10-18</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>iPad Air</td>
+                  <td>Mobile Device</td>
+                  <td>"Core Design: Apple Cyclone x 2
+CPU: S5L8965 ""A7 Rev A""
+CPU Speed: 1.4 GHz
+RAM: 1 GB
+Storage: 128 GB"</td>
+                  <td>For Disposal</td>
+                  <td></td>
+                  <td>2018-10-21</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+
         </div>
+
 
     <!--Graph-->
     <div class="row" id="graph" style="margin-bottom: 2rem;">
       <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
       <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
-      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
     </div>
 
   </div>
@@ -163,8 +347,6 @@
         <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
-
-        <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">
@@ -322,16 +504,16 @@
           }
         </script>
 
-        <script>
-        $(document).ready(function() {
-            $('#forRepair').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                "searching": false,
-                "ordering": false
-            } );
-        } );
-      </script>
+      <script>
+      $(document).ready(function() {
+          $('#available, #repair, #return, #disposal').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              "searching": false,
+              "ordering": false
+          } );
+      } );
+    </script>
 @stop

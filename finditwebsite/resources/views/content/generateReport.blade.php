@@ -37,25 +37,25 @@
       <div class="row" style="font-size: 16px;">
         <div class="col-4">
           <div class="card border-light">
-              <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-warehouse"></i> INVENTORY REPORTS</div>
+              <a href="{!! url('/inventoryReports') !!}" style="cursor: pointer;"><div class="card-header text-white mb-2" id="card-header"><i class="fas fa-warehouse"></i> INVENTORY REPORTS</div></a>
               <div class="card-body">
                   <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><a href="{!! url('/itemAvailabilityReport') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</a></li>
-                      <li class="list-group-item"><a href="{!! url('/itemRepairReport') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</a></li>
-                      <li class="list-group-item"><a href="{!! url('/itemReturnReport') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</a></li>
-                      <li class="list-group-item"><a href="{!! url('/itemDisposalReport') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</a></li>
+                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</a></li>
+                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</a></li>
+                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</a></li>
+                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</a></li>
                   </ul>
               </div>
           </div>
         </div>
         <div class="col-4">
           <div class="card border-light">
-              <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-list-alt"></i> PURCHASES AND ORDERS</div>
+              <a href="{!! url('/purchasesAndOrdersReports') !!}" style="cursor: pointer;"><div class="card-header text-white mb-2" id="card-header"><i class="fas fa-list-alt"></i> PURCHASES AND ORDERS</div></a>
               <div class="card-body">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item" id="purchasesreport" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Purchases</li>
-                    <a href="{!! url('/completedOrdersReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Completed Orders</a>
-                    <a href="{!! url('/incompleteOrdersReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">incomplete Orders</a>
+                    <a href="{!! url('/purchasesAndOrdersReports') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Completed Orders</a>
+                    <a href="{!! url('/purchasesAndOrdersReports') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="purchases2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">incomplete Orders</a>
                   </li>
                 </ul>
               </div>
@@ -63,15 +63,15 @@
         </div>
         <div class="col-4">
           <div class="card border-light">
-              <div class="card-header text-white" id="card-header"><i class="fas fa-hand-holding"></i> ISSUANCE</div>
+              <a href="{!! url('/issuanceReports') !!}" style="cursor: pointer;"><div class="card-header text-white" id="card-header"><i class="fas fa-hand-holding"></i> ISSUANCE</div></a>
               <div class="card-body">
                   <ul class="list-group list-group-flush">
                       <li class="list-group-item" id="late" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Employee Issuance</li>
-                        <a href="{!! url('/lateReturnsReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem; margin-bottom: 5px;">Late Returns</a>
+                        <a href="{!! url('/issuanceReports') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem; margin-bottom: 5px;">Late Returns</a>
                       </li>
                       <li class="list-group-item" id="item" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Item Issuance</li>
-                        <a href="{!! url('/issuancePerComponent') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Issuance per (SU, Mobile Device, Peripherals)</a>
-                        <a href="{!! url('/mostLeastReport') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Most/Least Issued</a>
+                        <a href="{!! url('/issuanceReports') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Issuance per (SU, Mobile Device, Peripherals)</a>
+                        <a href="{!! url('/issuanceReports') !!}" type="button" class="btn btn-light btn-sm text-left collapse" id="itemIssuance2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Most/Least Issued</a>
                       </li>
                   </ul>
               </div>

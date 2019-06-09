@@ -11,8 +11,8 @@
   // $img_path = $session['img_path'];
 ?>
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-custom">
-                    <ul class="navbar-nav pr-4">
+<nav class="navbar sticky-top navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-expand-xs navbar-custom">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <div class="navbar-header">
                                 <!-- Needs logo -->
@@ -21,12 +21,8 @@
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                        </li>
-                    </ul>
 
-                    <div class="d-flex flex-row-reverse bd-highlight settings">
+                    <div class="d-flex flex-row-reverse navbar-toggler bd-highlight settings">
                       <div class="p-2 bd-highlight">
                         <a class="fas fa-ellipsis-v" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                         <!-- Dropdown Menu -->
@@ -47,4 +43,3 @@
                                <!-- Breadcrumbs -->
                                <!-- <div class="breadcrumbs"> -->
                             <div class="sidebar-user"></div>
-
