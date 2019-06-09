@@ -19,7 +19,7 @@
 @stop
 
 @section('title')
-    Most/Least Report
+    Inventory Reports
 @stop
 
 @section('../layout/breadcrumbs')
@@ -37,11 +37,14 @@
     <div class="sample" style=" margin-top: 1rem;">
       <div class="row">
         <div class="col-3">
+          <div class="mb-2"><i class="fas fa-warehouse" style="margin-right: 1rem;"></i> INVENTORY REPORTS</div>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">From:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
-
-        <div class="col-3">
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">To:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
@@ -49,63 +52,160 @@
     </div>
 </div>
 
-
-        <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
+      <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Issuance Report as of January 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Inventory Report as of June 2019</p>
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable">
+
+          <!-- additions -->
+          <div class="" id="inventoryTable" style="margin-top:4rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Most/Least issued items</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Inventory Additions</p>
             </div>
-            <table class="table all" id="forRepair">
+            <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col">cgfhbjk</th>
-                  <th scope="col">fgchbjkm</th>
-                  <th scope="col">xcghbjn</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                  <!-- if individual items are needed 
+                  <th scope="col">Item ID</th>
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Subtype</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">O/R</th>
+                  <th scope="col">Model</th>
+                  <th scope="col">Added</th>
+                  -->
+
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Subtype</th>
+                  <th scope="col">Month Added</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                @foreach($items as $item)
+                <tr id={{$item->created_at}}>
+                  <td>{{$item->type}}</td>
+                  <td>{{$item->subtype}}</td>
+                  <td>{{$item->created_at}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+
+          <!-- available -->
+
+          <div class="" id="inventoryTable" style="margin-top:4rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Available Items</p>
+            </div>
+            <table class="table all" id="available">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <th scope="col">Item ID</th>
+                  <th scope="col">Item Type</th>
+                  <th scope="col">Item Subtype</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">Model</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                @foreach($availeq as $equipment)
+                <tr id={{$equipment->created_at}}>
+                  <td>{{$equipment->eqId}}</td>
+                  <td>{{$equipment->type}}</td>
+                  <td>{{$equipment->subtype}}</td>
+                  <td>{{$equipment->brand}}</td>
+                  <td>{{$equipment->model}}</td>
+                  <td style="display: none">{{$equipment->created_at}}</td>
+                  
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-responsive" id="inventoryTable" style="margin-top:4rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Repair Items</p>
+            </div>
+            <table class="table all t" id="repair">
+              <thead class="thead-dark">
+                <tr>
+                    <tr>
+                        <th scope="col">Item ID</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Item Subtype</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                      </tr>
+                </tr>
+              </thead>
+              <tbody>
+                  @foreach($repEq as $equipment)
+                  <tr id={{$equipment->created_at}}>
+                    <td>{{$equipment->eqId}}</td>
+                    <td>{{$equipment->type}}</td>
+                    <td>{{$equipment->subtype}}</td>
+                    <td>{{$equipment->brand}}</td>
+                    <td>{{$equipment->model}}</td>
+                    <td style="display: none">{{$equipment->created_at}}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+            </table>
+          </div>
+
+          <div class="table-responsive" id="inventoryTable" style="margin-top:4rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Return Items</p>
+            </div>
+            <table class="table all t" id="return">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Details</th>
+                  <th scope="col">OR No.</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Supplier</th>
+                  <th scope="col">Added By</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>xcgvbn</td>
-                  <td>cxcghjbkl</td>
-                  <td>ddfcghjk</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td>dfghjkl;</td>
-                  <td>dfcgvhj</td>
-                  <td>sdfghj</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
+                  <td>sample</td>
                 </tr>
                 <tr>
-                  <td>etfghj</td>
-                  <td>dfghj</td>
-                  <td>sdfcgvhb</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -117,6 +217,63 @@
               </tbody>
             </table>
           </div>
+
+          <div class="" id="inventoryTable" style="margin-top:4rem; margin-bottom: 2rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Disposal Items</p>
+            </div>
+            <table class="table all" id="disposal">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Remarks</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Added By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ballistix Sport Series DDR3</td>
+                  <td>Computer Unit</td>
+                  <td>8GB Ballistix Sport DDR3 1600 MHz UDIMM</td>
+                  <td>For Disposal</td>
+                  <td>Obsolete, for replacement</td>
+                  <td>2019-04-19</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Aerocool Strike</td>
+                  <td>Computer Unit</td>
+                  <td>"Motherboards: Micro ATX / Mini ITX
+Chassis Dimensions: 280 x 380x 350 mm"</td>
+                  <td>For Disposal</td>
+                  <td>Damaged beyond repair</td>
+                  <td>2019-10-18</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>iPad Air</td>
+                  <td>Mobile Device</td>
+                  <td>"Core Design: Apple Cyclone x 2
+CPU: S5L8965 ""A7 Rev A""
+CPU Speed: 1.4 GHz
+RAM: 1 GB
+Storage: 128 GB"</td>
+                  <td>For Disposal</td>
+                  <td></td>
+                  <td>2018-10-21</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+
         </div>
 
 
@@ -124,7 +281,6 @@
     <div class="row" id="graph" style="margin-bottom: 2rem;">
       <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
       <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
-      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
     </div>
 
   </div>
@@ -166,8 +322,6 @@
         <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
-
-        <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">
@@ -325,16 +479,16 @@
           }
         </script>
 
-        <script>
-        $(document).ready(function() {
-            $('#forRepair').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                "searching": false,
-                "ordering": false
-            } );
-        } );
-      </script>
+      <script>
+      $(document).ready(function() {
+          $('#available, #repair, #return, #disposal').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              "searching": false,
+              "ordering": false
+          } );
+      } );
+    </script>
 @stop

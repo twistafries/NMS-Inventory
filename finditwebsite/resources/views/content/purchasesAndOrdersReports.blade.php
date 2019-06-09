@@ -19,7 +19,7 @@
 @stop
 
 @section('title')
-    Item Availability Report
+    Purchases and Orders Report
 @stop
 
 @section('../layout/breadcrumbs')
@@ -37,11 +37,14 @@
     <div class="sample" style=" margin-top: 1rem;">
       <div class="row">
         <div class="col-3">
+          <div class="mb-2"><i class="fas fa-list-alt" style="margin-right: 1rem;"></i> PURCHASES AND ORDERS</div>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">From:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
-
-        <div class="col-3">
+        <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">To:</label>
           <input type="date" name="warranty_start" value="" style="width: 10rem;">
         </div>
@@ -52,15 +55,15 @@
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Issuance Report as of January 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Purchases and Orders Report as of January 2019</p>
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable">
+          <div class="" id="inventoryTable" style="margin-top:4rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Issuance per (SU, Mobile Device, Peripherals)</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Completed Orders</p>
             </div>
-            <table class="table all" id="forRepair">
+            <table class="table all" id="complete">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
                   <th scope="col"></th>
@@ -115,6 +118,67 @@
               </tbody>
             </table>
           </div>
+
+          <div class="" id="inventoryTable" style="margin-top:4rem; margin-bottom: 2rem;">
+            <div class="inventory">
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Incomplete Orders</p>
+            </div>
+            <table class="table all" id="incomplete">
+              <thead class="thead-dark" style="font-size: 14px;">
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
 
     <!--Graph-->
@@ -324,7 +388,7 @@
 
         <script>
         $(document).ready(function() {
-            $('#forRepair').DataTable( {
+            $('#complete, #incomplete').DataTable( {
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'

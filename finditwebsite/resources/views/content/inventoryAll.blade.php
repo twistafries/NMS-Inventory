@@ -839,59 +839,7 @@
 
 
     <!--Build From Parts Modal-->
-       <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="build">
 
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div id="buildFromPartsHeader" class="modal-header">
-                    <h5 class="modal-title" id="ModalTitle"><i class="fas fa-wrench"></i>&nbsp;Build From Available Parts</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-
-                <div class="modal-body">
-                <div class="container" style="padding:5rem">
-
-
-                <form action="{!! url('/buildUnit'); !!}" method="post">
-                      {!! csrf_field() !!}
-
-                  <p class="card-title text-dark">Name:</p>
-                    <div class="input-group">
-                        <input name="name" type="text" class="form-control" required>
-                    </div>
-                    <div class="row">
-                        @foreach ($subtypes as $subtypes)
-                        <div class="col col-6 mb-2">
-                            <p class="card-title">{{$subtypes->name}}: </p>
-                            <select name="items[]" class="custom-select">
-                                @foreach ($parts as $part)
-                                    @if ($part->subtype_id==$subtypes->id)
-                                        <option value="{{ $part->id}} ">{{ $part->model}} {{ $part->brand}} S/N:{{ $part->serial_no}}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-                        @endforeach
-                    </div>
-                    </form>
-
-                </div>
-              </div>
-
-
-        <div class="modal-footer">
-
-            <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> BUILD</button>
-            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-        </div>
-
-
-
-    </div>
-    </div>
-    </div>
 
 
 
@@ -899,6 +847,8 @@
     <!-- Add System Unit Modal -->
 
     @include('content.addunit')
+
+    <!-- Add Subtype Modal -->
 
 <div class="modal fade" id="addSubtype" tabindex="-1" role="dialog" aria-labelledby="addSubtypeTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
