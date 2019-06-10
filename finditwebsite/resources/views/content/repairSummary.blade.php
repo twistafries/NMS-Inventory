@@ -113,7 +113,7 @@
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseIT" aria-expanded="true" aria-controls="collapseIT" class="trigger collapsed" id="collapsedownIT"><i class="fas fa-arrow-circle-down"></i></i> Information Technology Development Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseIT" aria-expanded="true" aria-controls="collapseIT" class="trigger collapsed" id="collapsedownIT"><i class="fas fa-arrow-circle-down"></i></i> Information Technology Development Department ({{ count($it_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseIT" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingIT">
@@ -188,7 +188,7 @@
                 <div class="panel panel-default pl-2">
                     <div class="panel-heading" role="tab" id="">
                         <h5 class="panel-title">
-                            <a role="button" data-toggle="collapse" href="#collapsePD" aria-expanded="true" aria-controls="collapsePD" class="trigger collapsed" id="collapsedownPD"><i class="fas fa-arrow-circle-down"></i> Production Development Department</a>
+                            <a role="button" data-toggle="collapse" href="#collapsePD" aria-expanded="true" aria-controls="collapsePD" class="trigger collapsed" id="collapsedownPD"><i class="fas fa-arrow-circle-down"></i> Production Development Department ({{ count($pd_dep) }})</a>
                         </h5>
                     </div>
                 <div id="collapsePD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPD">
@@ -262,7 +262,7 @@
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseFD" aria-expanded="true" aria-controls="collapseFD" class="trigger collapsed" id="collapsedownFD"><i class="fas fa-arrow-circle-down"></i> Financial Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseFD" aria-expanded="true" aria-controls="collapseFD" class="trigger collapsed" id="collapsedownFD"><i class="fas fa-arrow-circle-down"></i> Financial Department ({{ count($fin_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseFD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFD">
@@ -328,7 +328,7 @@
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseHR" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  Human Resources Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseHR" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  Human Resources Department ({{ count($hr_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseHR" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
@@ -383,7 +383,7 @@
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseND" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  No Assigned Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseND" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  No Assigned Department ({{ count($no_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseND" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
