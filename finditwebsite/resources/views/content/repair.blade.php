@@ -125,7 +125,7 @@
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
                             <td> {{ $for_repair->created_at }} </td>
-                            <td></td>
+                            <td>{{ $for_repair->updated_at }}</td>
                             <td> {{ $for_repair->firstname}} {{ $for_repair->lastname}}  </td>
                             <td>{{ $for_repair->warranty_start}} - {{ $for_repair->warranty_end}}</td>
 
@@ -138,13 +138,12 @@
 
                             <td> Unit# {{ $for_repair_units->id }} </td>
                             <td> {{ $for_repair_units->name }} {{ $for_repair_units->id }}</td>
-                            <td> None </td>
-                            <td> None </td>
-                            <td> None </td>
+                            <td> N/A </td>
+                            <td> N/A </td>
                             <td> {{ $for_repair_units->created_at }} </td>
                             <td> {{ $for_repair_units->updated_at }} </td>
                             <td> {{ $for_repair_units->firstname}} {{ $for_repair_units->lastname}}  </td>
-                            <td> None </td>
+                            <td>  </td>
                         </tr>
 
                         @endforeach
