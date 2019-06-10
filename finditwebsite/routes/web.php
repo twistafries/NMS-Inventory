@@ -155,7 +155,7 @@ Route::post('/buildFromParts', 'PCBuildController@buildFromParts');
 
 //bulk add purchased unit
 Route::post('/bulkUnitAdd', 'PCBuildController@bulkAddUnits');
-
+Route::post('/tempBulkPC', 'PCBuildController@insertBulkPC');
 //edit PC
 
 /*------------------------------------------------------------------------*/

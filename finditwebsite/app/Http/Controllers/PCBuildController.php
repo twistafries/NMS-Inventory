@@ -11,6 +11,8 @@ use App\Models\TblStatus;
 use App\Models\TblSystemUnits;
 use App\Models\TblItEquipment;
 use App\Models\TblDepartments;
+use App\Models\PurchasedItems;
+use App\Models\Purchases;
 
 class PCBuildController extends Controller
 {
@@ -62,9 +64,48 @@ class PCBuildController extends Controller
     public function bulkAddUnits(Request $request){
         if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
-          }
+        }
+
         $data = $request->all();
-        dd($data);
-        return view('content.bulkUnitAdd');
+        $session=Session::get('loggedIn');
+        $user_id = $session['id'];
+        $data['user_id'] = $user_id;
+        $data['pID'] = $data['pcID'][0];
+        $data['components'] = PurchasedItems::getUnitItems($data['pcID'][0]);
+        $data['qty'] = $data['components'][0]->qty;
+        $data['supplier'] = ($data['components'][0]->supplier);
+        //dd($data['components'][0]->qty);
+        return view('content.bulkUnitAdd', $data);
+    }
+
+    public function insertBulkPC(Request $request){
+        $session=Session::get('loggedIn');
+        try{
+            $data = $request->all();
+
+            $user_id = $session['id'];
+            $count = 0;
+            $sUnit = [];
+       
+            $sUnit['or_no'] = $data['or_no'];
+            $sUnit['user_id'] = $user_id;
+            $sUnit['subtype'] = array_unique($data['subtype']);
+            for($count; $count < 2; $count++){
+                $sUnit['name'] = $data['name'][$count];
+                //TblSystemUnits::add_system_unit($sUnit);
+                $count++;
+            }
+    
+            return \Redirect::to('/inventoryAll')->with('message','System units added.');
+        }catch(QueryException $qe){
+            // $info = Self::getErrorInfo();
+            // dd($qe);
+            // dd($info);
+            return \Redirect::to('/inventoryAll')
+            ->with('error' , 'Encountered an error;')
+            ->with('error_info' , $qe->getMessage())
+            ->with('target' , '#build');
+          }
+        
     }
 }
