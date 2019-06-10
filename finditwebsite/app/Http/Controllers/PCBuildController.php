@@ -80,19 +80,32 @@ class PCBuildController extends Controller
 
     public function insertBulkPC(Request $request){
         $session=Session::get('loggedIn');
-        $data = $request->all();
-        $content = [];
-        $count = 0;
-        foreach($data as $unit){
-            $content['or_no'] = $data['or_no'];
-            $content['name'] = $data['name'][$count];
-            $content['subtype_id'] = $data['subtype'][$count];
-            $content['brand'] = $data['brand'][$count];
-            $content['model'] = $data['model'][$count];
-            //foreach($data['subtype'])
-            $count+1;
-        }
-        //dd($content);
+        try{
+            $data = $request->all();
 
+            $user_id = $session['id'];
+            $count = 0;
+            $sUnit = [];
+       
+            $sUnit['or_no'] = $data['or_no'];
+            $sUnit['user_id'] = $user_id;
+            $sUnit['subtype'] = array_unique($data['subtype']);
+            for($count; $count < 2; $count++){
+                $sUnit['name'] = $data['name'][$count];
+                //TblSystemUnits::add_system_unit($sUnit);
+                $count++;
+            }
+    
+            return \Redirect::to('/inventoryAll')->with('message','System units added.');
+        }catch(QueryException $qe){
+            // $info = Self::getErrorInfo();
+            // dd($qe);
+            // dd($info);
+            return \Redirect::to('/inventoryAll')
+            ->with('error' , 'Encountered an error;')
+            ->with('error_info' , $qe->getMessage())
+            ->with('target' , '#build');
+          }
+        
     }
 }

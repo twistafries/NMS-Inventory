@@ -30,10 +30,11 @@ $lname = $session['lname'];
     <div class="col-sm-2">
         <p class="card-title">OR_No</p>
         <input type="text" name="or_no">
+        <input type="hidden" name="qty" value={{$qty}}>
     </div>
   </div>
   <hr>
-  @for($count = 0; 1 > $count; $count++)
+  @for($count = 0; 2 > $count; $count++)
       <div class="form-group">
             <div class="form-row">
               <div class="col-md-1">
@@ -87,7 +88,7 @@ RAM:
                     @elseif($component->subtype == 'CPU')
                       <textarea name="details{{$component->subtype}}[]">Socket:</textarea>
                     @else
-                      <textarea name="details$component->subtype[]"></textarea>
+                      <textarea name="details{{$component->subtype}}[]"></textarea>
                     @endif  
                   </div>
               </div>
