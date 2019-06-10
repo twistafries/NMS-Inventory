@@ -105,4 +105,25 @@ class TblSystemUnits extends Model
 
       return $query;
     }
+    
+    public static function getUnit($unit_id){
+      $query = \DB::table('system_units')
+      -> leftjoin('departments', 'system_units.dept_id', '=', 'departments.id')
+      -> leftjoin('equipment_status', 'system_units.status_id', '=', 'equipment_status.id')
+      -> select('system_units.*' , 'departments.name as dept_name' , 'equipment_status.name as status_name')
+      -> where('system_units.id', '=', $unit_id)
+      -> get();
+
+      return $query;
+    }
+
+    public static function update_system_unit_status($id,$status){
+        $system_units = TblSystemUnits::find($id);
+        $system_units->status_id = $status;
+        $system_units->updated_at = gmdate('Y-m-d H:i:s');
+
+        $system_units->save();
+        $id = DB::getPdo()->lastInsertId();
+        return $id;
+    }
 }

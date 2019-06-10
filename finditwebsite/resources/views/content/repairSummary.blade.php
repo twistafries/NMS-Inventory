@@ -127,11 +127,17 @@
                                         <ul class="list-unstyled">
                                             <!--List item--> 
                                             @foreach($it_dep as $unit)
-                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
-                                            <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
-                                            <i class="fas fa-angle-down"></i> {{$unit->name}}{{$unit->su_id}}</a>
-                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
+                                            <li> 
+                                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                    <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                    <i class="fas fa-angle-down"></i> {{$unit->name}}{{$unit->su_id}}</a>
+                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check">
+                                                        </i> Make Available
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt">
+                                                        </i> Decommission
+                                                    </button> 
+                                                </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="item1">
                                                     <table class="table table-striped">
@@ -739,7 +745,7 @@
         </div>
     </div>
 
-
+    
 
 
      <h4 class="font-weight-bold">Mobile Device ({{ count($for_repair_laptops) + count($for_repair_phones) + count($for_repair_phones) }})</h4>
@@ -1060,17 +1066,17 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="height:450px;">
                     <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                      <div class="warning-content">
-                          <p>Warning!</p>
-                          <p>Are you sure you want to change the status of this item to For Return?</p>
-                      </div>
+                        <h5 class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+    
+                        <div class="modal-body">
+                        <div class="warning-content">
+                            <p>Warning!</p>
+                            <p>Are you sure you want to change the status of this item to For Return?</p>
+                        </div>
 
                     </div>
 
@@ -1080,6 +1086,34 @@
                     </div>
                 </div>
             </div>
+    </div>
+
+    <!-- Empty Modal Prompt -->
+    <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+        <form action="{!! url('/add-to-concerns-system-unit') !!}" method="post">
+        {!! csrf_field() !!}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header" id="makeAvailableHeader">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="emptyContent()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-content"  id="makeAvailableContent">
+                        
+                    </div>
+                </div>
+
+            
+            <div class="modal-footer" id="makeAvailableFooter">
+
+                </div>
+            </div>
+        </div>
+        </form>
     </div>
 
 
@@ -1109,9 +1143,64 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 
     <script>
-      $(document).ready(function(){
+    $(document).ready(function(){
       $('#concerns').addClass('active');
-      });
+      
+    });
+
+    function emptyContent(){
+        $('#makeAvailableContent').empty()
+        $('#makeAvailableFooter').empty()
+    }
+
+    function makeAvailableSystemUnit(sys_id , new_status_id){
+        var unit_id = sys_id;
+        console.log(unit_id);
+        if(new_status_id == 1){
+            var new_status_name = "Available";
+        }
+
+        $.ajax({
+            url: 'getUnitForRepair/' + unit_id,
+            type: 'get',
+            dataType: 'json',
+            success: function (response){
+                len = response['unit'].length;
+                if(len > 0){
+                    for(var i = 0; i < len; i++){
+                        var orig_status_name = response['unit'][i].status_name;
+                        // var orig_status_id = response['unit'][i].status_id;
+                        var dept = response['unit'][i].dept_name;
+                        var name = response['unit'][i].name;
+                    }
+
+                    var unitContentStr = 
+                    '<p>Are you sure you want to change the status of ' + name + unit_id +
+                    ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
+                    '</div>' + '<div class="btn-group" role="group">' + 
+                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse"data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' + 
+                    'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' + 
+                    '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
+                    
+                    $('#makeAvailableContent').append(unitContentStr);
+                    
+                    var unitFooterStr = 
+                    '<input type="hidden" name="id" value="' + unit_id + '" >' + 
+                    '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
+                    '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
+                    '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>'
+
+                    ;
+
+                    $('#makeAvailableFooter').append(unitFooterStr);
+                }
+            }
+
+        })
+    }
+
+
+      
     </script>
 
     <!-- <script type="text/javascript">

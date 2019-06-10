@@ -571,4 +571,12 @@ class InventoryController extends BaseController
       TblActivityLogs::add_log($log);
       return \Redirect::to('/inventory')->with('equipment has been added');
     }
+
+    public function getUnitForRepair($id){
+      $units['unit'] = TblSystemUnits::getUnit($id);
+      // $statuses['status'] = TblSystemUnits::getUnit($id);
+      // dd($units);
+      echo json_encode($units);
+      exit;
+    }
 }
