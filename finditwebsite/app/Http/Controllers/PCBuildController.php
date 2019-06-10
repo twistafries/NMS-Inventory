@@ -77,4 +77,22 @@ class PCBuildController extends Controller
         //dd($data['components'][0]->qty);
         return view('content.bulkUnitAdd', $data);
     }
+
+    public function insertBulkPC(Request $request){
+        $session=Session::get('loggedIn');
+        $data = $request->all();
+        $content = [];
+        $count = 0;
+        foreach($data as $unit){
+            $content['or_no'] = $data['or_no'];
+            $content['name'] = $data['name'][$count];
+            $content['subtype_id'] = $data['subtype'][$count];
+            $content['brand'] = $data['brand'][$count];
+            $content['model'] = $data['model'][$count];
+            //foreach($data['subtype'])
+            $count+1;
+        }
+        //dd($content);
+
+    }
 }
