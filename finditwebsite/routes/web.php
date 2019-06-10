@@ -95,6 +95,7 @@ Route::post('/deactivate', 'AssociateController@update_associate_status');
 Route::get('/issuableItems', 'ForStatusController@showIssuable');
 Route::get('/employees', 'ForStatusController@showEmployees');
 Route::post('/editEmployee', 'ForStatusController@editEmployee');
+Route::post('/changeStatusEmployee', 'ForStatusController@changeStatus');
 Route::post('/changeStatus', 'ForStatusController@editEmployee');
 
 Route::get('/repair', 'ForStatusController@showRepairItems');

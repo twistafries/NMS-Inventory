@@ -59,20 +59,11 @@
       <thead>
         <tr>
           <th>
-            <label for="types" id="labelTypes">Types: </label>
-            <select id="types" name="types" style="width: 10rem; height: 1.8rem;">
-              <option value="any">Any</option>
-              @foreach ($typesSel as $typesSel)
-              <option value="{{$typesSel->name}}">{{$typesSel->name}}</option>
-              @endforeach
-            </select>
-          </th>
-          <th>
             <label for="subtype">Subtype: </label>
-            <select id="subtypes" name="subtypes" style="height: 1.8rem;">
+            <select id="subtypes" name="subtypes" style="height: 1.8rem; margin-right: 1rem;">
               <option value="any">Any</option>
               @foreach ($subtypesSel as $subtypesSel)
-              <option value="{{$subtypesSel->name}}">{{$subtypesSel->name}}</option>
+              <option value="{{$subtypesSel->name}}{{$subtypesSel->id}}">{{$subtypesSel->name}}</option>
               @endforeach
             </select>
         </th>
@@ -81,7 +72,7 @@
           <select id="supplier" name="supplier" style="height: 1.8rem;">
             <option value="any">Any</option>
             @foreach ($suppliers as $suppliers)
-            <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
+            <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
             @endforeach
           </select>
       </th>
@@ -94,14 +85,6 @@
           @endforeach
         </select>
       </th>
-      <th>
-        <label for="status">Status: </label>
-        <select id="status" name="status" style="height: 1.8rem;">
-          <option value="any">Any</option>
-          @foreach ($status as $status)
-          <option value="{{$status->name}}">{{$status->name}}</option>
-          @endforeach
-        </select>
       </th>
       <th></th><th></th>
         <th>
@@ -336,7 +319,9 @@
               <th scope="col">Brand</th>
               <th scope="col">Model</th>
               <th scope="col">Details</th>
+              <th scope="col">Serial Number</th>
               <th scope="col">Subtype</th>
+              <th hidden></th>
               <th scope="col">Supplier</th>
             </tr>
           </thead>
@@ -347,7 +332,9 @@
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$purch->brand}}</td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$purch->model}}</td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$purch->details}}</td>
+              <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$purch->serial_no}}</td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$purch->subtype_name}}</td>
+              <td hidden>{{$purch->subtype_name}}{{$purch->subtype_id}}</td>
               <td data-toggle="modal" data-target="#purchasedetail" style="cursor: pointer;">{{$purch->supplier}}</td>
             </tr>
             @endif
@@ -483,4 +470,55 @@
           $(".addss").append("<div class=\"adds row\"><div class=\"input-group col-2\" style=\"margin-top: 1rem;\"><div class=\"\"><p class=\"card-title text-dark\" style=\"font-size: 14px;\">Brand:</p><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></div><div class=\"input-group col-2\" style=\"margin-top: 1rem;\"><div class=\"\"><p class=\"card-title text-dark\" style=\"font-size: 14px;\">Model:</p><input name=\"model\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></div></div><div class=\"input-group col-3\" style=\"margin-top: 1rem;\"><div class=\"\">");
         });
     </script>
+
+    <script>
+    $.fn.dataTable.ext.search.push(
+      function( settings, data, dataIndex ) {
+      var subtype =  $('#subtypes').val()
+      var supplier =  $('#supplier').val();
+      var brand =  $('#brand').val();
+      var subtypes = data[0];
+      var suppliers = data[0];
+      var brands = data[0];
+
+        if (subtypes.includes(subtype) || subtype == "any"){
+          if (suppliers.includes(supplier)  || supplier == "any"){
+            if (brands.includes(brand)  || brand == "any"){
+              return true;
+            }
+          }
+        }
+
+
+      return false;
+      }
+      );
+
+      $(document).ready(function() {
+      var table = $('#purchasesTable').DataTable();
+
+      // Event listener to the two range filtering inputs to redraw on input
+      $('#subtypes').on('keyup change',  function() {
+          table.draw();
+          } );
+          $('#supplier').on('keyup change',  function() {
+              table.draw();
+          } );
+          $('#brand').on('keyup change',  function() {
+              table.draw();
+          } );
+      } );
+
+              function reset(){
+                document.getElementById("subtypes").selectedIndex = "0";
+                document.getElementById("supplier").selectedIndex = "0";
+                document.getElementById("brand").selectedIndex = "0";
+                $('#purchasesTable').DataTable().search('').draw();
+
+                // $('#myDataTable5').DataTable().search('').draw();
+
+              }
+
+
+          </script>
 @stop

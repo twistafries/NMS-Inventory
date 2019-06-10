@@ -176,7 +176,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            </form>
+                                            <form action="{!! url('/changeStatusEmployee'); !!}" class="profile-form" id="profile-form" method="post">
+                                                <input type="hidden" name="id" value="{!! $employee->id !!}">
+                                                <input  type="hidden" type="text" name="name" class="form-inline input" value="{{ $employee->fname  }} {{ $employee->lname  }} ID: {{ $employee->id  }}">
+                                                {!! csrf_field() !!}
                                             <div id="divstatus">
                                                 @if( $employee->status == "active")
                                                 <button class="btn btn-secondary" id="deactivate" type="submit">

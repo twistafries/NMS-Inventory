@@ -29,7 +29,7 @@
                     <li class="breadcrumb-item ">
                             <a href="{!! url('/systemUnit') !!}" class="text-dark">System Unit</a>
                     </li>
-                    
+
                     <li class="breadcrumb-item ">
                         <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
                     </li>
@@ -137,6 +137,20 @@
 </div>
 @endif
 
+<div class="row">
+  <div class="col-3">
+    <div class="mb-2"><i class="fas fa-warehouse" style="margin-right: 1rem;"></i> INVENTORY REPORTS</div>
+  </div>
+  <div class="col-3"></div>
+  <div class="col-3 text-right">
+    <label class="font-weight-bolder text-uppercase text-left">Date added From:</label>
+    <input type="date" name="min" id="min" value="" style="width: 10rem;">
+  </div>
+  <div class="col-3 text-right">
+    <label class="font-weight-bolder text-uppercase text-left">To:</label>
+    <input type="date" name="max" id="max" value="" style="width: 10rem;">
+  </div>
+</div>
 
 <table style="margin: auto;width: 100%; text-align: right; ">
 <thead>
@@ -1072,6 +1086,8 @@ $('#subtypes').on('keyup change',  function() {
           document.getElementById("supplier").selectedIndex = "0";
           document.getElementById("brand").selectedIndex = "0";
           document.getElementById("status").selectedIndex = "0";
+          document.getElementById("min").value = "";
+          document.getElementById("max").value = "";
           $('#myDataTable').DataTable().search('').draw();
 
           // $('#myDataTable5').DataTable().search('').draw();
@@ -1159,6 +1175,35 @@ $('a.warranty-not').click(function(){
     }
 
 </script>
+<script type="text/javascript">
+$.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+      var minimum = $('#min').val();
+      var maximum = $('#max').val();
+      var min = new Date(minimum);
+      var max = new Date(maximum);
+console.log(min);
+console.log(max);
+      var startDate = new Date(data[8]);
+      console.log(startDate);
+      if (isNaN(min) && isNaN(max) ) { return true; }
+      if (isNaN(min)  && startDate <= max) { return true;}
+      if(isNaN(max) && startDate >= min) {return true;}
+      if (startDate <= max && startDate >= min) { return true; }
+        console.log("false"); return false;
+  });
 
+  $(document).ready(function() {
+  var table = $('#myDataTable').DataTable();
+
+  // Event listener to the two range filtering inputs to redraw on input
+  $('#min').on('keyup change',  function() {
+      table.draw();
+      } );
+      $('#max').on('keyup change',  function() {
+          table.draw();
+      } );
+    });
+</script>
 
 @stop
