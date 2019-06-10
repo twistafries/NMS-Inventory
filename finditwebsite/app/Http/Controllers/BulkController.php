@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblItEquipment;
 use App\Models\TblSystemUnits;
+use App\Models\TblActivityLogs;
 use App\Models\TblItEquipmentSubtype;
 use App\Models\TblItEquipmentType;
 use App\Models\TblEquipmentStatus;
@@ -53,8 +54,14 @@ class BulkController extends BaseController
        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
       }
+      
+    //   Purchases::edit_purchase($data['p_id'],$data['or_no']);
+      //   Purchases::edit_purchase($data['p_id'],$data['or_no']);
       try{
+        $item_id = $request->input('bulk.*')[0][0];
+        $p_id = PurchasedItems::get_bulk_purchased_items($item_id)[0]->p_id;
         $session=Session::get('loggedIn');
+        
         $user_id = $session['id'];
         // dd($user_id);
         $show = $request->all();
@@ -94,12 +101,14 @@ class BulkController extends BaseController
             ]);
             $count++;
         }
-
+        
+        
         // dd($data);
         foreach($data['inventory'] as $inventory){
             TblItEquipment::add_equipment($inventory);
         }
-
+        // Purchases::add_purchase($p_id , $or_no[1]);
+    
         return \Redirect::to('/inventoryAll')
         ->with('message' , $count  . ' equipment has been added');
 

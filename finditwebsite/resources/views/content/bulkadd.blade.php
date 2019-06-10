@@ -25,6 +25,9 @@ body{
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
+                    @if( $item_id != 0)
+                        <th>Purchase Item ID.</th>
+                    @endif
                     <th>Serial No.</th>
                     <th>Subtype</th>
                     <th>Status</th>
@@ -67,7 +70,7 @@ body{
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
                                 <p class="card-title">Quantity</p>
-                                <input type="number" class="form-control" name="quantity" id="quantity" min="1" max="250" style="padding: 0;">
+                                <input type="number" class="form-control text-center" name="quantity" id="quantity" min="1" max="250" style="padding: 0;">
                             </div>
 
                             <!-- Subtype -->
@@ -242,6 +245,9 @@ body{
                         // console.log(name);
                         output = '<tr id="row_' + count + '">';
                         output += '<td>' + count + '</td>';
+                        @if( $item_id != 0)
+                        output += '<td>' + {{ $item_id }} + ' <input type="hidden" name="bulk[item_id][]" id="item_id' + count + '" class="name" value="' +  {{ $item_id }}  + '" /></td>';
+                        @endif
                         output += '<td>' + ' <input type="text" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
                         output += '<td> <input type="hidden" name="bulk[subtype_id][]" id="subtype_id' + count + '" class="subtype_id" value="' + subtype_id + '" />' + subtype_name + '</td>';
                         output += '<td> <input type="hidden" name="bulk[status_id][]" id="status_id' + count + '" class="status_id" value="' + status_id + '" />' + status_name + '</td>';
