@@ -55,7 +55,7 @@ class InventoryConcernsController extends BaseController
                 TblActivityLogs::add_log($act);
             }
             return \Redirect::back()
-            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name). '".';
+            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name.'".');
         }catch(Exception $e){
 
         }catch(QueryException $qe){

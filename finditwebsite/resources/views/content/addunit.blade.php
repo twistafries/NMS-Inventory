@@ -26,7 +26,7 @@
 
                                 <tbody>
                                     <tr>
-                                        <td> <input type="text" name="unit[mac_address]"></td>
+                                        <td> <input type="text" name="unit[dept_id]"></td>
                                         <td>
                                             <input type="text" name="unit[supplier]"><br>
 

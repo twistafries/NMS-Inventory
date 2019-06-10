@@ -20,7 +20,7 @@
 <h1>Build A PC</h1>
     <form action="{!! url('/buildFromParts'); !!}" method="post">
         {!! csrf_field() !!}
-            
+
 
         <div class="form-group">
             <div class="form-row">
@@ -41,7 +41,7 @@
                                             @if($item->subtype_id == $subtype->id)
                                                 <option value = "{{$item->id}}" id="{{$item->brand}} {{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
                                             @endif
-                                        @endforeach 
+                                        @endforeach
                                     </select>
                                 @else
                                     <select name="components[]" id="id{{$subtype->name}}" class="form-control form-control-sm" onchange="select{{$subtype->name}}()" required>
@@ -50,7 +50,7 @@
                                             @if($item->subtype_id == $subtype->id)
                                                 <option value = "{{$item->id}}" id="{{$item->brand}} {{$item->model}} {{$item->details}}">{{$item->brand}} {{$item->model}} (S/N:{{$item->serial_no}})</option>
                                             @endif
-                                        @endforeach 
+                                        @endforeach
                                     </select>
                                 @endif
                             </div>
@@ -60,16 +60,15 @@
                     </div>
                 @endif
                 </p>
-            @endforeach 
+            @endforeach
             <div class="form-row">
                     <label for="Department" class="col-md-1 col-form-label">Department</label>
                     <select name="dept_id" class="col-md-3 col-form-sm">
 
-                    <option value="" selected disabled hidden> -- select department -- </option>
+                    <option value="null" selected disabled hidden> -- select department -- </option>
                     @foreach($departments as $department)
                         <option value = "{{$department->id}}"> {{$department->name}} </option>
                     @endforeach
-                    <option value = "null"> No Department </option>
 
                     </select>
             </div>
@@ -78,10 +77,10 @@
     </form>
     <script>
         var it_eq = @json($it_equipment->toArray());
-        
+
         /*
             get DOM elements: motherboard select, then once an option is chosen
-            check the socket desc of selected option. Disable CPU and RAM select options 
+            check the socket desc of selected option. Disable CPU and RAM select options
             not matching that socket or config
         */
         function selectMotherboard(){
@@ -99,7 +98,7 @@
             var descMB = descMBArr[1].replace(/[\W]/g,"");
             var descRAMArr = ramPat.exec(option);
             var descRAM = descRAMArr[0].replace(/[\W]/,"");
-            
+
             for (var i=0; i<cpu.length; i++){
                 cpSelect = cpu.options[i].id;
                 descCPArr = pattern.exec(cpSelect);
@@ -113,7 +112,7 @@
                         cpu.options[i].style.display = "none";
                     }
                 }
-            }            
+            }
         }
 
         /*
@@ -143,7 +142,7 @@
                         cpu.options[i].style.display = "none";
                     }
                 }
-            }           
+            }
         }
 
         function changeRAM(){

@@ -7,15 +7,15 @@
   // $img_path = $session['img_path'];
 ?>
 
-@extends('../template') 
+@extends('../template')
     @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}"> 
-    @stop 
-    @section('title') Repair @stop 
-    @section('../layout/breadcrumbs') 
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    @stop
+    @section('title') Repair @stop
+    @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
     <i class="fas fa-chart-line">REPAIR
     @stop
@@ -155,6 +155,9 @@
                                                                         <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
                                                                         <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
                                                                         <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                        @if($component->status_id == 3)
+                                                                        <button type="button" class="btn btn-danger rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-tools"></i> Replace Component</button>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                                 @endif
@@ -163,7 +166,7 @@
                                                     </table>
                                                 </div>
                                             </li>
-                                        @endforeach  
+                                        @endforeach
     </ul>
                                 </div>
 
@@ -390,12 +393,12 @@
                 </div>
             </div>
         </div>
-   
-   
-    
-    
-    
-    
+
+
+
+
+
+
     <hr>
     <h4 class="font-weight-bold">Computer Peripheral ({{ count($for_repair_mice) + count($for_repair_keyboards) + count($for_repair_monitors)}})</h4>
      <div class="panel panel-default pl-2">
@@ -441,7 +444,7 @@
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                           </td>
                            <!-- Make Available prompt-->
-                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_mouse->id !!}" tabindex="-1" role="dialog" 
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_mouse->id !!}" tabindex="-1" role="dialog"
                                 aria-hidden="true">
 
                                     <div class="modal-dialog" role="document">
@@ -469,15 +472,15 @@
                                                         <div class="collapse" id="remarks-4-{!! $for_repair_mouse->id !!}">
                                                             <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                                         </div>
-                                                    
+
                                                     </div>
-                                                    
+
                                                     <input type="hidden" name="id" value="{!! $for_repair_mouse->id !!}">
                                                     <input type="hidden" name="status_id" value="1">
                                                     <input type="hidden" name="orig_status_id" value="{!! $for_repair_mouse->status_id !!}">
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success text-uppercase">Yes</button>
                                             </form>
@@ -539,7 +542,7 @@
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                             </td>
                             <!-- Make Available prompt-->
-                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_keyboard->id !!}" tabindex="-1" role="dialog" 
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_keyboard->id !!}" tabindex="-1" role="dialog"
                                 aria-hidden="true">
 
                                     <div class="modal-dialog" role="document">
@@ -567,15 +570,15 @@
                                                         <div class="collapse" id="remarks-4-{!! $for_repair_keyboard->id !!}">
                                                             <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                                         </div>
-                                                    
+
                                                     </div>
-                                                    
+
                                                     <input type="hidden" name="id" value="{!! $for_repair_keyboard->id !!}">
                                                     <input type="hidden" name="status_id" value="1">
                                                     <input type="hidden" name="orig_status_id" value="{!! $for_repair_keyboard->status_id !!}">
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success text-uppercase">Yes</button>
                                             </form>
@@ -635,7 +638,7 @@
                              <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-{!! $for_repair_monitor->id !!}"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                             <!-- Make Available prompt-->
-                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_monitor->id !!}" tabindex="-1" role="dialog" 
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_monitor->id !!}" tabindex="-1" role="dialog"
                                 aria-hidden="true">
 
                                     <div class="modal-dialog" role="document">
@@ -663,15 +666,15 @@
                                                         <div class="collapse" id="remarks-4-{!! $for_repair_monitor->id !!}">
                                                             <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                                         </div>
-                                                    
+
                                                     </div>
-                                                    
+
                                                     <input type="hidden" name="id" value="{!! $for_repair_monitor->id !!}">
                                                     <input type="hidden" name="status_id" value="1">
                                                     <input type="hidden" name="orig_status_id" value="{!! $for_repair_monitor->status_id !!}">
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success text-uppercase">Yes</button>
                                             </form>
@@ -683,17 +686,17 @@
                             </div>
                         </tr>
                         @endforeach
-                        @endif    
+                        @endif
                     </tbody>
                 </table>
                 </div>
             </div>
         </div>
     </div>
-   
-    
-    
-     
+
+
+
+
      <h4 class="font-weight-bold">Mobile Device ({{ count($for_repair_laptops) + count($for_repair_phones) + count($for_repair_phones) }})</h4>
        <div class="panel panel-default pl-2">
             <div class="panel-heading" role="tab" id="headingFive">
@@ -735,7 +738,7 @@
                                  <i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                             <!-- Make Available prompt-->
-                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_laptop->id !!}" tabindex="-1" role="dialog" 
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_laptop->id !!}" tabindex="-1" role="dialog"
                                 aria-hidden="true">
 
                                     <div class="modal-dialog" role="document">
@@ -763,15 +766,15 @@
                                                         <div class="collapse" id="remarks-4-{!! $for_repair_laptop->id !!}">
                                                             <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                                         </div>
-                                                    
+
                                                     </div>
-                                                    
+
                                                     <input type="hidden" name="id" value="{!! $for_repair_laptop->id !!}">
                                                     <input type="hidden" name="status_id" value="1">
                                                     <input type="hidden" name="orig_status_id" value="{!! $for_repair_laptop->status_id !!}">
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary text-uppercase">Yes</button>
                                             </form>
@@ -832,7 +835,7 @@
                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal-$for_repair_tablet"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                             <!-- Make Available prompt-->
-                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_tablet->id !!}" tabindex="-1" role="dialog" 
+                            <div class="modal fade" id="makeAvailableModal-{!! $for_repair_tablet->id !!}" tabindex="-1" role="dialog"
                                 aria-hidden="true">
 
                                     <div class="modal-dialog" role="document">
@@ -860,15 +863,15 @@
                                                         <div class="collapse" id="remarks-4-{!! $for_repair_tablet->id !!}">
                                                             <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
                                                         </div>
-                                                    
+
                                                     </div>
-                                                    
+
                                                     <input type="hidden" name="id" value="{!! $for_repair_tablet->id !!}">
                                                     <input type="hidden" name="status_id" value="1">
                                                     <input type="hidden" name="orig_status_id" value="{!! $for_repair_tablet->status_id !!}">
                                                 </div>
-                                                
-                                                
+
+
                                                 <div class="modal-footer">
                                                 <button type="submit" class="btn btn-success text-uppercase">Yes</button>
                                             </form>
@@ -880,7 +883,7 @@
                             </div>
                         </tr>
 
-                        
+
                         @endforeach
                         @endif
                     </tbody>
@@ -926,7 +929,7 @@
                             <td>{{$for_repair_phone->details}}</td>
                             <td>{{$for_repair_phone->serial_no}}</td>
                             <td>{{$for_repair_phone->warranty_start}}-{{$for_repair_phone->warranty_end}}</td>
-                            <td> 
+                            <td>
                             <button type="button" class="btn btn-success rounded" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
                             <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                             </td>
@@ -973,7 +976,7 @@
     </div>
 
 
-    
+
 
     <!-- For Repair prompt-->
     <div class="modal fade" id="forRepairModal" tabindex="-1" role="dialog" aria-labelledby="DecommissionModalTitle"

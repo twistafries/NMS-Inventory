@@ -40,14 +40,6 @@
           <div class="mb-2"><i class="fas fa-warehouse" style="margin-right: 1rem;"></i> INVENTORY REPORTS</div>
         </div>
         <div class="col-3"></div>
-        <div class="col-3 text-right">
-          <label class="font-weight-bolder text-uppercase text-left">From:</label>
-          <input type="date" name="warranty_start" value="" style="width: 10rem;">
-        </div>
-        <div class="col-3 text-right">
-          <label class="font-weight-bolder text-uppercase text-left">To:</label>
-          <input type="date" name="warranty_start" value="" style="width: 10rem;">
-        </div>
       </div>
     </div>
 </div>
@@ -66,10 +58,10 @@
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Inventory Additions</p>
             </div>
-            <table class="table all" id="available">
+            <table class="table all" id="available" hidden>
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <!-- if individual items are needed 
+                  <!-- if individual items are needed
                   <th scope="col">Item ID</th>
                   <th scope="col">Item Type</th>
                   <th scope="col">Item Subtype</th>
@@ -104,7 +96,7 @@
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Available Items</p>
             </div>
-            <table class="table all" id="available">
+            <table class="table all" id="available2">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
                   <th scope="col">Item ID</th>
@@ -112,6 +104,7 @@
                   <th scope="col">Item Subtype</th>
                   <th scope="col">Brand</th>
                   <th scope="col">Model</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -124,7 +117,7 @@
                   <td>{{$equipment->brand}}</td>
                   <td>{{$equipment->model}}</td>
                   <td style="display: none">{{$equipment->created_at}}</td>
-                  
+
                 </tr>
                 @endforeach
               </tbody>
@@ -144,6 +137,7 @@
                         <th scope="col">Item Subtype</th>
                         <th scope="col">Brand</th>
                         <th scope="col">Model</th>
+                        <th></th>
                       </tr>
                 </tr>
               </thead>
@@ -481,7 +475,7 @@ Storage: 128 GB"</td>
 
       <script>
       $(document).ready(function() {
-          $('#available, #repair, #return, #disposal').DataTable( {
+          $('#available, #available2, #repair, #return, #disposal').DataTable( {
               dom: 'Bfrtip',
               buttons: [
                   'copy', 'csv', 'excel', 'pdf', 'print'

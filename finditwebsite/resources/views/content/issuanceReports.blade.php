@@ -40,14 +40,6 @@
           <div class="mb-2"><i class="fas fa-hand-holding" style="margin-right: 1rem;"></i> ISSUANCE REPORTS</div>
         </div>
         <div class="col-3"></div>
-        <div class="col-3 text-right">
-          <label class="font-weight-bolder text-uppercase text-left">From:</label>
-          <input type="date" name="warranty_start" value="" style="width: 10rem;">
-        </div>
-        <div class="col-3 text-right">
-          <label class="font-weight-bolder text-uppercase text-left">To:</label>
-          <input type="date" name="warranty_start" value="" style="width: 10rem;">
-        </div>
       </div>
     </div>
 </div>

@@ -28,12 +28,23 @@
 
 @section('content')
 <body onpageshow="ShowLocalDate()">
-<div class="container p-lg-3 p-md-1 p-sm-0">
+<div class="container-fluid">
+  <div class="p-lg-3 p-md-1 p-sm-0">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1" style="font-size: 20px;">REPORT SELECTION</span>
     </nav>
 
     <div class="card" style="margin-top: 2rem; padding: 3rem;">
+      <div class="row mb-4">
+        <div class="col-3 text-right">
+          <label class="font-weight-bolder text-uppercase text-left">From:</label>
+          <input type="date" name="warranty_start" value="" style="width: 10rem;">
+        </div>
+        <div class="col-3 text-right">
+          <label class="font-weight-bolder text-uppercase text-left">To:</label>
+          <input type="date" name="warranty_start" value="" style="width: 10rem;">
+        </div>
+      </div>
       <div class="row" style="font-size: 16px;">
         <div class="col-4">
           <div class="card border-light">

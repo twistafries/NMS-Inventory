@@ -367,7 +367,7 @@
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                         <a class="dropdown-item" data-dismiss="modal" data-toggle="modal"
-                                                            data-target="#replacement-received-{!! $equipment->id !!}">Replacement Received</a>
+                                                            data-target="#replacement">Replacement Received</a>
                                                         <a class="dropdown-item warranty-not" href="#">Mark For Repair (Warranty Not Covered)</a>
                                                         <a class="dropdown-item warranty-not" href="#">Purchase Replacement (Warranty Not Covered)</a>
                                                     </div>
