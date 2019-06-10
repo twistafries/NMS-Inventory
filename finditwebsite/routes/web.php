@@ -138,7 +138,7 @@ Route::post('/softDeleteEquipment', 'InventoryController@softDeleteEquipment');
 
 /*
 |--------------------------------------------------------------------------
-| Build A PC (from parts) Routes
+| System Unit Routes
 |--------------------------------------------------------------------------
 |
 */
@@ -150,6 +150,12 @@ Route::post('/buildUnit', 'InventoryController@buildUnit');
 Route::get('/buildpc', 'PCBuildController@buildPC');
 Route::post('/buildFromParts', 'PCBuildController@buildFromParts');
 
+//bulk add purchased unit
+Route::post('/bulkUnitAdd', 'PCBuildController@bulkAddUnits');
+
+//edit PC
+
+/*------------------------------------------------------------------------*/
 
 Route::post('/template', 'InventoryController@addEquipment');
 

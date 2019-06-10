@@ -586,13 +586,15 @@ RAM:
                                     </div>
 
                                     <div class="modal-body">
+                                        <form action="{!! url('/bulkUnitAdd'); !!}" enctype="multipart/form-data" method="post" role="form" id="bulkAddForm">
+                                          {!! csrf_field() !!}
                                       <div class="row">
 
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Supplier:</div></div>
 
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Quantity:</div></div>
 
-
+<!-- Marker: button for adding pc -->
                                          <div class="col-sm-4"><div class="detail-header text-uppercase">  <button type="button" id="" class="btn btn-info p-2">
                                              <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
                                            </button></div></div>
@@ -602,7 +604,7 @@ RAM:
                                       <div class="row">
 
                                           <div class="col-sm-4">{{$pc->supplier_name}}</div>
-
+                                          <input type="hidden" name="pcID[]" value={{$pc->p_id}}>
                                           <div class="col-sm-4">{{$pc->qty}}</div>
 
 
@@ -644,6 +646,7 @@ RAM:
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
+                                  </form>
                                 </div>
                             </div>
                     </div>
