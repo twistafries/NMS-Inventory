@@ -59,7 +59,12 @@ class PCBuildController extends Controller
     }
     
 
-    public function bulkAddUnits(){
-
+    public function bulkAddUnits(Request $request){
+        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+          }
+        $data = $request->all();
+        dd($data);
+        return view('content.bulkUnitAdd');
     }
 }
