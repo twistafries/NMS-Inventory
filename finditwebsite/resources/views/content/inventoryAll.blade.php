@@ -436,9 +436,9 @@
 
                                     </div>
 
-                                    <input type="hidden" name="id" id="id" value="">
+                                    <input type="hidden" name="id" id="forReturn" value="">
                                     <input type="hidden" name="status_id" value="4">
-                                    <input type="hidden" name="orig_status_id" id="orig_status_id" value="">
+                                    <input type="hidden" name="orig_status_id" id="forReturn_orig_status_id" value="">
                                 </div>
 
                                 <div class="modal-footer">
@@ -486,9 +486,9 @@
 
                                     </div>
 
-                                    <input type="hidden" name="id" id="id" value="">
+                                    <input type="hidden" name="id" id="forRepair" value="">
                                     <input type="hidden" name="status_id" value="3">
-                                    <input type="hidden" name="orig_status_id" id="orig_status_id" value="">
+                                    <input type="hidden" name="orig_status_id" id="forRepair_orig_status_id" value="">
                                 </div>
 
                                 <div class="modal-footer">
@@ -1169,8 +1169,12 @@ $('a.warranty-not').click(function(){
              document.getElementById("returnitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("deleted_item").value = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("decommission_id").value = this.cells[0].innerHTML;
+             document.getElementById("forRepair").value = this.cells[0].innerHTML;
+             document.getElementById("forReturn").value = this.cells[0].innerHTML;
              document.getElementById("returnSupplier").innerHTML = this.cells[6].innerHTML + "?";
              document.getElementById("orig_status_id_decommissioned").value = this.cells[15].innerHTML;
+             document.getElementById("forRepair_orig_status_id").value = this.cells[15].innerHTML;
+             document.getElementById("forReturn_orig_status_id").value = this.cells[15].innerHTML;
         };
     }
 
