@@ -379,10 +379,8 @@ RAM:
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
               <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
               @if($purchase->or_no!=null)
-              <td class="text-right">
-                <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#add{{$item->id}}">
-                  <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Already added
-                </button>
+              <td class="text-right table-success">
+                  <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
               </td>
               @else
               <td class="text-right">
@@ -402,9 +400,7 @@ RAM:
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
             <td class="text-right">
-              <button type="button" id="" class="btn btn-info p-2" data-toggle="modal" data-target="#purchasesmodal">
-                <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
-              </button>
+              <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
             </td>
             </tr>
             @endif
@@ -465,9 +461,7 @@ RAM:
                 </div>
 
                 <div class="text-center mt-2">
-                  <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
-                    <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to Inventory
-                  </button>
+                  <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
                 </div>
 
               </div>
