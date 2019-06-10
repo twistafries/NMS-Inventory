@@ -252,9 +252,6 @@
         <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 p-1">
             <div class="card">
                 <div class="card-header text-white mb-3" id="card-header"><i class="fas fa-cash-register"></i> Recent Purchases </div>
-                <div class="card-body ">
-
-                </div>
 
                     <div class="card p-3">
                         <table class="table table-borderless text-justify text-break">

@@ -60,7 +60,9 @@ class TblSystemUnits extends Model
       // $system_units->description = $params['description'];
       $system_units->name = $params['name'];
       $system_units->user_id = $params['user_id'];
-      $system_units->dept_id = $params['dept_id'];
+      if(isset($params['dept_id'])){
+        $system_units->dept_id = $params['dept_id'];
+      }
       $system_units->status_id = 1;
       try {
         $system_units->save();
