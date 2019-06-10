@@ -16,6 +16,9 @@ class PCBuildController extends Controller
 {
     public function buildPC()
     {
+        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+        }
         $it_equipment = PCBuildEq::where('status_id', '=', 1)->get();
         $equipment_status = TblStatus::all();
         $eq_subtype = TblItEquipmentSubtype::all();
@@ -52,6 +55,11 @@ class PCBuildController extends Controller
         ->with('error_info' , $qe->getMessage())
         ->with('target' , '#build');
       }
+
+    }
+    
+
+    public function bulkAddUnits(){
 
     }
 }
