@@ -1117,6 +1117,10 @@
             var new_status_name = "Available";
         }else if (new_status_id == 7){
             var new_status_name = "Decommissioned";
+        }else if (new_status_id == 3){
+            var new_status_name = "For repair";
+        }else if (new_status_id == 4){
+            var new_status_name = "For return";
         }
 
         $.ajax({

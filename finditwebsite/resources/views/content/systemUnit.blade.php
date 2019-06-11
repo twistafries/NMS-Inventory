@@ -35,6 +35,7 @@
                             <th>ID</th>
                             <th>Department</th>
                             <th>Issued To</th>
+                            <th>Status</th>
                             <th>Mark As</th>
 
                         </tr>
@@ -83,27 +84,29 @@
                                         @else 
                                             <td> None </td>
                                         @endif
+
+                                    
                                     <td>
                                         @if($unit->status_id == 1)
-                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                         @elseif($unit->status_id == 2)
-                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
+                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                         @elseif($unit->status_id == 3)
-                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                         @elseif($unit->status_id == 4)
-                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                            <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                            <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                            <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                         @endif
                                     </td> 
                             </tr>
@@ -168,28 +171,28 @@
                                             @endif
                                         <td>
                                             @if($unit->status_id == 1)
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 3)"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 4)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
-                                        </td> 
-                                </tr>
+                                        </td>
+                                    </tr>
                             @endforeach
     
                     </tbody>
@@ -260,27 +263,27 @@
                                             @endif
                                         <td>
                                             @if($unit->status_id == 1)
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 4)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
-                                        </td> 
+                                        </td>  
                                 </tr>
                             @endforeach
     
@@ -351,27 +354,27 @@
                                             @endif
                                         <td>
                                             @if($unit->status_id == 1)
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 4)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
-                                        </td> 
+                                        </td>  
                                 </tr>
                             @endforeach
     
@@ -442,25 +445,25 @@
                                             @endif
                                         <td>
                                             @if($unit->status_id == 1)
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 4)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#singleIssue"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
                                         </td> 
                                 </tr>
@@ -474,43 +477,7 @@
 
 
           <!-- Make Available prompt-->
-<div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog" aria-labelledby="makeAvailableModalTitle"
-    aria-hidden="true">
 
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="height:450px;">
-                <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="modal-body">
-                    <div class="warning-content">
-                       <p class="text-uppercase font-weight-bold text-warning"><i class="fas fa-exclamation-circle"></i> Warning!</p>
-                      <h5 class="text-center">Are you sure you want the item to be <b>Available</b> ? </h5>
-                    </div>
-                      <div class="btn-group" role="group">
-                                        <button class="btn btn-secondary text-uppercase" data-toggle="collapse"
-                                            data-target="#remarksRepair" aria-expanded="false" aria-controls="collapseExample" type="button">
-                                            Add Remarks
-                                        </button>
-                                        <div class="collapse" id="remarksRepair">
-                                            <textarea class="form-control" name="remarks" placeholder="Place remarks" cols="50" rows="4"></textarea>
-                                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-</div>
 
 
 <!-- For Return prompt-->
@@ -1281,16 +1248,37 @@
 
               </div>
               </form>
+        </div>
+    </div>
 </div>
-</div>
-</div>
 
+<!-- Empty Modal Prompt -->
+    <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+        <form action="{!! url('/add-to-concerns-system-unit') !!}" method="post">
+        {!! csrf_field() !!}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header" id="makeAvailableHeader">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="emptyContent()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-content"  id="makeAvailableContent">
+                        
+                    </div>
+                </div>
 
+            
+            <div class="modal-footer" id="makeAvailableFooter">
 
-
-                            <div class="row">
-
-                                <div class="container-fluid">
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
 
     @stop
     @section('script')
@@ -1306,13 +1294,70 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.select.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#inventory').addClass('active');
-            $('#breadcrumb_system_units').removeClass("text-dark").addClass("text-warning");
-        });
+<script>
+    $(document).ready(function() {
+        $('#inventory').addClass('active');
+        $('#breadcrumb_system_units').removeClass("text-dark").addClass("text-warning");
+    });
 
-    </script>
+    function emptyContent(){
+        $('#makeAvailableContent').empty()
+        $('#makeAvailableFooter').empty()
+    }
+
+    function makeAvailableSystemUnit(sys_id , new_status_id){
+        var unit_id = sys_id;
+        console.log("System" + sys_id);
+        if(new_status_id == 1){
+            var new_status_name = "Available";
+        }else if (new_status_id == 7){
+            var new_status_name = "Decommissioned";
+        }else if (new_status_id == 3){
+            var new_status_name = "For repair";
+        }else if (new_status_id == 4){
+            var new_status_name = "For return";
+        }
+
+        $.ajax({
+            url: 'getUnitForRepair/' + unit_id,
+            type: 'get',
+            dataType: 'json',
+            success: function (response){
+                len = response['unit'].length;
+                if(len > 0){
+                    for(var i = 0; i < len; i++){
+                        var orig_status_name = response['unit'][i].status_name;
+                        // var orig_status_id = response['unit'][i].status_id;
+                        var dept = response['unit'][i].dept_name;
+                        var name = response['unit'][i].name;
+                    }
+
+                    var unitContentStr = 
+                    '<p>Are you sure you want to change the status of ' + name + unit_id +
+                    ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
+                    '</div>' + '<div class="btn-group" role="group">' + 
+                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse"data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' + 
+                    'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' + 
+                    '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
+                    
+                    $('#makeAvailableContent').append(unitContentStr);
+                    
+                    var unitFooterStr = 
+                    '<input type="hidden" name="id" value="' + unit_id + '" >' + 
+                    '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
+                    '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
+                    '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>'
+
+                    ;
+
+                    $('#makeAvailableFooter').append(unitFooterStr);
+                }
+            }
+
+        })
+    }        
+
+</script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('input').attr('autocomplete', 'off');

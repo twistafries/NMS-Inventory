@@ -78,7 +78,14 @@ class InventoryConcernsController extends BaseController
         try{
             $data = $request->all();
             $data['added_by'] = $user_id;
-            $data['issued_to'] = TblIssuances::getIssuedTo($data['id'])[0]->id;
+            $fetch = [];
+            $fetch['last_user'] = TblIssuances::getIssuedTo($data['id']);
+            // dd($fetch);
+            if( $fetch['last_user'] != 'NULL' ){
+                $data['issued_to'] = TblIssuances::getIssuedTo($data['id'])[0]->id;
+            }else{
+                $data['issued_to'] = 'NULL';
+            }
             $data['name_component'] = 'NULL';
             $data['system_unit_id'] = $data['id'];
             $equipment_info = TblSystemUnits::getUnit($data['id'])[0];
