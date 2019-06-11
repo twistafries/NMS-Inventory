@@ -73,7 +73,7 @@ Route::get('/incompleteOrders', 'PurchasesController@incompleteOrders');
 Route::get('/viewPurchases', 'PurchasesController@viewPurchases');
 //generate report
 Route::get('/generateReportPage', 'Reports@showAllStatus');
-Route::get('/inventoryReports', 'inventoryReports@showInventoryReports');
+Route::post('/inventoryReports', 'inventoryReports@showInventoryReports');
 // Route::get('/itemAvailabilityReport', 'inventoryReports@showAvailable');
 // Route::get('/itemRepairReport', 'inventoryReports@showRepair');
 // Route::get('/itemReturnReport', 'inventoryReports@showReturn');

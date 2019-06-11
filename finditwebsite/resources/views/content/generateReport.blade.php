@@ -51,10 +51,33 @@
               <a href="{!! url('/inventoryReports') !!}" style="cursor: pointer;"><div class="card-header text-white mb-2" id="card-header"><i class="fas fa-warehouse"></i> INVENTORY REPORTS</div></a>
               <div class="card-body">
                   <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</a></li>
-                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</a></li>
-                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</a></li>
-                      <li class="list-group-item"><a href="{!! url('/inventoryReports') !!}" type="button" class="btn btn-light btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</a></li>
+
+                    <form action="{!! url('/inventoryReports'); !!}" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="1" hidden>
+                      <input name="title" value="Available Items" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</button></li>
+                    </form>
+                    <form action="{!! url('/inventoryReports'); !!}" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="3" hidden>
+                      <input name="title" value="For Repair Items" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</button></li>
+                    </form>
+                    <form action="{!! url('/inventoryReports'); !!}" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="4" hidden>
+                      <input name="title" value="For Return Items" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</button></li>
+                    </form>
+                    <form action="{!! url('/inventoryReports'); !!}" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="7" hidden>
+                      <input name="title" value="For Disposal Items" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</button></li>
+                    </form>
+
+
                   </ul>
               </div>
           </div>

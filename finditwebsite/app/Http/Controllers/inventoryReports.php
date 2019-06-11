@@ -19,15 +19,13 @@ use App\Models\TblIssuances;
 
 class inventoryReports extends BaseController
 {
-  public function showInventoryReports(){
+  public function showInventoryReports(Request $request){
     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
           return \Redirect::to('/loginpage');
     }
-      $data = [];
-      $data['counts'] = TblItEquipment::getCountsByStatus(1);
-      $data['availeq'] = TblItEquipment::get_equipment_by_status(1);
-      $data['repEq'] = TblItEquipment::get_equipment_by_status(3);
-      $data['items'] = TblItEquipment::getEquipment();
+
+      $data = $request->all();
+      $data['items'] = TblItEquipment::get_equipment_by_status($data['status']);
       /* might need these later
       $data['availmb'] = TblItEquipment::getEqPerStatusSubtype(1,1);
       $data['availcpu'] = TblItEquipment::getEqPerStatusSubtype(1,2);
@@ -41,7 +39,7 @@ class inventoryReports extends BaseController
       $data['availkb'] = TblItEquipment::getEqPerStatusSubtype(1,10);
       */
       //dd($data['items']);
- 
+
       return view ('content/inventoryReports' , $data);
   }
 
@@ -85,22 +83,6 @@ class inventoryReports extends BaseController
         return view ('content/purchasesAndOrdersReports' , $data);
     }
 
-    // public function showCompleteOrders(){
-    //   if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-    //         return \Redirect::to('/loginpage');
-    //   }
-    //     $data = [];
-    //     return view ('content/completedOrdersReport' , $data);
-    // }
-    //
-    // public function showIncompleteOrders(){
-    //   if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-    //         return \Redirect::to('/loginpage');
-    //   }
-    //     $data = [];
-    //     return view ('content/incompleteOrdersReport' , $data);
-    // }
-
     public function showIssuanceReports(){
       if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
@@ -109,27 +91,5 @@ class inventoryReports extends BaseController
         return view ('content/issuanceReports' , $data);
     }
 
-    // public function showLateReport(){
-    //   if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-    //         return \Redirect::to('/loginpage');
-    //   }
-    //     $data = [];
-    //     return view ('content/lateReturnsReport' , $data);
-    // }
-    //
-    // public function showIssuancePerComponent(){
-    //   if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-    //         return \Redirect::to('/loginpage');
-    //   }
-    //     $data = [];
-    //     return view ('content/issuancePerComponent' , $data);
-    // }
-    //
-    // public function showmostLeastReport(){
-    //   if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
-    //         return \Redirect::to('/loginpage');
-    //   }
-    //     $data = [];
-    //     return view ('content/mostLeastReport' , $data);
-    // }
+
 }
