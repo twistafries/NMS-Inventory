@@ -18,29 +18,11 @@
 @section('content')
 <div class="container-fluid">
 <nav class="navbar navbar-light">
-        <span class="navbar-brand mb-0 h1">INVENTORY</span>
-        <!-- Toolbox -->
-        @include('content.toolbar')
-        <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-warning" aria-current="page">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                            <a href="{!! url('/systemUnit') !!}" class="text-dark">System Unit</a>
-                    </li>
-
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
-                    </li>
-
-
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-dark">Decommissioned</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
+    <span class="navbar-brand mb-0 h1">INVENTORY</span>
+    <!-- Toolbox -->
+    @include('content.toolbar')
+    @include('content.breadcrumb_inventory')
+</nav>
 
 <!--    PAGE CONTENT -->
       <div class="container-fluid">
@@ -931,9 +913,10 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 
     <script>
-      $(document).ready(function(){
-      $('#inventory').addClass('active');
-      });
+    $(document).ready(function(){
+        $('#inventory').addClass('active');
+        $('#breadcrumb_items').removeClass("text-dark").addClass("text-warning");
+    });
     </script>
     <script type="text/javascript">
     $(document).ready(function() {

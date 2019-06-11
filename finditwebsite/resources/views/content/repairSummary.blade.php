@@ -25,75 +25,32 @@
 <div class="container-fluid">
 <!--breadcrumbs navigation-->
 <nav class="navbar">
-        <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
-              <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark" aria-current="page">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-warning" >For Repair</a>
-                    </li>
+    <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
+    @include('content.breadcrumb_inventory')
+</nav>
 
 
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/Decommission') !!}" class="text-dark">Decommission</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
-
-    <!-- Toolbox -->
-    <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <!-- Single Add Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                        </div>
-
-                        <div class="modal-body">
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
      <div class="container-fluid">
 
-                            <div class="row">
-                                <div class="container-fluid">
-                                <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item" style="border-top-left-radius:25px;">
-                                  <a class="nav-link active font-weight-bolder" href="{!! url('/repairSummary') !!}">FROM ISSUANCE</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>
-                                </li>
+        <div class="row">
+            <div class="container-fluid">
+            <ul class="nav nav-pills nav-justified">
+            <li class="nav-item" style="border-top-left-radius:25px;">
+                <a class="nav-link active font-weight-bolder" href="{!! url('/repairSummary') !!}">FROM ISSUANCE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>
+            </li>
 
 
 
-                              </ul>
-                                    </div>
-                            </div>
+            </ul>
+                </div>
+        </div>
 
-                        </div>
-                        <hr>
+    </div>
+    <hr>
 
     <!-- Tabs -->
     <div class="container-fluid">
@@ -1145,7 +1102,7 @@
     <script>
     $(document).ready(function(){
       $('#concerns').addClass('active');
-      
+      $('#breadcrumb_for_repair').removeClass("text-dark").addClass("text-warning");
     });
 
     function emptyContent(){
