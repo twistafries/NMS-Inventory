@@ -34,7 +34,7 @@ $lname = $session['lname'];
     </div>
   </div>
   <hr>
-  @for($count = 0; 2 > $count; $count++)
+  @for($count = 0; $qty > $count; $count++)
       <div class="form-group">
             <div class="form-row">
               <div class="col-md-1">
