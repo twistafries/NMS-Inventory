@@ -80,7 +80,7 @@ class InventoryConcernsController extends BaseController
             $data['issued_to'] = TblIssuances::getIssuedTo($data['id']);
             $data['name_component'] = 'NULL';
             $data['system_unit_id'] = $data['id'];
-            $equipment_info = TblItEquipment::get_equipment_info($data['id'])[0];
+            $equipment_info = TblSystemUnits::getUnit($data['id'])[0];
             // dd($equipment_info);
             // $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id']);
             $orig_status_name = TblSystemUnits::getUnit($data['id'])[0]->status_name;
@@ -95,7 +95,7 @@ class InventoryConcernsController extends BaseController
                 TblActivityLogs::add_log($act);
             }
             return \Redirect::to('/inventoryAll')
-            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name.'".');
+            ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".');
         }catch(Exception $e){
             return \Redirect::back()
             ->with('error' , 'Database cannot read input value.')

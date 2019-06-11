@@ -14,6 +14,7 @@ class InventoryConcerns extends Model
 
     public static function addConcern( $params ){
         $result = [];
+        // dd($params);
 
         $inventory_concerns = new InventoryConcerns;
         if($params['issued_to'] == 'NULL'){
@@ -38,7 +39,7 @@ class InventoryConcerns extends Model
         if($params['system_unit_id'] == 'NULL'){
             $inventory_concerns->system_unit = null;	
         }else{
-            $inventory_concerns->name_component	 = $params['system_unit_id'];
+            $inventory_concerns->system_unit = $params['system_unit_id'];
         }
         $inventory_concerns->added_by = $params['added_by'];	
         $inventory_concerns->status_id = $params['status_id'];	
