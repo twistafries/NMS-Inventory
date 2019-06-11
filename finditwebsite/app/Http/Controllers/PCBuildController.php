@@ -74,7 +74,6 @@ class PCBuildController extends Controller
         $data['components'] = PurchasedItems::getUnitItems($data['pcID'][0]);
         $data['qty'] = $data['components'][0]->qty;
         $data['supplier'] = ($data['components'][0]->supplier);
-        //dd($data['components'][0]->qty);
         return view('content.bulkUnitAdd', $data);
     }
 
@@ -90,22 +89,16 @@ class PCBuildController extends Controller
             $sUnit['or_no'] = $data['or_no'];
             $sUnit['user_id'] = $user_id;
             $sUnit['subtype'] = array_unique($data['subtype']);
-            for($count; $count < 2; $count++){
+            for($count; $count < $data['qty']; $count++){
                 $sUnit['name'] = $data['name'][$count];
-                //TblSystemUnits::add_system_unit($sUnit);
-                $count++;
+                TblSystemUnits::add_system_unit($sUnit);
             }
-    
             return \Redirect::to('/inventoryAll')->with('message','System units added.');
         }catch(QueryException $qe){
-            // $info = Self::getErrorInfo();
-            // dd($qe);
-            // dd($info);
             return \Redirect::to('/inventoryAll')
             ->with('error' , 'Encountered an error;')
             ->with('error_info' , $qe->getMessage())
             ->with('target' , '#build');
-          }
-        
+          }   
     }
 }
