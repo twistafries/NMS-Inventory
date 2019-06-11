@@ -73,14 +73,22 @@ class InventoryConcernsController extends BaseController
 
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
+        $error_ctr;
 
         try{
             $data = $request->all();
             $data['added_by'] = $user_id;
-            $data['issued_to'] = TblIssuances::getIssuedTo($data['id']);
+            $fetch = [];
+            $fetch['last_user'] = TblIssuances::getIssuedTo($data['id']);
+            // dd($fetch);
+            if( $fetch['last_user'] != 'NULL' ){
+                $data['issued_to'] = TblIssuances::getIssuedTo($data['id'])[0]->id;
+            }else{
+                $data['issued_to'] = 'NULL';
+            }
             $data['name_component'] = 'NULL';
             $data['system_unit_id'] = $data['id'];
-            $equipment_info = TblItEquipment::get_equipment_info($data['id'])[0];
+            $equipment_info = TblSystemUnits::getUnit($data['id'])[0];
             // dd($equipment_info);
             // $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id']);
             $orig_status_name = TblSystemUnits::getUnit($data['id'])[0]->status_name;
@@ -91,19 +99,25 @@ class InventoryConcernsController extends BaseController
             $act['data'] = $data['id'];
             if(isset($data['status_id'])){
                 TblSystemUnits::update_system_unit_status($data['id'],$data['status_id']);
-                InventoryConcerns::addConcern($data);
+                $concern = InventoryConcerns::addConcern($data);
                 TblActivityLogs::add_log($act);
             }
-            return \Redirect::to('/inventoryAll')
-            ->with('message' , 'Marked equipment status of, '. $equipment_info->brand.' '.$equipment_info->model.' from "'.$orig_status_name. '" to "'.$new_status_name.'".');
+            // dd();
+            return \Redirect::to('/systemUnit')
+            ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".')
+            ->with('additional_message' , $concern['message']);
         }catch(Exception $e){
+            $error_ctr++;
             return \Redirect::back()
             ->with('error' , 'Database cannot read input value.')
+            ->with('error_count' , '('. $error_ctr + $concern['error_count'] .'). error(s) found while updating findit database')
             ->with('error_info' , $qe->getMessage())
             ->with('target' , '#edit-'.$params['id']);
         }catch(QueryException $qe){
+            $error_ctr++;
             return \Redirect::back()
             ->with('error' , 'Database cannot read input value.')
+            ->with('error_count' , '('. $error_ctr + $concern['error_count'] .'). error(s) found while updating findit database')
             ->with('error_info' , $qe->getMessage())
             ->with('target' , '#edit-'.$params['id']);
         }

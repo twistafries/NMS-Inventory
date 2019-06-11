@@ -14,6 +14,7 @@ class InventoryConcerns extends Model
 
     public static function addConcern( $params ){
         $result = [];
+        // dd($params);
 
         $inventory_concerns = new InventoryConcerns;
         if($params['issued_to'] == 'NULL'){
@@ -38,10 +39,11 @@ class InventoryConcerns extends Model
         if($params['system_unit_id'] == 'NULL'){
             $inventory_concerns->system_unit = null;	
         }else{
-            $inventory_concerns->name_component	 = $params['system_unit_id'];
+            $inventory_concerns->system_unit = $params['system_unit_id'];
         }
         $inventory_concerns->added_by = $params['added_by'];	
         $inventory_concerns->status_id = $params['status_id'];	
+        // dd($inventory_concerns);
 
         try{
             // dd($inventory_concerns);
@@ -49,11 +51,12 @@ class InventoryConcerns extends Model
           $id = DB::getPdo()->lastInsertId();
 
           $results['error'] = 0;
-          $results['message'] = 'equipment has been added';
-          return $id;
+          $results['message'] = 'Inventory Concerns Table Updated';
+          $results['id'] = $id;
+
         }catch ( QueryException $e){
-            $results['error'] = 0;
-            $results['message'] = $e;
+            $results['error_count'] = 1;
+            $results['additional_error_info'] = $e->getMessage();
         }
         return $results;
 
