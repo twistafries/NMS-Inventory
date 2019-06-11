@@ -70,9 +70,11 @@ class PCBuildController extends Controller
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
         $data['user_id'] = $user_id;
-        $data['pID'] = $data['pcID'][0];
-        $data['components'] = PurchasedItems::getUnitItems($data['pcID'][0]);
-        $data['qty'] = $data['components'][0]->qty;
+        $data['pID'] = $data['pcID'];
+        $data['components'] = PurchasedItems::getUnitItems($data['pcID']);
+        $data['qty'] = $data['qty'];
+        $data['supplier_id'] = $data['components'][0]->supplier_id;
+        $data['rows'] = count($data['components']);
         $data['supplier'] = ($data['components'][0]->supplier);
         return view('content.bulkUnitAdd', $data);
     }
@@ -81,11 +83,10 @@ class PCBuildController extends Controller
         $session=Session::get('loggedIn');
         try{
             $data = $request->all();
-
+            dd($data);
             $user_id = $session['id'];
             $count = 0;
             $sUnit = [];
-       
             $sUnit['or_no'] = $data['or_no'];
             $sUnit['user_id'] = $user_id;
             $sUnit['subtype'] = array_unique($data['subtype']);

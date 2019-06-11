@@ -10,17 +10,19 @@ $lname = $session['lname'];
 @extends('../template')
 @section('title') Bulk Add System Units @stop
 @section('css')
-  <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatable/awesome-bootstrap-checkbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/datatable/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('js/Buttons/css/buttons.dataTables.min.css')}}">
 @stop
 
 
 @section('content')
 <h1>Add System Units to Inventory</h1>
 
-<form action="{!! url('/tempBulkPC'); !!}" method="post">
+<form action="{!! url('/tempBulkPC'); !!}" id="form" method="post">
     {!! csrf_field() !!}
   <div class="row">
     <div class="col-sm-2">
@@ -29,75 +31,89 @@ $lname = $session['lname'];
     </div>
     <div class="col-sm-2">
         <p class="card-title">OR_No</p>
-        <input type="text" name="or_no">
+        <input type="text" name="or_no" required>
         <input type="hidden" name="qty" value={{$qty}}>
     </div>
   </div>
   <hr>
-  @for($count = 0; $qty > $count; $count++)
-      <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-1">
-                  <p class="card-title">Unit Label</p>
-                  <input name="name[]" type="text" class="form-control" placeholder="PC" required>    
-              </div>
-              <div class="col-md-1">
-                  <p class="card-title">Supplier</p>
-                  {{$supplier}}    
-              </div>
-              <div class="col-md-1">
-                  <p class="card-title">Number</p>
-                  {{$count + 1}} of {{$qty}} 
-              </div>
-            </div>
+
+  <div class="container">
+  <table id="unitDataTable" class="table table-borderless table-striped" style="width:100%;cursor:pointer;">
+    <thead class="thead-dark">
+      <tr>
+        <th>Subtype</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>S/N</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+        <tbody>
+          <input type="hidden" name="supplier" value="{{$supplier_id}}">
+          @for($count = 0; $qty > $count; $count++)
 
             @foreach($components as $component)
-            <p>
-              <div class="form-row">
-                <div class="col-md-1">
-                    <p class="card-title">Component Type </p>
-                    {{$component->subtype}}  
-                    <input type="hidden" name="subtype[]" value="{{$component->subtype_id}}">
-                </div>
-
-                <div class="col-md-1">
-                    <p class="card-title">Brand </p>
-                    {{$component->brand}}
-                    <input type="hidden" name="brand[]" value="{{$component->brand}}">   
-                </div>
-
-                <div class="col-md-1">
-                    <p class="card-title">Model </p>
-                    {{$component->model}} 
-                    <input type="hidden" name="model[]" value="{{$component->model}}">  
-                </div>
-
-                <div class="col-md-2">
-                  <p class="card-title">Serial No. </p>
-                  <input name="serial_no{{$component->subtype_id}}[]" type="text" class="form-control" required>    
-                </div>
-
-                <div class="col-md-2">
-                    <p class="card-title">Details </p>
-                    @if($component->subtype == 'Motherboard')
-                      <textarea name="details{{$component->subtype}}[]">Socket:
-Chipset:
-Size:
-RAM:
-</textarea>  
-                    @elseif($component->subtype == 'CPU')
-                      <textarea name="details{{$component->subtype}}[]">Socket:</textarea>
-                    @else
-                      <textarea name="details{{$component->subtype}}[]"></textarea>
-                    @endif  
-                  </div>
-              </div>
-            </p>
+            <tr>
+              <td>
+                {{$component->subtype}} <input type="hidden" name="subtype[]" value="{{$component->subtype_id}}">
+                <input type="hidden" name="subtype[]" value="{{$component->subtype_id}}">
+              </td>
+              <td>
+                {{$component->brand}}
+                <input type="hidden" name="brand[]" value="{{$component->brand}}">
+              </td>
+              <td>
+                {{$component->model}}
+                <input type="hidden" name="model[]" value="{{$component->model}}">
+              </td>
+              <td>
+                <input type="text" name="serial_no{{$component->subtype_id}}[]" required>
+              </td>
+              <td title="Click this if serial#s are similar or consecutive">
+                  <button type="button" class="btn btn-outline-secondary">Consecutive</button>
+              </td>
+            </tr>
             @endforeach
-          <hr>
-      </div>
-    @endfor
-    <button type="submit" class="btn btn-info">Add</button>
+            <tr class="font-weight-bold">
+                <td >Supplier:</td>
+                <td>{{$supplier}}</td>
+                <td>Unit Label</td>
+                <td><input name="name[]" type="text" placeholder="PC" required></td>
+                <td>Unit {{$count + 1}} of {{$qty}}</td>
+              </tr>
+            @endfor
+        </tbody>
+  </table>
+  </div>
+  <button id="subm" type="submit" class="btn btn-info">Add Units</button>
 </form>
 
-@endsection
+@stop
+
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
+<script>
+  $(document).ready(function(){
+    
+      $('#unitDataTable').DataTable({
+          "pageLength": {{$rows}} + 1,
+          "order": [],
+          "info": false,
+          "ordering": false,
+          "searching": false,
+          "bLengthChange": false,
+      });
+
+      $('#subm').click(function(e){
+        e.preventDefault();
+        var data = tbl.$('input').serialize();
+        console.log(data);
+        submit();
+      });
+
+      tbl = $('#unitDataTable').dataTable();
+  });
+</script>
+@stop
