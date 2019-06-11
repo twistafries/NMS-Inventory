@@ -43,6 +43,7 @@ class InventoryConcerns extends Model
         }
         $inventory_concerns->added_by = $params['added_by'];	
         $inventory_concerns->status_id = $params['status_id'];	
+        // dd($inventory_concerns);
 
         try{
             // dd($inventory_concerns);
@@ -50,11 +51,12 @@ class InventoryConcerns extends Model
           $id = DB::getPdo()->lastInsertId();
 
           $results['error'] = 0;
-          $results['message'] = 'equipment has been added';
-          return $id;
+          $results['message'] = 'Inventory Concerns Table Updated';
+          $results['id'] = $id;
+
         }catch ( QueryException $e){
-            $results['error'] = 0;
-            $results['message'] = $e;
+            $results['error_count'] = 1;
+            $results['additional_error_info'] = $e->getMessage();
         }
         return $results;
 

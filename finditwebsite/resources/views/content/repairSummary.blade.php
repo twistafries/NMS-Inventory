@@ -91,7 +91,7 @@
                                                     <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check">
                                                         </i> Make Available
                                                     </button>
-                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt">
+                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt">
                                                         </i> Decommission
                                                     </button> 
                                                 </button>
@@ -241,8 +241,8 @@
                                             <!--List item-->
                                             @foreach($fin_dep as $unit)
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#fd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i>{{$unit->name}}{{$unit->su_id}}</a>
-                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
+                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="fd1">
                                                     <table class="table table-striped">
@@ -308,8 +308,8 @@
                                             <!--List item-->
                                             @foreach($hr_dep as $unit)
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#hr1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> {{$unit->name}}{{$unit->su_id}}</a>
-                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
+                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="hr1">
                                                     <table class="table table-striped">
@@ -363,8 +363,8 @@
                                             <!--List item-->
                                             @foreach($no_dep as $unit)
                                             <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#hr1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> {{$unit->name}}{{$unit->su_id}}</a>
-                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
+                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="hr1">
                                                     <table class="table table-striped">
@@ -1115,6 +1115,8 @@
         console.log(unit_id);
         if(new_status_id == 1){
             var new_status_name = "Available";
+        }else if (new_status_id == 7){
+            var new_status_name = "Decommissioned";
         }
 
         $.ajax({
