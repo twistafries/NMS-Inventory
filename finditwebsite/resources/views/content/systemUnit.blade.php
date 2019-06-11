@@ -34,10 +34,8 @@
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
-                            <th>Issued To</th>
                             <th>Status</th>
                             <th>Mark As</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -79,10 +77,10 @@
                                     </div> 
                                     
                                 </td>
-                                        @if($unit->issued_to != null)
-                                            <td>{{$unit->fname}} {{$unit->lname}}</td>
+                                        @if($unit->status_id == 2)
+                                            <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
                                         @else 
-                                            <td> None </td>
+                                            <td> {{ $unit->status_name }} </td>
                                         @endif
 
                                     
@@ -94,8 +92,8 @@
                                             <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                         @elseif($unit->status_id == 2)
                                             <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
-                                            <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
-                                            <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                             <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                         @elseif($unit->status_id == 3)
                                             <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
@@ -114,6 +112,7 @@
                     </tbody>
                 </table>
         <br>
+        <hr>
 <!--Production Development Table-->
           <h5 class="font-weight-bold">Production Development</h5>
           <table id="myDataTablePD" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
@@ -121,7 +120,7 @@
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
-                            <th>Issued To</th>
+                            <th>Status</th>
                             <th>Mark As</th>
                         </tr>
                     </thead>
@@ -164,11 +163,13 @@
                                         </div> 
                                         
                                         </td>
-                                            @if($unit->issued_to != null)
-                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
-                                            @else 
-                                                <td> None </td>
-                                            @endif
+                                        
+                                    @if($unit->status_id == 2)
+                                        <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
+                                    @else 
+                                        <td> {{ $unit->status_name }} </td>
+                                    @endif
+                                        
                                         <td>
                                             @if($unit->status_id == 1)
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -177,8 +178,8 @@
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 3)"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
@@ -205,7 +206,7 @@
                         <hr>
             </table>
           <br>
-          
+          <hr>
 <!--Financial Department Table-->
           <h5 class="font-weight-bold">Financial Department</h5>
           <table id="myDataTableFD" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
@@ -213,7 +214,7 @@
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
-                            <th>Issued To</th>
+                            <th>Status</th>
                             <th>Mark As</th>
                         </tr>
                     </thead>
@@ -256,11 +257,13 @@
                                         </div> 
                                         
                                         </td>
-                                            @if($unit->issued_to != null)
-                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
-                                            @else 
-                                                <td> None </td>
-                                            @endif
+                                    
+                                    @if($unit->status_id == 2)
+                                        <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
+                                    @else 
+                                        <td> {{ $unit->status_name }} </td>
+                                    @endif
+                                    
                                         <td>
                                             @if($unit->status_id == 1)
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -269,8 +272,8 @@
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
@@ -290,7 +293,7 @@
                         </tbody>
                 </table>
                 <br>
-
+            <hr>
           <!--Human Resources Table-->
           
           <h5 class="font-weight-bold">Human Resources Department</h5>
@@ -299,7 +302,7 @@
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
-                            <th>Issued To</th>
+                            <th>Status</th>
                             <th>Mark As</th>
 
 
@@ -347,11 +350,13 @@
                                         </div> 
                                         
                                         </td>
-                                            @if($unit->issued_to != null)
-                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
-                                            @else 
-                                                <td> None </td>
-                                            @endif
+
+                                        @if($unit->status_id == 2)
+                                            <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
+                                        @else 
+                                            <td> {{ $unit->status_name }} </td>
+                                        @endif
+
                                         <td>
                                             @if($unit->status_id == 1)
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -360,8 +365,8 @@
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
@@ -382,6 +387,7 @@
 
                 </table>
           <br>
+          <hr>
 
            <!--No Department Table-->
           <h5 class="font-weight-bold">No Department</h5>
@@ -390,7 +396,7 @@
                          <tr>
                             <th>ID</th>
                             <th>Department</th>
-                            <th>Issued To</th>
+                            <th>Status</th>
                             <th>Mark As</th>
 
 
@@ -438,11 +444,11 @@
                                         </div> 
                                         
                                         </td>
-                                            @if($unit->issued_to != null)
-                                                <td>{{$unit->fname}} {{$unit->lname}}</td>
-                                            @else 
-                                                <td> None </td>
-                                            @endif
+                                        @if($unit->status_id == 2)
+                                            <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
+                                        @else 
+                                            <td> {{ $unit->status_name }} </td>
+                                        @endif
                                         <td>
                                             @if($unit->status_id == 1)
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -451,8 +457,8 @@
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"></i> For Return</button>
+                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             @elseif($unit->status_id == 3)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
@@ -1336,7 +1342,7 @@
                     '<p>Are you sure you want to change the status of ' + name + unit_id +
                     ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
                     '</div>' + '<div class="btn-group" role="group">' + 
-                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse"data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' + 
+                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse" data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' + 
                     'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' + 
                     '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
                     
@@ -1346,7 +1352,8 @@
                     '<input type="hidden" name="id" value="' + unit_id + '" >' + 
                     '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
                     '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
-                    '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>'
+                    '<button type="button" class="btn btn-info text-uppercase" data-toggle="modal" data-target="#viewItemModal">View Item Modal</button>' +
+                    '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" onclick="emptyContent()">Cancel</button>'
 
                     ;
 
