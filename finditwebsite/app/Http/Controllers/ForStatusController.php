@@ -57,7 +57,7 @@ class ForStatusController extends BaseController
      return view ('content/repair' , $data);
    }
 
-      public function showRepairItemsSummary(){
+    public function showRepairItemsSummary(){
      if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
       }

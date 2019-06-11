@@ -41,24 +41,9 @@
 
 
 <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">DECOMMISSIONED</span>
-         <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark" aria-current="page">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-dark" >For Repair</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/decommissioned') !!}" class="text-warning">Decommissioned</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
+    <span class="navbar-brand mb-0 h1">DECOMMISSIONED</span>
+    @include('content.breadcrumb_inventory')
+</nav>
 
 
 
@@ -177,7 +162,8 @@
 
     <script>
       $(document).ready(function(){
-      $('#concerns').addClass('active');
+        $('#concerns').addClass('active');
+        $('#breadcrumb_decommissioned').removeClass("text-dark").addClass("text-warning");
       });
     </script>
 

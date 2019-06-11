@@ -52,6 +52,8 @@ Route::get('/concerns', 'ForStatusController@showInventoryConcerns');
 //     return view('content/trial-ajax');
 // });
 
+Route::get('/getUnitForRepair/{id}', 'InventoryController@getUnitForRepair');
+
 Route::get('/fetchID/getPurchases/{id}', 'BulkController@fetchBulkPurchases');
 Route::get('/fetchID/{id}', 'BulkController@showFields');
 
@@ -121,6 +123,7 @@ Route::post('/removeUser', 'AssociateController@removeUser');
 
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForConcernsEquipment');
+Route::post('/add-to-concerns-system-unit', 'InventoryConcernsController@markForConcernsSystemUnit');
 // Route::post('/editStatus', 'InventoryController@changeStatus');
 // Route::post('/change-status', 'InventoryController@changeStatus');
 Route::post('/editIssuance', 'InventoryController@editEquipment');
@@ -152,7 +155,7 @@ Route::post('/buildFromParts', 'PCBuildController@buildFromParts');
 
 //bulk add purchased unit
 Route::post('/bulkUnitAdd', 'PCBuildController@bulkAddUnits');
-
+Route::post('/tempBulkPC', 'PCBuildController@insertBulkPC');
 //edit PC
 
 /*------------------------------------------------------------------------*/

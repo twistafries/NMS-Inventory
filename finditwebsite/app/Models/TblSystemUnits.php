@@ -75,6 +75,26 @@ class TblSystemUnits extends Model
       }
     }
 
+    public static function bulk_add_system_unit($params){
+      $system_units = new TblSystemUnits;
+      // $system_units->description = $params['description'];
+      $system_units->name = $params['name'];
+      $system_units->user_id = $params['user_id'];
+      if(isset($params['dept_id'])){
+        $system_units->dept_id = $params['dept_id'];
+      }
+      $system_units->status_id = 1;
+      try {
+        $system_units->save();
+        $id = DB::getPdo()->lastInsertId();
+        return $id;
+      }catch(QueryException $qa) {
+        // dd($qa::getErrorInfo());
+        Session::flash('error', 'Database exception:');
+        return \Redirect::to('/inventoryAll')->with('error' , 'Database error(s)');
+      }
+    }
+
     public static function unitByDep($department){
       $query = \DB::table('system_units')
       -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
@@ -104,5 +124,26 @@ class TblSystemUnits extends Model
       -> get();
 
       return $query;
+    }
+    
+    public static function getUnit($unit_id){
+      $query = \DB::table('system_units')
+      -> leftjoin('departments', 'system_units.dept_id', '=', 'departments.id')
+      -> leftjoin('equipment_status', 'system_units.status_id', '=', 'equipment_status.id')
+      -> select('system_units.*' , 'departments.name as dept_name' , 'equipment_status.name as status_name')
+      -> where('system_units.id', '=', $unit_id)
+      -> get();
+
+      return $query;
+    }
+
+    public static function update_system_unit_status($id,$status){
+        $system_units = TblSystemUnits::find($id);
+        $system_units->status_id = $status;
+        $system_units->updated_at = gmdate('Y-m-d H:i:s');
+
+        $system_units->save();
+        $id = DB::getPdo()->lastInsertId();
+        return $id;
     }
 }

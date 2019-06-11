@@ -25,75 +25,32 @@
 <div class="container-fluid">
 <!--breadcrumbs navigation-->
 <nav class="navbar">
-        <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
-              <nav aria-label="breadcrumb" style="font-size:16px; font-weight:bold;">
-                <ol class="breadcrumb arr-right">
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/inventory') !!}" class="text-dark" aria-current="page">Items</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/systemUnit') !!}" class="text-dark" aria-current="page">System Unit</a>
-                    </li>
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/repair') !!}" class="text-warning" >For Repair</a>
-                    </li>
+    <span class="navbar-brand mb-0 h1">FOR REPAIR</span>
+    @include('content.breadcrumb_inventory')
+</nav>
 
 
-                    <li class="breadcrumb-item ">
-                        <a href="{!! url('/Decommission') !!}" class="text-dark">Decommission</a>
-                    </li>
-                </ol>
-            </nav>
-    </nav>
-
-    <!-- Toolbox -->
-    <div class="d-flex flex-row-reverse">
-        <div class="p-2">
-            <!-- Single Add Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                        </div>
-
-                        <div class="modal-body">
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info"> <span class="fas fa-plus"></span> ADD ITEM</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
      <div class="container-fluid">
 
-                            <div class="row">
-                                <div class="container-fluid">
-                                <ul class="nav nav-pills nav-justified">
-                                <li class="nav-item" style="border-top-left-radius:25px;">
-                                  <a class="nav-link active font-weight-bolder" href="{!! url('/repairSummary') !!}">FROM ISSUANCE</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link  font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>
-                                </li>
+        <div class="row">
+            <div class="container-fluid">
+            <ul class="nav nav-pills nav-justified">
+            <li class="nav-item" style="border-top-left-radius:25px;">
+                <a class="nav-link active font-weight-bolder" href="{!! url('/repairSummary') !!}">FROM ISSUANCE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  font-weight-bolder" href="{!! url('/repair') !!}">REPAIR ITEMS LIST</a>
+            </li>
 
 
 
-                              </ul>
-                                    </div>
-                            </div>
+            </ul>
+                </div>
+        </div>
 
-                        </div>
-                        <hr>
+    </div>
+    <hr>
 
     <!-- Tabs -->
     <div class="container-fluid">
@@ -113,19 +70,31 @@
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseIT" aria-expanded="true" aria-controls="collapseIT" class="trigger collapsed" id="collapsedownIT"><i class="fas fa-arrow-circle-down"></i></i> Information Technology Development Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseIT" aria-expanded="true" aria-controls="collapseIT" class="trigger collapsed" id="collapsedownIT"><i class="fas fa-arrow-circle-down"></i></i> Information Technology Development Department ({{ count($it_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseIT" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingIT">
+                            @if(count($it_dep) == 0)
+                            <div class="container-fluid border-secondary border-0 text-center" >
+                                <div class="card-header">No System Units For Repair</div>
+                            </div>
+                            @else
                             <div class="panel-body">
                                 <div class="container-fluid">
                                         <ul class="list-unstyled">
-<!--IT PC items list -->
-                                            <!--List item-->
+                                            <!--List item--> 
                                             @foreach($it_dep as $unit)
-                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i> {{$unit->name}}{{$unit->su_id}}</a>
-                                              <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                              <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
+                                            <li> 
+                                                <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#item1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                    <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
+                                                    <i class="fas fa-angle-down"></i> {{$unit->name}}{{$unit->su_id}}</a>
+                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check">
+                                                        </i> Make Available
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt">
+                                                        </i> Decommission
+                                                    </button> 
+                                                </button>
 <!--Accordion Content-->
                                                 <div class="collapse" id="item1">
                                                     <table class="table table-striped">
@@ -142,103 +111,129 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach($components as $component)
-                                                                @if($component->unit_id == $unit->su_id)
-                                                                <tr>
-                                                                    <td>{{$component->name}}</td>
-                                                                    <td>{{$component->brand}} {{$component->name}}</td>
-                                                                    <td>{{$component->details}}</td>
-                                                                    <td>{{$component->serial_no}}</td>
-                                                                    <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
-                                                                        @if($component->status_id == 3)
-                                                                        <button type="button" class="btn btn-danger rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-tools"></i> Replace Component</button>
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>
-                                                                @endif
-                                                            @endforeach
+                                                        @if(count($components) == 0)
+                                                        <tr class="text-center">
+                                                            <td colspan="6">No Components Inside System Unit</td>
+                                                        </tr>
+                                                        @else
+                                                        @foreach($components as $component)
+                                                            @if($component->unit_id == $unit->su_id)
+                                                            <tr>
+                                                                <td>{{$component->name}}</td>
+                                                                <td>{{$component->brand}} {{$component->name}}</td>
+                                                                <td>{{$component->details}}</td>
+                                                                <td>{{$component->serial_no}}</td>
+                                                                <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                    @if($component->status_id == 3)
+                                                                    <button type="button" class="btn btn-danger rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-tools"></i> Replace Component</button>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                            @endif
+                                                        @endforeach
+                                                        @endif
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </li>
                                         @endforeach
-    </ul>
+                                    </ul>
                                 </div>
-
                             </div>
+                            @endif
                         </div>
                     </div>
                 <div class="panel panel-default pl-2">
-                        <div class="panel-heading" role="tab" id="">
-                            <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapsePD" aria-expanded="true" aria-controls="collapsePD" class="trigger collapsed" id="collapsedownPD"><i class="fas fa-arrow-circle-down"></i> Production Development Department</a>
-                            </h5>
-                        </div>
-                        <div id="collapsePD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPD">
-                            <div class="panel-body">
-                                <div class="container-fluid">
-
-                                     <ul class="list-unstyled">
-<!--PD PC items list -->
-                                            <!--List item-->
-                                            @foreach($pd_dep as $unit)
-                                            <li> <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#pd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" ><a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down"></i>{{$unit->name}}{{$unit->su_id}}</a>
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button> </button>
-<!--Accordion Content-->
-                                                <div class="collapse" id="pd1">
-                                                    <table class="table table-striped">
-                                                        <thead>
+                    <div class="panel-heading" role="tab" id="">
+                        <h5 class="panel-title">
+                            <a role="button" data-toggle="collapse" href="#collapsePD" aria-expanded="true" aria-controls="collapsePD" class="trigger collapsed" id="collapsedownPD"><i class="fas fa-arrow-circle-down"></i> Production Development Department ({{ count($pd_dep) }})</a>
+                        </h5>
+                    </div>
+                <div id="collapsePD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPD">
+                    
+                    @if(count($pd_dep) == 0)
+                            <div class="container-fluid border-secondary border-0 text-center" >
+                                <div class="card-header">No System Units For Repair</div>
+                            </div>
+                    @else
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <ul class="list-unstyled">
+                                <!--PD PC items list -->
+                                    <!--List item-->
+                                    @foreach($pd_dep as $unit)
+                                    <li> 
+                                        <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#pd1" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
+                                                <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" ><i class="fas fa-angle-down">
+                                                    </i>{{$unit->name}}{{$unit->su_id}}
+                                                </a>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal">
+                                                    <i class="fas fa-check"></i> Make Available
+                                                </button>
+                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal">
+                                                    <i class="fas fa-trash-alt"></i> Decommission
+                                                </button> 
+                                        </button>
+                                
+                                    <!--Accordion Content-->
+                                        <div class="collapse" id="pd1">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">Component</th>
+                                                            <th scope="col">Brand/Name</th>
+                                                            <th scope="col">Details</th>
+                                                            <th scope="col">Serial No.</th>
+                                                            <th scope="col">Warranty</th>
+                                                            <th scope="col">Mark As</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($components as $component)
+                                                            @if($component->unit_id == $unit->su_id)
                                                             <tr>
-                                                                <th scope="col">Component</th>
-                                                                <th scope="col">Brand/Name</th>
-                                                                <th scope="col">Details</th>
-                                                                <th scope="col">Serial No.</th>
-                                                                <th scope="col">Warranty</th>
-                                                                <th scope="col">Mark As</th>
+                                                                <td>{{$component->name}}</td>
+                                                                <td>{{$component->brand}} {{$component->name}}</td>
+                                                                <td>{{$component->details}}</td>
+                                                                <td>{{$component->serial_no}}</td>
+                                                                <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                    <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                    <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach($components as $component)
-                                                                @if($component->unit_id == $unit->su_id)
-                                                                <tr>
-                                                                    <td>{{$component->name}}</td>
-                                                                    <td>{{$component->brand}} {{$component->name}}</td>
-                                                                    <td>{{$component->details}}</td>
-                                                                    <td>{{$component->serial_no}}</td>
-                                                                    <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
-                                                                    <td>
-                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
-                                                                    </td>
-                                                                </tr>
-                                                                @endif
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                @endforeach
-                                            </li>
-
-    </ul>
-                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
+                    @endif        
+                </div>
                     </div>
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseFD" aria-expanded="true" aria-controls="collapseFD" class="trigger collapsed" id="collapsedownFD"><i class="fas fa-arrow-circle-down"></i> Financial Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseFD" aria-expanded="true" aria-controls="collapseFD" class="trigger collapsed" id="collapsedownFD"><i class="fas fa-arrow-circle-down"></i> Financial Department ({{ count($fin_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseFD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFD">
+                            @if(count($fin_dep) == 0)
+                            <div class="container-fluid border-secondary border-0 text-center" >
+                                <div class="card-header">No System Units For Repair</div>
+                            </div>
+                            @else
                             <div class="panel-body">
                                 <div class="container-fluid">
                                      <ul class="list-unstyled">
@@ -286,19 +281,25 @@
                                                 </div>
                                             </li>
                                             @endforeach
+                                        </ul>
                                     </div>
-
                                 </div>
+                                @endif
                             </div>
                         </div>
 
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseHR" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  Human Resources Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseHR" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  Human Resources Department ({{ count($hr_dep) }})</a>
                             </h5>
                         </div>
                         <div id="collapseHR" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
+                            @if(count($hr_dep) == 0)
+                            <div class="container-fluid border-secondary border-0 text-center" >
+                                <div class="card-header">No System Units For Repair</div>
+                            </div>
+                            @else
                             <div class="panel-body">
                                 <div class="container-fluid">
 
@@ -337,17 +338,23 @@
                                             @endforeach
 
                                         </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="panel panel-default pl-2">
                         <div class="panel-heading" role="tab" id="">
                             <h5 class="panel-title">
-                                <a role="button" data-toggle="collapse" href="#collapseHR" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  No Assigned Department</a>
+                                <a role="button" data-toggle="collapse" href="#collapseND" aria-expanded="true" aria-controls="collapseHR" class="trigger collapsed" id="collapsedownHR"><i class="fas fa-arrow-circle-down"></i>  No Assigned Department ({{ count($no_dep) }})</a>
                             </h5>
                         </div>
-                        <div id="collapseHR" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
+                        <div id="collapseND" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingHR">
+                            @if(count($no_dep) == 0)
+                            <div class="container-fluid border-secondary border-0 text-center" >
+                                <div class="card-header">No System Units For Repair</div>
+                            </div>
+                            @else
                             <div class="panel-body">
                                 <div class="container-fluid">
 
@@ -388,6 +395,7 @@
                                         </ul>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -694,7 +702,7 @@
         </div>
     </div>
 
-
+    
 
 
      <h4 class="font-weight-bold">Mobile Device ({{ count($for_repair_laptops) + count($for_repair_phones) + count($for_repair_phones) }})</h4>
@@ -1015,17 +1023,17 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="height:450px;">
                     <div class="modal-header">
-                    <h5 class="modal-title"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                      <div class="warning-content">
-                          <p>Warning!</p>
-                          <p>Are you sure you want to change the status of this item to For Return?</p>
-                      </div>
+                        <h5 class="modal-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+    
+                        <div class="modal-body">
+                        <div class="warning-content">
+                            <p>Warning!</p>
+                            <p>Are you sure you want to change the status of this item to For Return?</p>
+                        </div>
 
                     </div>
 
@@ -1035,6 +1043,34 @@
                     </div>
                 </div>
             </div>
+    </div>
+
+    <!-- Empty Modal Prompt -->
+    <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+        <form action="{!! url('/add-to-concerns-system-unit') !!}" method="post">
+        {!! csrf_field() !!}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header" id="makeAvailableHeader">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="emptyContent()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-content"  id="makeAvailableContent">
+                        
+                    </div>
+                </div>
+
+            
+            <div class="modal-footer" id="makeAvailableFooter">
+
+                </div>
+            </div>
+        </div>
+        </form>
     </div>
 
 
@@ -1064,9 +1100,64 @@
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.checkboxes.min.js') }}"></script>
 
     <script>
-      $(document).ready(function(){
+    $(document).ready(function(){
       $('#concerns').addClass('active');
-      });
+      $('#breadcrumb_for_repair').removeClass("text-dark").addClass("text-warning");
+    });
+
+    function emptyContent(){
+        $('#makeAvailableContent').empty()
+        $('#makeAvailableFooter').empty()
+    }
+
+    function makeAvailableSystemUnit(sys_id , new_status_id){
+        var unit_id = sys_id;
+        console.log(unit_id);
+        if(new_status_id == 1){
+            var new_status_name = "Available";
+        }
+
+        $.ajax({
+            url: 'getUnitForRepair/' + unit_id,
+            type: 'get',
+            dataType: 'json',
+            success: function (response){
+                len = response['unit'].length;
+                if(len > 0){
+                    for(var i = 0; i < len; i++){
+                        var orig_status_name = response['unit'][i].status_name;
+                        // var orig_status_id = response['unit'][i].status_id;
+                        var dept = response['unit'][i].dept_name;
+                        var name = response['unit'][i].name;
+                    }
+
+                    var unitContentStr = 
+                    '<p>Are you sure you want to change the status of ' + name + unit_id +
+                    ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
+                    '</div>' + '<div class="btn-group" role="group">' + 
+                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse"data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' + 
+                    'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' + 
+                    '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
+                    
+                    $('#makeAvailableContent').append(unitContentStr);
+                    
+                    var unitFooterStr = 
+                    '<input type="hidden" name="id" value="' + unit_id + '" >' + 
+                    '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
+                    '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
+                    '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>'
+
+                    ;
+
+                    $('#makeAvailableFooter').append(unitFooterStr);
+                }
+            }
+
+        })
+    }
+
+
+      
     </script>
 
     <!-- <script type="text/javascript">

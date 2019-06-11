@@ -92,5 +92,16 @@ class PurchasedItems extends Model
   	}
 
 
-
+    public static function getUnitItems($params){
+      $query = \DB::table('purchased_items')
+      -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'purchased_items.subtype_id')
+      -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+      -> leftjoin('supplier', 'supplier.id', '=', 'purchased_items.supplier_id')
+      -> select('purchased_items.*','supplier.supplier_name as supplier', 'it_equipment_subtype.name as subtype')
+      -> where('p_id', '=', $params)
+      -> where('unit_number', '!=', 'null')
+      -> orderBy('subtype_id' , 'asc')
+      -> get();
+      return $query;
+  }
 }
