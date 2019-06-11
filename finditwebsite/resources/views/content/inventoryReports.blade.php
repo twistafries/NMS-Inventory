@@ -56,9 +56,9 @@
           <!-- additions -->
           <div class="" id="inventoryTable" style="margin-top:4rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Inventory Additions</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">{{$title}}</p>
             </div>
-            <table class="table all" id="available" hidden>
+            <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
                   <!-- if individual items are needed
@@ -89,186 +89,10 @@
               </tbody>
             </table>
           </div>
-
+<div>
           <!-- available -->
 
-          <div class="" id="inventoryTable" style="margin-top:4rem;">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Available Items</p>
-            </div>
-            <table class="table all" id="available2">
-              <thead class="thead-dark" style="font-size: 14px;">
-                <tr>
-                  <th scope="col">Item ID</th>
-                  <th scope="col">Item Type</th>
-                  <th scope="col">Item Subtype</th>
-                  <th scope="col">Brand</th>
-                  <th scope="col">Model</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
 
-                @foreach($availeq as $equipment)
-                <tr id={{$equipment->created_at}}>
-                  <td>{{$equipment->eqId}}</td>
-                  <td>{{$equipment->type}}</td>
-                  <td>{{$equipment->subtype}}</td>
-                  <td>{{$equipment->brand}}</td>
-                  <td>{{$equipment->model}}</td>
-                  <td style="display: none">{{$equipment->created_at}}</td>
-
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-
-          <div class="table-responsive" id="inventoryTable" style="margin-top:4rem;">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Repair Items</p>
-            </div>
-            <table class="table all t" id="repair">
-              <thead class="thead-dark">
-                <tr>
-                    <tr>
-                        <th scope="col">Item ID</th>
-                        <th scope="col">Item Type</th>
-                        <th scope="col">Item Subtype</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Model</th>
-                        <th></th>
-                      </tr>
-                </tr>
-              </thead>
-              <tbody>
-                  @foreach($repEq as $equipment)
-                  <tr id={{$equipment->created_at}}>
-                    <td>{{$equipment->eqId}}</td>
-                    <td>{{$equipment->type}}</td>
-                    <td>{{$equipment->subtype}}</td>
-                    <td>{{$equipment->brand}}</td>
-                    <td>{{$equipment->model}}</td>
-                    <td style="display: none">{{$equipment->created_at}}</td>
-                  </tr>
-                  @endforeach
-                </tbody>
-            </table>
-          </div>
-
-          <div class="table-responsive" id="inventoryTable" style="margin-top:4rem;">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Return Items</p>
-            </div>
-            <table class="table all t" id="return">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Item Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Details</th>
-                  <th scope="col">OR No.</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Remarks</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Supplier</th>
-                  <th scope="col">Added By</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                </tr>
-                <tr>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                  <td>sample</td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="" id="inventoryTable" style="margin-top:4rem; margin-bottom: 2rem;">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">For Disposal Items</p>
-            </div>
-            <table class="table all" id="disposal">
-              <thead class="thead-dark" style="font-size: 14px;">
-                <tr>
-                  <th scope="col">Item Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Remarks</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Added By</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Ballistix Sport Series DDR3</td>
-                  <td>Computer Unit</td>
-                  <td>8GB Ballistix Sport DDR3 1600 MHz UDIMM</td>
-                  <td>For Disposal</td>
-                  <td>Obsolete, for replacement</td>
-                  <td>2019-04-19</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Aerocool Strike</td>
-                  <td>Computer Unit</td>
-                  <td>"Motherboards: Micro ATX / Mini ITX
-Chassis Dimensions: 280 x 380x 350 mm"</td>
-                  <td>For Disposal</td>
-                  <td>Damaged beyond repair</td>
-                  <td>2019-10-18</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>iPad Air</td>
-                  <td>Mobile Device</td>
-                  <td>"Core Design: Apple Cyclone x 2
-CPU: S5L8965 ""A7 Rev A""
-CPU Speed: 1.4 GHz
-RAM: 1 GB
-Storage: 128 GB"</td>
-                  <td>For Disposal</td>
-                  <td></td>
-                  <td>2018-10-21</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-
-
-
-        </div>
 
 
     <!--Graph-->
