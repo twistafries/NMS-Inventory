@@ -33,6 +33,7 @@ $lname = $session['lname'];
         <p class="card-title">OR_No</p>
         <input type="text" name="or_no" required>
         <input type="hidden" name="qty" value={{$qty}}>
+        <input type="hidden" name="supplier_id" value={{$supplier_id}}>
     </div>
     <div class="col-sm-2">
       <p class="card-title">Warranty</p>
@@ -53,12 +54,13 @@ $lname = $session['lname'];
         <th>Brand</th>
         <th>Model</th>
         <th>S/N</th>
+        <th>Details</th>
         <th>Option</th>
       </tr>
     </thead>
         <tbody>
           
-          <input type="hidden" name="supplier" value="{{$supplier_id}}">
+          <input type="hidden" name="supplier" value={{$supplier_id}}>
           @for($count = 0; $qty > $count; $count++)
 
             @foreach($components as $component)
@@ -78,6 +80,9 @@ $lname = $session['lname'];
               <td>
                 <input type="text" name="serial_no{{$component->subtype_id}}[]" required>
               </td>
+              <td>
+                  <input type="text" name="dets{{$component->subtype_id}}[]" required>
+              </td>
               <td title="Click this if serial#s are similar or consecutive">
                   <button type="button" class="btn btn-outline-secondary">Consecutive</button>
               </td>
@@ -87,8 +92,9 @@ $lname = $session['lname'];
                 <td >Supplier:</td>
                 <td>{{$supplier}}</td>
                 <td>Unit Label</td>
-            <td><input name="name[]" type="text" placeholder="PC" required></td>
-                <td>Unit {{$count + 1}} of {{$qty}}</td>
+                <td><input name="name[]" type="text" placeholder="PC" required></td>
+                <td>Unit #{{$count + 1}} </td>
+                <td>of {{$qty}}</td>
               </tr>
             @endfor
         </tbody>
@@ -126,8 +132,9 @@ $lname = $session['lname'];
         data.unshift({name:'qty', value:$("input[name=qty]").val()});
         data.unshift({name:'warranty_start', value:$("input[name=warranty_start]").val()});
         data.unshift({name:'warranty_end', value:$("input[name=waranty_end]").val()});
+        data.unshift({name:'supplier_id', value:$("input[name=supplier_id]").val()});
         console.log(data);
-
+        
         $.post({
           url:'/tempBulkPC',
           data: data,
@@ -135,8 +142,8 @@ $lname = $session['lname'];
               /*
               unsure of redirecting thing. normally goes to /tempBulkPC
               which is 'PCBuildController@insertBulkPC'. Saves successfully on dbase
-              though.
-              */
+              though.*/
+              
               var message = 'Units added.';
               window.location.href = '/systemUnit';
           },
@@ -148,7 +155,7 @@ $lname = $session['lname'];
       });
 
       tbl = $('#unitDataTable').dataTable();
-      
+
   });
 </script>
 @stop
