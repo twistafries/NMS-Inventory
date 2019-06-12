@@ -164,12 +164,6 @@
             var mb = document.getElementById("idCPU");
             var subtypes = document.getElementsByTagName('select');
 
-            /*
-            for(var i=0; i<cpu.length;i++){
-                cpu.options[i].style.display = "block";
-            }
-            */
-
             Array.prototype.forEach.call(subtypes, subtype => {
                 if(subtype.id !== selectID){
                     for(var i = 0; i<subtype.length; i++){

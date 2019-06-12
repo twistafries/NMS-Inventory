@@ -13,6 +13,7 @@ use App\Models\TblItEquipment;
 use App\Models\TblDepartments;
 use App\Models\PurchasedItems;
 use App\Models\Purchases;
+use App\Models\TblActivityLogs;
 
 class PCBuildController extends Controller
 {
@@ -92,7 +93,11 @@ class PCBuildController extends Controller
 
             for($count; $count < $data['qty']; $count++){
                 $sUnit['name'] = $data['name'][$count];
-                TblSystemUnits::add_system_unit($sUnit);
+                $unit_id=TblSystemUnits::add_system_unit($sUnit);
+                
+                $log['system_unit'] = $unit_id;
+                $log['activity'] = "added";
+                TblActivityLogs::add_log($log);
             }
             return \Redirect::to('/inventoryAll')->with('message','System units added.');
         }catch(QueryException $qe){

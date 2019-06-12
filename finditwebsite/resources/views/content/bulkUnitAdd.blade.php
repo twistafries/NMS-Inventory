@@ -34,6 +34,14 @@ $lname = $session['lname'];
         <input type="text" name="or_no" required>
         <input type="hidden" name="qty" value={{$qty}}>
     </div>
+    <div class="col-sm-2">
+      <p class="card-title">Warranty</p>
+      <input type="date" name="warranty_start">
+    </div>
+    <div class="col-sm-2">
+      <p class="card-title">Warranty End</p>
+      <input type="date" name="warranty_end">
+    </div>
   </div>
   <hr>
 
@@ -85,8 +93,9 @@ $lname = $session['lname'];
             @endfor
         </tbody>
   </table>
+  
   </div>
-  <button id="subm" type="submit" class="btn btn-info">Add Units</button>
+  <button id="subm" type="submit" class="btn btn-info">Add All Units</button>
 </form>
 
 @stop
@@ -115,6 +124,8 @@ $lname = $session['lname'];
 
         data.unshift({name:'or_no', value:$("input[name=or_no]").val()});
         data.unshift({name:'qty', value:$("input[name=qty]").val()});
+        data.unshift({name:'warranty_start', value:$("input[name=warranty_start]").val()});
+        data.unshift({name:'warranty_end', value:$("input[name=waranty_end]").val()});
         console.log(data);
 
         $.post({
@@ -126,6 +137,8 @@ $lname = $session['lname'];
               which is 'PCBuildController@insertBulkPC'. Saves successfully on dbase
               though.
               */
+              var message = 'Units added.';
+              window.location.href = '/systemUnit';
           },
           error: function(jqXHR, textStatus, errorThrown) {
               console.log("AJAX error: " + textStatus + ' : ' + errorThrown);

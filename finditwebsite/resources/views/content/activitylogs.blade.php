@@ -51,9 +51,15 @@
                       @foreach($logs as $log)
                           @if($log->activity== "added")
                           <tr>
+                              @if(is_null($log->system_unit))
                               <td>
                                 {{$log->done_by}} {{$log->activity}} {{$log->brand}} {{$log->model}} into the inventory.
                               </td>
+                              @else
+                              <td>
+                                  {{$log->done_by}} {{$log->activity}} a system unit (id: {{$log->system_unit}}) into the inventory.
+                              </td>
+                              @endif
                               <td>{{$log->created_at}}</td>
                           </tr>
                           @endif
