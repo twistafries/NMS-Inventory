@@ -83,13 +83,13 @@ class PCBuildController extends Controller
         $session=Session::get('loggedIn');
         try{
             $data = $request->all();
-            dd($data);
             $user_id = $session['id'];
             $count = 0;
             $sUnit = [];
             $sUnit['or_no'] = $data['or_no'];
             $sUnit['user_id'] = $user_id;
             $sUnit['subtype'] = array_unique($data['subtype']);
+
             for($count; $count < $data['qty']; $count++){
                 $sUnit['name'] = $data['name'][$count];
                 TblSystemUnits::add_system_unit($sUnit);
