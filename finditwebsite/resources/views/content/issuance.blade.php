@@ -212,46 +212,38 @@
                                 {!! csrf_field() !!}
 
                                           <table>
-                                            <div class="row">
-                                            <tr>
-                                            <div class="col-md-8">
-                                            <td><p class="card-title">Issue Item:</p></td>
-                                            </div>
-
-                                           <div class="col-md-4">
-                                            <td><p class="card-title">Issued Until:</p></td>
-                                          </div>
-                                          </tr>
-
-                                          <tr>
-
-                                            <td>
-                                              <div class="col-md-4" style="padding: 25px 15px;">
-                                              <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
-                                                <datalist id="items">
-                                                  <select>
-                                                  @foreach ($equipment as $equipment)
-                                                  <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
-                                                  @endforeach
-                                                  @foreach ($units as $units)
-                                                  <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
-                                                  @endforeach
-                                                </select>
-                                                </datalist>
-                                              </div>
-                                            </td>
-
-                                              <td>
-                                                <div class="col-md-10" style="padding: 30px 15px;">
-                                                  <div class="input-group mb-3">
-                                                  <input  name="issued_until" type="date" class="form-control" required>
-                                                  </div>
+                                              <tr>
+                                                <div class="col-md-8">
+                                                  <td><p class="card-title">Issue Item:</p></td>
                                                 </div>
-                                              </td>
-                                          </tr>
-                                           </div>
-                                          </table>
+                                                <div class="col-md-4">
+                                                  <td><p class="card-title">Issued Until:</p></td>
+                                                </div>
+                                              </tr>
 
+                                              <tr>
+                                                <td>
+                                                  <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
+                                                    <datalist id="items">
+                                                      <select>
+                                                      @foreach ($equipment as $equipment)
+                                                      <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">({{ $equipment->subtype}}) {{ $equipment->brand}} {{ $equipment->model}} </option>
+                                                      @endforeach
+                                                      @foreach ($units as $units)
+                                                      <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">(System Unit) {{$units->name}} {{ $units->id}}</option>
+                                                      @endforeach
+                                                      </select>
+                                                    </datalist>
+                                                </td>
+                                                <td>
+                                                  <div class="col-md-10" style="padding: 30px 15px;">
+                                                    <div class="input-group mb-3">
+                                                    <input  name="issued_until" type="date" class="form-control" required>
+                                                    </div>
+                                                  </div>
+                                                </td>
+                                              </tr>                                     
+                                          </table>
 
                                       <table id="addMoreList">
                                                  <tbody>
