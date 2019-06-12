@@ -49,6 +49,7 @@ $lname = $session['lname'];
       </tr>
     </thead>
         <tbody>
+          
           <input type="hidden" name="supplier" value="{{$supplier_id}}">
           @for($count = 0; $qty > $count; $count++)
 
@@ -78,7 +79,7 @@ $lname = $session['lname'];
                 <td >Supplier:</td>
                 <td>{{$supplier}}</td>
                 <td>Unit Label</td>
-                <td><input name="name[]" type="text" placeholder="PC" required></td>
+            <td><input name="name[]" type="text" placeholder="PC" required></td>
                 <td>Unit {{$count + 1}} of {{$qty}}</td>
               </tr>
             @endfor
@@ -108,12 +109,33 @@ $lname = $session['lname'];
 
       $('#subm').click(function(e){
         e.preventDefault();
-        var data = tbl.$('input').serialize();
+
+        
+        var data = tbl.$('input').serializeArray();
+
+        data.unshift({name:'or_no', value:$("input[name=or_no]").val()});
+        data.unshift({name:'qty', value:$("input[name=qty]").val()});
         console.log(data);
-        submit();
+
+        $.post({
+          url:'/tempBulkPC',
+          data: data,
+          success: function(response){
+              /*
+              unsure of redirecting thing. normally goes to /tempBulkPC
+              which is 'PCBuildController@insertBulkPC'. Saves successfully on dbase
+              though.
+              */
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+              alert(JSON.stringify(jqXHR));
+          }
+        }) 
       });
 
       tbl = $('#unitDataTable').dataTable();
+      
   });
 </script>
 @stop
