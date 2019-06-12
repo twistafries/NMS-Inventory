@@ -18,7 +18,7 @@
 @stop
 
 @section('title')
-    purchases
+    For Returns
 @stop
 
 @section('../layout/breadcrumbs')

@@ -443,7 +443,23 @@
             $('#lateReturns, #issuancePerComponent, #mostLeast').DataTable( {
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                  'copy',
+                  {
+                    extend: 'excel',
+                    title: '',
+                  },
+                  {
+                    extend: 'csv',
+                    title: '',
+                  },
+                  {
+                    extend: 'pdf',
+                    title: '',
+                  },
+                  {
+                    extend: 'print',
+                    title: '',
+                  },
                 ],
                 "searching": false,
                 "ordering": false

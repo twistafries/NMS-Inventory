@@ -10,7 +10,7 @@
     @extends('../template') @section('css')
     <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}"> @stop @section('title') Inventory @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
+    <link rel="stylesheet" href="{{ asset('css/datatable/select.dataTables.min.css')}}"> @stop @section('title') System Unit @stop @section('../layout/breadcrumbs') @section('breadcrumbs-title')
     <i class="fas fa-chart-line">Inventory
     @stop
 @stop
@@ -57,7 +57,7 @@
                                                         <th scope="col">Brand/Name</th>
                                                         <th scope="col">Details</th>
                                                         <th scope="col">Serial No.</th>
-                                                        <th scope="col">Warranty</th> 
+                                                        <th scope="col">Warranty</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -74,16 +74,16 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                    </div> 
-                                    
+                                    </div>
+
                                 </td>
                                         @if($unit->status_id == 2)
                                             <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
-                                        @else 
+                                        @else
                                             <td> {{ $unit->status_name }} </td>
                                         @endif
 
-                                    
+
                                     <td>
                                         @if($unit->status_id == 1)
                                             <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -106,7 +106,7 @@
                                             <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                             <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                         @endif
-                                    </td> 
+                                    </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -143,7 +143,7 @@
                                                             <th scope="col">Brand/Name</th>
                                                             <th scope="col">Details</th>
                                                             <th scope="col">Serial No.</th>
-                                                            <th scope="col">Warranty</th> 
+                                                            <th scope="col">Warranty</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -160,16 +160,16 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                        </div> 
-                                        
+                                        </div>
+
                                         </td>
-                                        
+
                                     @if($unit->status_id == 2)
                                         <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
-                                    @else 
+                                    @else
                                         <td> {{ $unit->status_name }} </td>
                                     @endif
-                                        
+
                                         <td>
                                             @if($unit->status_id == 1)
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -195,7 +195,7 @@
                                         </td>
                                     </tr>
                             @endforeach
-    
+
                     </tbody>
 
                                     </div>
@@ -237,7 +237,7 @@
                                                             <th scope="col">Brand/Name</th>
                                                             <th scope="col">Details</th>
                                                             <th scope="col">Serial No.</th>
-                                                            <th scope="col">Warranty</th> 
+                                                            <th scope="col">Warranty</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -254,16 +254,16 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                        </div> 
-                                        
+                                        </div>
+
                                         </td>
-                                    
+
                                     @if($unit->status_id == 2)
                                         <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
-                                    @else 
+                                    @else
                                         <td> {{ $unit->status_name }} </td>
                                     @endif
-                                    
+
                                         <td>
                                             @if($unit->status_id == 1)
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -286,16 +286,16 @@
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
-                                        </td>  
+                                        </td>
                                 </tr>
                             @endforeach
-    
+
                         </tbody>
                 </table>
                 <br>
             <hr>
           <!--Human Resources Table-->
-          
+
           <h5 class="font-weight-bold">Human Resources Department</h5>
           <table id="myDataTableHR" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
@@ -330,7 +330,7 @@
                                                             <th scope="col">Brand/Name</th>
                                                             <th scope="col">Details</th>
                                                             <th scope="col">Serial No.</th>
-                                                            <th scope="col">Warranty</th> 
+                                                            <th scope="col">Warranty</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -347,13 +347,13 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                        </div> 
-                                        
+                                        </div>
+
                                         </td>
 
                                         @if($unit->status_id == 2)
                                             <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
-                                        @else 
+                                        @else
                                             <td> {{ $unit->status_name }} </td>
                                         @endif
 
@@ -379,10 +379,10 @@
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
-                                        </td>  
+                                        </td>
                                 </tr>
                             @endforeach
-    
+
                         </tbody>
 
                 </table>
@@ -424,7 +424,7 @@
                                                             <th scope="col">Brand/Name</th>
                                                             <th scope="col">Details</th>
                                                             <th scope="col">Serial No.</th>
-                                                            <th scope="col">Warranty</th> 
+                                                            <th scope="col">Warranty</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -441,12 +441,12 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                        </div> 
-                                        
+                                        </div>
+
                                         </td>
                                         @if($unit->status_id == 2)
                                             <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
-                                        @else 
+                                        @else
                                             <td> {{ $unit->status_name }} </td>
                                         @endif
                                         <td>
@@ -471,10 +471,10 @@
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
-                                        </td> 
+                                        </td>
                                 </tr>
                             @endforeach
-    
+
                         </tbody>
 
                 </table>
@@ -1273,11 +1273,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="warning-content"  id="makeAvailableContent">
-                        
+
                     </div>
                 </div>
 
-            
+
             <div class="modal-footer" id="makeAvailableFooter">
 
                 </div>
@@ -1338,18 +1338,18 @@
                         var name = response['unit'][i].name;
                     }
 
-                    var unitContentStr = 
+                    var unitContentStr =
                     '<p>Are you sure you want to change the status of ' + name + unit_id +
                     ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
-                    '</div>' + '<div class="btn-group" role="group">' + 
-                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse" data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' + 
-                    'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' + 
+                    '</div>' + '<div class="btn-group" role="group">' +
+                    '<button class="btn btn-warning text-uppercase" data-toggle="collapse" data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' +
+                    'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' +
                     '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
-                    
+
                     $('#makeAvailableContent').append(unitContentStr);
-                    
-                    var unitFooterStr = 
-                    '<input type="hidden" name="id" value="' + unit_id + '" >' + 
+
+                    var unitFooterStr =
+                    '<input type="hidden" name="id" value="' + unit_id + '" >' +
                     '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
                     '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
                     '<button type="button" class="btn btn-info text-uppercase" data-toggle="modal" data-target="#viewItemModal">View Item Modal</button>' +
@@ -1362,7 +1362,7 @@
             }
 
         })
-    }        
+    }
 
 </script>
     <script type="text/javascript">
