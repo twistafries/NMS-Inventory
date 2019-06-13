@@ -17,6 +17,7 @@ use App\Models\TblStatus;
 use App\Models\TblIssuances;
 use App\Models\TblEmployees;
 use App\Models\Suppliers;
+use App\Models\InventoryConcerns;
 use App\Models\TblActivityLogs;
 use Session, Auth;
 
@@ -122,6 +123,50 @@ class IssuanceController extends BaseController {
 	}
 
 	public function addIssuanceFromInventory(Request $request){
+		if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+			return \Redirect::to('/loginpage');
+		}
+		$data = $request->all();
+		$data['status_id'] = 2;
+		$data['user_id'] = Session::get('loggedIn')['id'];
+		$employee['id'] = $data['issued_to'];
+
+		$log['data'] = $data['equipment_id'];
+		$log['activity'] = "issued";
+		$log['issued_to'] = TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->fname . " " .TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->lname;
+		
+		$equipment_info = TblItEquipment::get_equipment_info($data['equipment_id']);
+
+		$concerns = $request->all();
+		if($request->get('su.id') == null){
+			$concerns['id'] = $request->get('equipment_id');
+			$concerns['name_component'] = $request->get('equipment_id');
+			$concerns['system_unit_id'] = null;
+		}else{
+			$concerns['system_unit_id'] = $request->get('su.id');
+			$concerns['name_component'] = null;
+		};
+		$concerns['added_by'] = $data['user_id'];
+		$concerns['status_id'] = $data['status_id'];
+		InventoryConcerns::addConcern($concerns);
+		// dd( $concerns);  
+		try{ 
+			if(isset($data['issued_to'])){
+				TblIssuances::add_issuance($data);
+			};
+			TblItEquipment::update_equipment_status($data['equipment_id'], $data['status_id']);
+			TblActivityLogs::add_log($log);
+			// dd($equipment_info[0]);
+			return \Redirect::to('/inventoryAll')->with('message','Equipment ID:'. $equipment_info[0]->id .', '. $equipment_info[0]->brand.' '. $equipment_info[0]->model .' has been successfully issued to .' . $log['issued_to']);
+
+		}catch(Exception $e){
+			dd($e);
+		}catch(QueryException $qe){
+
+		}
+
+		// return redorect
+
 
 	}
 
