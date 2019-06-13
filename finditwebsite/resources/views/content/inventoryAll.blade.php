@@ -333,8 +333,8 @@
                                         <!-- Issue Item Button -->
                                         @if( $equipment->type_id != 1 && $equipment->status_id == 1 )
                                         <div class="row row-details self-align-end">
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
-                                                Issue Item
+                                            <button type="button" class="btn btn-info text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
+                                                <i class="fas fa-hand-holding"></i>  Issue Item
                                             </button>                                            
                                         </div>
                                         @endif
@@ -351,23 +351,14 @@
                                                 data-target="#decommissionedModal">Decommission</button>
                                                 @else
                                                 @if($equipment->status_id == 4)
-                                                <div class="btn-group" role="group">
-                                                    <button class="btn btn-primary dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        For Return
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" data-dismiss="modal" data-toggle="modal"
-                                                            data-target="#replacement">Replacement Received</a>
-                                                        <a class="dropdown-item warranty-not" href="#">Mark For Repair (Warranty Not Covered)</a>
-                                                    </div>
-                                                </div>
+                                                <button type="button" class="btn btn-success text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#return">Make Available</button>
+                                                <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#return">For Repair</button>
                                                 @else
-                                                <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#return">For Return</button>
+                                                <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                    data-target="#return"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 @endif
                                                 <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#decommissionedModal">Decommission Item</button>
+                                                    data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommission Item</button>
                                                 @endif
                                         </div>
 
@@ -690,7 +681,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="container">
-                        Issue Item Modal
+                        <h5 class="modal-title" id="ModalTitle">Issue Item Modal</h5>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
