@@ -35,16 +35,16 @@
         <div class="row">
             <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
-                <li class="nav-item">
+                <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/purchases') !!}">Purchases</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="margin-right: 5px;">
                   <a class="nav-link active" href="{!! url('/receivedPurchases') !!}">Received Purchases</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/returns') !!}">Returns</a>
                 </li>
               </ul>

@@ -223,7 +223,7 @@
 
                                               <tr>
                                                 <td>
-                                                  <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required style=" text-indent: 50px;">
+                                                  <input class="form-control" list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required >
                                                     <datalist id="items">
                                                       <select>
                                                       @foreach ($equipment as $equipment)
@@ -585,7 +585,7 @@ $(window).load(function(){
 }
 
 function add() {
-                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-2\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
             }
     </script>
 
