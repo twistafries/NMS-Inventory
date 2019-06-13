@@ -45,18 +45,20 @@ class PurchasesController extends BaseController
         $data['system_units'] = TblSystemUnits::get_all_system_units();
         $data['issuance'] = TblIssuances::getIssuance();
 
-
         $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['sub'] = TblItEquipmentSubtype::get_all_equipment_subtype();
         $data['purchases'] = Purchases::get_purchases();
         $data['purchase'] = Purchases::get_purchases();
+
         $data['purchasescript'] = Purchases::get_purchases();
         foreach ($data['purchases'] as $purchases) {
           $data['purchases'] [$purchases->purchase_no] = PurchasedItems::get_purchased_Item($purchases->purchase_no);
         }
+        //dd( $data['purchases']);
         $data['items'] = PurchasedItems::get_all_items();
         $data['items'] = PurchasedItems::get_all_items();
+
         $data['unit_number'] = PurchasedItems::get_unit_number();
         $data['pc'] = PurchasedItems::get_unit_number();
         $data['pc_component'] = PurchasedItems::get_component();

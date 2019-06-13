@@ -334,70 +334,70 @@ RAM:
       @foreach($purchase as $purchase)
         <tr>
           <td> <p hidden>{{$purchase->date_of_purchase}}</p>
-      <div class="navbar" id="purchase{{$purchase->purchase_no}}" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: #585858; color: white; cursor: pointer; height: 45px;">
-          <a class="fas fa-angle-right" style="font-size: 16px;"><span style="margin-left: 1rem; font-family: sans-serif; font-weight: lighter;">PURCHASE {{$purchase->purchase_no}}</span></a>
-          <div class="" style="font-size: 16px;">Date: {{$purchase->date_of_purchase}}</div>
-      </div>
+          <div class="navbar" id="purchase{{$purchase->purchase_no}}" data-toggle="collapse" data-target="#pills-tabContent" aria-expanded="false" aria-controls="collapseExample" style="margin-top: 1rem; background: #585858; color: white; cursor: pointer; height: 45px;">
+            <a class="fas fa-angle-right" style="font-size: 16px;"><span style="margin-left: 1rem; font-family: sans-serif; font-weight: lighter;">PURCHASE {{$purchase->purchase_no}}</span></a>
+            <div class="" style="font-size: 16px;">Date: {{$purchase->date_of_purchase}}</div>
+          </div>
 
-    <div class="tab-content collapse" id="purchaseTable{{$purchase->purchase_no}}">
-      <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
-        <table class="table table-hover" id="dataTable">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Brand</th>
-              <th scope="col">Model/Label</th>
-              <th scope="col">Details</th>
-              <th scope="col">Subtype</th>
-              <th scope="col" hidden></th>
-              <th scope="col">Supplier</th>
-              <th scope="col">Qty</th>
-              <th scope="col"></th>
-              <th hidden></th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($purchases[$purchase->purchase_no] as $item)
-            @if ($item->unit_number==null)
-            <tr>
-              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->brand}}</td>
-              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->model}}</td>
-              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->details}}</td>
-              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->subtype}}</td>
-              <td hidden>{{$item->subtype}}{{$item->subtype_id}}</td>
-              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
-              <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
-              @if($purchase->or_no!=null)
-              <td class="text-right table-success">
-                  <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
-              </td>
-              @else
-              <td class="text-right">
-                <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
-              </td>
-              @endif
-            </tr>
-            @endif
-            @endforeach
-            @foreach($unit_number as $unit)
-            @if ($unit->p_id==$purchase->purchase_no)
-            <tr>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
-            <td hidden>PC_SystemUnit</td>
-            </tr>
-            @endif
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </td>
-</tr>
-@endforeach
+          <div class="tab-content collapse" id="purchaseTable{{$purchase->purchase_no}}">
+            <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
+              <table class="table table-hover" id="dataTable">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Model/Label</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Subtype</th>
+                    <th scope="col" hidden></th>
+                    <th scope="col">Supplier</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col"></th>
+                    <th hidden></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($purchases[$purchase->purchase_no] as $item)
+                  @if ($item->unit_number==null)
+                  <tr>
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->brand}}</td>
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->model}}</td>
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->details}}</td>
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->subtype}}</td>
+                    <td hidden>{{$item->subtype}}{{$item->subtype_id}}</td>
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
+                    @if($purchase->or_no!=null)
+                    <td class="text-right table-success">
+                        <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
+                    </td>
+                    @else
+                    <td class="text-right">
+                      <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
+                    </td>
+                    @endif
+                  </tr>
+                  @endif
+                  @endforeach
+                  @foreach($unit_number as $unit)
+                  @if ($unit->p_id==$purchase->purchase_no)
+                  <tr>
+                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
+                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
+                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
+                  <td hidden>PC_SystemUnit</td>
+                  </tr>
+                  @endif
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </td>
+        </tr>
+      @endforeach
 </tbody>
 </table>
 </div>
