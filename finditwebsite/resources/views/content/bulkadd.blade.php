@@ -330,17 +330,16 @@ body{
 
 
     });
-
-    $('#subtype').on('change', function(){
-        console.log($('#subtype option:selected').text());
-        if($('#subtype option:selected').text() == 'Motherboard'){
-            $('textarea#details').val('Socket:\r\nChipset:\r\nSize:\r\nRAM:');
-        } else if ($('#subtype option:selected').text() == 'CPU')  {
-            $('textarea#details').val('Socket:\r\nChipset:');
-        } else {
-            $('textarea#details').val("Enter Details:");
-        }
-    });
+    // $('#subtype').on('change', function(){
+    //     console.log($('#subtype option:selected').text());
+    //     if($('#subtype option:selected').text() == 'Motherboard'){
+    //         $('textarea#details').val('Socket:\r\nChipset:\r\nSize:\r\nRAM:');
+    //     } else if ($('#subtype option:selected').text() == 'CPU')  {
+    //         $('textarea#details').val('Socket:\r\nChipset:');
+    //     } else {
+    //         $('textarea#details').val("Enter Details:");
+    //     }
+    // });
 
 </script>
 

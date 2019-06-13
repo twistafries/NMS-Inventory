@@ -32,9 +32,14 @@ class TblEmployees extends Model {
 			return $query;
 	}
 
-
-
-
+	public static function getActiveEmployees(){
+		$query = \DB::table('employees')
+				->leftjoin('departments', 'employees.dept_id' , '=' , 'departments.id')
+				->select('employees.*' , 'departments.name as dept_name')
+				->where('employees.status', '=', 'active')
+				->get();
+		return $query;
+	}
 
 
 	public static function add_employee($params) {
