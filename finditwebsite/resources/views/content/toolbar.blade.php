@@ -11,7 +11,7 @@
                 </button>
                 <!-- Bulk add  -->
                 <button type="button" class="btn btn-outline-dark rounded-pill mr-2" id="bulkAdd">
-                    <a  data-toggle="tooltip" title="Bulk Add" href="{!! url('/bulk-add') !!}">
+                    <a  data-toggle="tooltip" title="Bulk Add" href="{!! url('/bulkadd') !!}">
                         <img class="tool-item" src="{{ asset('assets/icons/table-toolbar-icons/box.png') }}"> Bulk Add
                     </a>
                 </button>

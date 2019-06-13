@@ -330,12 +330,14 @@
                                             <div class="col col-7 details" id="fullname">{{ $equipment->warranty_start }} - {{ $equipment->warranty_end }}</div>
                                         </div>
 
-                                        <!-- Warranty -->
-                                        <div class="row row-details">
+                                        <!-- Issue Item Button -->
+                                        @if( $equipment->type_id != 1 && $equipment->status_id == 1 )
+                                        <div class="row row-details self-align-end">
                                             <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
-                                            Issue Item
+                                                Issue Item
                                             </button>                                            
                                         </div>
+                                        @endif
 
                                         <!-- MArk As -->
                                         <div class="row row-details">
@@ -358,7 +360,6 @@
                                                         <a class="dropdown-item" data-dismiss="modal" data-toggle="modal"
                                                             data-target="#replacement">Replacement Received</a>
                                                         <a class="dropdown-item warranty-not" href="#">Mark For Repair (Warranty Not Covered)</a>
-                                                        <a class="dropdown-item warranty-not" href="#">Purchase Replacement (Warranty Not Covered)</a>
                                                     </div>
                                                 </div>
                                                 @else
@@ -462,7 +463,6 @@
                                           <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="repairitemNAme"></h4>  for repair?</span></pre>
                                     </div>
                                     <div class="btn-group" role="group">
-                                        <button class="btn btn-secondary text-uppercase">Purchase Replacement</button>
                                         <button class="btn btn-warning text-uppercase" data-toggle="collapse"
                                             data-target="#remarks-4" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
@@ -509,7 +509,6 @@
                                                 <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="itemNAme"></h4>  for decommission?</span></pre>
                                             </div>
                                             <div class="btn-group" role="group">
-                                                <button class="btn btn-secondary text-uppercase">Purchase Replacement</button>
                                                 <button class="btn btn-warning text-uppercase" data-toggle="collapse"
                                                     data-target="#remarks" aria-expanded="false" aria-controls="collapseExample"
                                                     type="button">
@@ -697,17 +696,23 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="" method="post">
+                <form action="{!! url('/issueEquipment'); !!}" method="post">
+                {!! csrf_field() !!}
                 <div class="modal-body">
                     <div class="container-fluid" id="issueToModalBody">
                         <!-- Issue To  -->
-                        <div class="row row-details">
-                            <input type="hidden" name=equipment_id id="eq_id">
-                            <div class="col col-4 detail-header text-uppercase">Issue To</div>
-                            <select name="issuedTo" id="employeeDropdown" class="custom-select">
+                        <div class="row">
+                            <input type="hidden" name="equipment_id" id="eq_id">
+                            <div class="col col-2 detail-header text-uppercase">Issue To</div>
+                            <select id="departmentDropdown" class="custom-select">
+                                <option value="">Any Department</option>
+                                @foreach($departments as $department)
+                                <option value="">{{$department->name}}</option>
+                                @endforeach
+                            </select>
+                            <select name="issued_to" id="employeeDropdown" class="custom-select" placeholder="--Select Employee--">
                                 @foreach($active_employees as $employee)
-                                <option>{{$employee->id}} {{$employee->fname}} {{$employee->lname}}</option>
-                        
+                                <option value="{!! $employee->id !!}">ID:{{$employee->id}} | {{$employee->fname}} {{$employee->lname}}</option>
                                 @endforeach
                             </select>
                             
@@ -716,7 +721,7 @@
                         <hr>
                         <div class="row row-details">
                             <div class="col col-4 detail-header text-uppercase">Issue Until</div>
-                            <input type="date" name="issued_until" id="warranty_start_eqp" value="">
+                            <input type="date" class="form-control" name="issued_until" id="issued_until" >
                             <br>
                             <!-- <button type="button" class="btn btn-secondary text-uppercase"> Issue Item Indefinetely </button> -->
                         </div>
@@ -725,18 +730,14 @@
                         <div class="row row-details">
                             <div class="col col-4 detail-header text-uppercase">Remarks</div>
                             <textarea rows="4" cols="50" name="remarks" id="remarks"></textarea>
-                        </div>
-
-
-                        
-
+                        </div>                        
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit">Edit Values</button>
+                    <button type="submit" class="btn btn-primary text-uppercase">Issue Item</button>
                 </form>
-                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
+                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -1158,9 +1159,9 @@ $('#subtypes').on('keyup change',  function() {
     </script>
 
     <script type="text/javascript">
-    function fetchItemId(id){
-        
-        $('#issueToModalBody')
+    function issueItem(id){
+        console.log(id);
+        $('#eq_id').val(id);
 
     }
 // function issueItem(id){
