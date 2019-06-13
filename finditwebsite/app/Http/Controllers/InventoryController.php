@@ -203,9 +203,8 @@ class InventoryController extends BaseController
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
       $data['units'] = TblSystemUnits::get_all_system_units();
-      $data['peec'] ['unitss'] = TblSystemUnits::get_all_system_units();
       $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
-
+      $data['pc_parts'] = TblItEquipment::get_all_parts();
       ///pc
       $data['departments'] = TblDepartments::getDept();
       $data['depts'] = TblDepartments::getDept();

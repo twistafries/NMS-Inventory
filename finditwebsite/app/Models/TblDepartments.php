@@ -23,7 +23,7 @@ class TblDepartments extends Model {
 
 	public static function getDept($params=null) {
 		$query = \DB::table('departments')
-			->orderBy('created_at', 'desc')
+			->orderBy('id', 'asc')
 			->get();
 			return $query;
 	}
