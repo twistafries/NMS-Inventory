@@ -110,7 +110,12 @@ class BulkController extends BaseController
             $ctr++;
         }
         $purchasedItem = PurchasedItems::find($item_id);
-        $purchasedItem->qty_added = $ctr;
+        if($purchasedItem->qty_added == null){
+            $purchasedItem->qty_added = $ctr;      
+        } else {
+            $purchasedItem->qty_added = $purchasedItem->qty_added+$ctr;
+        }
+        
         $purchasedItem->save();
 
         if(is_null(Purchases::find($p_id)->or_no)){
