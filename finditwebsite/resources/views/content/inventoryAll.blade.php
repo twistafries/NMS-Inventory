@@ -735,7 +735,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit">Edit Values</button>
-
+                </form>
                     <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
                 </div>
             </div>
