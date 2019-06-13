@@ -30,6 +30,21 @@ class TblIssuances extends Model {
 		return $query;
 	}
 
+	public static function getLateReturn($params = null) {
+		$query = \DB::table('issuance as i')
+		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
+		->leftjoin('departments', 'departments.id', '=', 'employees.dept_id')
+		->select('employees.id', 'employees.fname as fname', 'employees.lname as lname', 'departments.name as department', DB::raw('count(*) as totalIssued'))
+		->where('returned_at', '=', null)
+		->where('issued_until', '<', Carbon::now()->toDateString())
+		->whereBetween('i.created_at', [$params['start'], $params['end']])
+		->groupBy('employees.id')
+		->orderBy('employees.id', 'desc')
+		->get();
+
+		return $query;
+	}
+
 	public static function getIssuancePerEmployee($id) {
 		$query = \DB::table('issuance as i')
 		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
@@ -102,35 +117,27 @@ class TblIssuances extends Model {
 	}
 
 
-	public static function most_issued(){
-		$query = \DB::table('it_equipment as i')
-		->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'i.subtype_id')
+	public static function most_issued($params){
+		$query = \DB::table('issuance as i')
+		->leftjoin('it_equipment', 'it_equipment.id', 'i.equipment_id')
+		->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', 'it_equipment.subtype_id')
 		->leftjoin('it_equipment_type', 'it_equipment_type.id', 'it_equipment_subtype.type_id')
-		->select( "i.subtype_id", DB::raw("COUNT(i.subtype_id) as count"))
-		->where('status_id', '=', '1')
-		->orwhere('status_id', '=', '2')
-		->orwhere('status_id', '=', '3')
-		->orwhere('status_id', '=', '4')
-		->groupBy('i.subtype_id')
+		->select( "it_equipment.subtype_id","it_equipment_subtype.name", DB::raw("COUNT(it_equipment.subtype_id) as count"))
+		->whereBetween('i.created_at', [$params['start'], $params['end']])
+		->groupBy('it_equipment.subtype_id')
 		->get();
 		return $query;
 	}
 
-	public static function getID($params) {
-		$query = \DB::table('it_equipment')
-			->select('id')
-			->where('name', '=', $params)
-			->get();
+	public static function system_unit_issued($params){
+		$query = \DB::table('issuance as i')
+		->select(DB::raw("COUNT(id) as count"))
+		->where('unit_id', '!=', null)
+		->whereBetween('i.created_at', [$params['start'], $params['end']])
+		->get();
 		return $query;
 	}
-	public static function getEmployeeID($params) {
-		$query = \DB::table('employees')
-			->select('id')
-			->where('fname', '=', $params['fname'])
-			->where('lname', '=', $params['lname'])
-			->get();
-		return $query;
-	}
+
 
 
 	public static function add_issuance($params) {
