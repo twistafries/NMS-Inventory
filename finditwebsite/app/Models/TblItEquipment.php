@@ -41,6 +41,20 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_incomplete_orders($params = null){
+        $query = TblItEquipment::leftjoin('equipment_status', 'equipment_status.id', '=', 'status_id')
+        ->leftjoin('supplier', 'supplier.id', '=', 'supplier_id')
+        ->leftjoin('it_equipment_subtype', 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        ->leftjoin('it_equipment_type', 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        ->select('it_equipment_type.name as type', 'it_equipment_subtype.name as subtype', 'it_equipment.id as eqId', 'brand', 'model', 'it_equipment.created_at', 'or_no', 'supplier.supplier_name as supplier')
+        ->where('status_id', '=', 6)
+        ->whereBetween('it_equipment.created_at', [$params['start'], $params['end']])
+        ->orderBy('it_equipment.created_at' , 'desc')
+        ->get();
+        return $query;
+    }
+
+
     public static function get_equipment_info($id){
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')

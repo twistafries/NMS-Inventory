@@ -18,6 +18,16 @@ class Purchases extends Model
         return $query;
     }
 
+    public static function get_completed_purchases($params = null){
+        $query = \DB::table('purchases')
+        -> select('purchases.*')
+        -> where('or_no', '!=', null)
+        -> whereBetween('date_of_purchase', [$params['start'], $params['end']])
+        -> orderBy('date_of_purchase' , 'desc')
+        -> get();
+        return $query;
+    }
+
 
     public static function add_purchase($params){
       $purchases = new Purchases;

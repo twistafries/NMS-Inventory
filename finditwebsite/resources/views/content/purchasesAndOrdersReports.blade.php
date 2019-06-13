@@ -47,128 +47,55 @@
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Purchases and Orders Report as of January 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Purchases and Orders Report as of {{$start}} - {{$end}}</p>
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable" style="margin-top:4rem;">
+          <div class="" id="inventoryTable" style="margin-top:2rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Completed Orders</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem; font-size: 20px;">{{$title}}</p>
             </div>
+            @if($title=="Incomplete Orders")
             <table class="table all" id="complete">
-              <thead class="thead-dark" style="font-size: 14px;">
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                <thead class="thead-dark" style="font-size: 14px;">
+                  <tr>
+                      <th scope="col">Item ID</th>
+                      <th scope="col">Brand-Model/Label</th>
+                      <th scope="col">Item Type</th>
+                      <th scope="col">Item Subtype</th>
+                      <th scope="col">Date:</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-          <div class="" id="inventoryTable" style="margin-top:4rem; margin-bottom: 2rem;">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Incomplete Orders</p>
-            </div>
-            <table class="table all" id="incomplete">
-              <thead class="thead-dark" style="font-size: 14px;">
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+                  @foreach($inc_orders as $inc_orders)
+                  <tr id="{{$inc_orders->created_at}}">
+                    <td></td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+              @else
+              <table class="table all" id="complete">
+                  <thead class="thead-dark" style="font-size: 14px;">
+                    <tr>
+                        <th scope="col">Purchase Number</th>
+                        <th scope="col">Official Receipt Number</th>
+                        <th scope="col">Date of Purchases:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    @foreach($comp_orders as $comp_orders)
+                    <tr id="{{$comp_orders->date_of_purchase}}">
+                      <td>Purchase Number {{$comp_orders->purchase_no}}</td>
+                      <td>{{$comp_orders->or_no}}</td>
+                      <td>{{$comp_orders->date_of_purchase}}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              @endif
           </div>
 
         </div>

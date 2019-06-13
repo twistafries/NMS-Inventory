@@ -107,6 +107,7 @@
                   <li class="list-group-item" id="purchasesreport" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" style="cursor: pointer; "><span class="fas fa-angle-right" style="cursor: pointer; margin-right: 1rem;"></span>Purchases</li>
                   <form action="{!! url('/purchasesAndOrdersReports'); !!}" onsubmit="getDate()" method="post">
                       {!! csrf_field() !!}
+                    <input name="status" value="6" hidden>
                     <input name="start" class="start" value="" hidden>
                     <input name="end" class="end" value="" hidden>
                     <input name="title" value="Completed Orders" hidden>
@@ -114,6 +115,7 @@
                   </form>
                   <form action="{!! url('/purchasesAndOrdersReports'); !!}" onsubmit="getDate()" method="post">
                       {!! csrf_field() !!}
+                    <input name="status" value="6" hidden>
                     <input name="start" class="start" value="" hidden>
                     <input name="end" class="end" value="" hidden>
                     <input name="title" value="Incomplete Orders" hidden>
