@@ -141,8 +141,10 @@
                     <tbody>
 
                         @foreach ($issuance as $issuance)
-                        @if($issuance->issued_until < Carbon::today() && $issuance->issued_until != null )
-                              <tr bgcolor="red" data-toggle="modal" data-target="#viewItemModal">
+                        @if($issuance->issued_until < Carbon::today()->format('m-d-Y') && $issuance->issued_until != null )
+                          Today: {{Carbon::today()->format('m-d-Y')}}
+                          Issued Until: {{$issuance->issued_until}}
+                              <tr class="table-danger" data-toggle="modal" data-target="#viewItemModal">
                         @else
                               <tr data-toggle="modal" data-target="#viewItemModal">
                         @endif
@@ -300,15 +302,15 @@
                                       </div>
 
                               <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-                          </form>
+                          
                           </div>
 
                           <div class="modal-footer text-uppercase">
-                              <button class="btn btn-info">Add</button>
+                              <button type="submit" class="btn btn-info">Add</button>
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
                           </div>
-
+                      </form>
 
                     </div>
                 </div>
