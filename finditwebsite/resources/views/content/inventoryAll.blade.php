@@ -697,22 +697,35 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
+                <form action="" method="post">
                 <div class="modal-body">
-                    <div class="container-fluid">
+                    <div class="container-fluid" id="issueToModalBody">
                         <!-- Issue To  -->
                         <div class="row row-details">
+                            <input type="hidden" name=equipment_id id="eq_id">
                             <div class="col col-4 detail-header text-uppercase">Issue To</div>
                             <select name="issuedTo" id="employeeDropdown" class="custom-select">
                                 @foreach($active_employees as $employee)
                                 <option>{{$employee->id}} {{$employee->fname}} {{$employee->lname}}</option>
-
+                        
                                 @endforeach
                             </select>
+                            
                         </div>
 
                         <hr>
-
+                        <div class="row row-details">
+                            <div class="col col-4 detail-header text-uppercase">Issue Until</div>
+                            <input type="date" name="issued_until" id="warranty_start_eqp" value="">
+                            <br>
+                            <!-- <button type="button" class="btn btn-secondary text-uppercase"> Issue Item Indefinetely </button> -->
+                        </div>
+                        
+                        <hr>
+                        <div class="row row-details">
+                            <div class="col col-4 detail-header text-uppercase">Remarks</div>
+                            <textarea rows="4" cols="50" name="remarks" id="remarks"></textarea>
+                        </div>
 
 
                         
@@ -1145,33 +1158,38 @@ $('#subtypes').on('keyup change',  function() {
     </script>
 
     <script type="text/javascript">
-function issueItem(id){
-    $.ajax({
-        url: 'issueItem/' + id,
-        type: 'get',
-        dataType: 'json',
-        success: function(response){
-            console.log("Response " + response['equipment']);
-            console.log("Response " + response['equipment']);
-            len = response['active_employees'].length;
-            console.log("len" + len);
+    function fetchItemId(id){
+        
+        $('#issueToModalBody')
 
-            if(len > 0){
-                for(var i=0; i < len; i++){
-                    var emp_id = response['active_employees'][i].id;
-                    var emp_firstName = response['active_employees'][i].fname;
-                    var emp_lastName = response['active_employees'][i].lname;
-                    var emp_department = response['active_employees'][i].dept_name;
-                }
+    }
+// function issueItem(id){
+//     $.ajax({
+//         url: 'issueItem/' + id,
+//         type: 'get',
+//         dataType: 'json',
+//         success: function(response){
+//             console.log("Response " + response['equipment']);
+//             console.log("Response " + response['equipment']);
+//             len = response['active_employees'].length;
+//             console.log("len" + len);
 
-                var employeeOption = 
-                '<option>' + emp_id + ' ' + emp_firstName + ' ' + emp_lastName + ' ' + emp_department + '</option>';
+//             if(len > 0){
+//                 for(var i=0; i < len; i++){
+//                     var emp_id = response['active_employees'][i].id;
+//                     var emp_firstName = response['active_employees'][i].fname;
+//                     var emp_lastName = response['active_employees'][i].lname;
+//                     var emp_department = response['active_employees'][i].dept_name;
+//                 }
 
-                $('#issuedTo').append(employeeOption);
-            }
-        }
-    })
-}
+//                 var employeeOption = 
+//                 '<option>' + emp_id + ' ' + emp_firstName + ' ' + emp_lastName + ' ' + emp_department + '</option>';
+
+//                 $('#issuedTo').append(employeeOption);
+//             }
+//         }
+//     })
+// }
 
 function toggle(source) {
     checkboxes = document.getElementsByName('ALL');

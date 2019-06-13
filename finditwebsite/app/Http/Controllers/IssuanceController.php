@@ -121,6 +121,10 @@ class IssuanceController extends BaseController {
 		}
 	}
 
+	public function addIssuanceFromInventory(Request $request){
+
+	}
+
 	public function fetchIssuanceInfo($id){
 		$data['active_employees'] = TblEmployees::getActiveEmployees();
 		$data['equipment'] = TblItEquipment::get_equipment_info($id);
