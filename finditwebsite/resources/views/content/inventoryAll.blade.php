@@ -329,6 +329,14 @@
                                             <div class="col col-4 detail-header text-uppercase">Warranty Period:</div>
                                             <div class="col col-7 details" id="fullname">{{ $equipment->warranty_start }} - {{ $equipment->warranty_end }}</div>
                                         </div>
+
+                                        <!-- Warranty -->
+                                        <div class="row row-details">
+                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
+                                            Issue Item
+                                            </button>                                            
+                                        </div>
+
                                         <!-- MArk As -->
                                         <div class="row row-details">
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
@@ -378,7 +386,6 @@
 
                     @endforeach
 
-                    <!-- View Details All Modal -->
 
                     <!-- Return to supplier warning modal -->
                     <div class="modal fade" id="return" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
@@ -434,7 +441,6 @@
 
 
 
-                    <!-- View Details All Modal -->
 
                     <!-- For Repair to supplier warning modal -->
                     <div class="modal fade" id="for-repair" tabindex="-1" role="dialog" aria-labelledby="toBeReturnedModalTitle"
@@ -480,10 +486,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-                    <!-- View Details All Modal -->
 
                     <!-- Decomissioned -->
                     <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
@@ -537,7 +539,7 @@
 
 
 
-                    <!-- View Details All Modal -->
+                    <!-- Permanently Delete -->
 
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
 
@@ -577,7 +579,6 @@
 
 
 
-                    <!-- View Details All Modal -->
 
                     <!-- Edit Details Modal -->
                     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit"
@@ -678,13 +679,52 @@
 
 
 
-                    <!-- View Details All Modal -->
               </tbody>
 
             </table>
         </div>
 
+    <!-- Issue Modal -->
+    <div class="modal fade" id="issue-modal" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
+                        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="container">
+                        Issue Item Modal
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <!-- Issue To  -->
+                        <div class="row row-details">
+                            <div class="col col-4 detail-header text-uppercase">Issue To</div>
+                            <select name="issuedTo" id="employeeDropdown" class="custom-select">
+                                
+                            </select>
+                        </div>
+
+                        <hr>
+
+
+
+                        
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit">Edit Values</button>
+
+                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Single Add Modal -->
 
@@ -1102,6 +1142,34 @@ $('#subtypes').on('keyup change',  function() {
     </script>
 
     <script type="text/javascript">
+function issueItem(id){
+    $.ajax({
+        url: 'issueItem/' + id,
+        type: 'get',
+        dataType: 'json',
+        success: function(response){
+            console.log("Response " + response['equipment']);
+            console.log("Response " + response['equipment']);
+            len = response['active_employees'].length;
+            console.log("len" + len);
+
+            if(len > 0){
+                for(var i=0; i < len; i++){
+                    var emp_id = response['active_employees'][i].id;
+                    var emp_firstName = response['active_employees'][i].fname;
+                    var emp_lastName = response['active_employees'][i].lname;
+                    var emp_department = response['active_employees'][i].dept_name;
+                }
+
+                var employeeOption = 
+                '<option>' + emp_id + ' ' + emp_firstName + ' ' + emp_lastName + ' ' + emp_department + '</option>';
+
+                $('#issuedTo').append(employeeOption);
+            }
+        }
+    })
+}
+
 function toggle(source) {
     checkboxes = document.getElementsByName('ALL');
     for ( var i in checkboxes)
@@ -1168,8 +1236,6 @@ $.fn.dataTable.ext.search.push(
       var maximum = $('#max').val();
       var min = new Date(minimum);
       var max = new Date(maximum);
-console.log(min);
-console.log(max);
       var startDate = new Date(data[8]);
       console.log(startDate);
       if (isNaN(min) && isNaN(max) ) { return true; }
@@ -1190,6 +1256,11 @@ console.log(max);
           table.draw();
       } );
     });
+
+    
 </script>
+
+<script>
+    </script>
 
 @stop

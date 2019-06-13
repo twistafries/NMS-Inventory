@@ -155,3 +155,4 @@ Route::match(['get', 'post'], '/tempBulkPC', 'PCBuildController@insertBulkPC');
 Route::post('/template', 'InventoryController@addEquipment');
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
+Route::get('/issueItem/{id}', 'IssuanceController@fetchIssuanceInfo');
