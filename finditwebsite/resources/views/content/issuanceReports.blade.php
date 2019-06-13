@@ -24,7 +24,7 @@
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    <i class="fas fa-chart-line">Inventory
+    <i class="fas fa-chart-line">Issuance Report
     @stop
 @stop
 
@@ -43,201 +43,82 @@
       </div>
     </div>
 </div>
-        <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
+
+      <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Issuance Report as of January 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Issuance Report as of {{$start}} - {{$end}}</p>
           </div>
 
           <!--table-->
-          <div class="" id="inventoryTable">
+
+          <!-- additions -->
+          <div class="" id="inventoryTable" style="margin-top:4rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Late Returns</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">{{$title}}</p>
             </div>
-            <table class="table all" id="lateReturns">
+
+            @if($title=="Late Return")
+            <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Total Number of Late Returned</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+
+                @foreach($employees as $employee)
+                <tr id="{{$employee->id}}">
+                  <td>{{$employee->id}}</td>
+                  <td>{{$employee->fname}}</td>
+                  <td>{{$employee->lname}}</td>
+                  <td>{{$employee->department}}</td>
+                  <td>{{$employee->totalIssued}}</td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                @endforeach
               </tbody>
             </table>
-          </div>
-
-          <div class="" id="inventoryTable">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Issuance per (SU, Mobile Device, Peripherals)</p>
-            </div>
-            <table class="table all" id="issuancePerComponent">
+            @else
+            <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                    <th scope="col">Subtype</th>
+                    <th scope="col">Total Number of Issued Item</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+
+                @foreach($most_issued as $most_issued)
+                @if($system_unit_issued > $most_issued->count)
+                <tr id="{{$most_issued->subtype_id}}">
+                  <td>System Unit</td>
+                  <td>{{$system_unit_issued}}</td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                @php ($system_unit_issued = 0)
+                @endif
+                @if($most_issued->name!=null)
+                <tr id="{{$most_issued->subtype_id}}">
+                  <td>{{$most_issued->name}}</td>
+                  <td>{{$most_issued->count}}</td>
+                  @endif
+                @endforeach
               </tbody>
             </table>
-          </div>
+            @endif
+          <!-- available -->
 
-          <div class="" id="inventoryTable">
-            <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">Most/Least issued items</p>
-            </div>
-            <table class="table all" id="mostLeast">
-              <thead class="thead-dark" style="font-size: 14px;">
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>etfghj</td>
-                  <td>dfghj</td>
-                  <td>sdfcgvhb</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
-        </div>
+
 
     <!--Graph-->
     <div class="row" id="graph" style="margin-bottom: 2rem;">
       <div class="col col-6" id="container2" style="height: 350px; margin-top: 2rem;"></div>
       <div class="col col-6" id="container3" style="height: 350px; margin-top: 2rem;"></div>
-      <div class="col col-6" id="container4" style="height: 350px; margin-top: 2rem;"></div>
     </div>
 
   </div>
@@ -279,8 +160,6 @@
         <script type="text/javascript" src="{{ asset('js/pdfmake/pdfmake.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/pdfmake/vfs_fonts.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/JSZip/jszip.min.js') }}"></script>
-
-        <!-- <script src="https://cdn.jsdelivr.net/jspdf/1.2.61/jspdf.min.js"></script> -->
 
         <!--dashboard icon sidenav collapse-->
         <script type="text/javascript">
@@ -438,16 +317,16 @@
           }
         </script>
 
-        <script>
-        $(document).ready(function() {
-            $('#lateReturns, #issuancePerComponent, #mostLeast').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                "searching": false,
-                "ordering": false
-            } );
-        } );
-      </script>
+      <script>
+      $(document).ready(function() {
+          $('#available, #available2, #repair, #return, #disposal').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copy', 'csv', 'excel', 'pdf', 'print'
+              ],
+              "searching": false,
+              "ordering": false
+          } );
+      } );
+    </script>
 @stop

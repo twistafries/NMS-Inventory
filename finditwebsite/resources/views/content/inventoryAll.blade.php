@@ -121,7 +121,6 @@
 
 <div class="row">
   <div class="col-3">
-    <div class="mb-2"><i class="fas fa-warehouse" style="margin-right: 1rem;"></i> INVENTORY REPORTS</div>
   </div>
   <div class="col-3"></div>
   <div class="col-3 text-right">

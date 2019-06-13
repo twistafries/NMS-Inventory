@@ -48,7 +48,7 @@
           <div class="sample" style=" margin-top: 1rem;">
             <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
-            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Inventory Report as of June 2019</p>
+            <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Inventory Report as of {{$start}} - {{$end}}</p>
           </div>
 
           <!--table-->
@@ -58,38 +58,31 @@
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">{{$title}}</p>
             </div>
-            <table class="table all" id="available">
-              <thead class="thead-dark" style="font-size: 14px;">
-                <tr>
-                  <!-- if individual items are needed
-                  <th scope="col">Item ID</th>
-                  <th scope="col">Item Type</th>
-                  <th scope="col">Item Subtype</th>
-                  <th scope="col">Brand</th>
-                  <th scope="col">Model</th>
-                  <th scope="col">O/R</th>
-                  <th scope="col">Model</th>
-                  <th scope="col">Added</th>
-                  -->
 
-                  <th scope="col">Item Type</th>
-                  <th scope="col">Item Subtype</th>
-                  <th scope="col">Month Added</th>
-                </tr>
-              </thead>
-              <tbody>
+                <table class="table all" id="available">
+                  <thead class="thead-dark" style="font-size: 14px;">
+                    <tr>
+                        <th scope="col">Item ID</th>
+                        <th scope="col">Brand-Model/Label</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Item Subtype</th>
+                        <th scope="col">Date:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                @foreach($items as $item)
-                <tr id={{$item->created_at}}>
-                  <td>{{$item->type}}</td>
-                  <td>{{$item->subtype}}</td>
-                  <td>{{$item->created_at}}</td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
-          </div>
-<div>
+                    @foreach($items as $item)
+                    <tr id="{{$item->created_at}}">
+                      <td>{{$item->name_component}}@if($item->brand==null){{$item->system_unit}} @endif</td>
+                      <td>{{$item->brand}}-{{$item->model}}@if($item->brand==null){{$item->name}} @endif</td>
+                      <td>{{$item->type}}@if($item->type==null)System Unit @endif</td>
+                      <td>{{$item->subtype}}@if($item->brand==null)Not Applicable @endif</td>
+                      <td>{{$item->created_at}}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+
           <!-- available -->
 
 

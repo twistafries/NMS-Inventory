@@ -76,17 +76,9 @@ Route::get('/viewPurchases', 'PurchasesController@viewPurchases');
 //generate report
 Route::get('/generateReportPage', 'Reports@showAllStatus');
 Route::post('/inventoryReports', 'inventoryReports@showInventoryReports');
-// Route::get('/itemAvailabilityReport', 'inventoryReports@showAvailable');
-// Route::get('/itemRepairReport', 'inventoryReports@showRepair');
-// Route::get('/itemReturnReport', 'inventoryReports@showReturn');
-// Route::get('/itemDisposalReport', 'inventoryReports@showDisposal');
-Route::get('/purchasesAndOrdersReports', 'inventoryReports@showPurchasesAndOrders');
-// Route::get('/completedOrdersReport', 'inventoryReports@showCompleteOrders');
-// Route::get('/incompleteOrdersReport', 'inventoryReports@showIncompleteOrders');
-Route::get('/issuanceReports', 'inventoryReports@showIssuanceReports');
-// Route::get('/lateReturnsReport', 'inventoryReports@showLateReport');
-// Route::get('/issuancePerComponent', 'inventoryReports@showIssuancePerComponent');
-// Route::get('/mostLeastReport', 'inventoryReports@showmostLeastReport');
+Route::post('/purchasesAndOrdersReports', 'inventoryReports@showPurchasesAndOrders');
+Route::post('/issuanceReports', 'inventoryReports@showIssuanceReports');
+
 
 Route::get('/inventory', 'InventoryController@showAllInventory');
 Route::get('/inventoryAll', 'InventoryController@showAllItemsInventory');
