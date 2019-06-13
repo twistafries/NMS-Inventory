@@ -70,7 +70,12 @@
 
                   @foreach($inc_orders as $inc_orders)
                   <tr id="{{$inc_orders->created_at}}">
-                    <td></td>
+                    <td>{{$inc_orders->id}}</td>
+                    <td>{{$inc_orders->brand}}-{{$inc_orders->model}}</td>
+                    <td>{{$inc_orders->type}}</td>
+                    <td>{{$inc_orders->subtype}}</td>
+                    <td>{{$inc_orders->created_at}}</td>
+
                   </tr>
                   @endforeach
                 </tbody>

@@ -25,6 +25,7 @@ class TblDepartments extends Model {
 		$query = \DB::table('departments')
 			->orderBy('created_at', 'desc')
 			->get();
+			return $query;
 	}
 
 	public static function updateStatus($params) {

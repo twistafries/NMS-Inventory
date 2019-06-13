@@ -18,12 +18,12 @@
 @stop
 
 @section('title')
-    Issue
+    Employee Issuance
 @stop
 
 @section('../layout/breadcrumbs')
     @section('breadcrumbs-title')
-    <i class="fas fa-chart-line">Issuance
+    <i class="fas fa-chart-line">Employee Issuance
     @stop
 @stop
 
@@ -204,7 +204,7 @@
                                 <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button>
                                 </form>
 
-                                <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" 
+                                <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal"
                                 data-target="#repair-{!! $item->id !!}">
                                     Repair
                                 </button>
@@ -222,7 +222,7 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                        
+
                                     <div class="modal-body">
                                         <form action="{!! url('/editStatus'); !!}" method="post">
                                             {!! csrf_field() !!}
@@ -232,7 +232,7 @@
                                             <button class="btn btn-primary">Issue Replacement</button>
                                         </form>
                                     </div>
-                        
+
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>

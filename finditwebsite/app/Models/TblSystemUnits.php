@@ -15,12 +15,14 @@ class TblSystemUnits extends Model
         $query = \DB::table('system_units')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'system_units.status_id')
         -> leftjoin('users' , 'users.id', '=', 'system_units.user_id')
-        -> select('system_units.*', 'system_units.id as id', 'system_units.name as name', 'users.lname as lname', 'users.fname as fname', 'equipment_status.name as status', DB::raw("DATE_FORMAT(system_units.created_at, '%m-%d-%Y') as added_at"))
+        -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
+        -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
+        -> select('system_units.*', 'system_units.id as id', 'system_units.name as name', 'users.lname as lname', 'users.fname as fname', 'employees.fname as efname', 'employees.lname as elname', 'equipment_status.name as status', DB::raw("DATE_FORMAT(system_units.created_at, '%m-%d-%Y') as added_at"))
         -> orderBy('system_units.id' , 'ASC')
         -> get();
         return $query;
     }
-    
+
     public static function get_unit_component($params){
         $query = \DB::table('system_units')
         -> leftjoin('it_equipment' , 'it_equipment.unit_id', '=', 'system_units.id')
@@ -112,7 +114,7 @@ class TblSystemUnits extends Model
       -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
       -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
       -> leftjoin('equipment_status', 'system_units.status_id', '=', 'equipment_status.id')
-      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 
+      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid',
       'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*' , 'equipment_status.name as status_name')
       -> where([['system_units.dept_id', '=', $department],['system_units.status_id', '=', $status]])
       ->get();
@@ -127,7 +129,7 @@ class TblSystemUnits extends Model
 
       return $query;
     }
-    
+
     public static function getUnit($unit_id){
       $query = \DB::table('system_units')
       -> leftjoin('departments', 'system_units.dept_id', '=', 'departments.id')

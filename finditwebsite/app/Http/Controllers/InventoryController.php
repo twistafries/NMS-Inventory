@@ -18,6 +18,7 @@ use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
 use App\Models\TblActivityLogs;
 use App\Models\Suppliers;
+use App\Models\TblDepartments;
 use Session, Auth;
 use DB;
 
@@ -199,9 +200,20 @@ class InventoryController extends BaseController
       $data['pc_part_subtypes'] = TblItEquipmentSubtype::get_all_equipment_subtype();
       $data['pc_components'] = TblItEquipmentSubtype::get_component_subtype();
       $data['unit_parts'] = TblItEquipment::get_all_equipment();
-      $data['pc'] = TblSystemUnits::get_all_system_units();
+      $data['units'] = TblSystemUnits::get_all_system_units();
       $data['peec'] ['unitss'] = TblSystemUnits::get_all_system_units();
-        $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
+      $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
+
+      ///pc
+      $data['departments'] = TblDepartments::getDept();
+      $data['depts'] = TblDepartments::getDept();
+
+      foreach ($data['departments']  as $dept) {
+    			$data['pc'][$dept->id] = TblSystemUnits::unitByDep($dept->id);
+    	}
+
+
+
       return view ('content/systemUnit' , $data);
     }
 
