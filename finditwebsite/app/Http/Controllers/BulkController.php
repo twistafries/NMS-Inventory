@@ -99,6 +99,7 @@ class BulkController extends BaseController
                 'warranty_end' => $warranty_end[$count],
                 'user_id' => $user_id
             ]);
+
             $count++;
         }
         
@@ -107,7 +108,8 @@ class BulkController extends BaseController
         foreach($data['inventory'] as $inventory){
             TblItEquipment::add_equipment($inventory);
         }
-        // Purchases::add_purchase($p_id , $or_no[1]);
+
+        Purchases::edit_purchase($p_id , $or_no[1]);
     
         return \Redirect::to('/inventoryAll')
         ->with('message' , $count  . ' equipment has been added');

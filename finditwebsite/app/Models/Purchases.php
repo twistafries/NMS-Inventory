@@ -9,6 +9,7 @@ class Purchases extends Model
 {
     protected $table = 'purchases';
     public $timestamps = false;
+    public $primaryKey = 'purchase_no';
 
     public static function get_purchases($params = null){
         $query = \DB::table('purchases')
@@ -33,17 +34,14 @@ class Purchases extends Model
   	}
 
     public static function edit_purchase($id, $or_no){
-      $purchases = Purchases::find($id);
+      $purchase_no = $id;
+      $purchases = Purchases::find($purchase_no);
   		$purchases->or_no = $or_no;
-
   		try {
   			$purchases->save();
   		}catch(QueryException $e) {
   			die($e);
   		}
-
   	}
-
-
 
 }
