@@ -158,11 +158,18 @@
 
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Model:</p>
-                                    <input name="purchase[model][]" type="text" size="25" style="height: 2rem; width:9rem;">
+                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
+                                    <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;" required>
                                   </div>
                                 </div>
 
+                                <div class="input-group col-2" style="margin-top: 1rem;">
+                                  <div class="">
+                                    <p class="card-title text-dark" style="font-size: 14px;">Model:</p>
+                                    <input name="purchase[model][]" type="text" size="25" style="height: 2rem; width:9rem;" required>
+                                  </div>
+                                </div>
+                           
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
@@ -174,17 +181,12 @@ RAM:
                                   </div>
                                 </div>
 
-                                <div class="input-group col-2" style="margin-top: 1rem;">
-                                  <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
-                                    <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;">
-                                  </div>
-                                </div>
+                                
 
                                 <div class="input-group col-1" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Quantity:</p>
-                                    <input name="purchase[qty][]" type="number" size="25" style="height: 2rem; width:3rem;">
+                                    <input name="purchase[qty][]" type="number" size="25" style="height: 2rem; width:3rem;" required>
                                   </div>
                                 </div>
                             </div>
@@ -445,7 +447,10 @@ RAM:
                 </div>
 
                 <div class="text-center mt-2">
-                  <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
+                  @if(is_null($item->or_no))
+                    {{$item->or_no}}
+                    <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
+                  @endif
                 </div>
 
               </div>
@@ -713,7 +718,7 @@ RAM:
 
 
       function add() {
-        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><button onclick='rm()' style=\"margin-left:2rem;\">remove</button></td></tr>");
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><button onclick='rm()' style=\"margin-left:2rem;\">remove</button></td></tr>");
       }
     </script>
 
@@ -753,17 +758,24 @@ RAM:
           $('#brand').on('keyup change',  function() {
               table.draw();
           } );
+
+      $('select').on('change', function(){
+        console.log('hello');
+        if($('select #subtypes').val() == 'Motherboard' || $('select #subtypes').val() == 'CPU'){
+          $('textarea').val('hello');
+        }
+      })
       } );
 
-              function reset(){
-                document.getElementById("subtypes").selectedIndex = "0";
-                document.getElementById("supplier").selectedIndex = "0";
-                document.getElementById("brand").selectedIndex = "0";
-                $('#purchasesTable').DataTable().search('').draw();
+        function reset(){
+          document.getElementById("subtypes").selectedIndex = "0";
+          document.getElementById("supplier").selectedIndex = "0";
+          document.getElementById("brand").selectedIndex = "0";
+          $('#purchasesTable').DataTable().search('').draw();
 
-                // $('#myDataTable5').DataTable().search('').draw();
+          // $('#myDataTable5').DataTable().search('').draw();
 
-              }
+        }
 
 
           </script>
