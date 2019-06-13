@@ -178,7 +178,8 @@ a[data-toggle="collapse"] {
 box-shadow: 0 5px 18px rgba(0,0,0,0.10);
 }
 
-.card, .btn, .form-control {
+.card, .btn
+{
     border-radius: 0;
 }
 
@@ -927,13 +928,13 @@ div.add {
     padding: 1rem;
 }
 
-.form-control {
-    /* max-width: 15rem; */
+/* .form-control {
+    max-width: 15rem;
     background: transparent;
     border: none;
     border-bottom: 2px solid black;
     border-radius: 0;
-}
+} */
 
 .exampleFormControlSelect1 {
     width: 12.5rem;
@@ -1192,7 +1193,7 @@ button.dropdown-toggle {
    font-size: 0.9em;
 }
 
-.modal-body .form-group .inputForm{
+.modal-body, .inputForm{
   font-weight: bold;
 }
 
@@ -1205,12 +1206,12 @@ select.custom-select{
   padding: 0px 20px;
 }
 
-input.form-control{
+/* input.form-control{
   border-width: 1px;
   border-style: solid;
   border-color: black;
   padding: 0px 50px;
-}
+} */
 
 .input-text:focus{
   outline:none;
@@ -1239,9 +1240,9 @@ img {
   border-radius: 50%;
 }
 
-.form-group {
+/* .form-group {
   margin: 0 !important;
-}
+} */
 
 /**Dashboard - Settings dropdown**/
 .settings {

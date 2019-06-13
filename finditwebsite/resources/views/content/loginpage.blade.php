@@ -12,7 +12,7 @@
     <link rel="stylesheet"  href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet"  href="{{ asset('css/all.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}">
-    
+
     <!-- Your custom css goes here -->
     <link rel="stylesheet"  href="{{ asset('css/custom.css') }}">
 
@@ -29,19 +29,21 @@
                             <h4 class="card-title text-center login-newMedia">New Media Services</h4>
                             <form action="{!! url('/login') !!}" method="post" id="loginForm">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <div class="form-group"><center>
-                                <input type="email" name="email" class="form-control" placeholder="Enter Email">
-                                </center></div>
-                                <br>
-                                <div class="form-group"><center>
-                                <input type="password" name="password" class="form-control" placeholder="Enter Password">
-                                @if(Session::has('errorLogin'))
-                                    <br><center>
-                                    <small class="text-warning">{{ Session::get('errorLogin') }}</center></small>
-                                @endif 
-                               </center> </div>
+                                <div class="form-group">
+                                    <center>
+                                      <input type="email" name="email" class="form-control" placeholder="Email">
+                                    </center>
+                                </div>
 
-                                <br>
+                                <div class="form-group">
+                                    <center>
+                                      <input type="password" name="password" class="form-control" placeholder="Password">
+                                      @if(Session::has('errorLogin'))
+                                          <br><center>
+                                          <small class="text-warning">{{ Session::get('errorLogin') }}</center></small>
+                                      @endif
+                                    </center>
+                                  </div>
                                 <center><button id="saveButton" type="submit" class="btn btn-success p-2 px-3 my-1 text-uppercase text-lg-center">Log In</button></center>
                             </form>
                         </div>
@@ -54,14 +56,14 @@
     <!-- JQuery Core -->
     <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper/popper.min.js') }}"></script>
-    
+
     <!-- Bootstrap -->
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}"></script>
 
     <!-- Additional JS -->
     <script type="text/javascript">
-    
-    </script>   
+
+    </script>
 
 </body>
 

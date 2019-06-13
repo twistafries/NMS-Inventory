@@ -54,9 +54,9 @@
           <!--table-->
 
           <!-- additions -->
-          <div class="" id="inventoryTable" style="margin-top:4rem;">
+          <div class="" id="inventoryTable" style="margin-top:2rem;">
             <div class="inventory">
-              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">{{$title}}</p>
+              <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem; font-size: 20px;">{{$title}}</p>
             </div>
 
                 <table class="table all" id="available">
@@ -295,7 +295,23 @@
           $('#available, #available2, #repair, #return, #disposal').DataTable( {
               dom: 'Bfrtip',
               buttons: [
-                  'copy', 'csv', 'excel', 'pdf', 'print'
+                  'copy',
+                  {
+                    extend: 'excel',
+                    title: '{{$title}}',
+                  },
+                  {
+                    extend: 'csv',
+                    title: '{{$title}}',
+                  },
+                  {
+                    extend: 'pdf',
+                    title: '{{$title}}',
+                  },
+                  {
+                    extend: 'print',
+                    title: '{{$title}}',
+                  },
               ],
               "searching": false,
               "ordering": false

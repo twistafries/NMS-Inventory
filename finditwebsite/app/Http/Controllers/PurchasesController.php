@@ -294,7 +294,7 @@ class PurchasesController extends BaseController
               // // $log['unit'] = $data['unit_id'];
               // $log['activity'] = "added";
               // TblActivityLogs::add_log($log);
-              return \Redirect::to('/purchases')->with('new purchase has been added');
+              return \Redirect::to('/purchases')->with('new purchase added');
 
           }catch(Exception $e){
             return redirect()->back()
@@ -338,7 +338,7 @@ class PurchasesController extends BaseController
                   // $log['unit'] = $data['unit_id'];
                   $log['activity'] = "added";
                   TblActivityLogs::add_log($log);
-                  return \Redirect::to('/inventory')->with('equipment has been added');
+                  return \Redirect::to('/inventory')->with('equipment added');
                 }
 
               return \Redirect::to('/purchases')->with('item has been added into the inventory');

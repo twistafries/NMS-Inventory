@@ -566,7 +566,6 @@ class InventoryController extends BaseController
 
 
       $log['system_unit'] = $unit_id;
-      // $log['unit'] = $data['unit_id'];
       $log['activity'] = "added";
       TblActivityLogs::add_log($log);
       return \Redirect::to('/inventory')->with('equipment has been added');

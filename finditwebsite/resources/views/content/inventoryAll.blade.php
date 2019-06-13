@@ -358,7 +358,7 @@
                                                     data-target="#return">For Return</button>
                                                 @endif
                                                 <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#decommissionedModal">Decommissioned</button>
+                                                    data-target="#decommissionedModal">Decommission Item</button>
                                                 @endif
                                         </div>
 

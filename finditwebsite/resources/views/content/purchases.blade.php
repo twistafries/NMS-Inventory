@@ -380,15 +380,12 @@ RAM:
             @if ($unit->p_id==$purchase->purchase_no)
             <tr>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+            <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
             <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
             <td hidden>PC_SystemUnit</td>
-            <td class="text-right">
-              <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
-            </td>
             </tr>
             @endif
             @endforeach
@@ -595,16 +592,14 @@ RAM:
                                           <div class="col-sm-4"><div class="detail-header text-uppercase">Quantity:</div></div>
 
 <!-- Marker: button for adding pc -->
-                                         <div class="col-sm-4"><div class="detail-header text-uppercase">  <button type="button" id="" class="btn btn-info p-2">
-                                             <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add to inventory
-                                           </button></div></div>
+                                         <div class="col-sm-4"><div class="detail-header text-uppercase">  </div></div>
 
 
                                       </div>
                                       <div class="row">
 
                                           <div class="col-sm-4">{{$pc->supplier_name}}</div>
-                                          <input type="hidden" name="pcID[]" value={{$pc->p_id}}>
+                                          <input type="hidden" name="pcID" value={{$pc->p_id}}>
                                           <div class="col-sm-4">{{$pc->qty}}</div>
 
 
@@ -637,13 +632,18 @@ RAM:
                                         </tr>
                                         @endif
                                         @endforeach
+                                        <tr>
+                                          <p class="card-title">Qty. to Add
+                                          <input type="number" name="qty" min='1' max='{{$pc->qty}}' required></p>
+                                        </tr>
                                       </tbody>
                                       </table>
 
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        
+                                        <button type="submit" class="btn btn-primary text-uppercase">Add Items To Inventory</button>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                   </form>

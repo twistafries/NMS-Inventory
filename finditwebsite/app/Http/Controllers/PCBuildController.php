@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session, Auth;
+use Session, Auth, DB;
 
 use App\Models\PCBuildEq;
 use App\Models\TblItEquipmentSubtype;
@@ -13,6 +13,7 @@ use App\Models\TblItEquipment;
 use App\Models\TblDepartments;
 use App\Models\PurchasedItems;
 use App\Models\Purchases;
+use App\Models\TblActivityLogs;
 
 class PCBuildController extends Controller
 {
@@ -70,9 +71,11 @@ class PCBuildController extends Controller
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
         $data['user_id'] = $user_id;
-        $data['pID'] = $data['pcID'][0];
-        $data['components'] = PurchasedItems::getUnitItems($data['pcID'][0]);
-        $data['qty'] = $data['components'][0]->qty;
+        $data['pID'] = $data['pcID'];
+        $data['components'] = PurchasedItems::getUnitItems($data['pcID']);
+        $data['qty'] = $data['qty'];
+        $data['supplier_id'] = $data['components'][0]->supplier_id;
+        $data['rows'] = count($data['components']);
         $data['supplier'] = ($data['components'][0]->supplier);
         return view('content.bulkUnitAdd', $data);
     }
@@ -81,17 +84,45 @@ class PCBuildController extends Controller
         $session=Session::get('loggedIn');
         try{
             $data = $request->all();
-
             $user_id = $session['id'];
             $count = 0;
+            $ctr = 0;
             $sUnit = [];
-       
             $sUnit['or_no'] = $data['or_no'];
             $sUnit['user_id'] = $user_id;
             $sUnit['subtype'] = array_unique($data['subtype']);
+
             for($count; $count < $data['qty']; $count++){
                 $sUnit['name'] = $data['name'][$count];
-                TblSystemUnits::add_system_unit($sUnit);
+                $unit_id=TblSystemUnits::add_system_unit($sUnit);
+
+                foreach($sUnit['subtype'] as $comp){
+                    $it_equipment = new TblItEquipment;
+                    $it_equipment->subtype_id = $comp;
+                    $it_equipment->brand = $data['brand'][$ctr];
+                    $it_equipment->model = $data['model'][$ctr];
+                    $it_equipment->details = $data['dets'.$comp][$count];
+                    $it_equipment->serial_no = $data['serial_no'.$comp][$count];
+                    $it_equipment->or_no = $data['or_no'];
+                    $it_equipment->user_id = $user_id;
+                    $it_equipment->status_id = 8;
+                    $it_equipment->warranty_start = $data['warranty_start'];
+                    $it_equipment->warranty_end = $data['warranty_end'];
+                    $it_equipment->supplier_id = $data['supplier_id'];
+                    $it_equipment->unit_id = $unit_id;
+
+                    $ctr++;
+
+                    $it_equipment->save();
+                    $id = DB::getPdo()->lastInsertId();
+                    
+                    $log['data'] = $id;
+                    $log['activity'] = "added";
+                    TblActivityLogs::add_log($log);
+                }
+                $log['system_unit'] = $unit_id;
+                $log['activity'] = "added";
+                TblActivityLogs::add_log($log);
             }
             return \Redirect::to('/inventoryAll')->with('message','System units added.');
         }catch(QueryException $qe){

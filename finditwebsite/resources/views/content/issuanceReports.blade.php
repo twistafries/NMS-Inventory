@@ -317,6 +317,7 @@
           }
         </script>
 
+<<<<<<< HEAD
       <script>
       $(document).ready(function() {
           $('#available, #available2, #repair, #return, #disposal').DataTable( {
@@ -329,4 +330,34 @@
           } );
       } );
     </script>
+=======
+        <script>
+        $(document).ready(function() {
+            $('#lateReturns, #issuancePerComponent, #mostLeast').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                  'copy',
+                  {
+                    extend: 'excel',
+                    title: '',
+                  },
+                  {
+                    extend: 'csv',
+                    title: '',
+                  },
+                  {
+                    extend: 'pdf',
+                    title: '',
+                  },
+                  {
+                    extend: 'print',
+                    title: '',
+                  },
+                ],
+                "searching": false,
+                "ordering": false
+            } );
+        } );
+      </script>
+>>>>>>> f257da6204f4dc482004fb1b3ffdc25b84968073
 @stop
