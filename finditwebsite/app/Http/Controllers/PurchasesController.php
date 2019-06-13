@@ -63,7 +63,7 @@ class PurchasesController extends BaseController
         $data['pc'] = PurchasedItems::get_unit_number();
         $data['pc_component'] = PurchasedItems::get_component();
 
-        // dd($data['purchase']);
+        // dd($data['pc']);
         return view ('content/purchases' , $data);
     }
 

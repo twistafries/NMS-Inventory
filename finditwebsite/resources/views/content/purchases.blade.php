@@ -641,18 +641,21 @@ RAM:
                                         </tr>
                                         @endif
                                         @endforeach
+                                        @if($pc->or_no === null)
                                         <tr>
                                           <p class="card-title">Qty. to Add
                                           <input type="number" name="qty" min='1' max='{{$pc->qty}}' required></p>
                                         </tr>
+                                        @endif
                                       </tbody>
                                       </table>
 
                                     </div>
 
                                     <div class="modal-footer">
-
+                                        @if($pc->or_no === null)
                                         <button type="submit" class="btn btn-primary text-uppercase">Add Items To Inventory</button>
+                                        @endif
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                   </form>

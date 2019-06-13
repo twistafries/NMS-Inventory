@@ -55,7 +55,7 @@ $lname = $session['lname'];
         <th>Model</th>
         <th>S/N</th>
         <th>Details</th>
-        <th>Option</th>
+        <!--<th>Option</th>-->
       </tr>
     </thead>
         <tbody>
@@ -78,14 +78,16 @@ $lname = $session['lname'];
                 <input type="hidden" name="model[]" value="{{$component->model}}">
               </td>
               <td>
-                <input type="text" name="serial_no{{$component->subtype_id}}[]" required>
+              <input type="text" id="comp{{$component->subtype_id}}" name="serial_no{{$component->subtype_id}}[]" required>
               </td>
               <td>
                   <input type="text" name="dets{{$component->subtype_id}}[]" required>
               </td>
-              <td title="Click this if serial#s are similar or consecutive">
+              <!--
+              <td title="Click this if serial#s and details are similar or consecutive">
                   <button type="button" class="btn btn-outline-secondary">Consecutive</button>
               </td>
+              -->
             </tr>
             @endforeach
             <tr class="font-weight-bold">
@@ -93,8 +95,7 @@ $lname = $session['lname'];
                 <td>{{$supplier}}</td>
                 <td>Unit Label</td>
                 <td><input name="name[]" type="text" placeholder="PC" required></td>
-                <td>Unit #{{$count + 1}} </td>
-                <td>of {{$qty}}</td>
+                <td>Unit {{$count + 1}} of {{$qty}}</td>
               </tr>
             @endfor
         </tbody>
@@ -122,10 +123,9 @@ $lname = $session['lname'];
           "bLengthChange": false,
       });
 
-      $('#subm').click(function(e){
-        e.preventDefault();
 
-        
+      $('#subm').click(function(e){
+        //e.preventDefault();
         var data = tbl.$('input').serializeArray();
 
         data.unshift({name:'or_no', value:$("input[name=or_no]").val()});
@@ -133,7 +133,6 @@ $lname = $session['lname'];
         data.unshift({name:'warranty_start', value:$("input[name=warranty_start]").val()});
         data.unshift({name:'warranty_end', value:$("input[name=waranty_end]").val()});
         data.unshift({name:'supplier_id', value:$("input[name=supplier_id]").val()});
-        console.log(data);
         
         $.post({
           url:'/tempBulkPC',
@@ -157,5 +156,6 @@ $lname = $session['lname'];
       tbl = $('#unitDataTable').dataTable();
 
   });
+
 </script>
 @stop

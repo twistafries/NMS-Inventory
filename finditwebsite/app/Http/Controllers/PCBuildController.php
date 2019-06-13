@@ -15,6 +15,7 @@ use App\Models\PurchasedItems;
 use App\Models\Purchases;
 use App\Models\TblActivityLogs;
 
+
 class PCBuildController extends Controller
 {
     public function buildPC()
@@ -120,6 +121,8 @@ class PCBuildController extends Controller
                     $log['activity'] = "added";
                     TblActivityLogs::add_log($log);
                 }
+
+
                 $log['system_unit'] = $unit_id;
                 $log['activity'] = "added";
                 TblActivityLogs::add_log($log);
