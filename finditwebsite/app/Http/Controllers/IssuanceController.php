@@ -119,7 +119,13 @@ class IssuanceController extends BaseController {
 		 //    return redirect()->back()->with('error', 'Please fill out ALL fields');
 				return redirect()->intended('/content/issuance')->with('error', 'Please fill out ALL fields');
 		}
-}
+	}
+
+	public function fetchIssuanceInfo($id){
+		$data['active_employees'] = TblEmployees::getActiveEmployees();
+		$data['equipment'] = TblItEquipment::get_equipment_info($id);
+		echo json_encode($data);
+	}
 
 
 
