@@ -344,8 +344,8 @@
                 <div class="modal fade" id="pc{{$unit->id}}" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:600px; width: 600px;">
+                            <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+                                <div class="modal-content">
                                     <div class="modal-header">
                                     <h5 class="modal-title"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -356,176 +356,64 @@
                                     <div class="modal-body">
                                       <div class="row">
 
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">ID:</div></div>
+                                          <div class="col-sm-6"><div class="detail-header text-uppercase">ID: {{$unit->id}}</div></div>
 
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Name:</div></div>
+                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Name: {{$unit->name}}-{{$unit->id}}</div></div>
 
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Added By:</div></div>
+
                                       </div>
+                                      <br>
                                       <div class="row">
 
-                                          <div class="col-sm-4">{{$unit->id}}</div>
+                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Added By: {{$unit->fname}} {{$unit->lname}}</div></div>
 
-                                          <div class="col-sm-4">{{$unit->name}}-{{$unit->id}}</div>
+                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Added At:{{$unit->added_at}}</div></div>
 
-                                          <div class="col-sm-4">{{$unit->fname}} {{$unit->lname}}</div>
                                       </div>
-
+                                      <br>
                                       <div class="row">
 
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Added At:</div></div>
+                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Last updated At: {{$unit->updated_at}}</div></div>
 
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Last updated At:</div></div>
-
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Status:</div></div>
+                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Status: {{$unit->status}}</div></div>
                                       </div>
-
-                                      <div class="row">
-
-                                          <div class="col-sm-4">{{$unit->added_at}}</div>
-
-                                          <div class="col-sm-4">{{$unit->updated_at}}</div>
-
-                                          <div class="col-sm-4">{{$unit->status}}</div>
-                                      </div>
+                                      <br>
                                       @if($unit->status=="Issued")
                                       <div class="row">
-                                          <div class="col-sm-4">Issued To: {{$unit->efname}}  {{$unit->elname}}</div>
+                                          <div class="col-sm-8">Issued To: {{$unit->efname}}  {{$unit->elname}}</div>
                                       </div>
                                       @endif
+                                      <br>
                                       <div class="row">
-                                          <div class="col-sm-12"><div class="detail-header text-uppercase">Department:</div></div>
+                                          <div class="col-sm-12"><div class="detail-header text-uppercase">Department: {{$unit->department}}</div></div>
+                                    </div>
+
+                                      <div class="row" style="centered">
+                                        <table id="componentTable{{$unit->id}}" class="table table-hover" style="width:100%">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>Component</th>
+                                                    <th>Label</th>
+                                                    <th>Serial Number</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+
+                                              <tbody>
+                                                @foreach($pc_parts as $part)
+                                                @if($unit->id==$part->unit_id)
+                                                  <tr>
+                                                    <td>{{$part->subtype_name}}</td>
+                                                    <td>{{$part->brand}}-{{$part->model}}</td>
+                                                    <td>{{$part->serial_no}}</td>
+                                                    <td> <button type="submit" class="btn btn-primary text-uppercase">Replace</button>
+                                                    </td>
+                                                  </tr>
+                                                @endif
+                                                @endforeach
+                                              </tbody>
+                                          </table>
                                       </div>
-                                      <div class="row">
-                                          <div class="col-sm-12">Information Technology Development Department</div>
-                                      </div>
-
-                                      <div class="row">
-                                          <hr>
-                                      </div>
-
-                                      <div class="row">
-                                          <hr>
-                                      </div>
-
-
-                                      <div class="row">
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Components</div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Motherboard:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">CPU:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Storage:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">RAM:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">GPU:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Power Supply:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Case:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Heat Sink Fan:</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header text-uppercase">Soundcard:</div></div>
-                                            </div>
-                                          </div>
-
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Name</div>
-                                             <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">Qwerty</div></div>
-                                            </div>
-                                          </div>
-
-                                          <div class="col-sm-4"><div class="detail-header text-uppercase">Serial Number</div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-4"><div class="detail-header">1234</div></div>
-                                            </div>
-                                        </div>
-
-                                      </div>
-
-                                        <div class="row row-details">
-                                           <div class="col col-3 detail-header text-uppercase">Mark As: </div>
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#forRepair">For Repair</button>
-                                             <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#forReturn">For Return</button>
-                                            <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommissioned</button>
-                                        </div>
 
                                     </div>
 
@@ -1087,6 +975,16 @@
                 "order": []
             });
         });
+      @foreach($units as $unit)
+        $(document).ready(function() {
+            $('#componentTable{{$unit->id}}').DataTable({
+              "paging":   false,
+              "info":   false,
+              "sort": false,
+              "bFilter": false
+            });
+        });
+      @endforeach
 
 
     </script>

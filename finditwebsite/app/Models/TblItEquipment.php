@@ -155,6 +155,18 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_all_parts($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> where('it_equipment.unit_id' , '!=' , null)
+        -> orderBy('subtype_name' , 'asc')
+        -> get();
+        return $query;
+    }
+
 
     public static function get_mobile_devices($params = null){
         $query = \DB::table('it_equipment')
