@@ -27,7 +27,7 @@ class BulkController extends BaseController
       }
         $data = [];
               $data['peripherals'] = TblItEquipment::get_computer_peripherals();
-      // dd($data);
+
         $data['component'] = TblItEquipment::get_computer_component();
         $data['mobile'] = TblItEquipment::get_mobile_devices();
         $data['equipment_types'] = TblItEquipmentType::get_all_equipment_type();
@@ -46,7 +46,7 @@ class BulkController extends BaseController
         }else{
             $data['item_id'] = 0;
         }
-        // dd($data['item_id']);
+
         return view ('content/bulkadd' , $data);
     }
 
@@ -60,8 +60,8 @@ class BulkController extends BaseController
       try{
         $item_id = $request->input('bulk.*')[0][0];
         $p_id = PurchasedItems::get_bulk_purchased_items($item_id)[0]->p_id;
-        $session=Session::get('loggedIn');
         
+        $session=Session::get('loggedIn');
         $user_id = $session['id'];
         // dd($user_id);
         $show = $request->all();
@@ -80,7 +80,6 @@ class BulkController extends BaseController
         $supplier_id = $request->get('bulk')['supplier_id'];
         $warranty_start = $request->get('bulk')['warranty_start'];
         $warranty_end = $request->get('bulk')['warranty_end'];
-        // dd($brands);
 
         $count = 0;
         foreach($brands as $brand){
@@ -103,14 +102,21 @@ class BulkController extends BaseController
             $count++;
         }
         
-        
-        // dd($data);
+        //counter for qty added
+        $ctr = 0;
+
         foreach($data['inventory'] as $inventory){
             TblItEquipment::add_equipment($inventory);
+            $ctr++;
+        }
+        $purchasedItem = PurchasedItems::find($item_id);
+        $purchasedItem->qty_added = $ctr;
+        $purchasedItem->save();
+
+        if(is_null(Purchases::find($p_id)->or_no)){
+            Purchases::edit_purchase($p_id , $or_no[0]);
         }
 
-        Purchases::edit_purchase($p_id , $or_no[1]);
-    
         return \Redirect::to('/inventoryAll')
         ->with('message' , $count  . ' equipment has been added');
 

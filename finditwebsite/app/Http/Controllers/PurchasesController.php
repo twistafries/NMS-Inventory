@@ -54,8 +54,8 @@ class PurchasesController extends BaseController
         $data['purchasescript'] = Purchases::get_purchases();
         foreach ($data['purchases'] as $purchases) {
           $data['purchases'] [$purchases->purchase_no] = PurchasedItems::get_purchased_Item($purchases->purchase_no);
+          //dd($data['purchases']);
         }
-        //dd( $data['purchases']);
         $data['items'] = PurchasedItems::get_all_items();
         $data['items'] = PurchasedItems::get_all_items();
 

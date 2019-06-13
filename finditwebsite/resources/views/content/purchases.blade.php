@@ -366,10 +366,12 @@ RAM:
                     <td hidden>{{$item->subtype}}{{$item->subtype_id}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
-                    @if($purchase->or_no!=null)
+                    @if($purchase->or_no!=null && $item->qty_added == $item->qty)
                     <td class="text-right table-success">
                         <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
                     </td>
+                    @elseif($purchase->or_no!=null && $item->qty_added < $item->qty)
+                    <td><a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add Pending Items ({{$item->qty - $item->qty_added}} of {{$item->qty}})</a></td>
                     @else
                     <td class="text-right">
                       <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
@@ -381,13 +383,13 @@ RAM:
                   @foreach($unit_number as $unit)
                   @if ($unit->p_id==$purchase->purchase_no)
                   <tr>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
-                  <td hidden>PC_SystemUnit</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
+                    <td hidden>PC_SystemUnit</td>
                   </tr>
                   @endif
                   @endforeach
