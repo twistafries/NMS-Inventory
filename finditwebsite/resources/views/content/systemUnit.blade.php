@@ -1449,7 +1449,7 @@
 
     </script>
 
-                                 <script>
+    <script>
       function CheckListed( txtSearch  ) {
        var objList = document.getElementById("items")  ;
        for (var i = 0; i < objList.options.length; i++) {

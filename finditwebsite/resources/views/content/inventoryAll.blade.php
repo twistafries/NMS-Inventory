@@ -704,7 +704,10 @@
                         <div class="row row-details">
                             <div class="col col-4 detail-header text-uppercase">Issue To</div>
                             <select name="issuedTo" id="employeeDropdown" class="custom-select">
-                                
+                                @foreach($active_employees as $employee)
+                                <option>{{$employee->id}} {{$employee->fname}} {{$employee->lname}}</option>
+
+                                @endforeach
                             </select>
                         </div>
 
