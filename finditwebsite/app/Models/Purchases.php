@@ -19,6 +19,14 @@ class Purchases extends Model
         return $query;
     }
 
+    public static function getByPID($params){
+      $query = \DB::table('purchases')
+      -> leftjoin ('purchased_items', 'purchases.purchase_no', '=', 'purchased_items.p_id')
+      -> where('purchases.purchase_no', '=', $params)
+      -> get();
+      return $query;
+    }
+    
     public static function get_completed_purchases($params = null){
         $query = \DB::table('purchases')
         -> select('purchases.*')

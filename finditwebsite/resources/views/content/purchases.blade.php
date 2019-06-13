@@ -173,10 +173,7 @@
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">Socket:
-Chipset:
-Size:
-RAM:
+                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">
                                     </textarea>
                                   </div>
                                 </div>
@@ -233,7 +230,6 @@ RAM:
 
                                       <tbody>
                                           <tr>
-
                                               <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
                                                <td> <input type="text" name=""></td>
                                           </tr>
@@ -609,6 +605,7 @@ RAM:
 
                                           <div class="col-sm-4">{{$pc->supplier_name}}</div>
                                           <input type="hidden" name="pcID" value={{$pc->p_id}}>
+                                          <input type="hidden" name="unit_number" value={{$pc->unit_number}}>
                                           <div class="col-sm-4">{{$pc->qty}}</div>
 
 
@@ -641,10 +638,15 @@ RAM:
                                         </tr>
                                         @endif
                                         @endforeach
-                                        @if($pc->or_no === null)
+                                        @if($pc->or_no == null)
                                         <tr>
                                           <p class="card-title">Qty. to Add
-                                          <input type="number" name="qty" min='1' max='{{$pc->qty}}' required></p>
+                                          <input type="number" name="comp_qty" min='1' max={{$pc->qty}} required></p>
+                                        </tr>
+                                        @elseif($pc->qty > $pc->qty_added)
+                                        <tr>
+                                          <p class="card-title">Remaining Qty.
+                                          <input type="number" name="comp_qty" min='1' max='{{$pc->qty}}-{{$pc->qty_added}}' required></p>
                                         </tr>
                                         @endif
                                       </tbody>
@@ -653,7 +655,7 @@ RAM:
                                     </div>
 
                                     <div class="modal-footer">
-                                        @if($pc->or_no === null)
+                                        @if($pc->or_no == null)
                                         <button type="submit" class="btn btn-primary text-uppercase">Add Items To Inventory</button>
                                         @endif
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>

@@ -74,7 +74,8 @@ class PCBuildController extends Controller
         $data['user_id'] = $user_id;
         $data['pID'] = $data['pcID'];
         $data['components'] = PurchasedItems::getUnitItems($data['pcID']);
-        $data['qty'] = $data['qty'];
+        $data['qty'] = $data['components'][0]->qty;
+        $data['qty_added'] = $data['comp_qty']; 
         $data['supplier_id'] = $data['components'][0]->supplier_id;
         $data['rows'] = count($data['components']);
         $data['supplier'] = ($data['components'][0]->supplier);
@@ -89,14 +90,16 @@ class PCBuildController extends Controller
             $count = 0;
             $ctr = 0;
             $sUnit = [];
+            
             $sUnit['or_no'] = $data['or_no'];
             $sUnit['user_id'] = $user_id;
             $sUnit['subtype'] = array_unique($data['subtype']);
+            $sUnit['unit_number'] = $data['unit_number'];
+            $pNo = Purchases::getByPID($data['purchase_no']);
 
-            for($count; $count < $data['qty']; $count++){
+            for($count; $count < $data['qty_added']; $count++){
                 $sUnit['name'] = $data['name'][$count];
                 $unit_id=TblSystemUnits::add_system_unit($sUnit);
-
                 foreach($sUnit['subtype'] as $comp){
                     $it_equipment = new TblItEquipment;
                     $it_equipment->subtype_id = $comp;
@@ -111,12 +114,19 @@ class PCBuildController extends Controller
                     $it_equipment->warranty_end = $data['warranty_end'];
                     $it_equipment->supplier_id = $data['supplier_id'];
                     $it_equipment->unit_id = $unit_id;
+                    $it_equipment->save();
+                    $id = DB::getPdo()->lastInsertId();
+
+                    $purchased_item = PurchasedItems::whereRAW('p_id = '.$data['purchase_no'].' AND subtype_id  ='.$comp.' AND unit_number = '.$data['unit_number'])->first();
+
+                    if($purchased_item->qty_added == null){
+                        $purchased_item->qty_added = $ctr;      
+                    } else {
+                        $purchased_item->qty_added = $purchased_item->qty_added+$ctr;
+                    }
 
                     $ctr++;
 
-                    $it_equipment->save();
-                    $id = DB::getPdo()->lastInsertId();
-                    
                     $log['data'] = $id;
                     $log['activity'] = "added";
                     TblActivityLogs::add_log($log);
