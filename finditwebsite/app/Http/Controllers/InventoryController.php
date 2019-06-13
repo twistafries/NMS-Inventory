@@ -19,6 +19,7 @@ use App\Models\Equipment;
 use App\Models\TblActivityLogs;
 use App\Models\Suppliers;
 use App\Models\TblDepartments;
+use App\Models\TblEmployees;
 use Session, Auth;
 use DB;
 
@@ -88,6 +89,7 @@ class InventoryController extends BaseController
       $data['countMobilePendingStatus'] = count(TblItEquipment::countByStatus('Pending',3));
       $data['countMobileDecommissionedStatus'] = count(TblItEquipment::countByStatus('Decommissioned',3));
       $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
+      $data['active_employees'] = TblEmployees::getActiveEmployees();
       // dd($data);
 
       // dd($data['available_units']);s
@@ -153,7 +155,7 @@ class InventoryController extends BaseController
       $data['supplier'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
       $data['models'] = TblItEquipment::get_model();
-
+      $data['active_employees'] = TblEmployees::getActiveEmployees();
       return view ('content/inventoryAll' , $data);
     }
 
