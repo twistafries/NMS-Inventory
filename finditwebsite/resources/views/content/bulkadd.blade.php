@@ -198,6 +198,7 @@ body{
             console.log( {{ $item_id }})
         @endif
             // fetchRecords(97)
+        
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
@@ -286,7 +287,8 @@ body{
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response['purchases']);
+                    //console.log(response['purchases']);
+                    
                     var len = 0;
                     // console.log("display data div null");
 
@@ -306,12 +308,14 @@ body{
                             var model = response['purchases'][i].model;
                             var details = response['purchases'][i].details;
                             var qty = response['purchases'][i].qty;
+                            var qty_a = response['purchases'][i].qty_added;
                             var is_part = response['purchases'][i].is_part;
                             var unit_number = response['purchases'][i].unit_number;
                             var supplier_id = response['purchases'][i].supplier_id;
                             var subtype = response['purchases'][i].unit_number;
-                            console.log(qty)
-                            $('#quantity').val(qty);
+                            
+                            $('#quantity').attr({"max": qty-qty_a});
+                            $('#quantity').val(qty-qty_a);
                             $('#subtype').val(subtype_id);
                             $('#brand').val(brand);
                             $('#model').val(model);

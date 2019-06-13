@@ -458,7 +458,9 @@ RAM:
               </div>
 
               <div class="modal-footer">
+                  @if($item->or_no === null)
                   <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
+                  @endif
                   <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
         </div>
