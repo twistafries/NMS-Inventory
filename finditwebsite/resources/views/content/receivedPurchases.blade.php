@@ -42,9 +42,6 @@
                   <a class="nav-link active" href="{!! url('/receivedPurchases') !!}">Received Purchases</a>
                 </li>
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
-                  <a class="nav-link" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
-                </li>
-                <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/returns') !!}">Returns</a>
                 </li>
               </ul>
