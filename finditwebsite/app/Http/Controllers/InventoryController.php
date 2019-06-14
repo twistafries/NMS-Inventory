@@ -208,6 +208,7 @@ class InventoryController extends BaseController
       $data['total_equipment'] = count(TblItEquipment::get_IT_equipment());
       $data['pc_parts'] = TblItEquipment::get_all_parts();
 
+      // dd($data['units']);
       $data['it_equipment'] = PCBuildEq::where('status_id', '=', 1)->get();
       $data['active_employees'] = TblEmployees::getActiveEmployees();
       ///pc

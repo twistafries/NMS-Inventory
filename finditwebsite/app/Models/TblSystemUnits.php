@@ -101,13 +101,16 @@ class TblSystemUnits extends Model
 
     public static function unitByDep($department){
       $query = \DB::table('system_units')
+      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*' , 'equipment_status.name as status_name')
       -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
       -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
       -> leftjoin('equipment_status', 'system_units.status_id', '=', 'equipment_status.id')
-      -> select('system_units.*', 'system_units.id as su_id', 'employees.id as empid', 'issuance.unit_id as unitIsh', 'issuance.issued_to', 'employees.*' , 'equipment_status.name as status_name')
       -> where('system_units.dept_id', '=', $department)
-      ->get();
-
+      -> orderBy('su_id')
+      -> orderBy('issuance.created_at', 'desc')
+      ->get()
+      -> unique('su_id');
+      
       return $query;
     }
 
