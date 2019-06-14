@@ -220,12 +220,13 @@
               <div class="modal-content" style="height:75%;">
 
                   <div id="addSystemUnit" class="modal-header">
-                      <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Add System Unit</h5>
+                      <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Purchase System Unit</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
 
                   <div class="modal-body">
-                      <form id="addSystemUnitForm" action="{!! url('/'); !!}" enctype="multipart/form-data" method="post" role="form">
+                      <form action="{!! url('/purchasePC'); !!}" enctype="multipart/form-data" method="post" role="form">
+                        {!! csrf_field() !!}
                           <div class="row">
                               <div class="col-sm">
 
@@ -240,7 +241,15 @@
                                       <tbody>
                                           <tr>
                                               <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
-                                               <td> <input type="text" name=""></td>
+                                               <td> <p class="card-title text-dark" style="font-size: 14px;">Supplier:</p>
+                                               <input  list="suppliers" name="supplier" required style="width: 9rem;">
+                                                 <datalist id="suppliers">
+                                                   <select>
+                                                   @foreach ($supp as $sup)
+                                                   <option value="{{ $sup->supplier_name}}">
+                                                   @endforeach
+                                                 </select>
+                                                 </datalist></td>
                                           </tr>
                                       </tbody>
                                   </table>
@@ -259,17 +268,17 @@
 
                                       <tbody>
                                           <tr>
-                                              <td>Motherboard <input type="text" name="" value="1" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Motherboard<input type="text" name="component[]" value="1" hidden></td>
+                                              <td> <input type="text" name="component[1][brand]" required></td>
+                                              <td> <input type="text" name="component[1][model]" required></td>
+                                              <td><textarea name="component[1][details]" rows="2" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>CPU<input type="text" name="" value="2" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>CPU<input type="text" name="component[]" value="2" hidden></td>
+                                              <td> <input type="text" name="component[2][brand]" required></td>
+                                              <td> <input type="text" name="component[2][model]" required></td>
+                                              <td><textarea name="" rows="component[2][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
@@ -317,16 +326,20 @@
                                  </div>
                                 </div>
 
-                              </form>
+
                               </div>
 
                           <div class="modal-footer">
-                              <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
+                              <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Purchase System Unit</button>
                               <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                           </div>
+                          </form>
               </div>
           </div>
       </div>
+
+
+
 <div class="" style="margin-top: 2rem;">
           <table class="table" id="purchasesTable">
             <thead class="thead-dark">
