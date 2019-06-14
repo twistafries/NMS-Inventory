@@ -241,7 +241,7 @@
                                       <tbody>
                                           <tr>
                                               <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
-                                               <td> <p class="card-title text-dark" style="font-size: 14px;">Supplier:</p>
+                                               <td>
                                                <input  list="suppliers" name="supplier" required style="width: 9rem;">
                                                  <datalist id="suppliers">
                                                    <select>
@@ -268,58 +268,58 @@
 
                                       <tbody>
                                           <tr>
-                                              <td>Motherboard<input type="text" name="component[]" value="1" hidden></td>
+                                              <td>Motherboard<input type="text" name="sub[]" value="1" hidden></td>
                                               <td> <input type="text" name="component[1][brand]" required></td>
                                               <td> <input type="text" name="component[1][model]" required></td>
                                               <td><textarea name="component[1][details]" rows="2" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>CPU<input type="text" name="component[]" value="2" hidden></td>
+                                              <td>CPU<input type="text" name="sub[]" value="2" hidden></td>
                                               <td> <input type="text" name="component[2][brand]" required></td>
                                               <td> <input type="text" name="component[2][model]" required></td>
-                                              <td><textarea name="" rows="component[2][details]" cols="22"></textarea></td>
+                                              <td><textarea name="component[2][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Storage<input type="text" name="" value="3" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Storage<input type="text" name="sub[]" value="3" hidden></td>
+                                              <td> <input type="text" name="component[3][brand]" required></td>
+                                              <td> <input type="text" name="component[3][model]" required></td>
+                                              <td><textarea  name="component[3][details]" cols="22"></textarea></td>
 
                                           <tr>
-                                              <td>RAM<input type="text" name="" value="4" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>RAM<input type="text" name="sub[]" value="4" hidden></td>
+                                              <td> <input type="text" name="component[4][brand]" required></td>
+                                              <td> <input type="text" name="component[4][model]" required></td>
+                                              <td><textarea name="component[4][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>GPU<input type="text" name="" value="5" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>GPU<input type="text" name="sub[]" value="5" hidden></td>
+                                              <td> <input type="text" name="component[5][brand]" required></td>
+                                              <td> <input type="text" name="component[5][model]" required></td>
+                                              <td><textarea name="component[5][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Case<input type="text" name="" value="7" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Case<input type="text" name="sub[]" value="7" hidden></td>
+                                              <td> <input type="text" name="component[7][brand]" required></td>
+                                              <td> <input type="text" name="component[7][model]" required></td>
+                                              <td><textarea name="component[7][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Heat Sink Fan<input type="text" name="" value="8" hidden></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Heat Sink Fan<input type="text" name="sub[]" value="8" hidden></td>
+                                              <td> <input type="text" name="component[8][brand]" required></td>
+                                              <td> <input type="text" name="component[8][model]" required></td>
+                                              <td><textarea name="component[8][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Sound Card<input type="text" name="" value="18" hidden></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Sound Card<input type="text" name="sub[]" value="18" hidden></td>
+                                              <td> <input type="text" name="component[18][brand]" required></td>
+                                              <td> <input type="text" name="component[18][model]" required></td>
+                                              <td><textarea name="component[18][details]" cols="22"></textarea></td>
                                           </tr>
                                       </tbody>
                                     </table>
