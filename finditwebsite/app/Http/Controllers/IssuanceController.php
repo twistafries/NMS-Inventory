@@ -109,7 +109,6 @@ class IssuanceController extends BaseController {
 		if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['status_id']) ){
 
 				TblIssuances::add_issuance($data);
-
 				$log['issued_to'] = $data['issuedTo_name'];
 
 				$log['activity'] = "issued";
@@ -168,6 +167,21 @@ class IssuanceController extends BaseController {
 			}
 		}else{
 			$system_unit_info;
+			InventoryConcerns::addConcern($concerns);
+
+			try{
+				if(isset($data['issued_to'])){
+					$data['unit_id'] = $request->get('su.id');
+					dd($data);
+					TblIssuances::add_issuance($data);
+
+				};
+
+			}catch(Exception $e){
+
+			}catch(QueryException $qe){
+
+			}
 		}
 
 
