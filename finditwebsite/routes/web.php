@@ -145,6 +145,9 @@ Route::post('/buildUnit', 'InventoryController@buildUnit');
 Route::get('/buildpc', 'PCBuildController@buildPC');
 Route::post('/buildFromParts', 'PCBuildController@buildFromParts');
 
+//editPCpage
+Route::post('/editPCpage', 'PCBuildController@editPCpage');
+Route::post('/editPC', 'PCBuildController@editPC');
 //bulk add purchased unit
 Route::post('/bulkUnitAdd', 'PCBuildController@bulkAddUnits');
 Route::match(['get', 'post'], '/tempBulkPC', 'PCBuildController@insertBulkPC');

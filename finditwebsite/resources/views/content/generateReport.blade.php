@@ -218,12 +218,20 @@
 
         <!--graph-->
         <script>
+        var date = new Date();
+        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        var currentDay = new Date(date.getFullYear(), date.getMonth());
+        var date = firstDay+" - "+currentDay;
+        if (firstDay==currentDay){
+          date = firstDay;
+        }
+  
         Highcharts.chart('container2', {
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Inventory Concerns Report in January, 2019'
+            text: 'Inventory Concerns Report in ' +date
         },
         xAxis: {
             categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],

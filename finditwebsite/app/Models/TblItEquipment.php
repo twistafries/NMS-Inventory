@@ -160,8 +160,20 @@ class TblItEquipment extends Model
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
         -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
         -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
-        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'it_equipment_subtype.type_id as type_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
         -> where('it_equipment.unit_id' , '!=' , null)
+        -> orderBy('subtype_name' , 'asc')
+        -> get();
+        return $query;
+    }
+
+    public static function get_all_pc_parts($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name', 'it_equipment.subtype_id as subtype_id', 'it_equipment_subtype.type_id as type_id', 'users.fname as firstname', 'users.lname as lastname', DB::raw("DATE_FORMAT(it_equipment.created_at, '%m-%d-%Y') as added_at"))
+        -> where('it_equipment.unit_id' , '=' , $params['unit_id'])
         -> orderBy('subtype_name' , 'asc')
         -> get();
         return $query;
@@ -397,8 +409,13 @@ class TblItEquipment extends Model
         if(isset($params['supplier']))
         $it_equipment->supplier_id = $params['supplier'];
 
-        if(isset($params['unit_id']))
-        $it_equipment->unit_id = $params['unit_id'];
+        if(isset($params['unit_id'])){
+          if($params['unit_id'] == "NULL"){
+              $it_equipment->unit_id = null;
+          }else {
+            $it_equipment->unit_id = $params['unit_id'];
+          }
+        }
 
         if(isset($params['warranty_start']))
         $it_equipment->warranty_start = $params['warranty_start'];

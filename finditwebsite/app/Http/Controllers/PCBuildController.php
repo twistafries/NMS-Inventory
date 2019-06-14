@@ -29,7 +29,57 @@ class PCBuildController extends Controller
         return view('content.buildpc', compact('it_equipment', 'equipment_status', 'eq_subtype', 'departments'));
     }
 
-    public function buildFromParts(Request $request){   
+    public function editPCpage(Request $request)
+    {
+        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+        }
+        $data = $request->all();
+        $pc_name = $data['name'];
+        $department = $data['department'];
+        $dept_id = $data['dept_id'];
+        // dd($data);
+        $it_equipment = PCBuildEq::where('status_id', '=', 1)->get();
+        $component = TblItEquipment::get_all_pc_parts($data);
+        $unit_id = $data['unit_id'];
+        $equipment_status = TblStatus::all();
+        $eq_subtype = TblItEquipmentSubtype::all();
+        $departments = TblDepartments::all();
+        return view('content.editPC', compact('it_equipment', 'component', 'equipment_status', 'eq_subtype', 'departments', 'pc_name', 'department', 'dept_id', 'unit_id'));
+    }
+
+    public function editPC(Request $request)
+    {
+        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+        }
+        $data = $request->all();
+        // dd($data);
+        $unit_id = $data['unit_id'];
+        TblSystemUnits::edit_pc($data);
+
+        $parts = $data['oldparts'];
+
+        foreach($parts as $parts){
+            $data['unit_id'] = "NULL";
+            $data['status_id'] = 7;
+            $data['id'] = $parts;
+            TblItEquipment::edit_equipment($data);
+        }
+
+        $components = $data['components'];
+
+        foreach($components as $component){
+            $data['unit_id'] = $unit_id;
+            $data['status_id'] = 8;
+            $data['id'] = $component;
+            TblItEquipment::edit_equipment($data);
+        }
+
+        return \Redirect::to('/systemUnit')->with('message','System unit has been updated.');
+    }
+
+    public function buildFromParts(Request $request){
         try{
             $data = $request->all();
 
@@ -60,7 +110,7 @@ class PCBuildController extends Controller
       }
 
     }
-    
+
 
     public function bulkAddUnits(Request $request){
         if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
@@ -115,7 +165,7 @@ class PCBuildController extends Controller
 
                     $it_equipment->save();
                     $id = DB::getPdo()->lastInsertId();
-                    
+
                     $log['data'] = $id;
                     $log['activity'] = "added";
                     TblActivityLogs::add_log($log);
@@ -130,6 +180,6 @@ class PCBuildController extends Controller
             ->with('error' , 'Encountered an error;')
             ->with('error_info' , $qe->getMessage())
             ->with('target' , '#build');
-          }   
+          }
     }
 }
