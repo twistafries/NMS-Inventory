@@ -35,6 +35,10 @@ class InventoryConcernsController extends BaseController
         $user_id = $session['id'];
 
         try{
+            if($request->get('status_id') == 1.2){
+                $issuance['status_id'] = 1; 
+                dd($issuance); 
+            }
             $data = $request->all();
             $data['added_by'] = $user_id;
             $data['issued_to'] = TblIssuances::getIssuedTo($data['id']);

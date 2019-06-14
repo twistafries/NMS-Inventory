@@ -64,7 +64,7 @@
                                      <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                      <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#issue-modal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                  @elseif($unit->status_id == 2)
-                                     <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                     <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1.2)"><i class="fas fa-check"></i> Make Available</button>
                                      <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
                                      <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                      <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
@@ -156,7 +156,7 @@
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                                 <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#issue-modal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1.2)"><i class="fas fa-check"></i> Make Available</button>
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
                                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
@@ -974,6 +974,7 @@
     }
 
     function makeAvailableSystemUnit(sys_id , new_status_id){
+        emptyContent();
         var unit_id = sys_id;
         console.log("System" + sys_id);
         if(new_status_id == 1){
@@ -984,8 +985,8 @@
             var new_status_name = "For repair";
         }else if (new_status_id == 4){
             var new_status_name = "For return";
-        }else if (new_status_id == 2){
-            // $('#eq_id').val(id);
+        }else if (new_status_id == 1.2){
+            var new_status_name = "Available";
         }
 
         $.ajax({

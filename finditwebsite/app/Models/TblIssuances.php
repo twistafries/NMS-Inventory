@@ -53,6 +53,7 @@ class TblIssuances extends Model {
 		->groupBy('employees.fname')
 		->groupBy('employees.lname')
 		->where('employees.dept_id', '=', $id)
+		->where('i.returned_at', '=', null)
 		->orderBy('i.issued_to', 'asc')
 		->get();
 
@@ -92,13 +93,13 @@ class TblIssuances extends Model {
 		->select('i.*', 'it_equipment.serial_no as serial_no', 'it_equipment.or_no as or_no', 'it_equipment_type.name as type', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.name as unit_name',
 		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
 		->where('i.issued_to', '=', $id)
+		->where('i.returned_at', '=', null)
 		->orderBy('i.issued_to', 'desc')
 		->get();
 
 			if(isset($params['id'])) {
 				$query->where('i.id', '=', $params['id']);
 			}
-			// dd($query);
 		return $query;
 	}
 
@@ -108,7 +109,6 @@ class TblIssuances extends Model {
 		->where('equipment_id', '=', $params)
 		->get();
 		;
-		// dd($query->count());
 		if ($query->count() == 0) {
 			return "NULL";
 		}else{
@@ -179,7 +179,7 @@ class TblIssuances extends Model {
 			$issuance->unit_id = $params['unit_id'];
 
 		if(isset($params['issued_to']))
-			$issuance->issued_to = $params['isssued_to'];
+			$issuance->issued_to = $params['issued_to'];
 
 		if(isset($params['returned_at'])){
 			$issuance->returned_at = $params['returned_at'];
@@ -195,7 +195,7 @@ class TblIssuances extends Model {
 		$issuance->updated_at = gmdate('Y-m-d H:i:s');
 
 		try {
-			$event->save();
+			$issuance->save();
 			return $id;
 		} catch(QueryException $e) {
 			die($e);

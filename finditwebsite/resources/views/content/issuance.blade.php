@@ -363,11 +363,11 @@
 
                 <div class="row row-details">
                       <div class="col col-4 detail-header text-uppercase">Mark As: </div>
-                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#makeAvailable" style="height: 2.5rem; width: 10rem; margin-right: 5px;"><i class="fas fa-check"></i> Make Available</button>
+                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#makeAvailableModal" style="height: 2.5rem; width: 10rem; margin-right: 5px;"><i class="fas fa-check"></i> Make Available</button>
                         <!-- <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#makeAvailable">Make Available</button> -->
-                        <button type="button" class="btn btn-warning rounded btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#forRepair" style="height: 2.5rem; width: 7rem; margin-right: 5px;"><i class="fas fa-tools"></i>Repair</button>
+                        <button type="button" class="btn btn-warning rounded btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#makeAvailableModal" style="height: 2.5rem; width: 7rem; margin-right: 5px;"><i class="fas fa-tools"></i>Repair</button>
                         <!-- <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#forRepair">Repair</button> -->
-                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-dismiss="modal"data-target="#decommissionedModal" style="height: 2.5rem; width: 10rem; margin-right: 5px;"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-dismiss="modal"data-target="#makeAvailableModal" style="height: 2.5rem; width: 10rem; margin-right: 5px;"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                         <!-- <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommission</button> -->
                 </div>
 
@@ -383,102 +383,37 @@
   </div>
 </div>
 
-                <div class="modal fade" id="decommissionedModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
-                        aria-hidden="true">
+<!-- Empty Modal Prompt -->
+    <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog"
+    aria-hidden="true">
+        <form action="{!! url('/add-to-concerns-system-unit') !!}" method="post">
+        {!! csrf_field() !!}
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header" id="makeAvailableHeader">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="emptyContent()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="warning-content"  id="makeAvailableContent">
 
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                      <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to change the status of this item to Decommissioned?</p>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
                     </div>
+                </div>
 
-                    <div class="modal fade" id="makeAvailable" tabindex="-1" role="dialog" aria-labelledby="availableModalTitle"
-                        aria-hidden="true">
 
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+            <div class="modal-footer" id="makeAvailableFooter">
 
-                                    <div class="modal-body">
-                                      <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to change the status to Available?</p>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
-                    <div class="modal fade" id="forRepair" tabindex="-1" role="dialog" aria-labelledby="repairModalTitle"
-                        aria-hidden="true">
-
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content" style="height:450px;">
-                                    <div class="modal-header">
-                                    <h5 class="modal-title"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                      <div class="warning-content">
-                                          <p>Warning!</p>
-                                          <p>Are you sure you want to repair this item?</p>
-                                      </div>
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-
-</div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
 
 @stop
 
 @section('script')
-@if (Session::has('success'))
-<script type="text/javascript">
-$(window).load(function(){
-      alert("Issuance Success!");
-    });
-</script>
-@endif
     <!-- Datatable -->
     <script type="text/javascript" src="{{ asset('js/datatable/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
@@ -583,14 +518,81 @@ $(window).load(function(){
   </script>
 
 
-  <script>function rm() {
+  <script>
+  function rm() {
   $(event.target).closest("tr").remove();
-}
+  }
 
-function add() {
-                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+  function add() {
+    $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+  }
+
+  function emptyContent(){
+        $('#makeAvailableContent').empty()
+        $('#makeAvailableFooter').empty()
+    }
+
+  function makeAvailableSystemUnit(sys_id , new_status_id){
+        emptyContent();
+        var unit_id = sys_id;
+        console.log("System" + sys_id);
+        if(new_status_id == 1){
+            var new_status_name = "Available";
+        }else if (new_status_id == 7){
+            var new_status_name = "Decommissioned";
+        }else if (new_status_id == 3){
+            var new_status_name = "For repair";
+        }else if (new_status_id == 4){
+            var new_status_name = "For return";
+        }else if (new_status_id == 2){
+            // $('#eq_id').val(id);
+        }
+
+        $.ajax({
+            url: 'getUnitForRepair/' + unit_id,
+            type: 'get',
+            dataType: 'json',
+            success: function (response){
+                len = response['unit'].length;
+                if(len > 0){
+                    for(var i = 0; i < len; i++){
+                        var orig_status_name = response['unit'][i].status_name;
+                        // var orig_status_id = response['unit'][i].status_id;
+                        var dept = response['unit'][i].dept_name;
+                        var name = response['unit'][i].name;
+                    }
+
+                    
+                    if(new_status_id != 2){
+                        var unitContentStr =
+                        '<p>Are you sure you want to change the status of ' + name + unit_id +
+                        ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
+                        '</div>' + '<div class="btn-group" role="group">' +
+                        '<button class="btn btn-warning text-uppercase" data-toggle="collapse" data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' +
+                        'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' +
+                        '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
+
+                        $('#makeAvailableContent').append(unitContentStr);
+
+                        var unitFooterStr =
+                        '<input type="hidden" name="id" value="' + unit_id + '" >' +
+                        '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
+                        '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
+                        '<button type="button" class="btn btn-info text-uppercase" data-toggle="modal" data-target="#viewItemModal">View Item Modal</button>' +
+                        '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" onclick="emptyContent()">Cancel</button>'
+
+                        ;
+
+                        $('#makeAvailableFooter').append(unitFooterStr);
+                    }else{
+                        $('#eq_id').val(sys_id);             
+                    }
+                }
             }
-    </script>
+
+        })
+    }
+  </script>
 
 
 

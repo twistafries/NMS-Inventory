@@ -119,7 +119,7 @@ Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForCo
 Route::post('/add-to-concerns-system-unit', 'InventoryConcernsController@markForConcernsSystemUnit');
 // Route::post('/editStatus', 'InventoryController@changeStatus');
 // Route::post('/change-status', 'InventoryController@changeStatus');
-Route::post('/editIssuance', 'InventoryController@editEquipment');
+Route::post('/update-issuance', 'IssuanceController@updateIssuance');
 Route::post('/editAssociates', 'AssociateController@editAssociates');
 
 
