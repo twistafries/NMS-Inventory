@@ -225,7 +225,7 @@
                                     <div class="modal-header">
                                         @if( $item->equipment_id != null )
                                             <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
-                                        @else
+                                        @elseif($item->pc_number != null)
                                         <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
                                         @endif
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -236,13 +236,13 @@
                                     <div class="modal-body">
                                         <form action="{!! url('/update-issuance'); !!}" method="post">
                                             {!! csrf_field() !!}
-                                            <input type="hidden" name="id" value="{!! $item->id !!}">
-                                            <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
+                                            <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
+                                            <input type="hidden" name="issued_to_concerns" value="{!! $employee->id !!}">
                                             <input type="hidden" name="status_id" value="3">
                                             @if($item->equipment_id != null)
                                             <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
-                                            @else
-                                            <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
+                                            @elseif($item->pc_number != null)
+                                            <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
                                             @endif
                                             <div class="col-sm-12">
                                                 <ul class="list-group">

@@ -211,25 +211,27 @@ class IssuanceController extends BaseController {
 		try{
 			$data = $request->all();
 			$data['user_id'] = Session::get('loggedIn')['id'];
-			$data['id'] = $request->get('issuance_id');
+			$data['issuance_id'] = $request->get('issuance_id');
 			$concerns = $request->all();
 			$concerns['remarks'] = $request->get('remarks');
 			$concerns['added_by'] = $data['user_id'];
+			$concerns['issued_to'] = $request->get('issued_to_concerns');
 			
 			$data['returned_at'] = gmdate('Y-m-d H:i:s');
 			
 			if($request->get('equipment_id') != null){
 				TblItEquipment::update_equipment_status($data['equipment_id'] , $data['status_id']);
-				TblIssuances::updateIssuance($data);
+				TblIssuances::updateReturnedDate($data);
 				$concerns['name_component'] = $data['equipment_id'];
 				$concerns['system_unit_id'] = $request->get('system_unit_id');
 				$concerns['id'] = $data['equipment_id'];
 				InventoryConcerns::addConcern($concerns);
 			}else{
-				TblSystemUnits::update_unit_status($data['unit_id'] , $data['status_id']);
-				TblIssuances::updateIssuance($data);
+				TblSystemUnits::update_unit_status($data['sys_id'] , $data['status_id']);
+				TblIssuances::updateReturnedDate($data);
+				// TblIssuances::updateIssuance($data);
 				$concerns['name_component'] = $request->get('name_component');
-				$concerns['system_unit_id'] = $data['unit_id'];
+				$concerns['system_unit_id'] = $data['sys_id'];
 				$concerns['id'] = $request->get('id');
 
 				InventoryConcerns::addConcern($concerns);
@@ -243,6 +245,7 @@ class IssuanceController extends BaseController {
 
 		}
 	}
+	
 
 
 

@@ -118,20 +118,22 @@
                                                         @else
                                                         @foreach($components as $component)
                                                             @if($component->unit_id == $unit->su_id)
-                                                            <tr>
+                                                            @if($component->status_id == 3)
+                                                            <tr class="table-secondary">
+                                                            @else
+                                                            <tr>    
+                                                            @endif
                                                                 <td>{{$component->name}}</td>
                                                                 <td>{{$component->brand}} {{$component->name}}</td>
                                                                 <td>{{$component->details}}</td>
                                                                 <td>{{$component->serial_no}}</td>
                                                                 <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                    <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                    <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
-                                                                    @if($component->status_id == 3)
-                                                                    <button type="button" class="btn btn-danger rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-tools"></i> Replace Component</button>
-                                                                    @endif
+                                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 1)" data-target="#forRepairModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 3)" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 4)" data-target="#forRepairModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 7)" data-target="#forRepairModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                    
                                                                 </td>
                                                             </tr>
                                                             @endif
@@ -196,17 +198,21 @@
                                                     <tbody>
                                                         @foreach($components as $component)
                                                             @if($component->unit_id == $unit->su_id)
-                                                            <tr>
+                                                            @if($component->status_id == 3)
+                                                            <tr class="table-secondary">
+                                                            @else
+                                                            <tr>    
+                                                            @endif
                                                                 <td>{{$component->name}}</td>
                                                                 <td>{{$component->brand}} {{$component->name}}</td>
                                                                 <td>{{$component->details}}</td>
                                                                 <td>{{$component->serial_no}}</td>
                                                                 <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                    <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                    <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                    <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                    <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 1)" data-target="#forRepairModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 3)" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 4)" data-target="#forRepairModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 7)" data-target="#forRepairModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                 </td>
                                                             </tr>
                                                             @endif
@@ -260,18 +266,26 @@
                                                         </thead>
                                                         <tbody>
                                                             @foreach($components as $component)
-                                                                @if($component->unit_id == $unit->su_id)
-                                                                <tr>
+                                                            @if($component->unit_id == $unit->su_id)
+                                                            @if($component->status_id == 3)
+                                                            <tr class="table-secondary">
+                                                            @else
+                                                            <tr>    
+                                                            @endif
                                                                     <td>{{$component->name}}</td>
                                                                     <td>{{$component->brand}} {{$component->name}}</td>
                                                                     <td>{{$component->details}}</td>
                                                                     <td>{{$component->serial_no}}</td>
                                                                     <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 1)" data-target="#forRepairModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                        @if($component->status_id == 3)
+                                                                        <a href="{!! url('/') !!}" class="btn btn-warning rounded btn-sm"><i class="fas fa-sync"></i> Replace Component</button>
+                                                                        @else
+                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 3)" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                        @endif
+                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 4)" data-target="#forRepairModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 7)" data-target="#forRepairModal"><i class="fas fa-trash-alt"></i> Decommission</button>                                                                    
                                                                     </td>
                                                                 </tr>
                                                                 @endif
@@ -316,17 +330,21 @@
                                                         </tbody>
                                                         @foreach($components as $component)
                                                                 @if($component->unit_id == $unit->su_id)
-                                                                <tr>
+                                                                @if($component->status_id == 3)
+                                                                <tr class="table-secondary">
+                                                                @else
+                                                                <tr>    
+                                                                @endif
                                                                     <td>{{$component->name}}</td>
                                                                     <td>{{$component->brand}} {{$component->name}}</td>
                                                                     <td>{{$component->details}}</td>
                                                                     <td>{{$component->serial_no}}</td>
                                                                     <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 1)" data-target="#forRepairModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 3)" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 4)" data-target="#forRepairModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" onclick="fetchComponent({!! $component->id !!} , 7)" data-target="#forRepairModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     </td>
                                                                 </tr>
                                                                 @endif
@@ -371,17 +389,21 @@
                                                         </tbody>
                                                         @foreach($components as $component)
                                                                 @if($component->unit_id == $unit->su_id)
-                                                                <tr>
+                                                                @if($component->status_id == 3)
+                                                                <tr class="table-secondary">
+                                                                @else
+                                                                <tr>    
+                                                                @endif
                                                                     <td>{{$component->name}}</td>
                                                                     <td>{{$component->brand}} {{$component->name}}</td>
                                                                     <td>{{$component->details}}</td>
                                                                     <td>{{$component->serial_no}}</td>
                                                                     <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal"><i class="fas fa-check"></i> Make Available</button>
-                                                                        <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
-                                                                        <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
+                                                                        <button type="button" class="btn btn-success rounded btn-sm" onclick="fetchComponent({!! $component->id !!} , 1)" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-check"></i> Make Available</button>
+                                                                        <button type="button" class="btn btn-warning rounded btn-sm" onclick="fetchComponent({!! $component->id !!} , 3)" data-toggle="modal" data-target="#forRepairModal"><i class="fas fa-tools"></i> For Repair</button>
+                                                                        <button type="button" class="btn btn-primary rounded btn-sm" onclick="fetchComponent({!! $component->id !!} , 4)" data-toggle="modal" data-target="#forReturnModal"><i class="fas fa-undo-alt"></i> For Return</button>
+                                                                        <button type="button" class="btn btn-secondary rounded btn-sm" onclick="fetchComponent({!! $component->id !!} , 7)"  data-toggle="modal" data-target="#DecommissionModal"><i class="fas fa-trash-alt"></i> Decommission</button>
                                                                     </td>
                                                                 </tr>
                                                                 @endif
@@ -998,12 +1020,16 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-
+                    <form action="{!! url('/add-to-concerns-equipment') !!}" method="post">
+                    {{ csrf_field() }}
                     <div class="modal-body">
                       <div class="warning-content">
+                      <input type="hidden" name="id" id="name_component_concern">
+                      <input type="hidden" name="status_id" id="status_id_concern">
                           <p>Warning!</p>
-                          <p>Are you sure you want to change the status of this item to For Repair?</p>
+                          <p>Are you sure you want to change the status of this item to <p id="status_name">For Repair</p>?</p>
                       </div>
+                      <textarea name="remarks"></textarea>
 
                     </div>
 
@@ -1011,6 +1037,7 @@
                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                     </div>
+                    </form>
                 </div>
             </div>
     </div>
@@ -1104,6 +1131,24 @@
       $('#concerns').addClass('active');
       $('#breadcrumb_for_repair').removeClass("text-dark").addClass("text-warning");
     });
+
+    function fetchComponent(id , status){
+        console.log(id +" " + status)
+        $('#name_component_concern').val(id);
+        $('#status_id_concern').val(status);
+        if(status == 1){
+            $('#status_name').text('Available')
+        }
+        else if(status == 3){
+            $('#status_name').text('For Repair')
+        }
+        else if(status == 4){
+            $('#status_name').text('For Return')
+        }
+        else if(status == 7){
+            $('#status_name').text('For Decommission')
+        }
+    }
 
     function emptyContent(){
         $('#makeAvailableContent').empty()

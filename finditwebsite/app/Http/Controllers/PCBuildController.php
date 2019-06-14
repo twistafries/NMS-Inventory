@@ -195,4 +195,8 @@ class PCBuildController extends Controller
             ->with('target' , '#build');
           }
     }
+
+    public function redirectReplacement($sys_id , $repair_component){
+
+    }
 }
