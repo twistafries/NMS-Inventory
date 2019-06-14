@@ -19,6 +19,7 @@ class TblSystemUnits extends Model
         -> leftjoin('issuance', 'issuance.unit_id', '=', 'system_units.id')
         -> leftjoin('employees', 'employees.id', '=', 'issuance.issued_to')
         -> select('system_units.*', 'system_units.id as id', 'system_units.name as name', 'users.lname as lname', 'users.fname as fname', 'departments.name as department',  'employees.fname as efname', 'employees.lname as elname', 'equipment_status.name as status', DB::raw("DATE_FORMAT(system_units.created_at, '%m-%d-%Y') as added_at"))
+        -> groupBy('system_units.id')
         -> orderBy('system_units.id' , 'ASC')
         -> get();
         return $query;
