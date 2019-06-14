@@ -48,7 +48,11 @@
                      </thead>
                      <tbody>
                       @foreach ($pc[$dept->id] as $unit)
+                           @if($unit->status_id == 3)
+                           <tr class="table-secondary">
+                           @else
                            <tr>
+                           @endif
                              <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >{{$unit->su_id}}</td>
                              <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >{{$unit->name}}-{{$unit->su_id}}</td>
                              <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >{{$unit->status_name}}</td>
@@ -101,7 +105,11 @@
                     <tbody>
 
                             @foreach($no_dep as $unit)
-                                <tr>
+                            @if($unit->status_id == 3)
+                            <tr class="table-secondary">
+                            @else
+                            <tr>
+                            @endif
                                     <td>ID: {{$unit->su_id}}</td>
                                     <td>
                                         <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
