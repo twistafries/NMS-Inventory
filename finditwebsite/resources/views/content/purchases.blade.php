@@ -367,7 +367,7 @@
                         <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
                     </td>
                     @elseif($purchase->or_no!=null && $item->qty_added < $item->qty)
-                    <td><a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add Pending Items ({{$item->qty - $item->qty_added}} of {{$item->qty}})</a></td>
+                    <td><a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add Pending Items ({{$item->qty - $item->qty_added}} of {{$item->qty}}) left</a></td>
                     @else
                     <td class="text-right">
                       <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
