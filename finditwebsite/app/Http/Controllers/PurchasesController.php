@@ -325,7 +325,16 @@ class PurchasesController extends BaseController
 
           try{
             $data = $request->all();
-            dd($data);
+            $ctr=1;
+            $unit_number = DB::table('purchased_items')->select('unit_number')->groupBy('unit_number')->orderBy('unit_number', 'desc')->first();
+            if (count($unit_number)==0){
+              $unit_number=1;
+            }
+            foreach ($data['sub'] as $subtype) {
+              // dd($data['component']["$subtype"]["brand"]);
+
+            }
+            dd($unit_number);
             $data['user_id'] = $user_id;
             // $data['subtype_id'] = (int)$request->get('subtype_id');
             // dd($data);
