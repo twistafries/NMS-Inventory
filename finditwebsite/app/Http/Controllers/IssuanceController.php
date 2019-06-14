@@ -135,8 +135,6 @@ class IssuanceController extends BaseController {
 		$log['activity'] = "issued";
 		$log['issued_to'] = TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->fname . " " .TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->lname;
 		
-		$equipment_info = TblItEquipment::get_equipment_info($data['equipment_id']);
-
 		$concerns = $request->all();
 		if($request->get('su.id') == null){
 			$concerns['id'] = $request->get('equipment_id');
@@ -148,22 +146,30 @@ class IssuanceController extends BaseController {
 		};
 		$concerns['added_by'] = $data['user_id'];
 		$concerns['status_id'] = $data['status_id'];
-		InventoryConcerns::addConcern($concerns);
-		// dd( $concerns);  
-		try{ 
-			if(isset($data['issued_to'])){
-				TblIssuances::add_issuance($data);
-			};
-			TblItEquipment::update_equipment_status($data['equipment_id'], $data['status_id']);
-			TblActivityLogs::add_log($log);
-			// dd($equipment_info[0]);
-			return \Redirect::to('/inventoryAll')->with('message','Equipment ID:'. $equipment_info[0]->id .', '. $equipment_info[0]->brand.' '. $equipment_info[0]->model .' has been successfully issued to .' . $log['issued_to']);
 
-		}catch(Exception $e){
-			dd($e);
-		}catch(QueryException $qe){
-
+		if($request->get('equipment_id') != null){
+			$equipment_info = TblItEquipment::get_equipment_info($data['equipment_id']);
+			
+			InventoryConcerns::addConcern($concerns);
+			// dd( $concerns);  
+			try{ 
+				if(isset($data['issued_to'])){
+					TblIssuances::add_issuance($data);
+				};
+				TblItEquipment::update_equipment_status($data['equipment_id'], $data['status_id']);
+				TblActivityLogs::add_log($log);
+				// dd($equipment_info[0]);
+				return \Redirect::to('/inventoryAll')->with('message','Equipment ID:'. $equipment_info[0]->id .', '. $equipment_info[0]->brand.' '. $equipment_info[0]->model .' has been successfully issued to .' . $log['issued_to']);
+	
+			}catch(Exception $e){
+				dd($e);
+			}catch(QueryException $qe){
+	
+			}
+		}else{
+			$system_unit_info;
 		}
+
 
 		// return redorect
 

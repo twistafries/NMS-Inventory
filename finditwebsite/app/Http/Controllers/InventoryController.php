@@ -209,6 +209,7 @@ class InventoryController extends BaseController
       $data['pc_parts'] = TblItEquipment::get_all_parts();
 
       $data['it_equipment'] = PCBuildEq::where('status_id', '=', 1)->get();
+      $data['active_employees'] = TblEmployees::getActiveEmployees();
       ///pc
       $data['departments'] = TblDepartments::getDept();
       $data['depts'] = TblDepartments::getDept();
@@ -590,6 +591,8 @@ class InventoryController extends BaseController
 
     public function getUnitForRepair($id){
       $units['unit'] = TblSystemUnits::getUnit($id);
+      $units['departments'] = TblDepartments::getDept();
+
       // $statuses['status'] = TblSystemUnits::getUnit($id);
       // dd($units);
       echo json_encode($units);

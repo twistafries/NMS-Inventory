@@ -62,7 +62,7 @@
                                      <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
                                      <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                      <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                     <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
+                                     <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#issue-modal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                  @elseif($unit->status_id == 2)
                                      <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
                                      <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -72,12 +72,10 @@
                                      <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
                                      <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                      <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                     <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                  @elseif($unit->status_id == 4)
                                      <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
                                      <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
                                      <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                     <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                  @endif
                              </td>
                           </tr>
@@ -156,7 +154,7 @@
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
                                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModxal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
+                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#issue-modal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 2)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
@@ -166,12 +164,10 @@
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
                                                 <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @elseif($unit->status_id == 4)
                                                 <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
                                                 <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
                                                 <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
                                             @endif
                                         </td>
                                 </tr>
@@ -863,6 +859,67 @@
     </div>
 </div>
 
+<!-- Issue Item Modal -->
+<div class="modal fade" id="issue-modal" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
+                        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="container">
+                        <h5 class="modal-title" id="ModalTitle">Issue System Unit</h5>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{!! url('/issueEquipment'); !!}" method="post">
+                {!! csrf_field() !!}
+                <div class="modal-body">
+                    <div class="container-fluid" id="issueToModalBody">
+                        <!-- Issue To  -->
+                        <div class="row">
+                            <input type="hidden" name="su.id" id="eq_id">
+                            <div class="col col-2 detail-header text-uppercase">Issue To</div>
+                            <select id="departmentDropdown" class="custom-select">
+                                <option value="">Any Department</option>
+                                @foreach($departments as $department)
+                                <option value="">{{$department->name}}</option>
+                                @endforeach
+                            </select>
+                            <select name="issued_to" id="employeeDropdown" class="custom-select" placeholder="--Select Employee--">
+                                @foreach($active_employees as $employee)
+                                <option value="{!! $employee->id !!}">ID:{{$employee->id}} | {{$employee->fname}} {{$employee->lname}}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+
+                        <hr>
+                        <div class="row row-details">
+                            <div class="col col-4 detail-header text-uppercase">Issue Until</div>
+                            <input type="date" class="form-control" name="issued_until" id="issued_until" >
+                            <br>
+=                        </div>
+
+                        <hr>
+                        <div class="row row-details">
+                            <div class="col col-4 detail-header text-uppercase">Remarks</div>
+                            <textarea rows="4" cols="50" name="remarks" id="remarks"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-uppercase">Issue Item</button>
+                </form>
+                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 <!-- Empty Modal Prompt -->
     <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog"
     aria-hidden="true">
@@ -928,7 +985,7 @@
         }else if (new_status_id == 4){
             var new_status_name = "For return";
         }else if (new_status_id == 2){
-            $('#eq_id').val(id);
+            // $('#eq_id').val(id);
         }
 
         $.ajax({
@@ -944,10 +1001,8 @@
                         var dept = response['unit'][i].dept_name;
                         var name = response['unit'][i].name;
                     }
-                    dep = response['departments'].length;
-                    if(var i; i < dep; i++){
 
-                    }
+                    
                     if(new_status_id != 2){
                         var unitContentStr =
                         '<p>Are you sure you want to change the status of ' + name + unit_id +
@@ -970,15 +1025,7 @@
 
                         $('#makeAvailableFooter').append(unitFooterStr);
                     }else{
-
-                        var issueContent =
-                        '<div class="modal-body">' +
-                        '<div class="container-fluid" id="issueToModalBody">' +
-                        '<div class="row">' +
-                            '<input type="hidden" name="equipment_id" id="eq_id">' +
-                            '<div class="col col-2 detail-header text-uppercase">Issue To</div>
-                            '<select id="departmentDropdown" class="custom-select">' 
-                               
+                        $('#eq_id').val(sys_id);             
                     }
                 }
             }
