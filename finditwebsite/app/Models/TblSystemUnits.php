@@ -72,9 +72,7 @@ class TblSystemUnits extends Model
         $system_units->save();
         $id = DB::getPdo()->lastInsertId();
         return $id;
-      }catch(QueryException $qa) {
-        // dd($qa::getErrorInfo());
-        // Session::flash('error', 'Input cannot be read by the Database');
+      }catch(QueryException $qe) {
         return \Redirect::to('/inventoryAll')->with('error' , 'Database error(s)');
       }
     }

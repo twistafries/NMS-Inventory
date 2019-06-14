@@ -100,7 +100,6 @@ class TblIssuances extends Model {
 			if(isset($params['id'])) {
 				$query->where('i.id', '=', $params['id']);
 			}
-			// dd($query);
 		return $query;
 	}
 
@@ -110,7 +109,6 @@ class TblIssuances extends Model {
 		->where('equipment_id', '=', $params)
 		->get();
 		;
-		// dd($query->count());
 		if ($query->count() == 0) {
 			return "NULL";
 		}else{
@@ -181,7 +179,7 @@ class TblIssuances extends Model {
 			$issuance->unit_id = $params['unit_id'];
 
 		if(isset($params['issued_to']))
-			$issuance->issued_to = $params['isssued_to'];
+			$issuance->issued_to = $params['issued_to'];
 
 		if(isset($params['returned_at'])){
 			$issuance->returned_at = $params['returned_at'];
@@ -197,7 +195,7 @@ class TblIssuances extends Model {
 		$issuance->updated_at = gmdate('Y-m-d H:i:s');
 
 		try {
-			$event->save();
+			$issuance->save();
 			return $id;
 		} catch(QueryException $e) {
 			die($e);
