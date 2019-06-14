@@ -532,66 +532,7 @@
         $('#makeAvailableFooter').empty()
     }
 
-  function makeAvailableSystemUnit(sys_id , new_status_id){
-        emptyContent();
-        var unit_id = sys_id;
-        console.log("System" + sys_id);
-        if(new_status_id == 1){
-            var new_status_name = "Available";
-        }else if (new_status_id == 7){
-            var new_status_name = "Decommissioned";
-        }else if (new_status_id == 3){
-            var new_status_name = "For repair";
-        }else if (new_status_id == 4){
-            var new_status_name = "For return";
-        }else if (new_status_id == 2){
-            // $('#eq_id').val(id);
-        }
-
-        $.ajax({
-            url: 'getUnitForRepair/' + unit_id,
-            type: 'get',
-            dataType: 'json',
-            success: function (response){
-                len = response['unit'].length;
-                if(len > 0){
-                    for(var i = 0; i < len; i++){
-                        var orig_status_name = response['unit'][i].status_name;
-                        // var orig_status_id = response['unit'][i].status_id;
-                        var dept = response['unit'][i].dept_name;
-                        var name = response['unit'][i].name;
-                    }
-
-                    
-                    if(new_status_id != 2){
-                        var unitContentStr =
-                        '<p>Are you sure you want to change the status of ' + name + unit_id +
-                        ' from "' + orig_status_name + '" to "' + new_status_name +'" ?</p>' +
-                        '</div>' + '<div class="btn-group" role="group">' +
-                        '<button class="btn btn-warning text-uppercase" data-toggle="collapse" data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">' +
-                        'Add Remarks' + '</button>' + '<div class="collapse" id="remarks">' +
-                        '<textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>' + '</div></div>';
-
-                        $('#makeAvailableContent').append(unitContentStr);
-
-                        var unitFooterStr =
-                        '<input type="hidden" name="id" value="' + unit_id + '" >' +
-                        '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
-                        '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
-                        '<button type="button" class="btn btn-info text-uppercase" data-toggle="modal" data-target="#viewItemModal">View Item Modal</button>' +
-                        '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" onclick="emptyContent()">Cancel</button>'
-
-                        ;
-
-                        $('#makeAvailableFooter').append(unitFooterStr);
-                    }else{
-                        $('#eq_id').val(sys_id);             
-                    }
-                }
-            }
-
-        })
-    }
+ 
   </script>
 
 
