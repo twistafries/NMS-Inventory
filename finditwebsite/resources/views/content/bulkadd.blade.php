@@ -294,7 +294,7 @@ body{
 
                     if (response['purchases'] != null) {
                         len = response['purchases'].length;
-                        console.log("response[] not null");
+                        console.log(response['purchases']);
                         console.log("len: " + len);
                     }
 
@@ -309,6 +309,7 @@ body{
                             var details = response['purchases'][i].details;
                             var qty = response['purchases'][i].qty;
                             var qty_a = response['purchases'][i].qty_added;
+                            var or_no= response['purchases'][i].or_no;
                             var is_part = response['purchases'][i].is_part;
                             var unit_number = response['purchases'][i].unit_number;
                             var supplier_id = response['purchases'][i].supplier_id;
@@ -321,6 +322,9 @@ body{
                             $('#model').val(model);
                             $('#details').val(details);
                             $('#supplier').val(supplier_id);
+                            if(or_no != null){
+                                $('#or_no').val(or_no);
+                            }
                         }
 
 
