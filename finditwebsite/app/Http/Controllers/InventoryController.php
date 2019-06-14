@@ -155,6 +155,7 @@ class InventoryController extends BaseController
       $data['suppliers'] = Suppliers::get_suppliers();
       $data['supplier'] = Suppliers::get_suppliers();
       $data['brands'] = TblItEquipment::get_brand();
+      $data['departments'] = TblDepartments::getDept();
       $data['models'] = TblItEquipment::get_model();
       $data['active_employees'] = TblEmployees::getActiveEmployees();
       return view ('content/inventoryAll' , $data);

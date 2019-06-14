@@ -32,8 +32,10 @@ $lname = $session['lname'];
     <div class="col-sm-2">
         <p class="card-title">OR_No</p>
         <input type="text" name="or_no" required>
-        <input type="hidden" name="qty" value={{$qty}}>
+        <input type="hidden" name="qty_added" value={{$qty_added}}>
         <input type="hidden" name="supplier_id" value={{$supplier_id}}>
+        <input type="hidden" name="purchase_no" value={{$pID}}>
+        <input type="hidden" name="unit_number" value={{$unit_number}}>
     </div>
     <div class="col-sm-2">
       <p class="card-title">Warranty</p>
@@ -55,13 +57,13 @@ $lname = $session['lname'];
         <th>Model</th>
         <th>S/N</th>
         <th>Details</th>
-        <th>Option</th>
+        <!--<th>Option</th>-->
       </tr>
     </thead>
         <tbody>
           
           <input type="hidden" name="supplier" value={{$supplier_id}}>
-          @for($count = 0; $qty > $count; $count++)
+          @for($count = 0; $qty_added > $count; $count++)
 
             @foreach($components as $component)
             <tr>
@@ -78,14 +80,16 @@ $lname = $session['lname'];
                 <input type="hidden" name="model[]" value="{{$component->model}}">
               </td>
               <td>
-                <input type="text" name="serial_no{{$component->subtype_id}}[]" required>
+              <input type="text" id="comp{{$component->subtype_id}}" name="serial_no{{$component->subtype_id}}[]" required>
               </td>
               <td>
                   <input type="text" name="dets{{$component->subtype_id}}[]" required>
               </td>
-              <td title="Click this if serial#s are similar or consecutive">
+              <!--
+              <td title="Click this if serial#s and details are similar or consecutive">
                   <button type="button" class="btn btn-outline-secondary">Consecutive</button>
               </td>
+              -->
             </tr>
             @endforeach
             <tr class="font-weight-bold">
@@ -93,8 +97,7 @@ $lname = $session['lname'];
                 <td>{{$supplier}}</td>
                 <td>Unit Label</td>
                 <td><input name="name[]" type="text" placeholder="PC" required></td>
-                <td>Unit #{{$count + 1}} </td>
-                <td>of {{$qty}}</td>
+                <td>Unit {{$count + 1}} of {{$qty_added}}</td>
               </tr>
             @endfor
         </tbody>
@@ -122,19 +125,19 @@ $lname = $session['lname'];
           "bLengthChange": false,
       });
 
-      $('#subm').click(function(e){
-        e.preventDefault();
 
-        
+      $('#subm').click(function(e){
+        //e.preventDefault();
         var data = tbl.$('input').serializeArray();
 
         data.unshift({name:'or_no', value:$("input[name=or_no]").val()});
-        data.unshift({name:'qty', value:$("input[name=qty]").val()});
+        data.unshift({name:'qty_added', value:$("input[name=qty_added]").val()});
         data.unshift({name:'warranty_start', value:$("input[name=warranty_start]").val()});
         data.unshift({name:'warranty_end', value:$("input[name=waranty_end]").val()});
         data.unshift({name:'supplier_id', value:$("input[name=supplier_id]").val()});
-        console.log(data);
-        
+        data.unshift({name:'purchase_no', value:$("input[name=purchase_no]").val()});
+        data.unshift({name:'unit_number', value:$("input[name=unit_number]").val()});
+
         $.post({
           url:'/tempBulkPC',
           data: data,
@@ -157,5 +160,6 @@ $lname = $session['lname'];
       tbl = $('#unitDataTable').dataTable();
 
   });
+
 </script>
 @stop

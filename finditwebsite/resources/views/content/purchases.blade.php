@@ -173,10 +173,7 @@
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">Socket:
-Chipset:
-Size:
-RAM:
+                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">
                                     </textarea>
                                   </div>
                                 </div>
@@ -233,7 +230,6 @@ RAM:
 
                                       <tbody>
                                           <tr>
-
                                               <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
                                                <td> <input type="text" name=""></td>
                                           </tr>
@@ -366,10 +362,12 @@ RAM:
                     <td hidden>{{$item->subtype}}{{$item->subtype_id}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
-                    @if($purchase->or_no!=null)
+                    @if($purchase->or_no!=null && $item->qty_added == $item->qty)
                     <td class="text-right table-success">
                         <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
                     </td>
+                    @elseif($purchase->or_no!=null && $item->qty_added < $item->qty)
+                    <td><a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add Pending Items ({{$item->qty - $item->qty_added}} of {{$item->qty}})</a></td>
                     @else
                     <td class="text-right">
                       <a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add To Inventory</a>
@@ -381,13 +379,13 @@ RAM:
                   @foreach($unit_number as $unit)
                   @if ($unit->p_id==$purchase->purchase_no)
                   <tr>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
-                  <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
-                  <td hidden>PC_SystemUnit</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
+                    <td hidden>PC_SystemUnit</td>
                   </tr>
                   @endif
                   @endforeach
@@ -456,7 +454,9 @@ RAM:
               </div>
 
               <div class="modal-footer">
+                  @if($item->or_no === null)
                   <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
+                  @endif
                   <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
         </div>
@@ -605,6 +605,7 @@ RAM:
 
                                           <div class="col-sm-4">{{$pc->supplier_name}}</div>
                                           <input type="hidden" name="pcID" value={{$pc->p_id}}>
+                                          <input type="hidden" name="unit_number" value={{$pc->unit_number}}>
                                           <div class="col-sm-4">{{$pc->qty}}</div>
 
 
@@ -637,18 +638,26 @@ RAM:
                                         </tr>
                                         @endif
                                         @endforeach
+                                        @if($pc->or_no == null)
                                         <tr>
                                           <p class="card-title">Qty. to Add
-                                          <input type="number" name="qty" min='1' max='{{$pc->qty}}' required></p>
+                                          <input type="number" name="comp_qty" min='1' max={{$pc->qty}} required></p>
                                         </tr>
+                                        @elseif($pc->qty > $pc->qty_added)
+                                        <tr>
+                                          <p class="card-title">Remaining Qty.
+                                          <input type="number" name="comp_qty" min='1' max='{{$pc->qty}}-{{$pc->qty_added}}' required></p>
+                                        </tr>
+                                        @endif
                                       </tbody>
                                       </table>
 
                                     </div>
 
                                     <div class="modal-footer">
-
+                                        @if($pc->or_no == null)
                                         <button type="submit" class="btn btn-primary text-uppercase">Add Items To Inventory</button>
+                                        @endif
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                   </form>

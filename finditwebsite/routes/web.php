@@ -159,3 +159,4 @@ Route::post('/template', 'InventoryController@addEquipment');
 
 Route::get('/activitylogs', 'ActivityLogsController@getActivityLogs');
 Route::get('/issueItem/{id}', 'IssuanceController@fetchIssuanceInfo');
+Route::post('/issueEquipment', 'IssuanceController@addIssuanceFromInventory');

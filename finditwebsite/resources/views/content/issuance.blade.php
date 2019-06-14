@@ -142,8 +142,6 @@
 
                         @foreach ($issuance as $issuance)
                         @if($issuance->issued_until < Carbon::today()->format('m-d-Y') && $issuance->issued_until != null )
-                          Today: {{Carbon::today()->format('m-d-Y')}}
-                          Issued Until: {{$issuance->issued_until}}
                               <tr class="table-danger" data-toggle="modal" data-target="#viewItemModal">
                         @else
                               <tr data-toggle="modal" data-target="#viewItemModal">

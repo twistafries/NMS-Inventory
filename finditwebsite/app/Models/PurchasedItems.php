@@ -62,6 +62,7 @@ class PurchasedItems extends Model
     public static function get_unit_number($params=null){
         $query = \DB::table('purchased_items')
         -> leftjoin('supplier', 'supplier.id', '=', 'purchased_items.supplier_id')
+        -> leftjoin('purchases', 'purchases.purchase_no', '=', 'purchased_items.p_id')
         -> groupBy('unit_number')
         -> where('unit_number', '!=', null)
         -> orderBy('p_id' , 'asc')
