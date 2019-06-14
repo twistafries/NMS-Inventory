@@ -109,7 +109,6 @@ class IssuanceController extends BaseController {
 		if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['status_id']) ){
 
 				TblIssuances::add_issuance($data);
-
 				$log['issued_to'] = $data['issuedTo_name'];
 
 				$log['activity'] = "issued";
