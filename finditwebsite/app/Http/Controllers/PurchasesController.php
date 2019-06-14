@@ -35,6 +35,7 @@ class PurchasesController extends BaseController
         $data['typesSel'] = TblItEquipmentType::get_all_equipment_type();
         $data['suppliers'] = Suppliers::get_suppliers();
         $data['supplier'] = Suppliers::get_suppliers();
+        $data['supp'] = Suppliers::get_suppliers();
         $data['brands'] = TblItEquipment::get_brand();
         $data['models'] = TblItEquipment::get_model();
         $data['for_repair'] = TblEquipmentStatus::get_for_repair();
@@ -312,6 +313,78 @@ class PurchasesController extends BaseController
 
           }
         }
+
+        public function add_pc_purchase(Request $request){
+          if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+          }
+
+          $session=Session::get('loggedIn');
+          // dd($request->all());
+          $user_id = $session['id'];
+
+          try{
+            $data = $request->all();
+            dd($data);
+            $data['user_id'] = $user_id;
+            // $data['subtype_id'] = (int)$request->get('subtype_id');
+            // dd($data);
+            Purchases::add_purchase($data);
+            $data['purchase']["brand"];
+            $supplier = $data['supplier'];
+      			$all_supplier = DB::table('supplier')->where('supplier_name',$supplier)->first();
+      			if(!$all_supplier){
+              $id=Suppliers::add_supplier($supplier);
+      			  $data['supplier_id']=$id;
+            }
+            if($all_supplier){
+              $supp=DB::table('supplier')->select('id')->where('supplier_name',$supplier)->get();
+              foreach ($supp as $supp) {
+                $data['supplier_id']=(int)$supp->id;
+              }
+
+            }
+
+            $ctr = 0;
+            foreach ($data['purchase']["brand"] as $brand) {
+              $data['brand'] = $brand;
+              $data['model'] = $data['purchase']["model"][$ctr];
+              $data['details'] = $data['purchase']["details"][$ctr];
+              $data['subtype_id'] = $data['purchase']["subtype_id"][$ctr];
+              $data['qty'] = $data['purchase']["qty"][$ctr];
+              if(isset($data['purchase_no'])
+              && isset($data['brand'])
+              && isset($data['model'])
+              && isset($data['details'])
+              && isset($data['subtype_id'])
+              && isset($data['supplier_id'])
+              && isset($data['qty'])){
+                  PurchasedItems::add_purchased_Item($data);
+              }
+              $ctr++;
+            }
+
+              // $log['data'] = $id;
+              // // $log['unit'] = $data['unit_id'];
+              // $log['activity'] = "added";
+              // TblActivityLogs::add_log($log);
+              return \Redirect::to('/purchases')->with('new purchase added');
+
+          }catch(Exception $e){
+            return redirect()->back()
+                  ->with('error' , 'Please fill out ALL the fields')
+                  ->with('error_info' , $e->getMessage())
+                  ->with('target' , '#singleAdd');
+
+          }catch(QueryException $qe){
+            return redirect()->back()
+                  ->with('error' , 'Database cannot read input value.')
+                  ->with('error_info' , $qe->getMessage())
+                  ->with('target' , '#singleAdd');
+
+          }
+        }
+
         public function addToInventory(Request $request){
           if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');

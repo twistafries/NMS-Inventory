@@ -105,6 +105,7 @@ Route::get('/issuance', 'IssuanceController@showAllIssuance');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addpurchase', 'PurchasesController@addpurchase');
+Route::post('/purchasePC', 'PurchasesController@add_pc_purchase');
 Route::post('/addToInventory', 'PurchasesController@addToInventory');
 Route::post('/addIssuance', 'IssuanceController@addIssuance');
 Route::post('/addSystemUnit', 'InventoryController@addSystemUnit');
