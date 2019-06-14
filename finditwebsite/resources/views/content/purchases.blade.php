@@ -401,12 +401,12 @@
                   @foreach($unit_number as $unit)
                   @if ($unit->p_id==$purchase->purchase_no)
                   <tr>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">PC - {{$unit->unit_number}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">PC</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">{{$unit->qty}}</td>
                     <td hidden>PC_SystemUnit</td>
                   </tr>
                   @endif
@@ -597,7 +597,7 @@
 @endforeach
 
                   @foreach($pc as $pc)
-                  <div class="modal fade" id="pc{{$pc->p_id}}" tabindex="-1" role="dialog" aria-labelledby=""
+                  <div class="modal fade" id="pc{{$pc->unit_number}}" tabindex="-1" role="dialog" aria-labelledby=""
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">

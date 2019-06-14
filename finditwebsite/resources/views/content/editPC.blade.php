@@ -26,6 +26,7 @@
             <div class="form-row">
                 <label for="name" class="col-md-1 col-form-label">Label</label>
                 <input name="name" type="text"  value="{{$pc_name}}" class="form-control col-sm-4" required>
+                  <input name="unit_id" value ="{{$unit_id}}" hidden>
             </div>
             <br>
             <div class="form-row">
@@ -33,6 +34,8 @@
                     <select name="dept_id" class="col-md-5 col-form-sm">
 
                     <option value = "{{$dept_id}}"> {{$department}} </option>
+
+
                     <option value = ""> Storage </option>
                     @foreach($departments as $department)
                         @if($dept_id != $department->id)

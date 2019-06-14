@@ -26,7 +26,7 @@ class Purchases extends Model
       -> get();
       return $query;
     }
-    
+
     public static function get_completed_purchases($params = null){
         $query = \DB::table('purchases')
         -> select('purchases.*')
@@ -40,11 +40,15 @@ class Purchases extends Model
 
     public static function add_purchase($params){
       $purchases = new Purchases;
-  		$purchases->purchase_no = $params['purchase_no'];
+      if(isset($params['purchase_no'])){
+  		    $purchases->purchase_no = $params['purchase_no'];
+      }
       $purchases->user_id = $params['user_id'];
 
   		try {
   			$purchases->save();
+        $id = DB::getPdo()->lastInsertId();
+        return $id;
   		}catch(QueryException $e) {
   			die($e);
   		}

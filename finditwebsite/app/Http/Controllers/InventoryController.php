@@ -219,6 +219,8 @@ class InventoryController extends BaseController
     			$data['pc'][$dept->id] = TblSystemUnits::unitByDep($dept->id);
     	}
 
+          $data['no_dept'] = TblSystemUnits::unitNoDept();
+
 
 
       return view ('content/systemUnit' , $data);

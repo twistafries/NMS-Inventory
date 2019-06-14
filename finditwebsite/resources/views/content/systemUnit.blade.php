@@ -86,97 +86,62 @@
                <br>
           @endforeach
 
-          <h5 class="font-weight-bold">No Department</h5>
-          <table id="myDataTableND" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
-                    <thead class="thead-dark">
-                         <tr>
-                            <th>ID</th>
-                            <th>Department</th>
-                            <th>Status</th>
-                            <th>Mark As</th>
+
+                     <!--No Department Table-->
+                     <h5 class="font-weight-bold">No Department</h5>
+                     <table id="myDataTableND" class="table table-borderless table-hover" style="width:100%;cursor:pointer;">
+                               <thead class="thead-dark">
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>Label</th>
+                                       <th>Status</th>
+                                       <th>Issued To</th>
+                                       <th>Mark As</th>
 
 
 
 
-                        </tr>
-                    </thead>
-                    <tbody>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                @foreach ($no_dept as $unit)
+                                     @if($unit->status_id == 3)
+                                     <tr class="table-secondary">
+                                     @else
+                                     <tr>
+                                     @endif
+                                       <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >{{$unit->su_id}}</td>
+                                       <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >{{$unit->name}}-{{$unit->su_id}}</td>
+                                       <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >{{$unit->status_name}}</td>
+                                       <td data-toggle="modal" data-target="#pc{{$unit->su_id}}" >@if($unit->status_name=="Issued") {{$unit->fname}} {{$unit->lname}} @endif</td>
+                                       <td>
+                                           @if($unit->status_id == 1)
+                                               <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                               <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                               <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                               <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#issue-modal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
+                                           @elseif($unit->status_id == 2)
+                                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
+                                               <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                               <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                               <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                           @elseif($unit->status_id == 3)
+                                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                               <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
+                                               <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                           @elseif($unit->status_id == 4)
+                                               <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
+                                               <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
+                                               <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                           @endif
+                                       </td>
+                                    </tr>
+                                @endforeach
+                               </tbody>
 
-                            @foreach($no_dep as $unit)
-                            @if($unit->status_id == 3)
-                            <tr class="table-secondary">
-                            @else
-                            <tr>
-                            @endif
-                                    <td>ID: {{$unit->su_id}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-link text-info" data-toggle="collapse" data-target="#itDepartment{{$unit->su_id}}" style="text-decoration: none"  onMouseOver="this.style.color='#0F0'" onMouseOut="this.style.color='#00F'" >
-                                                <a onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" >
-                                                    <i class="fas fa-angle-down">
-                                                    </i> {{$unit->name}} {{$unit->su_id}}
-                                                </a>
-                                        </button>
-                                        <div class="collapse" id="itDepartment{{$unit->su_id}}">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Component</th>
-                                                            <th scope="col">Brand/Name</th>
-                                                            <th scope="col">Details</th>
-                                                            <th scope="col">Serial No.</th>
-                                                            <th scope="col">Warranty</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($components as $component)
-                                                                @if($component->unit_id == $unit->su_id)
-                                                                <tr>
-                                                                    <td>{{$component->name}}</td>
-                                                                            <td>{{$component->brand}} {{$component->name}}</td>
-                                                                            <td>{{$component->details}}</td>
-                                                                            <td>{{$component->serial_no}}</td>
-                                                                            <td>{{$component->warranty_start}} - {{$component->warranty_end}}</td>
-                                                                </tr>
-                                                                 @endif
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                        </div>
-
-                                        </td>
-                                        @if($unit->status_id == 2)
-                                            <td>{{ $unit->status_name }} to {{$unit->fname}} {{$unit->lname}}</td>
-                                        @else
-                                            <td> {{ $unit->status_name }} </td>
-                                        @endif
-                                        <td>
-                                            @if($unit->status_id == 1)
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal"  data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                                <button type="button" class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#issue-modal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 2)"><i class="fas fa-hand-holding"></i> Issue</button>
-                                            @elseif($unit->status_id == 2)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)"><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                            @elseif($unit->status_id == 3)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-undo-alt"></i> For Return</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 4)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                            @elseif($unit->status_id == 4)
-                                                <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 1)" ><i class="fas fa-check"></i> Make Available</button>
-                                                <button type="button" class="btn btn-warning rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 3)"><i class="fas fa-tools"></i> For Repair</button>
-                                                <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-target="#makeAvailableModal" onclick="makeAvailableSystemUnit({!! $unit->su_id !!} , 7)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
-                                            @endif
-                                        </td>
-                                </tr>
-                            @endforeach
-
-                        </tbody>
-
-                </table>
-          <br>
+                       </table>
+                         <br>
+                  
 <!--Button Prompts Modals-->
 
 
@@ -1002,7 +967,7 @@
                         var name = response['unit'][i].name;
                     }
 
-                    
+
                     if(new_status_id != 2){
                         var unitContentStr =
                         '<p>Are you sure you want to change the status of ' + name + unit_id +
@@ -1025,7 +990,7 @@
 
                         $('#makeAvailableFooter').append(unitFooterStr);
                     }else{
-                        $('#eq_id').val(sys_id);             
+                        $('#eq_id').val(sys_id);
                     }
                 }
             }
