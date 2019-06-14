@@ -344,18 +344,22 @@
                 <div class="modal fade" id="pc{{$unit->id}}" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
-                            <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
-                                <div class="modal-content">
+                            <div class="modal-dialog modal-lg" role="document" style="width: 1000px;">
+                                <div class="modal-content" style="height: 50rem;">
                                     <div class="modal-header">
                                     <h5 class="modal-title"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-
+                                    <form action="{!! url('/editPCpage'); !!}" onsubmit="getDate()" method="post">
+                                        {!! csrf_field() !!}
                                     <div class="modal-body">
                                       <div class="row">
-
+                                          <input name="unit_id" value=" {{$unit->id}}" hidden>
+                                          <input name="name" value=" {{$unit->name}}" hidden>
+                                          <input name="dept_id" value=" {{$unit->dept_id}}" hidden>
+                                          <input name="department" value=" {{$unit->department}}" hidden>
                                           <div class="col-sm-6"><div class="detail-header text-uppercase">ID: {{$unit->id}}</div></div>
 
                                           <div class="col-sm-6"><div class="detail-header text-uppercase">Name: {{$unit->name}}-{{$unit->id}}</div></div>
@@ -388,14 +392,15 @@
                                           <div class="col-sm-12"><div class="detail-header text-uppercase">Department: {{$unit->department}}</div></div>
                                     </div>
 
-                                      <div class="row" style="centered">
+                                      <div class="row">
+                                        <div class="col-sm-12">
                                         <table id="componentTable{{$unit->id}}" class="table table-hover" style="width:100%">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th>Component</th>
                                                     <th>Label</th>
                                                     <th>Serial Number</th>
-                                                    <th></th>
+
                                                 </tr>
                                             </thead>
 
@@ -406,23 +411,27 @@
                                                     <td>{{$part->subtype_name}}</td>
                                                     <td>{{$part->brand}}-{{$part->model}}</td>
                                                     <td>{{$part->serial_no}}</td>
-                                                    <td> <button type="submit" class="btn btn-primary text-uppercase">Replace</button>
+
                                                     </td>
                                                   </tr>
                                                 @endif
                                                 @endforeach
                                               </tbody>
                                           </table>
+                                        </div>
                                       </div>
 
                                     </div>
-
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    <div class="modal-footer" role="document">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Edit PC</button>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Close</button>
                                     </div>
+                                    </form>
                                 </div>
+
+
                             </div>
+
                     </div>
                     @endforeach
 

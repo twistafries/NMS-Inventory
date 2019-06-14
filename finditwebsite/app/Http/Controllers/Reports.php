@@ -24,6 +24,23 @@ class Reports extends BaseController
             return \Redirect::to('/loginpage');
       }
         $data = [];
+        $data['start'] = Carbon::parse('first day of January');
+        $data['start']->startOfMonth();
+        $data['end'] = Carbon::now();
+        $data['chartStartDate'] = Carbon::parse('first day of January');
+        $data['chartStartDate']->startOfMonth();
+        $data['chartEndDate'] = Carbon::now();
+        $data['chartStartDate'] = Carbon::parse($data['chartStartDate']  )->format('F j, Y');
+        $data['chartEndDate'] = Carbon::parse($data['chartEndDate']  )->format('F j, Y');
+
+        if($data['chartStartDate']==$data['chartEndDate']){
+          $data['date'] = $data['chartStartDate'];
+        } else {
+          $data['date'] = $data['chartStartDate']." - ". $data['chartEndDate'];
+        }
+        $data['most_issued']  = TblIssuances::most_issued($data);
+        $data['system_unit_issued']  = TblIssuances::system_unit_issued($data);
+        $data['system_unit_issued'] = $data['system_unit_issued'][0]->count;
         return view ('content/generateReport' , $data);
     }
 }

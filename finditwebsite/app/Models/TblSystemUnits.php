@@ -138,7 +138,6 @@ class TblSystemUnits extends Model
       -> select('system_units.*' , 'departments.name as dept_name' , 'equipment_status.name as status_name')
       -> where('system_units.id', '=', $unit_id)
       -> get();
-
       return $query;
     }
 
@@ -150,5 +149,14 @@ class TblSystemUnits extends Model
         $system_units->save();
         $id = DB::getPdo()->lastInsertId();
         return $id;
+    }
+
+    public static function edit_pc($params){
+        $system_units = TblSystemUnits::find($params['unit_id']);
+        $system_units->name = $params['name'];
+        $system_units->dept_id = $params['dept_id'];
+        $system_units->updated_at = gmdate('Y-m-d H:i:s');
+
+        $system_units->save();
     }
 }
