@@ -130,7 +130,6 @@ class IssuanceController extends BaseController {
 		$data['user_id'] = Session::get('loggedIn')['id'];
 		$employee['id'] = $data['issued_to'];
 
-		$log['data'] = $data['equipment_id'];
 		$log['activity'] = "issued";
 		$log['issued_to'] = TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->fname . " " .TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->lname;
 		
@@ -148,6 +147,7 @@ class IssuanceController extends BaseController {
 
 		if($request->get('equipment_id') != null){
 			$equipment_info = TblItEquipment::get_equipment_info($data['equipment_id']);
+			$log['data'] = $data['equipment_id'];
 			
 			InventoryConcerns::addConcern($concerns);
 			// dd( $concerns);  
@@ -166,16 +166,26 @@ class IssuanceController extends BaseController {
 	
 			}
 		}else{
-			$system_unit_info;
+			$system_unit_info = TblSystemUnits::getUnit($request->get('su_id'))[0];
 			InventoryConcerns::addConcern($concerns);
 
 			try{
 				if(isset($data['issued_to'])){
-					$data['unit_id'] = $request->get('su.id');
-					dd($data);
+					$data['unit_id'] = $request->get('su_id');
+					// dd($request->get('su_id'));
+					// dd($data);
 					TblIssuances::add_issuance($data);
+					$log['data'] = $data['unit_id'];
 
 				};
+
+				if(isset($data['status_id'])){
+					TblSystemUnits::update_system_unit_status($data['unit_id'] , $data['status_id']);
+					// $concern = InventoryConcerns::addConcern($data);
+					
+				}
+				TblActivityLogs::add_log($log);
+				return \Redirect::to('/systemUnit')->with('message','System Unit:'. $system_unit_info->name.$system_unit_info->id. ' has been successfully issued to .' . $log['issued_to']);
 
 			}catch(Exception $e){
 

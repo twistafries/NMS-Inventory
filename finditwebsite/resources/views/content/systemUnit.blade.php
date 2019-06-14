@@ -899,7 +899,7 @@
                             <div class="col col-4 detail-header text-uppercase">Issue Until</div>
                             <input type="date" class="form-control" name="issued_until" id="issued_until" >
                             <br>
-=                        </div>
+                        </div>
 
                         <hr>
                         <div class="row row-details">
