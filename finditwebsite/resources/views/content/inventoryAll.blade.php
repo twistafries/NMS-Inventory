@@ -335,7 +335,7 @@
                                         <div class="row row-details self-align-end">
                                             <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
                                                 Issue Item
-                                            </button>                                            
+                                            </button>
                                         </div>
                                         @endif
 
@@ -364,10 +364,10 @@
                                                 </div>
                                                 @else
                                                 <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#return">For Return</button>
+                                                    data-target="#return"><i class="fas fa-undo-alt"></i>For Return</button>
                                                 @endif
                                                 <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
-                                                    data-target="#decommissionedModal">Decommission Item</button>
+                                                    data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i>Decommission Item</button>
                                                 @endif
                                         </div>
 
@@ -715,7 +715,7 @@
                                 <option value="{!! $employee->id !!}">ID:{{$employee->id}} | {{$employee->fname}} {{$employee->lname}}</option>
                                 @endforeach
                             </select>
-                            
+
                         </div>
 
                         <hr>
@@ -725,12 +725,12 @@
                             <br>
                             <!-- <button type="button" class="btn btn-secondary text-uppercase"> Issue Item Indefinetely </button> -->
                         </div>
-                        
+
                         <hr>
                         <div class="row row-details">
                             <div class="col col-4 detail-header text-uppercase">Remarks</div>
                             <textarea rows="4" cols="50" name="remarks" id="remarks"></textarea>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
 
@@ -1183,7 +1183,7 @@ $('#subtypes').on('keyup change',  function() {
 //                     var emp_department = response['active_employees'][i].dept_name;
 //                 }
 
-//                 var employeeOption = 
+//                 var employeeOption =
 //                 '<option>' + emp_id + ' ' + emp_firstName + ' ' + emp_lastName + ' ' + emp_department + '</option>';
 
 //                 $('#issuedTo').append(employeeOption);
@@ -1279,7 +1279,7 @@ $.fn.dataTable.ext.search.push(
       } );
     });
 
-    
+
 </script>
 
 <script>

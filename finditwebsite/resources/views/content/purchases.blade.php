@@ -41,9 +41,9 @@
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Purchases</a>
                 </li>
-                <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
+                <!-- <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
-                </li>
+                </li> -->
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px; ">
                   <a class="nav-link" href="{!! url('/returns') !!}">Returns</a>
                 </li>
@@ -87,8 +87,17 @@
           @endforeach
         </select>
       </th>
+      <th>
+        <label for="brand">Status: </label>
+        <select id="brand" name="brand" style="height: 1.8rem;">
+          <option value="any">Any</option>
+          <option value="any">Completed</option>
+          <option value="">Incomplete<option>
+        </select>
       </th>
-      <th></th><th></th>
+      <th>
+      </th>
+      <th></th>
         <th>
           <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
       </th>
@@ -169,7 +178,7 @@
                                     <input name="purchase[model][]" type="text" size="25" style="height: 2rem; width:9rem;" required>
                                   </div>
                                 </div>
-                           
+
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
@@ -178,7 +187,7 @@
                                   </div>
                                 </div>
 
-                                
+
 
                                 <div class="input-group col-1" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
@@ -727,7 +736,7 @@
 
 
       function add() {
-        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem;\"></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem;\"></td><td><button onclick='rm()' style=\"margin-left:2rem;\">remove</button></td></tr>");
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem; margin-left:0.8rem;\"></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\"></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
       }
     </script>
 
