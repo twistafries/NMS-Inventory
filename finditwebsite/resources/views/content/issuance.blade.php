@@ -242,7 +242,7 @@
                                                     </div>
                                                   </div>
                                                 </td>
-                                              </tr>                                     
+                                              </tr>
                                           </table>
 
                                       <table id="addMoreList">
@@ -300,7 +300,7 @@
                                       </div>
 
                               <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
-                          
+
                           </div>
 
                           <div class="modal-footer text-uppercase">
@@ -363,9 +363,12 @@
 
                 <div class="row row-details">
                       <div class="col col-4 detail-header text-uppercase">Mark As: </div>
-                        <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#makeAvailable">Make Available</button>
-                        <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#forRepair">Repair</button>
-                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommission</button>
+                        <button type="button" class="btn btn-success rounded btn-sm" data-toggle="modal" data-dismiss="modal" data-target="#makeAvailable" style="height: 2.5rem; width: 10rem; margin-right: 5px;"><i class="fas fa-check"></i> Make Available</button>
+                        <!-- <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#makeAvailable">Make Available</button> -->
+                        <button type="button" class="btn btn-warning rounded btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#forRepair" style="height: 2.5rem; width: 7rem; margin-right: 5px;"><i class="fas fa-tools"></i>Repair</button>
+                        <!-- <button type="button" class="btn btn-info text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#forRepair">Repair</button> -->
+                        <button type="button" class="btn btn-secondary rounded btn-sm" data-toggle="modal" data-dismiss="modal"data-target="#decommissionedModal" style="height: 2.5rem; width: 10rem; margin-right: 5px;"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                        <!-- <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#decommissionedModal">Decommission</button> -->
                 </div>
 
     </form>

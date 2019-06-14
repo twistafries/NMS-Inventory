@@ -344,8 +344,8 @@
                 <div class="modal fade" id="pc{{$unit->id}}" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
                         aria-hidden="true">
 
-                            <div class="modal-dialog modal-lg" role="document" style="width: 1000px;">
-                                <div class="modal-content" style="height: 50rem;">
+                            <div class="modal-dialog modal-lg" role="document" style="">
+                                <div class="modal-content" >
                                     <div class="modal-header">
                                     <h5 class="modal-title"></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -360,36 +360,36 @@
                                           <input name="name" value=" {{$unit->name}}" hidden>
                                           <input name="dept_id" value=" {{$unit->dept_id}}" hidden>
                                           <input name="department" value=" {{$unit->department}}" hidden>
-                                          <div class="col-sm-6"><div class="detail-header text-uppercase">ID: {{$unit->id}}</div></div>
+                                          <div class="col-sm-6"><div class="" >ID: <span class="" style="font-weight: normal;">{{$unit->id}}</span></div></div>
 
-                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Name: {{$unit->name}}-{{$unit->id}}</div></div>
+                                          <div class="col-sm-6"><div class="detail-header">NAME: <span class="" style="font-weight: normal;">{{$unit->name}}-{{$unit->id}}</span></div></div>
 
-
-                                      </div>
-                                      <br>
-                                      <div class="row">
-
-                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Added By: {{$unit->fname}} {{$unit->lname}}</div></div>
-
-                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Added At:{{$unit->added_at}}</div></div>
 
                                       </div>
                                       <br>
                                       <div class="row">
 
-                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Last updated At: {{$unit->updated_at}}</div></div>
+                                          <div class="col-sm-6"><div class="detail-header">ADDED BY: <span class="" style="font-weight: normal;">{{$unit->fname}} {{$unit->lname}}</span></div></div>
 
-                                          <div class="col-sm-6"><div class="detail-header text-uppercase">Status: {{$unit->status}}</div></div>
+                                          <div class="col-sm-6"><div class="detail-header">ADDED AT: <span class="" style="font-weight: normal;">{{$unit->added_at}}</span></div></div>
+
+                                      </div>
+                                      <br>
+                                      <div class="row">
+
+                                          <div class="col-sm-6"><div class="detail-header">LAST UPDATED AT: <span class="" style="font-weight: normal;">{{$unit->updated_at}}</span></div></div>
+
+                                          <div class="col-sm-6"><div class="detail-header">STATUS: <span class="" style="font-weight: normal;">{{$unit->status}}</span></div></div>
                                       </div>
                                       <br>
                                       @if($unit->status=="Issued")
                                       <div class="row">
-                                          <div class="col-sm-8">Issued To: {{$unit->efname}}  {{$unit->elname}}</div>
+                                          <div class="col-sm-8">ISSUED TO: <span class="" style="font-weight: normal;">{{$unit->elname}}</span></div>
                                       </div>
                                       @endif
                                       <br>
                                       <div class="row">
-                                          <div class="col-sm-12"><div class="detail-header text-uppercase">Department: {{$unit->department}}</div></div>
+                                          <div class="col-sm-12"><div class="detail-header">DEPARTMENT: <span class="" style="font-weight: normal;">{{$unit->department}}</span></div></div>
                                     </div>
 
                                       <div class="row">
@@ -408,9 +408,9 @@
                                                 @foreach($pc_parts as $part)
                                                 @if($unit->id==$part->unit_id)
                                                   <tr>
-                                                    <td>{{$part->subtype_name}}</td>
-                                                    <td>{{$part->brand}}-{{$part->model}}</td>
-                                                    <td>{{$part->serial_no}}</td>
+                                                    <td style="font-weight: normal;">{{$part->subtype_name}}</td>
+                                                    <td style="font-weight: normal;">{{$part->brand}}-{{$part->model}}</td>
+                                                    <td style="font-weight: normal;">{{$part->serial_no}}</td>
 
                                                     </td>
                                                   </tr>
@@ -420,6 +420,7 @@
                                           </table>
                                         </div>
                                       </div>
+
 
                                     </div>
                                     <div class="modal-footer" role="document">

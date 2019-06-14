@@ -307,7 +307,9 @@
                 y: {{$item->count}}
             }, { @endif @endforeach
             name: 'System Unit',
-            y: {{$system_unit_issued}}
+            y: {{$system_unit_issued}},
+            sliced: true,
+            selected: true
             }]
           }]
         });

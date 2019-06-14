@@ -167,8 +167,8 @@
 
         <div class="tab-content">
         <div id="home{{$employee->id}}" class="container tab-pane active"><br>
-            <table class="table" id="myTable">
-                    <thead class="thead-dark">
+            <table class="myTable" id="myTable1">
+                    <thead class="thead-dark" style="background: #282828; color: #eee;">
                         <tr>
                         <th scope="col">Items Issued</th>
                         <th scope="col">Subtype</th>
@@ -201,14 +201,13 @@
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="id" value="{!! $item->id !!}">
                                 <input type="hidden" name="status_id" value="1">
-                                <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button>
+                                <button type="button" class="btn btn-success rounded btn-sm" type="submit" onclick="deleteRow(this)"><i class="fas fa-check"></i> Make Available</button>
+                                <!-- <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button> -->
                                 </form>
-
-                                <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal"
-                                data-target="#repair-{!! $item->id !!}">
-                                    Repair
-                                </button>
-                                <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button>
+                                <button type="submit" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
+                                <!-- <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"> Repair</button> -->
+                                <button type="submit" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <!-- <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button> -->
                             </div>
                         </td>
 
@@ -412,33 +411,23 @@
       $('#issuableItems').addClass('active');
       });
     </script>
+    <script>
+    $(document).ready(function() {
+        $('.myTable').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "searching": false,
+           "lengthChange": false,
+           "order": []});
 
-    <!-- <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable1').DataTable();
-    } );
-    </script> -->
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable1').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable2').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable3').DataTable();
     } );
     </script>
 
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#addMoreList').DataTable();
+    } );
+    </script>
 
 <script>
 function deleteRow(r) {
