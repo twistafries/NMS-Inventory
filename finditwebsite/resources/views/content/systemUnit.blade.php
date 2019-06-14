@@ -385,15 +385,10 @@
 
                                           <div class="col-sm-6"><div class="detail-header">STATUS: <span class="" style="font-weight: normal;">{{$unit->status}}</span></div></div>
                                       </div>
-                                      <br>
-                                      @if($unit->status=="Issued")
-                                      <div class="row">
-                                          <div class="col-sm-8">ISSUED TO: <span class="" style="font-weight: normal;">{{$unit->elname}}</span></div>
-                                      </div>
-                                      @endif
+                                      
                                       <br>
                                       <div class="row">
-                                          <div class="col-sm-12"><div class="detail-header">DEPARTMENT: <span class="" style="font-weight: normal;">{{$unit->department}}</span></div></div>
+                                          <div class="col-sm-12"><div class="detail-header"><span class="" style="font-weight: normal;">{{$unit->department}}</span></div></div>
                                     </div>
 
                                       <div class="row">
