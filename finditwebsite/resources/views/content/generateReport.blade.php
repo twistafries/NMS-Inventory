@@ -218,20 +218,13 @@
 
         <!--graph-->
         <script>
-        var date = new Date();
-        var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-        var currentDay = new Date(date.getFullYear(), date.getMonth());
-        var date = firstDay+" - "+currentDay;
-        if (firstDay==currentDay){
-          date = firstDay;
-        }
-  
+
         Highcharts.chart('container2', {
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Inventory Concerns Report in ' +date
+            text: 'Inventory Concerns Report as of {{$date}}'
         },
         xAxis: {
             categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
@@ -274,6 +267,7 @@
 
            }]
         });
+
       </script>
 
       <script>
@@ -285,7 +279,7 @@
             type: 'pie'
         },
         title: {
-            text: 'Inventory Concerns Report in January, 2019'
+            text: 'Most Issued item as of {{$date}}'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -307,19 +301,13 @@
             name: 'Inventory Concerns',
             colorByPoint: true,
             data: [{
-                name: 'For Repair',
-                y: 41.41,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'To be Returned',
-                y: 15.85
-            }, {
-                name: 'Decommissioned',
-                y: 21.84
-            }, {
-                name: 'Pending',
-                y: 9.67
+              @foreach($most_issued as $item)
+              @if($item->name!="")
+                name: '{{$item->name}}',
+                y: {{$item->count}}
+            }, { @endif @endforeach
+            name: 'System Unit',
+            y: {{$system_unit_issued}}
             }]
           }]
         });
