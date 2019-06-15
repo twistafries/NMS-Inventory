@@ -1,10 +1,10 @@
 $(function(){
-    $.validator.addMethod("stringcheck", function (value) {
-        return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
-            && /[a-z]/.test(value) // has a lowercase letter
-            && /\d/.test(value) // has a digit
-    }, "Invalid Input"
-    );
+    // $.validator.addMethod("stringcheck", function (value) {
+    //     return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+    //         && /[a-z]/.test(value) // has a lowercase letter
+    //         && /\d/.test(value) // has a digit
+    // }, "Invalid Input"
+    // );
 
     $('#singleAddForm').validate({
         rules: {
@@ -12,7 +12,7 @@ $(function(){
                 required: true,
                 minlength: 1,
                 maxlength: 50,
-                stringcheck: true,
+                // stringcheck: true,
             },
             details: {
                 required: true,
@@ -84,7 +84,7 @@ $(function(){
                 required: 'Please fill out this field',
                 minlength: 'Please fill out this field',
                 maxlength: 'Maximum of 50 characters',
-                
+
             },
             serial_no: {
                 required: 'Please fill out this field',
@@ -192,7 +192,7 @@ $(function(){
                 required: 'Please fill out this field',
                 minlength: 'Please fill out this field',
                 maxlength: 'Maximum of 50 characters',
-            },            
+            },
         },
-    })    
+    })
 });

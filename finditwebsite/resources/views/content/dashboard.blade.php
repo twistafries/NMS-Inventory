@@ -321,7 +321,7 @@
                             <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier}}</li>
                         @endforeach
                     </ul>
-                    <form action="{!! url('/incompleteOrders'); !!}" method="get">
+                    <form action="{!! url('/purchases'); !!}" method="get">
                         {!! csrf_field() !!}
                         <button type="submit" class="btn btn-light btn-sm btn-block">View all</button>
                     </form>
