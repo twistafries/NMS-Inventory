@@ -470,7 +470,18 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Case">Case</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="7">
+                                <input type="hidden" name="type_filter" value="1">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Case
+                                </button>
+                            </form>
+                            </th>
+
                             <td>{{$Case['Available']}}</td>
                             <td>{{$Case['Issued']}}</td>
                             <td>{{$Case['In-use']}}</td>
@@ -481,7 +492,17 @@
                             <td>{{$total_Case}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#CPU">CPU</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="2">
+                                <input type="hidden" name="type_filter" value="1">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                CPU
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$CPU['Available']}}</td>
                             <td>{{$CPU['Issued']}}</td>
                             <td>{{$CPU['In-use']}}</td>
@@ -492,7 +513,17 @@
                             <td>{{$total_CPU}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#GPU">GPU</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="5">
+                                <input type="hidden" name="type_filter" value="1">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                GPU
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$GPU['Available']}}</td>
                             <td>{{$GPU['Issued']}}</td>
                             <td>{{$GPU['In-use']}}</td>
@@ -503,7 +534,17 @@
                             <td>{{$total_GPU}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#HeatSinkFan">Heat Sink Fan</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="8">
+                                <input type="hidden" name="type_filter" value="1">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Heat Sink Fan
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$HeatSinkFan['Available']}}</td>
                             <td>{{$HeatSinkFan['Issued']}}</td>
                             <td>{{$HeatSinkFan['In-use']}}</td>
@@ -514,7 +555,17 @@
                             <td>{{$total_HeatSinkFan}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Motherboard">Motherboard</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="1">
+                                <input type="hidden" name="type_filter" value="1">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Motherboard
+                                </button>
+                            </form>
+                            </th>
 
                             <td>{{$Motherboard['Available']}}</td>
                             <td>{{$Motherboard['Issued']}}</td>
@@ -526,7 +577,17 @@
                             <td>{{$total_Motherboard}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#PowerSupply">Power Supply</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="1">
+                                <input type="hidden" name="type_filter" value="6">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Power Supply
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$PowerSupply['Available']}}</td>
                             <td>{{$PowerSupply['Issued']}}</td>
                             <td>{{$PowerSupply['In-use']}}</td>
@@ -537,7 +598,17 @@
                             <td>{{$total_PowerSupply}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#RAM">RAM</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="1">
+                                <input type="hidden" name="type_filter" value="4">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                RAM
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$RAM['Available']}}</td>
                             <td>{{$RAM['Issued']}}</td>
                             <td>{{$RAM['In-use']}}</td>
@@ -548,7 +619,17 @@
                             <td>{{$total_RAM}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#SoundCard">Sound Card</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="1">
+                                <input type="hidden" name="type_filter" value="8">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Sound Card
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$HeatSinkFan['Available']}}</td>
                             <td>{{$HeatSinkFan['Issued']}}</td>
                             <td>{{$HeatSinkFan['In-use']}}</td>
@@ -559,7 +640,17 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Storage">Storage</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="1">
+                                <input type="hidden" name="type_filter" value="3">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Storage
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$Storage['Available']}}</td>
                             <td>{{$Storage['Issued']}}</td>
                             <td>{{$Storage['In-use']}}</td>
@@ -603,7 +694,17 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Keyboard">Keyboard</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="10">
+                                <input type="hidden" name="type_filter" value="2">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Keyboard
+                                </button>
+                            </form>
+                            </th>                            
                             <td>{{$Keyboard['Available']}}</td>
                             <td>{{$Keyboard['Issued']}}</td>
                             <td>{{$Keyboard['In-use']}}</td>
@@ -614,7 +715,17 @@
                             <td>{{$total_Keyboard}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Monitor">Monitor</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="11">
+                                <input type="hidden" name="type_filter" value="2">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Monitor
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$Monitor['Available']}}</td>
                             <td>{{$Monitor['Issued']}}</td>
                             <td>{{$Monitor['In-use']}}</td>
@@ -625,7 +736,17 @@
                             <td>{{$total_Monitor}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Mouse">Mouse</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="9">
+                                <input type="hidden" name="type_filter" value="2">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Mouse
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$Mouse['Available']}}</td>
                             <td>{{$Mouse['Issued']}}</td>
                             <td>{{$Mouse['In-use']}}</td>
@@ -673,7 +794,17 @@
 
 
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Laptop">Laptop</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="12">
+                                <input type="hidden" name="type_filter" value="3">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Laptop
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$Laptop['Available']}}</td>
                             <td>{{$Laptop['Issued']}}</td>
                             <td>{{$Laptop['In-use']}}</td>
@@ -684,7 +815,17 @@
                             <td>{{$total_Laptop}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Mobile Phone">Mobile Phone</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="14">
+                                <input type="hidden" name="type_filter" value="3">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Mobile Phone
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$MobilePhone['Available']}}</td>
                             <td>{{$MobilePhone['Issued']}}</td>
                             <td>{{$MobilePhone['In-use']}}</td>
@@ -695,7 +836,17 @@
                             <td>{{$total_MobilePhone}}</td>
                         </tr>
                         <tr>
-                            <th scope="row"><a style="color:#33b5e5; cursor:pointer;" onMouseOver="this.style.color='#33b5e5'" onMouseOut="this.style.color='#0099CC'" href="#Tablet">Tablet</a></th>
+                            <th scope="row">
+                            <form action="{!! url('/reInventory'); !!}" method="post">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="subtype_filter" value="12">
+                                <input type="hidden" name="type_filter" value="3">
+                                <input type="hidden" name="status_filter" value="All">
+                                <button type="submit" class="btn btn-link">
+                                Tablet
+                                </button>
+                            </form>
+                            </th>
                             <td>{{$Tablet['Available']}}</td>
                             <td>{{$Tablet['Issued']}}</td>
                             <td>{{$Tablet['In-use']}}</td>
@@ -732,7 +883,7 @@
                                 <th scope="col">Issued</th>
                                 <th scope="col">For Repair</th>
                                 <th scope="col">For Return</th>
-                                <th scope="col">Pending</th>
+                                <!-- <th scope="col">Pending</th> -->
                                 <th scope="col">Decommissioned</th>
                                 <th scope="col">Total</th>
 
