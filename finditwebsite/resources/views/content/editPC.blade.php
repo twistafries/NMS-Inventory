@@ -92,7 +92,7 @@
             @endforeach
 
             <button type="submit" class="btn btn-success"><span class="fas fa-wrench"></span> Save Changes</button>
-            <a type="button" class="btn btn-danger"><span></span> Cancel</a>
+            <button type="button" class="btn btn-danger"><span></span> Cancel</button>
         </div>
     </form>
     <script>
