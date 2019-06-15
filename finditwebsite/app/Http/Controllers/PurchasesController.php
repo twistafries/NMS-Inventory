@@ -373,7 +373,7 @@ class PurchasesController extends BaseController
                           PurchasedItems::add_purchased_Item($data);
                       }
                     }
-                  
+
 
 
               // $log['data'] = $id;
@@ -444,5 +444,32 @@ class PurchasesController extends BaseController
 
               }
             }
+
+            public function deleteItem(Request $request){
+              if(Session::get('loggedIn')['user_type']!='admin' &&
+              Session::get('loggedIn')['user_type'] != "associate"){
+                return redirect()->back()
+                ->with('warning' , 'You dont have the right privelege to access this feature');
+              }
+              try{
+                 $data = $request->all();
+                PurchasedItems::delete_equipment($data['id']);
+
+                return \Redirect::to('/purchases')->with('message' , 'Item has been removed from the Database');
+
+              }catch(Exception $e){
+                return \Redirect::to('/purchases')
+                ->with('error' , 'Could not remove equipment from the database')
+                ->with('error_info' , $e->getMessage())
+                ->with('target' , '#hardDelete');
+
+              }catch(QueryException $qe){
+                return \Redirect::to('/purchases')
+                ->with('error' , 'Could not remove equipment from the database')
+                ->with('error_info' , $qe->getMessage())
+                ->with('target' , '#hardDelete');
+              }
+            }
+
 
 }

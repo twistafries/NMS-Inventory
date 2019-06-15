@@ -625,7 +625,7 @@
                                                             <option value="{{ $supplier->supplier_name}}">
                                                             @endforeach
                                                         </select>
-                                                        </datalist>                                                    
+                                                        </datalist>
                                                     </li>
                                                 </ul>
                                             </div>

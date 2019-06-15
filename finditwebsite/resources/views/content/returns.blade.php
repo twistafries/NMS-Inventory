@@ -40,9 +40,6 @@
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Purchases</a>
                 </li>
-                <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
-                  <a class="nav-link" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
-                </li>
                 <li class="nav-item" style="margin-right: 5px;">
                   <a class="nav-link active" href="{!! url('/returns') !!}">Returns</a>
                 </li>
@@ -80,7 +77,7 @@
           <select id="supplier" name="supplier" style="height: 1.8rem;">
             <option value="any">Any</option>
             @foreach ($suppliers as $suppliers)
-            <option value="{{$suppliers->id}}">{{$suppliers->supplier_name}}</option>
+            <option value="{{$suppliers->supplier_name}}">{{$suppliers->supplier_name}}</option>
             @endforeach
           </select>
       </th>
@@ -93,15 +90,7 @@
           @endforeach
         </select>
       </th>
-      <th>
-        <label for="status">Status: </label>
-        <select id="status" name="status" style="height: 1.8rem;">
-          <option value="any">Any</option>
-          @foreach ($status as $status)
-          <option value="{{$status->name}}">{{$status->name}}</option>
-          @endforeach
-        </select>
-      </th>
+
       <th></th><th></th>
         <th>
           <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
@@ -120,34 +109,38 @@
 
     <div class="tab-content" id="purchaseTable" style="margin-top: 4rem; margin-bottom: 2rem;">
       <div class="tab-pane fade show active" id="pills-0" role="tabpanel" aria-labelledby="pills-0-tab">
-        <table id="myDataTable1" class="table table-borderless table-hover" style="width:100%">
+        <table id="myDataTable" class="table table-borderless table-hover" style="width:100%">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Details</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Subtype</th>
                     <th>Serial No</th>
                     <th>OR No</th>
                     <th>Supplier</th>
                     <th>Date Added</th>
-                    <th width="15%">Date Edited</th>
                     <th>Added By</th>
-                    <th>Warranty Start</th>
-                    <th>Warranty End</th>
+                    <th width="15%">Date Edited</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach ($for_return as $for_return)
                 <tr>
                     <td> {{ $for_return->id }} </td>
-                    <td> {{ $for_return->details }} </td>
+                    <td> {{ $for_return->brand }}</td>
+                    <td> {{ $for_return->model }} </td>
+                    <td> {{ $for_return->type }} </td>
+                    <td> {{ $for_return->subtype }} </td>
                     <td> {{ $for_return->serial_no }} </td>
                     <td> {{ $for_return->or_no }} </td>
-                    <td> {{ $for_return->supplier}} </td>
+                    <td>{{ $for_return->supplier}}</td>
                     <td> {{ $for_return->created_at }} </td>
-                    <td> </td>
                     <td>{{ $for_return->firstname}} {{ $for_return->lastname}}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $for_return->updated_at }} </td>
+
                 </tr>
                 @endforeach
             </tbody>
@@ -248,5 +241,122 @@
             $('#myDataTable1').DataTable({
             });
         });
+    </script>
+
+    <script>
+    $.fn.dataTable.ext.search.push(
+function( settings, data, dataIndex ) {
+var type =  $('#types').val();
+var subtype =  $('#subtypes').val();
+var supplier =  $('#supplier').val();
+var brand =  $('#brand').val();
+var types = data[3]; // use data for the age column
+var subtypes = data[4];
+var suppliers = data[7];
+var brands = data[1];
+
+function subtypeUnblock(element) {
+    $("#subtypes option:nth-child("+element+")").show();
+}
+
+function subtypeBlockAll(){
+    $("#subtypes > option").hide();
+}
+
+function subtypeUnBlockAll(){
+    $("#subtypes > option").show();
+}
+
+if( type == "Computer Component" ){
+    subtypeBlockAll();
+
+    for (var i = 1; i <= 9; i++) {
+        subtypeUnblock(i);
+    }
+}
+else if ( type == "Computer Peripheral"){
+    subtypeBlockAll();
+    subtypeUnblock(1);
+
+    for(var i=10; i<=12; i++){
+        subtypeUnblock(i);
+    }
+}
+else if( type == "Mobile Device" ){
+    subtypeBlockAll();
+    subtypeUnblock(1);
+
+    for (var i = 13; i <= 15; i++) {
+        subtypeUnblock(i);
+    }
+}
+else if (type == "Software License") {
+    subtypeBlockAll();
+    subtypeUnblock(1);
+
+    for (var i = 16; i <= 18; i++) {
+        subtypeUnblock(i);
+    }
+}else{
+    subtypeUnBlockAll();
+}
+
+if ( type == types || type == "any"){
+  if (subtype == subtypes || subtype == "any"){
+    if (supplier == suppliers || supplier == "any"){
+      if (brand == brands || brand == "any"){
+          return true;
+      }
+    }
+  }
+
+}
+return false;
+}
+);
+
+$(document).ready(function() {
+var table = $('#myDataTable').DataTable();
+
+// Event listener to the two range filtering inputs to redraw on input
+$('#subtypes').on('keyup change',  function() {
+    table.draw();
+    } );
+    $('#types').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#supplier').on('keyup change',  function() {
+        table.draw();
+    } );
+    $('#brand').on('keyup change',  function() {
+        table.draw();
+    } );
+} );
+
+        function reset(){
+          document.getElementById("subtypes").selectedIndex = "0";
+          document.getElementById("types").selectedIndex = "0";
+          document.getElementById("supplier").selectedIndex = "0";
+          document.getElementById("brand").selectedIndex = "0";
+          document.getElementById("status").selectedIndex = "0";
+          $('#myDataTable').DataTable().search('').draw();
+
+          // $('#myDataTable5').DataTable().search('').draw();
+
+        }
+        function restore(option){
+          if(option== false){
+              $("#types").hide();
+            $("#labelTypes").hide();
+            reset()
+          } else{
+            $("#types").show();
+            $("#labelTypes").show();
+            reset()
+
+          }
+        };
+
+
     </script>
 @stop

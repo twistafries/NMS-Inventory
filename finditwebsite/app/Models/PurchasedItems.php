@@ -138,4 +138,10 @@ class PurchasedItems extends Model
       -> get();
       return $query;
   }
+
+
+      public static function delete_equipment($params){
+        $purchased_items = PurchasedItems::find($params);
+        $purchased_items->delete();
+      }
 }

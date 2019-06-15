@@ -362,6 +362,7 @@
               <table class="table table-hover" id="dataTable">
                 <thead class="thead-dark">
                   <tr>
+                    <th scope="col" hidden>ID</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Model/Label</th>
                     <th scope="col">Details</th>
@@ -377,7 +378,8 @@
                 <tbody>
                   @foreach($purchases[$purchase->purchase_no] as $item)
                   @if ($item->unit_number==null)
-                  <tr>
+                  <tr >
+                    <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;" hidden>{{$item->id}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->brand}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->model}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->details}}</td>
@@ -491,6 +493,7 @@
               <div class="modal-footer">
                   @if($item->or_no === null)
                   <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
+                  <button type="submit" class="btn btn-danger text-uppercase" data-toggle="modal"  data-target="#deleteModal"  onclick="fetch({!! $item->id !!})">Delete Purchase Item</button>
                   @endif
                   <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
@@ -702,6 +705,37 @@
                   </div>
 @endforeach
 
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:500px;">
+                <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" style="text-align: center;">
+                  <div class="warning-content">
+                      <p class="text-danger text-uppercase font-weight-bold">Warning!</p>
+                      <pre><span class="inner-pre" style="font-size: 15px">Are you sure you want to permanently delete this item?</span></pre>
+                  </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <form action="{!! url('/deleteItem'); !!}" method="post">
+                    {!! csrf_field() !!}
+                    <input  name="id" id="delete_id" value="" hidden>
+                    <button type="submit" class="btn btn-danger text-uppercase">Delete</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+</div>
+
 @stop
 
 @section('script')
@@ -829,5 +863,10 @@
         }
 
 
+          </script>
+          <script>
+            function fetch(id){
+                document.getElementById("delete_id").value = id;
+            }
           </script>
 @stop
