@@ -618,7 +618,14 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Supplier: </h6>
-                                                        <input name="supplier" id="supplier_eqp" value="">
+                                                        <input  list="suppliers" name="supplier" required style="width: 9rem;">
+                                                        <datalist id="suppliers">
+                                                            <select>
+                                                            @foreach ($supp as $supplier)
+                                                            <option value="{{ $supplier->supplier_name}}">
+                                                            @endforeach
+                                                        </select>
+                                                        </datalist>                                                    
                                                     </li>
                                                 </ul>
                                             </div>
