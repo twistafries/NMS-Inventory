@@ -89,10 +89,10 @@
       </th>
       <th>
         <label for="brand">Status: </label>
-        <select id="brand" name="brand" style="height: 1.8rem;">
+        <select id="stats" name="status">
           <option value="any">Any</option>
-          <option value="any">Completed</option>
-          <option value="">Incomplete<option>
+          <option value="completedOrder">Completed</option>
+          <option value="incompleteOrder">Incomplete</option>
         </select>
       </th>
       <th>
@@ -371,6 +371,7 @@
                     <th scope="col">Qty</th>
                     <th scope="col"></th>
                     <th hidden></th>
+                    <th hidden></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -384,6 +385,11 @@
                     <td hidden>{{$item->subtype}}{{$item->subtype_id}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->supplier}}</td>
                     <td data-toggle="modal" data-target="#item{{$item->id}}" style="cursor: pointer;">{{$item->qty}}</td>
+                    @if($item->qty_added == $item->qty)
+                    <td hidden>completedOrder</td>
+                    @else
+                    <td hidden>incompleteOrder</td>
+                    @endif
                     @if($purchase->or_no!=null && $item->qty_added == $item->qty)
                     <td class="text-right table-success">
                         <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
@@ -401,13 +407,20 @@
                   @foreach($unit_number as $unit)
                   @if ($unit->p_id==$purchase->purchase_no)
                   <tr>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">System Unit</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">N/A</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">PC</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
-                    <td data-toggle="modal" data-target="#pc{{$unit->p_id}}" style="cursor: pointer;">{{$unit->qty}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">PC - {{$unit->unit_number}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">N/A</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">PC</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">{{$unit->supplier_name}}</td>
+                    <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">{{$unit->qty}}</td>
                     <td hidden>PC_SystemUnit</td>
+
+                      @if($purchase->or_no!=null && $item->qty_added == $item->qty)
+                      <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">
+                          <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
+                      </td>
+                      @endif
+
                   </tr>
                   @endif
                   @endforeach
@@ -597,7 +610,7 @@
 @endforeach
 
                   @foreach($pc as $pc)
-                  <div class="modal fade" id="pc{{$pc->p_id}}" tabindex="-1" role="dialog" aria-labelledby=""
+                  <div class="modal fade" id="pc{{$pc->unit_number}}" tabindex="-1" role="dialog" aria-labelledby=""
                         aria-hidden="true">
 
                             <div class="modal-dialog" role="document">
@@ -759,14 +772,17 @@
       var subtype =  $('#subtypes').val()
       var supplier =  $('#supplier').val();
       var brand =  $('#brand').val();
+      var status =  $('#stats').val();
       var subtypes = data[0];
       var suppliers = data[0];
       var brands = data[0];
-
+      var statuses = data[0];
         if (subtypes.includes(subtype) || subtype == "any"){
           if (suppliers.includes(supplier)  || supplier == "any"){
             if (brands.includes(brand)  || brand == "any"){
-              return true;
+              if (statuses.includes(status)  || status == "any"){
+                return true;
+              }
             }
           }
         }
@@ -787,6 +803,10 @@
               table.draw();
           } );
           $('#brand').on('keyup change',  function() {
+              table.draw();
+          } );
+
+          $('#stats').on('keyup change',  function() {
               table.draw();
           } );
 

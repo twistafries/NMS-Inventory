@@ -333,15 +333,9 @@
                                         <!-- Issue Item Button -->
                                         @if( $equipment->type_id != 1 && $equipment->status_id == 1 )
                                         <div class="row row-details self-align-end">
-<<<<<<< HEAD
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
-                                                Issue Item
-                                            </button>
-=======
                                             <button type="button" class="btn btn-info text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
                                                 <i class="fas fa-hand-holding"></i>  Issue Item
                                             </button>
->>>>>>> d6f05e54e398c36eb1a7f76b037dcf769fe18295
                                         </div>
                                         @endif
 
@@ -624,7 +618,14 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Supplier: </h6>
-                                                        <input name="supplier" id="supplier_eqp" value="">
+                                                        <input  list="suppliers" name="supplier" required style="width: 9rem;">
+                                                        <datalist id="suppliers">
+                                                            <select>
+                                                            @foreach ($supp as $supplier)
+                                                            <option value="{{ $supplier->supplier_name}}">
+                                                            @endforeach
+                                                        </select>
+                                                        </datalist>                                                    
                                                     </li>
                                                 </ul>
                                             </div>

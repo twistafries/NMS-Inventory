@@ -9,7 +9,7 @@ class TblIssuances extends Model {
 
 	protected $table = 'issuance';
 	public $timestamps = false;
-
+	// public $primaryKey = 'issuance_id';
 	public static function getIssuance($params = null) {
 		$query = \DB::table('issuance as i')
 		->leftjoin('it_equipment' , 'it_equipment.id', '=', 'i.equipment_id')
@@ -100,7 +100,6 @@ class TblIssuances extends Model {
 			if(isset($params['id'])) {
 				$query->where('i.id', '=', $params['id']);
 			}
-			// dd($query);
 		return $query;
 	}
 
@@ -110,7 +109,6 @@ class TblIssuances extends Model {
 		->where('equipment_id', '=', $params)
 		->get();
 		;
-		// dd($query->count());
 		if ($query->count() == 0) {
 			return "NULL";
 		}else{
@@ -169,35 +167,75 @@ class TblIssuances extends Model {
 			die($e);
 		}
 	}
+	public static function updateReturnedDate($params) {
+		$issuance = TblIssuances::find($params['issuance_id']);
 
-	public static function updateIssuance($params) {
-		$issuance = TblIssuances::find($params['id']);
-		$id = TblIssuances::find($params['id']);
-
-		if(isset($params['equipment_id']))
-			$issuance->unit_id = $params['equipment_id'];
-
-		if(isset($params['unit_id']))
-			$issuance->unit_id = $params['unit_id'];
-
-		if(isset($params['issued_to']))
-			$issuance->issued_to = $params['isssued_to'];
-
-		if(isset($params['returned_at'])){
-			$issuance->returned_at = $params['returned_at'];
-			// $issuance->status_id = $params['1'];
+		$issuance->returned_at = gmdate('Y-m-d');
+		$issuance->updated_at = gmdate('Y-m-d');
+		if(isset($params['remarks'])){
+			$issuance->remarks = $params['remarks'];
 		}
 
-		if(isset($params['issued_until']))
+		try{
+			$issuance->save();
+		}catch(Exception $e){
+			dd($e);
+		}
+	}
+	
+	public static function extendIssuedUntil($params) {
+		$issuance = TblIssuances::find($params['issuance_id']);
+
+		if(isset($params['issued_until'])){
 			$issuance->issued_until = $params['issued_until'];
-
-		if(isset($params['remarks']))
+		}
+		$issuance->updated_at = gmdate('Y-m-d');
+		if(isset($params['remarks'])){
 			$issuance->remarks = $params['remarks'];
+		}
 
-		$issuance->updated_at = gmdate('Y-m-d H:i:s');
+		try{
+			$issuance->save();
+
+		}catch(Exception $e){
+			return 'Error!';
+		}
+	}
+
+	public static function updateIssuance($params) {
+		
+		$issuance = TblIssuances::find($params['id']);
+		// dd($issuance);
+		// $id = TblIssuances::find($params['id']);
+	
+		if(isset($params['equipment_id'])){
+			$issuance->equipment_id = $params['equipment_id'];
+			
+		}else if(isset($params['sys_id'])){
+			
+			$issuance->unit_id = $params['sys_id'];
+		}
+		if(isset($params['issued_to']))
+			$issuance->issued_to = $params['issued_to'];
+
+		if(isset($params['returned_at'])){
+			// dd($params);
+			$issuance->returned_at = date(gmdate('Y-m-d'));
+			// $issuance->status_id = $params['1'];
+		}
+///
+		if(isset($params['issued_until'])){
+			$issuance->issued_until = $params['issued_until'];
+		}
+
+		if(isset($params['remarks'])){
+			$issuance->remarks = $params['remarks'];
+		}
+
+		$issuance->updated_at = gmdate('Y-m-d');
 
 		try {
-			$event->save();
+			$issuance->save();
 			return $id;
 		} catch(QueryException $e) {
 			die($e);

@@ -15,6 +15,7 @@ use App\Models\TblItEquipment;
 use App\Models\TblSystemUnits;
 use App\Models\TblActivityLogs;
 use App\Models\TblIssuances;
+use App\Models\PurchasedItems;
 
 
 class Reports extends BaseController
@@ -38,9 +39,14 @@ class Reports extends BaseController
         } else {
           $data['date'] = $data['chartStartDate']." - ". $data['chartEndDate'];
         }
+
         $data['most_issued']  = TblIssuances::most_issued($data);
         $data['system_unit_issued']  = TblIssuances::system_unit_issued($data);
         $data['system_unit_issued'] = $data['system_unit_issued'][0]->count;
+
+        $data['most_purchased']  = PurchasedItems::most_purchased($data);
+        $data['system_unit_purchased']  = PurchasedItems::system_unit_purchased($data);
+        $data['system_unit_purchased'] = $data['system_unit_purchased']->count();
         return view ('content/generateReport' , $data);
     }
 }

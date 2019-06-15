@@ -102,6 +102,7 @@ Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
 
 Route::get('/issue', 'IssuanceController@employeeIssuance');
 Route::get('/issuance', 'IssuanceController@showAllIssuance');
+Route::post('/edit-issued-until', 'IssuanceController@updateIssuedUntil');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addpurchase', 'PurchasesController@addpurchase');
@@ -119,7 +120,7 @@ Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForCo
 Route::post('/add-to-concerns-system-unit', 'InventoryConcernsController@markForConcernsSystemUnit');
 // Route::post('/editStatus', 'InventoryController@changeStatus');
 // Route::post('/change-status', 'InventoryController@changeStatus');
-Route::post('/editIssuance', 'InventoryController@editEquipment');
+Route::post('/update-issuance', 'IssuanceController@updateIssuance');
 Route::post('/editAssociates', 'AssociateController@editAssociates');
 
 

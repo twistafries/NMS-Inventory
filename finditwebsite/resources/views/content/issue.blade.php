@@ -194,46 +194,119 @@
                         <td>System Unit</td>
                         @endif
                         <td>{{ $item->created_at}}</td>
-                        <td>{{ $item->issued_until}}</td>
+                        <td>
+                        {{ $item->issued_until }}
+                        <button type="button" class="btn btn-outline-info" data-target="#issuedUntilEdit" data-toggle="modal" onclick="issuedUntil({!! $item->id !!})"><i class="far fa-edit"></i></button>
+                        </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <form action="{!! url('/change-status'); !!}" method="post">
+                                <form action="{!! url('/update-issuance'); !!}" method="post">
                                 {!! csrf_field() !!}
-                                <input type="hidden" name="id" value="{!! $item->id !!}">
+                                <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
+                                <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
                                 <input type="hidden" name="status_id" value="1">
-                                <button type="button" class="btn btn-success rounded btn-sm" type="submit" onclick="deleteRow(this)"><i class="fas fa-check"></i> Make Available</button>
-                                <!-- <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button> -->
+                                @if($item->equipment_id == null)
+                                    <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
+                                @else
+                                    <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
+                                @endif
+                                <button class="btn btn-success rounded btn-sm" type="submit" onclick="deleteRow(this)"><i class="fas fa-check"></i> Make Available</button>
                                 </form>
-                                <button type="submit" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
+                                <!-- <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button> -->
+                                <button type="button" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
                                 <!-- <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"> Repair</button> -->
-                                <button type="submit" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#decommission-{!! $item->id !!}"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <!-- <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button> -->
                             </div>
                         </td>
-
+                <!-- For Repair Modal -->
                         <div class="modal fade" id="repair-{!! $item->id !!}" tabindex="-1" role="dialog"
                             aria-labelledby="edit-{!! $item->model !!}" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                        @if( $item->equipment_id != null )
+                                            <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                        @elseif($item->pc_number != null)
+                                        <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
+                                        @endif
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
 
                                     <div class="modal-body">
-                                        <form action="{!! url('/editStatus'); !!}" method="post">
+                                        <form action="{!! url('/update-issuance'); !!}" method="post">
                                             {!! csrf_field() !!}
-                                            <input type="hidden" name="id" value="{!! $item->id !!}">
-                                            <input type="hidden" name="status_id" value="1">
-                                            <textarea name="remarks"></textarea>
-                                            <button class="btn btn-primary">Issue Replacement</button>
-                                        </form>
+                                            <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
+                                            <input type="hidden" name="issued_to_concerns" value="{!! $employee->id !!}">
+                                            <input type="hidden" name="status_id" value="3">
+                                            @if($item->equipment_id != null)
+                                            <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
+                                            @elseif($item->pc_number != null)
+                                            <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                            @endif
+                                            <div class="col-sm-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h6 class="text-uppercase">Remarks:</h6>
+                                                        <textarea name="remarks" placeholders="Remarks"></textarea>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
                                     </div>
 
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <!-- Decommission -->
+                        <div class="modal fade" id="decommission-{!! $item->id !!}" tabindex="-1" role="dialog"
+                            aria-labelledby="edit-{!! $item->model !!}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                        @if( $item->equipment_id != null )
+                                            <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                        @else
+                                        <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
+                                        @endif
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{!! url('/update-issuance'); !!}" method="post">
+                                            {!! csrf_field() !!}
+                                            <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
+                                            <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
+                                            <input type="hidden" name="status_id" value="7">
+                                            @if($item->equipment_id != null)
+                                            <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
+                                            @else
+                                            <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                            @endif
+                                            <div class="col-sm-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h6 class="text-uppercase">Remarks:</h6>
+                                                        <textarea name="remarks" placeholders="Remarks"></textarea>
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
@@ -244,7 +317,46 @@
                 </tbody>
                 </table>
             </div>
+<!-- Edit Issued Until prompt-->
+<div class="modal fade" id="issuedUntilEdit" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+    aria-hidden="true">
 
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title">Edit Issued Until</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{!! url('/edit-issued-until'); !!}" method="post">
+                {!! csrf_field() !!}
+                <input type="hidden" name="issuance_id" id="issuanceIdEditIssuedUntil">
+                <div class="modal-body">
+                  <div class="warning-content">
+                    <div class="row">
+                        <div class="col">
+                        Issued Until
+                            <input type="date" name="issued_until" id="issued_until_edit">
+                        </div>
+                        <div class="col">
+                        Remarks
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                    </br>
+                    
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+</div>
 
 
     <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
@@ -390,6 +502,55 @@
 </form>
 
 
+<!-- Decomissioned -->
+    <div class="modal fade" id="makeAvailable" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+        aria-hidden="true">
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="height:450px;">
+                    <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                        Make Available After Issuance
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                        {!! csrf_field() !!}
+                        <div class="modal-body">
+                        <input type="hidden" name="equipment_id" id="availableEquipmentId">
+                        <input type="hidden" name="sys_id" id="availableSystemUnitId">
+                            <div class="warning-content" style="text-align: center;">
+                                <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
+                                <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="AvailableName"></h4>  as Available?</span></pre>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                    data-target="#remarks" aria-expanded="false" aria-controls="collapseExample"
+                                    type="button">
+                                    Add Remarks
+                                </button>
+                                <div class="collapse" id="remarks">
+                                    <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" name="id" class="fetched-id">
+                            <input type="hidden" name="status_id" value="1">
+                            <input type="hidden" name="orig_status_id" value="2">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary text-uppercase">Decommission</button>
+                    </form>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
 @stop
 
 @section('script')
@@ -443,6 +604,25 @@ function deleteRow(r) {
 function add() {
                 $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-0\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-11\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br>");
             }
+
+function emptyContent(){
+        $('#makeAvailableContent').empty()
+        $('#makeAvailableFooter').empty()
+    }
+
+function fetchInfoEquipment(id , name ,status){
+    if(status = 1){
+        $('#availableEquipmentId').val(id);
+        $('.fetched-id').val(id);
+        $('#AvailableName').text(name);
+        // console.log(id + name + status);    
+    }
+}
+function issuedUntil(id){
+    $('#issuanceIdEditIssuedUntil').val(id);
+    console.log($('#issuanceIdEditIssuedUntil').val(id));    
+}
+    
     </script>
 
 

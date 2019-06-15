@@ -325,21 +325,17 @@ class PurchasesController extends BaseController
 
           try{
             $data = $request->all();
-            $ctr=1;
             $unit_number = DB::table('purchased_items')->select('unit_number')->groupBy('unit_number')->orderBy('unit_number', 'desc')->first();
-            if (count($unit_number)==0){
-              $unit_number=1;
+            if ($unit_number->unit_number==null){
+              $unit_number->unit_number=1;
             }
-            foreach ($data['sub'] as $subtype) {
-              // dd($data['component']["$subtype"]["brand"]);
 
-            }
-            dd($unit_number);
+
             $data['user_id'] = $user_id;
-            // $data['subtype_id'] = (int)$request->get('subtype_id');
-            // dd($data);
-            Purchases::add_purchase($data);
-            $data['purchase']["brand"];
+            // // $data['subtype_id'] = (int)$request->get('subtype_id');
+            // dd($unit_number->unit_number+1);
+            $data['purchase_no'] = Purchases::add_purchase($data);
+
             $supplier = $data['supplier'];
       			$all_supplier = DB::table('supplier')->where('supplier_name',$supplier)->first();
       			if(!$all_supplier){
@@ -354,24 +350,31 @@ class PurchasesController extends BaseController
 
             }
 
-            $ctr = 0;
-            foreach ($data['purchase']["brand"] as $brand) {
-              $data['brand'] = $brand;
-              $data['model'] = $data['purchase']["model"][$ctr];
-              $data['details'] = $data['purchase']["details"][$ctr];
-              $data['subtype_id'] = $data['purchase']["subtype_id"][$ctr];
-              $data['qty'] = $data['purchase']["qty"][$ctr];
-              if(isset($data['purchase_no'])
-              && isset($data['brand'])
-              && isset($data['model'])
-              && isset($data['details'])
-              && isset($data['subtype_id'])
-              && isset($data['supplier_id'])
-              && isset($data['qty'])){
-                  PurchasedItems::add_purchased_Item($data);
-              }
-              $ctr++;
-            }
+            $ctr = $unit_number->unit_number + 1;
+            $quantity = $data['qty'];
+            $data['unit_number'] = $ctr;
+
+                foreach ($data['sub'] as $subtype) {
+                      $data['subtype_id'] = $subtype;
+                      $data['brand'] = $data['component']["$subtype"]["brand"];
+                      $data['model'] = $data['component']["$subtype"]["model"];
+                      $data['details'] = $data['component']["$subtype"]["details"];
+                      $data['is_part'] = 1;
+
+                      if(isset($data['purchase_no'])
+                      && isset($data['brand'])
+                      && isset($data['model'])
+                      && isset($data['details'])
+                      && isset($data['subtype_id'])
+                      && isset($data['supplier_id'])
+                      && isset($data['is_part'])
+                      && isset($data['unit_number'])
+                      && isset($data['qty'])){
+                          PurchasedItems::add_purchased_Item($data);
+                      }
+                    }
+                  
+
 
               // $log['data'] = $id;
               // // $log['unit'] = $data['unit_id'];

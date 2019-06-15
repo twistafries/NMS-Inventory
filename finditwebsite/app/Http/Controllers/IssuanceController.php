@@ -206,6 +206,68 @@ class IssuanceController extends BaseController {
 		echo json_encode($data);
 	}
 
+	public function updateIssuedUntil(Request $request){
+		$data = $request->all();
+		// dd($data);
+		$data['user_id'] = Session::get('loggedIn')['id'];
+		try{
+			$result['error'] = TblIssuances::extendIssuedUntil($data);
+			if($result['error'][0]==null){
+			return \Redirect::to('/issue')
+			->with('message', 'Successfully Edited Issuance Until')
+			->with('error', $result['error']);
+			}else{
+				dd($result);
+			}
+		}catch(QueryException $qe){
+			dd($qe);
+		}catch(Exception $e){
+			dd($e);
+		}
+	}
+	
+	
+	public function updateIssuance(Request $request){
+		
+		try{
+			$data = $request->all();
+			$data['user_id'] = Session::get('loggedIn')['id'];
+			$data['issuance_id'] = $request->get('issuance_id');
+			$concerns = $request->all();
+			$concerns['remarks'] = $request->get('remarks');
+			$concerns['added_by'] = $data['user_id'];
+			$concerns['issued_to'] = $request->get('issued_to_concerns');
+			
+			$data['returned_at'] = gmdate('Y-m-d H:i:s');
+			
+			if($request->get('equipment_id') != null){
+				TblItEquipment::update_equipment_status($data['equipment_id'] , $data['status_id']);
+				TblIssuances::updateReturnedDate($data);
+				$concerns['name_component'] = $data['equipment_id'];
+				$concerns['system_unit_id'] = $request->get('system_unit_id');
+				$concerns['id'] = $data['equipment_id'];
+				InventoryConcerns::addConcern($concerns);
+			}else{
+				TblSystemUnits::update_unit_status($data['sys_id'] , $data['status_id']);
+				TblIssuances::updateReturnedDate($data);
+				// TblIssuances::updateIssuance($data);
+				$concerns['name_component'] = $request->get('name_component');
+				$concerns['system_unit_id'] = $data['sys_id'];
+				$concerns['id'] = $request->get('id');
+
+				InventoryConcerns::addConcern($concerns);
+			}
+			return \Redirect::to('/issue')->with('message' , 'Issued Item Status was successfully changed.');
+		}catch(Exception $e){
+			dd($e);
+			
+		}catch(QueryException $qe){
+			dd($qe);
+
+		}
+	}
+	
+
 
 
 
