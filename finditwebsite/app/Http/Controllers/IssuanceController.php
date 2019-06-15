@@ -206,6 +206,27 @@ class IssuanceController extends BaseController {
 		echo json_encode($data);
 	}
 
+	public function updateIssuedUntil(Request $request){
+		$data = $request->all();
+		// dd($data);
+		$data['user_id'] = Session::get('loggedIn')['id'];
+		try{
+			$result['error'] = TblIssuances::extendIssuedUntil($data);
+			if($result['error'][0]==null){
+			return \Redirect::to('/issue')
+			->with('message', 'Successfully Edited Issuance Until')
+			->with('error', $result['error']);
+			}else{
+				dd($result);
+			}
+		}catch(QueryException $qe){
+			dd($qe);
+		}catch(Exception $e){
+			dd($e);
+		}
+	}
+	
+	
 	public function updateIssuance(Request $request){
 		
 		try{

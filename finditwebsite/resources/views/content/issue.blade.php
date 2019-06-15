@@ -194,7 +194,10 @@
                         <td>System Unit</td>
                         @endif
                         <td>{{ $item->created_at}}</td>
-                        <td>{{ $item->issued_until}}</td>
+                        <td>
+                        {{ $item->issued_until }}
+                        <button type="button" class="btn btn-outline-info" data-target="#issuedUntilEdit" data-toggle="modal" onclick="issuedUntil({!! $item->id !!})"><i class="far fa-edit"></i></button>
+                        </td>
                         <td>
                             <div class="btn-group" role="group">
                                 <form action="{!! url('/update-issuance'); !!}" method="post">
@@ -210,10 +213,9 @@
                                 <button class="btn btn-success rounded btn-sm" type="submit" onclick="deleteRow(this)"><i class="fas fa-check"></i> Make Available</button>
                                 </form>
                                 <!-- <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button> -->
-                                </form>
-                                <button type="submit" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
+                                <button type="button" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
                                 <!-- <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"> Repair</button> -->
-                                <button type="submit" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#decommission-{!! $item->id !!}"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#decommission-{!! $item->id !!}"><i class="fas fa-trash-alt"></i> Decommissioned</button>
                                 <!-- <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button> -->
                             </div>
                         </td>
@@ -288,7 +290,7 @@
                                             @if($item->equipment_id != null)
                                             <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                             @else
-                                            <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
+                                            <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
                                             @endif
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
@@ -315,7 +317,46 @@
                 </tbody>
                 </table>
             </div>
+<!-- Edit Issued Until prompt-->
+<div class="modal fade" id="issuedUntilEdit" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+    aria-hidden="true">
 
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="height:450px;">
+                <div class="modal-header">
+                <h5 class="modal-title">Edit Issued Until</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{!! url('/edit-issued-until'); !!}" method="post">
+                {!! csrf_field() !!}
+                <input type="hidden" name="issuance_id" id="issuanceIdEditIssuedUntil">
+                <div class="modal-body">
+                  <div class="warning-content">
+                    <div class="row">
+                        <div class="col">
+                        Issued Until
+                            <input type="date" name="issued_until" id="issued_until_edit">
+                        </div>
+                        <div class="col">
+                        Remarks
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                    </div>
+                    </br>
+                    
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+</div>
 
 
     <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
@@ -460,33 +501,6 @@
             </div>
 </form>
 
-<!-- Empty Modal Prompt -->
-    <div class="modal fade" id="makeAvailableModal" tabindex="-1" role="dialog"
-    aria-hidden="true">
-        <form action="{!! url('/add-to-concerns-system-unit') !!}" method="post">
-        {!! csrf_field() !!}
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="height:450px;">
-                <div class="modal-header" id="makeAvailableHeader">
-                    <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="emptyContent()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="warning-content"  id="makeAvailableContent">
-
-                    </div>
-                </div>
-
-
-            <div class="modal-footer" id="makeAvailableFooter">
-
-                </div>
-            </div>
-        </div>
-        </form>
-    </div>
 
 <!-- Decomissioned -->
     <div class="modal fade" id="makeAvailable" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
@@ -601,8 +615,12 @@ function fetchInfoEquipment(id , name ,status){
         $('#availableEquipmentId').val(id);
         $('.fetched-id').val(id);
         $('#AvailableName').text(name);
-        console.log(id + name + status);    
+        // console.log(id + name + status);    
     }
+}
+function issuedUntil(id){
+    $('#issuanceIdEditIssuedUntil').val(id);
+    console.log($('#issuanceIdEditIssuedUntil').val(id));    
 }
     
     </script>

@@ -182,6 +182,25 @@ class TblIssuances extends Model {
 			dd($e);
 		}
 	}
+	
+	public static function extendIssuedUntil($params) {
+		$issuance = TblIssuances::find($params['issuance_id']);
+
+		if(isset($params['issued_until'])){
+			$issuance->issued_until = $params['issued_until'];
+		}
+		$issuance->updated_at = gmdate('Y-m-d');
+		if(isset($params['remarks'])){
+			$issuance->remarks = $params['remarks'];
+		}
+
+		try{
+			$issuance->save();
+
+		}catch(Exception $e){
+			return 'Error!';
+		}
+	}
 
 	public static function updateIssuance($params) {
 		

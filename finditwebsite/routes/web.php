@@ -102,6 +102,7 @@ Route::get('/decommissioned', 'ForStatusController@showDecommissionedItems');
 
 Route::get('/issue', 'IssuanceController@employeeIssuance');
 Route::get('/issuance', 'IssuanceController@showAllIssuance');
+Route::post('/edit-issued-until', 'IssuanceController@updateIssuedUntil');
 
 Route::post('/addEquipment', 'InventoryController@addEquipment');
 Route::post('/addpurchase', 'PurchasesController@addpurchase');
