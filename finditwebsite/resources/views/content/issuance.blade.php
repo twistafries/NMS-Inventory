@@ -111,7 +111,7 @@
 
             <div class="btn-group" role="group" aria-label="Basic example">
 
-                <button class="btn btn-primary rounded-pill" type="button " id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#"><a class="fas fa-hand-holding" href="#" data-toggle="tooltip" title="Add">Issue An Item</a>
+                <button class="btn btn-primary rounded-pill" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#singleIssue" href="#" style="height: 3rem; width: 9rem;"><a class="fas fa-hand-holding" href="#" data-toggle="tooltip" title="Add"></a>  Issue Item
                 </button>
 
 
@@ -532,7 +532,7 @@
         $('#makeAvailableFooter').empty()
     }
 
- 
+
   </script>
 
 
