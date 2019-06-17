@@ -182,8 +182,7 @@
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;">
-                                    </textarea>
+                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;" required></textarea>
                                   </div>
                                 </div>
 
@@ -745,6 +744,11 @@
     <script type="text/javascript" src="{{ asset('js/datatable/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 
+    <!-- Validation -->
+    <script src="{{ asset('js/jqueryvalidation/dist/jquery.validate.js') }}"></script>
+    <script src="{{ asset('js/jqueryvalidation/dist/additional-methods.min.js') }}"></script>
+    <script src="{{ asset('js/validation-inventory.js') }}"></script>
+
     <!-- Multiple Select -->
     <script src="{{ asset('js/multipleselect/multiple-select.js') }}"></script>
 
@@ -796,7 +800,7 @@
 
 
       function add() {
-        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name=\"purchase[details][]\" type=\"text\" size=\"25\" style=\"height: 4rem; width: 14rem; margin-left:0.8rem;\"></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\"></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\">+<div></td><td><textarea name='purchase[details][]' type='text' size='25' style='height: 4rem; width: 14rem; margin-left:0.8rem;'></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\"></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
       }
     </script>
 

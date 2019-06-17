@@ -8,7 +8,7 @@ $('#singleAddForm').validate({
             },
             details: {
                 required: true,
-                maxlength: 255,
+                maxlength: 250,
             },
             brand: {
                 required: true,
@@ -36,7 +36,7 @@ $('#singleAddForm').validate({
             },
             details: {
                 required: 'Please fill out this field',
-                maxlength: 'Maximum of 50 characters',
+                maxlength: 'Maximum of 250 characters',
 
             },
             brand: {
