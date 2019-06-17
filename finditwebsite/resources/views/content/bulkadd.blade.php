@@ -18,7 +18,7 @@ body{
     {!! csrf_field() !!}
         <div align="right" style="margin-bottom:5px;">
             <button type="button" name="add" id="add" data-toggle="modal" data-target="#bulkAddModal"
-                class="btn btn-success btn-xs">Add</button>
+                class="btn btn-success btn-xs">Add More Items</button>
         </div>
 
         <table class="table table-striped table-bordered">
@@ -231,13 +231,13 @@ body{
         @if( $item_id != 0)
             fetchRecords({{ $item_id }})
             console.log( {{ $item_id }})
-            if($('#or_no').val() == ''){
-                $('#or_no').css('background-color', '#fff3cd');
-                    
-            }else{
-                console.log("Empty details")
+            if($('#or_no').val() != ''){
                 $('#or_no').removeAttr("style");
                 $('#or_no').css('background-color', 'fff');
+                
+            }else{
+                console.log("Empty OR")
+                $('#or_no').css('background-color', '#fff3cd');
 
             }
 
@@ -249,7 +249,7 @@ body{
         
         
     
-
+        
         $('.form-control').keyup(function(){
             // console.log("keyup form-control")
             console.log("If all is empty")
@@ -306,21 +306,19 @@ body{
             }
             
             
-            $('#save').removeAttr("data-dismiss");
-            $('#save').hide();
+            // $('#save').removeAttr("data-dismiss");
+            // $('#save').hide();
 
-            if($('#brand').val() == ''
-            && $('#model').val() == ''
-            && $('#details').val() == ''
-            && $('#or_no').val() == ''
-            && $('#quantity').val() == ''
+            if($('#brand').val() != ''
+            && $('#model').val() != ''
+            && $('#details').val() != ''
+            && $('#or_no').val() != ''
+            && $('#quantity').val() != ''
             ){
-            $('#save').hide()
-            $('#save').removeAttr("data-dismiss")
-            }else{
-                $('#save').show()
-                $('#save').attr("data-dismiss" , "modal")
-                console.log("If all is completely filled")
+            $('#save').show()
+            $('#save').attr("data-dismiss" , "modal")
+            $('#error_messages').hide();
+            console.log("If all is completely filled")
             }
             
         })
@@ -333,10 +331,7 @@ body{
         ){
         $('#save').hide()
         $('#save').removeAttr("data-dismiss")
-        }else{
-            $('#save').show()
-            $('#save').attr("data-dismiss" , "modal")
-            console.log("If all is completely filled")
+        $('#error_messages').show();
         }
 
         $('#save').click(function () {
@@ -400,7 +395,7 @@ body{
 
                 if (buttonCount == 0) {
                     console.log("Empty Div " + buttonCount);
-                    output_submit = '<input type="submit" id="insert" class="btn btn-primary" value="Insert" />'
+                    output_submit = '<input type="submit" id="insert" class="btn btn-primary" value="Add to Inventory" />'
                     $('#submit_div').append(output_submit);
                 }
             });
