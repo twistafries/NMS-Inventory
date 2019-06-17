@@ -215,8 +215,10 @@
                                 <!-- <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button> -->
                                 <button type="button" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
                                 <!-- <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"> Repair</button> -->
-                                <button type="button" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#decommission-{!! $item->id !!}"><i class="fas fa-trash-alt"></i> Decommissioned</button>
+                                <button type="button" class="btn btn-secondary rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#decommission-{!! $item->id !!}"><i class="fas fa-trash-alt"></i> Decommission</button>
                                 <!-- <button class="btn btn-dark" type="submit" value="" onclick="deleteRow(this)">Decommission</button> -->
+                                <button type="button" class="btn btn-info rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#missing-{!! $item->id !!}">Missing</button>
+
                             </div>
                         </td>
                 <!-- For Repair Modal -->
@@ -273,9 +275,9 @@
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
                                         @if( $item->equipment_id != null )
-                                            <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                            <h5 class="modal-title">Decommission {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
                                         @else
-                                        <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
+                                        <h5 class="modal-title">Decommission {{ $item->pc_number }} {{ $item->unit_name }}</h5>
                                         @endif
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -313,6 +315,52 @@
                             </div>
                         </div>
                     </tr>
+                    <!-- missing modal -->
+                    <div class="modal fade" id="missing-{!! $item->id !!}" tabindex="-1" role="dialog"
+                        aria-labelledby="edit-{!! $item->model !!}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="height:450px;">
+                                <div class="modal-header">
+                                    @if( $item->equipment_id != null )
+                                        <h5 class="modal-title">Missing Item: {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                    @else
+                                    <h5 class="modal-title">Missing Unit: {{ $item->pc_number }} {{ $item->unit_name }}</h5>
+                                    @endif
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{!! url('/update-issuance'); !!}" method="post">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
+                                        <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
+                                        <input type="hidden" name="status_id" value="7">
+                                        @if($item->equipment_id != null)
+                                        <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
+                                        @else
+                                        <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                        @endif
+                                        <div class="col-sm-12">
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <h6 class="text-uppercase">Remarks:</h6>
+                                                    <textarea name="remarks">Item missing, due for replacement. Last User: {{$employee->fname}} {{$employee->lname}} (ID:{{$employee->id}})</textarea>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
                 </tbody>
                 </table>
