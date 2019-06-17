@@ -4,6 +4,7 @@
   $user_id = $session['id'];
   $fname = $session['fname'];
   $lname = $session['lname'];
+  $email = $session['email'];
   // $img_path = $session['img_path'];
 ?>
 
@@ -182,12 +183,12 @@
                                                 <input  type="hidden" type="text" name="name" class="form-inline input" value="{{ $employee->fname  }} {{ $employee->lname  }} ID: {{ $employee->id  }}">
                                                 {!! csrf_field() !!}
                                             <div id="divstatus">
-                                                @if( $employee->status == "active")
+                                                @if( $employee->status == "active" && $email != $employee->email )
                                                 <button class="btn btn-secondary" id="deactivate" type="submit">
                                                     <input type="hidden" name="status" value="inactive">
                                                     Deactivate
                                                 </button>
-                                                @else
+                                                @elseif($employee->status == "inactive" && $email != $employee->email)
                                                 <button class="btn btn-info" id="activate" type="submit">
                                                     <input type="hidden" name="status" value="active">
                                                     Activate

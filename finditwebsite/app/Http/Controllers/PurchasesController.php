@@ -275,6 +275,9 @@ class PurchasesController extends BaseController
             }
 
             $ctr = 0;
+            $quantity = 0;
+            $purchase = "";
+            $total = count($data['purchase']["brand"]);
             foreach ($data['purchase']["brand"] as $brand) {
               $data['brand'] = $brand;
               $data['model'] = $data['purchase']["model"][$ctr];
@@ -290,14 +293,21 @@ class PurchasesController extends BaseController
               && isset($data['qty'])){
                   PurchasedItems::add_purchased_Item($data);
               }
-              $ctr++;
+
+                $ctr++;
+                  if($ctr==$total){
+                    $purchase = $purchase."and".$data['qty']." ".$data['brand']." ".$data['model'];
+                  } else if($ctr > 1){
+                    $purchase = $purchase.",".$data['qty']." ".$data['brand']." ".$data['model']." ";
+                  } else {
+                    $purchase = $purchase.$data['qty']." ".$data['brand']." ".$data['model']." ";
+                  }
+
             }
 
-              // $log['data'] = $id;
-              // // $log['unit'] = $data['unit_id'];
-              // $log['activity'] = "added";
-              // TblActivityLogs::add_log($log);
-              return \Redirect::to('/purchases')->with('new purchase added');
+            $act['activity'] = "purchased"." ".$purchase.".";
+            TblActivityLogs::add_log($act);
+            return \Redirect::to('/purchases')->with('new purchase added');
 
           }catch(Exception $e){
             return redirect()->back()

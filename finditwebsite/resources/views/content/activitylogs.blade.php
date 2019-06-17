@@ -89,10 +89,19 @@
                               <td>{{$log->created_at}}</td>
                           </tr>
                           @endif
-                          @if($log->activity == "built")
+                          @if(str_contains($log->activity, "built"))
                           <tr>
                               <td>
                                 {{$log->done_by}} {{$log->activity}} {{$log->deleted_item}} from the inventory.
+
+                              </td>
+                              <td>{{$log->created_at}}</td>
+                          </tr>
+                          @endif
+                          @if(str_contains($log->activity, "purchased"))
+                          <tr>
+                              <td>
+                                {{$log->done_by}} {{$log->activity}}
 
                               </td>
                               <td>{{$log->created_at}}</td>

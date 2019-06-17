@@ -856,6 +856,7 @@
           document.getElementById("subtypes").selectedIndex = "0";
           document.getElementById("supplier").selectedIndex = "0";
           document.getElementById("brand").selectedIndex = "0";
+            document.getElementById("stats").selectedIndex = "0";
           $('#purchasesTable').DataTable().search('').draw();
 
           // $('#myDataTable5').DataTable().search('').draw();

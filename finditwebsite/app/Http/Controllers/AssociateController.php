@@ -42,9 +42,17 @@ class AssociateController extends BaseController
         $data = $request->all();
         $updated = TblUsers::update_user($data);
         $id = TblUsers::update_user($data);
-        $data['users'] = $id;
-        $data['action'] = "deactivated";
-        ActivityLogs::add_log($data);
+        if($data['status']=="active"){
+          $act['to_status'] = "active";
+          $act['from_status'] = "inactive";
+        } else {
+          $act['to_status'] = "inactive";
+          $act['from_status'] = "active";
+        }
+
+        $act['issued_to'] = $data['name'];
+        $act['activity'] = "change the status of";
+        TblActivityLogs::add_log($act);
    }
 
     //adding associate
@@ -151,11 +159,17 @@ class AssociateController extends BaseController
       }
 
        TblUsers::update_user($data);
+       if($data['status']=="active"){
+         $act['to_status'] = "active";
+         $act['from_status'] = "inactive";
+       } else {
+         $act['to_status'] = "inactive";
+         $act['from_status'] = "active";
+       }
 
-       $act['associate'] = $data['id'];
-       $act['action'] = "updated";
+       $act['issued_to'] = $data['name'];
+       $act['activity'] = "change the status of";
        TblActivityLogs::add_log($act);
-
        return redirect()->intended('/associates')->with('message', 'Successfully editted equipment details');
 
     }
