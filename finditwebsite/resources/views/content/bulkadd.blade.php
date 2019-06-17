@@ -66,6 +66,10 @@ body{
                 </div>
                 <div class="modal-body">
                     <div id="user_dialog" title="Add Data">
+                        <div class="alert alert-warning" id="error_messages">
+                            <li>Please fill up all the fields</li>
+                        </div>
+
                         <div class="row">
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
@@ -76,6 +80,11 @@ body{
                             <!-- Subtype -->
                             <div class="col col-lg-5 col-md col-sm col-xs">
                                 <div class="form-group">
+                                @if($item_id != 0)
+                                <fieldset disabled>
+                                @else
+                                <fieldset>
+                                @endif
                                     <p class="card-title">Subtype</p>
                                     <select id="subtype" class="custom-select">
                                         @foreach ($equipment_subtypes as $equipment_subtypes)
@@ -83,10 +92,16 @@ body{
                                         @endforeach
                                     </select>
                                 </div>
+                                </fieldset>
                             </div>
 
                             <div class="col col-lg-5 col-md col-sm col-xs">
                                 <div class="form-group">
+                                @if($item_id != 0)
+                                <fieldset disabled>
+                                @else
+                                <fieldset>
+                                @endif
                                     <p class="card-title">Status</p>
                                     <select id="status" class="custom-select">
                                         @foreach ($equipment_status as $equipment_status)
@@ -95,28 +110,42 @@ body{
                                         @endforeach
                                     </select>
                                 </div>
+                                </fieldset>
                             </div>
 
                             <!-- Brand -->
                             <div class="col col-lg-6 col-md col-sm col-xs">
+                            @if($item_id != 0)
+                            <fieldset disabled>
+                            @else
+                            <fieldset>
+                            @endif
                                 <div class="form-group">
                                     <p class="card-title">Brand</p>
                                     <input type="text" name="brand" id="brand" class="form-control" required/>
-                                    <span id="error_brand" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <!-- Model -->
                             <div class="col col-lg-6 col-md col-sm col-xs">
+                            @if($item_id != 0)
+                            <fieldset disabled>
+                            @else
+                            <fieldset>
+                            @endif
                                 <div class="form-group">
                                     <p class="card-title">Model</p>
                                     <input type="text" name="model" id="model" class="form-control" required/>
-                                    <span id="error_model" class="text-danger"></span>
                                 </div>
                             </div>
 
                             <!-- Details -->
                             <div class="col col-lg-12 col-md col-sm col-xs">
+                            @if($item_id != 0)
+                            <fieldset disabled>
+                            @else
+                            <fieldset>
+                            @endif
                                 <div class="form-group">
                                     <p class="card-title">Details</p>
                                     <textarea name="details" id="details" class="form-control" required></textarea>
@@ -134,6 +163,7 @@ body{
                             </div> -->
 
                             <div class="col col-lg-6 col-md col-sm col-xs">
+                            <fieldset>
                                 <div class="form-group">
                                     <p class="card-title">OR Number</p>
                                     <input type="text" name="or_no" id="or_no" class="form-control" required/>
@@ -142,6 +172,11 @@ body{
                             </div>
 
                             <div class="col col-lg-6 col-md col-sm col-xs">
+                            @if($item_id != 0)
+                            <fieldset disabled>
+                            @else
+                            <fieldset>
+                            @endif
                                 <div class="form-group">
                                     <p class="card-title">Supplier</p>
                                     <select id="supplier" class="custom-select">
@@ -177,9 +212,9 @@ body{
                 <div class="modal-footer align-content-center">
                     <div class="form-group">
                         <input type="hidden" name="row_id" id="hidden_row_id" />
-                        <button type="button text-uppercase" name="save" id="save" class="btn btn-info" data-dismiss="modal">Save</button>
-                    </div>
+                        <button type="button" name="save" id="save" class="btn btn-info">Save</button>
                 </div>
+                    </div>
 
             </div>
         </div>
@@ -196,12 +231,114 @@ body{
         @if( $item_id != 0)
             fetchRecords({{ $item_id }})
             console.log( {{ $item_id }})
+            if($('#or_no').val() == ''){
+                $('#or_no').css('background-color', '#fff3cd');
+                    
+            }else{
+                console.log("Empty details")
+                $('#or_no').removeAttr("style");
+                $('#or_no').css('background-color', 'fff');
+
+            }
+
         @endif
             // fetchRecords(97)
-        
+        // $('#save').hide();
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
+        
+    
+
+        $('.form-control').keyup(function(){
+            // console.log("keyup form-control")
+            console.log("If all is empty")
+        
+            if($('#quantity').val() == ''){
+                $('#quantity').css('background-color', '#fff3cd');
+                
+            }else{
+                console.log("Empty quantity")
+                $('#quantity').removeAttr("style");
+                $('#quantity').css('background-color', 'fff');
+            }
+
+            if($('#brand').val() == ''){
+                $('#brand').css('background-color', '#fff3cd');
+                
+            }else{
+                console.log("Empty brand")
+                $('#brand').removeAttr("style");
+                $('#brand').css('background-color', 'fff');
+                // error_brand = '';
+                // $('#error_brand').hide().text(error_brand);
+            }
+            
+            if($('#model').val() == ''){
+                $('#model').css('background-color', '#fff3cd');
+                
+            }else{
+                console.log("Empty model")
+                $('#model').removeAttr("style");
+                $('#model').css('background-color', 'fff');
+                // error_brand = '';
+                // $('#error_brand').hide().text(error_brand);
+            }
+            
+            if($('#details').val() == ''){
+                $('#details').css('background-color', '#fff3cd');
+                
+            }else{
+                console.log("Empty details")
+                $('#details').removeAttr("style");
+                $('#details').css('background-color', 'fff');
+                // error_brand = '';
+                // $('#error_brand').hide().text(error_brand);
+            }
+            
+            if($('#or_no').val() == ''){
+                $('#or_no').css('background-color', '#fff3cd');
+                
+            }else{
+                console.log("Empty details")
+                $('#or_no').removeAttr("style");
+                $('#or_no').css('background-color', 'fff');
+            }
+            
+            
+            $('#save').removeAttr("data-dismiss");
+            $('#save').hide();
+
+            if($('#brand').val() == ''
+            && $('#model').val() == ''
+            && $('#details').val() == ''
+            && $('#or_no').val() == ''
+            && $('#quantity').val() == ''
+            ){
+            $('#save').hide()
+            $('#save').removeAttr("data-dismiss")
+            }else{
+                $('#save').show()
+                $('#save').attr("data-dismiss" , "modal")
+                console.log("If all is completely filled")
+            }
+            
+        })
+        
+        if($('#brand').val() == ''
+        && $('#model').val() == ''
+        && $('#details').val() == ''
+        && $('#or_no').val() == ''
+        && $('#quantity').val() == ''
+        ){
+        $('#save').hide()
+        $('#save').removeAttr("data-dismiss")
+        }else{
+            $('#save').show()
+            $('#save').attr("data-dismiss" , "modal")
+            console.log("If all is completely filled")
+        }
+
         $('#save').click(function () {
             var count = 1;
             var quantity = $('#quantity').val();
@@ -215,17 +352,7 @@ body{
             var error_warranty_end = '';
             var buttonCount = $('#submit_div').children().length;
 
-                // if($('#name').val() == ''){
-                //     error_name = 'Name is required';
-                //     $('#error_name').text(error_name);
-                //     $('#name').css('border-color', '#cc0000');
-                //     name = '';
-                // }else{
-                //     error_first_name = '';
-                //     $('#error_first_name').text(error_first_name);
-                //     $('#first_name').css('border-color', '');
-                //     first_name = $('#first_name').val();
-                // }
+               
 
                 if($('#save').text() == 'Save') {
                     var subtype_id = $('#subtype').val();
@@ -338,6 +465,16 @@ body{
 
 
     });
+    function displayError(){
+        console.log("displayError")
+        isEmptyInput($('#quantity'));
+    };
+
+    function isEmptyInput(input){
+        if(input.val().length === 0){
+            console.log("checkEmpty function is empty")
+        }
+    }
     // $('#subtype').on('change', function(){
     //     console.log($('#subtype option:selected').text());
     //     if($('#subtype option:selected').text() == 'Motherboard'){
