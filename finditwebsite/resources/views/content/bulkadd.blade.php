@@ -231,29 +231,66 @@ body{
         @if( $item_id != 0)
             fetchRecords({{ $item_id }})
             console.log( {{ $item_id }})
-            if($('#or_no').val() != ''){
-                $('#or_no').removeAttr("style");
-                $('#or_no').css('background-color', 'fff');
-                
-            }else{
-                console.log("Empty OR")
-                $('#or_no').css('background-color', '#fff3cd');
+            allFilled();
+            // eachFieldValidate();
+            $('#bulkAddModal').modal('show')
+            var rowCount = $('#equipment_data tr').length;
+            $('.form-control').keyup(function(){
+                eachFieldValidate();
+            })
+            anyEmpty();
+            allFilled();
 
-            }
-
-        @endif
-            // fetchRecords(97)
-        // $('#save').hide();
+        @else
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
         
-    
+        
         
         $('.form-control').keyup(function(){
             // console.log("keyup form-control")
-            console.log("If all is empty")
+            // console.log("If all is empty")
+            eachFieldValidate();
         
+            
+            
+        })
+        anyEmpty();
+        allFilled();
+        
+        @endif
+            // fetchRecords(97)
+        // $('#save').hide();
+        function anyEmpty(){
+            if($('#brand').val() == ''
+            || $('#model').val() == ''
+            || $('#details').val() == ''
+            || $('#or_no').val() == ''
+            || $('#quantity').val() == ''
+            ){    
+            $('#save').hide()
+            $('#save').removeAttr("data-dismiss")
+            $('#error_messages').show();
+            }
+        }
+
+        function allFilled(){
+            if($('#brand').val() != ''
+            && $('#model').val() != ''
+            && $('#details').val() != ''
+            && $('#or_no').val() != ''
+            && $('#quantity').val() != ''
+            ){
+            $('#save').show()
+            $('#save').attr("data-dismiss" , "modal")
+            $('#error_messages').hide();
+            console.log("If all is completely filled")
+            return true;
+            }
+        }
+
+        function eachFieldValidate(){
             if($('#quantity').val() == ''){
                 $('#quantity').css('background-color', '#fff3cd');
                 
@@ -320,18 +357,6 @@ body{
             $('#error_messages').hide();
             console.log("If all is completely filled")
             }
-            
-        })
-        
-        if($('#brand').val() == ''
-        && $('#model').val() == ''
-        && $('#details').val() == ''
-        && $('#or_no').val() == ''
-        && $('#quantity').val() == ''
-        ){
-        $('#save').hide()
-        $('#save').removeAttr("data-dismiss")
-        $('#error_messages').show();
         }
 
         $('#save').click(function () {
@@ -401,7 +426,8 @@ body{
             });
             
 
-        // Fetch Data for View Modal
+        
+            // Fetch Data for View Modal
         function fetchRecords(id) {
             // id=1;
             $.ajax({
@@ -460,16 +486,7 @@ body{
 
 
     });
-    function displayError(){
-        console.log("displayError")
-        isEmptyInput($('#quantity'));
-    };
-
-    function isEmptyInput(input){
-        if(input.val().length === 0){
-            console.log("checkEmpty function is empty")
-        }
-    }
+    
     // $('#subtype').on('change', function(){
     //     console.log($('#subtype option:selected').text());
     //     if($('#subtype option:selected').text() == 'Motherboard'){
