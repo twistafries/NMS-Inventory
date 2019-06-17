@@ -18,7 +18,7 @@
 @stop
 
 @section('title')
-    For Returns
+    Returns
 @stop
 
 @section('../layout/breadcrumbs')
@@ -35,7 +35,7 @@
             <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
-                  <a class="nav-link" href="{!! url('/purchases') !!}">Purchases</a>
+                  <a class="nav-link" href="{!! url('/purchases') !!}">Orders and Purchases</a>
                 </li>
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Purchases</a>

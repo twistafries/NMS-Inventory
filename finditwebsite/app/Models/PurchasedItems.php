@@ -144,4 +144,15 @@ class PurchasedItems extends Model
         $purchased_items = PurchasedItems::find($params);
         $purchased_items->delete();
       }
+
+    public static function getRecent(){
+      $query = Purchases::leftjoin('purchased_items','purchases.purchase_no', '=', 'purchased_items.p_id')
+      ->leftjoin('supplier', 'supplier.id', '=', 'purchased_items.supplier_id')
+      -> whereNull('or_no')
+      -> orderBy('purchases.date_of_purchase')
+      -> get()
+      -> take(5);
+
+      return $query;
+    }
 }

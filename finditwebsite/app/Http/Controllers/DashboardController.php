@@ -19,6 +19,7 @@ use App\Models\TblEquipmentStatus;
 use App\Models\Equipment;
 use App\Models\TblActivityLogs;
 use App\Models\PurchasedItems;
+use App\Models\Purchases;
 
 use Session, Auth;
 
@@ -48,10 +49,13 @@ class DashboardController extends BaseController
         $data['issued_laptop'] = count(TblItEquipment::countByStatusSubtype(2 , 12));
         
         $data['recent_purchases'] = PurchasedItems::orderBy('id', 'desc')
+        ->leftjoin('purchases', 'purchases.purchase_no', '=', 'purchased_items.p_id')
+        ->whereNotNull('or_no')
         ->take(5)
         ->get(); 
 
-        $data['inc_orders'] = TblItEquipment::get_equipment_by_status(6)->take(5);
+        $data['inc_orders'] = PurchasedItems::getRecent();
+
         $data['returned_items'] = TblItEquipment::get_equipment_by_status(4);
 
         return view ('content/dashboard' , $data);

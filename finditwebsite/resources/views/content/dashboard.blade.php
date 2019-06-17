@@ -314,12 +314,17 @@
         </div>
         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 p-1">
             <div class="card">
-                <div class="card-header text-white mb-3" id="card-header"> <i class="fas fa-clipboard-list"> Incomplete | Pending Orders</i></div>
+                <div class="card-header text-white mb-3" id="card-header"> <i class="fas fa-clipboard-list"></i> Pending Orders</div>
                 <div class="card-body ">
+                    
                     <ul class="list-group list-group-flush">
-                        @foreach($inc_orders as $order)
-                            <li class="list-group-item">{{$order->brand}} {{$order->model}} | OR No.:{{$order->or_no}} | Supplier: {{$order->supplier}}</li>
-                        @endforeach
+                        @if(!is_null($inc_orders))
+                            @foreach($inc_orders as $order)
+                                <li class="list-group-item">{{$order->brand}} {{$order->model}} | Supplier: {{$order->supplier_name}}</li>
+                            @endforeach
+                        @else
+                        No pending orders.
+                        @endif
                     </ul>
                     <form action="{!! url('/purchases'); !!}" method="get">
                         {!! csrf_field() !!}
