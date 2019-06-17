@@ -66,6 +66,14 @@ body{
                 </div>
                 <div class="modal-body">
                     <div id="user_dialog" title="Add Data">
+                        <div class="alert alert-warning" id="error_messages">
+                            <li id="error_brand"></li>
+                            <li id="error_model"></li>
+                            <li id="error_details"></li>
+                            <li id="error_or_no"></li>
+
+                        </div>
+
                         <div class="row">
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
@@ -102,7 +110,6 @@ body{
                                 <div class="form-group">
                                     <p class="card-title">Brand</p>
                                     <input type="text" name="brand" id="brand" class="form-control" required/>
-                                    <span id="error_brand" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -111,7 +118,6 @@ body{
                                 <div class="form-group">
                                     <p class="card-title">Model</p>
                                     <input type="text" name="model" id="model" class="form-control" required/>
-                                    <span id="error_model" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -177,9 +183,9 @@ body{
                 <div class="modal-footer align-content-center">
                     <div class="form-group">
                         <input type="hidden" name="row_id" id="hidden_row_id" />
-                        <button type="button text-uppercase" name="save" id="save" class="btn btn-info" data-dismiss="modal">Save</button>
-                    </div>
+                        <button type="button" name="save" id="save" class="btn btn-info">Save</button>
                 </div>
+                    </div>
 
             </div>
         </div>
@@ -202,6 +208,44 @@ body{
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
+        $('.form-control').keyup(function(){
+            console.log("keyup form-control")
+            if($('#brand').val() == ''
+            && $('#model').val() == ''
+            && $('#details').val() == ''
+            && $('#or_no').val() == ''
+            ){
+                if($('#brand').val() == ''){
+                    error_brand = 'Brand is required';
+                    $('#error_brand').show().text(error_brand);
+                    brand = '';
+                }else{
+                    error_brand = '';
+                    $('#error_brand').hide().text(error_brand);
+                }
+                
+                if($('#model').val() == ''){
+                    error_model = 'Model is required';
+                    $('#error_model').text(error_model);
+                    model = '';
+                }else{
+                    error_brand = '';
+                    $('#error_brand').hide().text(error_brand);
+                }  
+                    
+                // $('#error')append();
+                // $('#brand').css('background-color', '#ffc107');
+                $('#save').removeAttr("data-dismiss");
+                $('#save').addClass("disabled")
+            }else{
+                $('#save').removeClass("disabled")
+                error_brand = '';
+                $('#error_brand').text(error_brand);
+                $('#error_brand').css('background-color', '');
+                brand = $('#brand').val();
+            }
+        })
+
         $('#save').click(function () {
             var count = 1;
             var quantity = $('#quantity').val();
@@ -215,17 +259,7 @@ body{
             var error_warranty_end = '';
             var buttonCount = $('#submit_div').children().length;
 
-                // if($('#name').val() == ''){
-                //     error_name = 'Name is required';
-                //     $('#error_name').text(error_name);
-                //     $('#name').css('border-color', '#cc0000');
-                //     name = '';
-                // }else{
-                //     error_first_name = '';
-                //     $('#error_first_name').text(error_first_name);
-                //     $('#first_name').css('border-color', '');
-                //     first_name = $('#first_name').val();
-                // }
+               
 
                 if($('#save').text() == 'Save') {
                     var subtype_id = $('#subtype').val();
@@ -338,6 +372,16 @@ body{
 
 
     });
+    function displayError(){
+        console.log("displayError")
+        isEmptyInput($('#quantity'));
+    };
+
+    function isEmptyInput(input){
+        if(input.val().length === 0){
+            console.log("checkEmpty function is empty")
+        }
+    }
     // $('#subtype').on('change', function(){
     //     console.log($('#subtype option:selected').text());
     //     if($('#subtype option:selected').text() == 'Motherboard'){
