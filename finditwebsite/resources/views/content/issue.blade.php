@@ -196,7 +196,6 @@
                         <td>{{ $item->created_at}}</td>
                         <td>
                         {{ $item->issued_until }}
-                        <button type="button" class="btn btn-outline-info" data-target="#issuedUntilEdit" data-toggle="modal" onclick="issuedUntil({!! $item->id !!})"><i class="far fa-edit"></i></button>
                         </td>
                         <td>
                             <div class="btn-group" role="group">
@@ -365,48 +364,6 @@
                 </tbody>
                 </table>
             </div>
-<!-- Edit Issued Until prompt-->
-<div class="modal fade" id="issuedUntilEdit" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
-    aria-hidden="true">
-
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="height:450px;">
-                <div class="modal-header">
-                <h5 class="modal-title">Edit Issued Until</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{!! url('/edit-issued-until'); !!}" method="post">
-                {!! csrf_field() !!}
-                <input type="hidden" name="issuance_id" id="issuanceIdEditIssuedUntil">
-                <div class="modal-body">
-                  <div class="warning-content">
-                    <div class="row">
-                        <div class="col">
-                        Issued Until
-                            <input type="date" name="issued_until" id="issued_until_edit">
-                        </div>
-                        <div class="col">
-                        Remarks
-                    <textarea class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                    </div>
-                    </br>
-                    
-                  </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
-                </div>
-                </form>
-            </div>
-        </div>
-</div>
-
-
     <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
 
       <h4><button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>     ADD ITEMS</button></h4>
