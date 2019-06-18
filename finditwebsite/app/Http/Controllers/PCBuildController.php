@@ -98,7 +98,8 @@ class PCBuildController extends Controller
                 $data['id'] = $component;
                 TblItEquipment::edit_equipment($data);
             }
-
+            $act['activity'] = "built a new pc from parts.";
+            TblActivityLogs::add_log($act);
             return \Redirect::to('/inventoryAll')->with('message','System unit has been added.');
         }catch(QueryException $qe){
         // $info = Self::getErrorInfo();

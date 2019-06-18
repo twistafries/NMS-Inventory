@@ -42,7 +42,7 @@
             </nav>
     </nav>
 
-
+<!-- 
     <div class="card 12" style="margin-top: 1rem;  margin-bottom: 1rem; padding-top: 1.5rem; padding-bottom: 10px;">
     <table style="margin: auto;width: 100%; text-align: right; ">
       <thead>
@@ -100,7 +100,7 @@
       </thead>
       <tr height="10px"></tr>
     </table>
-  </div>
+  </div> -->
 
 
 

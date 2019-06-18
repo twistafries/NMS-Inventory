@@ -209,14 +209,15 @@
                                                     <button type="button" class="btn btn-success b cancel" id="buttons">Save</button>
                                                 </div>
                                             </div>
+                                            <input type="hidden" name="name" value="{{$associates->fname}} {{$associates->lname}} ID:{{$associates->id}}">
 
                                             <div id="divstatus">
-                                                @if( $associates->status == "active")
+                                                @if( $associates->status == "active"  && $user_id != $associates->id )
                                                 <button class="btn btn-secondary" id="deactivate" type="submit">
                                                     <input type="hidden" name="status" value="inactive">
                                                     Deactivate
                                                 </button>
-                                                @else
+                                                @elseif( $associates->status == "inactive"  && $user_id != $associates->id )
                                                 <button class="btn btn-info" id="activate" type="submit">
                                                     <input type="hidden" name="status" value="active">
                                                     Activate
