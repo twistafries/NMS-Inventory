@@ -13,12 +13,13 @@ body{
 @stop
 
 @section('content')
+@include('content.prompts')
 <div class="container-fluid m-0">
     <form method="post" id="bulk_form" action="{!! url('/temp-bulk-add-post'); !!}">
     {!! csrf_field() !!}
         <div align="right" style="margin-bottom:5px;">
             <button type="button" name="add" id="add" data-toggle="modal" data-target="#bulkAddModal"
-                class="btn btn-success btn-xs">Add</button>
+                class="btn btn-success btn-xs">Add More Items</button>
         </div>
 
         <table class="table table-striped table-bordered">
@@ -73,8 +74,10 @@ body{
                         <div class="row">
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
-                                <p class="card-title">Quantity</p>
+                                <p class="card-title">Quantity *</p>
                                 <input type="number" class="form-control text-center" name="quantity" id="quantity" min="1" max="250" style="padding: 0;">
+                                <span id="error_quantity" class="text-danger"></span>
+
                             </div>
 
                             <!-- Subtype -->
@@ -85,12 +88,14 @@ body{
                                 @else
                                 <fieldset>
                                 @endif
-                                    <p class="card-title">Subtype</p>
+                                    <p class="card-title">Subtype *</p>
                                     <select id="subtype" class="custom-select">
                                         @foreach ($equipment_subtypes as $equipment_subtypes)
                                         <option class="option" value="{!! $equipment_subtypes->id !!}">{{ $equipment_subtypes->name}}</option>
                                         @endforeach
                                     </select>
+                                    <span id="error_subtype" class="text-danger"></span>
+
                                 </div>
                                 </fieldset>
                             </div>
@@ -102,13 +107,15 @@ body{
                                 @else
                                 <fieldset>
                                 @endif
-                                    <p class="card-title">Status</p>
+                                    <p class="card-title">Status *</p>
                                     <select id="status" class="custom-select">
                                         @foreach ($equipment_status as $equipment_status)
                                         <option class="option" value="{!! $equipment_status->id !!}">{{ $equipment_status->name }}
                                         </option>
                                         @endforeach
                                     </select>
+                                    <span id="error_status" class="text-danger"></span>
+
                                 </div>
                                 </fieldset>
                             </div>
@@ -121,8 +128,9 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Brand</p>
+                                    <p class="card-title">Brand *</p>
                                     <input type="text" name="brand" id="brand" class="form-control" required/>
+                                    <span id="error_brand" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -134,8 +142,9 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Model</p>
+                                    <p class="card-title">Model *</p>
                                     <input type="text" name="model" id="model" class="form-control" required/>
+                                    <span id="error_model" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -147,7 +156,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Details</p>
+                                    <p class="card-title">Details *</p>
                                     <textarea name="details" id="details" class="form-control" required></textarea>
                                     <!-- <input type="text" name="details" id="details" class="form-control" /> -->
                                     <span id="error_details" class="text-danger"></span>
@@ -165,7 +174,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                             <fieldset>
                                 <div class="form-group">
-                                    <p class="card-title">OR Number</p>
+                                    <p class="card-title">OR Number *</p>
                                     <input type="text" name="or_no" id="or_no" class="form-control" required/>
                                     <span id="error_or" class="text-danger"></span>
                                 </div>
@@ -178,7 +187,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Supplier</p>
+                                    <p class="card-title">Supplier *</p>
                                     <select id="supplier" class="custom-select">
                                         @foreach ($suppliers as $supplier)
                                         <option class="option" value="{!! $supplier->id !!}">{{ $supplier->supplier_name }}
@@ -231,29 +240,65 @@ body{
         @if( $item_id != 0)
             fetchRecords({{ $item_id }})
             console.log( {{ $item_id }})
-            if($('#or_no').val() == ''){
-                $('#or_no').css('background-color', '#fff3cd');
-                    
-            }else{
-                console.log("Empty details")
-                $('#or_no').removeAttr("style");
-                $('#or_no').css('background-color', 'fff');
+            allFilled();
+            // eachFieldValidate();
+            $('#bulkAddModal').modal('show')
+            var rowCount = $('#equipment_data tr').length;
+            $('.form-control').keyup(function(){
+                eachFieldValidate();
+            })
+            anyEmpty();
+            allFilled();
 
-            }
-
-        @endif
-            // fetchRecords(97)
-        // $('#save').hide();
+        @else
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
         
         
-    
-
+            eachFieldValidate()
+        
         $('.form-control').keyup(function(){
             // console.log("keyup form-control")
-            console.log("If all is empty")
+            // console.log("If all is empty")
+            eachFieldValidate();
         
+            
+            
+        })
+        anyEmpty();
+        allFilled();
+        
+        @endif
+            // fetchRecords(97)
+        // $('#save').hide();
+        function anyEmpty(){
+            if($('#brand').val() == ''
+            || $('#model').val() == ''
+            || $('#details').val() == ''
+            || $('#or_no').val() == ''
+            || $('#quantity').val() == ''
+            ){    
+            $('#save').hide()
+            $('#save').removeAttr("data-dismiss")
+            $('#error_messages').show();
+            }
+        }
+
+        function allFilled(){
+            if($('#brand').val() != ''
+            && $('#model').val() != ''
+            && $('#details').val() != ''
+            && $('#or_no').val() != ''
+            && $('#quantity').val() != ''
+            ){
+            $('#save').show()
+            $('#save').attr("data-dismiss" , "modal")
+            $('#error_messages').hide();
+            return true;
+            }
+        }
+
+        function eachFieldValidate(){
             if($('#quantity').val() == ''){
                 $('#quantity').css('background-color', '#fff3cd');
                 
@@ -300,43 +345,24 @@ body{
                 $('#or_no').css('background-color', '#fff3cd');
                 
             }else{
-                console.log("Empty details")
                 $('#or_no').removeAttr("style");
                 $('#or_no').css('background-color', 'fff');
             }
             
             
-            $('#save').removeAttr("data-dismiss");
-            $('#save').hide();
+            // $('#save').removeAttr("data-dismiss");
+            // $('#save').hide();
 
-            if($('#brand').val() == ''
-            && $('#model').val() == ''
-            && $('#details').val() == ''
-            && $('#or_no').val() == ''
-            && $('#quantity').val() == ''
+            if($('#brand').val() != ''
+            && $('#model').val() != ''
+            && $('#details').val() != ''
+            && $('#or_no').val() != ''
+            && $('#quantity').val() != ''
             ){
-            $('#save').hide()
-            $('#save').removeAttr("data-dismiss")
-            }else{
-                $('#save').show()
-                $('#save').attr("data-dismiss" , "modal")
-                console.log("If all is completely filled")
-            }
-            
-        })
-        
-        if($('#brand').val() == ''
-        && $('#model').val() == ''
-        && $('#details').val() == ''
-        && $('#or_no').val() == ''
-        && $('#quantity').val() == ''
-        ){
-        $('#save').hide()
-        $('#save').removeAttr("data-dismiss")
-        }else{
             $('#save').show()
             $('#save').attr("data-dismiss" , "modal")
-            console.log("If all is completely filled")
+            $('#error_messages').hide();
+            }
         }
 
         $('#save').click(function () {
@@ -399,14 +425,14 @@ body{
                 }
 
                 if (buttonCount == 0) {
-                    console.log("Empty Div " + buttonCount);
-                    output_submit = '<input type="submit" id="insert" class="btn btn-primary" value="Insert" />'
+                    output_submit = '<input type="submit" id="insert" class="btn btn-primary" value="Add to Inventory" />'
                     $('#submit_div').append(output_submit);
                 }
             });
             
 
-        // Fetch Data for View Modal
+        
+            // Fetch Data for View Modal
         function fetchRecords(id) {
             // id=1;
             $.ajax({
@@ -414,19 +440,14 @@ body{
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    //console.log(response['purchases']);
                     
                     var len = 0;
-                    // console.log("display data div null");
 
                     if (response['purchases'] != null) {
                         len = response['purchases'].length;
-                        console.log(response['purchases']);
-                        console.log("len: " + len);
                     }
 
                     if (len > 0){
-                        console.log("len > 0");
                         for(var i = 0; i < len; i++){
                             var id = response['purchases'][i].id;
                             var p_id = response['purchases'][i].p_id;
@@ -461,20 +482,21 @@ body{
         }    
                 
 
-
-
+        $(".serial_no").keyup(function(){
+            var arr = [];
+            $(".serial_no").each(function(){
+                var value = $(this).val();
+                if (arr.indexOf(value) == -1)
+                    arr.push(value);
+                else
+                    console.log("Deupliket")
+                    $(this).addClass("duplicate");
+            });
+        })
 
     });
-    function displayError(){
-        console.log("displayError")
-        isEmptyInput($('#quantity'));
-    };
+    
 
-    function isEmptyInput(input){
-        if(input.val().length === 0){
-            console.log("checkEmpty function is empty")
-        }
-    }
     // $('#subtype').on('change', function(){
     //     console.log($('#subtype option:selected').text());
     //     if($('#subtype option:selected').text() == 'Motherboard'){

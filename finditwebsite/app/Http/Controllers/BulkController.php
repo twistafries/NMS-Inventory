@@ -7,6 +7,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Database\QueryException;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\TblItEquipment;
 use App\Models\TblSystemUnits;
@@ -54,6 +56,7 @@ class BulkController extends BaseController
        if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
             return \Redirect::to('/loginpage');
       }
+      $error = [];
       
     //   Purchases::edit_purchase($data['p_id'],$data['or_no']);
       //   Purchases::edit_purchase($data['p_id'],$data['or_no']);
@@ -68,16 +71,64 @@ class BulkController extends BaseController
         // dd($show);
         $data = $request->input('bulk.*');
         $data['inventory'] = collect([]);
-        $serial_no = $request->get('bulk')['serial_no'];
-        $subtype_id = $request->get('bulk')['subtype_id'];
-        $status_id = $request->get('bulk')['status_id'];
+
+        if(isset($request->get('bulk')['serial_no'])){
+            $serial_no = $request->get('bulk')['serial_no'];
+        }else{
+            \array_push($error , "Serial Number is empty");
+        }
+
+        if(isset($request->get('bulk')['subtype_id'])){
+            $subtype_id = $request->get('bulk')['subtype_id'];
+        }else{
+            \array_push($error , "Subtype is empty");
+        }
+        
+        if(isset($request->get('bulk')['status_id'])){
+            $status_id = $request->get('bulk')['status_id'];
+        }else{
+            \array_push($error , "Status is empty");
+        }
+        
+        if(isset($request->get('bulk')['brand'])){
+            $brand = $request->get('bulk')['brand'];
+        }else{
+            \array_push($error , "Brand is empty");
+        }
+        
+        if(isset($request->get('bulk')['details'])){
+            $details = $request->get('bulk')['details'];
+        }else{
+            \array_push($error , "Details is empty");
+        }
+        
+        if(isset($request->get('bulk')['model'])){
+            $model = $request->get('bulk')['model'];
+        }else{
+            \array_push($error , "Model is not filled");
+        }
+        
+        if(isset($request->get('bulk')['or_no'])){
+            $or_no = $request->get('bulk')['or_no'];
+        }else{
+            \array_push($error , "OR No. is not filled");
+        }
+
+        if(isset($request->get('bulk')['supplier_id'])){
+            $supplier_id = $request->get('bulk')['supplier_id'];
+        }else{
+            \array_push($error , "Supplier is not filled");
+        }
+        
+        
+        // $status_id = $request->get('bulk')['status_id'];
         // $unit_id = $request->get('bulk')['unit_id'];
-        $brands = $request->get('bulk')['brand'];
-        $model = $request->get('bulk')['model'];
-        $details = $request->get('bulk')['details'];
+        // $brands = $request->get('bulk')['brand'];
+        // $model = $request->get('bulk')['model'];
+        // $details = $request->get('bulk')['details'];
         $imei_or_macaddress = $request->get('bulk')['imei_or_macaddress'];
-        $or_no = $request->get('bulk')['or_no'];
-        $supplier_id = $request->get('bulk')['supplier_id'];
+        // $or_no = $request->get('bulk')['or_no'];
+        // $supplier_id = $request->get('bulk')['supplier_id'];
         $warranty_start = $request->get('bulk')['warranty_start'];
         $warranty_end = $request->get('bulk')['warranty_end'];
 
@@ -125,16 +176,21 @@ class BulkController extends BaseController
         return \Redirect::to('/inventoryAll')
         ->with('message' , $count  . ' equipment has been added');
 
+    }catch(ErrorException $ee){
+        return redirect()->back()
+              ->with('error' , $error)
+              ->with('error_info' , $ee->getMessage());
+            //   ->with('target' , '#singleAdd');
     }catch(Exception $e){
         return redirect()->back()
-              ->with('error' , 'Database cannot read input value.')
-              ->with('error_info' , $qe->getMessage())
-              ->with('target' , '#singleAdd');
+              ->with('error' , $error)
+              ->with('error_info' , $qe->getMessage());
+            //   ->with('target' , '#singleAdd');
     }catch(QueryException $qe){
         return redirect()->back()
               ->with('error' , 'Database cannot read input value.')
-              ->with('error_info' , $qe->getMessage())
-              ->with('target' , '#singleAdd');
+              ->with('error_info' , $qe->getMessage());
+            //   ->with('target' , '#singleAdd');
         }   
     }
 

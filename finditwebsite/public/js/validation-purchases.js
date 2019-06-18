@@ -1,3 +1,9 @@
+$("#purchasePC input, #purchasePC textarea").each(function () {
+    $(this).rules("add", {
+        required: true 
+    });
+});
+
 $('#singleAddForm').validate({
         rules: {
             
@@ -8,7 +14,7 @@ $('#singleAddForm').validate({
             },
             details: {
                 required: true,
-                maxlength: 255,
+                maxlength: 250,
             },
             brand: {
                 required: true,
@@ -32,11 +38,11 @@ $('#singleAddForm').validate({
             model: {
                 required: 'Please fill out this field',
                 maxlength: 'Maximum of 50 characters',
-                stringcheck: 'Invalid input',
+                // stringcheck: 'Invalid input',
             },
             details: {
                 required: 'Please fill out this field',
-                maxlength: 'Maximum of 50 characters',
+                maxlength: 'Maximum of 250 characters',
 
             },
             brand: {
@@ -54,3 +60,29 @@ $('#singleAddForm').validate({
             }
         }
     })
+
+$('#purchasePC').validate({
+    rules :{
+        qty:{
+            required: true,
+            max: 250,
+            min: 1,
+        },
+        supplier:{
+            required: true,
+            maxlength: 50,
+
+        },
+        brand:{
+            required: true,
+            maxlength: 50,
+
+        },
+        model:{
+            required: true,
+            maxlength: 50,
+
+        },
+    },
+})
+
