@@ -38,7 +38,7 @@
                   <a class="nav-link" href="{!! url('/purchases') !!}">Orders and Purchases</a>
                 </li>
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
-                  <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Purchases</a>
+                  <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Items</a>
                 </li>
                 <li class="nav-item" style="margin-right: 5px;">
                   <a class="nav-link active" href="{!! url('/returns') !!}">Returns</a>
