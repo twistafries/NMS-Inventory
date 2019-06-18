@@ -114,6 +114,7 @@ Route::post('/addEmployee', 'ForStatusController@addEmployee');
 Route::post('/removeEmployee', 'ForStatusController@removeEmployee');
 Route::post('/addUsers', 'AssociateController@addUsers');
 Route::post('/removeUser', 'AssociateController@removeUser');
+Route::post('/deactivate-with-issuance', 'ForStatusController@removeAllIssuance');
 
 Route::post('/editEquipment', 'InventoryController@editEquipment');
 Route::post('/add-to-concerns-equipment', 'InventoryConcernsController@markForConcernsEquipment');

@@ -47,12 +47,10 @@
       </div>
     </div>
   @endif
-  @if(Session::has('target') != null)
+  @if(Session::has('target') !== null)
     <a class="alert-link" data-toggle="modal" data-target="{!! Session::get('target') !!}" href="#">Please try again</a>
   @endif
-  @if(Session::has('target_url') != null)
-    <a href class="alert-link" href="{!! Session::get('target_url') !!}">View Issuances</a>
-  @endif
+
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>

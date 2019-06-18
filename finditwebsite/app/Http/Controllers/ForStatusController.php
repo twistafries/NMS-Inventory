@@ -15,6 +15,7 @@ use App\Models\TblDepartments;
 use App\Models\TblActivityLogs;
 use App\Models\TblItEquipment;
 use App\Models\TblIssuances;
+use App\Models\InventoryConcerns;
 
 class ForStatusController extends BaseController
 {
@@ -225,14 +226,31 @@ class ForStatusController extends BaseController
 
    }
 
+   public function removeAllIssuance(Request $request){
+     $data = $request->all();
+     $data['issuances'] = TblIssuances::getIssuanceOfEmployee($data['id']);
+     dd($data['issuances']);
+     foreach($data['issuances'] as $isssuance){
+        TblItEquipment::update_equipment_status($data['equipment_id'] , $data['status_id']);
+     }
+     
+   }
+
    public function changeStatus(Request $request)
    {
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
       $data = $request->all();
-      // dd($data);
-      $data['issuances'] = TblIssuances::getIssuanceOfEmployee($data['id']);
+      $issued['issuances'] = TblIssuances::getIssuanceOfEmployee($data['id']);
+      // dd($issued['issuances']);
+
       $data['original_status'] = TblEmployees::getEmployeesInfo($data['id'])[0]->status;
+      
       if($data['original_status'] == "active"){
-        if(count($data['issuances']) == 0){
+        
+        if(count($issued['issuances']) == 0){
           TblEmployees::edit_employee($data);
         
           $act['to_status'] = "inactive";
@@ -246,10 +264,39 @@ class ForStatusController extends BaseController
           ->with('message', 'Employee Status Changed');
           
         }else{
-          return redirect()
-          ->intended('/employees')->with('warning', 'Employee, ' . $data['name']. ' cannot be modified because of '. count($data['issuances'])  .' unreturned issued item(s).')
-          ->with('target_url', 'url("/issuances/")')
-          ->with('option', 'Mark Issued Items as Returned');
+          $ctr = 0;
+          foreach($issued['issuances'] as $issuance){
+            if($issuance->equipment_id == null){
+              TblItEquipment::update_equipment_status($issuance->unit_id , "1");
+            }else{
+              TblItEquipment::update_equipment_status($issuance->equipment_id , "1");
+            }
+            
+            $updateIssuance['issuance_id'] = $issued['issuances'][$ctr]->id;
+            $updateIssuance['remarks'] = "Returned item from employee deactivation";
+            TblIssuances::updateReturnedDate($updateIssuance);
+            $ctr++;
+            
+            $concerns['remarks'] = "Returned item from employee deactivation";
+            $concerns['name_component'] = $issuance->equipment_id;
+            $concerns['system_unit_id'] = $issuance->unit_id;
+            $concerns['issued_to'] = $issuance->issued_to;
+            $concerns['id'] = $issuance->equipment_id;
+            $concerns['added_by'] = Session::get('loggedIn')['id'];
+            $concerns['status_id'] = 1;
+            InventoryConcerns::addConcern($concerns);
+          }
+          TblEmployees::edit_employee($data);
+        
+          $act['to_status'] = "inactive";
+          $act['from_status'] = "active";
+    
+          $act['issued_to'] = $data['name'];
+          $act['activity'] = "change the status of";
+          TblActivityLogs::add_log($act);
+          return \Redirect::to('/employees')
+          ->with('message', 'Employee status of ' . $data['name']. ' was deactivated and '. count($issued['issuances'])  .' issued item(s) was marked for available.');
+          // dd(Session::has('target_url'));
         }
       }else{
           TblEmployees::edit_employee($data);
@@ -266,8 +313,7 @@ class ForStatusController extends BaseController
           TblActivityLogs::add_log($act);
     
           return redirect()->intended('/employees')
-          ->with('message', 'Employee Status Changed')
-          ->with('target', 'url("/issuances/'. $data['id'] .'")');
+          ->with('message', 'Employee Status Changed');
       }
       // if()
 
