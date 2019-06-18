@@ -99,14 +99,14 @@
       </th>
       <th></th>
         <th>
-          <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
+          <button class="btn btn-secondary p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
       </th>
       </thead>
       <tr height="10px"></tr>
     </table>
   </div>
   <div class="col-2" style="margin-top: 1.5rem;">
-    <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
+    <button type="button" id="" class="btn btn-info p-2" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
     </button>
   </div>
@@ -195,11 +195,11 @@
                   </div>
 
                   <div class="modal-body">
-                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2 text-uppercase" style="margin-bottom: 1rem;">
+                    <button type="button" id="addMorePurchase" onclick='add()' class="btn btn-info p-2" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add More
                     </button>
 
-                    <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
+                    <button type="button" class="btn btn-info p-2" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
                     </button>
                     <form action="{!! url('/addpurchase'); !!}" enctype="multipart/form-data" method="post" role="form" id="singleAddForm">
@@ -272,7 +272,7 @@
                   </div>
 
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                   </div>
                 </form>
@@ -558,10 +558,10 @@
 
               <div class="modal-footer">
                   @if($item->or_no === null)
-                  <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
-                  <button type="submit" class="btn btn-danger text-uppercase" data-toggle="modal"  data-target="#deleteModal"  onclick="fetch({!! $item->id !!})">Delete Purchase Item</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
+                  <button type="submit" class="btn btn-danger" data-toggle="modal"  data-target="#deleteModal"  onclick="fetch({!! $item->id !!})">Delete Purchase Item</button>
                   @endif
-                  <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
         </div>
     </div>
@@ -669,8 +669,8 @@
               </div>
 
               <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary text-uppercase" >Add to Inventory</button>
-                  <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
+                  <button type="submit" class="btn btn-primary" >Add to Inventory</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
             </form>
         </div>
@@ -760,9 +760,9 @@
 
                                     <div class="modal-footer">
                                         @if($pc->or_no == null)
-                                        <button type="submit" class="btn btn-primary text-uppercase">Add Items To Inventory</button>
+                                        <button type="submit" class="btn btn-primary">Add Items To Inventory</button>
                                         @endif
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                   </form>
                                 </div>
@@ -794,9 +794,9 @@
                     <form action="{!! url('/deleteItem'); !!}" method="post">
                     {!! csrf_field() !!}
                     <input  name="id" id="delete_id" value="" hidden>
-                    <button type="submit" class="btn btn-danger text-uppercase">Delete</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

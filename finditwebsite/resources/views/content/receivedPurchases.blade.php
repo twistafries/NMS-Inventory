@@ -85,14 +85,14 @@
       </th>
       <th></th><th></th>
         <th>
-          <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
+          <button class="btn btn-secondary p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
       </th>
       </thead>
       <tr height="10px"></tr>
     </table>
   </div>
   <div class="col-2" style="margin-top: 1.5rem;">
-    <button type="button" id="" class="btn btn-info p-2 text-uppercase" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
+    <button type="button" id="" class="btn btn-info p-2" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
     </button>
   </div>
@@ -114,10 +114,10 @@
                   </div>
 
                   <div class="modal-body">
-                    <button class="btn1 btn btn-info p-2 text-uppercase" type="button" id="addMorePurchase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
+                    <button class="btn1 btn btn-info p-2" type="button" id="addMorePurchase" data-toggle="" data-target="#addpurchase" aria-expanded="false" aria-controls="" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add More
                     </button>
-                    <button type="button" class="btn btn-info p-2 text-uppercase" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
+                    <button type="button" class="btn btn-info p-2" data-toggle="modal" data-target="#systemUnit" style="margin-bottom: 1rem;">
                       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>Add PC
                     </button>
                       <div class="addss container-fluid" style="background: #d3d3d3; margin-bottom: 2rem; padding-top: 1rem; padding-bottom: 1rem;">
@@ -170,7 +170,7 @@
                   </div>
 
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
+                    <button type="submit" class="btn btn-primary">ADD</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                   </div>
               </div>
@@ -405,8 +405,8 @@
               </div>
 
               <div class="modal-footer">
-                  <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
-                  <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
         </div>
     </div>

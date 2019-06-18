@@ -93,7 +93,7 @@
 
       <th></th><th></th>
         <th>
-          <button class="btn btn-secondary text-uppercase p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
+          <button class="btn btn-secondary p-2 btn-sm" type="button" onclick="reset()" style="margin-right: 5px;">Reset</button>
       </th>
       </thead>
       <tr height="10px"></tr>
@@ -199,8 +199,8 @@
               </div>
 
               <div class="modal-footer">
-                  <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
-                  <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>
         </div>
     </div>

@@ -188,7 +188,7 @@
                                                             <input type="text" name="lname" class="form-inline input"  value="{!! $employee->lname  !!}">
                                                         </div>
                                                         <div class="form-group col col-12">
-                                                            <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                            <button type="submit" class="btn btn-primary">Save Changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -215,7 +215,7 @@
                                                         </div>
 
                                                         <div class="form-group col col-12">
-                                                            <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                            <button type="submit" class="btn btn-primary">Save Changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -239,7 +239,7 @@
                                                                 <input type="email" name="email" class="form-inline input" value="{!! $employee->email !!}">
                                                             </div>
                                                             <div class="form-group col col-12">
-                                                                <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                                <button type="submit" class="btn btn-primary">Save Changes</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -252,7 +252,7 @@
                                                 {!! csrf_field() !!}
                                             <div id="divstatus">
                                                 @if( $employee->status == "active" && $email != $employee->email )
-                                                
+
                                                 <button class="btn btn-secondary" id="deactivate" type="submit">
                                                     <input type="hidden" name="status" value="inactive">
                                                     Deactivate
@@ -277,7 +277,7 @@
 
         </table>
 
-        
+
 
 
                                             <!-- Add Employee Modal -->
@@ -336,8 +336,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button id="save" type="submit" class="btn-success" data-toggle="modal" data-target="#success-message"> <span class="fas fa-plus"></span>ADD</button>
-            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+            <button id="save" type="submit" class="btn-success" data-toggle="modal" data-target="#success-message"> <span class="fas fa-plus"></span>Add</button>
+            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
         </div>
     </form>
@@ -360,7 +360,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
     <!-- Remove Employee Modal -->
     <div class="modal fade" id="removeEmployee" tabindex="-1" role="dialog" aria-labelledby="removeEmployeeTitle" aria-hidden="true">
@@ -436,8 +436,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button id="save" type="submit" class="btn btn-warning"> <span class="fas fa-trash "></span>REMOVE</button>
-                        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                        <button id="save" type="submit" class="btn btn-warning"> <span class="fas fa-trash "></span>Remove</button>
+                        <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
