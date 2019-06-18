@@ -945,7 +945,7 @@
               </div>
              <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
-                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
 
 

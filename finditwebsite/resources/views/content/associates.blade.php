@@ -129,7 +129,7 @@
                                                             <input type="text" name="lname" class="form-inline input"  value="{!! $associates->lname  !!}">
                                                         </div>
                                                         <div class="form-group col col-12">
-                                                            <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                            <button type="submit" class="btn btn-primary">Save Changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,7 +142,7 @@
                                                     <div class="col col-7 details" id="department-info">IT Department</div>
                                                     <div class="col col-1 edit" id="department-edit"><a href="#">Edit</a></div>
                                                     <div class="form-group col col-12">
-                                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                                        <button type="submit" class="btn btn-primary">Save Changes</button>
                                                     </div>
                                                 </div>
                                                 <!--department collapse-->
@@ -327,7 +327,7 @@
                         </div>
                         <div class="modal-footer">
                             <button id="save" type="submit" class="btn btn-success"> <span class="fas fa-add"></span>Add</button>
-                            <button id="cancel" type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                            <button id="cancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -410,8 +410,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button id="save" type="submit" class="btn btn-success"> <span class="fas fa-save"></span>SAVE</button>
-                        <button id="cancel" type="button" class="btn btn-danger" data-dismiss="modal">CANCEL</button>
+                        <button id="save" type="submit" class="btn btn-success"> <span class="fas fa-save"></span>Save</button>
+                        <button id="cancel" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
