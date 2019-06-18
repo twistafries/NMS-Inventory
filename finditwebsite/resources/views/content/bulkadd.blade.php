@@ -13,6 +13,7 @@ body{
 @stop
 
 @section('content')
+@include('content.prompts')
 <div class="container-fluid m-0">
     <form method="post" id="bulk_form" action="{!! url('/temp-bulk-add-post'); !!}">
     {!! csrf_field() !!}
@@ -246,7 +247,7 @@ body{
         var rowCount = $('#equipment_data tr').length;
         
         
-        
+            eachFieldValidate()
         
         $('.form-control').keyup(function(){
             // console.log("keyup form-control")
@@ -285,7 +286,6 @@ body{
             $('#save').show()
             $('#save').attr("data-dismiss" , "modal")
             $('#error_messages').hide();
-            console.log("If all is completely filled")
             return true;
             }
         }
@@ -337,7 +337,6 @@ body{
                 $('#or_no').css('background-color', '#fff3cd');
                 
             }else{
-                console.log("Empty details")
                 $('#or_no').removeAttr("style");
                 $('#or_no').css('background-color', 'fff');
             }
@@ -355,7 +354,6 @@ body{
             $('#save').show()
             $('#save').attr("data-dismiss" , "modal")
             $('#error_messages').hide();
-            console.log("If all is completely filled")
             }
         }
 
@@ -419,7 +417,6 @@ body{
                 }
 
                 if (buttonCount == 0) {
-                    console.log("Empty Div " + buttonCount);
                     output_submit = '<input type="submit" id="insert" class="btn btn-primary" value="Add to Inventory" />'
                     $('#submit_div').append(output_submit);
                 }
@@ -435,19 +432,14 @@ body{
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    //console.log(response['purchases']);
                     
                     var len = 0;
-                    // console.log("display data div null");
 
                     if (response['purchases'] != null) {
                         len = response['purchases'].length;
-                        console.log(response['purchases']);
-                        console.log("len: " + len);
                     }
 
                     if (len > 0){
-                        console.log("len > 0");
                         for(var i = 0; i < len; i++){
                             var id = response['purchases'][i].id;
                             var p_id = response['purchases'][i].p_id;
@@ -482,11 +474,21 @@ body{
         }    
                 
 
-
-
+        $(".serial_no").keyup(function(){
+            var arr = [];
+            $(".serial_no").each(function(){
+                var value = $(this).val();
+                if (arr.indexOf(value) == -1)
+                    arr.push(value);
+                else
+                    console.log("Deupliket")
+                    $(this).addClass("duplicate");
+            });
+        })
 
     });
     
+
     // $('#subtype').on('change', function(){
     //     console.log($('#subtype option:selected').text());
     //     if($('#subtype option:selected').text() == 'Motherboard'){

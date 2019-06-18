@@ -113,6 +113,73 @@
 </div>
     <!--Tab Content-->
 
+@if(Session::has('warning'))
+<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Warning</h4>
+    {{ Session::get('warning') }}
+    <button type="button" class="close btn-primary" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if(Session::has('error'))
+<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Error</h4>
+  {{ Session::get('error') }}
+
+  @if(Session::has('error_info'))
+    <a class="btn btn-fail" data-toggle="collapse" href="#errorInfoCollapse" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"> <span>▶</span> </a>
+      <!-- <span class="glyphicon glyphicon-chevron-down"></span> -->
+
+
+    <div class="collapse multi-collapse" id="errorInfoCollapse">
+      <div class="container">
+          <small>{{ Session::get('error_info') }}</small>
+      </div>
+    </div>
+  @endif
+  @if(Session::has('target') !== null)
+    <a class="alert-link" data-toggle="modal" data-target="{!! Session::get('target') !!}" href="#">Please try again</a>
+  @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if(Session::has('message'))
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Success</h4>
+  {{ Session::get('message') }}
+
+  @if(Session::has('data'))
+  {{ Session::get('message') }}
+  @endif
+  @if(Session::has('eq_id'))
+  <a class="btn btn-success" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"> <span class="glyphicon glyphicon-chevron-down"></span></a>
+  <br>
+   <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="container">
+        ID: {{ Session::get('eq_id') }} <br>
+        Brand: {{ Session::get('brand') }} <br>
+        Model: {{ Session::get('model') }} <br>
+        Details: {{ Session::get('details') }} <br>
+        Serial Number: {{ Session::get('serial_no') }} <br>
+        IMEI or Physical Address: {{ Session::get('imei') }} <br>
+        OR: {{ Session::get('or_no') }} <br>
+        Warranty Start: {{ Session::get('warranty_start') }} <br>
+        Warranty End: {{ Session::get('warranty_end') }} <br>
+      </div>
+    </div>
+
+  @endif
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
 
       <!-- purchases modal -->
       <div class="modal fade bd-example-modal-lg" id="purchasesmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="">
@@ -224,7 +291,7 @@
                   </div>
 
                   <div class="modal-body">
-                      <form action="{!! url('/purchasePC'); !!}" enctype="multipart/form-data" method="post" role="form">
+                      <form action="{!! url('/purchasePC'); !!}" enctype="multipart/form-data" method="post" role="form" id="purchasePC">
                         {!! csrf_field() !!}
                           <div class="row">
                               <div class="col-sm">
@@ -302,15 +369,15 @@
 
                                           <tr>
                                               <td>Case<input type="text" name="sub[]" value="7" hidden></td>
-                                              <td> <input type="text" name="component[7][brand]" required></td>
-                                              <td> <input type="text" name="component[7][model]" required></td>
+                                              <td> <input type="text" name="component[7][brand]" ></td>
+                                              <td> <input type="text" name="component[7][model]" ></td>
                                               <td><textarea name="component[7][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
                                               <td>Heat Sink Fan<input type="text" name="sub[]" value="8" hidden></td>
-                                              <td> <input type="text" name="component[8][brand]" required></td>
-                                              <td> <input type="text" name="component[8][model]" required></td>
+                                              <td> <input type="text" name="component[8][brand]" ></td>
+                                              <td> <input type="text" name="component[8][model]" ></td>
                                               <td><textarea name="component[8][details]" cols="22"></textarea></td>
                                           </tr>
 
@@ -678,12 +745,12 @@
                                         @if($pc->or_no == null)
                                         <tr>
                                           <p class="card-title">Qty. to Add
-                                          <input type="number" name="comp_qty" min='1' max={{$pc->qty}} required></p>
+                                          <input type="number" name="comp_qty" min='1' max='{!! $pc->qty !!}' required></p>
                                         </tr>
                                         @elseif($pc->qty > $pc->qty_added)
                                         <tr>
                                           <p class="card-title">Remaining Qty.
-                                          <input type="number" name="comp_qty" min='1' max='{{$pc->qty}}-{{$pc->qty_added}}' required></p>
+                                          <input type="number" name="comp_qty" min='1' max='{!! $pc->qty !!}-{!! $pc->qty_added !!}' required></p>
                                         </tr>
                                         @endif
                                       </tbody>
@@ -800,8 +867,10 @@
 
 
       function add() {
-        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\">+<div></td><td><textarea name='purchase[details][]' type='text' size='25' style='height: 4rem; width: 14rem; margin-left:0.8rem;'></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\"></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
+        // $(   '#addMoreList > tbody:last-child').append(str_row);
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name='purchase[details][]' type='text' size='25' style='height: 4rem; width: 14rem; margin-left:0.8rem;'></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\"></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
       }
+
     </script>
 
     <script>

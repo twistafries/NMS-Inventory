@@ -297,19 +297,17 @@ class PurchasesController extends BaseController
               // // $log['unit'] = $data['unit_id'];
               // $log['activity'] = "added";
               // TblActivityLogs::add_log($log);
-              return \Redirect::to('/purchases')->with('new purchase added');
+              return \Redirect::to('/purchases')->with('message' , 'New purchase added');
 
           }catch(Exception $e){
             return redirect()->back()
                   ->with('error' , 'Please fill out ALL the fields')
-                  ->with('error_info' , $e->getMessage())
-                  ->with('target' , '#singleAdd');
+                  ->with('error_info' , $e->getMessage());
 
           }catch(QueryException $qe){
             return redirect()->back()
                   ->with('error' , 'Database cannot read input value.')
-                  ->with('error_info' , $qe->getMessage())
-                  ->with('target' , '#singleAdd');
+                  ->with('error_info' , $qe->getMessage());
 
           }
         }
@@ -380,7 +378,9 @@ class PurchasesController extends BaseController
               // // $log['unit'] = $data['unit_id'];
               // $log['activity'] = "added";
               // TblActivityLogs::add_log($log);
-              return \Redirect::to('/purchases')->with('new purchase added');
+              return \Redirect::to('/purchases')
+              ->with('message' , 'New purchase added')
+              ->with('data' , "(". $data['qty'] .") " . "unit(s) added to purchases.");
 
           }catch(Exception $e){
             return redirect()->back()
