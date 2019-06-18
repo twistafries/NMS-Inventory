@@ -180,30 +180,39 @@
       <!-- Add System Unit Modal-->
       <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="systemUnit">
           <div class="modal-dialog modal-xxl">
-              <div class="modal-content">
+              <div class="modal-content" style="height:75%;">
 
                   <div id="addSystemUnit" class="modal-header">
-                      <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Add System Unit</h5>
+                      <h5 class="modal-title" id="ModalTitle"><i class="fas fa-plus-square"></i>&nbsp;Purchase System Unit</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
 
                   <div class="modal-body">
-                      <form id="addSystemUnitForm" action="{!! url('/'); !!}" enctype="multipart/form-data" method="post" role="form">
+                      <form action="{!! url('/purchasePC'); !!}" enctype="multipart/form-data" method="post" role="form" id="purchasePC">
+                        {!! csrf_field() !!}
                           <div class="row">
                               <div class="col-sm">
 
                                   <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
                                       <thead>
                                           <tr>
-                                              <th>PC Description</th>
-                                              <th>Supplier</th>
+                                              <th>Quantity:</th>
+                                              <th>Supplier:</th>
                                           </tr>
                                       </thead>
 
                                       <tbody>
                                           <tr>
-                                              <td> <input type="text" name=""></td>
-                                              <td><input type="text" name=""><br></td>
+                                              <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
+                                               <td>
+                                               <input  list="suppliers" name="supplier" required style="width: 9rem;">
+                                                 <datalist id="suppliers">
+                                                   <select>
+                                                   @foreach ($supp as $sup)
+                                                   <option value="{{ $sup->supplier_name}}">
+                                                   @endforeach
+                                                 </select>
+                                                 </datalist></td>
                                           </tr>
                                       </tbody>
                                   </table>
@@ -222,71 +231,72 @@
 
                                       <tbody>
                                           <tr>
-                                              <td>Motherboard <input type="text" name="" value="1" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Motherboard<input type="text" name="sub[]" value="1" hidden></td>
+                                              <td> <input type="text" name="component[1][brand]" required></td>
+                                              <td> <input type="text" name="component[1][model]" required></td>
+                                              <td><textarea name="component[1][details]" rows="2" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>CPU<input type="text" name="" value="2" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>CPU<input type="text" name="sub[]" value="2" hidden></td>
+                                              <td> <input type="text" name="component[2][brand]" required></td>
+                                              <td> <input type="text" name="component[2][model]" required></td>
+                                              <td><textarea name="component[2][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Storage<input type="text" name="" value="3" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Storage<input type="text" name="sub[]" value="3" hidden></td>
+                                              <td> <input type="text" name="component[3][brand]" required></td>
+                                              <td> <input type="text" name="component[3][model]" required></td>
+                                              <td><textarea  name="component[3][details]" cols="22"></textarea></td>
 
                                           <tr>
-                                              <td>RAM<input type="text" name="" value="4" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>RAM<input type="text" name="sub[]" value="4" hidden></td>
+                                              <td> <input type="text" name="component[4][brand]" required></td>
+                                              <td> <input type="text" name="component[4][model]" required></td>
+                                              <td><textarea name="component[4][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>GPU<input type="text" name="" value="5" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>GPU<input type="text" name="sub[]" value="5" hidden></td>
+                                              <td> <input type="text" name="component[5][brand]" required></td>
+                                              <td> <input type="text" name="component[5][model]" required></td>
+                                              <td><textarea name="component[5][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Case<input type="text" name="" value="7" hidden></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td> <input type="text" name="" required></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Case<input type="text" name="sub[]" value="7" hidden></td>
+                                              <td> <input type="text" name="component[7][brand]" ></td>
+                                              <td> <input type="text" name="component[7][model]" ></td>
+                                              <td><textarea name="component[7][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Heat Sink Fan<input type="text" name="" value="8" hidden></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Heat Sink Fan<input type="text" name="sub[]" value="8" hidden></td>
+                                              <td> <input type="text" name="component[8][brand]" ></td>
+                                              <td> <input type="text" name="component[8][model]" ></td>
+                                              <td><textarea name="component[8][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
-                                              <td>Sound Card<input type="text" name="" value="18" hidden></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td> <input type="text" name=""></td>
-                                              <td><textarea name="" rows="2" cols="22"></textarea></td>
+                                              <td>Sound Card<input type="text" name="sub[]" value="18" hidden></td>
+                                              <td> <input type="text" name="component[18][brand]" required></td>
+                                              <td> <input type="text" name="component[18][model]" required></td>
+                                              <td><textarea name="component[18][details]" cols="22"></textarea></td>
                                           </tr>
                                       </tbody>
                                     </table>
                                  </div>
                                 </div>
 
-                              </form>
+
                               </div>
 
                           <div class="modal-footer">
-                              <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
+                              <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Purchase System Unit</button>
                               <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
                           </div>
+                          </form>
               </div>
           </div>
       </div>

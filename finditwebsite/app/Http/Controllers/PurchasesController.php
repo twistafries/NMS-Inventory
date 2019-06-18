@@ -232,7 +232,7 @@ class PurchasesController extends BaseController
             $data['equipment'] = TblItEquipment::get_all_equipment();
             $data['system_units'] = TblSystemUnits::get_all_system_units();
             $data['issuance'] = TblIssuances::getIssuance();
-
+            $data['supp'] = Suppliers::get_suppliers();
 
             $data['subtypesSel'] = TblItEquipmentSubtype::get_all_equipment_subtype();
             $data['purchases'] = TblItEquipment::get_received_purchases();
