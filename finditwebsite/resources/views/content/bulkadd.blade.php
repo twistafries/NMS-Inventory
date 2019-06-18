@@ -74,8 +74,10 @@ body{
                         <div class="row">
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
-                                <p class="card-title">Quantity</p>
+                                <p class="card-title">Quantity *</p>
                                 <input type="number" class="form-control text-center" name="quantity" id="quantity" min="1" max="250" style="padding: 0;">
+                                <span id="error_quantity" class="text-danger"></span>
+
                             </div>
 
                             <!-- Subtype -->
@@ -86,12 +88,14 @@ body{
                                 @else
                                 <fieldset>
                                 @endif
-                                    <p class="card-title">Subtype</p>
+                                    <p class="card-title">Subtype *</p>
                                     <select id="subtype" class="custom-select">
                                         @foreach ($equipment_subtypes as $equipment_subtypes)
                                         <option class="option" value="{!! $equipment_subtypes->id !!}">{{ $equipment_subtypes->name}}</option>
                                         @endforeach
                                     </select>
+                                    <span id="error_subtype" class="text-danger"></span>
+
                                 </div>
                                 </fieldset>
                             </div>
@@ -103,13 +107,15 @@ body{
                                 @else
                                 <fieldset>
                                 @endif
-                                    <p class="card-title">Status</p>
+                                    <p class="card-title">Status *</p>
                                     <select id="status" class="custom-select">
                                         @foreach ($equipment_status as $equipment_status)
                                         <option class="option" value="{!! $equipment_status->id !!}">{{ $equipment_status->name }}
                                         </option>
                                         @endforeach
                                     </select>
+                                    <span id="error_status" class="text-danger"></span>
+
                                 </div>
                                 </fieldset>
                             </div>
@@ -122,8 +128,9 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Brand</p>
+                                    <p class="card-title">Brand *</p>
                                     <input type="text" name="brand" id="brand" class="form-control" required/>
+                                    <span id="error_brand" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -135,8 +142,9 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Model</p>
+                                    <p class="card-title">Model *</p>
                                     <input type="text" name="model" id="model" class="form-control" required/>
+                                    <span id="error_model" class="text-danger"></span>
                                 </div>
                             </div>
 
@@ -148,7 +156,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Details</p>
+                                    <p class="card-title">Details *</p>
                                     <textarea name="details" id="details" class="form-control" required></textarea>
                                     <!-- <input type="text" name="details" id="details" class="form-control" /> -->
                                     <span id="error_details" class="text-danger"></span>
@@ -166,7 +174,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                             <fieldset>
                                 <div class="form-group">
-                                    <p class="card-title">OR Number</p>
+                                    <p class="card-title">OR Number *</p>
                                     <input type="text" name="or_no" id="or_no" class="form-control" required/>
                                     <span id="error_or" class="text-danger"></span>
                                 </div>
@@ -179,7 +187,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Supplier</p>
+                                    <p class="card-title">Supplier *</p>
                                     <select id="supplier" class="custom-select">
                                         @foreach ($suppliers as $supplier)
                                         <option class="option" value="{!! $supplier->id !!}">{{ $supplier->supplier_name }}
