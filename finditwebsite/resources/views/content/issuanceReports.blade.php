@@ -31,18 +31,132 @@
 
 @section('content')
 <body onpageshow="ShowLocalDate()">
-<a class="btn btn-dark" href="{!! url('/generateReportPage') !!}" role="button" style="margin-top: 1rem; padding: 10px;"><span class="fas fa-arrow-left" style="margin-right: 10px;"></span>Select Another Report</a>
-<div id="content">
-  <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem; padding-left: 2rem;">
-    <div class="sample" style=" margin-top: 1rem;">
-      <div class="row">
-        <div class="col-3">
-          <div class="mb-2"><i class="fas fa-hand-holding" style="margin-right: 1rem;"></i> ISSUANCE REPORTS</div>
+  <div class="p-lg-3 p-md-1 p-sm-0">
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1" style="font-size: 20px;">REPORT SELECTION</span>
+    </nav>
+
+    <div class="card" style="margin-top: 2rem; padding: 3rem;">
+      <div class="row mb-4">
+        <div class="col-3 text-right">
+          <label class="font-weight-bolder text-uppercase text-left">From:</label>
+          <input type="date" id="start_date" value="{{$startReport}}" style="width: 10rem;">
         </div>
-        <div class="col-3"></div>
+        <div class="col-3 text-right">
+          <label class="font-weight-bolder text-uppercase text-left">To:</label>
+          <input type="date" id="end_date" value="{{$endReport}}" style="width: 10rem;">
+        </div>
+      </div>
+      <div class="row" style="font-size: 16px;">
+        <div class="col-4">
+          <div class="card border-light">
+              <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-warehouse"></i> INVENTORY REPORTS</div>
+              <div class="card-body">
+                  <ul class="list-group list-group-flush">
+
+                    <form action="{!! url('/inventoryReports'); !!}" onsubmit="getDate()" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="null" hidden>
+                      <input name="start" class="start" value="" hidden>
+                      <input name="end" class="end" value="" hidden>
+                      <input name="title" value="Item Additions" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Additions</button></li>
+                    </form>
+
+                    <form action="{!! url('/inventoryReports'); !!}" onsubmit="getDate()" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="1" hidden>
+                      <input name="start" class="start" value="" hidden>
+                      <input name="end" class="end" value="" hidden>
+                      <input name="title" value="Available Items" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Availability</button></li>
+                    </form>
+                    <form action="{!! url('/inventoryReports'); !!}" onsubmit="getDate()" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="3" hidden>
+                      <input name="title" value="For Repair Items" hidden>
+                      <input name="start" class="start" value="" hidden>
+                      <input name="end" class="end" value="" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Repair</button></li>
+                    </form>
+                    <form action="{!! url('/inventoryReports'); !!}" onsubmit="getDate()" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="4" hidden>
+                      <input name="title" value="For Return Items" hidden>
+                      <input name="start" class="start" value="" hidden>
+                      <input name="end" class="end" value="" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Return</button></li>
+                    </form>
+                    <form action="{!! url('/inventoryReports'); !!}" onsubmit="getDate()" method="post">
+                        {!! csrf_field() !!}
+                      <input name="status" value="7" hidden>
+                      <input name="start" class="start" value="" hidden>
+                      <input name="end" class="end" value="" hidden>
+                      <input name="title" value="For Disposal Items" hidden>
+                      <li class="list-group-item"><button type="submit" class="btn btn-dark btn-sm text-left" style="font-size: 16px; width: 15rem;">Item Disposal</button></li>
+                    </form>
+
+
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-light">
+              <div class="card-header text-white mb-2" id="card-header"><i class="fas fa-list-alt"></i> PURCHASES AND ORDERS</div>
+              <div class="card-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" id="purchasesreport" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" style="cursor: pointer; "><span class="fas fa-angle-right" style="cursor: pointer; margin-right: 1rem;"></span>Purchases</li>
+                  <form action="{!! url('/purchasesAndOrdersReports'); !!}" onsubmit="getDate()" method="post">
+                      {!! csrf_field() !!}
+                    <input name="status" value="6" hidden>
+                    <input name="start" class="start" value="" hidden>
+                    <input name="end" class="end" value="" hidden>
+                    <input name="title" value="Completed Orders" hidden>
+                    <button type="submit" class="btn btn-light btn-sm text-left collapse" id="purchases1" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Completed Orders</button>
+                  </form>
+                  <form action="{!! url('/purchasesAndOrdersReports'); !!}" onsubmit="getDate()" method="post">
+                      {!! csrf_field() !!}
+                    <input name="status" value="6" hidden>
+                    <input name="start" class="start" value="" hidden>
+                    <input name="end" class="end" value="" hidden>
+                    <input name="title" value="Incomplete Orders" hidden>
+                    <button type="submit" class="btn btn-light btn-sm text-left collapse" id="purchases2" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Incomplete Orders</button>
+                  </form>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card border-light">
+              <div class="card-header text-white" id="card-header"><i class="fas fa-hand-holding"></i> ISSUANCE</div>
+              <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item" id="late" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" style="cursor: pointer;"><span class="fas fa-angle-right" style="cursor: pointer; margin-right: 1rem;"></span>Employee Issuance</li>
+                        <form action="{!! url('/issuanceReports'); !!}" onsubmit="getDate()" method="post">
+                            {!! csrf_field() !!}
+                          <input name="start" class="start" value="" hidden>
+                          <input name="end" class="end" value="" hidden>
+                          <input name="title" value="Late Returns" hidden>
+                        <button type="submit" class="btn btn-light btn-sm text-left collapse" id="latereturns" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem; margin-bottom: 5px;">Late Returns</button>
+                      </form>
+                      </li>
+                      <li class="list-group-item" id="item" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" style="cursor: pointer;"><span class="fas fa-angle-right" style="margin-right: 1rem;"></span>Item Issuance</li>
+                      <form action="{!! url('/issuanceReports'); !!}" onsubmit="getDate()" method="post">
+                          {!! csrf_field() !!}
+                        <input name="start" class="start" value="" hidden>
+                        <input name="end" class="end" value="" hidden>
+                        <input name="title" value="Item Issuance" hidden>
+                        <button type="submit" class="btn btn-light btn-sm text-left collapse" id="itemIssuance" style="font-size: 16px; width: 15rem; margin-top: 5px; margin-left: 3rem;">Most/Least Issued</button>
+                      </form>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
-</div>
 
       <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
           <div class="sample" style=" margin-top: 1rem;">
@@ -182,7 +296,7 @@
         </script>
 
         <!--graph-->
-      
+
         <!-- date -->
         <script>
           function ShowLocalDate(){
@@ -231,5 +345,36 @@
               "ordering": false
           } );
       } );
+    </script>
+    <script>
+        function getDate(){
+          var startList = document.getElementsByClassName("start");
+          for (var i = 0; i < startList.length; i++) {
+           startList[i].value = document.getElementById("start_date").value;
+          }
+
+          var endList = document.getElementsByClassName("end");
+          for (var i = 0; i < endList.length; i++) {
+           endList[i].value = document.getElementById("end_date").value;
+          }
+        }
+    </script>
+    <script>
+        $('#late').click(function() {
+            $('#latereturns').toggle();
+            $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
+        });
+
+        $('#item').click(function() {
+            $('#itemIssuance').toggle();
+            $('#itemIssuance2').toggle();
+            $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
+        });
+
+        $('#purchasesreport').click(function() {
+            $('#purchases1').toggle();
+            $('#purchases2').toggle();
+            $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
+        });
     </script>
 @stop

@@ -345,7 +345,7 @@
                                             <ul class="list-group">
                                                 <li class="list-group-item">
                                                     <h6 class="text-uppercase">Remarks:</h6>
-                                                    <textarea name="remarks">Item missing, due for replacement. Last User: {{$employee->fname}} {{$employee->lname}} (ID:{{$employee->id}})</textarea>
+                                                    <textarea name="remarks" cols="50">Item missing, due for replacement. Last User: {{$employee->fname}} {{$employee->lname}} (ID:{{$employee->id}})</textarea>
 
                                                 </li>
                                             </ul>
@@ -393,7 +393,7 @@
                         </div>
                     </div>
                     </br>
-                    
+
                   </div>
                 </div>
 
@@ -663,14 +663,14 @@ function fetchInfoEquipment(id , name ,status){
         $('#availableEquipmentId').val(id);
         $('.fetched-id').val(id);
         $('#AvailableName').text(name);
-        // console.log(id + name + status);    
+        // console.log(id + name + status);
     }
 }
 function issuedUntil(id){
     $('#issuanceIdEditIssuedUntil').val(id);
-    console.log($('#issuanceIdEditIssuedUntil').val(id));    
+    console.log($('#issuanceIdEditIssuedUntil').val(id));
 }
-    
+
     </script>
 
 
