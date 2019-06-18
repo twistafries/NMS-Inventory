@@ -27,6 +27,8 @@ class inventoryReports extends BaseController
     }
       try{
         $data = $request->all();
+        $data['startReport'] = $data['start'];
+        $data['endReport'] = $data['end'];
         if($data['start']==null){
           $data['start'] = new Carbon('first day of this month');
           $data['start']->startOfMonth();
@@ -64,6 +66,8 @@ class inventoryReports extends BaseController
       }
         try{
           $data = $request->all();
+          $data['startReport'] = $data['start'];
+          $data['endReport'] = $data['end'];
           if($data['start']==null){
             $data['start'] = new Carbon('first day of this month');
             $data['start']->startOfMonth();
@@ -91,6 +95,8 @@ class inventoryReports extends BaseController
       }
         try{
           $data = $request->all();
+          $data['startReport'] = $data['start'];
+          $data['endReport'] = $data['end'];
           if($data['start']==null){
             $data['start'] = new Carbon('first day of this month');
             $data['start']->startOfMonth();

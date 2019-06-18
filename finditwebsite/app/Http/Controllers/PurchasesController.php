@@ -296,7 +296,7 @@ class PurchasesController extends BaseController
 
                 $ctr++;
                   if($ctr==$total){
-                    $purchase = $purchase."and".$data['qty']." ".$data['brand']." ".$data['model'];
+                    $purchase = $purchase."and ".$data['qty']." ".$data['brand']." ".$data['model'];
                   } else if($ctr > 1){
                     $purchase = $purchase.",".$data['qty']." ".$data['brand']." ".$data['model']." ";
                   } else {
