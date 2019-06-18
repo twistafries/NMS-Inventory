@@ -130,6 +130,8 @@ class IssuanceController extends BaseController {
 		$data['user_id'] = Session::get('loggedIn')['id'];
 		$employee['id'] = $data['issued_to'];
 
+
+
 		$log['activity'] = "issued";
 		$log['issued_to'] = TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->fname . " " .TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->lname;
 		

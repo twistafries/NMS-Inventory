@@ -694,7 +694,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{!! url('/issueEquipment'); !!}" method="post">
+                <form action="{!! url('/issueEquipment'); !!}" method="post" onsubmit="DoSubmit()">
                 {!! csrf_field() !!}
                 <div class="modal-body">
                     <div class="container-fluid" id="issueToModalBody">
@@ -702,17 +702,28 @@
                         <div class="row">
                             <input type="hidden" name="equipment_id" id="eq_id">
                             <div class="col col-2 detail-header text-uppercase">Issue To</div>
-                            <select id="departmentDropdown" class="custom-select">
-                                <option value="">Any Department</option>
-                                @foreach($departments as $department)
-                                <option value="">{{$department->name}}</option>
-                                @endforeach
-                            </select>
-                            <select name="issued_to" id="employeeDropdown" class="custom-select" placeholder="--Select Employee--">
-                                @foreach($active_employees as $employee)
-                                <option value="{!! $employee->id !!}">ID:{{$employee->id}} | {{$employee->fname}} {{$employee->lname}}</option>
-                                @endforeach
-                            </select>
+                                <input list="employee" name="issued_to" id="issuedTo" onblur="CheckListedEmployee(this.value)" required>
+                                <datalist id="employee">
+                                    @foreach ($active_employees as $employees)
+                                    <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
+                                    @switch($employees->dept_id)
+                                        @case(1)
+                                            ITDD
+                                            @break
+                                        @case(2)
+                                            PDD
+                                            @break
+                                        @case(3)
+                                            FD
+                                            @break
+                                        @case(4)
+                                            HRD
+                                            @break
+
+                                    @endswitch
+                                    </option>
+                                    @endforeach
+                                </datalist>
 
                         </div>
 
@@ -996,6 +1007,13 @@
     } );
     </script>
 
+    <script>
+    function DoSubmit(){
+      var name = $(issuedTo).val();
+      document.getElementById("issuedTo").value = $('#employee [value="' + name + '"]').data('customvalue');
+      return true;
+      }
+  </script>
     <!-- <script>
       $(document).ready(function() {
             $('table.display').DataTable({
@@ -1011,15 +1029,7 @@
             });
         } );
       </script> -->
-    <script>
-      function DoSubmit(){
-        var item = $(equipment).val();
-        document.getElementById("equipment").value = $('#items [value="' + item + '"]').data('customvalue');
-        var item1 = $(hequipment).val();
-        document.getElementById("hequipment").value = $('#item [value="' + item1 + '"]').data('customvalue');
-        return true;
-        };
-    </script>
+
     <script>
     $.fn.dataTable.ext.search.push(
 function( settings, data, dataIndex ) {
