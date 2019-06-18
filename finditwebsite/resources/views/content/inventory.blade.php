@@ -214,8 +214,8 @@
 
                 </div>
 
-                <div class="modal-footer text-uppercase">
-                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
                     </form>
@@ -367,7 +367,7 @@
                   <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
                   </div>
 
-                  <div class="modal-footer text-uppercase">
+                  <div class="modal-footer">
                   <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
 
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -414,7 +414,7 @@
               <!-- <button type="button" class="btn btn-info" type="submit" id="addEquipment"> <span class="fas fa-plus"></span>Add Item</button> -->
               </div>
 
-              <div class="modal-footer text-uppercase">
+              <div class="modal-footer">
               <button class="btn btn-info" type="submit" id= "deleteEquipment">Delete</button>
 
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -704,7 +704,7 @@
                                 Keyboard
                                 </button>
                             </form>
-                            </th>                            
+                            </th>
                             <td>{{$Keyboard['Available']}}</td>
                             <td>{{$Keyboard['Issued']}}</td>
                             <td>{{$Keyboard['In-use']}}</td>
