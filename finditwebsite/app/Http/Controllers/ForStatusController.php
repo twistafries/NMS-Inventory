@@ -14,6 +14,7 @@ use App\Models\TblSystemUnits;
 use App\Models\TblDepartments;
 use App\Models\TblActivityLogs;
 use App\Models\TblItEquipment;
+use App\Models\TblIssuances;
 
 class ForStatusController extends BaseController
 {
@@ -227,21 +228,48 @@ class ForStatusController extends BaseController
    public function changeStatus(Request $request)
    {
       $data = $request->all();
-
-      TblEmployees::edit_employee($data);
-      if($data['status']=="active"){
-        $act['to_status'] = "active";
-        $act['from_status'] = "inactive";
-      } else {
-        $act['to_status'] = "inactive";
-        $act['from_status'] = "active";
+      // dd($data);
+      $data['issuances'] = TblIssuances::getIssuanceOfEmployee($data['id']);
+      $data['original_status'] = TblEmployees::getEmployeesInfo($data['id'])[0]->status;
+      if($data['original_status'] == "active"){
+        if(count($data['issuances']) == 0){
+          TblEmployees::edit_employee($data);
+        
+          $act['to_status'] = "inactive";
+          $act['from_status'] = "active";
+    
+          $act['issued_to'] = $data['name'];
+          $act['activity'] = "change the status of";
+          TblActivityLogs::add_log($act);
+    
+          return redirect()->intended('/employees')
+          ->with('message', 'Employee Status Changed');
+          
+        }else{
+          return redirect()
+          ->intended('/employees')->with('warning', 'Employee, ' . $data['name']. ' cannot be modified because of '. count($data['issuances'])  .' unreturned issued item(s).')
+          ->with('target_url', 'url("/issuances/")')
+          ->with('option', 'Mark Issued Items as Returned');
+        }
+      }else{
+          TblEmployees::edit_employee($data);
+          if($data['status']=="active"){
+            $act['to_status'] = "active";
+            $act['from_status'] = "inactive";
+          } else {
+            $act['to_status'] = "inactive";
+            $act['from_status'] = "active";
+          }
+    
+          $act['issued_to'] = $data['name'];
+          $act['activity'] = "change the status of";
+          TblActivityLogs::add_log($act);
+    
+          return redirect()->intended('/employees')
+          ->with('message', 'Employee Status Changed')
+          ->with('target', 'url("/issuances/'. $data['id'] .'")');
       }
-
-      $act['issued_to'] = $data['name'];
-      $act['activity'] = "change the status of";
-      TblActivityLogs::add_log($act);
-
-      return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
+      // if()
 
    }
 

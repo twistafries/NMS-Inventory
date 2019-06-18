@@ -91,7 +91,7 @@ class BulkController extends BaseController
         }
         
         if(isset($request->get('bulk')['brand'])){
-            $brand = $request->get('bulk')['brand'];
+            $brands = $request->get('bulk')['brand'];
         }else{
             \array_push($error , "Brand is empty");
         }

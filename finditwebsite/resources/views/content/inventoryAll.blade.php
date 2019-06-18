@@ -183,7 +183,7 @@
 </th>
 <th></th><th></th>
   <th>
-    <button class="btn btn-secondary text-uppercase p-2" type="button" onclick="reset()">Reset</button>
+    <button class="btn btn-secondary p-2" type="button" onclick="reset()">Reset</button>
 </th>
 </thead>
 <tr height="10px"></tr>
@@ -333,7 +333,7 @@
                                         <!-- Issue Item Button -->
                                         @if( $equipment->type_id != 1 && $equipment->status_id == 1 )
                                         <div class="row row-details self-align-end">
-                                            <button type="button" class="btn btn-info text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
+                                            <button type="button" class="btn btn-info pr-2" data-dismiss="modal" data-toggle="modal" onclick="issueItem({!! $equipment->id !!})" data-target="#issue-modal">
                                                 <i class="fas fa-hand-holding"></i>  Issue Item
                                             </button>
                                         </div>
@@ -344,20 +344,20 @@
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                             @if($equipment->warranty_end < Carbon::today())
-                                            <button type="button" class="btn btn-warning text-uppercase pr-2" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">
+                                            <button type="button" class="btn btn-warning pr-2" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">
                                                 For Repair
                                             </button>
-                                            <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
                                                 data-target="#decommissionedModal">Decommission</button>
                                                 @else
                                                 @if($equipment->status_id == 4)
-                                                <button type="button" class="btn btn-success text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#return">Make Available</button>
-                                                <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#return">For Repair</button>
+                                                <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#return">Make Available</button>
+                                                <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#return">For Repair</button>
                                                 @else
-                                                <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
                                                     data-target="#return"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 @endif
-                                                <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" data-toggle="modal"
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
                                                     data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommission Item</button>
                                                 @endif
                                         </div>
@@ -368,9 +368,9 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#edit">Edit Values</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#edit">Edit Values</button>
 
-                                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">Delete Entry</button>
                                 </div>
                             </div>
                         </div>
@@ -406,7 +406,7 @@
                                     </div>
                                     <br>
                                     <div class="btn-group" role="group">
-                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                        <button class="btn btn-warning" data-toggle="collapse"
                                             data-target="#remarks" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
                                         </button>
@@ -422,10 +422,10 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary text-uppercase p-2">Return to supplier</button>
+                                    <button type="submit" class="btn btn-primary p-2">Return to supplier</button>
                                 </form>
-                                    <button type="button" class="btn btn-warning text-uppercase" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">Mark for repair</button>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">Mark for repair</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -454,7 +454,7 @@
                                           <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="repairitemNAme"></h4>  for repair?</span></pre>
                                     </div>
                                     <div class="btn-group" role="group">
-                                        <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                        <button class="btn btn-warning" data-toggle="collapse"
                                             data-target="#remarks-4" aria-expanded="false" aria-controls="collapseExample" type="button">
                                             Add Remarks
                                         </button>
@@ -470,9 +470,9 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary text-uppercase">For Repair</button>
+                                    <button type="submit" class="btn btn-primary">For Repair</button>
                                 </form>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -500,7 +500,7 @@
                                                 <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="itemNAme"></h4>  for decommission?</span></pre>
                                             </div>
                                             <div class="btn-group" role="group">
-                                                <button class="btn btn-warning text-uppercase" data-toggle="collapse"
+                                                <button class="btn btn-warning" data-toggle="collapse"
                                                     data-target="#remarks" aria-expanded="false" aria-controls="collapseExample"
                                                     type="button">
                                                     Add Remarks
@@ -517,9 +517,9 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary text-uppercase">Decommission</button>
+                                            <button type="submit" class="btn btn-primary">Decommission</button>
                                     </form>
-                                    <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>
@@ -555,9 +555,9 @@
                                         {!! csrf_field() !!}
                                         <input  name="equipment_id" id="delete_id" value="" hidden>
                                         <input  name="deleted_item" id="deleted_item" value="" hidden>
-                                        <button type="submit" class="btn btn-danger text-uppercase">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>
@@ -666,8 +666,8 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
-                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>
@@ -744,9 +744,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-uppercase">Issue Item</button>
+                    <button type="submit" class="btn btn-primary">Issue Item</button>
                 </form>
-                    <button type="button" class="btn btn-danger text-uppercase" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -889,8 +889,8 @@
 
                 </div>
 
-                <div class="modal-footer text-uppercase">
-                    <button type="submit" class="btn btn-primary text-uppercase">ADD</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 </div>
                     </form>
@@ -945,7 +945,7 @@
               </div>
              <div class="modal-footer">
                             <button id="save" class="btn btn-success" type="submit"> <span class="fas fa-plus-square"></span>&nbsp;Add System Unit</button>
-                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                            <button id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         </div>
 
 

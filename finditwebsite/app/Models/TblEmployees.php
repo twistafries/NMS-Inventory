@@ -32,6 +32,13 @@ class TblEmployees extends Model {
 			return $query;
 	}
 
+	public static function getEmployeesInfo($id){
+		$query = \DB::table('employees')
+				->leftjoin('departments', 'employees.dept_id' , '=' , 'departments.id')
+				->where('employees.id' , '=' , $id )
+				->get();
+		return $query;
+	}
 	public static function getActiveEmployees(){
 		$query = \DB::table('employees')
 				->leftjoin('departments', 'employees.dept_id' , '=' , 'departments.id')
