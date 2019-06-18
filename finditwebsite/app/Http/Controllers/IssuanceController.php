@@ -89,35 +89,48 @@ class IssuanceController extends BaseController {
 			}
 
  // dd("Inside");
+ 	try{
 		 $data = $request->all();
-
 		 $data['status_id'] = 2;
-		 $pieces = explode("-", $data['items']);
-		 if($pieces[0] == "Mobile Device"){
-			 $data['equipment_id']=(int)$pieces[1];
-			TblItEquipment::update_equipment_status($data['equipment_id'],2);
-			$log['data'] = $data['equipment_id'];
+		 $log['activity'] = "issued";
+		 $unitlog['activity'] = "issued";
+		 $data['issued_to_name'] = $data['issued_to'];
+		 $ctr = 0;
 
-		 }else{
-			$data['unit_id']=(int)$pieces[1] ;
-			TblSystemUnits::update_unit_status($data['unit_id'],2);
-			$log['system_unit'] = $data['unit_id'];
-		 }
-		 $issuance = explode(' (', $data['issued_to']);
-		 $data['issued_to'] = preg_replace('/\D/', '', $data['issued_to']);
-		 $data['issuedTo_name']=$issuance[0];
-		if(isset($data['issued_to']) && isset($data['issued_until']) && isset($data['status_id']) ){
+		 foreach($data['items'] as $items){
 
-				TblIssuances::add_issuance($data);
-				$log['issued_to'] = $data['issuedTo_name'];
-
-				$log['activity'] = "issued";
-				TblActivityLogs::add_log($log);
-				return redirect()->back()->with('success', ['Issuance Success']);
-		}else{
-
-		 //    return redirect()->back()->with('error', 'Please fill out ALL fields');
-				return redirect()->intended('/content/issuance')->with('error', 'Please fill out ALL fields');
+			 if (str_contains($items, "(System Unit)")){
+				 $pieces = explode("  (ID: ", $items);
+				 $dataUnit['unit_id'] = (int)preg_replace('/[^0-9]/','',$pieces[1] );
+				 TblSystemUnits::update_unit_status((int)$dataUnit['unit_id'],2);
+				 $dataUnit['issued_to'] = (int)preg_replace('/\D/', '', $data['issued_to']);
+				 $dataUnit['issued_until'] = $data['issued_date'][$ctr];
+				 TblIssuances::add_issuance($dataUnit);
+				 $unitlog['issued_to'] = $data['issued_to_name'];
+				 $unitlog['system_unit'] = $dataUnit['unit_id'];
+				 TblActivityLogs::add_log($unitlog);
+			 } else{
+				 $pieces = explode("  (ID: ", $items);
+				 $data['equipment_id'] = (int)preg_replace('/[^0-9]/','',$pieces[1] );
+				 TblItEquipment::update_equipment_status((int)$data['equipment_id'],2);
+				 $data['issued_to'] = (int)preg_replace('/\D/', '', $data['issued_to']);
+				 $data['issued_until'] = $data['issued_date'][$ctr];
+				 TblIssuances::add_issuance($data);
+				 $log['issued_to'] = $data['issued_to_name'];
+				 $log['data'] = $data['equipment_id'];
+				 TblActivityLogs::add_log($log);
+			 }
+			 $ctr++;
+	 	 }
+		 return \Redirect::to('/issuance')->with('equipment has been added');
+		}catch(Exception $e){
+			return redirect()->back()
+						->with('error' , 'Please fill out ALL the fields')
+						->with('error_info' , $e->getMessage());
+		}catch(QueryException $qe){
+			return redirect()->back()
+						->with('error' , 'Database cannot read input value.')
+						->with('error_info' , $qe->getMessage());
 		}
 	}
 
@@ -134,7 +147,7 @@ class IssuanceController extends BaseController {
 
 		$log['activity'] = "issued";
 		$log['issued_to'] = TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->fname . " " .TblEmployees::getActiveEmployeeInfo($employee['id'])[0]->lname;
-		
+
 		$concerns = $request->all();
 		if($request->get('su.id') == null){
 			$concerns['id'] = $request->get('equipment_id');
@@ -150,10 +163,10 @@ class IssuanceController extends BaseController {
 		if($request->get('equipment_id') != null){
 			$equipment_info = TblItEquipment::get_equipment_info($data['equipment_id']);
 			$log['data'] = $data['equipment_id'];
-			
+
 			InventoryConcerns::addConcern($concerns);
-			// dd( $concerns);  
-			try{ 
+			// dd( $concerns);
+			try{
 				if(isset($data['issued_to'])){
 					TblIssuances::add_issuance($data);
 				};
@@ -161,11 +174,11 @@ class IssuanceController extends BaseController {
 				TblActivityLogs::add_log($log);
 				// dd($equipment_info[0]);
 				return \Redirect::to('/inventoryAll')->with('message','Equipment ID:'. $equipment_info[0]->id .', '. $equipment_info[0]->brand.' '. $equipment_info[0]->model .' has been successfully issued to .' . $log['issued_to']);
-	
+
 			}catch(Exception $e){
 				dd($e);
 			}catch(QueryException $qe){
-	
+
 			}
 		}else{
 			$system_unit_info = TblSystemUnits::getUnit($request->get('su_id'))[0];
@@ -184,7 +197,7 @@ class IssuanceController extends BaseController {
 				if(isset($data['status_id'])){
 					TblSystemUnits::update_system_unit_status($data['unit_id'] , $data['status_id']);
 					// $concern = InventoryConcerns::addConcern($data);
-					
+
 				}
 				TblActivityLogs::add_log($log);
 				return \Redirect::to('/systemUnit')->with('message','System Unit:'. $system_unit_info->name.$system_unit_info->id. ' has been successfully issued to .' . $log['issued_to']);
@@ -227,10 +240,10 @@ class IssuanceController extends BaseController {
 			dd($e);
 		}
 	}
-	
-	
+
+
 	public function updateIssuance(Request $request){
-		
+
 		try{
 			$data = $request->all();
 			$data['user_id'] = Session::get('loggedIn')['id'];
@@ -239,9 +252,9 @@ class IssuanceController extends BaseController {
 			$concerns['remarks'] = $request->get('remarks');
 			$concerns['added_by'] = $data['user_id'];
 			$concerns['issued_to'] = $request->get('issued_to_concerns');
-			
+
 			$data['returned_at'] = gmdate('Y-m-d H:i:s');
-			
+
 			if($request->get('equipment_id') != null){
 				TblItEquipment::update_equipment_status($data['equipment_id'] , $data['status_id']);
 				TblIssuances::updateReturnedDate($data);
@@ -250,11 +263,11 @@ class IssuanceController extends BaseController {
 				$concerns['id'] = $data['equipment_id'];
 				InventoryConcerns::addConcern($concerns);
 			}else{
-				TblSystemUnits::update_unit_status($data['sys_id'] , $data['status_id']);
+				TblSystemUnits::update_unit_status($data['unit_id'] , $data['status_id']);
 				TblIssuances::updateReturnedDate($data);
 				// TblIssuances::updateIssuance($data);
 				$concerns['name_component'] = $request->get('name_component');
-				$concerns['system_unit_id'] = $data['sys_id'];
+				$concerns['system_unit_id'] = $data['unit_id'];
 				$concerns['id'] = $request->get('id');
 
 				InventoryConcerns::addConcern($concerns);
@@ -262,13 +275,13 @@ class IssuanceController extends BaseController {
 			return \Redirect::to('/issue')->with('message' , 'Issued Item Status was successfully changed.');
 		}catch(Exception $e){
 			dd($e);
-			
+
 		}catch(QueryException $qe){
 			dd($qe);
 
 		}
 	}
-	
+
 
 
 

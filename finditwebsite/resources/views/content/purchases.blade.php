@@ -207,7 +207,7 @@
                     <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                       <div class="">
                         <p class="card-title text-dark" style="font-size: 14px;">Supplier:</p>
-                        <input  list="suppliers" name="supplier" required style="width: 9rem;">
+                        <input  list="suppliers" name="supplier" id="supplier_name" required style="width: 9rem;">
                           <datalist id="suppliers">
                             <select>
                             @foreach ($supplier as $supplier)
@@ -224,7 +224,7 @@
                               <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                                 <div class="">
                                   <p class="card-title text-dark" style="font-size: 14px;">Subtype:</p>
-                                  <select id="subtypes" name="purchase[subtype_id][]" style="height: 1.8rem; width: 9rem;">
+                                  <select class="purchases_subtype" name="purchase[subtype_id][]" style="height: 1.8rem; width: 9rem;">
                                     @foreach ($subtypes as $subtypes)
                                     <option value="{{$subtypes->id}}">{{$subtypes->name}}</option>
                                     @endforeach
@@ -249,7 +249,10 @@
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
                                     <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
-                                    <textarea name="purchase[details][]" type="text" size="25" style="height: 4rem; width: 14rem;" required></textarea>
+                                    <textarea name="purchase[details][]" type="text" size="25" id="purchase_details" style="height: 4rem; width: 14rem;" required>Socket:
+Chipset:
+Size:
+RAM:  </textarea>
                                   </div>
                                 </div>
 
@@ -942,5 +945,20 @@
             function fetch(id){
                 document.getElementById("delete_id").value = id;
             }
+          </script>
+          <script type="text/javascript">
+          $(document).ready(function(){
+          $("select.purchases_subtype").change(function(){
+            var selected = $(this).children("option:selected").val();
+              if(selected == 1){
+                document.getElementById("purchase_details").value="Socket: \nChipset: \nSize:\nRAM: ";
+              } else if(selected == 2) {
+                document.getElementById("purchase_details").value="Socket:";
+              } else {
+                document.getElementById("purchase_details").value="";
+              }
+
+            });
+});
           </script>
 @stop

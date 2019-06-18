@@ -24,13 +24,8 @@ class TblActivityLogs extends Model {
       if(isset($params['data']))
         $log->data = $params['data'];
 
-
-      if(isset($params['data']))
-        $log->data = $params['data'];
-
       if(isset($params['system_unit']))
         $log->system_unit = $params['system_unit'];
-
 
       if(isset($params['done_by']))
     	  $log->done_by = $params['done_by'];

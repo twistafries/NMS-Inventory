@@ -42,7 +42,7 @@
             </nav>
     </nav>
 
-<!-- 
+<!--
     <div class="card 12" style="margin-top: 1rem;  margin-bottom: 1rem; padding-top: 1.5rem; padding-bottom: 10px;">
     <table style="margin: auto;width: 100%; text-align: right; ">
       <thead>
@@ -208,7 +208,7 @@
 
                         <!-- Issue Form -->
                         <div class="modal-body">
-                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data" onsubmit="DoSubmit()" method="post"  role="form">
+                            <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data"  method="post"  role="form">
                                 {!! csrf_field() !!}
 
                                           <table>
@@ -223,14 +223,14 @@
 
                                               <tr>
                                                 <td>
-                                                  <input class="form-control" list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required >
+                                                  <input class="form-control" list="items" name="items[]" id="equipment" onblur="CheckListed(this.value);" required >
                                                     <datalist id="items">
                                                       <select>
                                                       @foreach ($equipment as $equipment)
-                                                      <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">({{ $equipment->subtype}}) {{ $equipment->brand}} {{ $equipment->model}} </option>
+                                                      <option value="{{ $equipment->model}} {{ $equipment->brand}}  (ID: {{$equipment->id}})">({{ $equipment->subtype}}</option>
                                                       @endforeach
                                                       @foreach ($units as $units)
-                                                      <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">(System Unit) {{$units->name}} {{ $units->id}}</option>
+                                                      <option value="{{ $units->name}}  (ID: {{ $units->id}}) (System Unit)">(System Unit)</option>
                                                       @endforeach
                                                       </select>
                                                     </datalist>
@@ -238,7 +238,7 @@
                                                 <td>
                                                   <div class="col-md-10" style="padding: 30px 15px;">
                                                     <div class="input-group mb-3">
-                                                    <input  name="issued_until" type="date" class="form-control" required>
+                                                    <input  name="issued_date[]" type="date" class="form-control" >
                                                     </div>
                                                   </div>
                                                 </td>
@@ -306,7 +306,6 @@
                           <div class="modal-footer text-uppercase">
                               <button type="submit" class="btn btn-info">Add</button>
                               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-
                           </div>
                       </form>
 
@@ -524,7 +523,7 @@
   }
 
   function add() {
-    $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-10\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+    $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" autocomplete='off' list=\"items\" name=\"items[]\" id=\"inputItems\" required></div></td><td><div class=\"col-xl-10\"><input name=\"issued_date[]\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
   }
 
   function emptyContent(){

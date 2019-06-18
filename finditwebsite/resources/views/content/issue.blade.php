@@ -245,7 +245,7 @@
                                             @if($item->equipment_id != null)
                                             <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                             @elseif($item->pc_number != null)
-                                            <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                            <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                             @endif
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
@@ -291,7 +291,7 @@
                                             @if($item->equipment_id != null)
                                             <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                             @else
-                                            <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                            <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                             @endif
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
@@ -338,7 +338,7 @@
                                         @if($item->equipment_id != null)
                                         <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                         @else
-                                        <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                        <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                         @endif
                                         <div class="col-sm-12">
                                             <ul class="list-group">
@@ -364,25 +364,54 @@
                 </tbody>
                 </table>
             </div>
-    <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
 
+    <div id="issueItems{{$employee->id}}" class="container tab-pane fade"><br>
+      <form action="{!! url('/addIssuance'); !!}" enctype="multipart/form-data"  method="post"  role="form">
+          {!! csrf_field() !!}
       <h4><button id="addMore" type="button" class="btn btn-warning btn-xs" onclick='add()'> <span class="fas fa-plus"></span>     ADD ITEMS</button></h4>
 
+          <input name="issued_to" value="{{ $employee->fname}} {{ $employee->lname}} (ID: {{ $employee->id}})" hidden>
             <table class="table" id="addMoreList">
-              <datalist id="items">
-                <select>
-                @foreach ($eqp as $equipment)
-                <option data-customvalue="Mobile Device-{{ $equipment->id}}" value="{{ $equipment->model}} {{ $equipment->brand}} S/N:{{ $equipment->serial_no}} ">{{ $equipment->subtype}}</option>
-                @endforeach
-                @foreach ($pc as $units)
-                <option data-customvalue="System Unit-{{ $units->id}}" value="{{ $units->name}}-{{ $units->id}}">System Unit</option>
-                @endforeach
-              </select>
-              </datalist>
+                <datalist id="items">
+                  <select>
+                  @foreach ($eqp as $equipment)
+                  <option value="{{ $equipment->model}} {{ $equipment->brand}}  (ID: {{$equipment->id}})">({{ $equipment->subtype}}</option>
+                  @endforeach
+                  @foreach ($pc as $units)
+                  <option value="{{ $units->name}}  (ID: {{ $units->id}}) (System Unit)">(System Unit)</option>
+                  @endforeach
+                  </select>
+                </datalist>
+                <thead>
+
                         <tbody>
+                          <tr>
+                            <td>Select Item/s</td>
+                            <td>Issued Until</td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td><input class=form-control autocomplete='off' list="items" name="items[]" id="inputItems" required></td>
+                            <td><input name="issued_date[]" type="date" class="form-control"></td>
+                          </td><td>
+                          </tr>
                         </tbody>
             </table>
             <br>
+            <div class="row">
+
+                <div class="col">
+                    <label for="details">Remarks:</label>
+                    <div class="input-group mb-1">
+                        <textarea maxlength="50" rows="4" cols="50" name="remarks" class="form-control" aria-label="With textarea" style="border-style: solid; border-width: 1px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-uppercase">
+                <button type="submit" class="btn btn-info">Add</button>
+
+            </div>
+              </form>
         </div>
         </div>
 
@@ -393,8 +422,9 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Issue items</button>
       </div>
+
     </div>
   </div>
     @endforeach
@@ -525,7 +555,7 @@
                         {!! csrf_field() !!}
                         <div class="modal-body">
                         <input type="hidden" name="equipment_id" id="availableEquipmentId">
-                        <input type="hidden" name="sys_id" id="availableSystemUnitId">
+                        <input type="hidden" name="unit_id" id="availableSystemUnitId">
                             <div class="warning-content" style="text-align: center;">
                                 <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
                                 <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="AvailableName"></h4>  as Available?</span></pre>
@@ -607,8 +637,8 @@ function deleteRow(r) {
 }
 
 function add() {
-                $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col-md-0\"><input list=\"items\" name=\"items\" id=\"inputItems\"></div></td><td><div class=\"col-xl-11\"><input name=\"issued_until\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br>");
-            }
+  $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" autocomplete='off' list=\"items\" name=\"items[]\" id=\"inputItems\" required></div></td><td><div class=\"col-xl-10\"><input name=\"issued_date[]\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+}
 
 function emptyContent(){
         $('#makeAvailableContent').empty()
