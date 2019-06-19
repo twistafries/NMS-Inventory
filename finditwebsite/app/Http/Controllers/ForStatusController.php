@@ -15,6 +15,7 @@ use App\Models\TblDepartments;
 use App\Models\TblActivityLogs;
 use App\Models\TblItEquipment;
 use App\Models\TblIssuances;
+use App\Models\InventoryConcerns;
 
 class ForStatusController extends BaseController
 {
@@ -225,8 +226,22 @@ class ForStatusController extends BaseController
 
    }
 
+   public function removeAllIssuance(Request $request){
+     $data = $request->all();
+     $data['issuances'] = TblIssuances::getIssuanceOfEmployee($data['id']);
+     dd($data['issuances']);
+     foreach($data['issuances'] as $isssuance){
+        TblItEquipment::update_equipment_status($data['equipment_id'] , $data['status_id']);
+     }
+
+   }
+
    public function changeStatus(Request $request)
    {
+     if(Session::get('loggedIn')['user_type']!='admin' && Session::get('loggedIn')['user_type'] != "associate"){
+            return \Redirect::to('/loginpage');
+      }
+
       $data = $request->all();
       // dd($data);
       $data['issuances'] = TblIssuances::getIssuedItemsOfEmployee($data['id']);

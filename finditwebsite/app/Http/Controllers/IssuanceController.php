@@ -253,7 +253,13 @@ class IssuanceController extends BaseController {
 			$concerns['added_by'] = $data['user_id'];
 			$concerns['issued_to'] = $request->get('issued_to_concerns');
 
-			$data['returned_at'] = gmdate('Y-m-d H:i:s');
+			// dd($data);
+			if($request->get('returned_at') == null){
+				$data['returned_at'] = gmdate('Y-m-d H:i:s');
+			}else{
+				$data['returned_at'] = $request->get('returned_at');
+			}
+			// $data['returned_at'] = gmdate('Y-m-d H:i:s');
 
 			if($request->get('equipment_id') != null){
 				TblItEquipment::update_equipment_status($data['equipment_id'] , $data['status_id']);
