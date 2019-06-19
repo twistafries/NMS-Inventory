@@ -110,15 +110,15 @@
                     <!-- Model & Brand -->
                     <div class="row">
                         <div class="col-5">
-                            <p class="card-title text-dark">Model:</p>
+                            <p class="card-title text-dark"><span style="color:red">*</span>Model:</p>
                             <div class="input-group">
-                                <input name="model" type="text" size="30">
+                                <input name="model" type="text" size="30" required>
                             </div>
                         </div>
                         <div class="col-4">
-                            <p class="card-title text-dark">Brand:</p>
+                            <p class="card-title text-dark"><span style="color:red">*</span>Brand:</p>
                             <div class="input-group">
-                                <input name="brand" type="text" size="30">
+                                <input name="brand" type="text" size="30" required>
                             </div>
                         </div>
                     </div>
@@ -126,9 +126,9 @@
                     <!-- Details -->
                     <div class="row">
                         <div class="col-9">
-                            <label for="details" class="card-title text-dark">Details:</label>
+                            <label for="details" class="card-title text-dark"><span style="color:red">*</span>Details:</label>
                             <div class="input-group">
-                                <textarea id="detailsArea" name="details" rows="3" id="details"></textarea>
+                                <textarea id="detailsArea" name="details" rows="3" id="details" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -156,9 +156,9 @@
                     <!-- Serial and IMEI/MAC -->
                     <div class="row">
                         <div class="col-6">
-                            <label for="serial_no" class="card-title text-dark">Serial Number:</label>
+                            <label for="serial_no" class="card-title text-dark"><span style="color:red">*</span>Serial Number:</label>
                             <div class="input-group mb-1">
-                                <input name="serial_no" type="text" size="30" >
+                                <input name="serial_no" type="text" size="30" required>
                             </div>
                         </div>
 
@@ -173,16 +173,16 @@
                     <!-- OR & Supplier -->
                     <div class="row">
                         <div class="col-6">
-                            <p class="card-title text-dark">Official Receipt Numbers:</p>
+                            <p class="card-title text-dark"><span style="color:red">*</span>Official Receipt Numbers: </p>
                             <div class="input-group mb-1">
-                                <input name="or_no" type="text" size="30">
+                                <input name="or_no" type="text" size="30" required>
                             </div>
                         </div>
 
                         <div class="col-6">
-                            <label for="serial_no" class="card-title text-dark">Supplier:</label>
+                            <label for="serial_no" class="card-title text-dark"><span style="color:red">*</span>Supplier:</label>
                             <div class="input-group mb-1">
-                                <input name="supplier" type="text" size="30">
+                                <input name="supplier" type="text" size="30" required>
                             </div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                 <form action="{!! url('/buildUnit'); !!}" method="post">
                       {!! csrf_field() !!}
 
-                  <p class="card-title text-dark">Name:</p>
+                  <p class="card-title text-dark"><span style="color:red">*</span>Name:</p>
                     <div class="input-group">
                         <input name="name" type="text" class="form-control" required>
                     </div>
@@ -348,7 +348,7 @@
                       {!! csrf_field() !!}
                       <div class="row">
                         <div class="col-md-5">
-                            <p class="card-title">Delete Item:</p>
+                            <p class="card-title"><span style="color:red">*</span>Delete Item:</p>
                             <input  list="items" name="items" id="equipment" onblur="CheckListed(this.value);" required>
                               <datalist id="items">
                                 <select>

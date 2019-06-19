@@ -280,12 +280,12 @@
 
 
 
-                                            <!-- Add Employee Modal -->
-                                            <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="addEmployeeTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content" style="height:450px;">
-                                                        <div id="addEmployeeHeader" class="modal-header">
-                                                            <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Add Employee</h5>
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="addEmployeeTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="height:450px;">
+            <div id="addEmployeeHeader" class="modal-header">
+                <h5 class="modal-title" id="ModalTitle"><i class="fas fa-user-plus"></i>&nbsp;Add Employee</h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <form action="{!! url('/addEmployee'); !!}" enctype="multipart/form-data" method="post" role="form">
@@ -300,30 +300,32 @@
 
             <div class="row">
                 <div class="col-6">
-                    <label class="label">First Name: </label>
+                    <span style="color:red">*</span><label class="label">First Name: </label>
                     <br>
-                    <input type="text" name="fname">
+                    <input type="text" name="fname" required>
                     <br>
                 </div>
                 <div class="col-6">
+                  <span style="color:red">*</span>
                     <label class="label">Last Name: </label>
                     <br>
-                    <input type="text" name="lname">
+                    <input type="text" name="lname" required>
                     <br>
                 </div>
             </div>
             <div class="row-12">
+              <span style="color:red">*</span>
                 <label class="label">Email:</label>
                 <br>
-                <input type="text" name="email" size="43">
+                <input type="text" name="email" size="43" required>
                 <br>
             </div>
             <div class="row">
 
-                <div class="col-12">
+                <div class="col-12"><span style="color:red">*</span>
                     <label class="label">Department:</label>
                     <div class="form-group">
-                        <select class="exampleFormControlSelect1" name="dept_id" style="width:380px;">
+                        <select class="exampleFormControlSelect1" name="dept_id" style="width:380px;" required>
                             <option value="1">Information Technology Development Department</option>
                             <option value="2">Production Development Department</option>
                             <option value="3">Financial Department</option>

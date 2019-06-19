@@ -206,7 +206,7 @@
                     {!! csrf_field() !!}
                     <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                       <div class="">
-                        <p class="card-title text-dark" style="font-size: 14px;">Supplier:</p>
+                        <p class="card-title text-dark" style="font-size: 14px;"><span style="color:red">*</span>Supplier:</p>
                         <input  list="suppliers" name="supplier" id="supplier_name" required style="width: 9rem;">
                           <datalist id="suppliers">
                             <select>
@@ -234,21 +234,21 @@
 
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Brand:</p>
+                                    <p class="card-title text-dark" style="font-size: 14px;"><span style="color:red">*</span>Brand:</p>
                                     <input name="purchase[brand][]" type="text" size="25" style="height: 2rem; width:9rem;" required>
                                   </div>
                                 </div>
 
                                 <div class="input-group col-2" style="margin-top: 1rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Model:</p>
+                                    <p class="card-title text-dark" style="font-size: 14px;"><span style="color:red">*</span>Model:</p>
                                     <input name="purchase[model][]" type="text" size="25" style="height: 2rem; width:9rem;" required>
                                   </div>
                                 </div>
 
                                 <div class=" col-3" style="margin-top: 1rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Details:</p>
+                                    <p class="card-title text-dark" style="font-size: 14px;"><span style="color:red">*</span>Details:</p>
                                     <textarea name="purchase[details][]" type="text" size="25" id="purchase_details" style="height: 4rem; width: 14rem;" required>Socket:
 Chipset:
 Size:
@@ -260,8 +260,8 @@ RAM:  </textarea>
 
                                 <div class="input-group col-1" style="margin-top: 1rem; margin-bottom: 2rem;">
                                   <div class="">
-                                    <p class="card-title text-dark" style="font-size: 14px;">Quantity:</p>
-                                    <input name="purchase[qty][]" type="number" size="25" style="height: 2rem; width:3rem;" required>
+                                    <p class="card-title text-dark" style="font-size: 14px;"><span style="color:red">*</span>Quantity:</p>
+                                    <input name="purchase[qty][]" type="number" size="25" min="1" style="height: 2rem; width:3rem;" required>
                                   </div>
                                 </div>
                             </div>
@@ -302,8 +302,8 @@ RAM:  </textarea>
                                   <table class="table table-borderless table-striped table-hover table-responsive table-condensed" style="width:100%; ">
                                       <thead>
                                           <tr>
-                                              <th>Quantity:</th>
-                                              <th>Supplier:</th>
+                                              <th><span style="color:red">*</span>Quantity:</th>
+                                              <th><span style="color:red">*</span>Supplier:</th>
                                           </tr>
                                       </thead>
 
@@ -338,42 +338,45 @@ RAM:  </textarea>
                                       <tbody>
                                           <tr>
                                               <td>Motherboard<input type="text" name="sub[]" value="1" hidden></td>
-                                              <td> <input type="text" name="component[1][brand]" required></td>
-                                              <td> <input type="text" name="component[1][model]" required></td>
-                                              <td><textarea name="component[1][details]" rows="2" cols="22"></textarea></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[1][brand]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[1][model]" required></td>
+                                              <td><span style="color:red">*</span><textarea name="component[1][details]" rows="2" cols="22" required>Socket:
+          Chipset:
+          Size:
+          RAM:  </textarea></td>
                                           </tr>
 
                                           <tr>
                                               <td>CPU<input type="text" name="sub[]" value="2" hidden></td>
-                                              <td> <input type="text" name="component[2][brand]" required></td>
-                                              <td> <input type="text" name="component[2][model]" required></td>
-                                              <td><textarea name="component[2][details]" cols="22"></textarea></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[2][brand]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[2][model]" required></td>
+                                              <td><span style="color:red">*</span><textarea name="component[2][details]" cols="22">Socket:</textarea></td>
                                           </tr>
 
                                           <tr>
                                               <td>Storage<input type="text" name="sub[]" value="3" hidden></td>
-                                              <td> <input type="text" name="component[3][brand]" required></td>
-                                              <td> <input type="text" name="component[3][model]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[3][brand]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[3][model]" required></td>
                                               <td><textarea  name="component[3][details]" cols="22"></textarea></td>
 
                                           <tr>
                                               <td>RAM<input type="text" name="sub[]" value="4" hidden></td>
-                                              <td> <input type="text" name="component[4][brand]" required></td>
-                                              <td> <input type="text" name="component[4][model]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[4][brand]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[4][model]" required></td>
                                               <td><textarea name="component[4][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
                                               <td>GPU<input type="text" name="sub[]" value="5" hidden></td>
-                                              <td> <input type="text" name="component[5][brand]" required></td>
-                                              <td> <input type="text" name="component[5][model]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[5][brand]" required></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[5][model]" required></td>
                                               <td><textarea name="component[5][details]" cols="22"></textarea></td>
                                           </tr>
 
                                           <tr>
                                               <td>Case<input type="text" name="sub[]" value="7" hidden></td>
-                                              <td> <input type="text" name="component[7][brand]" ></td>
-                                              <td> <input type="text" name="component[7][model]" ></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[7][brand]" ></td>
+                                              <td> <span style="color:red">*</span><input type="text" name="component[7][model]" ></td>
                                               <td><textarea name="component[7][details]" cols="22"></textarea></td>
                                           </tr>
 
@@ -871,7 +874,7 @@ RAM:  </textarea>
 
       function add() {
         // $(   '#addMoreList > tbody:last-child').append(str_row);
-        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\"><div></td><td><textarea name='purchase[details][]' type='text' size='25' style='height: 4rem; width: 14rem; margin-left:0.8rem;'></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\"></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
+        $('#addMoreList > tbody:last-child').append("<tr><td><select id=\'subtypes\' name=\'purchase[subtype_id][]\' style=\'height: 1.8rem; width: 9rem;\'> @foreach ($sub as $sub) <option value='{{$sub->id}}'>{{$sub->name}}</option>@endforeach</select></td><td><div class=\"col-2\"><input name=\"purchase[brand][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\" required></td><td><div class=\"input-group col-2\"><input name=\"purchase[model][]\" type=\"text\" size=\"25\" style=\"height: 2rem; width:9rem;\" required><div></td><td><textarea name='purchase[details][]' type='text' size='25' style='height: 4rem; width: 14rem; margin-left:0.8rem;' required></textarea></td><td><input name=\"purchase[qty][]\" type=\"number\" min='1' size=\"25\" style=\"height: 2rem; width:3rem; margin-left: 2rem;\" required></td><td><div class=\"btn btn-danger\" onclick='rm()' style=\"margin-left: 1rem;\"><i class=\"fas fa-times\"></i></div></td></tr>");
       }
 
     </script>

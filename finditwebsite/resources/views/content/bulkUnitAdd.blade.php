@@ -30,7 +30,7 @@ $lname = $session['lname'];
     {{$pID}}
     </div>
     <div class="col-sm-2">
-        <p class="card-title">OR_No</p>
+        <p class="card-title"><span style="color:red">*</span>OR_No</p>
         <input type="text" name="or_no" required>
         <input type="hidden" name="qty_added" value={{$qty_added}}>
         <input type="hidden" name="supplier_id" value={{$supplier_id}}>
@@ -61,7 +61,7 @@ $lname = $session['lname'];
       </tr>
     </thead>
         <tbody>
-          
+
           <input type="hidden" name="supplier" value={{$supplier_id}}>
           @for($count = 0; $qty_added > $count; $count++)
 
@@ -102,7 +102,7 @@ $lname = $session['lname'];
             @endfor
         </tbody>
   </table>
-  
+
   </div>
   <button id="subm" type="submit" class="btn btn-info">Add All Units</button>
 </form>
@@ -115,7 +115,7 @@ $lname = $session['lname'];
     <script type="text/javascript" src="{{ asset('js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 <script>
   $(document).ready(function(){
-    
+
       $('#unitDataTable').DataTable({
           "pageLength": {{$rows}} + 1,
           "order": [],
@@ -146,7 +146,7 @@ $lname = $session['lname'];
               unsure of redirecting thing. normally goes to /tempBulkPC
               which is 'PCBuildController@insertBulkPC'. Saves successfully on dbase
               though.*/
-              
+
               var message = 'Units added.';
               window.location.href = '/systemUnit';
           },
@@ -154,7 +154,7 @@ $lname = $session['lname'];
               console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
               alert(JSON.stringify(jqXHR));
           }
-        }) 
+        })
       });
 
       tbl = $('#unitDataTable').dataTable();

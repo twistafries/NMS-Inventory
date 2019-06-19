@@ -250,6 +250,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
+                                      <span style="color:red">*</span>
                                       <label class="label">Employee Name: </label>
                                       <br>
                                       <!--<input type="text" name="name" size="35"><br>-->

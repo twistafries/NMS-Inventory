@@ -91,11 +91,11 @@
       <tr height="10px"></tr>
     </table>
   </div>
-  <div class="col-2" style="margin-top: 1.5rem;">
+  <!-- <div class="col-2" style="margin-top: 1.5rem;">
     <button type="button" id="" class="btn btn-info p-2" style="margin-top: 1rem;" data-toggle="modal" data-target="#purchasesmodal">
       <span class="fas fa-plus-circle" style="padding-right: 5px"></span>New Purchase
     </button>
-  </div>
+  </div> -->
 </div>
     <!--Tab Content-->
 

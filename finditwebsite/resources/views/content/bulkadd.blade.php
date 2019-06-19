@@ -21,7 +21,8 @@ body{
             <button type="button" name="add" id="add" data-toggle="modal" data-target="#bulkAddModal"
                 class="btn btn-success btn-xs">Add More Items</button>
         </div>
-
+        <datalist id="SNList">
+        </datalist>
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
                 <tr>
@@ -74,7 +75,7 @@ body{
                         <div class="row">
                             <!-- Quantity -->
                             <div class="col col-lg-2 col-md col-sm col-xs">
-                                <p class="card-title">Quantity *</p>
+                                <p class="card-title"><span style="color:red">*</span>Quantity </p>
                                 <input type="number" class="form-control text-center" name="quantity" id="quantity" min="1" max="250" style="padding: 0;">
                                 <span id="error_quantity" class="text-danger"></span>
 
@@ -88,7 +89,7 @@ body{
                                 @else
                                 <fieldset>
                                 @endif
-                                    <p class="card-title">Subtype *</p>
+                                    <p class="card-title"><span style="color:red">*</span>Subtype </p>
                                     <select id="subtype" class="custom-select">
                                         @foreach ($equipment_subtypes as $equipment_subtypes)
                                         <option class="option" value="{!! $equipment_subtypes->id !!}">{{ $equipment_subtypes->name}}</option>
@@ -107,7 +108,7 @@ body{
                                 @else
                                 <fieldset>
                                 @endif
-                                    <p class="card-title">Status *</p>
+                                    <p class="card-title"><span style="color:red">*</span>Status </p>
                                     <select id="status" class="custom-select">
                                         @foreach ($equipment_status as $equipment_status)
                                         <option class="option" value="{!! $equipment_status->id !!}">{{ $equipment_status->name }}
@@ -128,7 +129,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Brand *</p>
+                                    <p class="card-title"><span style="color:red">*</span>Brand </p>
                                     <input type="text" name="brand" id="brand" class="form-control" required/>
                                     <span id="error_brand" class="text-danger"></span>
                                 </div>
@@ -142,7 +143,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Model *</p>
+                                    <p class="card-title"><span style="color:red">*</span>Model </p>
                                     <input type="text" name="model" id="model" class="form-control" required/>
                                     <span id="error_model" class="text-danger"></span>
                                 </div>
@@ -156,7 +157,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Details *</p>
+                                    <p class="card-title"><span style="color:red">*</span>Details </p>
                                     <textarea name="details" id="details" class="form-control" required></textarea>
                                     <!-- <input type="text" name="details" id="details" class="form-control" /> -->
                                     <span id="error_details" class="text-danger"></span>
@@ -174,7 +175,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                             <fieldset>
                                 <div class="form-group">
-                                    <p class="card-title">OR Number *</p>
+                                    <p class="card-title"><span style="color:red">*</span>OR Number </p>
                                     <input type="text" name="or_no" id="or_no" class="form-control" required/>
                                     <span id="error_or" class="text-danger"></span>
                                 </div>
@@ -187,7 +188,7 @@ body{
                             <fieldset>
                             @endif
                                 <div class="form-group">
-                                    <p class="card-title">Supplier *</p>
+                                    <p class="card-title"><span style="color:red">*</span>Supplier </p>
                                     <select id="supplier" class="custom-select">
                                         @foreach ($suppliers as $supplier)
                                         <option class="option" value="{!! $supplier->id !!}">{{ $supplier->supplier_name }}
@@ -253,21 +254,21 @@ body{
         @else
         $('#bulkAddModal').modal('show')
         var rowCount = $('#equipment_data tr').length;
-        
-        
+
+
             eachFieldValidate()
-        
+
         $('.form-control').keyup(function(){
             // console.log("keyup form-control")
             // console.log("If all is empty")
             eachFieldValidate();
-        
-            
-            
+
+
+
         })
         anyEmpty();
         allFilled();
-        
+
         @endif
             // fetchRecords(97)
         // $('#save').hide();
@@ -277,7 +278,7 @@ body{
             || $('#details').val() == ''
             || $('#or_no').val() == ''
             || $('#quantity').val() == ''
-            ){    
+            ){
             $('#save').hide()
             $('#save').removeAttr("data-dismiss")
             $('#error_messages').show();
@@ -301,7 +302,7 @@ body{
         function eachFieldValidate(){
             if($('#quantity').val() == ''){
                 $('#quantity').css('background-color', '#fff3cd');
-                
+
             }else{
                 console.log("Empty quantity")
                 $('#quantity').removeAttr("style");
@@ -310,7 +311,7 @@ body{
 
             if($('#brand').val() == ''){
                 $('#brand').css('background-color', '#fff3cd');
-                
+
             }else{
                 console.log("Empty brand")
                 $('#brand').removeAttr("style");
@@ -318,10 +319,10 @@ body{
                 // error_brand = '';
                 // $('#error_brand').hide().text(error_brand);
             }
-            
+
             if($('#model').val() == ''){
                 $('#model').css('background-color', '#fff3cd');
-                
+
             }else{
                 console.log("Empty model")
                 $('#model').removeAttr("style");
@@ -329,10 +330,10 @@ body{
                 // error_brand = '';
                 // $('#error_brand').hide().text(error_brand);
             }
-            
+
             if($('#details').val() == ''){
                 $('#details').css('background-color', '#fff3cd');
-                
+
             }else{
                 console.log("Empty details")
                 $('#details').removeAttr("style");
@@ -340,16 +341,16 @@ body{
                 // error_brand = '';
                 // $('#error_brand').hide().text(error_brand);
             }
-            
+
             if($('#or_no').val() == ''){
                 $('#or_no').css('background-color', '#fff3cd');
-                
+
             }else{
                 $('#or_no').removeAttr("style");
                 $('#or_no').css('background-color', 'fff');
             }
-            
-            
+
+
             // $('#save').removeAttr("data-dismiss");
             // $('#save').hide();
 
@@ -378,7 +379,7 @@ body{
             var error_warranty_end = '';
             var buttonCount = $('#submit_div').children().length;
 
-               
+
 
                 if($('#save').text() == 'Save') {
                     var subtype_id = $('#subtype').val();
@@ -402,7 +403,7 @@ body{
                         @if( $item_id != 0)
                         output += '<td>' + {{ $item_id }} + ' <input type="hidden" name="bulk[item_id][]" id="item_id' + count + '" class="name" value="' +  {{ $item_id }}  + '" /></td>';
                         @endif
-                        output += '<td>' + ' <input type="text" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
+                        output += '<td>' + ' <span style="color:red">*</span><input type="text" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
                         output += '<td> <input type="hidden" name="bulk[subtype_id][]" id="subtype_id' + count + '" class="subtype_id" value="' + subtype_id + '" />' + subtype_name + '</td>';
                         output += '<td> <input type="hidden" name="bulk[status_id][]" id="status_id' + count + '" class="status_id" value="' + status_id + '" />' + status_name + '</td>';
                         output += '<td>' + brand + ' <input type="hidden" name="bulk[brand][]" id="brand' + count + '" class="name" value="' + brand + '" /></td>';
@@ -429,9 +430,9 @@ body{
                     $('#submit_div').append(output_submit);
                 }
             });
-            
 
-        
+
+
             // Fetch Data for View Modal
         function fetchRecords(id) {
             // id=1;
@@ -440,7 +441,7 @@ body{
                 type: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    
+
                     var len = 0;
 
                     if (response['purchases'] != null) {
@@ -462,7 +463,7 @@ body{
                             var unit_number = response['purchases'][i].unit_number;
                             var supplier_id = response['purchases'][i].supplier_id;
                             var subtype = response['purchases'][i].unit_number;
-                            
+
                             $('#quantity').attr({"max": qty-qty_a});
                             $('#quantity').val(qty-qty_a);
                             $('#subtype').val(subtype_id);
@@ -479,8 +480,8 @@ body{
                     }
                 }
             })
-        }    
-                
+        }
+
 
         $(".serial_no").keyup(function(){
             var arr = [];
@@ -495,7 +496,7 @@ body{
         })
 
     });
-    
+
 
     // $('#subtype').on('change', function(){
     //     console.log($('#subtype option:selected').text());

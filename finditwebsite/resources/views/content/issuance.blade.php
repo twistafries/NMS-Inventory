@@ -221,9 +221,9 @@
                                                 </div>
                                               </tr>
 
-                                              <tr>
+                                              <tr><div class="row">
                                                 <td>
-                                                  <input class="form-control" list="items" name="items[]" id="equipment" onblur="CheckListed(this.value);" required >
+                                                  <input placeholder="Please fill out this field." class="form-control" list="items" name="items[]" id="equipment" onblur="CheckListed(this.value);" required >
                                                     <datalist id="items">
                                                       <select>
                                                       @foreach ($equipment as $equipment)
@@ -242,6 +242,7 @@
                                                     </div>
                                                   </div>
                                                 </td>
+                                              </div>
                                               </tr>
                                           </table>
 
@@ -263,8 +264,8 @@
 
                                      <div class="row">
                                           <div class="col-md-5">
-                                              <p class="card-title">Issue to:</p>
-                                              <input list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
+                                              <p class="card-title"><span style="color:red">*</span>Issue to:</p>
+                                              <input placeholder="Please fill out this field." list="employee" name="issued_to" id="issued_to" onblur="CheckListedEmployee(this.value)" required>
                                               <datalist id="employee">
                                                   @foreach ($employees as $employees)
                                                   <option data-customvalue="{{ $employees->id}}" value="{{ $employees->fname}} {{ $employees->lname}} (ID: {{ $employees->id}})">
@@ -523,7 +524,7 @@
   }
 
   function add() {
-    $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input class=\"form-control\" autocomplete='off' list=\"items\" name=\"items[]\" id=\"inputItems\" required></div></td><td><div class=\"col-xl-10\"><input name=\"issued_date[]\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
+    $('#addMoreList > tbody:last-child').append("<tr><div class=\"row\"><td><div class=\"col\"><input placeholder='Please fill out this field.' class=\"form-control\" autocomplete='off' list=\"items\" name=\"items[]\" id=\"inputItems\" required></input></div></td><td><div class=\"col-xl-10\"><input name=\"issued_date[]\" type=\"date\" class=\"form-control\"></div></td><td><div class=\"col-sm-0\"><button onclick='rm()'>remove</button></td></div></div></tr><br><div class=\"row\"></div>");
   }
 
   function emptyContent(){
