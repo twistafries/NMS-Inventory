@@ -104,9 +104,6 @@
 
                                       <!-- Delete -->
 
-                                        <button class="btn btn-outline-dark rounded-pill" type="button" id="deleteOption" data-toggle="modal" data-target="#removeEmployee"   aria-haspopup="true" aria-expanded="false">
-                                             <i class="fas fa-user-minus"></i> Remove Employee
-                                            </button>
 
 
 
