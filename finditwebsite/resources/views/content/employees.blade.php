@@ -97,19 +97,19 @@
       <div class="btn-group" role="group" aria-label="Basic example">
 
 
-                                       <!-- Add -->
-                                        <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addEmployee" daria-haspopup="true" aria-expanded="false">
-                                           <i class="fas fa-user-plus"></i> Add Employee
-                                        </button>
+                    <!-- Add -->
+                    <button class="btn btn-outline-dark rounded-pill mr-2" type="button" id="addOption" data-toggle="modal" data-target="#addEmployee" daria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-plus"></i> Add Employee
+                    </button>
 
-                                      <!-- Delete -->
-
-
+                    <!-- Delete -->
 
 
-                                </div>
-                              </div>
-                            </div>
+
+
+            </div>
+            </div>
+        </div>
         <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%; cursor:pointer;">
             <thead class="thead-dark">
                 <tr>
@@ -273,6 +273,41 @@
             </tbody>
 
         </table>
+        <button data-toggle="modal" data-target="#emptyModal">Eto na MOdal</button>
+
+        <div class="modal fade" id="emptyModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="container">
+                                            <h5 class="modal-title">Empty Modal</h5>
+
+                        </div>
+
+
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <h6 class="text-center">Are you sure you want to deactivate this employee account?</h6>
+                            <hr>
+                            <h6 class="text-center">This employee has unreturned # item(s) in their issuance.</h6>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#edit">Yes</button>
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                            
 
 
 
