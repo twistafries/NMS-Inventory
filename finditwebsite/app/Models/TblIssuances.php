@@ -102,6 +102,26 @@ class TblIssuances extends Model {
 			}
 		return $query;
 	}
+	
+	public static function getIssuanceOfEquipment($eq_id) {
+		$query = \DB::table('issuance as i')
+		->leftjoin('it_equipment' , 'it_equipment.id', '=', 'i.equipment_id')
+		->leftjoin('system_units' , 'system_units.id', '=', 'i.unit_id')
+		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
+		->leftjoin('users' , 'users.id', '=', 'i.user_id')
+		->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+		->leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+		->select('i.*', 'it_equipment.serial_no as serial_no', 'it_equipment.or_no as or_no', 'it_equipment_type.name as type', 'users.fname as userfname', 'users.lname as userlname', 'employees.fname as givenname', 'employees.lname as surname', 'it_equipment.model as model', 'it_equipment.brand as brand', 'system_units.name as unit_name',
+		 'it_equipment_subtype.name as subtype',  'system_units.id as pc_number')
+		->where('i.unit_id', '=', $eq_id)
+		->orderBy('i.issued_to', 'desc')
+		->get();
+
+			if(isset($params['id'])) {
+				$query->where('i.id', '=', $params['id']);
+			}
+		return $query;
+	}
 
 	public static function getIssuedItemsOfEmployee($id) {
 		$query = \DB::table('issuance as i')

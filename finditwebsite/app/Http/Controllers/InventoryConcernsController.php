@@ -35,10 +35,7 @@ class InventoryConcernsController extends BaseController
         $user_id = $session['id'];
 
         try{
-            if($request->get('status_id') == 1.2){
-                $issuance['status_id'] = 1; 
-                dd($issuance); 
-            }
+   
             $data = $request->all();
             $data['added_by'] = $user_id;
             $data['issued_to'] = TblIssuances::getIssuedTo($data['id']);
@@ -96,6 +93,14 @@ class InventoryConcernsController extends BaseController
             // dd($equipment_info);
             // $orig_status_name = TblEquipmentStatus::get_status_name($data['orig_status_id']);
             $orig_status_name = TblSystemUnits::getUnit($data['id'])[0]->status_name;
+            $orig_status_id = TblSystemUnits::getUnit($data['id'])[0]->status_id;
+
+            if($orig_status_id == 2){
+                $update_issuance['issuance_id']=TblIssuances::getIssuanceOfEquipment($data['system_unit_id'])[0]->id;
+                $update_issuance['remarks']= $request->get('remarks');
+                $update_issuance['returned_at']= gmdate('Y-m-d');
+                TblIssuances::updateReturnedDate($update_issuance);
+            }
             $new_status_name = TblEquipmentStatus::get_status_name($data['status_id'])[0]->name;
             $act['activity'] = "change the status of";
             $act['from_status'] = $orig_status_name;
@@ -107,9 +112,15 @@ class InventoryConcernsController extends BaseController
                 TblActivityLogs::add_log($act);
             }
             // dd();
-            return \Redirect::to('/systemUnit')
-            ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".')
-            ->with('additional_message' , $concern['message']);
+            if($data['status_id'] == 3){
+                return \Redirect::to('/repair')
+                ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".')
+                ->with('additional_message' , $concern['message']);
+            }else if($data['status_id'] == 4){
+                return \Redirect::to('/decommissioned')
+                ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".')
+                ->with('additional_message' , $concern['message']);
+            }
         }catch(Exception $e){
             $error_ctr++;
             return \Redirect::back()
