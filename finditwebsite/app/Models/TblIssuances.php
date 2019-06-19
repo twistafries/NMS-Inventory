@@ -103,6 +103,26 @@ class TblIssuances extends Model {
 		return $query;
 	}
 
+	public static function getIssuedItemsOfEmployee($id) {
+		$query = \DB::table('issuance as i')
+		->leftjoin('it_equipment' , 'it_equipment.id', '=', 'i.equipment_id')
+		->leftjoin('system_units' , 'system_units.id', '=', 'i.unit_id')
+		->leftjoin('employees' , 'employees.id', '=', 'i.issued_to')
+		->leftjoin('users' , 'users.id', '=', 'i.user_id')
+		->leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+		->leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+		->select('i.equipment_id as equipment_id', 'i.unit_id as unit_id')
+		->where('i.issued_to', '=', $id)
+		->where('i.returned_at', '=', null)
+		->orderBy('i.issued_to', 'desc')
+		->get();
+
+			if(isset($params['id'])) {
+				$query->where('i.id', '=', $params['id']);
+			}
+		return $query;
+	}
+
 	public static function getIssuedTo($params){
 		$query =\DB::table('issuance as is')
 		->leftjoin('employees' , 'employees.id', 'is.issued_to')
@@ -182,7 +202,21 @@ class TblIssuances extends Model {
 			dd($e);
 		}
 	}
-	
+
+		public static function updateIssuanceOfEmployee($params) {
+			try{
+				if(isset($params['remarks'])){
+					$issuance = TblIssuances::where('issued_to', '=', $params['issued_to'])->where('returned_at', '=', null)
+					->update(['returned_at' => gmdate('Y-m-d'), 'updated_at' => gmdate('Y-m-d'), 'remarks' => $params['remarks']]);
+			} else {
+				$issuance = TblIssuances::where('issued_to', '=', $params['issued_to'])->where('returned_at', '=', null)
+				->update(['returned_at' => gmdate('Y-m-d'), 'updated_at' => gmdate('Y-m-d')]);
+			}
+			}catch(Exception $e){
+				dd($e);
+			}
+		}
+
 	public static function extendIssuedUntil($params) {
 		$issuance = TblIssuances::find($params['issuance_id']);
 
@@ -203,16 +237,16 @@ class TblIssuances extends Model {
 	}
 
 	public static function updateIssuance($params) {
-		
+
 		$issuance = TblIssuances::find($params['id']);
 		// dd($issuance);
 		// $id = TblIssuances::find($params['id']);
-	
+
 		if(isset($params['equipment_id'])){
 			$issuance->equipment_id = $params['equipment_id'];
-			
+
 		}else if(isset($params['sys_id'])){
-			
+
 			$issuance->unit_id = $params['sys_id'];
 		}
 		if(isset($params['issued_to']))

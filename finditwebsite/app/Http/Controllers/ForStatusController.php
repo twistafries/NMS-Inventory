@@ -229,47 +229,33 @@ class ForStatusController extends BaseController
    {
       $data = $request->all();
       // dd($data);
-      $data['issuances'] = TblIssuances::getIssuanceOfEmployee($data['id']);
-      $data['original_status'] = TblEmployees::getEmployeesInfo($data['id'])[0]->status;
-      if($data['original_status'] == "active"){
-        if(count($data['issuances']) == 0){
-          TblEmployees::edit_employee($data);
-        
-          $act['to_status'] = "inactive";
-          $act['from_status'] = "active";
-    
-          $act['issued_to'] = $data['name'];
-          $act['activity'] = "change the status of";
-          TblActivityLogs::add_log($act);
-    
-          return redirect()->intended('/employees')
-          ->with('message', 'Employee Status Changed');
-          
-        }else{
-          return redirect()
-          ->intended('/employees')->with('warning', 'Employee, ' . $data['name']. ' cannot be modified because of '. count($data['issuances'])  .' unreturned issued item(s).')
-          ->with('target_url', 'url("/issuances/")')
-          ->with('option', 'Mark Issued Items as Returned');
+      $data['issuances'] = TblIssuances::getIssuedItemsOfEmployee($data['id']);
+      foreach ($data['issuances'] as $items) {
+        if($items->unit_id==null){
+          TblItEquipment::update_equipment_status($items->equipment_id,1);
+        } else{
+          TblSystemUnits::update_unit_status($items->unit_id,1);
         }
-      }else{
-          TblEmployees::edit_employee($data);
-          if($data['status']=="active"){
-            $act['to_status'] = "active";
-            $act['from_status'] = "inactive";
-          } else {
-            $act['to_status'] = "inactive";
-            $act['from_status'] = "active";
-          }
-    
-          $act['issued_to'] = $data['name'];
-          $act['activity'] = "change the status of";
-          TblActivityLogs::add_log($act);
-    
-          return redirect()->intended('/employees')
-          ->with('message', 'Employee Status Changed')
-          ->with('target', 'url("/issuances/'. $data['id'] .'")');
       }
-      // if()
+      TblEmployees::edit_employee($data);
+      $data['issued_to'] = $data['id'];
+      TblIssuances::updateIssuanceOfEmployee($data);
+      if($data['status']=="active"){
+        $act['to_status'] = "active";
+        $act['from_status'] = "inactive";
+      } else {
+        $act['to_status'] = "inactive";
+        $act['from_status'] = "active";
+      }
+
+      $act['issued_to'] = $data['name'];
+      $act['activity'] = "change the status of";
+      TblActivityLogs::add_log($act);
+
+      return redirect()->intended('/employees')
+      ->with('message', 'Employee Status Changed, All Issued items are now available.')
+      ->with('target', 'url("/issuances/'. $data['id'] .'")');
+
 
    }
 
