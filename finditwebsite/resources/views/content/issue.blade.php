@@ -242,6 +242,7 @@
                                             <input type="hidden" name="status_id" value="1">
                                             @if($item->equipment_id == null)
                                                 <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                                <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                             @else
                                                 <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                             @endif
@@ -558,7 +559,7 @@
 
                 <div id="HRD" class="tab-pane fade">
                 <h4>Human Resources Department</h4>
-                <table class="table table-hover" id="myDataTable" style="width:100%;cursor:pointer;">
+                <table class="table table-hover" id="myDataTable3" style="width:100%;cursor:pointer;">
                     <thead class="thead-dark">
                         <tr>
                         <th scope="col">Employee ID</th>
@@ -667,12 +668,45 @@
     } );
     </script>
 
-    <script type="text/javascript">
+    <script>
     $(document).ready(function() {
-        $('#addMoreList').DataTable();
+        $('#myDataTable').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []});
+
     } );
     </script>
 
+    <script>
+    $(document).ready(function() {
+        $('#myDataTable1').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []});
+
+    } );
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('#myDataTable2').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []});
+
+    } );
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('#myDataTable3').DataTable({
+           "pagingType": "full_numbers",
+           responsive: true,
+           "order": []});
+
+    } );
+    </script>
 <script>
 function deleteRow(r) {
   var i = r.parentNode.parentNode.rowIndex;
