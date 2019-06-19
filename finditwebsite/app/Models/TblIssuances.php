@@ -169,8 +169,11 @@ class TblIssuances extends Model {
 	}
 	public static function updateReturnedDate($params) {
 		$issuance = TblIssuances::find($params['issuance_id']);
-
-		$issuance->returned_at = gmdate('Y-m-d');
+		if($params['returned_at'] == null){
+			$issuance->returned_at = gmdate('Y-m-d');
+		}else{
+			$issuance->returned_at = $params['returned_at'];
+		}
 		$issuance->updated_at = gmdate('Y-m-d');
 		if(isset($params['remarks'])){
 			$issuance->remarks = $params['remarks'];

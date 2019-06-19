@@ -199,8 +199,7 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <form action="{!! url('/update-issuance'); !!}" method="post">
-                                {!! csrf_field() !!}
+                                
                                 <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
                                 <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
                                 <input type="hidden" name="status_id" value="1">
@@ -209,8 +208,7 @@
                                 @else
                                     <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                 @endif
-                                <button class="btn btn-success rounded btn-sm" type="submit" onclick="deleteRow(this)"><i class="fas fa-check"></i> Make Available</button>
-                                </form>
+                                <button class="btn btn-success rounded btn-sm" type="button" onclick="deleteRow(this)" data-toggle="modal" data-target="#make-available-{!! $item->id !!}"><i class="fas fa-check"></i> Make Available</button>
                                 <!-- <button class="btn btn-success" type="submit" onclick="deleteRow(this)">Make Available</button> -->
                                 <button type="button" class="btn btn-warning rounded btn-sm" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"><i class="fas fa-tools"></i>Repair</button>
                                 <!-- <button class="btn btn-warning" type="submit" value="" onclick="deleteRow(this)" data-toggle="modal" data-target="#repair-{!! $item->id !!}"> Repair</button> -->
@@ -220,6 +218,56 @@
 
                             </div>
                         </td>
+                <!-- Make Available -->
+                        <div class="modal fade" id="make-available-{!! $item->id !!}" tabindex="-1" role="dialog"
+                            aria-labelledby="edit-{!! $item->model !!}" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="height:450px;">
+                                    <div class="modal-header">
+                                        @if( $item->equipment_id != null )
+                                            <h5 class="modal-title">Mark {{ $item->model }} {{ $item->brand }} {{ $item->subtype }} as Available?</h5>
+                                        @elseif($item->pc_number != null)
+                                        <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
+                                        @endif
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form action="{!! url('/update-issuance'); !!}" method="post">
+                                            {!! csrf_field() !!}
+                                            <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
+                                            <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
+                                            <input type="hidden" name="status_id" value="1">
+                                            @if($item->equipment_id == null)
+                                                <input type="hidden" name="sys_id" value="{!! $item->pc_number !!}">
+                                            @else
+                                                <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
+                                            @endif
+                                            <div class="col-sm-12">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <h6 class="text-uppercase">Remarks:</h6>
+                                                        <textarea name="remarks" placeholders="Remarks"></textarea>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                            Date of Return: 
+                                            <h5 class="dateOfReturn">{{Carbon::now()->format('m-d-Y')}}</h5>
+                                            <input type="date" name="returned_at">
+                                            
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 <!-- For Repair Modal -->
                         <div class="modal fade" id="repair-{!! $item->id !!}" tabindex="-1" role="dialog"
                             aria-labelledby="edit-{!! $item->model !!}" aria-hidden="true">
@@ -599,6 +647,12 @@
 function deleteRow(r) {
   var i = r.parentNode.parentNode.rowIndex;
   document.getElementById("myTable").deleteRow(i);
+}
+
+function dateReturned(){
+    var today = {{Carbon::now()->format('Y-m-d')}};
+    console.log(today);
+    $('.dateOfReturn').replaceWith("<input type='date' name='returned_at' >")
 }
 </script>
 
