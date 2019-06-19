@@ -110,7 +110,7 @@
             </div>
             </div>
         </div>
-        <table id="myDataTable" class="table table-borderless table-striped table-hover" style="width:100%; cursor:pointer;">
+        <table id="employeeTable" class="table table-borderless table-striped table-hover" style="width:100%; cursor:pointer;">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
@@ -118,6 +118,7 @@
                     <th>Email</th>
                     <th>Department</th>
                     <th>Status</th>
+                    <th>Total Issued</th>
 
                 </tr>
             </thead>
@@ -131,7 +132,7 @@
                     <td>{{ $employee->email }}</td>
                     <td>{{ $employee->department }}</td>
                     <td>{{ $employee->status }}</td>
-
+                    <td>{{$totalIssued[$employee->id]}}</td>
                 </tr>
 
 
@@ -243,25 +244,21 @@
                                                 </div>
                                             </div>
                                             </form>
-                                            <form action="{!! url('/changeStatusEmployee'); !!}" class="profile-form" id="profile-form" method="post">
-                                                <input type="hidden" name="id" value="{!! $employee->id !!}">
-                                                <input  type="hidden" type="text" name="name" class="form-inline input" value="{{ $employee->fname  }} {{ $employee->lname  }} ID: {{ $employee->id  }}">
-                                                {!! csrf_field() !!}
                                             <div id="divstatus">
                                                 @if( $employee->status == "active" && $email != $employee->email )
 
-                                                <button class="btn btn-secondary" id="deactivate" type="submit">
-                                                    <input type="hidden" name="status" value="inactive">
+                                                <button class="btn btn-secondary" data-toggle="modal" data-target="#confirmationDeactivate" type="submit">
+
                                                     Deactivate
                                                 </button>
                                                 @elseif($employee->status == "inactive" && $email != $employee->email)
-                                                <button class="btn btn-info" id="activate" type="submit">
-                                                    <input type="hidden" name="status" value="active">
+                                                <button class="btn btn-info" id="activate" data-toggle="modal" data-target="#confirmationActivate" >
+
                                                     Activate
                                                 </button>
                                                 @endif
                                             </div>
-                                        </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -273,14 +270,19 @@
             </tbody>
 
         </table>
-        <button data-toggle="modal" data-target="#emptyModal">Eto na MOdal</button>
 
-        <div class="modal fade" id="emptyModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
-                <div class="modal-content">
+        <div class="modal fade" id="confirmationDeactivate" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="height:450px; width:580px">
+              <form action="{!! url('/changeStatusEmployee'); !!}" class="profile-form" id="profile-form" method="post">
+                  <input type="hidden" name="id" id="idOfEmployee" value="">
+                  <input  type="hidden" type="text" name="name" id="employeeName" class="form-inline input" value="">
+                  <input type="hidden" name="status" value="inactive">
+                  {!! csrf_field() !!}
+
                     <div class="modal-header">
                         <div class="container">
-                                            <h5 class="modal-title">Empty Modal</h5>
+                                            <h5 class="modal-title">Confirmation of Deactivation</h5>
 
                         </div>
 
@@ -293,21 +295,59 @@
 
                     <div class="modal-body">
                         <div class="container-fluid">
-                            <h6 class="text-center">Are you sure you want to deactivate this employee account?</h6>
+                            <h4 id="nameOfEmployee" class="text-center"> ?</h4>
                             <hr>
-                            <h6 class="text-center">This employee has unreturned # item(s) in their issuance.</h6>
+                            <h6 id="total_issued" class="text-center"></h6>
+                            <hr>
+                            <h6 style="color:red"> Note: All items will be mark as available by deactivating this account.</h6>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#edit">Yes</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
 
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteModal">No</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>
-                            
+
+        <div class="modal fade" id="confirmationActivate" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="height:300px;width:auto">
+              <form action="{!! url('/changeStatusEmployee'); !!}" class="profile-form" id="profile-form" method="post">
+                  <input type="hidden" name="id" id="idOfEmployee1" value="">
+                  <input  type="hidden" type="text" name="name" id="employeeName1" class="form-inline input" value="">
+                  <input type="hidden" name="status" value="active">
+                  {!! csrf_field() !!}
+                    <div class="modal-header">
+                        <div class="container">
+                                            <h5 class="modal-title">Confirmation</h5>
+
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <h4 id="nameOfEmployee1" class="text-center"></h4>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Yes</button>
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+
 
 
 
@@ -509,7 +549,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#myDataTable').DataTable({
+            $('#employeeTable').DataTable({
                 "pagingType": "full_numbers",
                 responsive: true,
                 "order": []
@@ -594,6 +634,26 @@
         document.getElementById("employee_id").value = $('#employee [value="' + employee + '"]').data('customvalue');
         return true;
         }
+    </script>
+    <script>
+
+        var table = document.getElementById('employeeTable');
+
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            table.rows[i].onclick = function()
+            {
+                document.getElementById("idOfEmployee").value = this.cells[0].innerHTML;
+                 document.getElementById("employeeName").value = this.cells[1].innerHTML;
+                 document.getElementById("nameOfEmployee").innerHTML = "Are you sure you want to deactivate the account of "+this.cells[1].innerHTML+"?";
+                 document.getElementById("total_issued").innerHTML = "This employee has "+this.cells[5].innerHTML+ " unreturned item/s in their issuance.";
+
+                 document.getElementById("idOfEmployee1").value = this.cells[0].innerHTML;
+                  document.getElementById("employeeName1").value = this.cells[1].innerHTML;
+                  document.getElementById("nameOfEmployee1").innerHTML = "Are you sure you want to activate the account of "+this.cells[1].innerHTML+"?";
+            };
+        }
+
     </script>
 
 

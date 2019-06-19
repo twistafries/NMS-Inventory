@@ -26,10 +26,20 @@ class TblEmployees extends Model {
 			$query = \DB::table('employees as e')
 				->leftjoin('departments', 'departments.id', '=', 'e.dept_id')
 				->select('e.*', 'departments.name as department')
-				->orderBy('e.created_at', 'desc')
+				->orderBy('e.id', 'asc')
 				->get();
 		}
 			return $query;
+	}
+
+	public static function employees_with_issuance($id){
+		$query = \DB::table('employees')
+				->leftjoin('departments', 'employees.dept_id' , '=' , 'departments.id')
+				->leftjoin('issuance', 'issuance.issued_to', '=', 'employees.id')
+				->where('issuance.issued_to', '=', $id)
+				->where('returned_at', '=', null)
+				->get();
+		return $query;
 	}
 
 	public static function getEmployeesInfo($id){
@@ -76,7 +86,7 @@ class TblEmployees extends Model {
 		}
 
 	}
-	
+
 	public static function remove_employee($params){
 	$employees = TblEmployees::find($params['id']);
 	$id = TblEmployees::find($params['id']);

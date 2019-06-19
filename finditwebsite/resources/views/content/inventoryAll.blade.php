@@ -357,8 +357,10 @@
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
                                                     data-target="#return"><i class="fas fa-undo-alt"></i> For Return</button>
                                                 @endif
+                                                @if($equipment->status_id != 7 && $equipment->status_id != 8)
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
                                                     data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommission Item</button>
+                                                @endif
                                                 @endif
                                         </div>
 
@@ -1267,7 +1269,6 @@ $.fn.dataTable.ext.search.push(
       var min = new Date(minimum);
       var max = new Date(maximum);
       var startDate = new Date(data[8]);
-      console.log(startDate);
       if (isNaN(min) && isNaN(max) ) { return true; }
       if (isNaN(min)  && startDate <= max) { return true;}
       if(isNaN(max) && startDate >= min) {return true;}

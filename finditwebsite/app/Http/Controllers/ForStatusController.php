@@ -164,6 +164,9 @@ class ForStatusController extends BaseController
 
      $data = [];
      $data['employees'] = TblEmployees::get_employees();
+     foreach ($data['employees'] as $employee) {
+       $data['totalIssued'][$employee->id] = count(TblEmployees::employees_with_issuance($employee->id));
+     }
      $data['employees'] = TblEmployees::get_employees();
      $data['departments'] = TblDepartments::getDept();
      $lastid = DB::table('employees')->orderBy('id', 'DESC')->first();

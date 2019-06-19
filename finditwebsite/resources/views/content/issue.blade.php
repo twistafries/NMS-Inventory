@@ -199,7 +199,7 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                
+
                                 <input type="hidden" name="issuance_id" value="{!! $item->id !!}">
                                 <input type="hidden" name="issued_to" value="{!! $employee->id !!}">
                                 <input type="hidden" name="status_id" value="1">
@@ -254,10 +254,10 @@
                                                 </ul>
                                             </div>
                                             <hr>
-                                            Date of Return: 
+                                            Date of Return:
                                             <h5 class="dateOfReturn">{{Carbon::now()->format('m-d-Y')}}</h5>
                                             <input type="date" name="returned_at">
-                                            
+
                                     </div>
 
                                     <div class="modal-footer">
