@@ -161,7 +161,7 @@
 
       <div class="card add" id="sample" style="margin-left: 2rem; margin-right: 2rem;">
           <div class="sample" style=" margin-top: 1rem;">
-            
+            <p class="card-title text-right date" id="contents">Date:</p>
             <p class="card-title text-center" style="font-size: 24px; color: #555555; margin-bottom: 0 !important;">NEW MEDIA SERVICES</p>
             <p class="card-title text-center" id="contents2" style="font-size: 20px; color: #555555;">Inventory Report as of {{$start}} - {{$end}}</p>
           </div>
