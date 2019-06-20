@@ -257,7 +257,7 @@
                                             <hr>
                                             Date of Return:
                                             <h5 class="dateOfReturn">{{Carbon::now()->format('m-d-Y')}}</h5>
-                                            <input type="date" name="returned_at">
+                                            <input type="date" name="returned_at" max="{{Carbon::now()->format('Y-m-d')}}">
 
                                     </div>
 
@@ -343,6 +343,7 @@
                                             <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                             @endif
                                             <div class="col-sm-12">
+                                              <h6> Are you sure you want to mark {{ $item->model }} {{ $item->brand }} {{ $item->subtype }} as decommissioned?</h6>
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
                                                         <h6 class="text-uppercase">Remarks:</h6>
@@ -718,6 +719,7 @@ function dateReturned(){
     console.log(today);
     $('.dateOfReturn').replaceWith("<input type='date' name='returned_at' >")
 }
+
 </script>
 
 <script>function rm() {

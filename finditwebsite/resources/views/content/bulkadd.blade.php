@@ -202,7 +202,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Warranty Start</p>
-                                    <input type="date" name="warranty_start" id="warranty_start" class="form-control" required/>
+                                    <input type="date" name="warranty_start" id="warranty_start" onchange="startDateEnable()" class="form-control" required/>
                                     <span id="error_warranty_start" class="text-danger"></span>
                                 </div>
                             </div>
@@ -210,7 +210,7 @@ body{
                             <div class="col col-lg-6 col-md col-sm col-xs">
                                 <div class="form-group">
                                     <p class="card-title">Warranty End</p>
-                                    <input type="date" name="warranty_end" id="warranty_end" class="form-control" required/>
+                                    <input type="date" name="warranty_end" id="warranty_end"  onchange="endDateEnable()" class="form-control" required/>
                                     <span id="error_warranty_end" class="text-danger"></span>
                                 </div>
                             </div>
@@ -403,7 +403,7 @@ body{
                         @if( $item_id != 0)
                         output += '<td>' + {{ $item_id }} + ' <input type="hidden" name="bulk[item_id][]" id="item_id' + count + '" class="name" value="' +  {{ $item_id }}  + '" /></td>';
                         @endif
-                        output += '<td>' + ' <span style="color:red">*</span><input type="text" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
+                        output += '<td>' + ' <span style="color:red">*</span><input type="text" onchange="snValidate()" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
                         output += '<td> <input type="hidden" name="bulk[subtype_id][]" id="subtype_id' + count + '" class="subtype_id" value="' + subtype_id + '" />' + subtype_name + '</td>';
                         output += '<td> <input type="hidden" name="bulk[status_id][]" id="status_id' + count + '" class="status_id" value="' + status_id + '" />' + status_name + '</td>';
                         output += '<td>' + brand + ' <input type="hidden" name="bulk[brand][]" id="brand' + count + '" class="name" value="' + brand + '" /></td>';
@@ -509,6 +509,46 @@ body{
     //     }
     // });
 
+</script>
+
+<script type="text/javascript">
+function snValidate(){
+  var value = $('.serial_no').val();
+  console.log(value);
+  console.log(qty);
+}
+</script>
+<script type="text/javascript">
+function startDateEnable(){
+      var date = $("#warranty_start").val();
+      var dtToday = new Date(date);
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate()+1;
+      var year = dtToday.getFullYear();
+      if (month < 10)
+          month = '0' + month.toString();
+      if (day < 10)
+          day = '0' + day.toString();
+
+      var today = year + '-' + month + '-' + day;
+      $('#warranty_end').attr('min', today);
+  }
+  function endDateEnable(){
+        var date = $("#warranty_end").val();
+        var dtToday = new Date(date);
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate()+1;
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var today = year + '-' + month + '-' + day;
+        $('#warranty_start').attr('max', today);
+    }
 </script>
 
 @endsection

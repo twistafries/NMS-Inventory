@@ -218,14 +218,13 @@ class ForStatusController extends BaseController
    public function editEmployee(Request $request)
    {
       $data = $request->all();
-      dd($data);
       TblEmployees::edit_employee($data);
 
-      $act['employees'] = $data['id'];
-      $act['activity'] = "updated";
+
+      $act['activity'] = "updated the account of ".$data['fname']." ".$data['lname']." ID: ".$data['id'];
       TblActivityLogs::add_log($act);
 
-      return redirect()->intended('/employees')->with('message', 'Successfully editted equipment details');
+      return redirect()->intended('/employees')->with('message', "Successfully updated the account of ".$data['fname']." ".$data['lname']." ID: ".$data['id']');
 
    }
 

@@ -173,7 +173,7 @@
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem;">{{$title}}</p>
             </div>
 
-            @if($title=="Late Return")
+            @if($title=="Late Returns")
             <table class="table all" id="available">
               <thead class="thead-dark" style="font-size: 14px;">
                 <tr>

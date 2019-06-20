@@ -107,6 +107,16 @@
                               <td>{{$log->created_at}}</td>
                           </tr>
                           @endif
+                          @if(str_contains($log->activity, "updated the account"))
+                          <tr>
+                              <td>
+                                {{$log->done_by}} {{$log->activity}}
+
+                              </td>
+                              <td>{{$log->created_at}}</td>
+                          </tr>
+                          @endif
+
                        @endforeach
 
                     </tbody>

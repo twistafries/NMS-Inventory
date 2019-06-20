@@ -1291,7 +1291,37 @@ $.fn.dataTable.ext.search.push(
 
 </script>
 
-<script>
-    </script>
+<script type="text/javascript">
+function startDateEnable(){
+      var date = $("#warranty_start").val();
+      var dtToday = new Date(date);
+
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate()+1;
+      var year = dtToday.getFullYear();
+      if (month < 10)
+          month = '0' + month.toString();
+      if (day < 10)
+          day = '0' + day.toString();
+
+      var today = year + '-' + month + '-' + day;
+      $('#warranty_end').attr('min', today);
+  }
+  function endDateEnable(){
+        var date = $("#warranty_end").val();
+        var dtToday = new Date(date);
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate()+1;
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var today = year + '-' + month + '-' + day;
+        $('#warranty_start').attr('max', today);
+    }
+</script>
 
 @stop

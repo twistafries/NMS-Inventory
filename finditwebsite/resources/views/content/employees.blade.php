@@ -299,7 +299,7 @@
                             <hr>
                             <h6 id="total_issued" class="text-center"></h6>
                             <hr>
-                            <h6 style="color:red"> Note: All items will be mark as available by deactivating this account.</h6>
+                            <h6 style="color:red"> Note: All items issued to this employees will be mark as available after deactivating this account.</h6>
                         </div>
                     </div>
 
@@ -644,13 +644,14 @@
             table.rows[i].onclick = function()
             {
                 document.getElementById("idOfEmployee").value = this.cells[0].innerHTML;
-                 document.getElementById("employeeName").value = this.cells[1].innerHTML;
-                 document.getElementById("nameOfEmployee").innerHTML = "Are you sure you want to deactivate the account of "+this.cells[1].innerHTML+"?";
-                 document.getElementById("total_issued").innerHTML = "This employee has "+this.cells[5].innerHTML+ " unreturned item/s in their issuance.";
-
-                 document.getElementById("idOfEmployee1").value = this.cells[0].innerHTML;
-                  document.getElementById("employeeName1").value = this.cells[1].innerHTML;
-                  document.getElementById("nameOfEmployee1").innerHTML = "Are you sure you want to activate the account of "+this.cells[1].innerHTML+"?";
+                document.getElementById("employeeName").value = this.cells[1].innerHTML;
+                document.getElementById("nameOfEmployee").innerHTML = "Are you sure you want to deactivate the account of "+this.cells[1].innerHTML+"?";
+                 if(this.cells[5].innerHTML != 0){
+                   document.getElementById("total_issued").innerHTML = "This employee has "+this.cells[5].innerHTML+ " unreturned item/s in their issuance.";
+                 }
+                document.getElementById("idOfEmployee1").value = this.cells[0].innerHTML;
+                document.getElementById("employeeName1").value = this.cells[1].innerHTML;
+                document.getElementById("nameOfEmployee1").innerHTML = "Are you sure you want to activate the account of "+this.cells[1].innerHTML+"?";
             };
         }
 
