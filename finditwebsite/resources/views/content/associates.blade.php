@@ -139,7 +139,7 @@
                                             <div id="divdepartment">
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">DEPARTMENT</div>
-                                                    <div class="col col-7 details" id="department-info">IT Department</div>
+                                                    <div class="col col-7 details" id="department-info">{!! $associates->department  !!}</div>
                                                     <div class="col col-1 edit" id="department-edit"><a href="#">Edit</a></div>
                                                     <div class="form-group col col-12">
                                                         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -150,11 +150,10 @@
                                                     <div class="margin">
                                                         <div class="form-group row">
                                                             <select class="department-select" name="department">
-                                                                <option></option>
-                                                                <option value="dept1">Information Technology Development Department</option>
-                                                                <option value="dept2">Production Development Department</option>
-                                                                <option value="dept3">Financial Department</option>
-                                                                <option value="dept4">Human Resources Department</option>
+                                                                <option value="1">Information Technology Development Department</option>
+                                                                <option value="2">Production Development Department</option>
+                                                                <option value="3">Financial Department</option>
+                                                                <option value="4">Human Resources Department</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -166,7 +165,7 @@
                                             <div id="divpassword">
                                                 <div class="row row-details">
                                                     <div class="col col-4 detail-header">PASSWORD</div>
-                                                    <div class="col col-1 edit" id="password-edit"><a href="#">Reset Password</a></div>
+                                                    <button class="btn btn-secondary" id="resetPAssword" type="submit"> Reset Password </button>
                                                 </div>
                                                 <!--password modal-->
                                                 <div class="text-center display remove-padding" id="password">

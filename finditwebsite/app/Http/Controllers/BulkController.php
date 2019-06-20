@@ -43,6 +43,7 @@ class BulkController extends BaseController
         $data['component_subtypes'] = TblItEquipmentSubtype::get_component_subtype();
         $data['equipment_status'] = TblEquipmentStatus::get_all_status();
         $data['suppliers'] = Suppliers::get_suppliers();
+        $data['SN'] = TblItEquipment::get_serial_no();
         if($id != 0){
             $data['item_id'] = $id;
         }else{
@@ -57,13 +58,13 @@ class BulkController extends BaseController
             return \Redirect::to('/loginpage');
       }
       $error = [];
-      
+
     //   Purchases::edit_purchase($data['p_id'],$data['or_no']);
       //   Purchases::edit_purchase($data['p_id'],$data['or_no']);
       try{
         $item_id = $request->input('bulk.*')[0][0];
         $p_id = PurchasedItems::get_bulk_purchased_items($item_id)[0]->p_id;
-        
+
         $session=Session::get('loggedIn');
         $user_id = $session['id'];
         // dd($user_id);
@@ -83,31 +84,31 @@ class BulkController extends BaseController
         }else{
             \array_push($error , "Subtype is empty");
         }
-        
+
         if(isset($request->get('bulk')['status_id'])){
             $status_id = $request->get('bulk')['status_id'];
         }else{
             \array_push($error , "Status is empty");
         }
-        
+
         if(isset($request->get('bulk')['brand'])){
             $brands = $request->get('bulk')['brand'];
         }else{
             \array_push($error , "Brand is empty");
         }
-        
+
         if(isset($request->get('bulk')['details'])){
             $details = $request->get('bulk')['details'];
         }else{
             \array_push($error , "Details is empty");
         }
-        
+
         if(isset($request->get('bulk')['model'])){
             $model = $request->get('bulk')['model'];
         }else{
             \array_push($error , "Model is not filled");
         }
-        
+
         if(isset($request->get('bulk')['or_no'])){
             $or_no = $request->get('bulk')['or_no'];
         }else{
@@ -119,8 +120,8 @@ class BulkController extends BaseController
         }else{
             \array_push($error , "Supplier is not filled");
         }
-        
-        
+
+
         // $status_id = $request->get('bulk')['status_id'];
         // $unit_id = $request->get('bulk')['unit_id'];
         // $brands = $request->get('bulk')['brand'];
@@ -152,7 +153,7 @@ class BulkController extends BaseController
 
             $count++;
         }
-        
+
         //counter for qty added
         $ctr = 0;
 
@@ -162,11 +163,11 @@ class BulkController extends BaseController
         }
         $purchasedItem = PurchasedItems::find($item_id);
         if($purchasedItem->qty_added == null){
-            $purchasedItem->qty_added = $ctr;      
+            $purchasedItem->qty_added = $ctr;
         } else {
             $purchasedItem->qty_added = $purchasedItem->qty_added+$ctr;
         }
-        
+
         $purchasedItem->save();
 
         if(is_null(Purchases::find($p_id)->or_no)){
@@ -191,10 +192,10 @@ class BulkController extends BaseController
               ->with('error' , 'Database cannot read input value.')
               ->with('error_info' , $qe->getMessage());
             //   ->with('target' , '#singleAdd');
-        }   
+        }
     }
 
-    
+
     public function fetchBulkPurchases($id = 0){
         $data['purchases'] = PurchasedItems::get_bulk_purchased_items($id);
         echo json_encode($data);

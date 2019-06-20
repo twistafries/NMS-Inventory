@@ -403,7 +403,7 @@ body{
                         @if( $item_id != 0)
                         output += '<td>' + {{ $item_id }} + ' <input type="hidden" name="bulk[item_id][]" id="item_id' + count + '" class="name" value="' +  {{ $item_id }}  + '" /></td>';
                         @endif
-                        output += '<td>' + ' <span style="color:red">*</span><input type="text" onchange="snValidate()" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
+                        output += '<td>' + ' <span style="color:red">*</span><input type="text" onchange="snValidation(this)" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
                         output += '<td> <input type="hidden" name="bulk[subtype_id][]" id="subtype_id' + count + '" class="subtype_id" value="' + subtype_id + '" />' + subtype_name + '</td>';
                         output += '<td> <input type="hidden" name="bulk[status_id][]" id="status_id' + count + '" class="status_id" value="' + status_id + '" />' + status_name + '</td>';
                         output += '<td>' + brand + ' <input type="hidden" name="bulk[brand][]" id="brand' + count + '" class="name" value="' + brand + '" /></td>';
@@ -551,4 +551,21 @@ function startDateEnable(){
     }
 </script>
 
+
+<script type="text/javascript">
+
+    let listNames = [@foreach ($SN as $sn)"{{$sn->serial_no}}",@endforeach""];
+    function snValidation(sel) {
+
+
+    var startList = document.getElementsByClassName("serial_no");
+       if(listNames.includes(sel.value)){
+         sel.setCustomValidity('Please Enter valid Serial Number');
+
+       }else{
+         sel.setCustomValidity("");
+       }
+       listNames.push(sel.value);
+    }
+</script>
 @endsection

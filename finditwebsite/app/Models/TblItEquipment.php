@@ -505,4 +505,11 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_serial_no($params = null){
+        $query = \DB::table('it_equipment')
+        -> select('serial_no')
+        -> get();
+        return $query;
+    }
+
 }

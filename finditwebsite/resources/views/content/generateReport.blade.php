@@ -38,11 +38,11 @@
       <div class="row mb-4">
         <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">From:</label>
-          <input type="date" id="start_date" value="" style="width: 10rem;">
+          <input type="date" id="start_date" value="" onchange="startDateEnable()" style="width: 10rem;">
         </div>
         <div class="col-3 text-right">
           <label class="font-weight-bolder text-uppercase text-left">To:</label>
-          <input type="date" id="end_date" value="" style="width: 10rem;">
+          <input type="date" id="end_date" value="" onchange="endDateEnable()" style="width: 10rem;">
         </div>
       </div>
       <div class="row" style="font-size: 16px;">
@@ -667,6 +667,38 @@
               for (var i = 0; i < endList.length; i++) {
                endList[i].value = document.getElementById("end_date").value;
               }
+            }
+        </script>
+        <script type="text/javascript">
+        function startDateEnable(){
+              var date = $("#start_date").val();
+              var dtToday = new Date(date);
+
+              var month = dtToday.getMonth() + 1;
+              var day = dtToday.getDate()+1;
+              var year = dtToday.getFullYear();
+              if (month < 10)
+                  month = '0' + month.toString();
+              if (day < 10)
+                  day = '0' + day.toString();
+
+              var today = year + '-' + month + '-' + day;
+              $('#end_date').attr('min', today);
+          }
+          function endDateEnable(){
+                var date = $("#end_date").val();
+                var dtToday = new Date(date);
+
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate()+1;
+                var year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+
+                var today = year + '-' + month + '-' + day;
+                $('#start_date').attr('max', today);
             }
         </script>
 
