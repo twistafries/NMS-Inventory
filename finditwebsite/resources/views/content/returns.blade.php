@@ -35,13 +35,13 @@
             <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
-                  <a class="nav-link" href="{!! url('/purchases') !!}">Orders and Purchases</a>
+                  <a class="nav-link" href="{!! url('/purchases') !!}">Ordered Items</a>
                 </li>
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Items</a>
                 </li>
                 <li class="nav-item" style="margin-right: 5px;">
-                  <a class="nav-link active" href="{!! url('/returns') !!}">Returns</a>
+                  <a class="nav-link active" href="{!! url('/returns') !!}">Returns to Supplier</a>
                 </li>
               </ul>
             </div>

@@ -36,7 +36,7 @@
             <div class="container-fluid">
               <ul class="nav nav-pills nav-justified">
                 <li class="nav-item" style="margin-right: 5px;">
-                  <a class="nav-link active" href="{!! url('/purchases') !!}">Orders and Purchases</a>
+                  <a class="nav-link active" href="{!! url('/purchases') !!}">Ordered Items</a>
                 </li>
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px;">
                   <a class="nav-link" href="{!! url('/receivedPurchases') !!}">Received Items</a>
@@ -45,7 +45,7 @@
                   <a class="nav-link" href="{!! url('/incompleteOrders') !!}">Incomplete Orders</a>
                 </li> -->
                 <li class="nav-item" style="background: #DEDEDE; margin-right: 5px; ">
-                  <a class="nav-link" href="{!! url('/returns') !!}">Returns</a>
+                  <a class="nav-link" href="{!! url('/returns') !!}">Returns to Supplier</a>
                 </li>
               </ul>
             </div>
@@ -466,7 +466,7 @@ RAM:  </textarea>
                     @endif
                     @if($purchase->or_no!=null && $item->qty_added == $item->qty)
                     <td class="text-right table-success">
-                        <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
+                        <span class="fas fa-check" style="padding-right: 5px"></span>Already Added to Inventory
                     </td>
                     @elseif($purchase->or_no!=null && $item->qty_added < $item->qty)
                     <td><a href="{!! url('/fetchID/'.$item->id); !!}" class="btn btn-info p-2">Add Pending Items ({{$item->qty - $item->qty_added}} of {{$item->qty}}) left</a></td>
@@ -491,7 +491,7 @@ RAM:  </textarea>
 
                       @if($purchase->or_no!=null && $item->qty_added == $item->qty)
                       <td data-toggle="modal" data-target="#pc{{$unit->unit_number}}" style="cursor: pointer;">
-                          <span class="fas fa-check" style="padding-right: 5px"></span>Already Added To The Inventory
+                          <span class="fas fa-check" style="padding-right: 5px"></span>Already Added to Inventory
                       </td>
                       @endif
 
@@ -565,7 +565,7 @@ RAM:  </textarea>
               <div class="modal-footer">
                   @if($item->or_no === null)
                   <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#">Save Changes</button>
-                  <button type="submit" class="btn btn-danger" data-toggle="modal"  data-target="#deleteModal"  onclick="fetch({!! $item->id !!})">Delete Purchase Item</button>
+                  <button type="submit" class="btn btn-danger" data-toggle="modal"  data-target="#deleteModal"  onclick="fetch({!! $item->id !!})">Delete Purchased Item</button>
                   @endif
                   <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#">Cancel</button>
               </div>

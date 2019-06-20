@@ -225,7 +225,7 @@
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
                                         @if( $item->equipment_id != null )
-                                            <h5 class="modal-title">Mark {{ $item->model }} {{ $item->brand }} {{ $item->subtype }} as Available?</h5>
+                                            <h5 class="modal-title">Make Available: {{ $item->model }} {{ $item->brand }} {{ $item->subtype }} </h5>
                                         @elseif($item->pc_number != null)
                                         <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
                                         @endif
@@ -246,6 +246,7 @@
                                             @else
                                                 <input type="hidden" name="equipment_id" value="{!! $item->equipment_id !!}">
                                             @endif
+                                            <h6>Are you sure you want to mark this item as available?</h6>
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
@@ -262,7 +263,7 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Confirm</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
@@ -276,9 +277,9 @@
                                 <div class="modal-content" style="height:450px;">
                                     <div class="modal-header">
                                         @if( $item->equipment_id != null )
-                                            <h5 class="modal-title">For Repair {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                            <h5 class="modal-title">Mark item: {{ $item->model }} {{ $item->brand }} {{ $item->subtype }} for repair</h5>
                                         @elseif($item->pc_number != null)
-                                        <h5 class="modal-title">For Repair {{ $item->pc_number }} {{ $item->unit_name }}</h5>
+                                        <h5 class="modal-title">Mark Unit: {{ $item->pc_number }} {{ $item->unit_name }} for repair?</h5>
                                         @endif
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -296,6 +297,7 @@
                                             @elseif($item->pc_number != null)
                                             <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                             @endif
+                                            <h6>Are you sure you want to mark this item for repair?</h6>
                                             <div class="col-sm-12">
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
@@ -308,7 +310,7 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Confirm</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
@@ -343,7 +345,7 @@
                                             <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                             @endif
                                             <div class="col-sm-12">
-                                              <h6> Are you sure you want to mark {{ $item->model }} {{ $item->brand }} {{ $item->subtype }} as decommissioned?</h6>
+                                              <h6> Are you sure you want to decommission item: {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}?</h6>
                                                 <ul class="list-group">
                                                     <li class="list-group-item">
                                                         <h6 class="text-uppercase">Remarks:</h6>
@@ -356,7 +358,7 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                        <button type="submit" class="btn btn-primary text-uppercase">Confirm</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                     </div>
@@ -371,7 +373,7 @@
                             <div class="modal-content" style="height:450px;">
                                 <div class="modal-header">
                                     @if( $item->equipment_id != null )
-                                        <h5 class="modal-title">Missing Item: {{ $item->model }} {{ $item->brand }} {{ $item->subtype }}</h5>
+                                        <h5 class="modal-title">Missing Item: ({{ $item->model }} {{ $item->brand }} {{ $item->subtype }})</h5>
                                     @else
                                     <h5 class="modal-title">Missing Unit: {{ $item->pc_number }} {{ $item->unit_name }}</h5>
                                     @endif
@@ -390,6 +392,7 @@
                                         @else
                                         <input type="hidden" name="unit_id" value="{!! $item->pc_number !!}">
                                         @endif
+                                        <h6>Are you sure you want to mark this item as missing?</h6>
                                         <div class="col-sm-12">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
@@ -403,7 +406,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+                                    <button type="submit" class="btn btn-primary text-uppercase">Confirm</button>
                                     </form>
                                     <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
                                 </div>
@@ -470,10 +473,6 @@
         </div>
       </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Issue items</button>
-      </div>
 
     </div>
   </div>
@@ -608,7 +607,7 @@
                         <input type="hidden" name="unit_id" id="availableSystemUnitId">
                             <div class="warning-content" style="text-align: center;">
                                 <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
-                                <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="AvailableName"></h4>  as Available?</span></pre>
+                                <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment<h4 id="AvailableName"></h4>  as Available?</span></pre>
                             </div>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-warning text-uppercase" data-toggle="collapse"

@@ -560,7 +560,7 @@ function startDateEnable(){
 
     var startList = document.getElementsByClassName("serial_no");
        if(listNames.includes(sel.value)){
-         sel.setCustomValidity('Please Enter valid Serial Number');
+         sel.setCustomValidity('Duplicate serial number detected! Enter a unique serial number.');
 
        }else{
          sel.setCustomValidity("");
