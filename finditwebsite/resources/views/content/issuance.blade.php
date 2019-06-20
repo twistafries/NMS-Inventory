@@ -142,7 +142,7 @@
 
                         @foreach ($issuance as $issuance)
                         @if($issuance->issued_until < Carbon::today()->format('m-d-Y') && $issuance->issued_until != null && $issuance->returned_at == null)
-                              <tr class="table-danger" data-toggle="modal" data-target="#viewItemModal">
+                              <tr class="table-warning" data-toggle="modal" data-target="#viewItemModal">
                         @elseif($issuance->returned_at != null)
                               <tr class="table-success" data-toggle="modal" data-target="#viewItemModal">
 

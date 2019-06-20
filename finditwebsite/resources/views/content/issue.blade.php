@@ -181,7 +181,7 @@
                 <tbody>
                   @foreach ($issued[$employee->id] as $item)
                   @if($item->issued_until < Carbon::today() && $item->issued_until != null )
-                        <tr class="table-danger">
+                        <tr class="table-warning">
                   @else
                         <tr>
                   @endif

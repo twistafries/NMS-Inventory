@@ -348,4 +348,16 @@
             $("span", this).toggleClass("fas fa-angle-right fas fa-angle-down");
         });
     </script>
+
+    <script>
+      function ShowLocalDate(){
+        var dNow = new Date();
+        var localdate = 'Date:' + (dNow.getMonth()+1) + '/'
+                        + dNow.getDate() + '/'
+                        + dNow.getFullYear() + ' '
+                        + dNow.getHours() + ':'
+                        + dNow.getMinutes();
+        $('.date').text(localdate)
+      }
+    </script>
 @stop
