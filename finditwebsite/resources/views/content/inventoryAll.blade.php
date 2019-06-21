@@ -686,8 +686,8 @@
     <!-- Issue Modal -->
     <div class="modal fade" id="issue-modal" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
-            <div class="modal-content">
+        <div class="modal-dialog " role="document" style=" width: 1000px;">
+            <div class="modal-content" style=" height: 500px;">
                 <div class="modal-header">
                     <div class="container">
                         <h5 class="modal-title" id="ModalTitle">Issue Item Modal</h5>
@@ -732,7 +732,7 @@
                         <hr>
                         <div class="row row-details">
                             <div class="col col-4 detail-header text-uppercase">Issue Until</div>
-                            <input type="date" class="form-control" name="issued_until" id="issued_until" >
+                            <input type="date" class="form-control" min="{{Carbon::now()->format('Y-m-d')}}" name="issued_until" id="issued_until" >
                             <br>
                             <!-- <button type="button" class="btn btn-secondary text-uppercase"> Issue Item Indefinetely </button> -->
                         </div>

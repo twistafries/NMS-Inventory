@@ -445,7 +445,7 @@
                           </tr>
                           <tr>
                             <td><input class=form-control autocomplete='off' list="items" name="items[]" id="inputItems" required></td>
-                            <td><input name="issued_date[]" type="date" class="form-control"></td>
+                            <td><input name="issued_date[]" type="date" min="{{Carbon::now()->format('Y-m-d')}}" class="form-control"></td>
                           </td><td>
                           </tr>
                         </tbody>

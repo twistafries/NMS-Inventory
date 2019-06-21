@@ -241,7 +241,7 @@
                                                 <td>
                                                   <div class="col-md-10" style="padding: 30px 15px;">
                                                     <div class="input-group mb-3">
-                                                    <input  name="issued_date[]" type="date" class="form-control" >
+                                                    <input  name="issued_date[]" type="date" class="form-control" min="{{Carbon::now()->format('Y-m-d')}}">
                                                     </div>
                                                   </div>
                                                 </td>

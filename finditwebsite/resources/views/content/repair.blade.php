@@ -87,7 +87,7 @@
                         <tr>
 
                             <th>ID</th>
-                            <th>Details</th>
+                            <th>Brand-Model/Label</th>
                             <th>Serial No</th>
                             <th>OR No</th>
                             <th>Date Added</th>
@@ -103,7 +103,7 @@
                         <tr>
 
                             <td> Item#{{ $for_repair->id }} </td>
-                            <td> {{ $for_repair->details }} </td>
+                            <td> {{ $for_repair->brand }} {{ $for_repair->model }} </td>
                             <td> {{ $for_repair->serial_no }} </td>
                             <td> {{ $for_repair->or_no }} </td>
                             <td> {{ $for_repair->created_at }} </td>
@@ -170,25 +170,15 @@
         $('#myDataTable1').DataTable();
     } );
     </script> -->
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable1').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable2').DataTable();
-    } );
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myDataTable3').DataTable();
-    } );
+    <script>
+        $(document).ready(function() {
+            $('#myDataTable1').DataTable({
+                "pagingType": "full_numbers",
+                responsive: true,
+                "order": [[ 5, "desc" ]]
+            });
+        });
+
     </script>
 
 @stop

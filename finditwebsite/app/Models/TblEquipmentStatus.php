@@ -39,9 +39,9 @@ class TblEquipmentStatus extends Model
         -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
         -> leftjoin('users' , 'users.id', '=', 'it_equipment.user_id')
         -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
-        -> select('it_equipment.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat',  'it_equipment_subtype.name as subtype',  'it_equipment_type.name as type', 'supplier.supplier_name as supplier')
+        -> select('it_equipment.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat',  'it_equipment_subtype.name as subtype',  'it_equipment_type.name as type', 'it_equipment.updated_at as updated_at', 'supplier.supplier_name as supplier')
         -> where('status_id' , '=' , '3')
-        -> orderBy('updated_at' , 'desc')
+        -> orderBy('it_equipment.updated_at' , 'desc')
         -> get();
 
         return $query;
@@ -83,7 +83,7 @@ class TblEquipmentStatus extends Model
         -> leftjoin('users' , 'users.id', '=', 'system_units.user_id')
         -> select('system_units.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat')
         -> where('status_id' , '=' , '3')
-        -> orderBy('created_at' , 'desc')
+        -> orderBy('updated_at' , 'desc')
         -> get();
         return $query;
       }

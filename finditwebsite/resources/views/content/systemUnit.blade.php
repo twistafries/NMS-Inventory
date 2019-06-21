@@ -597,7 +597,7 @@
                           <td>
                               <div class="col-md-10" style="padding: 30px 15px;">
                                   <div class="input-group mb-3">
-                                      <input  name="issued_until" type="date" class="form-control" required>
+                                      <input  name="issued_until" type="date" min="{{Carbon::now()->format('Y-m-d')}}" class="form-control" required>
                                   </div>
                               </div>
                           </td>
@@ -894,8 +894,8 @@
 <!-- Issue Item Modal -->
 <div class="modal fade" id="issue-modal" tabindex="-1" role="dialog" aria-labelledby="modal-{!! $equipment->model !!}"
                         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document" style=" width: 1000px;">
-            <div class="modal-content">
+        <div class="modal-dialog " role="document" style=" width: 1000px;">
+            <div class="modal-content" style=" height: 500px;">
                 <div class="modal-header">
                     <div class="container">
                         <h5 class="modal-title" id="ModalTitle">Issue System Unit</h5>
@@ -912,12 +912,7 @@
                         <div class="row">
                             <input type="hidden" name="su.id" id="eq_id">
                             <div class="col col-2 detail-header text-uppercase">Issue To</div>
-                            <select id="departmentDropdown" class="custom-select">
-                                <option value="">Any Department</option>
-                                @foreach($departments as $department)
-                                <option value="">{{$department->name}}</option>
-                                @endforeach
-                            </select>
+
                             <select name="issued_to" id="employeeDropdown" class="custom-select" placeholder="--Select Employee--">
                                 @foreach($active_employees as $employee)
                                 <option value="{!! $employee->id !!}">ID:{{$employee->id}} | {{$employee->fname}} {{$employee->lname}}</option>
@@ -929,7 +924,7 @@
                         <hr>
                         <div class="row row-details">
                             <div class="col col-4 detail-header text-uppercase">Issue Until</div>
-                            <input type="date" class="form-control" name="issued_until" id="issued_until" >
+                            <input type="date" class="form-control" name="issued_until" min="{{Carbon::now()->format('Y-m-d')}}" id="issued_until" >
                             <br>
                         </div>
 
@@ -1051,7 +1046,6 @@
                         '<input type="hidden" name="id" value="' + unit_id + '" >' +
                         '<input type="hidden" name="status_id" value="' + new_status_id + '" >' +
                         '<button type="submit" class="btn btn-success text-uppercase">Yes</button>' +
-                        '<button type="button" class="btn btn-info text-uppercase" data-toggle="modal" data-target="#viewItemModal">View Item Modal</button>' +
                         '<button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal" onclick="emptyContent()">Cancel</button>'
 
                         ;
