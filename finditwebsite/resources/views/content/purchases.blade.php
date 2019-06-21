@@ -207,7 +207,7 @@
                     <div class="input-group col-2" style="margin-top: 1rem; margin-bottom: 2rem;">
                       <div class="">
                         <p class="card-title text-dark" style="font-size: 14px;"><span style="color:red">*</span>Supplier:</p>
-                        <input  list="suppliers" name="supplier" id="supplier_name" required style="width: 9rem;">
+                        <input  list="suppliers" name="supplier" id="supplier_name" required style="width: 9rem;" autofocus>
                           <datalist id="suppliers">
                             <select>
                             @foreach ($supplier as $supplier)
@@ -311,7 +311,7 @@ RAM:  </textarea>
                                           <tr>
                                               <td><input type="number" name="qty" value="" min="1" style="width: 3rem;"></td>
                                                <td>
-                                               <input  list="suppliers" name="supplier" required style="width: 9rem;">
+                                               <input  list="suppliers" name="supplier" required style="width: 9rem;" autofocus>
                                                  <datalist id="suppliers">
                                                    <select>
                                                    @foreach ($supp as $sup)

@@ -28,16 +28,16 @@
                             <img src="../assets/images/logo/logo2.png" alt="FindIt Logo" class="responsive" width="600" height="400">
                             <h4 class="card-title text-center login-newMedia">New Media Services</h4>
                             <form action="{!! url('/login') !!}" method="post" id="loginForm">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }} " >
                                 <div class="form-group">
                                     <center>
-                                      <input type="email" name="email" class="form-control" placeholder="Email">
+                                      <input type="email" name="email" class="form-control" placeholder="Email" autofocus required>
                                     </center>
                                 </div>
 
                                 <div class="form-group">
                                     <center>
-                                      <input type="password" name="password" class="form-control" placeholder="Password">
+                                      <input type="password" name="password" class="form-control" placeholder="Password" required>
                                       @if(Session::has('errorLogin'))
                                           <br><center>
                                           <small class="text-warning">{{ Session::get('errorLogin') }}</center></small>

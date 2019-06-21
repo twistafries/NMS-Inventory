@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 13, 2019 at 09:21 AM
--- Server version: 5.7.24
--- PHP Version: 7.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Jun 21, 2019 at 08:01 AM
+-- Server version: 10.3.15-MariaDB
+-- PHP Version: 7.1.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `findit`
+-- Database: `nmsfindit`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +28,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity_logs`
 --
 
-DROP TABLE IF EXISTS `activity_logs`;
-CREATE TABLE IF NOT EXISTS `activity_logs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `activity_logs` (
+  `id` bigint(20) NOT NULL,
   `done_by` varchar(100) NOT NULL,
   `data` bigint(20) DEFAULT NULL,
   `system_unit` bigint(20) DEFAULT NULL,
@@ -40,12 +39,8 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
   `to_status` varchar(20) DEFAULT NULL,
   `activity` varchar(255) NOT NULL,
   `field` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`done_by`),
-  KEY `data` (`data`),
-  KEY `system_unit` (`system_unit`)
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,16 +49,13 @@ CREATE TABLE IF NOT EXISTS `activity_logs` (
 -- Table structure for table `departments`
 --
 
-DROP TABLE IF EXISTS `departments`;
-CREATE TABLE IF NOT EXISTS `departments` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `departments` (
+  `id` tinyint(4) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `status` varchar(16) NOT NULL DEFAULT 'active',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `status` varchar(16) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `departments`
@@ -81,20 +73,16 @@ INSERT INTO `departments` (`id`, `name`, `created_at`, `updated_at`, `status`) V
 -- Table structure for table `employees`
 --
 
-DROP TABLE IF EXISTS `employees`;
-CREATE TABLE IF NOT EXISTS `employees` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `employees` (
+  `id` bigint(20) NOT NULL,
   `fname` varchar(55) NOT NULL,
   `lname` varchar(55) NOT NULL,
   `email` varchar(255) NOT NULL,
   `dept_id` tinyint(4) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `status` varchar(16) NOT NULL DEFAULT 'active',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `dept_id` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+  `status` varchar(16) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employees`
@@ -132,15 +120,12 @@ INSERT INTO `employees` (`id`, `fname`, `lname`, `email`, `dept_id`, `created_at
 -- Table structure for table `equipment_status`
 --
 
-DROP TABLE IF EXISTS `equipment_status`;
-CREATE TABLE IF NOT EXISTS `equipment_status` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `equipment_status` (
+  `id` tinyint(4) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `equipment_status`
@@ -161,42 +146,43 @@ INSERT INTO `equipment_status` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `inventory_concerns`
 --
 
-DROP TABLE IF EXISTS `inventory_concerns`;
-CREATE TABLE IF NOT EXISTS `inventory_concerns` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `inventory_concerns` (
+  `id` bigint(20) NOT NULL,
   `name_component` bigint(20) DEFAULT NULL,
   `system_unit` bigint(20) DEFAULT NULL,
   `status_id` tinyint(4) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `last_user` bigint(20) DEFAULT NULL,
   `added_by` bigint(20) NOT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `remarks` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name_component` (`name_component`),
-  KEY `system_unit` (`system_unit`),
-  KEY `status_id` (`status_id`),
-  KEY `last_user` (`last_user`),
-  KEY `added_by` (`added_by`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  `remarks` varchar(120) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inventory_concerns`
 --
 
 INSERT INTO `inventory_concerns` (`id`, `name_component`, `system_unit`, `status_id`, `created_at`, `last_user`, `added_by`, `updated_at`, `remarks`) VALUES
-(1, 82, NULL, 3, '2019-04-29 08:15:04', NULL, 1, NULL, 'Loose monitor hinge, in-house tech.'),
-(2, NULL, 1, 2, '2019-04-16 19:02:51', NULL, 1, NULL, NULL),
-(3, NULL, 2, 2, '2019-04-16 19:02:51', NULL, 3, NULL, NULL),
-(4, NULL, 3, 2, '2019-04-20 19:19:13', NULL, 2, NULL, NULL),
-(5, NULL, 4, 2, '2019-04-16 19:03:43', NULL, 1, NULL, NULL),
-(6, 33, NULL, 7, '2019-04-20 19:19:13', NULL, 3, NULL, 'Waranty expired, cracked screen. Water damage.'),
-(7, 68, NULL, 1, '2019-04-28 13:17:20', 4, 2, NULL, NULL),
-(8, 68, NULL, 2, '2019-05-01 00:00:00', NULL, 2, NULL, NULL),
-(9, NULL, 5, 2, '2019-05-06 19:36:29', NULL, 2, NULL, NULL),
-(10, NULL, 6, 2, '2019-05-06 19:36:29', NULL, 2, NULL, NULL),
-(11, 82, NULL, 1, '2019-05-07 13:20:05', NULL, 2, NULL, 'Returned from repair.'),
-(12, 82, NULL, 2, '2019-05-13 00:00:00', NULL, 1, NULL, NULL);
+(1, 307, NULL, 3, '2019-01-09 00:00:00', NULL, 3, NULL, 'Broken buttons.'),
+(2, 332, NULL, 4, '2019-01-10 00:00:00', NULL, 4, NULL, 'Broken touchpad.'),
+(3, 335, NULL, 4, '2019-01-19 00:00:00', NULL, 2, NULL, 'Broken speakers.'),
+(4, 284, NULL, 3, '2019-02-08 00:00:00', NULL, 1, NULL, 'Broken camera.'),
+(5, 59, NULL, 3, '2019-02-18 00:00:00', NULL, 2, NULL, 'Broken keys.'),
+(6, 283, NULL, 3, '2019-02-21 00:00:00', NULL, 3, NULL, 'Broken sensor.'),
+(7, 30, NULL, 3, '2019-03-18 00:00:00', NULL, 4, NULL, 'Broken socket.'),
+(8, 67, NULL, 3, '2019-03-18 19:16:55', NULL, 4, NULL, 'Broken buttons.'),
+(9, 60, NULL, 3, '2019-03-22 00:00:00', NULL, 2, NULL, 'Broken keys.'),
+(10, 21, NULL, 3, '2019-03-26 00:00:00', NULL, 2, NULL, 'Broken socket.'),
+(11, 25, NULL, 3, '2019-03-29 00:00:00', NULL, 1, NULL, 'Won\'t turn on.'),
+(12, 34, NULL, 3, '2019-04-08 00:00:00', NULL, 1, NULL, 'Broken socket.'),
+(13, 248, NULL, 4, '2019-04-18 00:00:00', NULL, 2, NULL, 'Broken socket.'),
+(14, 333, NULL, 3, '2019-04-25 00:00:00', NULL, 3, NULL, 'Power button is malfunctioning.'),
+(15, 308, NULL, 3, '2019-04-30 00:00:00', NULL, 3, NULL, 'Broken buttons.'),
+(16, 297, NULL, 3, '2019-05-15 00:00:00', NULL, 4, NULL, 'Broken charging pin.'),
+(17, 298, NULL, 3, '2019-05-20 00:00:00', NULL, 3, NULL, 'Broken charging pin.'),
+(18, 213, NULL, 4, '2019-05-22 00:00:00', NULL, 2, NULL, 'Wrong item delivered.'),
+(19, 120, NULL, 4, '2019-05-25 00:00:00', NULL, 1, NULL, 'Wrong item delivered.'),
+(20, 212, NULL, 4, '2019-05-27 00:00:00', NULL, 3, NULL, 'Wrong item delivered.');
 
 -- --------------------------------------------------------
 
@@ -204,24 +190,18 @@ INSERT INTO `inventory_concerns` (`id`, `name_component`, `system_unit`, `status
 -- Table structure for table `issuance`
 --
 
-DROP TABLE IF EXISTS `issuance`;
-CREATE TABLE IF NOT EXISTS `issuance` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `issuance` (
+  `id` bigint(20) NOT NULL,
   `equipment_id` bigint(20) DEFAULT NULL,
   `unit_id` bigint(20) DEFAULT NULL,
   `issued_to` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `issued_until` date DEFAULT NULL,
   `returned_at` date DEFAULT NULL,
-  `remarks` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `unit_id` (`unit_id`),
-  KEY `issued_to` (`issued_to`),
-  KEY `user_id` (`user_id`),
-  KEY `equipment_id` (`equipment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
+  `remarks` varchar(120) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `issuance`
@@ -297,9 +277,8 @@ INSERT INTO `issuance` (`id`, `equipment_id`, `unit_id`, `issued_to`, `user_id`,
 -- Table structure for table `it_equipment`
 --
 
-DROP TABLE IF EXISTS `it_equipment`;
-CREATE TABLE IF NOT EXISTS `it_equipment` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `it_equipment` (
+  `id` bigint(20) NOT NULL,
   `subtype_id` tinyint(4) NOT NULL,
   `brand` varchar(50) NOT NULL,
   `model` varchar(50) NOT NULL,
@@ -311,19 +290,11 @@ CREATE TABLE IF NOT EXISTS `it_equipment` (
   `unit_id` bigint(20) DEFAULT NULL,
   `warranty_start` date DEFAULT NULL,
   `warranty_end` date DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `user_id` bigint(20) NOT NULL,
-  `status_id` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `serial_no` (`serial_no`),
-  UNIQUE KEY `imei_or_macaddress` (`imei_or_macaddress`),
-  KEY `unit_id` (`unit_id`),
-  KEY `status_id` (`status_id`),
-  KEY `subtype_id` (`subtype_id`),
-  KEY `user_id` (`user_id`),
-  KEY `it_equipment_ibfk_9` (`supplier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=latin1;
+  `status_id` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `it_equipment`
@@ -348,20 +319,20 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (18, 4, 'HyperX ', 'Fury 32GB DDR4 RAM', 'HyperX Fury 16GB DDR4 RAM x2', '09UT-DRY7-80M1', '4428', 4, NULL, NULL, '2019-03-02', '2019-04-18', '2019-03-02 19:14:57', NULL, 2, 1),
 (19, 5, 'MSI', '1050Ti 4GB', '4GB; 2 Doors', ' WSD9-DH690', '4428', 4, NULL, NULL, '2019-03-02', '2019-04-18', '2019-03-02 19:14:57', NULL, 2, 1),
 (20, 5, 'Palit', '1050ti 4GB', '1050ti 4GB 2 Doors', ' WSD9-BG750', '4428', 4, NULL, NULL, '2019-03-02', '2019-04-18', '2019-03-02 19:14:57', NULL, 2, 1),
-(21, 2, 'AMD', 'Ryzen 5 2400g with Vega 11 Graphics', 'Socket: AM4\r\n4 Cores\r\n8 Threads\r\n11 GPU Cores\r\n3.6 Base Clock', 'ATY-V87RST-DEQ215', '7894', 3, NULL, NULL, '2019-01-12', '2019-04-28', '2019-01-12 19:13:11', NULL, 2, 3),
+(21, 2, 'AMD', 'Ryzen 5 2400g with Vega 11 Graphics', 'Socket: AM4\r\n4 Cores\r\n8 Threads\r\n11 GPU Cores\r\n3.6 Base Clock', 'ATY-V87RST-DEQ215', '7894', 3, NULL, NULL, '2019-01-12', '2019-04-28', '2019-01-12 19:13:11', '2019-03-26 00:00:00', 2, 3),
 (22, 2, 'AMD', 'Ryzen 5 2600g ', 'Socket: AM4\r\n4 Cores\r\n8 Threads\r\n11 GPU Cores\r\n3.6 Base Clock', 'ATY-V87RST-DEQ220', '7894', 3, NULL, NULL, '2019-01-12', '2019-04-28', '2019-01-12 19:13:11', NULL, 2, 1),
 (23, 2, 'AMD', 'Ryzen 7 1700g ', 'Socket: AM4;\r\n8 Cores;\r\n16 Threads;\r\n3.7 Base Clock', 'ATY-V87RST-SET201', '7894', 3, NULL, NULL, '2019-01-12', '2019-04-28', '2019-01-12 19:13:11', NULL, 2, 1),
 (24, 2, 'Intel', 'i5 9900K', 'Socket: LGA 1151;\r\n8-Core 3.7GHz OC-capable;\r\nTDP: 95W;\r\nNo stock HSF', 'ATY-V87RST-CHR222', '4123', 6, NULL, NULL, '2019-04-03', '2019-04-28', '2019-04-03 19:13:11', NULL, 2, 1),
-(25, 6, 'EVGA', '700', 'EVGA 700W Power Supply', '260-H1-0210-DR', '8724', 5, NULL, NULL, '2019-01-29', '2019-04-28', '2019-01-29 19:16:55', NULL, 2, 3),
+(25, 6, 'EVGA', '700', 'EVGA 700W Power Supply', '260-H1-0210-DR', '8724', 5, NULL, NULL, '2019-01-29', '2019-04-28', '2019-01-29 19:16:55', '2019-03-29 00:00:00', 2, 3),
 (26, 6, 'EVGA', '600', 'EVGA 600W Power Supply', '260-H1-0211-DR', '6278', 4, NULL, NULL, '2019-04-05', '2019-04-28', '2019-04-05 19:16:55', NULL, 2, 1),
 (27, 7, 'ID Cooling', 'DF-12025', 'Noctua 3 120mm fans; 158mm Height.\r\nSocket: AM4\r\nTDP: 140W', 'JHY78-DW2125', '8724', 5, NULL, NULL, '2019-01-29', '2019-04-28', '2019-01-29 19:16:55', NULL, 2, 1),
 (28, 14, 'Apple', 'Iphone 7', '64GB', 'IPH-223345213', '1478', 1, NULL, NULL, '2019-02-17', '2019-04-27', '2019-02-17 19:19:13', NULL, 3, 1),
 (29, 4, 'Kingston ', '4GB DDR4 RAM', 'Kingston 2GB DDR4 RAM x2', '09UT-DRT7-2212', '3578', 4, NULL, NULL, '2019-01-25', '2019-04-18', '2019-01-25 19:14:57', NULL, 2, 1),
-(30, 4, 'HyperX', '16GB DDR4 RAM', 'HyperX Fury 8GB DDR4 RAM x2', '09UT-DRY7-1126', '1687', 5, NULL, NULL, '2019-02-02', '2019-04-18', '2019-02-02 19:14:57', NULL, 2, 3),
+(30, 4, 'HyperX', '16GB DDR4 RAM', 'HyperX Fury 8GB DDR4 RAM x2', '09UT-DRY7-1126', '1687', 5, NULL, NULL, '2019-02-02', '2019-04-18', '2019-02-02 19:14:57', '2019-03-18 00:00:00', 2, 3),
 (31, 3, 'WD', '1TB Hard Drive', 'WD 1TB Hard Drive\r\nUSB Port : USB 3.0/USB 2.0×1\r\nPower Supply : DC 5V (USB bus powered)', 'WD-122C-DDATSG', '6782', 7, NULL, NULL, '2019-03-06', '2020-03-06', '2019-03-06 19:11:35', NULL, 2, 1),
 (32, 1, 'MSI ', 'X470 Motherboard', 'Socket: AM4\r\nChipset: AMD B450\r\nSize: ATX\r\nRAM: 4 Slots, DDR4\r\nPCIe: x16, PCIe 3.0\r\nPorts: USB 3.1, SATA 6Gb/s', ' 601-7577-010B0903272123', '8879', 6, NULL, NULL, '2019-03-07', '2020-03-07', '2019-03-07 19:08:50', NULL, 1, 1),
 (33, 14, 'Apple', 'Iphone 6', 'Space Grey\r\n16GB', 'IPH-1325423', '1478', 1, NULL, NULL, '2017-02-17', '2017-04-27', '2017-02-17 19:19:13', '2019-04-20 19:19:13', 3, 7),
-(34, 7, 'ID-Cooling', 'DF-15025', 'Noctua 3 120mm fans; 158mm Height.\r\nSocket: 1155\r\nTDP: 140W', 'JHY78-DW1121', '5213', 5, NULL, NULL, '2019-01-09', '2019-04-28', '2019-01-09 19:16:55', NULL, 2, 3),
+(34, 7, 'ID-Cooling', 'DF-15025', 'Noctua 3 120mm fans; 158mm Height.\r\nSocket: 1155\r\nTDP: 140W', 'JHY78-DW1121', '5213', 5, NULL, NULL, '2019-01-09', '2019-04-28', '2019-01-09 19:16:55', '2019-04-08 00:00:00', 2, 3),
 (35, 15, 'Microsoft ', 'Windows 10 Pro', 'Windows 10 Pro', '290528961_PH-471404239', '4117', 7, NULL, NULL, '2019-03-11', '2019-04-14', '2019-03-11 19:08:50', NULL, 1, 1),
 (36, 15, 'Microsoft ', 'Windows 10 ', 'Windows 10 ', '290528961_PH-471404126', '4117', 7, NULL, NULL, '2019-03-11', '2019-04-14', '2019-03-11 19:08:50', NULL, 1, 1),
 (37, 13, 'Samsung', 'Galaxy Tab', 'Dark Grey\r\n64GB\r\nAndroid Kitkat', 'SSG-121824', '5224', 2, NULL, NULL, '2019-01-16', '2019-04-27', '2019-01-16 19:19:13', NULL, 3, 2),
@@ -382,13 +353,13 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (55, 7, 'ID-Cooling', 'DF-15025', 'Noctua 3 120mm fans; 158mm Height.\r\nSocket: 1155\r\nTDP: 140W', 'JHY78-DW1122', '5213', 5, NULL, NULL, '2019-01-09', '2019-04-28', '2019-01-09 19:16:55', NULL, 2, 1),
 (56, 10, 'Razer', 'Blackwidow Lite', 'Razer Blackwidow Lite \r\nBrown Key Switches\r\n', 'RZR-1261213', '1477', 6, NULL, NULL, '2019-02-01', '2019-04-28', '2019-02-01 19:16:55', NULL, 2, 1),
 (58, 10, 'Logitech', 'MK445', 'Logitech MK445 Keyboard\r\nBrown Key Switches\r\nRGB Lighting', 'LGT-M12622', '2223', 7, NULL, NULL, '2019-01-21', '2019-04-28', '2019-01-21 19:16:55', NULL, 2, 1),
-(59, 9, 'A4Tech', 'OP-720', '1000 DPI\r\nErgonomic Symmetric Style\r\n3 Mouse Buttons', 'A4-1261221', '1477', 6, NULL, NULL, '2019-02-01', '2018-06-28', '2019-02-01 19:16:55', '2019-04-20 00:00:00', 2, 3),
-(60, 9, 'A4Tech', 'N-708x', '1200 DPI\r\nAmbidextrous Style\r\n4 Mouse button\r\n', 'A4-921222', '1477', 6, NULL, NULL, '2019-02-01', '2018-06-28', '2019-02-01 00:00:00', '2019-04-20 00:00:00', 2, 3),
+(59, 9, 'A4Tech', 'OP-720', '1000 DPI\r\nErgonomic Symmetric Style\r\n3 Mouse Buttons', 'A4-1261221', '1477', 6, NULL, NULL, '2019-02-01', '2018-06-28', '2018-12-03 19:16:55', '2019-02-18 00:00:00', 2, 3),
+(60, 9, 'A4Tech', 'N-708x', '1200 DPI\r\nAmbidextrous Style\r\n4 Mouse button\r\n', 'A4-921222', '1477', 6, NULL, NULL, '2019-02-01', '2018-06-28', '2018-11-21 00:00:00', '2019-03-22 00:00:00', 2, 3),
 (62, 10, 'A4Tech', 'KD-650', 'Blue Backlight Keyboard\r\nGreen Key Switches', 'RZR-1262212', '1477', 6, NULL, NULL, '2019-02-01', '2019-04-28', '2019-02-01 19:16:55', NULL, 2, 1),
 (63, 10, 'A4Tech', 'KD-126', 'LED Backlight\r\nLaser-inscribed Keys\r\nUltra Slim ', 'RZR-1263311', '1477', 6, NULL, NULL, '2019-02-01', '2019-04-28', '2019-02-01 19:16:55', NULL, 2, 1),
 (65, 9, 'A4Tech', 'G3-220N', 'Wireless mouse\r\n1800 DPI\r\nErgonomic Symmetric Style\r\n3 Mouse Buttons', 'A4-1261132', '2234', 6, NULL, NULL, '2019-04-23', '2019-04-28', '2019-04-23 19:16:55', NULL, 2, 1),
 (66, 11, 'Lenovo', '19\" Curved Monitor', 'NVISION 24\" Curved Monitor\r\n75 Refresh Rate\r\n1280 x 1024 Screen Resolution', 'NVS-C991122', '4755', 7, NULL, NULL, '2019-02-12', '2019-04-28', '2019-02-12 19:16:55', NULL, 2, 1),
-(67, 11, 'BenQ', '24\" LED Monitor', 'BenQ 24\" LED Monitor\r\n144hz Refresh Rate\r\n1920 x 1080 Resolution', 'BEN-C212222', '9987', 4, NULL, NULL, '2018-02-28', '2018-05-28', '2018-02-28 19:16:55', '2019-04-16 19:16:55', 2, 3),
+(67, 11, 'BenQ', '24\" LED Monitor', 'BenQ 24\" LED Monitor\r\n144hz Refresh Rate\r\n1920 x 1080 Resolution', 'BEN-C212222', '9987', 4, NULL, NULL, '2018-02-28', '2018-05-28', '2018-02-28 19:16:55', '2019-03-18 19:16:55', 2, 3),
 (68, 14, 'Apple', 'iPhone 8 Plus', 'CPU: Apple A11 Bionic\r\nRAM: 3GB\r\nStorage: 64GB', 'XY6XYXZ7WZ01', '0499', 1, '123456789012345', NULL, '2019-01-07', '2020-01-07', '2019-01-07 15:32:24', '2019-05-01 00:00:00', 3, 2),
 (70, 14, 'Apple', 'iPhone 8 Plus', 'CPU: Apple A11 Bionic\r\nRAM: 3GB\r\nStorage: 64GB', 'XY6XYXZ7WZ02', '0499', 1, '123456789098765', NULL, '2019-01-07', '2020-01-07', '2019-01-07 15:38:33', '2019-05-01 00:00:00', 3, 2),
 (71, 14, 'Apple', 'iPhone 8', 'Storage: 64GB\r\nRAM: 2GB\r\nCPU: A11 with Bionic chip with 64-bit architecture', 'XY6XYXZ7WZ03', '0499', 1, '123456789034567', NULL, '2018-04-04', '2019-04-04', '2018-04-04 15:42:18', '2019-05-01 00:00:00', 3, 2),
@@ -578,13 +549,13 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (277, 12, 'Dell', 'Inspiron 15 7000', 'CPU: 2.3 GHz Intel Core i5-6300HQ (quad-core, 3MB Cache, up to 3.2GHz)\r\nGraphics: Nvidia GeForce GTX 960M (4GB GDDR5 RAM), Intel HD Graphics 530\r\nRAM: 8GB DDR3L (1,600MHz)\r\nStorage: 1TB 5,400 RPM hybrid drive w/ 8GB cache', 'LPTP-DELLINSP346-0003', '7098', 3, NULL, NULL, '2019-05-24', '2020-05-24', '2019-05-24 00:00:00', NULL, 3, 1);
 INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `serial_no`, `or_no`, `supplier_id`, `imei_or_macaddress`, `unit_id`, `warranty_start`, `warranty_end`, `created_at`, `updated_at`, `user_id`, `status_id`) VALUES
 (278, 12, 'Dell', 'Inspiron 15 7000', 'CPU: 2.3 GHz Intel Core i5-6300HQ (quad-core, 3MB Cache, up to 3.2GHz)\r\nGraphics: Nvidia GeForce GTX 960M (4GB GDDR5 RAM), Intel HD Graphics 530\r\nRAM: 8GB DDR3L (1,600MHz)\r\nStorage: 1TB 5,400 RPM hybrid drive w/ 8GB cache', 'LPTP-DELLINSP346-0004', '7098', 3, NULL, NULL, '2019-05-24', '2020-05-24', '2019-05-24 00:00:00', NULL, 3, 1),
-(283, 14, 'Apple', 'iPhone 7', 'Storage: 32GB\r\nCPU: Apple A10 Fussion\r\nRAM: 2GB', 'APPLE-IPH345-78901', '0127', 1, '987654321054399', NULL, '2017-01-26', '2018-10-20', '2017-01-26 15:50:04', '2019-05-23 00:00:00', 3, 3),
-(284, 14, 'Apple', 'iPhone 7', 'Storage: 64GB CPU: Apple A10 Fussion RAM: 2GB', 'APPLE-IPH345-78902', '0127', 1, '543219876556765', NULL, '2017-01-26', '2018-10-20', '2017-01-26 15:50:04', '2019-05-23 00:00:00', 3, 3),
+(283, 14, 'Apple', 'iPhone 7', 'Storage: 32GB\r\nCPU: Apple A10 Fussion\r\nRAM: 2GB', 'APPLE-IPH345-78901', '0127', 1, '987654321054399', NULL, '2017-01-26', '2018-10-20', '2017-01-26 15:50:04', '2019-02-21 00:00:00', 3, 3),
+(284, 14, 'Apple', 'iPhone 7', 'Storage: 64GB CPU: Apple A10 Fussion RAM: 2GB', 'APPLE-IPH345-78902', '0127', 1, '543219876556765', NULL, '2017-01-26', '2018-10-20', '2017-01-26 15:50:04', '2019-02-08 00:00:00', 3, 3),
 (289, 14, 'Apple', 'iPhone 8', 'Storage: 64GB\r\nRAM: 2GB\r\nCPU: A11 with Bionic chip with 64-bit architecture', 'APPLE-IPH3287-92503', '0499', 1, '123456789034345', NULL, '2018-04-04', '2019-04-04', '2018-04-04 15:42:18', NULL, 3, 1),
 (290, 14, 'Apple', 'iPhone 8', 'Storage: 64GB RAM: 2GB CPU: A11 with Bionic chip with 64-bit architecture', 'APPLE-IPH3287-92504', '0499', 1, '123456789034098', NULL, '2018-04-04', '2019-04-04', '2018-04-04 15:44:56', NULL, 3, 1),
 (293, 14, 'Apple', 'iPhone 8', 'Storage: 64GB\r\nRAM: 2GB\r\nCPU: A11 with Bionic chip with 64-bit architecture', 'APPLE-IPH3287-92505', '0499', 1, '12345678945632', NULL, '2018-04-04', '2019-04-04', '2018-04-04 15:42:18', NULL, 3, 1),
 (294, 14, 'Apple', 'iPhone 8', 'Storage: 64GB RAM: 2GB CPU: A11 with Bionic chip with 64-bit architecture', 'APPLE-IPH3287-92506', '0499', 1, '1234567890347891', NULL, '2018-04-04', '2019-04-04', '2018-04-04 15:44:56', NULL, 3, 1),
-(297, 14, 'Apple', 'iPhone X', 'CPU: A11 Bionic\r\nStorage: 64GB\r\nRAM: 3GB', 'MP-IPHAP123-0001', '1234', 1, '167890123451234', NULL, '2019-04-29', '2020-04-29', '2019-04-29 15:59:18', '2019-05-20 00:00:00', 1, 3),
+(297, 14, 'Apple', 'iPhone X', 'CPU: A11 Bionic\r\nStorage: 64GB\r\nRAM: 3GB', 'MP-IPHAP123-0001', '1234', 1, '167890123451234', NULL, '2019-04-29', '2020-04-29', '2019-04-29 15:59:18', '2019-05-15 00:00:00', 1, 3),
 (298, 14, 'Apple', 'iPhone X', 'CPU: A11 Bionic\r\nStorage: 64GB\r\nRAM: 3GB', 'MP-IPHAP123-0002', '1234', 1, '209876543214321', NULL, '2019-04-29', '2020-04-29', '2019-04-29 15:59:18', '2019-05-20 00:00:00', 1, 3),
 (299, 10, 'Logitech', 'K120', 'Ergonomic', 'KBD-LOGI12TECHX32-001', '000234', 3, NULL, NULL, NULL, NULL, '2017-03-04 00:00:00', '2019-01-24 00:00:00', 3, 7),
 (300, 10, 'Logitech', 'K120', 'Ergonomic', 'KBD-LOGI12TECHX32-002', '000234', 3, NULL, NULL, NULL, NULL, '2017-03-04 00:00:00', '2019-01-24 00:00:00', 3, 7),
@@ -594,8 +565,8 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (304, 9, 'Logitech', 'Business B100', 'Optical Mouse', 'MSE-B100BUS-002', '3457', 3, NULL, NULL, NULL, NULL, '2017-12-11 00:00:00', '2019-01-09 00:00:00', 4, 7),
 (305, 9, 'Logitech', 'Business B100', 'Optical Mouse', 'MSE-B100BUS-003', '3457', 3, NULL, NULL, NULL, NULL, '2017-12-11 00:00:00', '2019-01-09 00:00:00', 4, 7),
 (306, 9, 'Logitech', 'Business B100', 'Optical Mouse', 'MSE-B100BUS-004', '3457', 3, NULL, NULL, NULL, NULL, '2017-12-11 00:00:00', '2019-01-09 00:00:00', 4, 7),
-(307, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212741', '6549', 4, NULL, NULL, '2019-03-20', '2019-04-28', '2019-03-20 21:04:22', '2019-05-17 00:00:00', 2, 3),
-(308, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212742', '6549', 4, NULL, NULL, '2019-03-20', '2019-04-28', '2019-03-20 21:04:22', '2019-05-17 00:00:00', 2, 3),
+(307, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212741', '6549', 4, NULL, NULL, '2018-09-19', '2018-12-28', '2018-09-19 21:04:22', '2019-01-09 00:00:00', 2, 3),
+(308, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212742', '6549', 4, NULL, NULL, '2019-03-20', '2019-04-28', '2019-03-20 21:04:22', '2019-04-30 00:00:00', 2, 3),
 (309, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212743', '6549', 4, NULL, NULL, '2019-03-20', '2019-04-28', '2019-03-20 21:04:22', NULL, 2, 1),
 (310, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212744', '6549', 4, NULL, NULL, '2019-03-20', '2019-04-28', '2019-03-20 21:04:22', NULL, 2, 1),
 (311, 11, 'BenQ', '20\" LED Monitor', 'BenQ 20\" LED Monitor\r\n144hz Refresh Rate\r\n1400 x 1050 Resolution', 'BEN-C212745', '6549', 4, NULL, NULL, '2019-03-20', '2019-04-28', '2019-03-20 21:04:22', NULL, 2, 1),
@@ -619,10 +590,10 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 (329, 10, 'Logitech', 'MK120', 'Spill resistant.', 'KBD-LGMK120-000516', '9845', 7, NULL, NULL, '2019-03-25', '2019-05-17', '2019-03-25 22:14:33', '2019-05-24 00:00:00', 2, 2),
 (330, 10, 'Logitech', 'MK120', 'Spill resistant.', 'KBD-LGMK120-000617', '9845', 7, NULL, NULL, '2019-03-25', '2019-05-17', '2019-03-25 22:14:33', '2019-05-24 00:00:00', 2, 2),
 (331, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK-0001', '36260', 1, NULL, NULL, '2018-07-24', '2019-07-24', '2018-07-24 00:00:00', NULL, 2, 1),
-(332, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK-0002', '36260', 1, NULL, NULL, '2018-07-24', '2019-07-24', '2018-07-24 00:00:00', NULL, 2, 4),
-(333, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK-0003', '36260', 1, NULL, NULL, '2018-07-24', '2019-07-24', '2018-07-24 00:00:00', NULL, 2, 4),
+(332, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK-0002', '36260', 1, NULL, NULL, '2018-07-24', '2019-07-24', '2018-07-24 00:00:00', '2019-01-10 00:00:00', 2, 4),
+(333, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK-0003', '36260', 1, NULL, NULL, '2018-07-24', '2019-07-24', '2018-07-24 00:00:00', '2019-04-25 00:00:00', 2, 3),
 (334, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK14-3401', '9654', 1, NULL, NULL, '2018-09-04', '2019-09-04', '2018-09-04 00:00:00', NULL, 1, 1),
-(335, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK14-3402', '9654', 1, NULL, NULL, '2018-09-04', '2019-09-04', '2018-09-04 00:00:00', NULL, 1, 4),
+(335, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK14-3402', '9654', 1, NULL, NULL, '2018-09-04', '2019-09-04', '2018-09-04 00:00:00', '2019-01-19 00:00:00', 1, 4),
 (336, 12, 'Apple', 'Macbook', '12-inch LED-backlit display;\r\n2304x1440 resolution;\r\nCPU: 1.2GHz Intel Core i5;\r\n8GB of 1866 MHz LPDDR3;\r\n256GB PCIe-based onboard SSD', 'LPT-APP20MCBK14-3403', '9654', 1, NULL, NULL, '2018-09-04', '2019-09-04', '2018-09-04 00:00:00', NULL, 1, 1),
 (337, 14, 'Samsung', 'Note 10', '6.75\" display 1440x3040;\r\nOcta core (2.7Ghz, Quad core, M3 Mongoose);\r\n6GB RAM', 'MBSM-NOTE234-0001', '2191', 2, '1234567890654789', NULL, '2018-10-15', '2019-10-15', '2018-10-15 00:00:00', NULL, 3, 1),
 (338, 14, 'Samsung', 'Note 10', '6.75\" display 1440x3040;\r\nOcta core (2.7Ghz, Quad core, M3 Mongoose);\r\n6GB RAM', 'MBSM-NOTE234-0002', '2191', 2, '1234567890654321', NULL, '2018-10-15', '2019-10-15', '2018-10-15 00:00:00', NULL, 3, 1),
@@ -637,17 +608,13 @@ INSERT INTO `it_equipment` (`id`, `subtype_id`, `brand`, `model`, `details`, `se
 -- Table structure for table `it_equipment_subtype`
 --
 
-DROP TABLE IF EXISTS `it_equipment_subtype`;
-CREATE TABLE IF NOT EXISTS `it_equipment_subtype` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `it_equipment_subtype` (
+  `id` tinyint(4) NOT NULL,
   `type_id` tinyint(4) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  KEY `type_id` (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `it_equipment_subtype`
@@ -679,14 +646,12 @@ INSERT INTO `it_equipment_subtype` (`id`, `type_id`, `name`, `created_at`, `upda
 -- Table structure for table `it_equipment_type`
 --
 
-DROP TABLE IF EXISTS `it_equipment_type`;
-CREATE TABLE IF NOT EXISTS `it_equipment_type` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `it_equipment_type` (
+  `id` tinyint(4) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `it_equipment_type`
@@ -704,9 +669,8 @@ INSERT INTO `it_equipment_type` (`id`, `name`, `created_at`, `updated_at`) VALUE
 -- Table structure for table `purchased_items`
 --
 
-DROP TABLE IF EXISTS `purchased_items`;
-CREATE TABLE IF NOT EXISTS `purchased_items` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `purchased_items` (
+  `id` bigint(20) NOT NULL,
   `p_id` bigint(20) NOT NULL,
   `subtype_id` tinyint(4) NOT NULL,
   `brand` varchar(50) NOT NULL,
@@ -716,12 +680,8 @@ CREATE TABLE IF NOT EXISTS `purchased_items` (
   `qty` int(11) NOT NULL,
   `qty_added` int(11) DEFAULT NULL,
   `is_part` tinyint(1) NOT NULL,
-  `unit_number` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `p_id` (`p_id`),
-  KEY `subtype_id` (`subtype_id`),
-  KEY `supplier_id` (`supplier_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=latin1;
+  `unit_number` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `purchased_items`
@@ -830,15 +790,12 @@ INSERT INTO `purchased_items` (`id`, `p_id`, `subtype_id`, `brand`, `model`, `de
 -- Table structure for table `purchases`
 --
 
-DROP TABLE IF EXISTS `purchases`;
-CREATE TABLE IF NOT EXISTS `purchases` (
-  `purchase_no` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `purchases` (
+  `purchase_no` bigint(20) NOT NULL,
   `or_no` varchar(50) DEFAULT NULL,
-  `date_of_purchase` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`purchase_no`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+  `date_of_purchase` datetime NOT NULL DEFAULT current_timestamp(),
+  `user_id` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `purchases`
@@ -911,17 +868,13 @@ INSERT INTO `purchases` (`purchase_no`, `or_no`, `date_of_purchase`, `user_id`) 
 -- Table structure for table `replacement_issuance`
 --
 
-DROP TABLE IF EXISTS `replacement_issuance`;
-CREATE TABLE IF NOT EXISTS `replacement_issuance` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `replacement_issuance` (
+  `id` bigint(20) NOT NULL,
   `current_issuance` bigint(20) NOT NULL,
   `replaced_issuance` bigint(20) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `original_id` (`current_issuance`),
-  KEY `replaced_id` (`replaced_issuance`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `replacement_issuance`
@@ -936,12 +889,10 @@ INSERT INTO `replacement_issuance` (`id`, `current_issuance`, `replaced_issuance
 -- Table structure for table `supplier`
 --
 
-DROP TABLE IF EXISTS `supplier`;
-CREATE TABLE IF NOT EXISTS `supplier` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `supplier_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+CREATE TABLE `supplier` (
+  `id` bigint(20) NOT NULL,
+  `supplier_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `supplier`
@@ -963,21 +914,16 @@ INSERT INTO `supplier` (`id`, `supplier_name`) VALUES
 -- Table structure for table `system_units`
 --
 
-DROP TABLE IF EXISTS `system_units`;
-CREATE TABLE IF NOT EXISTS `system_units` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `system_units` (
+  `id` bigint(20) NOT NULL,
   `name` varchar(16) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `dept_id` tinyint(4) DEFAULT NULL,
   `user_id` bigint(20) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
-  `status_id` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  KEY `status_id` (`status_id`),
-  KEY `user_id` (`user_id`),
-  KEY `dept_id` (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+  `status_id` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `system_units`
@@ -1015,33 +961,254 @@ INSERT INTO `system_units` (`id`, `name`, `description`, `dept_id`, `user_id`, `
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` bigint(20) NOT NULL,
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(60) NOT NULL DEFAULT '',
   `dept_id` tinyint(4) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `user_type` varchar(16) NOT NULL DEFAULT 'associate',
-  `status` varchar(16) NOT NULL DEFAULT 'active',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `dept_id` (`dept_id`),
-  KEY `id` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `status` varchar(16) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `dept_id`, `created_at`, `updated_at`, `user_type`, `status`) VALUES
-(1, 'Aika Vien', 'Dayrit', 'aikaviend@gmail.com', '$2y$10$ZQbr3HKOeYhKnw17VgQM.OO5ATysBNCbFGVN/Vr18eSX8D5uW73rK', 1, '2019-04-16 18:26:19', NULL, 'admin', 'active'),
+(1, 'Admin', '', 'admin@admin.com', '$2y$10$ZQbr3HKOeYhKnw17VgQM.OO5ATysBNCbFGVN/Vr18eSX8D5uW73rK', 1, '2019-04-16 18:26:19', NULL, 'admin', 'active'),
 (2, 'Jon Paulo', 'Faypon', 'jonpaulo@gmail.com', '$2y$10$cVNBFra0VTY18YqUb0jro.7hYj0BeMdeyL/J42N7ETB48PKylin82', 2, '2019-04-16 18:27:24', NULL, 'associate', 'active'),
 (3, 'Justine', 'Garcia', 'justine@gmail.com', '$2y$10$.wSfH7CTT5muuQDpn/jpBedW6Rt/e6M2VHa7W2paHOAeJnyY4bTDq', 3, '2019-04-16 18:27:49', NULL, 'associate', 'active'),
-(4, 'Lovelyn', 'Paris', 'lovelynparis@gmail.com', '$2y$10$6NQ8/pk/agR9Jjs82VkYA.caCbz/Y8crIlvMoYCQXEhbk7Jb7dhE6', 4, '2019-04-16 18:28:10', NULL, 'associate', 'active');
+(4, 'Lovelyn', 'Paris', 'lovelynparis@gmail.com', '$2y$10$6NQ8/pk/agR9Jjs82VkYA.caCbz/Y8crIlvMoYCQXEhbk7Jb7dhE6', 4, '2019-04-16 18:28:10', NULL, 'associate', 'active'),
+(5, 'Aika Vien', 'Dayrit', 'aikaviend@gmail.com', '$2y$10$v3ci2y5KRXZ/gLUbL8EdpePMVWAlMGhypbpfVvoK69uB0oEKV8FG.', 1, '2019-06-21 13:59:48', NULL, 'admin', 'active');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`done_by`),
+  ADD KEY `data` (`data`),
+  ADD KEY `system_unit` (`system_unit`);
+
+--
+-- Indexes for table `departments`
+--
+ALTER TABLE `departments`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `equipment_status`
+--
+ALTER TABLE `equipment_status`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `inventory_concerns`
+--
+ALTER TABLE `inventory_concerns`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name_component` (`name_component`),
+  ADD KEY `system_unit` (`system_unit`),
+  ADD KEY `status_id` (`status_id`),
+  ADD KEY `last_user` (`last_user`),
+  ADD KEY `added_by` (`added_by`);
+
+--
+-- Indexes for table `issuance`
+--
+ALTER TABLE `issuance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `issued_to` (`issued_to`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `equipment_id` (`equipment_id`);
+
+--
+-- Indexes for table `it_equipment`
+--
+ALTER TABLE `it_equipment`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `serial_no` (`serial_no`),
+  ADD UNIQUE KEY `imei_or_macaddress` (`imei_or_macaddress`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `status_id` (`status_id`),
+  ADD KEY `subtype_id` (`subtype_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `it_equipment_ibfk_9` (`supplier_id`);
+
+--
+-- Indexes for table `it_equipment_subtype`
+--
+ALTER TABLE `it_equipment_subtype`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD KEY `type_id` (`type_id`);
+
+--
+-- Indexes for table `it_equipment_type`
+--
+ALTER TABLE `it_equipment_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `purchased_items`
+--
+ALTER TABLE `purchased_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `p_id` (`p_id`),
+  ADD KEY `subtype_id` (`subtype_id`),
+  ADD KEY `supplier_id` (`supplier_id`);
+
+--
+-- Indexes for table `purchases`
+--
+ALTER TABLE `purchases`
+  ADD PRIMARY KEY (`purchase_no`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `replacement_issuance`
+--
+ALTER TABLE `replacement_issuance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `original_id` (`current_issuance`),
+  ADD KEY `replaced_id` (`replaced_issuance`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `system_units`
+--
+ALTER TABLE `system_units`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `status_id` (`status_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `dept_id` (`dept_id`),
+  ADD KEY `id` (`id`) USING BTREE;
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `departments`
+--
+ALTER TABLE `departments`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `equipment_status`
+--
+ALTER TABLE `equipment_status`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `inventory_concerns`
+--
+ALTER TABLE `inventory_concerns`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `issuance`
+--
+ALTER TABLE `issuance`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+
+--
+-- AUTO_INCREMENT for table `it_equipment`
+--
+ALTER TABLE `it_equipment`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345;
+
+--
+-- AUTO_INCREMENT for table `it_equipment_subtype`
+--
+ALTER TABLE `it_equipment_subtype`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `it_equipment_type`
+--
+ALTER TABLE `it_equipment_type`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `purchased_items`
+--
+ALTER TABLE `purchased_items`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+
+--
+-- AUTO_INCREMENT for table `purchases`
+--
+ALTER TABLE `purchases`
+  MODIFY `purchase_no` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT for table `replacement_issuance`
+--
+ALTER TABLE `replacement_issuance`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `system_units`
+--
+ALTER TABLE `system_units`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
