@@ -224,7 +224,7 @@ class ForStatusController extends BaseController
       $act['activity'] = "updated the account of ".$data['fname']." ".$data['lname']." ID: ".$data['id'];
       TblActivityLogs::add_log($act);
 
-      return redirect()->intended('/employees')->with('message', "Successfully updated the account of ".$data['fname']." ".$data['lname']." ID: ".$data['id']');
+      return redirect()->intended('/employees')->with('message', "Successfully updated the account of ".$data['fname']." ".$data['lname']." ID: ".$data['id']);
 
    }
 

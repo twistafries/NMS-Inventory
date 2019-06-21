@@ -299,7 +299,7 @@
                             <hr>
                             <h6 id="total_issued" class="text-center"></h6>
                             <hr>
-                            <h6 style="color:red"> Note: All items issued to this employees will be mark as available after deactivating this account.</h6>
+                            <h6 style="color:red"> Note: All items issued to this employees will be marked as available after deactivating this account.</h6>
                         </div>
                     </div>
 

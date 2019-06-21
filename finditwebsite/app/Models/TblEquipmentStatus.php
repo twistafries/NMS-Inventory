@@ -41,7 +41,7 @@ class TblEquipmentStatus extends Model
         -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
         -> select('it_equipment.*', 'users.fname as firstname', 'users.lname as lastname', 'equipment_status.name as stat',  'it_equipment_subtype.name as subtype',  'it_equipment_type.name as type', 'supplier.supplier_name as supplier')
         -> where('status_id' , '=' , '3')
-        -> orderBy('created_at' , 'desc')
+        -> orderBy('updated_at' , 'desc')
         -> get();
 
         return $query;
