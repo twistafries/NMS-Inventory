@@ -27,6 +27,23 @@ class TblItEquipment extends Model
         return $query;
     }
 
+    public static function get_all_available($params = null){
+        $query = \DB::table('it_equipment')
+        -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')
+        -> leftjoin('it_equipment_subtype' , 'it_equipment_subtype.id', '=', 'it_equipment.subtype_id')
+        -> leftjoin('it_equipment_type' , 'it_equipment_type.id', '=', 'it_equipment_subtype.type_id')
+        -> leftjoin('users', 'users.id', '=', 'it_equipment.user_id')
+        -> leftjoin('supplier', 'supplier.id', '=', 'it_equipment.supplier_id')
+        -> select('it_equipment.*', 'equipment_status.name as status_name','it_equipment_subtype.name as subtype_name','it_equipment_type.name as type_name', 'it_equipment_type.id as type_id', 'users.fname as firstname', 'users.lname as lastname', 'supplier.supplier_name as supplier', DB::raw("DATE_FORMAT(it_equipment.created_at, '%Y-%m-%d') as added_at"))
+        -> orderBy('it_equipment.created_at' , 'desc')
+        -> where('it_equipment.status_id', '=', '1')
+        -> where('it_equipment.updated_at', '=', null)
+        -> get();
+
+
+        return $query;
+    }
+
     public static function get_item_additions($params = null){
         $query = \DB::table('it_equipment')
         -> leftjoin('equipment_status' , 'equipment_status.id', '=', 'it_equipment.status_id')

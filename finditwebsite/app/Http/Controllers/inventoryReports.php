@@ -40,7 +40,7 @@ class inventoryReports extends BaseController
         $data['chartStartDate'] = new Carbon('first day of this month');
         $data['chartStartDate']->startOfMonth();
         $data['chartEndDate'] = Carbon::now();
-
+        $data['available'] = TblItEquipment::get_all_available();
         if($data['status']=="null"){
             $data['items'] = TblItEquipment::get_item_additions($data);
 

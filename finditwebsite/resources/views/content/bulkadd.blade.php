@@ -342,13 +342,13 @@ body{
                 // $('#error_brand').hide().text(error_brand);
             }
 
-            if($('#or_no').val() == ''){
-                $('#or_no').css('background-color', '#fff3cd');
-
-            }else{
-                $('#or_no').removeAttr("style");
-                $('#or_no').css('background-color', 'fff');
-            }
+            // if($('#or_no').val() == ''){
+            //     $('#or_no').css('background-color', '#fff3cd');
+            //
+            // }else{
+            //     $('#or_no').removeAttr("style");
+            //     $('#or_no').css('background-color', 'fff');
+            // }
 
 
             // $('#save').removeAttr("data-dismiss");
@@ -403,13 +403,13 @@ body{
                         @if( $item_id != 0)
                         output += '<td>' + {{ $item_id }} + ' <input type="hidden" name="bulk[item_id][]" id="item_id' + count + '" class="name" value="' +  {{ $item_id }}  + '" /></td>';
                         @endif
-                        output += '<td>' + ' <span style="color:red">*</span><input type="text" onchange="snValidation(this)" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" required/></td>';
+                        output += '<td>' + ' <span style="color:red">*</span><input type="text" onchange="snValidation(this)" name="bulk[serial_no][]" id="serial_no' + count + '" class="serial_no" autocomplete="off" required/></td>';
                         output += '<td> <input type="hidden" name="bulk[subtype_id][]" id="subtype_id' + count + '" class="subtype_id" value="' + subtype_id + '" />' + subtype_name + '</td>';
                         output += '<td> <input type="hidden" name="bulk[status_id][]" id="status_id' + count + '" class="status_id" value="' + status_id + '" />' + status_name + '</td>';
                         output += '<td>' + brand + ' <input type="hidden" name="bulk[brand][]" id="brand' + count + '" class="name" value="' + brand + '" /></td>';
                         output += '<td>' + model + ' <input type="hidden" name="bulk[model][]" id="model' + count + '" class="name" value="' + model + '" /></td>';
                         output += '<td>' + details + ' <input type="hidden" name="bulk[details][]" id="details' + count + '" class="details" value="' + details + '" /></td>';
-                        output += '<td>'  + ' <input type="text" name="bulk[imei_or_macaddress][]" id="imei_or_macaddress' + count + '" class="imei_or_macaddress"/></td>';
+                        output += '<td>'  + ' <input type="text" name="bulk[imei_or_macaddress][]" id="imei_or_macaddress' + count + '" class="imei_or_macaddress" autocomplete="off"/></td>';
                         output += '<td>' + or_no + ' <input type="hidden" name="bulk[or_no][]" id="or_no' + count + '" class="or_no" value="' + or_no + '" /></td>';
                         output += '<td>' + supplier_name + ' <input type="hidden" name="bulk[supplier_id][]" id="supplier' + count + '" class="supplier" value="' + supplier_id + '" /></td>';
                         output += '<td>' + warranty_start + ' <input type="hidden" name="bulk[warranty_start][]" id="warranty_start' + count + '" class="warranty_start" value="' + warranty_start + '" /></td>';
@@ -459,6 +459,11 @@ body{
                             var qty = response['purchases'][i].qty;
                             var qty_a = response['purchases'][i].qty_added;
                             var or_no= response['purchases'][i].or_no;
+                            if(or_no != null){
+                               document.getElementById('or_no').setAttribute('disabled' , true);
+                               $('#save').show();
+                               $('#save').attr("data-dismiss","modal");
+                            }
                             var is_part = response['purchases'][i].is_part;
                             var unit_number = response['purchases'][i].unit_number;
                             var supplier_id = response['purchases'][i].supplier_id;
@@ -567,5 +572,10 @@ function startDateEnable(){
        }
        listNames.push(sel.value);
     }
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('input').attr('autocomplete','off');
+  });
 </script>
 @endsection

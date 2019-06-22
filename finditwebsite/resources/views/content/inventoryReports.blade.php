@@ -173,7 +173,40 @@
             <div class="inventory">
               <p class="card-title text-center" style="color: #555555; margin-bottom: 2rem; font-size: 20px;">{{$title}}</p>
             </div>
+              @if($title == "Available Items")
+                <table class="table all" id="available">
+                  <thead class="thead-dark" style="font-size: 14px;">
+                    <tr>
+                        <th scope="col">Item ID</th>
+                        <th scope="col">Brand-Model/Label</th>
+                        <th scope="col">Item Type</th>
+                        <th scope="col">Item Subtype</th>
+                        <th scope="col">Date:</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
+                    @foreach($items as $item)
+                    <tr id="{{$item->created_at}}">
+                      <td>{{$item->name_component}}@if($item->brand==null){{$item->system_unit}} @endif</td>
+                      <td>{{$item->brand}}-{{$item->model}}@if($item->brand==null){{$item->name}} @endif</td>
+                      <td>{{$item->type}}@if($item->type==null)System Unit @endif</td>
+                      <td>{{$item->subtype}}@if($item->brand==null)Not Applicable @endif</td>
+                      <td>{{$item->created_at}}</td>
+                    </tr>
+                    @endforeach
+                    @foreach($available as $available)
+                    <tr id="{{$available->created_at}}">
+                      <td>{{$available->id}}</td>
+                      <td>{{$available->brand}}-{{$available->model}}</td>
+                      <td>{{$available->type_name}}</td>
+                      <td>{{$available->subtype_name}}</td>
+                      <td>{{$available->created_at}}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+                @else
                 <table class="table all" id="available">
                   <thead class="thead-dark" style="font-size: 14px;">
                     <tr>
@@ -197,7 +230,7 @@
                     @endforeach
                   </tbody>
                 </table>
-
+                @endif
           <!-- available -->
 
 

@@ -35,7 +35,7 @@ class InventoryConcernsController extends BaseController
         $user_id = $session['id'];
 
         try{
-   
+
             $data = $request->all();
             $data['added_by'] = $user_id;
             $data['issued_to'] = TblIssuances::getIssuedTo($data['id']);
@@ -120,6 +120,10 @@ class InventoryConcernsController extends BaseController
                 return \Redirect::to('/decommissioned')
                 ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".')
                 ->with('additional_message' , $concern['message']);
+            }else{
+              return \Redirect::to('/repairSummary')
+              ->with('message' , 'Marked equipment status of, '. $equipment_info->name.' '.$equipment_info->id.' from "'.$orig_status_name. '" to "'.$new_status_name.'".')
+              ->with('additional_message' , $concern['message']);
             }
         }catch(Exception $e){
             $error_ctr++;

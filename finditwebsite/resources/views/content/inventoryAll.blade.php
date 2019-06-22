@@ -340,19 +340,28 @@
                                         @endif
 
                                         <!-- MArk As -->
+
                                         <div class="row row-details">
+                                            @if($equipment->status_id != 8)
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                                            @if($equipment->status_id != 1 && $equipment->status_id != 7  && $equipment->status_id != 2)
+                                            <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#availableModal">Make Available</button>
+                                            @endif
                                             @if($equipment->warranty_end < Carbon::today())
+                                            @if($equipment->status_id != 3)
                                             <button type="button" class="btn btn-warning pr-2" data-dismiss="modal" data-toggle="modal" data-target="#for-repair">
                                                 For Repair
                                             </button>
+
+
+                                            @endif
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
                                                 data-target="#decommissionedModal">Decommission</button>
                                                 @else
                                                 @if($equipment->status_id == 4)
-                                                <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#return">Make Available</button>
-                                                <button type="button" class="btn btn-warning" data-dismiss="modal" data-toggle="modal" data-target="#return">For Repair</button>
+
                                                 @else
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal"
                                                     data-target="#return"><i class="fas fa-undo-alt"></i> For Return</button>
@@ -360,6 +369,7 @@
                                                 @if($equipment->status_id != 7 && $equipment->status_id != 8)
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal"
                                                     data-target="#decommissionedModal"><i class="fas fa-trash-alt"></i> Decommission Item</button>
+                                                @endif
                                                 @endif
                                                 @endif
                                         </div>
@@ -529,6 +539,52 @@
 
 
 
+                                        <!-- Available -->
+                                        <div class="modal fade" id="availableModal" tabindex="-1" role="dialog" aria-labelledby="decommissionedModalTitle"
+                                            aria-hidden="true">
+
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content" style="height:450px;">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title"></h5>
+                                                            Make item Available
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+
+                                                        <form action="{!! url('/add-to-concerns-equipment'); !!}" method="post">
+                                                            {!! csrf_field() !!}
+                                                            <div class="modal-body">
+                                                                <div class="warning-content" style="text-align: center;">
+                                                                    <p class="text-uppercase font-weight-bold text-warning">Warning!</p>
+                                                                    <pre ><span class="inner-pre" style="font-size: 15px">Are you sure you want to mark equipment,<h4 id="availableName"></h4>  for available?</span></pre>
+                                                                </div>
+                                                                <div class="btn-group" role="group">
+                                                                    <button class="btn btn-warning" data-toggle="collapse"
+                                                                        data-target="#remarks" aria-expanded="false" aria-controls="collapseExample"
+                                                                        type="button">
+                                                                        Add Remarks
+                                                                    </button>
+                                                                    <div class="collapse" id="remarks">
+                                                                        <textarea class="form-control" name="remarks" placeholder="Place remarks"></textarea>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <input type="hidden" name="id" id="availableNameID" value="">
+                                                                <input type="hidden" name="status_id" value="1">
+                                                                <input type="hidden" name="orig_status_id" id="orig_status_id_available" value="">
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Confirm</button>
+                                                        </form>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
 
 
                     <!-- Permanently Delete -->
@@ -617,17 +673,6 @@
                                                     <li class="list-group-item">
                                                         <h6 class="font-weight-bolder text-uppercase text-left">Official Receipt No: </h6>
                                                         <input name="or_no" id="or_no" value="">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <h6 class="font-weight-bolder text-uppercase text-left">Supplier: </h6>
-                                                        <input  list="suppliers" name="supplier" required style="width: 9rem;">
-                                                        <datalist id="suppliers">
-                                                            <select>
-                                                            @foreach ($supp as $supplier)
-                                                            <option value="{{ $supplier->supplier_name}}">
-                                                            @endforeach
-                                                        </select>
-                                                        </datalist>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1241,7 +1286,7 @@ $('a.warranty-not').click(function(){
              document.getElementById("serial_no").value = this.cells[5].innerHTML;
              document.getElementById("imei_or_macaddress").value = this.cells[13].innerHTML;
              document.getElementById("or_no").value = this.cells[14].innerHTML;
-             document.getElementById("supplier_eqp").value = this.cells[6].innerHTML;
+             document.getElementById("returnSupplier").value = this.cells[6].innerHTML;
              document.getElementById("details").value = this.cells[10].innerHTML;
              document.getElementById("warranty_start_eqp").value = this.cells[11].innerHTML;
              document.getElementById("warranty_end_eqp").value = this.cells[12].innerHTML;
@@ -1249,12 +1294,15 @@ $('a.warranty-not').click(function(){
              document.getElementById("deleteitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("repairitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("returnitemNAme").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
+             document.getElementById("availableName").innerHTML = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("deleted_item").value = this.cells[2].innerHTML + " " + this.cells[1].innerHTML;
              document.getElementById("decommission_id").value = this.cells[0].innerHTML;
+             document.getElementById("availableNameID").value = this.cells[0].innerHTML;
              document.getElementById("forRepair").value = this.cells[0].innerHTML;
              document.getElementById("forReturn").value = this.cells[0].innerHTML;
              document.getElementById("returnSupplier").innerHTML = this.cells[6].innerHTML + "?";
              document.getElementById("orig_status_id_decommissioned").value = this.cells[15].innerHTML;
+             document.getElementById("orig_status_id_available").value = this.cells[15].innerHTML;
              document.getElementById("forRepair_orig_status_id").value = this.cells[15].innerHTML;
              document.getElementById("forReturn_orig_status_id").value = this.cells[15].innerHTML;
         };
