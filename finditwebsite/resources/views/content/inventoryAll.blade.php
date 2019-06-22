@@ -342,7 +342,7 @@
                                         <!-- MArk As -->
 
                                         <div class="row row-details">
-                                            @if($equipment->status_id != 8)
+                                            @if($equipment->status_id != 8  && $equipment->status_id != 7)
                                            <div class="col col-4 detail-header text-uppercase">Mark As: </div>
                                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
